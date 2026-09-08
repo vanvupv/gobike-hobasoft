@@ -29,6 +29,21 @@ do_action( 'woocommerce_archive_description' );
 
 		if ( woocommerce_product_loop() ) {
 
+			// 1. DÒNG 1: BỘ LỌC NGANG "Tìm theo:"
+			if ( shortcode_exists( 'woof' ) && ! did_action( 'woof_before_filter' ) ) {
+				echo do_shortcode( '[woof autohide="0" autosubmit="1" is_ajax="1"]' );
+			}
+
+			// 2. DÒNG 2: DẢI BADGES ĐANG CHỌN & NÚT BỎ HẾT (ĐẶT NGAY DƯỚI "Tìm theo:")
+			if ( shortcode_exists( 'woof_search_options' ) ) {
+				echo do_shortcode( '[woof_search_options]' );
+			}
+
+			// 3. DÒNG 3: THANH SẮP XẾP RADIO "Xếp theo:"
+			if ( function_exists( 'gobike_render_custom_sorting_toolbar' ) ) {
+				gobike_render_custom_sorting_toolbar();
+			}
+
 			/**
 			 * Hook: woocommerce_before_shop_loop.
 			 *
@@ -37,48 +52,6 @@ do_action( 'woocommerce_archive_description' );
 			 * @hooked woocommerce_catalog_ordering - 30 (FL removed)
 			 */
 			do_action( 'woocommerce_before_shop_loop' );
-			
-
-			// Đảm bảo HUSKY filter luôn hiển thị kể cả khi chưa cấu hình hook tự động
-			if ( shortcode_exists( 'woof' ) && ! did_action( 'woof_before_filter' ) ) {
-				echo do_shortcode( '[woof autohide="0" autosubmit="1" is_ajax="1"]' );
-			}
-			?>
-			</div>
-			<?php
-			// GỌI THANH SẮP XẾP RADIO CHUẨN MẪU GOBIKE
-			if ( function_exists( 'gobike_render_custom_sorting_toolbar' ) ) {
-				gobike_render_custom_sorting_toolbar();
-			} else {
-				$current_orderby = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'date';
-			?>
-				<div class="gobike-custom-sorting-toolbar container">
-					<span class="sort-label">Xếp theo:</span>
-					<div class="sort-options">
-						<label class="sort-item">
-							<input type="radio" name="gobike_sort_radio" value="title-asc" <?php checked( $current_orderby, 'title-asc' ); ?>>
-							<span>Tên A-Z</span>
-						</label>
-						<label class="sort-item">
-							<input type="radio" name="gobike_sort_radio" value="title-desc" <?php checked( $current_orderby, 'title-desc' ); ?>>
-							<span>Tên Z-A</span>
-						</label>
-						<label class="sort-item">
-							<input type="radio" name="gobike_sort_radio" value="date" <?php checked( $current_orderby, 'date' ); ?>>
-							<span>Hàng mới</span>
-						</label>
-						<label class="sort-item">
-							<input type="radio" name="gobike_sort_radio" value="price" <?php checked( $current_orderby, 'price' ); ?>>
-							<span>Giá thấp đến cao</span>
-						</label>
-						<label class="sort-item">
-							<input type="radio" name="gobike_sort_radio" value="price-desc" <?php checked( $current_orderby, 'price-desc' ); ?>>
-							<span>Giá cao xuống thấp</span>
-						</label>
-					</div>
-				</div>
-				<?php
-			}
 			
 			woocommerce_product_loop_start();
 

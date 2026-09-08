@@ -459,14 +459,17 @@ function gobike_filter_enqueue_styles() {
     }
 
     /* 4. Dải Active Filter Badges màu sắc rực rỡ & nút Bỏ hết màu đỏ */
-    .woof_products_top_panel {
+    .woof_products_top_panel,
+    .woof_products_top_panel_ul {
         display: flex !important;
         align-items: center !important;
         flex-wrap: wrap !important;
-        gap: 8px !important;
-        margin: 12px 0 16px 0 !important;
+        gap: 8px 10px !important;
+        margin: 10px 0 14px 0 !important;
         padding: 0 !important;
         list-style: none !important;
+        width: 100% !important;
+        clear: both !important;
     }
 
     .woof_products_top_panel li {
@@ -474,13 +477,66 @@ function gobike_filter_enqueue_styles() {
         padding: 0 !important;
         list-style: none !important;
         display: inline-flex !important;
+        align-items: center !important;
     }
 
+    /* Ẩn các text nhãn thô lồng nhau như 'Thương hiệu:', 'Danh mục sản phẩm:' */
+    .woof_products_top_panel ul li ul li:first-child {
+        display: none !important;
+    }
+
+    .woof_products_top_panel ul li ul {
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+
+    /* Nút Bỏ hết (Clear all) - Nút màu đỏ nổi bật có dấu ✕ */
+    .woof_products_top_panel .woof_reset_button_2,
+    .woof_products_top_panel li:first-child a,
+    .woof_products_top_panel a.woof_clear_all {
+        background-color: #d0021b !important;
+        border: none !important;
+        color: #fff !important;
+        padding: 6px 14px !important;
+        border-radius: 5px !important;
+        font-size: 13.5px !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        line-height: 1.4 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.08) !important;
+        transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease !important;
+    }
+
+    .woof_products_top_panel .woof_reset_button_2:hover,
+    .woof_products_top_panel li:first-child a:hover,
+    .woof_products_top_panel a.woof_clear_all:hover {
+        opacity: 0.9 !important;
+        transform: translateY(-1px) !important;
+        background-color: #b50217 !important;
+        color: #fff !important;
+    }
+
+    .woof_products_top_panel .woof_reset_button_2::after {
+        content: "✕" !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        margin-left: 4px !important;
+    }
+
+    /* Các badge bộ lọc đang chọn */
     .woof_products_top_panel li a,
     .woof_redraw_zone .woof_crud_link {
         display: inline-flex !important;
         align-items: center !important;
-        gap: 8px !important;
+        gap: 6px !important;
         padding: 6px 14px !important;
         border-radius: 5px !important;
         font-size: 13.5px !important;
@@ -492,26 +548,34 @@ function gobike_filter_enqueue_styles() {
         box-shadow: 0 2px 5px rgba(0,0,0,0.08) !important;
     }
 
+    .woof_products_top_panel li a::after,
+    .woof_redraw_zone .woof_crud_link::after {
+        content: "✕" !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        margin-left: 4px !important;
+        opacity: 0.9 !important;
+    }
+
+    .woof_products_top_panel span.woof_remove_ppi {
+        display: none !important;
+    }
+
     .woof_products_top_panel li a:hover,
     .woof_redraw_zone .woof_crud_link:hover {
         opacity: 0.9 !important;
         transform: translateY(-1px) !important;
+        color: #fff !important;
     }
 
-    /* 6 màu rực rỡ luân phiên cho từng badge chuẩn ảnh mẫu */
+    /* Bảng màu rực rỡ luân phiên cho từng badge chuẩn ảnh mẫu */
+    .woof_products_top_panel li a { background-color: #00b4d8 !important; }
     .woof_products_top_panel li:nth-child(6n+1) a { background-color: #00b4d8 !important; } /* Cyan */
     .woof_products_top_panel li:nth-child(6n+2) a { background-color: #e63946 !important; } /* San hô đỏ */
     .woof_products_top_panel li:nth-child(6n+3) a { background-color: #2a9d8f !important; } /* Xanh ngọc */
     .woof_products_top_panel li:nth-child(6n+4) a { background-color: #f77f00 !important; } /* Cam */
     .woof_products_top_panel li:nth-child(6n+5) a { background-color: #7209b7 !important; } /* Tím hồng */
     .woof_products_top_panel li:nth-child(6n+6) a { background-color: #3a86ff !important; } /* Xanh dương */
-
-    /* Nút Bỏ hết (Clear all) - Nền màu đỏ nổi bật */
-    .woof_products_top_panel li:first-child a,
-    .woof_products_top_panel a.woof_clear_all {
-        background-color: #d0021b !important;
-        font-weight: 700 !important;
-    }
 
     /* Ẩn tag orderby trong top panel nếu lọt vào */
     .woof_redraw_zone .woof_crud_link[data-name="orderby"],
@@ -524,7 +588,7 @@ function gobike_filter_enqueue_styles() {
 
 
 /* ============================================================================
- * 3. JAVASCRIPT LOGIC (ĐỒNG BỘ RADIO, DROPDOWN, THAY THẾ 'PRICE RANGE')
+ * 3. JAVASCRIPT LOGIC (ĐỒNG BỘ THỨ TỰ, RADIO, DROPDOWN, THAY THẾ 'PRICE RANGE')
  * ============================================================================
  */
 add_action( 'wp_footer', 'gobike_filter_enqueue_scripts', 99 );
@@ -533,6 +597,29 @@ function gobike_filter_enqueue_scripts() {
     <script id="gobike-filter-custom-scripts" type="text/javascript">
     jQuery(document).ready(function($) {
         'use strict';
+
+        // 3.0 Cố định thứ tự hiển thị chuẩn: 1. Tìm theo: -> 2. Badges & Bỏ hết -> 3. Xếp theo:
+        function reorderGobikeFilterElements() {
+            var $redrawZone = $('.woof_redraw_zone').first();
+            var $topPanel = $('.woof_products_top_panel').first();
+            var $sortingToolbar = $('.gobike-custom-sorting-toolbar').first();
+
+            if ($redrawZone.length) {
+                // 1. Đảm bảo .woof_products_top_panel luôn nằm NGAY DƯỚI .woof_redraw_zone ("Tìm theo:")
+                if ($topPanel.length) {
+                    $topPanel.insertAfter($redrawZone);
+                }
+
+                // 2. Đảm bảo .gobike-custom-sorting-toolbar luôn nằm DƯỚI .woof_products_top_panel (hoặc dưới .woof_redraw_zone)
+                if ($sortingToolbar.length) {
+                    if ($topPanel.length && $topPanel.is(':visible') && $topPanel.find('li').length > 0) {
+                        $sortingToolbar.insertAfter($topPanel);
+                    } else {
+                        $sortingToolbar.insertAfter($redrawZone);
+                    }
+                }
+            }
+        }
 
         // 3.1 Khởi tạo các nút Dropdown cho từng khối lọc HUSKY
         function initHuskyDropdownButtons() {
@@ -650,7 +737,7 @@ function gobike_filter_enqueue_scripts() {
             });
 
             // Đảm bảo nút Clear all đổi thành 'Bỏ hết'
-            $('.woof_products_top_panel a.woof_clear_all, .woof_products_top_panel li:first-child a').each(function() {
+            $('.woof_products_top_panel a.woof_clear_all, .woof_products_top_panel li:first-child a, .woof_products_top_panel .woof_reset_button_2').each(function() {
                 var $clear = $(this);
                 if (/clear\s*all/i.test($clear.text())) {
                     $clear.contents().each(function() {
@@ -663,13 +750,23 @@ function gobike_filter_enqueue_scripts() {
         }
 
         // Chạy lần đầu khi DOM sẵn sàng
+        reorderGobikeFilterElements();
         initHuskyDropdownButtons();
         formatHuskyPriceBadge();
 
         // Chạy lại sau mỗi lần HUSKY AJAX hoàn tất
         $(document).on('woof_ajax_done', function() {
+            reorderGobikeFilterElements();
             initHuskyDropdownButtons();
             formatHuskyPriceBadge();
+        });
+
+        document.addEventListener('woof-ajax-form-redrawing', function() {
+            setTimeout(function() {
+                reorderGobikeFilterElements();
+                initHuskyDropdownButtons();
+                formatHuskyPriceBadge();
+            }, 50);
         });
     });
     </script>
