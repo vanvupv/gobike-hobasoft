@@ -699,9 +699,38 @@ add_action('acf/init', 'gobike_register_shop_page_acf_fields');
 function gobike_register_shop_page_acf_fields()
 {
     if (function_exists('acf_add_local_field_group')) {
+        $san_pham_page = get_page_by_path('san-pham');
+        $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
+
+        $locations = array(
+            array(
+                array(
+                    'param' => 'options_page',
+                    'operator' => '==',
+                    'value' => 'theme-general-settings',
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'page',
+                ),
+            ),
+        );
+        if (!empty($shop_page_id) && intval($shop_page_id) > 0) {
+            $locations[] = array(
+                array(
+                    'param' => 'page',
+                    'operator' => '==',
+                    'value' => (string) $shop_page_id,
+                ),
+            );
+        }
+
         acf_add_local_field_group(array(
-            'key' => 'group_gobike_shop_page_settings',
-            'title' => 'Cài đặt Trang Sản Phẩm (GOBIKE Shop Settings)',
+            'key' => 'group_6a9f83f739c54',
+            'title' => 'Banner Sản phẩm',
             'fields' => array(
 
                 // TAB 1: Khối 1
@@ -777,15 +806,7 @@ function gobike_register_shop_page_acf_fields()
                     'default_value' => "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.",
                 ),
             ),
-            'location' => array(
-                array(
-                    array(
-                        'param' => 'post_type',
-                        'operator' => '==',
-                        'value' => 'page',
-                    ),
-                ),
-            ),
+            'location' => $locations,
             'menu_order' => 15,
             'position' => 'normal',
             'style' => 'default',
