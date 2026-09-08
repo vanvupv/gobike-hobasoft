@@ -26,27 +26,31 @@ do_action( 'woocommerce_archive_description' );
 		?>
 
 		<?php
+		// =========================================================================
+		// BỘ LỌC 3 TẦNG GOBIKE (Luôn hiển thị kể cả khi danh mục không có sản phẩm)
+		// =========================================================================
+
+		// 1. TẦNG 1: BỘ LỌC NGANG "Tìm theo:"
+		if ( shortcode_exists( 'woof' ) && ! did_action( 'woof_before_filter' ) ) {
+			echo do_shortcode( '[woof autohide="0" autosubmit="1" is_ajax="1"]' );
+		}
+
+		// 2. TẦNG 3: THANH SẮP XẾP RADIO "Xếp theo:"
+		if ( function_exists( 'gobike_render_custom_sorting_toolbar' ) ) {
+			gobike_render_custom_sorting_toolbar();
+		}
+
+		/**
+		 * Hook: woocommerce_before_shop_loop.
+		 * HUSKY sẽ render TẦNG 2 (Dải Badges & Nút Bỏ hết) tại đây
+		 *
+		 * @hooked wc_print_notices - 10
+		 * @hooked woocommerce_result_count - 20 (FL removed)
+		 * @hooked woocommerce_catalog_ordering - 30 (FL removed)
+		 */
+		do_action( 'woocommerce_before_shop_loop' );
 
 		if ( woocommerce_product_loop() ) {
-
-			// 1. DÒNG 1: BỘ LỌC NGANG "Tìm theo:"
-			if ( shortcode_exists( 'woof' ) && ! did_action( 'woof_before_filter' ) ) {
-				echo do_shortcode( '[woof autohide="0" autosubmit="1" is_ajax="1"]' );
-			}
-
-			// 2. DÒNG 3: THANH SẮP XẾP RADIO "Xếp theo:"
-			if ( function_exists( 'gobike_render_custom_sorting_toolbar' ) ) {
-				gobike_render_custom_sorting_toolbar();
-			}
-
-			/**
-			 * Hook: woocommerce_before_shop_loop.
-			 *
-			 * @hooked wc_print_notices - 10
-			 * @hooked woocommerce_result_count - 20 (FL removed)
-			 * @hooked woocommerce_catalog_ordering - 30 (FL removed)
-			 */
-			do_action( 'woocommerce_before_shop_loop' );
 			
 			woocommerce_product_loop_start();
 

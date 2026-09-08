@@ -182,6 +182,18 @@ function gobike_full_filter_shortcode()
     return ob_get_clean();
 }
 
+// 1.8 Tự động chuyển thông báo không có sản phẩm thành "Không có sản phẩm nào trong danh mục này."
+add_filter('gettext', 'gobike_filter_no_products_message', 20, 3);
+function gobike_filter_no_products_message($translated_text, $text, $domain)
+{
+    if ('woocommerce' === $domain) {
+        if ('No products were found matching your selection.' === $text || 'Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.' === $translated_text) {
+            return 'Không có sản phẩm nào trong danh mục này.';
+        }
+    }
+    return $translated_text;
+}
+
 
 /* ============================================================================
  * 2. CSS STYLING (TOÀN BỘ CSS CỦA BỘ LỌC, SẮP XẾP & BADGES)
@@ -602,6 +614,58 @@ function gobike_filter_enqueue_styles()
         .woof_products_top_panel li a[data-name="orderby"] {
             display: none !important;
         }
+
+        /* 5. Khung thông báo khi không có sản phẩm khớp bộ lọc chuẩn GOBIKE */
+        .woocommerce-no-products-found,
+        .gobike-no-products-wrapper {
+            width: 100% !important;
+            clear: both !important;
+            margin: 15px 0 30px 0 !important;
+        }
+
+        .gobike-no-products-alert,
+        .woocommerce-no-products-found .woocommerce-info,
+        .woocommerce-info.gobike-no-products-info {
+            background-color: #fdf8e2 !important;
+            border: 1px solid #faebcc !important;
+            color: #8a6d3b !important;
+            padding: 14px 20px !important;
+            border-radius: 4px !important;
+            font-size: 14px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            line-height: 1.5 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            position: relative !important;
+        }
+
+        .gobike-no-products-alert::before,
+        .woocommerce-no-products-found .woocommerce-info::before {
+            display: none !important;
+        }
+
+        .gobike-alert-text {
+            font-weight: 500 !important;
+            color: #8a6d3b !important;
+        }
+
+        .gobike-alert-dismiss {
+            background: transparent !important;
+            border: none !important;
+            color: #8a6d3b !important;
+            font-size: 20px !important;
+            line-height: 1 !important;
+            cursor: pointer !important;
+            padding: 0 4px !important;
+            opacity: 0.5 !important;
+            transition: opacity 0.2s ease !important;
+        }
+
+        .gobike-alert-dismiss:hover {
+            opacity: 1 !important;
+        }
     </style>
     <?php
 }
@@ -645,6 +709,12 @@ function gobike_filter_enqueue_scripts()
                             $sortingToolbar.insertAfter($topPanel);
                         } else {
                             $sortingToolbar.insertAfter($redrawZone);
+                        }
+
+                        // Đảm bảo thông báo khi không có sản phẩm luôn nằm DƯỚI thanh sắp xếp
+                        var $noProducts = $('.woocommerce-no-products-found, .gobike-no-products-wrapper').first();
+                        if ($noProducts.length) {
+                            $noProducts.insertAfter($sortingToolbar);
                         }
                     }
                 }
