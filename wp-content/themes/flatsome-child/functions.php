@@ -798,7 +798,8 @@ function gobike_register_shop_page_acf_fields()
 // 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
 function gobike_render_shop_top_banners()
 {
-    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id');
+    $san_pham_page = get_page_by_path('san-pham');
+    $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
     $front_page_id = get_option('page_on_front');
 
     // Fallback banner mặc định
@@ -870,7 +871,8 @@ add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
 // 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
 function gobike_render_shop_bottom_content()
 {
-    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id');
+    $san_pham_page = get_page_by_path('san-pham');
+    $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
     $front_page_id = get_option('page_on_front');
 
     $title = get_field('shop_bottom_title', $shop_page_id);
