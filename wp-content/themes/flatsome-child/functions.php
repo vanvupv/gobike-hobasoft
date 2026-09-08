@@ -613,51 +613,21 @@ function gobike_render_category_block($atts)
 add_shortcode('gobike_category_block', 'gobike_render_category_block');
 
 // 1. Tạo trang cài đặt Theme Settings trong WP Admin
-if (function_exists('acf_add_options_page')) {
-    acf_add_options_page(array(
-        'page_title' => 'Cài đặt chung Website',
-        'menu_title' => 'Theme Settings',
-        'menu_slug' => 'theme-general-settings',
-        'capability' => 'edit_posts',
-        'redirect' => false
-    ));
+add_action('acf/init', 'gobike_register_acf_options_pages');
+function gobike_register_acf_options_pages()
+{
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title' => 'Cài đặt chung Website',
+            'menu_title' => 'Theme Settings',
+            'menu_slug' => 'theme-general-settings',
+            'capability' => 'edit_posts',
+            'redirect' => false,
+            'icon_url' => 'dashicons-admin-generic',
+            'position' => 30,
+        ));
+    }
 }
-
-// 2. Tạo Shortcode [gobike_topbar_ticker] tự động render dòng chữ chạy
-$items = get_field('topbar_marquee_items', 'option');
-
-// Nếu chưa nhập dữ liệu trong ACF thì dùng mặc định
-if (empty($items)) {
-    $items = array(
-        array('text' => 'Sản phẩm <strong>Chính hãng - Xuất VAT</strong> đầy đủ'),
-        array('text' => '<strong>Giao nhanh - Miễn phí</strong> cho đơn 300k'),
-        array('text' => '<strong>Thu cũ</strong> giá ngon - <strong>Lên đời</strong> tiết kiệm'),
-    );
-}
-
-ob_start();
-?>
-<div class="cps-marquee-wrapper">
-    <div class="cps-marquee-track">
-        <?php for ($i = 0; $i < 2; $i++): // Lặp 2 lần để chạy vô tận không đứt đoạn ?>
-                <?php foreach ($items as $item): ?>
-                        <div class="cps-item">
-                            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="M4.5 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"></path>
-                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="m8.5 10 2.267 3.927 1.065-2.156 2.399.155L11.964 8M5.035 8l-2.267 3.927 2.399-.156 1.065 2.155L8.499 10">
-                                </path>
-                            </svg>
-                            <span><?php echo $item['text']; ?></span>
-                        </div>
-                <?php endforeach; ?>
-        <?php endfor; ?>
-    </div>
-</div>
-<?php
-return ob_get_clean();
-add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
 
 // Shortcode [gobike_topbar_ticker] LẤY ĐÚNG 3 Ô BẠN VỪA TẠO Ở TRANG CHỦ
 function gobike_topbar_ticker_shortcode()
@@ -807,20 +777,6 @@ function gobike_register_shop_page_acf_fields()
                 ),
             ),
             'location' => array(
-                array(
-                    array(
-                        'param' => 'page_type',
-                        'operator' => '==',
-                        'value' => 'front_page',
-                    ),
-                ),
-                array(
-                    array(
-                        'param' => 'post_type',
-                        'operator' => '==',
-                        'value' => 'page',
-                    ),
-                ),
                 array(
                     array(
                         'param' => 'options_page',
