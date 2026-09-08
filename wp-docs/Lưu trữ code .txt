@@ -1,0 +1,104 @@
+================================================================================
+DỰ ÁN: GOBIKE - CẨM NANG TÌM KIẾM & TRUY VẾT MÃ NGUỒN TRONG SOURCE CODE
+HƯỚNG DẪN CÁCH AI HỖ TRỢ VÀ CÁC MẸO TÌM BẤT KỲ ĐOẠN CODE NÀO
+================================================================================
+
+I. TÔI (AI ASSISTANT) CÓ TÌM ĐƯỢC MÃ NGUỒN KHÔNG?
+--------------------------------------------------------------------------------
+TRẢ LỜI: CÓ, CHẮC CHẮN 100%!
+Khi bạn tải hoặc giải nén toàn bộ source code website vào thư mục dự án này, tôi được trang bị công cụ tìm kiếm chuyên dụng cực nhanh (sử dụng Ripgrep siêu tốc):
+
+1. KHẢ NĂNG QUÉT TOÀN BỘ CODEBASE:
+   - Quét qua hàng chục nghìn file PHP, CSS, JS, HTML trong vòng CHƯA ĐẦY 1 GIÂY.
+   - Định vị chính xác: Tên file, số dòng, đoạn code ngữ cảnh xung quanh.
+   - Hỗ trợ tìm kiếm theo chuỗi chính xác, tìm không phân biệt hoa thường, hoặc tìm bằng biểu thức chính quy (Regex).
+
+2. BẠN CHỈ CẦN YÊU CẦU BẰNG CÂU NÓI TỰ NHIÊN:
+   - "Tìm giúp tôi hàm tính giá giảm trong WooCommerce"
+   - "Đoạn CSS chỉnh màu cam `#f36f21` của thanh tiêu đề nằm ở file nào?"
+   - "Tìm nơi khai báo shortcode `[ux_products]` trong theme Flatsome"
+   - "Tìm file template chi tiết sản phẩm đang override WooCommerce"
+   - "Kiểm tra xem hook `woocommerce_before_shop_loop` đang được dùng ở đâu"
+
+
+================================================================================
+II. BẢN ĐỒ VỊ TRÍ CÁC ĐOẠN CODE THƯỜNG GẶP TRONG WORDPRESS + FLATSOME
+================================================================================
+Khi cần tìm code, nắm được cấu trúc thư mục sẽ giúp bạn định vị nhanh hơn 90%:
+
+1. THƯ MỤC THEME CON (FLATSOME CHILD - NƠI CHỨA CODE TỰ VIẾT):
+   Đường dẫn: `wp-content/themes/flatsome-child/`
+   - `functions.php`: Nơi chứa toàn bộ custom code PHP, hàm shortcode, hook tùy biến.
+   - `style.css`: Nơi chứa CSS tùy biến riêng cho dự án.
+   - `woocommerce/`: Chứa các file giao diện ghi đè (override) của WooCommerce.
+
+2. THƯ MỤC THEME GỐC (FLATSOME GỐC):
+   Đường dẫn: `wp-content/themes/flatsome/`
+   - `inc/shortcodes/`: Chứa toàn bộ mã nguồn của các shortcode Flatsome (`ux_products.php`, `ux_banner.php`, `row.php`, `section.php`...).
+   - `inc/builder/`: Chứa cấu hình các element trong UX Builder.
+   - `inc/woocommerce/`: Toàn bộ logic tùy biến WooCommerce của Flatsome.
+   - `template-parts/`: Các khối Header, Footer, Posts...
+
+3. THƯ MỤC WOOCOMMERCE:
+   Đường dẫn: `wp-content/plugins/woocommerce/`
+   - `templates/`: Toàn bộ giao diện gốc của WooCommerce:
+     + `single-product/`: Giao diện trang chi tiết sản phẩm (ảnh, giá, nút mua, mô tả).
+     + `cart/`: Giao diện giỏ hàng.
+     + `checkout/`: Giao diện trang thanh toán và trang cảm ơn (order-received).
+     + `loop/`: Giao diện từng thẻ sản phẩm trong danh sách.
+   - `includes/`: Chứa các hàm xử lý logic, tính thuế, vận chuyển, đơn hàng.
+
+4. THƯ MỤC CƠ SỞ DỮ LIỆU / UPLOAD:
+   Đường dẫn: `wp-content/uploads/`
+   - Chứa hình ảnh xe đạp, media, file đính kèm tải lên.
+
+
+================================================================================
+III. CÁC MẪU YÊU CẦU TÌM CODE PHỔ BIẾN BẠN CÓ THỂ BẢO TÔI TÌM
+================================================================================
+
+1. TÌM THEO TÊN HÀM (FUNCTION) HOẶC CLASS:
+   - "Tìm hàm `gobike_render_category_block` xem đang nằm ở đâu"
+   - "Tìm class `WC_Product_Simple` trong plugin WooCommerce"
+
+2. TÌM THEO CLASS CSS HOẶC MÃ MÀU:
+   - "Tìm class `.gobike-badge-sale` trong toàn bộ file CSS"
+   - "Tìm xem mã màu `#f36f21` xuất hiện ở những file nào"
+
+3. TÌM THEO ĐOẠN TEXT GIAO DIỆN:
+   - "Tìm dòng chữ 'Xem tất cả XE ĐẠP TRỢ LỰC ĐIỆN' xem được in ra từ file nào"
+   - "Tìm nút 'Thêm vào giỏ hàng' trong code template"
+
+4. TÌM THEO HOOK & FILTER CỦA WOOCOMMERCE:
+   - "Tìm hook `woocommerce_single_product_summary`"
+   - "Tìm filter `woocommerce_package_rates` tính phí vận chuyển"
+
+
+================================================================================
+IV. CÁCH BẠN TỰ TÌM NHANH TRÊN VS CODE / TRÌNH SOẠN THẢO MÃ NGUỒN
+================================================================================
+Nếu bạn muốn tự tay tìm kiếm trên máy tính:
+
+1. PHÍM TẮT THẦN THÁNH: `Ctrl + Shift + F` (Windows)
+   - Mở thanh tìm kiếm toàn bộ dự án (Global Search) ở cột bên trái VS Code.
+   - Gõ từ khóa muốn tìm (ví dụ: `gobike_category_block`).
+
+2. MẸO THU HẸP PHẠM VI TÌM KIẾM (FILES TO INCLUDE):
+   - Chỉ tìm trong file PHP: Điền `*.php` vào ô "files to include".
+   - Chỉ tìm trong file CSS: Điền `*.css`.
+   - Chỉ tìm trong theme Flatsome: Điền `wp-content/themes/flatsome/**`.
+   - Bỏ qua thư mục rác (files to exclude): Điền `node_modules, wp-content/uploads`.
+
+3. TÌM NHANH TÊN FILE BẤT KỲ: `Ctrl + P`
+   - Gõ tên file cần mở, ví dụ: `functions.php`, `header.php`, `single-product.php` là file sẽ mở ra ngay lập tức.
+
+
+================================================================================
+V. KHI ĐẨY SOURCE VỀ, BẠN CẦN LÀM GÌ?
+================================================================================
+1. Tải bộ source code về và giải nén trực tiếp vào thư mục workspace này:
+   `e:\1. DỰ ÁN THỰC TẾ (2026)\(17) GOBIKE (28082026)\`
+2. Báo cho tôi một câu:
+   "Tôi vừa tải source code về rồi, tìm giúp tôi [đoạn code bạn cần]..."
+3. Tôi sẽ quét và trả về chính xác đường dẫn file, số dòng và giải thích cặn kẽ cho bạn!
+================================================================================

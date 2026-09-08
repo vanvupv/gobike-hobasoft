@@ -1,0 +1,171 @@
+================================================================================
+DỰ ÁN: GOBIKE - TÀI LIỆU PHÂN TÍCH & LUỒNG XÂY DỰNG TRANG SẢN PHẨM (CATALOG / SHOP)
+THEO FILE THIẾT KẾ: 2. Sản phẩm -- .png
+PHƯƠNG PHÁP: TẠO TRANG TRONG PAGES (PAGES BUILDER FLATSOME)
+================================================================================
+
+I. TỔNG QUAN & LUỒNG XÂY DỰNG GIAO DIỆN TRANG SẢN PHẨM
+--------------------------------------------------------------------------------
+Theo bản thiết kế [2. Sản phẩm -- .png], đây là trang "TẤT CẢ SẢN PHẨM" (Trang lưu trữ sản phẩm / Danh mục tổng).
+Cách tiếp cận của bạn: Tạo một Trang trong mục **Pages (Trang > Thêm trang mới)**, sau đó dùng trình dựng trang **Flatsome UX Builder** để tùy biến toàn bộ giao diện từ trên xuống dưới.
+
+* SƠ ĐỒ LUỒNG CÁC SECTION TRÊN TRANG TỪ TRÊN XUỐNG DƯỚI:
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 1. BREADCRUMB: Trang chủ > Tất cả sản phẩm                                   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 2. SECTION BANNER ĐÔI: 2 Banner tiện ích cửa hàng (Đà Nẵng, HCM, Hà Nội)     │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 3. SECTION TIÊU ĐỀ: H1 "TẤT CẢ SẢN PHẨM" in hoa to rõ                        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 4. SECTION BỘ LỌC NGANG & SẮP XẾP (HORIZONTAL TOOLBAR FILTER):               │
+│    • Dòng 1: Tìm theo (Thương hiệu ▾ | Giá sản phẩm ▾ | Loại ▾ | Kích thước ▾)│
+│    • Dòng 2: Xếp theo (○ Tên A-Z | ○ Tên Z-A | ○ Mới nhất | ○ Giá thấp-cao)  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 5. SECTION LƯỚI SẢN PHẨM 5 CỘT (20 sản phẩm: 4 hàng x 5 cột):               │
+│    • Khung viền mỏng #eee bao quanh                                          │
+│    • Ảnh xe 1:1 + Huy hiệu ⚡ Giảm X%                                        │
+│    • Tên xe + Giá đỏ + Giá gạch ngang (hoặc chữ "Liên hệ")                   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 6. SECTION PHÂN TRANG (PAGINATION): « 1 2 3 ... 13 »                         │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 7. SECTION NỘI DUNG SEO CHÂN TRANG: Hệ thống cửa hàng bán lẻ xe Aimos        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ 8. SECTION 4 CAM KẾT VÀNG: 17 Năm - 15 Tháng BH - Trọn đời - Giao 12h       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+================================================================================
+II. TIẾN HÀNH CÁC CÁCH XỬ LÝ TỪNG SECTION TRÊN GIAO DIỆN
+================================================================================
+
+--------------------------------------------------------------------------------
+1. SECTION 1: BREADCRUMB (ĐƯỜNG DẪN ĐIỀU HƯỚNG)
+--------------------------------------------------------------------------------
+- Giao diện: Dòng chữ nhỏ "Trang chủ > Tất cả sản phẩm" căn trái, font chữ 13px, màu xám nhạt (#888), hover màu đỏ.
+- Cách xử lý trong Flatsome UX Builder:
+  + Dùng element `Breadcrumbs` của Flatsome hoặc chèn đoạn shortcode của plugin Yoast SEO / Rank Math: `[wpseo_breadcrumb]` hoặc `[rank_math_breadcrumb]`.
+  + Tùy chỉnh CSS: font-size 13px, padding 10px 0.
+
+--------------------------------------------------------------------------------
+2. SECTION 2: CẶP BANNER TIỆN ÍCH ĐẦU TRANG (STORE UTILITIES BANNER)
+--------------------------------------------------------------------------------
+- Giao diện: Gồm 2 banner hình ảnh chữ nhật nằm song song (mỗi banner chiếm 50% độ rộng) hiển thị các tiện ích: Car Parking, Credit Card, Free Ship, Repair Service và nút đỏ "HỆ THỐNG CỬA HÀNG - XEM NGAY".
+- Cách xử lý trong Flatsome UX Builder:
+  + Thêm 1 `Row` chia 2 cột đều nhau (`col span="6"` trên Desktop, trên Mobile hiển thị dạng cuộn hoặc xếp chồng 12/12).
+  + Trong mỗi cột: Dùng element `Image` hoặc `Banner` của Flatsome, chèn link dẫn tới trang giới thiệu 4 chi nhánh cửa hàng.
+  + Thêm hiệu ứng hover phóng to nhẹ (`hover-zoom`).
+
+--------------------------------------------------------------------------------
+3. SECTION 3: TIÊU ĐỀ TRANG "TẤT CẢ SẢN PHẨM"
+--------------------------------------------------------------------------------
+- Giao diện: Thẻ H1 in hoa, chữ đậm màu đen (#222), font-size khoảng 20px - 22px, cách lề dưới 15px.
+- Cách xử lý:
+  + Dùng element `Title` của Flatsome hoặc thẻ `Text` thuần:
+    `<h1 class="category-page-title">TẤT CẢ SẢN PHẨM</h1>`
+
+--------------------------------------------------------------------------------
+4. SECTION 4: THANH CÔNG CỤ BỘ LỌC NGANG & SẮP XẾP (FILTER & SORT TOOLBAR)
+--------------------------------------------------------------------------------
+Đây là khu vực quan trọng và có tính tương tác cao nhất trên trang sản phẩm:
+
+A. DÒNG 1 - CỤM BỘ LỌC THUỘC TÍNH ("Tìm theo"):
+   - Gồm 4 menu thả xuống (Dropdown):
+     1. `Thương hiệu ▾`: ADO, Phoenix, Samebike, Fiido, Ouxi, Baicycle, Xiaomi QiCycle...
+     2. `Giá sản phẩm ▾`: Dưới 10 triệu, 10 - 20 triệu, 20 - 30 triệu, Trên 30 triệu.
+     3. `Loại ▾`: Xe đạp trợ lực điện, Xe đạp gấp gọn, Xe học sinh, Xe địa hình, Scooter...
+     4. `Kích thước ▾`: 14 inch, 16 inch, 20 inch, 26 inch, 28 inch...
+   - Cách xử lý:
+     * Cách 1 (Dùng URL tham số chuẩn WooCommerce): Mỗi option trong dropdown khi bấm sẽ điều hướng kèm query string:
+       Ví dụ: `?filter_thuong-hieu=ado`, `?min_price=10000000&max_price=20000000`.
+     * Cách 2 (Dùng Plugin lọc AJAX): Tích hợp plugin lọc chuyên nghiệp như **WOOF - Products Filter for WooCommerce** hoặc **YITH WooCommerce Ajax Product Filter**, cấu hình hiển thị dạng Horizontal Dropdowns.
+
+B. DÒNG 2 - CỤM NÚT SẮP XẾP ("Xếp theo"):
+   - Gồm 5 nút radio tròn:
+     ○ Tên A-Z (`?orderby=title&order=ASC`)
+     ○ Tên Z-A (`?orderby=title&order=DESC`)
+     ○ Hàng mới (`?orderby=date`)
+     ○ Giá thấp đến cao (`?orderby=price`)
+     ○ Giá cao xuống thấp (`?orderby=price-desc`)
+   - Cách xử lý:
+     * Dùng đoạn script jQuery bắt sự kiện `change` trên các radio buttons: khi khách chọn mục nào, tự động reload lại trang với tham số `orderby` tương ứng của WooCommerce.
+
+--------------------------------------------------------------------------------
+5. SECTION 5: LƯỚI SẢN PHẨM 5 CỘT (PRODUCT GRID - 20 SẢN PHẨM / TRANG)
+--------------------------------------------------------------------------------
+- Giao diện: Lưới 5 cột x 4 hàng = 20 sản phẩm.
+- Chi tiết từng ô sản phẩm:
+  + Tỉ lệ ảnh 1:1, căn giữa, nền trắng.
+  + Nhãn giảm giá `⚡ Giảm X%` ở góc dưới ảnh (nếu đang giảm giá).
+  + Tên sản phẩm in đậm 2 dòng (cắt bằng `-webkit-line-clamp: 2`).
+  + Giá bán:
+    * Trường hợp 1: Có giá khuyến mãi -> Hiện giá đỏ đậm + giá cũ gạch ngang bên cạnh (Ví dụ: `17.990.000₫ 21.100.000₫`).
+    * Trường hợp 2: Giá thường -> Chỉ hiện giá đỏ (Ví dụ: `39.790.000₫`).
+    * Trường hợp 3: Chưa có giá / Hết hàng -> Hiện chữ đỏ đậm `Liên hệ`.
+- Cách xử lý trong Flatsome UX Builder:
+  + Trong theme Flatsome Child, chúng ta đã có file override `woocommerce/content-product.php`!
+  + Ta thiết lập shortcode hiển thị sản phẩm dạng 5 cột:
+    `[ux_products col_spacing="xsmall" columns="5" products="20" show_cat="0" paginate="true"]`
+  + Kết hợp đoạn CSS Grid 5 cột đã chuẩn hóa để các ô sản phẩm tự động có viền mảnh liền khối #eee giống hệt mẫu.
+
+--------------------------------------------------------------------------------
+6. SECTION 6: THANH PHÂN TRANG (PAGINATION)
+--------------------------------------------------------------------------------
+- Giao diện: Nút tiến/lùi `«`, `»`, số trang `1`, `2`, `3`, `...`, `13`. Trang hiện tại (Active) có nền màu đỏ nổi bật, chữ trắng bo góc nhẹ.
+- Cách xử lý:
+  + WooCommerce tự động sinh ra phân trang khi dùng tham số `paginate="true"`.
+  + Tùy biến CSS cho class `.page-numbers`:
+    * Mặc định: viền đỏ, chữ đỏ, nền trắng.
+    * Khi active / hover: nền đỏ `#d70018`, chữ trắng.
+
+--------------------------------------------------------------------------------
+7. SECTION 7: KHỐI NỘI DUNG BÀI VIẾT SEO CHÂN TRANG (BOTTOM SEO TEXT BOX)
+--------------------------------------------------------------------------------
+- Giao diện: Hộp chứa đoạn văn bản giới thiệu hệ thống cửa hàng, có đường kẻ xám mảnh phân cách và danh sách gạch đầu dòng các lợi ích (Giá rẻ nhất, Trả góp 0%, Bảo hành 12 tháng, Ship COD toàn quốc).
+- Tác dụng: Đây là kỹ thuật SEO On-page kinh điển của các trang TMĐT lớn (như Thế Giới Di Động, CellphoneS, Sapo) giúp trang danh mục lên TOP từ khóa Google mà không làm che mắt khách hàng ở phần đầu trang.
+- Cách xử lý:
+  + Thêm 1 element `Text` trong UX Builder đặt ngay bên dưới lưới sản phẩm.
+  + Soạn thảo đoạn văn bản SEO định dạng chuẩn HTML thẻ `<h2>`, `<ul>`, `<li>`.
+
+--------------------------------------------------------------------------------
+8. SECTION 8: DẢI 4 CAM KẾT VÀNG & CHÂN TRANG (FOOTER)
+--------------------------------------------------------------------------------
+- Giao diện: 4 biểu tượng tròn viền đỏ (17 năm, 15 tháng, Trọn đời, 12 giờ).
+- Cách xử lý:
+  + Dùng 1 `Row` 4 cột (mỗi cột `col span="3"`), đặt icon SVG + tiêu đề cam kết.
+  + Footer 4 chi nhánh đã có sẵn toàn trang.
+
+
+================================================================================
+III. TỔNG KẾT & SO SÁNH CÁC CÁCH LÀM TRANG SẢN PHẨM TRÊN FLATSOME
+================================================================================
+
+Hiện nay có 2 cách chính để triển khai trang sản phẩm này trong WordPress + Flatsome:
+
++-----------------------------------+-----------------------------------+
+| CÁCH A: TẠO TRANG TRONG PAGES     | CÁCH B: DÙNG TRANG SHOP GỐC CỦA   |
+| (Cách bạn đang chọn - KHUYÊN DÙNG)| WOOCOMMERCE (ARCHIVE-PRODUCT.PHP) |
++-----------------------------------+-----------------------------------+
+| 1. Cách thực hiện:                | 1. Cách thực hiện:                |
+| - Tạo trang mới trong Pages.      | - Dùng trang Cửa hàng mặc định    |
+| - Kéo thả tự do bằng UX Builder.  |   của WooCommerce (/shop/).       |
+|                                   | - Tùy biến qua Customizer & PHP.  |
+|                                   |                                   |
+| 2. Ưu điểm vượt trội:             | 2. Nhược điểm:                    |
+| • Hoàn toàn làm chủ bố cục: Thích | • Bị gò bó theo cấu trúc có sẵn   |
+|   đặt banner đôi ở đâu, thanh lọc |   của WooCommerce/Flatsome.       |
+|   ở đâu, khối SEO ở đâu đều kéo   | • Muốn chèn thêm Banner đôi hay   |
+|   thả trực quan được ngay.        |   bài viết SEO cuối trang phải    |
+| • Không sợ bị lỗi vỡ trang khi    |   can thiệp hook PHP (`flatsome_  |
+|   WooCommerce cập nhật phiên bản. |   before_shop_loop`...).          |
+|                                   |                                   |
+| 3. Điểm cần lưu ý:                | 3. Điểm mạnh duy nhất:            |
+| • Bộ lọc ngang (Dòng tìm theo &   | • Bộ lọc URL và phân trang có sẵn |
+|   xếp theo) cần viết 1 đoạn script|   mặc định từ WooCommerce.        |
+|   hoặc shortcode nhỏ để nhận diện |                                   |
+|   tham số lọc và phân trang.      |                                   |
++-----------------------------------+-----------------------------------+
+
+=> KẾT LUẬN:
+Cách bạn đang chọn (Tạo một trang trong Pages rồi dùng UX Builder tùy chỉnh) là **CÁCH TỐI ƯU VÀ THÔNG MINH NHẤT** để đạt được độ chuẩn xác 100% giống như file thiết kế [2. Sản phẩm -- .png] mà không bị giới hạn bởi khuôn khổ mặc định của WooCommerce!
+================================================================================

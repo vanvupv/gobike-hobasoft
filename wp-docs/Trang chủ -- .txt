@@ -1,0 +1,826 @@
+================================================================================
+DỰ ÁN: GOBIKE - HƯỚNG DẪN XÂY DỰNG TRANG CHỦ THEO THEME FLATSOME 3.20.1
+TÀI LIỆU CẤU TẠO KHỐI SẢN PHẨM & CÁCH NHÂN BẢN THÊM KHỐI TÙY THÍCH
+================================================================================
+
+I. PHÂN TÍCH CẤU TẠO CỦA KHỐI SẢN PHẨM (THEO BẢN THIẾT KẾ)
+--------------------------------------------------------------------------------
+Mỗi khối danh mục sản phẩm trên trang chủ (Ví dụ: XE ĐẠP TRỢ LỰC ĐIỆN ADO, PHOENIX, HỌC SINH, ĐỊA HÌNH...) có cấu tạo gồm 3 phần chính:
+
+1. THANH TIÊU ĐỀ (SECTION HEADER):
+   - Nền màu cam chủ đạo (Orange: #f36f21 hoặc #ff6600), bo góc nhẹ hoặc full-width.
+   - Bên trái: Tiêu đề danh mục in hoa nổi bật (Thẻ H2/H3: ví dụ "XE ĐẠP TRỢ LỰC ĐIỆN ADO").
+   - Bên phải: Các đường link điều hướng nhanh:
+     + Danh mục phụ / gợi ý (ví dụ: "Xe đạp gấp").
+     + Nút "Xem tất cả" dẫn thẳng về trang lưu trữ danh mục.
+
+2. BỐ CỤC LƯỚI SẢN PHẨM (PRODUCT GRID LAYOUT - HỆ 5 CỘT):
+   Tổng cộng mỗi khối hiển thị 9 sản phẩm được chia làm 2 hàng:
+   
+   A. Sản phẩm nổi bật (Big Item / Featured Product) - Chiếm 2/5 độ rộng hàng 1:
+      - Chiếm diện tích 2 cột ở hàng trên (tương đương 40% độ rộng của khối).
+      - Chia làm 2 phần ngang:
+        + Bên trái: Ảnh đại diện sản phẩm lớn (kèm nhãn giảm giá % đỏ/cam).
+        + Bên phải: Tên sản phẩm, giá bán khuyến mãi (chữ đỏ đậm), giá gốc gạch ngang, và BẢNG THÔNG SỐ KỸ THUẬT RÚT GỌN (Dung lượng pin, Công suất, Quãng đường chạy, Loại pin, Tốc độ tối đa, Khung xe, Trọng lượng...).
+   
+   B. 8 Sản phẩm tiêu chuẩn (Standard Products) - Mỗi sản phẩm chiếm 1/5 (20% độ rộng):
+      - Hàng 1 (phía sau Big Item): 3 sản phẩm (3 x 20% = 60%).
+      - Hàng 2: 5 sản phẩm đều nhau (5 x 20% = 100%).
+      - Cấu trúc mỗi ô sản phẩm gồm:
+        + Khung viền mỏng (#eeeeee) tạo thành lưới ô cờ liền khối sang trọng.
+        + Nhãn giảm giá % góc dưới/trên ảnh (nếu đang giảm giá).
+        + Ảnh xe sắc nét tỉ lệ vuông 1:1.
+        + Tên sản phẩm hiển thị ngắn gọn (cắt 2 dòng).
+        + Giá khuyến mãi nổi bật + Giá niêm yết cũ.
+
+3. KHỐI RESPONSIVE (HIỂN THỊ TRÊN ĐIỆN THOẠI):
+   - Banner phụ trên cùng dành riêng cho mobile (tùy chọn).
+   - Sản phẩm nổi bật co lại thành dạng thẻ dọc hoặc thẻ ngang linh hoạt.
+   - Lưới sản phẩm co về 2 cột / hàng hoặc dạng thanh trượt lướt ngang (carousel) để người dùng dễ vuốt.
+   - Nút "Xem tất cả [Tên danh mục]" to rõ ở chân khối.
+
+
+================================================================================
+II. LÀM SAO ĐỂ THÊM SỐ LƯỢNG KHỐI TÙY THÍCH TRONG WORDPRESS + FLATSOME?
+================================================================================
+Để có thể thêm bao nhiêu khối danh mục tùy ý (ADO, Phoenix, Samebike, Xe học sinh, Xe địa hình, Fiido...) mà không phải copy-paste code HTML thủ công dài dòng, có 3 cách thực hiện:
+
+--------------------------------------------------------------------------------
+CÁCH 1 (TỐI ƯU NHẤT - KHUYÊN DÙNG): TẠO CUSTOM SHORTCODE TỰ ĐỘNG LẤY TỪ WOOCOMMERCE
+--------------------------------------------------------------------------------
+* Ý tưởng: Bạn chỉ cần chèn 1 dòng shortcode vào UX Builder:
+  [gobike_category_block cat="xe-dap-ado" title="XE ĐẠP TRỢ LỰC ĐIỆN ADO" subcat="Xe đạp gấp" subcat_link="/xe-dap-gap"]
+  Hệ thống sẽ tự động query sản phẩm trong danh mục đó từ WooCommerce, tự lấy sản phẩm đầu tiên làm Big Item (kèm thông số) và 8 sản phẩm tiếp theo làm lưới 8 ô.
+
+* CÁC BƯỚC XỬ LÝ CỤ THỂ:
+
+  Bước 1: Chèn đoạn mã Shortcode vào file `functions.php` của Flatsome Child Theme (hoặc dùng plugin WPCode / Code Snippets).
+  (Xem mã nguồn mẫu ở mục IV bên dưới).
+
+  Bước 2: Trong trang quản trị sản phẩm WooCommerce:
+  - Tạo danh mục sản phẩm (ví dụ: Xe đạp ADO, Xe đạp Phoenix...).
+  - Thiết lập thông số kỹ thuật cho xe ở phần "Các thuộc tính" (Attributes) hoặc dùng plugin Advanced Custom Fields (ACF) để nhập Pin, Động cơ, Quãng đường...
+
+  Bước 3: Mở trang chủ bằng UX Builder:
+  - Kéo thả element "Text" hoặc "Shortcode".
+  - Muốn thêm bao nhiêu khối, chỉ cần viết bấy nhiêu dòng:
+    [gobike_category_block cat="xe-dap-ado" title="XE ĐẠP TRỢ LỰC ĐIỆN ADO" subcat="Xe đạp gấp" subcat_link="/danh-muc/xe-dap-gap"]
+    [gobike_category_block cat="xe-dap-phoenix" title="XE ĐẠP TRỢ LỰC ĐIỆN PHOENIX"]
+    [gobike_category_block cat="xe-hoc-sinh" title="XE ĐẠP TRỢ LỰC ĐIỆN HỌC SINH"]
+    [gobike_category_block cat="xe-dia-hinh" title="XE ĐẠP TRỢ LỰC ĐIỆN ĐỊA HÌNH"]
+
+--------------------------------------------------------------------------------
+CÁCH 2: DÙNG TÍNH NĂNG "UX BLOCKS" CỦA FLATSOME (KHÔNG CẦN CODE PHP)
+--------------------------------------------------------------------------------
+* Ý tưởng: Tạo 1 khối mẫu trong Flatsome UX Blocks, sau đó nhân bản (Duplicate) rồi thay đổi thông tin danh mục.
+
+* CÁC BƯỚC XỬ LÝ:
+  Bước 1: Vào Dashboard WordPress > UX Blocks > Add New (Đặt tên: "Khối Danh Mục Mẫu").
+  Bước 2: Dùng UX Builder để kéo:
+    - 1 Section chứa Header màu cam.
+    - 1 Row chia 2 cột:
+      + Cột trái (độ rộng 5/12 hoặc 40%): Dùng element Featured Product / Banner chứa ảnh + bảng thông số.
+      + Cột phải (độ rộng 7/12 hoặc 60%): Dùng element "Products" của Flatsome, chọn danh mục tương ứng, thiết lập hiển thị 3 cột x 1 hàng.
+    - 1 Row thứ hai bên dưới (12/12): Dùng element "Products", hiển thị 5 cột x 1 hàng.
+  Bước 3: Lưu lại. Mỗi khi muốn thêm khối mới cho thương hiệu khác:
+    - Vào UX Blocks > Duplicate (Nhân bản) khối mẫu ra khối mới (ví dụ: "Khối Phoenix").
+    - Đổi lại tiêu đề và chọn đúng Category của WooCommerce.
+    - Chèn vào Trang chủ bằng element "Block" trong UX Builder qua mã: [block id="khoi-phoenix"].
+
+--------------------------------------------------------------------------------
+CÁCH 3: DÙNG HTML VÀ CSS GRID CHUẨN HÓA CHO FLATSOME (NHANH & ĐÚNG NGUYÊN BẢN SAPO)
+--------------------------------------------------------------------------------
+* Ý tưởng: Dùng đoạn HTML đã tối ưu kết hợp CSS Grid 5 cột đặt vào Customizer của Flatsome.
+
+* CÁC BƯỚC XỬ LÝ:
+  Bước 1: Thêm đoạn CSS Grid ở Mục III vào: "Giao diện (Appearance) > Tùy biến (Customize) > Additional CSS" (hoặc style.css của Flatsome Child).
+  Bước 2: Mở Trang chủ bằng UX Builder > Thêm element "Raw HTML".
+  Bước 3: Dán đoạn mã HTML mẫu vào. Khi muốn thêm khối thứ 2, thứ 3... bạn chỉ việc nhân bản (Duplicate) element "Raw HTML" đó lên và sửa:
+    - Tên tiêu đề H2.
+    - Link danh mục con & link Xem tất cả.
+    - Đường dẫn ảnh, tên xe, giá tiền và bảng thông số.
+
+--------------------------------------------------------------------------------
+BẢNG SO SÁNH CHI TIẾT GIỮA 3 PHƯƠNG ÁN:
+--------------------------------------------------------------------------------
++--------------------+---------------------------+---------------------------+---------------------------+
+| TIÊU CHÍ SO SÁNH   | CÁCH 1: CUSTOM SHORTCODE  | CÁCH 2: UX BLOCKS FLATSOME| CÁCH 3: RAW HTML + CSS    |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 1. Thiết lập ban   | Cần chèn đoạn mã PHP vào  | Dễ nhất, kéo thả hoàn toàn| Cực nhanh, chỉ cần dán mã |
+|    đầu             | functions.php (1 lần duy  | bằng giao diện UX Builder | HTML và CSS vào web       |
+|                    | nhất)                     | của Flatsome              |                           |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 2. Thao tác thêm   | NHANH NHẤT (Chỉ cần gõ    | Trung bình (Vào UX Blocks | Khá mất công (Phải sửa tay|
+|    khối mới        | 1 dòng shortcode và truyền| nhân bản, chọn lại danh   | từng link ảnh, giá tiền,  |
+|                    | slug danh mục)            | mục cho từng element)     | tên sản phẩm trong HTML)  |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 3. Đồng bộ dữ liệu | TỰ ĐỘNG 100% (Đổi giá, hết| TỰ ĐỘNG CHO 8 SẢN PHẨM    | KHÔNG ĐỒNG BỘ (Dữ liệu    |
+|    WooCommerce     | hàng, sửa tên xe trong    | PHỤ. Ô lớn Big Item vẫn   | tĩnh, đổi giá trong kho   |
+|                    | kho web tự cập nhật ngay) | phải sửa thủ công         | thì trang chủ không đổi)  |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 4. Độ chuẩn xác so | 100% Khớp lưới 5 cột và   | 90% (Lưới Flatsome 12 cột | 100% Khớp theo đúng       |
+|    với file ảnh gốc| bảng thông số kỹ thuật    | nên chia 5 cột sẽ cần CSS | thiết kế ảnh chụp từ      |
+|    (Trang chủ--.png| thiết kế                  | can thiệp thêm)           | bản mẫu Bizweb/Sapo       |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 5. Trải nghiệm     | Dễ nhất: Người không biết | Bình thường: Cần biết dùng| Khó quản trị: Rất dễ làm  |
+|    quản trị viên   | code cũng chỉ cần copy    | thành thạo UX Builder     | vỡ khung nếu sửa nhầm thẻ |
+|    (Khách hàng)    | dòng shortcode            |                           | đóng </div>               |
++--------------------+---------------------------+---------------------------+---------------------------+
+| 6. Hiệu năng &     | Mã nguồn gọn nhẹ, không   | Tải thêm các script & DOM | Nhẹ nếu tối ưu ảnh tốt,   |
+|    tốc độ tải      | sinh rác DOM              | của UX Builder Flatsome   | nhưng code HTML dài       |
++--------------------+---------------------------+---------------------------+---------------------------+
+| => ĐÁNH GIÁ &      | KHUYÊN DÙNG SỐ 1          | PHÙ HỢP KHI KHÔNG MUỐN    | PHÙ HỢP LÀM DEMO NHANH    |
+|    KHUYÊN DÙNG     | Cho website thực tế bán   | ĐỤNG ĐẾN CODE PHP         | Hoặc trang tĩnh ít khi    |
+|                    | hàng chuyên nghiệp lâu dài|                           | thay đổi giá sản phẩm     |
++--------------------+---------------------------+---------------------------+---------------------------+
+
+
+================================================================================
+III. MÃ CSS CHUẨN HÓA DÀNH RIÊNG CHO KHỐI (DÙNG TRONG FLATSOME)
+================================================================================
+Dán đoạn mã sau vào: Giao diện > Tùy biến > CSS bổ sung (Additional CSS):
+
+```css
+/* --- GOBIKE CATEGORY SECTION STYLE --- */
+.gobike-section {
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* Header màu cam */
+.gobike-section-head {
+    background: #f36f21;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+}
+.gobike-section-head .title_blog {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+}
+.gobike-section-head .viewallcat a {
+    color: #fff;
+    font-size: 13px;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.gobike-section-head .viewallcat a:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+}
+
+/* Khung lưới 5 cột */
+.gobike-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
+/* Sản phẩm lớn: Chiếm 2 cột ở hàng 1 */
+.gobike-big-item {
+    grid-column: span 2;
+    display: flex;
+    padding: 15px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    align-items: center;
+    gap: 12px;
+}
+.gobike-big-item .img-box {
+    width: 48%;
+    position: relative;
+    text-align: center;
+}
+.gobike-big-item .img-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.gobike-big-item .info-box {
+    width: 52%;
+}
+.gobike-big-item .product-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+.gobike-big-item .product-price strong {
+    color: #d70018;
+    font-size: 16px;
+}
+.gobike-big-item .product-price span {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 12px;
+    margin-left: 5px;
+}
+.gobike-big-item .spec-table {
+    width: 100%;
+    margin-top: 8px;
+    font-size: 11.5px;
+    border-collapse: collapse;
+}
+.gobike-big-item .spec-table tr td {
+    padding: 3px 0;
+    border: none;
+    color: #333;
+}
+.gobike-big-item .spec-table tr td:first-child {
+    color: #222;
+    font-weight: 600;
+    width: 55%;
+}
+
+/* Các sản phẩm nhỏ (1 cột) */
+.gobike-small-item {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s;
+    position: relative;
+}
+.gobike-small-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+.gobike-small-item .img-wrap {
+    position: relative;
+    padding-top: 100%; /* Giữ tỉ lệ vuông 1:1 */
+    margin-bottom: 8px;
+}
+.gobike-small-item .img-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.gobike-small-item .item-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    height: 34px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.gobike-small-item .item-price strong {
+    color: #d70018;
+    font-size: 13.5px;
+    display: block;
+}
+.gobike-small-item .item-price span {
+    color: #999;
+    font-size: 11px;
+    text-decoration: line-through;
+}
+
+/* Badge nhãn giảm giá */
+.gobike-badge-sale {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: #ff5722;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 12px;
+}
+
+/* Responsive Mobile & Tablet */
+@media (max-width: 991px) {
+    .gobike-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .gobike-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gobike-big-item {
+        grid-column: span 2;
+        flex-direction: column;
+    }
+    .gobike-big-item .img-box, .gobike-big-item .info-box {
+        width: 100%;
+    }
+}
+```
+
+
+================================================================================
+IV. CODE MÃ NGUỒN HOÀN CHỈNH CHO CÁCH 1 (PHP + CSS)
+================================================================================
+
+1. ĐOẠN MÃ PHP (Dán vào functions.php của Flatsome Child hoặc Plugin WPCode / Code Snippets):
+--------------------------------------------------------------------------------
+```php
+<?php
+/**
+ * Shortcode hiển thị Khối danh mục Xe đạp trợ lực điện chuẩn giao diện GOBIKE
+ * Cú pháp: [gobike_category_block cat="slug-danh-muc" title="TIÊU ĐỀ" subcat="Tên danh mục phụ" subcat_link="#" view_all="#"]
+ */
+function gobike_render_category_block($atts) {
+    $atts = shortcode_atts(array(
+        'cat'           => '',
+        'title'         => 'XE ĐẠP TRỢ LỰC ĐIỆN',
+        'subcat'        => '',
+        'subcat_link'   => '#',
+        'view_all'      => '',
+        'limit'         => 9,
+        'mobile_banner' => ''
+    ), $atts, 'gobike_category_block');
+
+    if (empty($atts['cat'])) {
+        return '<div style="padding:15px;background:#fff3cd;color:#856404;border:1px solid #ffeeba;margin:10px 0;">'
+             . '⚠️ <strong>Chưa nhập slug danh mục!</strong> Cú pháp chuẩn: <code>[gobike_category_block cat="slug-danh-muc" title="TÊN KHỐI"]</code>'
+             . '</div>';
+    }
+
+    // Xác định link Xem tất cả nếu không nhập
+    $term = get_term_by('slug', $atts['cat'], 'product_cat');
+    if (!$term && is_numeric($atts['cat'])) {
+        $term = get_term_by('id', (int)$atts['cat'], 'product_cat');
+    }
+    
+    $view_all_link = !empty($atts['view_all']) ? $atts['view_all'] : ($term ? get_term_link($term) : '#');
+    if (is_wp_error($view_all_link)) $view_all_link = '#';
+
+    // Truy vấn 9 sản phẩm mới nhất của danh mục (hỗ trợ cả slug hoặc ID)
+    $tax_field = is_numeric($atts['cat']) ? 'term_id' : 'slug';
+    $args = array(
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => intval($atts['limit']),
+        'tax_query'      => array(
+            array(
+                'taxonomy'         => 'product_cat',
+                'field'            => $tax_field,
+                'terms'            => $atts['cat'],
+                'include_children' => true,
+            ),
+        ),
+    );
+
+    $loop = new WP_Query($args);
+    if (!$loop->have_posts()) {
+        return '<div style="padding:15px;background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;margin:15px 0;border-radius:4px;">'
+             . '⚠️ <strong>[Khối ' . esc_html($atts['title']) . ']:</strong> Không tìm thấy sản phẩm nào trong danh mục có slug <code>"' . esc_html($atts['cat']) . '"</code>.<br>'
+             . '👉 <em>Cách khắc phục:</em> Vào <strong>Sản phẩm > Danh mục</strong> để kiểm tra lại cột <strong>Slug (Chuỗi đường dẫn tĩnh)</strong>, hoặc kiểm tra xem danh mục này đã có sản phẩm nào được đăng (ở trạng thái Đã xuất bản) chưa.'
+             . '</div>';
+    }
+
+    ob_start();
+    ?>
+    <div class="gobike-section">
+        <?php if (!empty($atts['mobile_banner'])): ?>
+            <div class="gobike-mobile-banner">
+                <a href="<?php echo esc_url($view_all_link); ?>">
+                    <img src="<?php echo esc_url($atts['mobile_banner']); ?>" alt="<?php echo esc_attr($atts['title']); ?>" />
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <!-- THANH TIÊU ĐỀ MÀU CAM -->
+        <div class="gobike-section-head">
+            <h2 class="title_blog"><?php echo esc_html($atts['title']); ?></h2>
+            <div class="viewallcat">
+                <?php if (!empty($atts['subcat'])): ?>
+                    <a href="<?php echo esc_url($atts['subcat_link']); ?>" class="subcat-link"><?php echo esc_html($atts['subcat']); ?></a>
+                <?php endif; ?>
+                <a href="<?php echo esc_url($view_all_link); ?>" class="viewall-link">Xem tất cả</a>
+            </div>
+        </div>
+
+        <!-- LƯỚI 5 CỘT (1 Ô LỚN + 8 Ô NHỎ) -->
+        <div class="gobike-grid-container">
+            <?php 
+            $index = 0;
+            while ($loop->have_posts()) : $loop->the_post();
+                global $product;
+                $index++;
+                $product_id = get_the_ID();
+                $title      = get_the_title();
+                $permalink  = get_permalink();
+                $image_url  = get_the_post_thumbnail_url($product_id, 'medium_large');
+                if (!$image_url) {
+                    $image_url = wc_placeholder_img_src();
+                }
+
+                // Xử lý giá tiền & Huy hiệu giảm giá chuẩn xác theo thiết kế:
+                $is_on_sale    = $product->is_on_sale();
+                $regular_price = (float)$product->get_regular_price();
+                $sale_price    = (float)$product->get_sale_price();
+
+                $sale_badge_html   = '';
+                $price_custom_html = '';
+
+                if ($is_on_sale && $sale_price > 0 && $regular_price > $sale_price) {
+                    $percent = round((($regular_price - $sale_price) / $regular_price) * 100);
+                    // Huy hiệu có icon tia sét ⚡ màu cam
+                    $sale_badge_html = '<span class="gobike-badge-sale">'
+                                     . '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>'
+                                     . ' Giảm ' . $percent . '%'
+                                     . '</span>';
+                    // Giá khuyến mãi (ĐỎ) đứng trước, Giá gốc (GÁCH NGANG) đứng sau
+                    $price_custom_html = '<strong class="price-current">' . wc_price($sale_price) . '</strong>'
+                                       . '<span class="price-old">' . wc_price($regular_price) . '</span>';
+                } else {
+                    $current_price = $product->get_price();
+                    if (!empty($current_price)) {
+                        $price_custom_html = '<strong class="price-current">' . wc_price($current_price) . '</strong>';
+                    } else {
+                        $price_custom_html = '<strong class="price-current">Liên hệ</strong>';
+                    }
+                }
+
+                if ($index === 1) : 
+                    // ==========================================
+                    // 1. SẢN PHẨM NỔI BẬT (Ô LỚN CHIẾM 2 CỘT)
+                    // ==========================================
+                ?>
+                    <div class="gobike-big-item">
+                        <div class="img-box">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
+                            </a>
+                            <?php echo $sale_badge_html; ?>
+                        </div>
+                        <div class="info-box">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <h3 class="product-title"><?php echo esc_html($title); ?></h3>
+                            </a>
+                            <div class="gobike-price-box">
+                                <?php echo $price_custom_html; ?>
+                            </div>
+                            <div class="spec-table">
+                                <?php 
+                                // Ưu tiên 1: Lấy bảng thông số từ Mô tả ngắn sản phẩm (Short Description)
+                                $excerpt = get_the_excerpt();
+                                if (!empty($excerpt)) {
+                                    echo do_shortcode($excerpt);
+                                } else {
+                                    // Ưu tiên 2: Tự động lặp qua các Thuộc tính (Attributes) trong WooCommerce
+                                    $attributes = $product->get_attributes();
+                                    if (!empty($attributes)) {
+                                        echo '<table>';
+                                        foreach ($attributes as $attribute) {
+                                            $name = wc_attribute_label($attribute->get_name());
+                                            $values = array();
+                                            if ($attribute->is_taxonomy()) {
+                                                $attribute_taxonomy = $attribute->get_taxonomy_object();
+                                                $attribute_values = wc_get_product_terms($product->get_id(), $attribute->get_name(), array('fields' => 'names'));
+                                                $values = $attribute_values;
+                                            } else {
+                                                $values = $attribute->get_options();
+                                            }
+                                            echo '<tr><td><span>' . esc_html($name) . ':</span></td><td>' . esc_html(implode(', ', $values)) . '</td></tr>';
+                                        }
+                                        echo '</table>';
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php else : 
+                    // ==========================================
+                    // 2. TÁM SẢN PHẨM TIÊU CHUẨN (CÁC Ô 1 CỘT)
+                    // ==========================================
+                ?>
+                    <div class="gobike-small-item">
+                        <div class="img-wrap">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
+                            </a>
+                            <?php echo $sale_badge_html; ?>
+                        </div>
+                        <a href="<?php echo esc_url($permalink); ?>">
+                            <h3 class="item-title"><?php echo esc_html($title); ?></h3>
+                        </a>
+                        <div class="gobike-price-box">
+                            <?php echo $price_custom_html; ?>
+                        </div>
+                    </div>
+                <?php 
+                endif;
+            endwhile; 
+            wp_reset_postdata(); 
+            ?>
+        </div>
+        
+        <!-- NÚT XEM THÊM DÀNH CHO MOBILE -->
+        <a href="<?php echo esc_url($view_all_link); ?>" class="gobike-mobile-viewmore">Xem tất cả <?php echo esc_html($atts['title']); ?></a>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('gobike_category_block', 'gobike_render_category_block');
+```
+
+--------------------------------------------------------------------------------
+2. ĐOẠN MÃ CSS TỐI ƯU (Dán vào: Giao diện > Tùy biến > CSS bổ sung):
+--------------------------------------------------------------------------------
+```css
+/* --- GOBIKE CATEGORY SECTION SYSTEM --- */
+.gobike-section {
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.gobike-mobile-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Header màu cam */
+.gobike-section-head {
+    background: #f36f21;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+}
+.gobike-section-head .title_blog {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.gobike-section-head .viewallcat a {
+    color: #fff;
+    font-size: 13px;
+    margin-left: 18px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.gobike-section-head .viewallcat a:hover {
+    color: #ffe0b2;
+    text-decoration: underline;
+}
+
+/* Lưới 5 cột */
+.gobike-grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: #eee;
+    gap: 1px; /* Tạo đường viền mảnh 1px tự nhiên giữa các ô */
+    border: 1px solid #eee;
+}
+
+/* Ô Lớn (Big Item) - Chiếm 2 cột */
+.gobike-big-item {
+    grid-column: span 2;
+    display: flex;
+    background: #fff;
+    padding: 16px;
+    align-items: center;
+    gap: 15px;
+}
+.gobike-big-item .img-box {
+    width: 48%;
+    position: relative;
+    text-align: center;
+}
+.gobike-big-item .img-box img {
+    max-width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+.gobike-big-item:hover .img-box img {
+    transform: scale(1.04);
+}
+.gobike-big-item .info-box {
+    width: 52%;
+}
+.gobike-big-item .product-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #222;
+    line-height: 1.35;
+}
+.gobike-big-item .product-title:hover {
+    color: #f36f21;
+}
+.gobike-big-item .spec-table {
+    margin-top: 10px;
+    font-size: 12px;
+}
+.gobike-big-item .spec-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+.gobike-big-item .spec-table td {
+    padding: 3px 0;
+    border: none;
+    line-height: 1.4;
+    color: #444;
+}
+.gobike-big-item .spec-table td:first-child {
+    font-weight: 600;
+    color: #222;
+    width: 52%;
+}
+
+/* Các Ô Nhỏ (Small Item) */
+.gobike-small-item {
+    background: #fff;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.25s ease;
+}
+.gobike-small-item:hover {
+    background: #fafafa;
+    box-shadow: inset 0 0 0 1px #f36f21;
+    z-index: 2;
+}
+.gobike-small-item .img-wrap {
+    position: relative;
+    padding-top: 95%;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+.gobike-small-item .img-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+.gobike-small-item:hover .img-wrap img {
+    transform: scale(1.05);
+}
+.gobike-small-item .item-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.35;
+    margin: 0 0 6px 0;
+    height: 34px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.gobike-small-item .item-title:hover {
+    color: #f36f21;
+}
+
+/* Cụm hiển thị Giá (Giá đỏ trước, Giá cũ gạch ngang sau) */
+.gobike-price-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+.gobike-big-item .gobike-price-box {
+    justify-content: flex-start;
+}
+.gobike-price-box .price-current {
+    color: #d70018;
+    font-size: 14px;
+    font-weight: 700;
+}
+.gobike-big-item .gobike-price-box .price-current {
+    font-size: 16px;
+}
+.gobike-price-box .price-old {
+    color: #888;
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+/* Badge giảm giá màu cam kèm icon tia sét */
+.gobike-badge-sale {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    background: #ff5722;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    z-index: 2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.gobike-badge-sale svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Nút xem thêm trên Mobile */
+.gobike-mobile-viewmore {
+    display: none;
+    text-align: center;
+    background: #fff;
+    color: #f36f21;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px;
+    border: 1px solid #f36f21;
+    border-radius: 4px;
+    margin: 12px auto 0 auto;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .gobike-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 767px) {
+    .gobike-section-head .viewallcat {
+        display: none;
+    }
+    .gobike-mobile-viewmore {
+        display: block;
+    }
+    .gobike-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gobike-big-item {
+        grid-column: span 2;
+        flex-direction: column;
+    }
+    .gobike-big-item .img-box, 
+    .gobike-big-item .info-box {
+        width: 100%;
+    }
+}
+```
+
+================================================================================
+V. QUY TRÌNH 3 BƯỚC TRIỂN KHAI VÀO WEBSITE (KHÔNG CẦN TẢI SOURCE CODE VỀ)
+================================================================================
+
+BƯỚC 1: Dán đoạn mã PHP
+- Cách an toàn nhất: Cài plugin "WPCode" (Insert Headers and Footers) từ kho WordPress.
+- Vào Code Snippets > Add Snippet > Chọn "Add Your Custom Code (New Snippet)".
+- Chọn Code Type: "PHP Snippet", dán toàn bộ đoạn mã PHP ở Mục IV.1 vào.
+- Bật Active (Kích hoạt) rồi bấm Save Snippet.
+
+BƯỚC 2: Dán đoạn mã CSS
+- Vào Dashboard WordPress > Giao diện (Appearance) > Tùy biến (Customize) > CSS bổ sung (Additional CSS).
+- Dán toàn bộ đoạn mã CSS ở Mục IV.2 vào > Bấm "Đăng" (Publish).
+
+BƯỚC 3: Sử dụng trên Trang chủ bằng UX Builder
+- Mở Trang chủ bằng Flatsome UX Builder.
+- Thêm phần tử "Shortcode" hoặc "Text".
+- Dán chính xác các đoạn shortcode đã khớp 100% với slug danh mục của bạn:
+
+  /* 1. Khối Xe ADO */
+  [gobike_category_block cat="xe-dap-tro-luc-dien-ado" title="XE ĐẠP TRỢ LỰC ĐIỆN ADO" subcat="Xe đạp gấp" subcat_link="/danh-muc/xe-dap-gap-gon"]
+
+  /* 2. Khối Xe Phoenix */
+  [gobike_category_block cat="xe-dap-tro-luc-dien-phoenix" title="XE ĐẠP TRỢ LỰC ĐIỆN PHOENIX"]
+
+  /* 3. Khối Xe Học Sinh */
+  [gobike_category_block cat="xe-dap-tro-luc-dien-hoc-sinh" title="XE ĐẠP TRỢ LỰC ĐIỆN HỌC SINH"]
+
+  /* 4. Khối Xe Địa Hình */
+  [gobike_category_block cat="xe-dap-tro-luc-dien-dia-hinh" title="XE ĐẠP TRỢ LỰC ĐIỆN ĐỊA HÌNH"]
+
+  /* 5. Khối Xe Samebike (Nếu muốn thêm) */
+  [gobike_category_block cat="xe-dap-tro-luc-samebike" title="XE ĐẠP TRỢ LỰC SAMEBIKE"]
+================================================================================

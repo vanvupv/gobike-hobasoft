@@ -1,0 +1,30 @@
+# Logs & debug
+*.log
+wp-content/debug.log
+wp-content/uploads/wc-logs/
+
+# Backups & temp
+wp-content/upgrade-temp-backup/*
+!wp-content/upgrade-temp-backup/index.php
+wp-content/backup-db/
+wp-content/ai1wm-backups/*
+!wp-content/ai1wm-backups/.htaccess
+!wp-content/ai1wm-backups/index.php
+!wp-content/ai1wm-backups/index.html
+!wp-content/ai1wm-backups/web.config
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor & IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

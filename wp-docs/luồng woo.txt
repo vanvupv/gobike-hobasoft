@@ -1,0 +1,192 @@
+================================================================================
+DỰ ÁN: GOBIKE - HỆ THỐNG THƯƠNG MẠI ĐIỆN TỬ BÁN LẺ XE ĐẠP TRỢ LỰC ĐIỆN
+TÀI LIỆU TOÀN DIỆN VỀ LUỒNG HOẠT ĐỘNG WOOCOMMERCE & QUY TRÌNH MUA HÀNG TỪ A - Z
+================================================================================
+
+I. TỔNG QUAN LUỒNG MUA HÀNG (CUSTOMER PURCHASING FLOW)
+--------------------------------------------------------------------------------
+Quy trình khách hàng mua 1 sản phẩm xe đạp trợ lực điện diễn ra theo sơ đồ chuẩn:
+
+[TRANG CHỦ / DANH MỤC]
+         │
+         ▼
+[1. XEM CHI TIẾT SẢN PHẨM] ── (Chọn phiên bản: Màu sắc, Dung lượng Pin...)
+         │
+         ├──► Cách 1: Bấm "Thêm vào giỏ hàng" (Add to Cart) ──► [2. TRANG GIỎ HÀNG] ──► [3. THANH TOÁN]
+         │
+         └──► Cách 2: Bấm "MUA NGAY" (Buy Now / Quick Checkout) ─────────────────────► [3. THANH TOÁN]
+                                                                                              │
+                                                                                              ▼
+                                                                                  [4. XÁC NHẬN ĐƠN HÀNG]
+                                                                                  (Trang Thank You)
+                                                                                              │
+                                                                                              ▼
+                                                                                  [5. EMAIL & GIAO HÀNG]
+
+
+================================================================================
+II. CHI TIẾT CÁC BƯỚC TRONG QUY TRÌNH MUA MỘT SẢN PHẨM
+================================================================================
+
+BƯỚC 1: KHÁCH HÀNG TÌM KIẾM VÀ CHỌN SẢN PHẨM
+--------------------------------------------------------------------------------
+- Nơi diễn ra: Trang chủ (Home), Trang Cửa hàng (Shop), hoặc Trang Danh mục (Category Archive).
+- Hành vi: Khách xem hình ảnh, mức giá khuyến mãi, nhãn giảm giá (⚡ Giảm X%) và các thông số tóm tắt (Pin, Động cơ, Quãng đường...).
+- Hành động: Nhấp vào sản phẩm để xem chi tiết.
+
+BƯỚC 2: XEM CHI TIẾT & CHỌN THUỘC TÍNH (SINGLE PRODUCT PAGE)
+--------------------------------------------------------------------------------
+- Nơi diễn ra: Trang chi tiết sản phẩm (Single Product).
+- Nội dung hiển thị:
+  + Bộ sưu tập ảnh sản phẩm (Gallery / Zoom).
+  + Tên sản phẩm, Giá niêm yết & Giá khuyến mãi.
+  + Trạng thái tồn kho: Còn hàng / Hết hàng.
+  + Thuộc tính biến thể (Variable Product - nếu có):
+    * Màu sắc: Xám / Trắng / Đen...
+    * Dung lượng pin: 9.6Ah / 14Ah / 20Ah...
+  + Bảng thông số kỹ thuật chi tiết.
+  + Chính sách bảo hành (15 tháng), bảo dưỡng trọn đời, quà tặng kèm.
+- Hành vi khách hàng:
+  + Chọn số lượng (Quantity).
+  + Bấm nút "THÊM VÀO GIỎ HÀNG" (nếu muốn mua thêm phụ kiện khác).
+  + HOẶC Bấm "MUA NGAY" (chuyển thẳng tới trang Thanh toán).
+
+BƯỚC 3: KIỂM TRA GIỎ HÀNG (SHOPPING CART PAGE)
+--------------------------------------------------------------------------------
+- Nơi diễn ra: Trang Giỏ hàng (/gio-hang/ hoặc /cart/).
+- Nhiệm vụ của trang:
+  + Liệt kê danh sách các sản phẩm đã chọn kèm hình thu nhỏ, đơn giá, số lượng.
+  + Cho phép tăng/giảm số lượng hoặc xóa sản phẩm khỏi giỏ.
+  + Nhập Mã giảm giá (Coupon Code / Voucher khuyến mãi nếu có).
+  + Tạm tính tiền hàng (Cart Subtotal).
+  + Xem ước tính phí vận chuyển (Shipping calculation).
+- Hành động: Bấm nút "TIẾN HÀNH THANH TOÁN" (Proceed to Checkout).
+
+BƯỚC 4: ĐIỀN THÔNG TIN VÀ THANH TOÁN (CHECKOUT PAGE)
+--------------------------------------------------------------------------------
+- Nơi diễn ra: Trang Thanh toán (/thanh-toan/ hoặc /checkout/).
+- Đây là bước QUAN TRỌNG NHẤT quyết định tỉ lệ chuyển đổi ra đơn.
+- Các trường thông tin cần điền (Billing & Shipping Details):
+  1. Họ và tên người nhận.
+  2. Số điện thoại liên hệ (rất quan trọng để nhân viên gọi chốt đơn).
+  3. Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và Địa chỉ cụ thể nhận xe.
+  4. Ghi chú đơn hàng (Thời gian nhận, yêu cầu lắp ráp sẵn trước...).
+- Chọn Phương thức vận chuyển:
+  + Giao hàng miễn phí toàn quốc (theo cam kết trên banner).
+  + Giao hàng hỏa tốc trong 1-2h (nội thành Đà Nẵng / Hà Nội / TP.HCM).
+- Chọn Phương thức thanh toán (Payment Gateway):
+  + Trả tiền mặt khi nhận hàng (COD - Ship COD kiểm tra xe rồi thanh toán).
+  + Chuyển khoản ngân hàng trực tiếp (BACS - Quét mã VietQR tiện lợi).
+  + Trả góp qua thẻ tín dụng / Công ty tài chính (nếu tích hợp cổng trả góp).
+- Hành động: Tích chọn "Tôi đồng ý với điều khoản..." và bấm nút "ĐẶT HÀNG".
+
+BƯỚC 5: ĐẶT HÀNG THÀNH CÔNG & XÁC NHẬN (ORDER RECEIVED / THANK YOU PAGE)
+--------------------------------------------------------------------------------
+- Nơi diễn ra: Trang Cảm ơn (/thanh-toan/order-received/ID-DON-HANG/...).
+- Nội dung hiển thị:
+  + Lời cảm ơn khách hàng.
+  + Mã số đơn hàng (#12345), Ngày đặt, Tổng số tiền thanh toán.
+  + Hướng dẫn chuyển khoản ngân hàng kèm mã QR Code tài khoản ngân hàng của GOBIKE (nếu chọn phương thức Chuyển khoản).
+  + Tóm tắt chi tiết mặt hàng đã đặt và địa chỉ giao xe.
+
+BƯỚC 6: HỆ THỐNG TỰ ĐỘNG XỬ LÝ & THÔNG BÁO (NOTIFICATION FLOW)
+--------------------------------------------------------------------------------
+Ngay khi nút "ĐẶT HÀNG" được bấm thành công:
+1. Email gửi cho Khách hàng: "Đơn hàng GOBIKE #12345 của bạn đã được tiếp nhận" kèm bảng hóa đơn chi tiết.
+2. Email gửi cho Chủ cửa hàng (Admin): "Bạn có đơn hàng mới từ [Tên khách] - [Số điện thoại]".
+3. Trừ tồn kho sản phẩm tương ứng trong cơ sở dữ liệu WooCommerce.
+4. Đơn hàng chuyển sang trạng thái "Đang xử lý" (Processing) hoặc "Tạm giữ" (On-Hold).
+
+
+================================================================================
+III. DANH SÁCH CÁC TRANG LIÊN QUAN TRONG WOOCOMMERCE
+================================================================================
+WooCommerce tự động tạo ra và sử dụng hệ thống các trang chuẩn (có thể tùy biến URL trong Cài đặt > Đường dẫn tĩnh):
+
+1. TRANG CỬA HÀNG (SHOP ARCHIVE PAGE):
+   - Đường dẫn mặc định: `/cua-hang/` hoặc `/shop/`
+   - Chức năng: Trưng bày toàn bộ sản phẩm của website, có bộ lọc theo giá, danh mục, thương hiệu (ADO, Phoenix, Samebike...) và sắp xếp theo mới nhất / giá tăng dần.
+
+2. TRANG DANH MỤC SẢN PHẨM (PRODUCT CATEGORY PAGE):
+   - Đường dẫn mặc định: `/danh-muc-san-pham/ten-danh-muc/` (ví dụ: `/danh-muc/xe-dap-tro-luc-dien-ado/`)
+   - Chức năng: Chỉ hiển thị các dòng xe thuộc riêng thương hiệu hoặc nhóm xe đó.
+
+3. TRANG CHI TIẾT SẢN PHẨM (SINGLE PRODUCT PAGE):
+   - Đường dẫn mặc định: `/san-pham/ten-san-pham/` (ví dụ: `/san-pham/xe-dap-tro-luc-dien-ado-a20-carbon/`)
+   - Chức năng: Đầy đủ gallery ảnh, bảng kỹ thuật, nút mua hàng, đánh giá từ khách hàng, sản phẩm tương tự.
+
+4. TRANG GIỎ HÀNG (CART PAGE):
+   - Đường dẫn mặc định: `/gio-hang/` hoặc `/cart/`
+   - Shortcode WooCommerce: `[woocommerce_cart]`
+   - Chức năng: Quản lý các món hàng đã nhặt vào giỏ trước khi đi thanh toán.
+
+5. TRANG THANH TOÁN (CHECKOUT PAGE):
+   - Đường dẫn mặc định: `/thanh-toan/` hoặc `/checkout/`
+   - Shortcode WooCommerce: `[woocommerce_checkout]`
+   - Chức năng: Thu thập thông tin giao hàng và cổng thanh toán.
+
+6. TRANG HOÀN TẤT ĐƠN HÀNG (ORDER RECEIVED / THANK YOU PAGE):
+   - Đường dẫn mặc định: `/thanh-toan/order-received/`
+   - Chức năng: Báo thành công, cung cấp số tài khoản và thông tin đối soát.
+
+7. TRANG TÀI KHOẢN KHÁCH HÀNG (MY ACCOUNT PAGE):
+   - Đường dẫn mặc định: `/tai-khoan/` hoặc `/my-account/`
+   - Shortcode WooCommerce: `[woocommerce_my_account]`
+   - Chức năng:
+     + Đăng ký / Đăng nhập.
+     + Xem lịch sử các đơn hàng đã mua.
+     + Theo dõi tình trạng giao hàng.
+     + Quản lý địa chỉ giao hàng mặc định, đổi mật khẩu.
+
+8. TRANG THEO DÕI ĐƠN HÀNG (ORDER TRACKING - Tùy chọn):
+   - Shortcode: `[woocommerce_order_tracking]`
+   - Khách chỉ cần nhập Mã đơn hàng + Email là tra cứu được tiến độ giao xe mà không cần đăng nhập.
+
+
+================================================================================
+IV. VÒNG ĐỜI TRẠNG THÁI ĐƠN HÀNG TRONG ADMIN (ORDER STATUS LIFECYCLE)
+================================================================================
+Khi chủ shop quản lý đơn hàng trong Dashboard (WooCommerce > Đơn hàng), mỗi đơn hàng sẽ đi qua các trạng thái:
+
+1. Chờ thanh toán (Pending Payment):
+   - Khách đã tạo đơn nhưng chưa thanh toán qua cổng trực tuyến (VNPAY, OnePay, MoMo...). Đơn sẽ tự hủy nếu quá thời gian giới hạn.
+
+2. Tạm giữ (On-Hold):
+   - Thường xảy ra khi khách chọn "Chuyển khoản ngân hàng". Hệ thống tạm giữ hàng trong kho, chờ kế toán kiểm tra tiền nổi vào tài khoản thì mới chuyển bước tiếp theo.
+
+3. Đang xử lý (Processing):
+   - Đã nhận tiền (hoặc đơn COD đã được nhân viên gọi điện xác nhận chốt đơn thành công).
+   - Bộ phận kho tiến hành lấy xe, kiểm tra kỹ thuật, kích hoạt sổ bảo hành và đóng thùng giao cho đơn vị vận chuyển.
+
+4. Đã hoàn thành (Completed):
+   - Đơn vị vận chuyển (Viettel Post, GHTK...) đã giao xe tận tay khách hàng, thu tiền COD thành công. Đơn hàng kết thúc trọn vẹn.
+
+5. Đã hủy (Cancelled):
+   - Khách gọi hủy đơn trước khi giao, hoặc khách đặt trùng đơn. Tồn kho tự động hoàn trả lại.
+
+6. Đã hoàn tiền (Refunded):
+   - Trường hợp khách đổi trả xe theo chính sách 30 ngày đổi lỗi và shop hoàn lại tiền.
+
+7. Thất bại (Failed):
+   - Thanh toán online không thành công hoặc thẻ bị từ chối.
+
+
+================================================================================
+V. CÁC TỐI ƯU ĐẶC THÙ CHO DỰ ÁN XE ĐẠP ĐIỆN GOBIKE TRÊN FLATSOME
+================================================================================
+Đối với mặt hàng giá trị cao (từ 15 triệu - 50 triệu/chiếc) như xe đạp trợ lực điện GOBIKE, khách hàng Việt Nam thường có tâm lý cần tư vấn kỹ trước khi thanh toán. Do đó, luồng mua hàng nên tối ưu như sau:
+
+1. Nút "MUA NGAY - GIAO HÀNG TẬN NƠI":
+   - Bỏ qua trang giỏ hàng trung gian, nhấp 1 phát chuyển thẳng tới trang Checkout để khách không bị phân tâm.
+
+2. Nút "GỌI TƯ VẤN TRẢ GÓP 0%" / "CHAT ZALO":
+   - Đặt ngay dưới nút Mua hàng trên trang chi tiết sản phẩm.
+   - Xe đạp điện giá cao nên tỉ lệ khách mua trả góp qua thẻ hoặc qua CCCD rất cao.
+
+3. Tích hợp thanh toán quét mã VietQR tự động:
+   - Tích hợp plugin tạo mã QR ngân hàng tự động điền sẵn Số tài khoản + Số tiền + Mã đơn hàng. Khách chỉ việc mở app ngân hàng quét là xong, tránh chuyển nhầm số tiền.
+
+4. Đơn giản hóa trang Checkout trong Flatsome:
+   - Flatsome hỗ trợ sẵn chế độ "Classic Checkout" hoặc "Multi-step Checkout" rất đẹp.
+   - Nên lược bỏ bớt các trường không cần thiết (như: Tên công ty, Mã bưu điện / Postcode) để khách điền nhanh trong 30 giây.
+================================================================================

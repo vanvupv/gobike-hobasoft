@@ -1,0 +1,244 @@
+{
+    "version": "1.0.0",
+    "updated_at": "2026-08-28 10:28:45",
+    "nodes": [
+        {
+            "id": "node-pt-post",
+            "label": "Bài viết (post)",
+            "type": "post_type",
+            "post_type": "post",
+            "post_count": 1,
+            "children": [
+                {
+                    "id": "node-post-category",
+                    "label": "Danh mục (category)",
+                    "type": "taxonomy",
+                    "taxonomy": "category",
+                    "post_type": "post",
+                    "children": [
+                        {
+                            "id": "node-post-category-98",
+                            "label": "Đánh giá",
+                            "type": "term",
+                            "slug": "danh-gia",
+                            "term_id": 98,
+                            "taxonomy": "category",
+                            "post_type": "post",
+                            "post_count": 0,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-post-category-97",
+                            "label": "Khuyến mại",
+                            "type": "term",
+                            "slug": "khuyen-mai",
+                            "term_id": 97,
+                            "taxonomy": "category",
+                            "post_type": "post",
+                            "post_count": 0,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-post-category-329",
+                            "label": "Mở hộp\/Trên tay nhanh",
+                            "type": "term",
+                            "slug": "mo-hop-tren-tay-nhanh",
+                            "term_id": 329,
+                            "taxonomy": "category",
+                            "post_type": "post",
+                            "post_count": 1,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-post-category-1",
+                            "label": "Tin công nghệ",
+                            "type": "term",
+                            "slug": "tin-cong-nghe",
+                            "term_id": 1,
+                            "taxonomy": "category",
+                            "post_type": "post",
+                            "post_count": 0,
+                            "chunks": []
+                        }
+                    ]
+                },
+                {
+                    "id": "node-post-post_tag",
+                    "label": "Thẻ (post_tag)",
+                    "type": "taxonomy",
+                    "taxonomy": "post_tag",
+                    "post_type": "post",
+                    "children": []
+                },
+                {
+                    "id": "node-post-post_format",
+                    "label": "Định dạng (post_format)",
+                    "type": "taxonomy",
+                    "taxonomy": "post_format",
+                    "post_type": "post",
+                    "children": []
+                }
+            ],
+            "chunks": []
+        },
+        {
+            "id": "node-pt-page",
+            "label": "Trang (page)",
+            "type": "post_type",
+            "post_type": "page",
+            "post_count": 9,
+            "children": [],
+            "chunks": []
+        },
+        {
+            "id": "node-pt-blocks",
+            "label": "UX Blocks (blocks)",
+            "type": "post_type",
+            "post_type": "blocks",
+            "post_count": 9,
+            "children": [],
+            "chunks": []
+        },
+        {
+            "id": "node-pt-product",
+            "label": "Sản phẩm (product)",
+            "type": "post_type",
+            "post_type": "product",
+            "post_count": 11,
+            "children": [
+                {
+                    "id": "node-product-product_brand",
+                    "label": "Thương hiệu (product_brand)",
+                    "type": "taxonomy",
+                    "taxonomy": "product_brand",
+                    "post_type": "product",
+                    "children": []
+                },
+                {
+                    "id": "node-product-product_cat",
+                    "label": "Danh mục sản phẩm (product_cat)",
+                    "type": "taxonomy",
+                    "taxonomy": "product_cat",
+                    "post_type": "product",
+                    "children": [
+                        {
+                            "id": "node-product-product_cat-15",
+                            "label": "Điện thoại",
+                            "type": "term",
+                            "slug": "dien-thoai",
+                            "term_id": 15,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 0,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-product-product_cat-388",
+                            "label": "SẢN PHẨM",
+                            "type": "term",
+                            "slug": "san-pham",
+                            "term_id": 388,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 0,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-product-product_cat-383",
+                            "label": "XE ĐẠP TRỢ LỰC ĐIỆN ADO",
+                            "type": "term",
+                            "slug": "xe-dap-tro-luc-dien-ado",
+                            "term_id": 383,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 4,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-product-product_cat-386",
+                            "label": "XE ĐẠP TRỢ LỰC ĐIỆN ĐỊA HÌNH",
+                            "type": "term",
+                            "slug": "xe-dap-tro-luc-dien-dia-hinh",
+                            "term_id": 386,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 3,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-product-product_cat-385",
+                            "label": "XE ĐẠP TRỢ LỰC ĐIỆN HỌC SINH",
+                            "type": "term",
+                            "slug": "xe-dap-tro-luc-dien-hoc-sinh",
+                            "term_id": 385,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 2,
+                            "chunks": []
+                        },
+                        {
+                            "id": "node-product-product_cat-384",
+                            "label": "XE ĐẠP TRỢ LỰC ĐIỆN PHOENIX",
+                            "type": "term",
+                            "slug": "xe-dap-tro-luc-dien-phoenix",
+                            "term_id": 384,
+                            "taxonomy": "product_cat",
+                            "post_type": "product",
+                            "post_count": 2,
+                            "chunks": []
+                        }
+                    ]
+                },
+                {
+                    "id": "node-product-product_tag",
+                    "label": "Thẻ sản phẩm (product_tag)",
+                    "type": "taxonomy",
+                    "taxonomy": "product_tag",
+                    "post_type": "product",
+                    "children": [
+                        {
+                            "id": "node-product-product_tag-331",
+                            "label": "Realme 8 Pro",
+                            "type": "term",
+                            "slug": "realme-8-pro",
+                            "term_id": 331,
+                            "taxonomy": "product_tag",
+                            "post_type": "product",
+                            "post_count": 0,
+                            "chunks": []
+                        }
+                    ]
+                }
+            ],
+            "chunks": []
+        },
+        {
+            "id": "node-pt-ywar_reviews",
+            "label": "Reviews (ywar_reviews)",
+            "type": "post_type",
+            "post_type": "ywar_reviews",
+            "post_count": 40,
+            "children": [],
+            "chunks": []
+        },
+        {
+            "id": "node-workflows",
+            "label": "Luồng Xử Lý & Prompt AI Mẫu",
+            "type": "workflows",
+            "children": [
+                {
+                    "id": "node-wf-prompt-bds",
+                    "label": "Prompt Sinh Bài Viết Bất Động Sản",
+                    "type": "workflow_item",
+                    "file_path": "workflows\/prompt-bds.json"
+                },
+                {
+                    "id": "node-wf-prompt-ecommerce",
+                    "label": "Prompt Mô Tả Sản Phẩm Chuẩn SEO",
+                    "type": "workflow_item",
+                    "file_path": "workflows\/prompt-ecommerce.json"
+                }
+            ]
+        }
+    ]
+}

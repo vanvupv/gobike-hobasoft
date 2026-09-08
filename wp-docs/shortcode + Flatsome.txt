@@ -1,0 +1,192 @@
+================================================================================
+DỰ ÁN: GOBIKE - CẨM NANG CHUYÊN SÂU VỀ SHORTCODE TRONG WORDPRESS & FLATSOME
+TÀI LIỆU CƠ CHẾ HOẠT ĐỘNG, CÁC THUỘC TÍNH & CÁCH TÍCH HỢP VÀO UX BUILDER
+================================================================================
+
+I. BẢN CHẤT CỦA SHORTCODE TRONG WORDPRESS & FLATSOME
+--------------------------------------------------------------------------------
+1. SHORTCODE LÀ GÌ?
+   - Shortcode (Mã ngắn) là một tính năng cốt lõi của WordPress từ phiên bản 2.5, cho phép bạn chèn những khối chức năng, dữ liệu động hoặc giao diện phức tạp vào bài viết/trang chỉ bằng một đoạn mã ngắn nằm trong dấu ngoặc vuông: `[ten_shortcode thuoc_tinh="gia_tri"]`.
+   - Khi trang web tải, WordPress quét toàn bộ nội dung trong bài viết. Nếu gặp dấu ngoặc vuông `[...]`, nó sẽ chuyển các thuộc tính bên trong vào một hàm PHP tương ứng để "dịch" (render) ra mã HTML/CSS hoàn chỉnh hiển thị ra trình duyệt.
+
+2. MỐI QUAN HỆ ĐẶC BIỆT GIỮA FLATSOME VÀ SHORTCODE:
+   - Toàn bộ theme **Flatsome bản chất được xây dựng 100% dựa trên Shortcode**!
+   - Khi bạn kéo thả trong trình thiết kế trực quan **UX Builder** của Flatsome:
+     + Kéo 1 Section ────────► Flatsome sinh ra mã `[section]...[/section]`
+     + Kéo 1 Hàng (Row) ──────► Flatsome sinh ra mã `[row]...[/row]`
+     + Kéo 1 Cột (Col) ───────► Flatsome sinh ra mã `[col span="6"]...[/col]`
+     + Kéo Sản phẩm (Products)► Flatsome sinh ra mã `[ux_products cat="12" products="8"]`
+   - Nghĩa là: **UX Builder chỉ là một lớp giao diện đồ họa (GUI) phủ lên trên các shortcode của WordPress**. Bạn có thể gõ tay shortcode hay kéo thả bằng chuột thì kết quả lưu vào cơ sở dữ liệu đều giống hệt nhau.
+
+
+================================================================================
+II. GIẢI MÃ DÒNG MÃ:
+[gobike_category_block cat="xe-dap-tro-luc-dien-phoenix" title="XE ĐẠP TRỢ LỰC ĐIỆN PHOENIX"]
+================================================================================
+
+Trong dòng mã trên, có 3 thành phần chính:
+
+1. TÊN SHORTCODE: `gobike_category_block`
+   - Đây là định danh duy nhất (Identifier) của hàm.
+   - Được khai báo ở dòng cuối cùng trong code PHP:
+     `add_shortcode('gobike_category_block', 'gobike_render_category_block');`
+   - Khi WordPress nhìn thấy tên `gobike_category_block`, nó lập tức gọi hàm `gobike_render_category_block()` để chạy.
+
+2. THUỘC TÍNH (ATTRIBUTE): `cat="xe-dap-tro-luc-dien-phoenix"`
+   - `cat` là viết tắt của "Category" (Danh mục sản phẩm).
+   - Giá trị `"xe-dap-tro-luc-dien-phoenix"` chính là **Slug** (chuỗi đường dẫn tĩnh) của danh mục xe Phoenix trong WooCommerce.
+   - Cơ chế hoạt động trong code:
+     Code lấy giá trị này gán vào bộ lọc cơ sở dữ liệu:
+     ```php
+     'tax_query' => array(
+         array(
+             'taxonomy' => 'product_cat',
+             'field'    => 'slug',
+             'terms'    => $atts['cat'], // <-- Nhận "xe-dap-tro-luc-dien-phoenix"
+         )
+     )
+     ```
+     -> Nhờ thuộc tính này, hàm biết được cần phải lấy xe của hãng nào (ADO hay Phoenix hay Xe học sinh).
+
+3. THUỘC TÍNH (ATTRIBUTE): `title="XE ĐẠP TRỢ LỰC ĐIỆN PHOENIX"`
+   - Đây là dòng chữ tiêu đề hiển thị trên thanh màu cam.
+   - Cơ chế hoạt động trong code:
+     Code in dòng chữ này vào thẻ H2:
+     ```php
+     <h2 class="title_blog"><?php echo esc_html($atts['title']); ?></h2>
+     ```
+     -> Bạn đổi chữ trong dấu ngoặc kép thành gì thì trên thanh màu cam sẽ hiện ra đúng chữ đó.
+
+
+================================================================================
+III. BẢNG DANH SÁCH TOÀN BỘ CÁC THUỘC TÍNH TRONG SHORTCODE GOBIKE
+================================================================================
+Hàm shortcode của chúng ta sử dụng hàm chuẩn của WordPress:
+`$atts = shortcode_atts($defaults, $atts, 'gobike_category_block');`
+Hàm này định nghĩa sẵn các giá trị mặc định nếu bạn không nhập:
+
++----------------+----------------+---------------+------------------------------------------------------+
+| THUỘC TÍNH     | KIỂU DỮ LIỆU   | GIÁ TRỊ MẶC   | TÁC DỤNG & Ý NGHĨA TRONG HỆ THỐNG                    |
+| (ATTRIBUTE)    |                | ĐỊNH          |                                                      |
++----------------+----------------+---------------+------------------------------------------------------+
+| cat            | Chuỗi (String) | '' (Bắt buộc) | Slug hoặc ID danh mục sản phẩm trong WooCommerce.    |
+|                |                |               | Dùng để kéo đúng 9 sản phẩm thuộc danh mục này.      |
++----------------+----------------+---------------+------------------------------------------------------+
+| title          | Chuỗi (String) | 'XE ĐẠP TRỢ   | Tiêu đề in hoa hiển thị trên thanh màu cam bên trái. |
+|                |                | LỰC ĐIỆN'     |                                                      |
++----------------+----------------+---------------+------------------------------------------------------+
+| subcat         | Chuỗi (String) | '' (Trống)    | Tên danh mục phụ / liên quan đặt cạnh nút Xem tất cả |
+|                |                |               | Ví dụ: subcat="Xe đạp gấp"                           |
++----------------+----------------+---------------+------------------------------------------------------+
+| subcat_link    | Đường dẫn URL  | '#'           | Link khi người dùng nhấp vào tên danh mục phụ.       |
+|                |                |               | Ví dụ: subcat_link="/xe-dap-gap-gon"                 |
++----------------+----------------+---------------+------------------------------------------------------+
+| view_all       | Đường dẫn URL  | '' (Tự động)  | Đường dẫn của nút "Xem tất cả". Nếu để trống, code   |
+|                |                |               | sẽ tự động lấy link gốc của danh mục WooCommerce.    |
++----------------+----------------+---------------+------------------------------------------------------+
+| limit          | Số nguyên (Int)| 9             | Tổng số sản phẩm hiển thị (1 ô lớn + 8 ô nhỏ).       |
+|                |                |               | Bạn có thể đổi limit="14" nếu muốn thêm 1 hàng nữa.  |
++----------------+----------------+---------------+------------------------------------------------------+
+| mobile_banner  | Đường dẫn URL  | '' (Trống)    | Link hình ảnh banner hiển thị trên điện thoại        |
+|                | ảnh            |               | (giống thanh banner đầu tiên trên màn hình mobile).  |
++----------------+----------------+---------------+------------------------------------------------------+
+
+* VÍ DỤ CÚ PHÁP ĐẦY ĐỦ TẤT CẢ THUỘC TÍNH:
+[gobike_category_block cat="xe-dap-tro-luc-dien-ado" title="XE ĐẠP TRỢ LỰC ĐIỆN ADO" subcat="Xe đạp gấp" subcat_link="/xe-dap-gap-gon" limit="9" mobile_banner="https://domain.com/banner-ado.jpg"]
+
+
+================================================================================
+IV. NÂNG CAO: TÍCH HỢP SHORTCODE NÀY THÀNH ELEMENT KÉO THẢ TRONG UX BUILDER
+================================================================================
+Thay vì phải nhớ cú pháp gõ tay, bạn hoàn toàn có thể biến shortcode `gobike_category_block` thành một **phần tử kéo thả có icon và ô nhập liệu trực quan** ngay trong menu UX Builder của Flatsome!
+
+Để làm điều này, bạn chỉ cần dán thêm đoạn code sau vào `functions.php`:
+
+```php
+add_action('ux_builder_setup', 'gobike_register_ux_builder_element');
+function gobike_register_ux_builder_element() {
+    add_ux_builder_shortcode('gobike_category_block', array(
+        'name'      => __('Khối Sản Phẩm GOBIKE', 'flatsome'),
+        'category'  => __('Shop / WooCommerce', 'flatsome'),
+        'priority'  => 1,
+        'thumbnail' => '',
+        'options'   => array(
+            'title' => array(
+                'type'    => 'textfield',
+                'heading' => 'Tiêu đề khối',
+                'default' => 'XE ĐẠP TRỢ LỰC ĐIỆN',
+            ),
+            'cat' => array(
+                'type'    => 'select',
+                'heading' => 'Chọn danh mục',
+                'options' => gobike_get_product_categories_list(),
+            ),
+            'subcat' => array(
+                'type'    => 'textfield',
+                'heading' => 'Tên danh mục phụ (gợi ý)',
+                'default' => 'Xe đạp gấp',
+            ),
+            'subcat_link' => array(
+                'type'    => 'textfield',
+                'heading' => 'Link danh mục phụ',
+                'default' => '#',
+            ),
+            'limit' => array(
+                'type'    => 'slider',
+                'heading' => 'Số lượng sản phẩm',
+                'default' => 9,
+                'max'     => 20,
+                'min'     => 4,
+            ),
+        ),
+    ));
+}
+
+// Hàm lấy danh sách toàn bộ danh mục sản phẩm tự động đưa vào dropdown
+function gobike_get_product_categories_list() {
+    $categories = get_terms('product_cat', array('hide_empty' => false));
+    $options = array('' => '-- Chọn danh mục --');
+    if (!is_wp_error($categories) && !empty($categories)) {
+        foreach ($categories as $cat) {
+            $options[$cat->slug] = $cat->name . ' (' . $cat->slug . ')';
+        }
+    }
+    return $options;
+}
+```
+
+* KẾT QUẢ KHI TÍCH HỢP:
+  - Khi bạn mở trang chủ bằng UX Builder và bấm dấu `+ Add Elements`:
+  - Bạn sẽ thấy xuất hiện một phần tử mới tên là **"Khối Sản Phẩm GOBIKE"**.
+  - Bấm vào sẽ có menu bên trái cho phép:
+    + Chọn danh mục bằng danh sách thả xuống (Dropdown), không bao giờ sợ gõ sai slug.
+    + Gõ tiêu đề trực tiếp và xem trang chủ thay đổi thời gian thực (Live Preview).
+    + Có thanh kéo trượt (slider) để tăng giảm số lượng sản phẩm.
+
+
+================================================================================
+V. CÁC TÀI LIỆU CHÍNH THỨC & TÀI NGUYÊN NÊN THAM KHẢO
+================================================================================
+
+1. TÀI LIỆU CHÍNH THỐNG TỪ WORDPRESS.ORG (DEVELOPER HANDBOOK):
+   - **WordPress Shortcode API Reference**:
+     URL: https://developer.wordpress.org/plugins/shortcodes/
+     (Đây là cẩm nang gốc của WordPress giải thích chi tiết về hàm `add_shortcode`, hàm `shortcode_atts`, cách truyền tham số, cách xử lý shortcode lồng nhau).
+   - **WordPress WP_Query Reference**:
+     URL: https://developer.wordpress.org/reference/classes/wp_query/
+     (Tài liệu hướng dẫn cách lấy sản phẩm, lọc theo tax_query, orderby, meta_query).
+
+2. TÀI LIỆU TỪ NHÀ PHÁT TRIỂN FLATSOME (UX-THEMES):
+   - **Flatsome Official Documentation**:
+     URL: https://docs.uxthemes.com/
+   - **Flatsome Shortcodes & Elements Guide**:
+     URL: https://docs.uxthemes.com/article/70-shortcodes
+     (Tổng hợp toàn bộ các shortcode dựng sẵn của Flatsome như `[ux_products]`, `[ux_banner]`, `[ux_image]`, `[accordion]`...).
+   - **Flatsome UX Builder Custom Elements (GitHub / Developer Docs)**:
+     Hướng dẫn sử dụng hook `ux_builder_setup` và `add_ux_builder_shortcode` để mở rộng UX Builder cho lập trình viên.
+
+3. TÀI LIỆU WOOCOMMERCE CODE REFERENCE:
+   - **WooCommerce Documentation for Developers**:
+     URL: https://developer.woocommerce.com/
+     (Hướng dẫn sử dụng class `WC_Product`, lấy giá `wc_price()`, kiểm tra khuyến mãi `$product->is_on_sale()`, lấy thuộc tính `$product->get_attributes()`).
+================================================================================

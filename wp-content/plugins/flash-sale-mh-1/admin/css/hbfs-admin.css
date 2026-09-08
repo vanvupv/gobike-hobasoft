@@ -1,0 +1,153 @@
+/* ============================================================
+   HBWeb Flash Sale - Admin CSS
+   ============================================================ */
+
+/* ── Reset nền trang ── */
+body.hbfs-admin-app #wpfooter,
+body.hbfs-admin-app #screen-meta,
+body.hbfs-admin-app .wp-pointer {
+  display: none !important;
+}
+
+.q-table--no-wrap td, .q-table--no-wrap th {
+    white-space: pre-wrap !important;
+}
+
+/* ── Ẩn thông báo WP đè vào app ── */
+body.hbfs-admin-app .notice,
+body.hbfs-admin-app .notice-success,
+body.hbfs-admin-app .notice-error,
+body.hbfs-admin-app .update-nag {
+  display: none !important;
+}
+
+/* ── Wrap chính ── */
+.wrap-hbfs {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.q-dialog__inner.flex.no-pointer-events.q-dialog__inner--minimized.q-dialog__inner--bottom.fixed-bottom.justify-center {
+    z-index: 999999;
+}
+
+.wrap-hbfs > .q-pa-md {
+  padding: 0 !important;
+}
+
+.absolute-full,
+.fixed-full,
+.fullscreen {
+  z-index: 99999 !important;
+}
+
+.q-position-engine {
+    z-index: 999999;
+}
+.hbfs-toolbar {
+  background: linear-gradient(135deg, #f35627 0%, #fda524 100%) !important;
+  color: #fff !important;
+  border-radius: 0;
+  margin-bottom: 0;
+  box-shadow: 0 2px 12px rgba(243,86,39,.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hbfs-logo { width: 36px; height: 36px; margin-right: 8px; }
+
+/* ── Nội dung bên trong toolbar ── */
+.hbfs-toolbar .q-tab { color: rgba(255,255,255,.85) !important; }
+.hbfs-toolbar .q-tab--active { color: #fff !important; }
+.hbfs-toolbar .q-tab__indicator { background: #fff !important; }
+
+/* ── Content wrapper ── */
+.wrap-hbfs > .q-pa-md {
+  padding: 0 !important;
+}
+
+.hbfs-page-content {
+  padding: 20px;
+}
+
+/* ── Cards ── */
+.hbfs-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+
+/* ── Table ── */
+.hbfs-table thead th {
+  background: #f8f8f8;
+  font-weight: 600;
+}
+
+/* ── Status badges ── */
+.hbfs-status-active  { background: #21a956; color:#fff; padding:2px 10px; border-radius:20px; font-size:.8rem; }
+.hbfs-status-loop    { background: #7b2ff7; color:#fff; padding:2px 10px; border-radius:20px; font-size:.8rem; }
+.hbfs-status-expired { background: #aaa;    color:#fff; padding:2px 10px; border-radius:20px; font-size:.8rem; }
+
+/* ── Transitions ── */
+.fade-enter-active, .fade-leave-active { transition: opacity .2s; }
+.fade-enter, .fade-leave-to { opacity: 0; }
+
+/* ── Fix WP menu conflict with Vue router links ── */
+#adminmenu a { pointer-events: auto !important; }
+
+/* ── Custom style dialog ── */
+.q-custom-style { overflow-y: auto; }
+
+/* ── Input overrides ── */
+.input-pt-13 .q-field__control { min-height: 40px !important; }
+
+/* ── Price toggle ── */
+.price-toggle .q-btn { font-size: .8rem !important; }
+
+/* ── Product search result dropdown ── */
+.search-result {
+  position: absolute;
+  z-index: 9000;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+  max-height: 420px;
+  overflow-y: auto;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.auto-complete-search { position: relative; }
+
+/* ── Scrollbar thin ── */
+.scroll-bar-thin-5::-webkit-scrollbar { width: 5px; }
+.scroll-bar-thin-5::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+
+/* ── Stat Cards (trang index) ── */
+.hbfs-stat-card {
+    border-radius: 10px !important;
+    transition: box-shadow .2s;
+}
+.hbfs-stat-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.12) !important; }
+.hbfs-stat-card--running  { border-left: 4px solid #fda524 !important; }
+.hbfs-stat-card--upcoming { border-left: 4px solid #2196f3 !important; }
+
+/* ── Section title ── */
+.hbfs-section-title {
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* ── Preview cards (đang/sắp chạy) ── */
+.hbfs-preview-card {
+    border-radius: 8px !important;
+    transition: box-shadow .15s;
+}
+.hbfs-preview-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.1) !important; }
