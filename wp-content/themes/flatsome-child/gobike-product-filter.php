@@ -221,7 +221,7 @@ function gobike_filter_enqueue_styles()
         .woof_redraw_zone::before {
             content: "Tìm theo:";
             font-weight: 700;
-            color: #d0021b;
+            color: #149d29;
             font-size: 14px;
             margin-right: 4px;
             white-space: nowrap;
@@ -268,8 +268,8 @@ function gobike_filter_enqueue_styles()
         .woof_redraw_zone .gobike-dropdown-btn:hover,
         .woof_redraw_zone .woof_container:hover>.gobike-dropdown-btn,
         .woof_redraw_zone .woof_container.active>.gobike-dropdown-btn {
-            border-color: #d0021b !important;
-            color: #d0021b !important;
+            border-color: #149d29 !important;
+            color: #149d29 !important;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
         }
 
@@ -288,7 +288,7 @@ function gobike_filter_enqueue_styles()
 
         .woof_redraw_zone .woof_container.active>.gobike-dropdown-btn::after {
             transform: rotate(180deg);
-            border-top-color: #d0021b;
+            border-top-color: #149d29;
         }
 
         /* Popup danh sách lựa chọn bên dưới */
@@ -349,7 +349,7 @@ function gobike_filter_enqueue_styles()
         }
 
         .woof_redraw_zone .woof_list li:hover label {
-            color: #d0021b !important;
+            color: #149d29 !important;
         }
 
         /* Ẩn hoàn toàn nút Reset màu xanh ở đuôi dòng 'Tìm theo:', chỉ giữ lại duy nhất nút 'Bỏ hết ✕' màu đỏ ở dải Badges */
@@ -405,10 +405,10 @@ function gobike_filter_enqueue_styles()
         }
 
         .gobike-custom-sorting-toolbar .sort-item:hover {
-            color: #d0021b !important;
+            color: #149d29 !important;
         }
 
-        /* Nút tròn Radio tùy biến viền xám -> viền đỏ chấm đỏ ở tâm */
+        /* Nút tròn Radio tùy biến viền xám -> viền xanh chấm xanh chủ đạo #149d29 ở tâm */
         .gobike-custom-sorting-toolbar .sort-item input[type="radio"] {
             appearance: none !important;
             -webkit-appearance: none !important;
@@ -431,11 +431,11 @@ function gobike_filter_enqueue_styles()
         }
 
         .gobike-custom-sorting-toolbar .sort-item:hover input[type="radio"] {
-            border-color: #d0021b !important;
+            border-color: #149d29 !important;
         }
 
         .gobike-custom-sorting-toolbar .sort-item input[type="radio"]:checked {
-            border-color: #d0021b !important;
+            border-color: #149d29 !important;
             background-color: #fff !important;
         }
 
@@ -444,11 +444,11 @@ function gobike_filter_enqueue_styles()
             width: 8px !important;
             height: 8px !important;
             border-radius: 50% !important;
-            background-color: #d0021b !important;
+            background-color: #149d29 !important;
             display: block !important;
         }
 
-        /* 4. Dải Active Filter Badges màu sắc rực rỡ & nút Bỏ hết màu đỏ */
+        /* 4. Dải Active Filter Badges màu sắc rực rỡ & nút Bỏ hết màu chủ đạo #149d29 */
         .woof_products_top_panel,
         .woof_products_top_panel_ul {
             display: flex !important;
@@ -485,10 +485,10 @@ function gobike_filter_enqueue_styles()
             list-style: none !important;
         }
 
-        /* Nút Bỏ hết (Clear all) - Nút màu đỏ nổi bật có dấu ✕ */
+        /* Nút Bỏ hết (Clear all) - Nút màu chủ đạo (#149d29) có dấu ✕ */
         .woof_products_top_panel .woof_reset_button_2,
         .woof_products_top_panel a.woof_clear_all {
-            background-color: #d0021b !important;
+            background-color: #149d29 !important;
             border: none !important;
             color: #fff !important;
             padding: 6px 14px !important;
@@ -500,15 +500,15 @@ function gobike_filter_enqueue_styles()
             align-items: center !important;
             gap: 6px !important;
             line-height: 1.4 !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 2px 5px rgba(20, 157, 41, 0.25) !important;
             transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease !important;
         }
 
         .woof_products_top_panel .woof_reset_button_2:hover,
         .woof_products_top_panel a.woof_clear_all:hover {
-            opacity: 0.9 !important;
+            opacity: 0.95 !important;
             transform: translateY(-1px) !important;
-            background-color: #b50217 !important;
+            background-color: #0f7a20 !important;
             color: #fff !important;
         }
 
