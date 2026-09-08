@@ -838,8 +838,8 @@ function gobike_register_shop_page_acf_fields()
     }
 }
 
-// 2. Shortcode [gobike_shop_top_banners]: Render 2 banner bằng Flatsome [row] - [col] kèm hiệu ứng phóng to từ tâm
-function gobike_render_shop_top_banners_shortcode()
+// 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
+function gobike_render_shop_top_banners()
 {
     $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
 
@@ -869,33 +869,40 @@ function gobike_render_shop_top_banners_shortcode()
         return '';
     }
 
-    // Xây dựng shortcode row - col chuẩn Flatsome
-    $shortcode = '[row class="gobike-dual-banners-row" col_bg_radius="0"]';
+    ob_start();
+    ?>
+    <div class="row gobike-dual-banners-row" id="gobike-shop-top-banners">
+        <?php if (!empty($img1_url)) : ?>
+            <div class="col medium-6 small-12 gobike-banner-col">
+                <div class="col-inner">
+                    <div class="gobike-zoom-banner">
+                        <a href="<?php echo esc_url($link1); ?>" title="Banner tiện ích cửa hàng 1">
+                            <img src="<?php echo esc_url($img1_url); ?>" alt="Banner tiện ích cửa hàng 1" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
-    if (!empty($img1_url)) {
-        $shortcode .= '[col span="6" span__sm="12" class="gobike-banner-col"]';
-        $shortcode .= '<div class="gobike-zoom-banner">';
-        $shortcode .= '<a href="' . esc_url($link1) . '"><img src="' . esc_url($img1_url) . '" alt="Banner tiện ích cửa hàng 1" /></a>';
-        $shortcode .= '</div>';
-        $shortcode .= '[/col]';
-    }
-
-    if (!empty($img2_url)) {
-        $shortcode .= '[col span="6" span__sm="12" class="gobike-banner-col"]';
-        $shortcode .= '<div class="gobike-zoom-banner">';
-        $shortcode .= '<a href="' . esc_url($link2) . '"><img src="' . esc_url($img2_url) . '" alt="Banner tiện ích cửa hàng 2" /></a>';
-        $shortcode .= '</div>';
-        $shortcode .= '[/col]';
-    }
-
-    $shortcode .= '[/row]';
-
-    return do_shortcode($shortcode);
+        <?php if (!empty($img2_url)) : ?>
+            <div class="col medium-6 small-12 gobike-banner-col">
+                <div class="col-inner">
+                    <div class="gobike-zoom-banner">
+                        <a href="<?php echo esc_url($link2); ?>" title="Banner tiện ích cửa hàng 2">
+                            <img src="<?php echo esc_url($img2_url); ?>" alt="Banner tiện ích cửa hàng 2" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
 }
-add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners_shortcode');
+add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
 
-// 3. Shortcode [gobike_shop_bottom_content]: Render nội dung cuối trang (Tiêu đề + Editor) bằng Flatsome [row] - [col]
-function gobike_render_shop_bottom_content_shortcode()
+// 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
+function gobike_render_shop_bottom_content()
 {
     $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
 
@@ -909,20 +916,30 @@ function gobike_render_shop_bottom_content_shortcode()
         $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
     }
 
-    $inner = '<div class="gobike-shop-seo-box">';
-    if (!empty($title)) {
-        $inner .= '<h3 class="gobike-seo-title">' . esc_html($title) . '</h3>';
+    if (empty($title) && empty($content)) {
+        return '';
     }
-    if (!empty($content)) {
-        $inner .= '<div class="gobike-seo-content">' . wpautop($content) . '</div>';
-    }
-    $inner .= '</div>';
 
-    $shortcode = '[row class="gobike-shop-bottom-seo-row"][col span="12"]' . $inner . '[/col][/row]';
-
-    return do_shortcode($shortcode);
+    ob_start();
+    ?>
+    <div class="row gobike-shop-bottom-seo-row" id="gobike-shop-bottom-seo">
+        <div class="col large-12 medium-12 small-12">
+            <div class="col-inner">
+                <div class="gobike-shop-seo-box">
+                    <?php if (!empty($title)) : ?>
+                        <h3 class="gobike-seo-title"><?php echo esc_html($title); ?></h3>
+                    <?php endif; ?>
+                    <?php if (!empty($content)) : ?>
+                        <div class="gobike-seo-content"><?php echo wpautop($content); ?></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
-add_shortcode('gobike_shop_bottom_content', 'gobike_render_shop_bottom_content_shortcode');
+add_shortcode('gobike_shop_bottom_content', 'gobike_render_shop_bottom_content');
 
 
 
