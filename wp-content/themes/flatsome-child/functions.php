@@ -160,7 +160,7 @@ function woocommerce_button_proceed_to_checkout()
     ?>
     <a href="<?php echo $new_checkout_url; ?>" class="checkout-button button alt wc-forward">
         <?php _e('Đặt mua ngay', 'woocommerce'); ?></a>
-        <?php
+    <?php
 }
 
 /* Remove Image Sizes */
@@ -294,37 +294,37 @@ add_filter('gettext', 'change_translate_text_multiple', 20);
 function js_custom()
 {
     ; ?>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                jQuery('body').on('click', '.buy_now_button', function (e) {
-                    e.preventDefault();
-                    var thisParent = jQuery(this).parents('form.cart');
-                    if (jQuery('.single_add_to_cart_button', thisParent).hasClass('disabled')) {
-                        jQuery('.single_add_to_cart_button', thisParent).trigger('click');
-                        return false;
-                    }
-                    thisParent.addClass('ntx-quickbuy');
-                    jQuery('.is_buy_now', thisParent).val('1');
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            jQuery('body').on('click', '.buy_now_button', function (e) {
+                e.preventDefault();
+                var thisParent = jQuery(this).parents('form.cart');
+                if (jQuery('.single_add_to_cart_button', thisParent).hasClass('disabled')) {
                     jQuery('.single_add_to_cart_button', thisParent).trigger('click');
-                });
-
-                jQuery(".menu .icon-angle-down, .product-footer-right .product.product-small .promotion, .product-footer-right .product.product-small .item-hotsale").remove();
-                jQuery(".product-info h1.product-title").remove();
-                jQuery(".product-type-variable .product-info>:is(.promotion-info, .linked-product)").remove();
-                jQuery(".menu .sub-menu").removeClass("nav-dropdown nav-dropdown-default");
-                jQuery("body").removeClass("nav-dropdown-has-arrow nav-dropdown-has-shadow");
-
-                jQuery(function () {
-                    var current = location.pathname;
-                    jQuery('.item-linked-product').each(function () {
-                        var $this = $(this);
-                        if ($this.attr('href').indexOf(current) !== -1) {
-                            $this.addClass('active');
-                        }
-                    })
-                });
+                    return false;
+                }
+                thisParent.addClass('ntx-quickbuy');
+                jQuery('.is_buy_now', thisParent).val('1');
+                jQuery('.single_add_to_cart_button', thisParent).trigger('click');
             });
-        </script>
+
+            jQuery(".menu .icon-angle-down, .product-footer-right .product.product-small .promotion, .product-footer-right .product.product-small .item-hotsale").remove();
+            jQuery(".product-info h1.product-title").remove();
+            jQuery(".product-type-variable .product-info>:is(.promotion-info, .linked-product)").remove();
+            jQuery(".menu .sub-menu").removeClass("nav-dropdown nav-dropdown-default");
+            jQuery("body").removeClass("nav-dropdown-has-arrow nav-dropdown-has-shadow");
+
+            jQuery(function () {
+                var current = location.pathname;
+                jQuery('.item-linked-product').each(function () {
+                    var $this = $(this);
+                    if ($this.attr('href').indexOf(current) !== -1) {
+                        $this.addClass('active');
+                    }
+                })
+            });
+        });
+    </script>
 <?php }
 add_action('wp_footer', 'js_custom');
 
@@ -395,25 +395,25 @@ new Auto_Save_Images();
 
 // Đoạn JS kích hoạt Pop-up Danh mục khi bấm trên Mobile (Dùng jQuery chuẩn Flatsome)
 add_action('wp_footer', function () { ?>
-        <script type="text/javascript">
-            jQuery(document).ready(function ($) {
-                // Bấm vào nút Danh mục ở đáy thì Bật/Tắt Pop-up
-                $('body').on('click', '.footer-menu-mobile li.open-menu-mobile > a, .footer-menu-mobile li.open-menu-mobile', function (e) {
-                    if ($(e.target).closest('ul.sub-menu').length === 0) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        $('.footer-menu-mobile li.open-menu-mobile').toggleClass('active-popup');
-                    }
-                });
-
-                // Bấm ra ngoài màn hình thì tự đóng Pop-up
-                $(document).on('click touchstart', function (e) {
-                    if (!$(e.target).closest('.footer-menu-mobile li.open-menu-mobile').length) {
-                        $('.footer-menu-mobile li.open-menu-mobile').removeClass('active-popup');
-                    }
-                });
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            // Bấm vào nút Danh mục ở đáy thì Bật/Tắt Pop-up
+            $('body').on('click', '.footer-menu-mobile li.open-menu-mobile > a, .footer-menu-mobile li.open-menu-mobile', function (e) {
+                if ($(e.target).closest('ul.sub-menu').length === 0) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $('.footer-menu-mobile li.open-menu-mobile').toggleClass('active-popup');
+                }
             });
-        </script>
+
+            // Bấm ra ngoài màn hình thì tự đóng Pop-up
+            $(document).on('click touchstart', function (e) {
+                if (!$(e.target).closest('.footer-menu-mobile li.open-menu-mobile').length) {
+                    $('.footer-menu-mobile li.open-menu-mobile').removeClass('active-popup');
+                }
+            });
+        });
+    </script>
 
 <?php });
 
@@ -472,143 +472,143 @@ function gobike_render_category_block($atts)
 
     ob_start();
     ?>
-        <div class="gobike-section">
-            <?php if (!empty($atts['mobile_banner'])): ?>
-                    <div class="gobike-mobile-banner">
-                        <a href="<?php echo esc_url($view_all_link); ?>">
-                            <img src="<?php echo esc_url($atts['mobile_banner']); ?>" alt="<?php echo esc_attr($atts['title']); ?>" />
-                        </a>
-                    </div>
-            <?php endif; ?>
-
-            <!-- THANH TIÊU ĐỀ MÀU CAM -->
-            <div class="gobike-section-head">
-                <h2 class="title_blog"><?php echo esc_html($atts['title']); ?></h2>
-                <div class="viewallcat">
-                    <?php if (!empty($atts['subcat'])): ?>
-                            <a href="<?php echo esc_url($atts['subcat_link']); ?>"
-                                class="subcat-link"><?php echo esc_html($atts['subcat']); ?></a>
-                    <?php endif; ?>
-                    <a href="<?php echo esc_url($view_all_link); ?>" class="viewall-link">Xem tất cả</a>
-                </div>
+    <div class="gobike-section">
+        <?php if (!empty($atts['mobile_banner'])): ?>
+            <div class="gobike-mobile-banner">
+                <a href="<?php echo esc_url($view_all_link); ?>">
+                    <img src="<?php echo esc_url($atts['mobile_banner']); ?>" alt="<?php echo esc_attr($atts['title']); ?>" />
+                </a>
             </div>
+        <?php endif; ?>
 
-            <!-- LƯỚI 5 CỘT (1 Ô LỚN + 8 Ô NHỎ) -->
-            <div class="gobike-grid-container">
-                <?php
-                $index = 0;
-                while ($loop->have_posts()):
-                    $loop->the_post();
-                    global $product;
-                    $index++;
-                    $product_id = get_the_ID();
-                    $title = get_the_title();
-                    $permalink = get_permalink();
-                    $image_url = get_the_post_thumbnail_url($product_id, 'medium_large');
-                    if (!$image_url) {
-                        $image_url = wc_placeholder_img_src();
-                    }
-
-                    // XỬ LÝ GIÁ TIỀN & HUY HIỆU GIẢM GIÁ ⚡
-                    $is_on_sale = $product->is_on_sale();
-                    $regular_price = (float) $product->get_regular_price();
-                    $sale_price = (float) $product->get_sale_price();
-
-                    $sale_badge_html = '';
-                    $price_custom_html = '';
-
-                    if ($is_on_sale && $sale_price > 0 && $regular_price > $sale_price) {
-                        $percent = round((($regular_price - $sale_price) / $regular_price) * 100);
-                        // Huy hiệu có icon tia sét ⚡
-                        $sale_badge_html = '<span class="gobike-badge-sale">'
-                            . '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>'
-                            . ' Giảm ' . $percent . '%'
-                            . '</span>';
-                        // Giá đỏ ở trước, Giá gạch ngang ở sau
-                        $price_custom_html = '<strong class="price-current">' . wc_price($sale_price) . '</strong>'
-                            . '<span class="price-old">' . wc_price($regular_price) . '</span>';
-                    } else {
-                        $current_price = $product->get_price();
-                        if (!empty($current_price)) {
-                            $price_custom_html = '<strong class="price-current">' . wc_price($current_price) . '</strong>';
-                        } else {
-                            $price_custom_html = '<strong class="price-current">Liên hệ</strong>';
-                        }
-                    }
-
-                    if ($index === 1):
-                        // 1. SẢN PHẨM NỔI BẬT (Ô LỚN)
-                        ?>
-                                <div class="gobike-big-item">
-                                    <div class="img-box">
-                                        <a href="<?php echo esc_url($permalink); ?>">
-                                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
-                                        </a>
-                                        <?php echo $sale_badge_html; ?>
-                                    </div>
-                                    <div class="info-box">
-                                        <a href="<?php echo esc_url($permalink); ?>">
-                                            <h3 class="product-title"><?php echo esc_html($title); ?></h3>
-                                        </a>
-                                        <div class="gobike-price-box">
-                                            <?php echo $price_custom_html; ?>
-                                        </div>
-                                        <div class="spec-table">
-                                            <?php
-                                            $excerpt = get_the_excerpt();
-                                            if (!empty($excerpt)) {
-                                                echo do_shortcode($excerpt);
-                                            } else {
-                                                $attributes = $product->get_attributes();
-                                                if (!empty($attributes)) {
-                                                    echo '<table>';
-                                                    foreach ($attributes as $attribute) {
-                                                        $name = wc_attribute_label($attribute->get_name());
-                                                        $values = array();
-                                                        if ($attribute->is_taxonomy()) {
-                                                            $attribute_values = wc_get_product_terms($product->get_id(), $attribute->get_name(), array('fields' => 'names'));
-                                                            $values = $attribute_values;
-                                                        } else {
-                                                            $values = $attribute->get_options();
-                                                        }
-                                                        echo '<tr><td><span>' . esc_html($name) . ':</span></td><td>' . esc_html(implode(', ', $values)) . '</td></tr>';
-                                                    }
-                                                    echo '</table>';
-                                                }
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                        <?php else:
-                        // 2. TÁM SẢN PHẨM NHỎ
-                        ?>
-                                <div class="gobike-small-item">
-                                    <div class="img-wrap">
-                                        <a href="<?php echo esc_url($permalink); ?>">
-                                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
-                                        </a>
-                                        <?php echo $sale_badge_html; ?>
-                                    </div>
-                                    <a href="<?php echo esc_url($permalink); ?>">
-                                        <h3 class="item-title"><?php echo esc_html($title); ?></h3>
-                                    </a>
-                                    <div class="gobike-price-box">
-                                        <?php echo $price_custom_html; ?>
-                                    </div>
-                                </div>
-                            <?php
-                    endif;
-                endwhile;
-                wp_reset_postdata();
-                ?>
+        <!-- THANH TIÊU ĐỀ MÀU CAM -->
+        <div class="gobike-section-head">
+            <h2 class="title_blog"><?php echo esc_html($atts['title']); ?></h2>
+            <div class="viewallcat">
+                <?php if (!empty($atts['subcat'])): ?>
+                    <a href="<?php echo esc_url($atts['subcat_link']); ?>"
+                        class="subcat-link"><?php echo esc_html($atts['subcat']); ?></a>
+                <?php endif; ?>
+                <a href="<?php echo esc_url($view_all_link); ?>" class="viewall-link">Xem tất cả</a>
             </div>
-
-            <a href="<?php echo esc_url($view_all_link); ?>" class="gobike-mobile-viewmore">Xem tất cả
-                <?php echo esc_html($atts['title']); ?></a>
         </div>
-        <?php
-        return ob_get_clean();
+
+        <!-- LƯỚI 5 CỘT (1 Ô LỚN + 8 Ô NHỎ) -->
+        <div class="gobike-grid-container">
+            <?php
+            $index = 0;
+            while ($loop->have_posts()):
+                $loop->the_post();
+                global $product;
+                $index++;
+                $product_id = get_the_ID();
+                $title = get_the_title();
+                $permalink = get_permalink();
+                $image_url = get_the_post_thumbnail_url($product_id, 'medium_large');
+                if (!$image_url) {
+                    $image_url = wc_placeholder_img_src();
+                }
+
+                // XỬ LÝ GIÁ TIỀN & HUY HIỆU GIẢM GIÁ ⚡
+                $is_on_sale = $product->is_on_sale();
+                $regular_price = (float) $product->get_regular_price();
+                $sale_price = (float) $product->get_sale_price();
+
+                $sale_badge_html = '';
+                $price_custom_html = '';
+
+                if ($is_on_sale && $sale_price > 0 && $regular_price > $sale_price) {
+                    $percent = round((($regular_price - $sale_price) / $regular_price) * 100);
+                    // Huy hiệu có icon tia sét ⚡
+                    $sale_badge_html = '<span class="gobike-badge-sale">'
+                        . '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg>'
+                        . ' Giảm ' . $percent . '%'
+                        . '</span>';
+                    // Giá đỏ ở trước, Giá gạch ngang ở sau
+                    $price_custom_html = '<strong class="price-current">' . wc_price($sale_price) . '</strong>'
+                        . '<span class="price-old">' . wc_price($regular_price) . '</span>';
+                } else {
+                    $current_price = $product->get_price();
+                    if (!empty($current_price)) {
+                        $price_custom_html = '<strong class="price-current">' . wc_price($current_price) . '</strong>';
+                    } else {
+                        $price_custom_html = '<strong class="price-current">Liên hệ</strong>';
+                    }
+                }
+
+                if ($index === 1):
+                    // 1. SẢN PHẨM NỔI BẬT (Ô LỚN)
+                    ?>
+                    <div class="gobike-big-item">
+                        <div class="img-box">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
+                            </a>
+                            <?php echo $sale_badge_html; ?>
+                        </div>
+                        <div class="info-box">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <h3 class="product-title"><?php echo esc_html($title); ?></h3>
+                            </a>
+                            <div class="gobike-price-box">
+                                <?php echo $price_custom_html; ?>
+                            </div>
+                            <div class="spec-table">
+                                <?php
+                                $excerpt = get_the_excerpt();
+                                if (!empty($excerpt)) {
+                                    echo do_shortcode($excerpt);
+                                } else {
+                                    $attributes = $product->get_attributes();
+                                    if (!empty($attributes)) {
+                                        echo '<table>';
+                                        foreach ($attributes as $attribute) {
+                                            $name = wc_attribute_label($attribute->get_name());
+                                            $values = array();
+                                            if ($attribute->is_taxonomy()) {
+                                                $attribute_values = wc_get_product_terms($product->get_id(), $attribute->get_name(), array('fields' => 'names'));
+                                                $values = $attribute_values;
+                                            } else {
+                                                $values = $attribute->get_options();
+                                            }
+                                            echo '<tr><td><span>' . esc_html($name) . ':</span></td><td>' . esc_html(implode(', ', $values)) . '</td></tr>';
+                                        }
+                                        echo '</table>';
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php else:
+                    // 2. TÁM SẢN PHẨM NHỎ
+                    ?>
+                    <div class="gobike-small-item">
+                        <div class="img-wrap">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
+                            </a>
+                            <?php echo $sale_badge_html; ?>
+                        </div>
+                        <a href="<?php echo esc_url($permalink); ?>">
+                            <h3 class="item-title"><?php echo esc_html($title); ?></h3>
+                        </a>
+                        <div class="gobike-price-box">
+                            <?php echo $price_custom_html; ?>
+                        </div>
+                    </div>
+                    <?php
+                endif;
+            endwhile;
+            wp_reset_postdata();
+            ?>
+        </div>
+
+        <a href="<?php echo esc_url($view_all_link); ?>" class="gobike-mobile-viewmore">Xem tất cả
+            <?php echo esc_html($atts['title']); ?></a>
+    </div>
+    <?php
+    return ob_get_clean();
 }
 add_shortcode('gobike_category_block', 'gobike_render_category_block');
 
@@ -664,25 +664,25 @@ function gobike_topbar_ticker_shortcode()
 
     ob_start();
     ?>
-        <div class="cps-marquee-wrapper">
-            <div class="cps-marquee-track">
-                <?php for ($i = 0; $i < 2; $i++): ?>
-                        <?php
-                        $k = 0;
-                        foreach ($items as $text):
-                            $icon = isset($svgs[$k % count($svgs)]) ? $svgs[$k % count($svgs)] : $svgs[0];
-                            $k++;
-                            ?>
-                                <div class="cps-item">
-                                    <?php echo $icon; ?>
-                                    <span><?php echo $text; ?></span>
-                                </div>
-                        <?php endforeach; ?>
-                <?php endfor; ?>
-            </div>
+    <div class="cps-marquee-wrapper">
+        <div class="cps-marquee-track">
+            <?php for ($i = 0; $i < 2; $i++): ?>
+                <?php
+                $k = 0;
+                foreach ($items as $text):
+                    $icon = isset($svgs[$k % count($svgs)]) ? $svgs[$k % count($svgs)] : $svgs[0];
+                    $k++;
+                    ?>
+                    <div class="cps-item">
+                        <?php echo $icon; ?>
+                        <span><?php echo $text; ?></span>
+                    </div>
+                <?php endforeach; ?>
+            <?php endfor; ?>
         </div>
-        <?php
-        return ob_get_clean();
+    </div>
+    <?php
+    return ob_get_clean();
 }
 add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
 
@@ -703,6 +703,7 @@ function gobike_register_shop_page_acf_fields()
             'key' => 'group_gobike_shop_page_settings',
             'title' => 'Cài đặt Trang Sản Phẩm (GOBIKE Shop Settings)',
             'fields' => array(
+
                 // TAB 1: Khối 1
                 array(
                     'key' => 'field_tab_shop_banners',
@@ -779,9 +780,9 @@ function gobike_register_shop_page_acf_fields()
             'location' => array(
                 array(
                     array(
-                        'param' => 'options_page',
+                        'param' => 'post_type',
                         'operator' => '==',
-                        'value' => 'theme-general-settings',
+                        'value' => 'page',
                     ),
                 ),
             ),
@@ -797,25 +798,34 @@ function gobike_register_shop_page_acf_fields()
 // 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
 function gobike_render_shop_top_banners()
 {
-    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
+    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id');
+    $front_page_id = get_option('page_on_front');
 
     // Fallback banner mặc định
     $default_banner_url = content_url('/uploads/banners/store-banner-dual.png');
 
     $img1 = get_field('shop_banner_image_1', $shop_page_id);
+    if (!$img1) $img1 = get_field('shop_banner_image_1', $front_page_id);
     if (!$img1) $img1 = get_field('shop_banner_image_1', 'option');
+    if (!$img1) $img1 = get_field('shop_banner_image_1');
     if (!$img1) $img1 = $default_banner_url;
 
     $link1 = get_field('shop_banner_link_1', $shop_page_id);
+    if (!$link1) $link1 = get_field('shop_banner_link_1', $front_page_id);
     if (!$link1) $link1 = get_field('shop_banner_link_1', 'option');
+    if (!$link1) $link1 = get_field('shop_banner_link_1');
     if (!$link1) $link1 = '#';
 
     $img2 = get_field('shop_banner_image_2', $shop_page_id);
+    if (!$img2) $img2 = get_field('shop_banner_image_2', $front_page_id);
     if (!$img2) $img2 = get_field('shop_banner_image_2', 'option');
+    if (!$img2) $img2 = get_field('shop_banner_image_2');
     if (!$img2) $img2 = $default_banner_url;
 
     $link2 = get_field('shop_banner_link_2', $shop_page_id);
+    if (!$link2) $link2 = get_field('shop_banner_link_2', $front_page_id);
     if (!$link2) $link2 = get_field('shop_banner_link_2', 'option');
+    if (!$link2) $link2 = get_field('shop_banner_link_2');
     if (!$link2) $link2 = '#';
 
     $img1_url = is_array($img1) ? ($img1['url'] ?? '') : (is_numeric($img1) ? wp_get_attachment_image_url($img1, 'full') : $img1);
@@ -828,7 +838,7 @@ function gobike_render_shop_top_banners()
     ob_start();
     ?>
     <div class="row gobike-dual-banners-row" id="gobike-shop-top-banners">
-        <?php if (!empty($img1_url)) : ?>
+        <?php if (!empty($img1_url)): ?>
             <div class="col medium-6 small-12 gobike-banner-col">
                 <div class="col-inner">
                     <div class="gobike-zoom-banner">
@@ -840,7 +850,7 @@ function gobike_render_shop_top_banners()
             </div>
         <?php endif; ?>
 
-        <?php if (!empty($img2_url)) : ?>
+        <?php if (!empty($img2_url)): ?>
             <div class="col medium-6 small-12 gobike-banner-col">
                 <div class="col-inner">
                     <div class="gobike-zoom-banner">
@@ -860,14 +870,19 @@ add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
 // 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
 function gobike_render_shop_bottom_content()
 {
-    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : 0;
+    $shop_page_id = function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id');
+    $front_page_id = get_option('page_on_front');
 
     $title = get_field('shop_bottom_title', $shop_page_id);
+    if (!$title) $title = get_field('shop_bottom_title', $front_page_id);
     if (!$title) $title = get_field('shop_bottom_title', 'option');
+    if (!$title) $title = get_field('shop_bottom_title');
     if (!$title) $title = 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos';
 
     $content = get_field('shop_bottom_content', $shop_page_id);
+    if (!$content) $content = get_field('shop_bottom_content', $front_page_id);
     if (!$content) $content = get_field('shop_bottom_content', 'option');
+    if (!$content) $content = get_field('shop_bottom_content');
     if (!$content) {
         $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
     }
@@ -882,10 +897,10 @@ function gobike_render_shop_bottom_content()
         <div class="col large-12 medium-12 small-12">
             <div class="col-inner">
                 <div class="gobike-shop-seo-box">
-                    <?php if (!empty($title)) : ?>
+                    <?php if (!empty($title)): ?>
                         <h3 class="gobike-seo-title"><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
-                    <?php if (!empty($content)) : ?>
+                    <?php if (!empty($content)): ?>
                         <div class="gobike-seo-content"><?php echo wpautop($content); ?></div>
                     <?php endif; ?>
                 </div>
@@ -896,6 +911,7 @@ function gobike_render_shop_bottom_content()
     return ob_get_clean();
 }
 add_shortcode('gobike_shop_bottom_content', 'gobike_render_shop_bottom_content');
+
 
 
 
