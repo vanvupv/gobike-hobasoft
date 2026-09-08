@@ -497,7 +497,6 @@ function gobike_filter_enqueue_styles() {
 
     /* Nút Bỏ hết (Clear all) - Nút màu đỏ nổi bật có dấu ✕ */
     .woof_products_top_panel .woof_reset_button_2,
-    .woof_products_top_panel li:first-child a,
     .woof_products_top_panel a.woof_clear_all {
         background-color: #d0021b !important;
         border: none !important;
@@ -516,7 +515,6 @@ function gobike_filter_enqueue_styles() {
     }
 
     .woof_products_top_panel .woof_reset_button_2:hover,
-    .woof_products_top_panel li:first-child a:hover,
     .woof_products_top_panel a.woof_clear_all:hover {
         opacity: 0.9 !important;
         transform: translateY(-1px) !important;
@@ -531,12 +529,11 @@ function gobike_filter_enqueue_styles() {
         margin-left: 4px !important;
     }
 
-    /* Các badge bộ lọc đang chọn */
+    /* Các badge bộ lọc đang chọn: Hiển thị đầy đủ chữ và icon */
     .woof_products_top_panel li a,
     .woof_redraw_zone .woof_crud_link {
         display: inline-flex !important;
         align-items: center !important;
-        gap: 6px !important;
         padding: 6px 14px !important;
         border-radius: 5px !important;
         font-size: 13.5px !important;
@@ -548,17 +545,23 @@ function gobike_filter_enqueue_styles() {
         box-shadow: 0 2px 5px rgba(0,0,0,0.08) !important;
     }
 
+    /* Khôi phục hiển thị toàn bộ chữ nhãn giá trị badge bên trong span */
+    .woof_products_top_panel span.woof_remove_ppi {
+        display: inline !important;
+        color: #fff !important;
+        font-size: 13.5px !important;
+        font-weight: 600 !important;
+        line-height: inherit !important;
+    }
+
     .woof_products_top_panel li a::after,
     .woof_redraw_zone .woof_crud_link::after {
         content: "✕" !important;
         font-size: 11px !important;
         font-weight: 700 !important;
-        margin-left: 4px !important;
+        margin-left: 6px !important;
+        display: inline-block !important;
         opacity: 0.9 !important;
-    }
-
-    .woof_products_top_panel span.woof_remove_ppi {
-        display: none !important;
     }
 
     .woof_products_top_panel li a:hover,
@@ -569,13 +572,13 @@ function gobike_filter_enqueue_styles() {
     }
 
     /* Bảng màu rực rỡ luân phiên cho từng badge chuẩn ảnh mẫu */
-    .woof_products_top_panel li a { background-color: #00b4d8 !important; }
-    .woof_products_top_panel li:nth-child(6n+1) a { background-color: #00b4d8 !important; } /* Cyan */
+    .woof_products_top_panel li a { background-color: #0099e6 !important; }
+    .woof_products_top_panel li:nth-child(6n+1) a { background-color: #0099e6 !important; } /* Xanh dương */
     .woof_products_top_panel li:nth-child(6n+2) a { background-color: #e63946 !important; } /* San hô đỏ */
-    .woof_products_top_panel li:nth-child(6n+3) a { background-color: #2a9d8f !important; } /* Xanh ngọc */
-    .woof_products_top_panel li:nth-child(6n+4) a { background-color: #f77f00 !important; } /* Cam */
-    .woof_products_top_panel li:nth-child(6n+5) a { background-color: #7209b7 !important; } /* Tím hồng */
-    .woof_products_top_panel li:nth-child(6n+6) a { background-color: #3a86ff !important; } /* Xanh dương */
+    .woof_products_top_panel li:nth-child(6n+3) a { background-color: #28a745 !important; } /* Xanh lá */
+    .woof_products_top_panel li:nth-child(6n+4) a { background-color: #f59e0b !important; } /* Vàng cam */
+    .woof_products_top_panel li:nth-child(6n+5) a { background-color: #d9048e !important; } /* Hồng magenta */
+    .woof_products_top_panel li:nth-child(6n+6) a { background-color: #7209b7 !important; } /* Tím */
 
     /* Ẩn tag orderby trong top panel nếu lọt vào */
     .woof_redraw_zone .woof_crud_link[data-name="orderby"],
@@ -600,12 +603,20 @@ function gobike_filter_enqueue_scripts() {
 
         // 3.0 Cố định thứ tự hiển thị chuẩn: 1. Tìm theo: -> 2. Badges & Bỏ hết -> 3. Xếp theo:
         function reorderGobikeFilterElements() {
+            // Xóa triệt để các bản sao thừa nếu xuất hiện nhiều hơn 1 panel
+            if ($('.woof_products_top_panel').length > 1) {
+                $('.woof_products_top_panel').not(':first').remove();
+            }
+            if ($('.woof_products_top_panel_content').length > 1) {
+                $('.woof_products_top_panel_content').not(':first').remove();
+            }
+
             var $redrawZone = $('.woof_redraw_zone').first();
             var $topPanel = $('.woof_products_top_panel').first();
             var $sortingToolbar = $('.gobike-custom-sorting-toolbar').first();
 
             if ($redrawZone.length) {
-                // 1. Đảm bảo .woof_products_top_panel luôn nằm NGAY DƯỚI .woof_redraw_zone ("Tìm theo:")
+                // 1. Đảm bảo .woof_products_top_panel duy nhất luôn nằm NGAY DƯỚI .woof_redraw_zone ("Tìm theo:")
                 if ($topPanel.length) {
                     $topPanel.insertAfter($redrawZone);
                 }
@@ -619,6 +630,13 @@ function gobike_filter_enqueue_scripts() {
                     }
                 }
             }
+
+            // Ẩn các text nhãn thô
+            $('.woof_products_top_panel ul[data-container] > li').each(function() {
+                if (!$(this).find('a, button').length) {
+                    $(this).hide();
+                }
+            });
         }
 
         // 3.1 Khởi tạo các nút Dropdown cho từng khối lọc HUSKY
@@ -724,20 +742,21 @@ function gobike_filter_enqueue_scripts() {
             // Quét toàn bộ các badge trong top panel và crud links
             $('.woof_products_top_panel li a, .woof_redraw_zone .woof_crud_link').each(function() {
                 var $link = $(this);
-                var text = $link.text().trim();
+                var $span = $link.find('.woof_remove_ppi');
+                var text = $span.length ? $span.text().trim() : $link.text().trim();
                 
-                // Nếu chứa chữ 'price range' không phân biệt hoa thường
-                if (/price\s*range/i.test(text)) {
-                    $link.contents().each(function() {
-                        if (this.nodeType === 3 && /price\s*range/i.test(this.nodeValue)) {
-                            this.nodeValue = currentPriceLabel + ' ';
-                        }
-                    });
+                // Nếu chứa chữ 'price range' hoặc rỗng thì gán nhãn giá chính xác
+                if (/price\s*range/i.test(text) || text === '') {
+                    if ($span.length) {
+                        $span.text(currentPriceLabel);
+                    } else {
+                        $link.text(currentPriceLabel);
+                    }
                 }
             });
 
             // Đảm bảo nút Clear all đổi thành 'Bỏ hết'
-            $('.woof_products_top_panel a.woof_clear_all, .woof_products_top_panel li:first-child a, .woof_products_top_panel .woof_reset_button_2').each(function() {
+            $('.woof_products_top_panel a.woof_clear_all, .woof_products_top_panel .woof_reset_button_2').each(function() {
                 var $clear = $(this);
                 if (/clear\s*all/i.test($clear.text())) {
                     $clear.contents().each(function() {

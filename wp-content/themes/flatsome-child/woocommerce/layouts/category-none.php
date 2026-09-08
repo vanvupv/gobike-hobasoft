@@ -34,12 +34,7 @@ do_action( 'woocommerce_archive_description' );
 				echo do_shortcode( '[woof autohide="0" autosubmit="1" is_ajax="1"]' );
 			}
 
-			// 2. DÒNG 2: DẢI BADGES ĐANG CHỌN & NÚT BỎ HẾT (ĐẶT NGAY DƯỚI "Tìm theo:")
-			if ( shortcode_exists( 'woof_search_options' ) ) {
-				echo do_shortcode( '[woof_search_options]' );
-			}
-
-			// 3. DÒNG 3: THANH SẮP XẾP RADIO "Xếp theo:"
+			// 2. DÒNG 3: THANH SẮP XẾP RADIO "Xếp theo:"
 			if ( function_exists( 'gobike_render_custom_sorting_toolbar' ) ) {
 				gobike_render_custom_sorting_toolbar();
 			}
