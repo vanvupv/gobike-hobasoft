@@ -699,35 +699,6 @@ add_action('acf/init', 'gobike_register_shop_page_acf_fields');
 function gobike_register_shop_page_acf_fields()
 {
     if (function_exists('acf_add_local_field_group')) {
-        $san_pham_page = get_page_by_path('san-pham');
-        $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
-
-        $locations = array(
-            array(
-                array(
-                    'param' => 'options_page',
-                    'operator' => '==',
-                    'value' => 'theme-general-settings',
-                ),
-            ),
-            array(
-                array(
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'page',
-                ),
-            ),
-        );
-        if (!empty($shop_page_id) && intval($shop_page_id) > 0) {
-            $locations[] = array(
-                array(
-                    'param' => 'page',
-                    'operator' => '==',
-                    'value' => (string) $shop_page_id,
-                ),
-            );
-        }
-
         acf_add_local_field_group(array(
             'key' => 'group_6a9f83f739c54',
             'title' => 'Banner Sản phẩm',
@@ -806,7 +777,15 @@ function gobike_register_shop_page_acf_fields()
                     'default_value' => "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.",
                 ),
             ),
-            'location' => $locations,
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'theme-general-settings',
+                    ),
+                ),
+            ),
             'menu_order' => 15,
             'position' => 'normal',
             'style' => 'default',
@@ -819,34 +798,23 @@ function gobike_register_shop_page_acf_fields()
 // 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
 function gobike_render_shop_top_banners()
 {
-    $san_pham_page = get_page_by_path('san-pham');
-    $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
-    $front_page_id = get_option('page_on_front');
-
     // Fallback banner mặc định
     $default_banner_url = content_url('/uploads/banners/store-banner-dual.png');
 
-    $img1 = get_field('shop_banner_image_1', $shop_page_id);
-    if (!$img1) $img1 = get_field('shop_banner_image_1', $front_page_id);
-    if (!$img1) $img1 = get_field('shop_banner_image_1', 'option');
+    // Ưu tiên đọc từ Theme Settings (option)
+    $img1 = get_field('shop_banner_image_1', 'option');
     if (!$img1) $img1 = get_field('shop_banner_image_1');
     if (!$img1) $img1 = $default_banner_url;
 
-    $link1 = get_field('shop_banner_link_1', $shop_page_id);
-    if (!$link1) $link1 = get_field('shop_banner_link_1', $front_page_id);
-    if (!$link1) $link1 = get_field('shop_banner_link_1', 'option');
+    $link1 = get_field('shop_banner_link_1', 'option');
     if (!$link1) $link1 = get_field('shop_banner_link_1');
     if (!$link1) $link1 = '#';
 
-    $img2 = get_field('shop_banner_image_2', $shop_page_id);
-    if (!$img2) $img2 = get_field('shop_banner_image_2', $front_page_id);
-    if (!$img2) $img2 = get_field('shop_banner_image_2', 'option');
+    $img2 = get_field('shop_banner_image_2', 'option');
     if (!$img2) $img2 = get_field('shop_banner_image_2');
     if (!$img2) $img2 = $default_banner_url;
 
-    $link2 = get_field('shop_banner_link_2', $shop_page_id);
-    if (!$link2) $link2 = get_field('shop_banner_link_2', $front_page_id);
-    if (!$link2) $link2 = get_field('shop_banner_link_2', 'option');
+    $link2 = get_field('shop_banner_link_2', 'option');
     if (!$link2) $link2 = get_field('shop_banner_link_2');
     if (!$link2) $link2 = '#';
 
@@ -892,19 +860,12 @@ add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
 // 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
 function gobike_render_shop_bottom_content()
 {
-    $san_pham_page = get_page_by_path('san-pham');
-    $shop_page_id = $san_pham_page ? $san_pham_page->ID : (function_exists('wc_get_page_id') ? wc_get_page_id('shop') : get_option('woocommerce_shop_page_id'));
-    $front_page_id = get_option('page_on_front');
-
-    $title = get_field('shop_bottom_title', $shop_page_id);
-    if (!$title) $title = get_field('shop_bottom_title', $front_page_id);
-    if (!$title) $title = get_field('shop_bottom_title', 'option');
+    // Ưu tiên đọc từ Theme Settings (option)
+    $title = get_field('shop_bottom_title', 'option');
     if (!$title) $title = get_field('shop_bottom_title');
     if (!$title) $title = 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos';
 
-    $content = get_field('shop_bottom_content', $shop_page_id);
-    if (!$content) $content = get_field('shop_bottom_content', $front_page_id);
-    if (!$content) $content = get_field('shop_bottom_content', 'option');
+    $content = get_field('shop_bottom_content', 'option');
     if (!$content) $content = get_field('shop_bottom_content');
     if (!$content) {
         $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
