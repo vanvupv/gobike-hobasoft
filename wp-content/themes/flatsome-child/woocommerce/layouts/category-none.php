@@ -27,6 +27,15 @@ do_action( 'woocommerce_archive_description' );
 
 		<?php
 		// =========================================================================
+		// KHỐI 1: CẶP BANNER TIỆN ÍCH CỬA HÀNG (Nằm dưới breadcrumb, trên bộ lọc)
+		// =========================================================================
+		echo do_shortcode( '[gobike_shop_top_banners]' );
+		?>
+
+		<h1 class="gobike-shop-page-title"><?php woocommerce_page_title(); ?></h1>
+
+		<?php
+		// =========================================================================
 		// BỘ LỌC 3 TẦNG GOBIKE (Luôn hiển thị kể cả khi danh mục không có sản phẩm)
 		// =========================================================================
 
@@ -85,6 +94,11 @@ do_action( 'woocommerce_archive_description' );
 			 */
 			do_action( 'woocommerce_no_products_found' );
 		}
+
+		// =========================================================================
+		// KHỐI 2: NỘI DUNG SEO CUỐI TRANG (Tiêu đề + Editor)
+		// =========================================================================
+		echo do_shortcode( '[gobike_shop_bottom_content]' );
 		?>
 
 		<?php

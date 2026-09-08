@@ -1361,3 +1361,104 @@ footer#footer,
         width: 100% !important;
     }
 }
+
+/* ==========================================================================
+   KHỐI 1: CẶP BANNER TIỆN ÍCH TRANG SẢN PHẨM (ZOOM TỪ TÂM TỪ 0 ĐẾN 1)
+   ========================================================================== */
+@keyframes gobikeZoomFromCenter {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.gobike-dual-banners-row {
+    margin-top: 8px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+}
+
+.gobike-banner-col {
+    padding-bottom: 0 !important;
+}
+
+.gobike-zoom-banner {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transform-origin: center center !important; /* Vị trí phóng to từ trung tâm */
+    animation: gobikeZoomFromCenter 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.gobike-zoom-banner:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
+}
+
+.gobike-zoom-banner a {
+    display: block !important;
+    width: 100% !important;
+}
+
+.gobike-zoom-banner img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 6px !important;
+    object-fit: cover !important;
+}
+
+/* Tiêu đề trang danh mục chuẩn ảnh mẫu */
+.gobike-shop-page-title {
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    color: #111 !important;
+    text-transform: uppercase !important;
+    margin: 16px 0 10px 0 !important;
+    line-height: 1.3 !important;
+}
+
+/* ==========================================================================
+   KHỐI 2: NỘI DUNG SEO CUỐI TRANG SẢN PHẨM (TIÊU ĐỀ + EDITOR)
+   ========================================================================== */
+.gobike-shop-bottom-seo-row {
+    margin-top: 40px !important;
+    margin-bottom: 30px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid #eee !important;
+    width: 100% !important;
+}
+
+.gobike-shop-seo-box {
+    width: 100% !important;
+    background: #fff !important;
+    border-radius: 4px !important;
+}
+
+.gobike-shop-seo-box .gobike-seo-title {
+    font-size: 18.5px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px dashed #ccc !important;
+    line-height: 1.4 !important;
+}
+
+.gobike-shop-seo-box .gobike-seo-content {
+    font-size: 14.5px !important;
+    line-height: 1.85 !important;
+    color: #444 !important;
+}
+
+.gobike-shop-seo-box .gobike-seo-content p {
+    margin-bottom: 10px !important;
+    line-height: 1.85 !important;
+}
+
