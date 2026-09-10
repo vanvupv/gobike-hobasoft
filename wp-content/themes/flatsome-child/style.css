@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.15.61
+Version: 3.15.77
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -185,8 +185,9 @@ ul.menu li a {padding: 6px 10px !important;font-size: 13px !important;font-weigh
 .menu-top ul.menu li a img {margin-right:5px; }
 .header.active .header-wrapper #logo .header-main-menu ul.menu li a img, .header-wrapper.stuck #logo .header-main-menu ul.menu li a img{max-height:20px !important}
 .header.active .header-wrapper .menu, .header-wrapper.stuck .menu {border-radius:5px;overflow: hidden;}
+/* 
+.menu-item-has-children:after {font-family: "fl-icons" !important;font-display: block;speak: none !important;margin: 0;padding: 0;display: inline-block;font-style: normal !important;font-weight: normal !important;font-variant: normal !important;text-transform: none !important;position: absolute;content: "\f105";right:8px;top:7px;line-height: 1.2;} */
 
-.menu-item-has-children:after {font-family: "fl-icons" !important;font-display: block;speak: none !important;margin: 0;padding: 0;display: inline-block;font-style: normal !important;font-weight: normal !important;font-variant: normal !important;text-transform: none !important;position: absolute;content: "\f105";right:8px;top:7px;line-height: 1.2;}
 #logo {display: flex;align-items: center;position: relative;line-height: inherit;margin-right: 10px;}
 .header-main-menu {width: 220px;visibility: hidden;position: absolute;top: 60px;left: 15px;opacity: 0;-webkit-transition: .2s ease-out;-moz-transition: .2s ease-out;-ms-transition: .2s ease-out;-o-transition: .2s ease-out;transition: .2s ease-out;transition-property: all;transition-duration: 0.2s;transition-timing-function: ease-out;transition-delay: 0s;}
 
@@ -194,14 +195,14 @@ ul.menu li a {padding: 6px 10px !important;font-size: 13px !important;font-weigh
 #btnHeaderMenu:hover+.header-main-menu, .header-main-menu:hover {visibility: visible;opacity: 1;}
 .home .header-wrapper.stuck #btnHeaderMenu {display: block;}
 
-li.header-search-form {width:340px}
+/* li.header-search-form {min-width:340px} */
 .header-nav li.html:before {position:absolute;width:25px;height:25px;content: "";left: 5px;top: 50%;transform: translateY(-50%);}
 .header-nav li.html_topbar_left:before {background:url(/wp-content/uploads/2021/07/call-icon.png)}
 .header-nav li.html_topbar_right:before {background:url(/wp-content/uploads/2021/07/map-icon.png)}
 .header-nav-main {font-size:14px}
 .cart-icon {margin-right:10px}
 .cart-item .cart-icon strong, .cart-item .cart-icon strong:after {border-color:#fff;color:#fff}
-.nav li.html a,.nav li.html a:hover, .nav li.cart-item a, .nav li.cart-item a:hover {color:#fff;font-size: 12px;}
+.nav li.html a,.nav li.html a:hover, .nav li.cart-item a, .nav li.cart-item a:hover {color:#fff;font-size: 14px;}
 .mini_cart_item a {color:#000 !important}
 .mobile-nav a {color:#000}
 .mobile-nav>.nav-icon>a {color:var(--primary-color)}
@@ -257,7 +258,7 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {width: 100%;m
 .menu-mobile-section li {list-style:none;margin-bottom: 0;}
 
 /* Banner Home */
-.banner-home {margin-top:15px}
+/* .banner-home {margin-top:15px} */
 
 /* Search Header */
 .header-search-form input[type="search"] {border: 0;box-shadow: none;height: 33px;font-size:14px}
@@ -373,7 +374,7 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {width: 100%;m
 
 /* Product Page */
 .shop-page-title {padding: 5px 0;-webkit-box-shadow: 0 0 5px #ccc;box-shadow: 0 0 5px #ccc;z-index: 1;}
-.product-container .product-main {padding:0;margin-bottom: 20px;-webkit-box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
+/* .product-container .product-main {padding:0;margin-bottom: 20px;-webkit-box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;} */
 .product-main .header-title {display: flex;}
 .product-main .header-title h1 {width: auto;margin-right: 10px;}
 .product-main .meta-title {margin-bottom: 15px;display: flex;align-items: center;min-width: 200px;}
@@ -591,11 +592,12 @@ div.review_vote {display: flex;align-items: center;position: absolute;top: 0;rig
 .term-description .ux-logo:nth-child(2) a img {height: 25px !important;}
 .term-description .list-category a {margin: 10px 10px 10px 0;border-radius: 10px;background-color: transparent !important;font-size: 15px;font-weight: 600 !important;}
 .term-description .list-category a.active {background-color:#ef4444 !important;}
-.archive .category-page-row {max-width:1200px}
+/* .archive .category-page-row {max-width:1200px} */
 .archive .product.product-small .badge-container {left:10px}
-.product.product-small {max-width: calc((100% - 40px) / 5);margin-bottom: 10px;padding: 10px;background: #ffffff;position: relative;border-radius: 10px;-webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;transition: .3s;}
-.product.product-small:not(:nth-of-type(5n)) {margin-right: 10px;}
-.product.product-small:hover {-webkit-box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);-webkit-transform: scale(1.02);transform: scale(1.02);z-index: 1;}
+.archive .products.row {row-gap: 10px; column-gap: 10px;} 
+.product.product-small {margin: 0px !important; max-width: calc((100% - 40px) / 5);margin-bottom: 10px;padding: 10px;background: #ffffff;position: relative;border-radius: 10px;-webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;transition: .3s;}
+ .product.product-small:not(:nth-of-type(5n)) {margin-right: 10px;} 
+.product.product-small:hover {-webkit-box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);-webkit-transform: scale(1.02);transform: scale(1.02);z-index: 1;} 
 .filter-sidebar .sidebar-wrapper {display: flex;flex-flow: wrap;}
 .filter-sidebar .sidebar-wrapper>div:not(:last-child) {margin-right:10px}
 .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple, 
@@ -717,7 +719,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 }
 
 @media only screen and (max-width: 1024px) {
-	li.header-search-form {width: 200px;}
+/* 	li.header-search-form {width: 200px;} */
 	.product-main .content-row {width: 100%;}
 	.product-info .woocommerce-variation-price del span.amount {left:185px}
 	.product.product-type-simple .product-footer-left .product-info form {width: 60%;}
@@ -734,16 +736,16 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 	.home .header .header-wrapper, .home .header .header-bg-color {background-color: transparent;}
 /* 	.home .header-wrapper:after {position:absolute;content:'';width:100%;height:250px;background:linear-gradient(#149D29, #ffffff);border-radius:0 0 20px 20px;top:0} */
 	#main {z-index:30;padding-bottom: 70px;}
-	.header.active .header-wrapper, .header-wrapper.stuck {background-color:var(--primary-color);z-index:999}
+	.header.active .header-wrapper, .header-wrapper.stuck {background-color:#fff; z-index:999}
 	.header .header-wrapper .header-logo-sticky, .header-wrapper .header-logo-sticky, .header.active .header-wrapper .header-logo-sticky, .header-wrapper.stuck .header-logo-sticky {display:block !important}
 	.header .header-wrapper .header-logo-sticky+img, .header-wrapper .header-logo-sticky+img, .header.active .header-wrapper .header-logo-sticky+img, .header-wrapper.stuck .header-logo-sticky+img {display: none !important}
-	.header.active .header-wrapper .header-main, .header-wrapper.stuck .header-main {height: 45px!important;}
+/* 	.header.active .header-wrapper .header-main, .header-wrapper.stuck .header-main {height: 45px!important;} */
 	.header.active, .header-wrapper.stuck, .body-scroll-lock--active #header {z-index:999}
 	.header.active .header-wrapper, .header-wrapper.stuck {position:fixed;top:0}
 	.home .header.active .header-wrapper:after, .home .header-wrapper.stuck:after {display:none}
 	#btnHeaderMenu {display: none !important;}
 	input[type="email"], input[type="date"], input[type="search"], input[type="number"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"], textarea, select, .select-resize-ghost, .select2-container .select2-choice, .select2-container .select2-selection {height:33px}
-	#btnHeaderMenu, .menu-item-has-children:after,.off-canvas-center .nav-sidebar.nav-vertical > li .toggle {display:none}
+/* 	#btnHeaderMenu, .menu-item-has-children:after,.off-canvas-center .nav-sidebar.nav-vertical > li .toggle {display:none} */
 	
 	/* Menu Tab */
 	.menu-tab {overflow-x: auto;display:block}
@@ -789,7 +791,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 	.shop-page-title .page-title-inner .flex-grow.medium-text-center {text-align: left !important;}
 	.single-product .shop-page-title .medium-text-center {width: 100% !important;}
 	.single-product .shop-page-title .medium-flex-wrap {flex-flow: column;}
-	.product.product-small {max-width: calc((100% - 20px) / 3);}
+/* 	.product.product-small {max-width: calc((100% - 20px) / 3);} */
 	.product.product-small:nth-of-type(5n) {margin-right: 10px;}
 	.product.product-small:nth-of-type(3n) {margin-right: 10px;}
 	.tab-product-related .product.product-small:nth-of-type(3n) {margin-right: 10px;}
@@ -817,7 +819,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 	.banner-home {margin-top: 5px;}
 	
 	/* Footer */
-	.footer-wrapper {box-shadow:none;box-shadow: none;position: fixed;top: 45px;z-index: 9999;background: #fff;width: 100%;height: 100%;overflow: auto;padding: 0 0 70px;display:none}
+	.footer-wrapper {box-shadow:none;box-shadow: none;position: fixed;top: 45px;z-index: 9999;background: #fff;width: 100%;height: 100%;overflow: auto;padding: 0 0 0px;display:none}
 	.footer-wrapper.active {display:block}
 	.footer-wrapper .icon-box-text a {font-size: 14px;color: var(--primary-color);font-weight: bold;}
 	.footer-wrapper .ux-menu {padding: 10px;border-radius: 1rem;-webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;font-size: 14px;margin-bottom: 30px;}
@@ -1148,8 +1150,8 @@ footer#footer,
     clear: both !important;             /* Bắt buộc nằm dưới toàn bộ nội dung web */
     float: none !important;
     z-index: 1 !important;              /* Không đè lên giao diện khác */
-    margin-top: 30px !important;
-    padding-bottom: 70px !important;    /* Chừa khoảng trống để thanh menu đáy không che mất chữ */
+/*     margin-top: 30px !important; */
+/*     padding-bottom: 70px !important;    /* Chừa khoảng trống để thanh menu đáy không che mất chữ */ */
     background: #ffffff !important;
     overflow: visible !important;
 }
@@ -1216,18 +1218,18 @@ footer#footer,
 }
 
 /* Xóa padding của cả cột lớn Sidebar */
-.large-3.col {
+/* .large-3.col {
     padding-left: 0 !important;
     padding-right: 0 !important;
     padding-bottom: 0 !important;
-}
+} */
 
 /* Áp dụng padding 0 1px 1px cho các cột bên trong #content */
-#content .col,
+/* #content .col,
 #content .columns,
 #content .gallery-item {
     padding: 0 1px 1px !important;
-}
+} */
 
 /* Bo góc 20px cho nút Gửi tin nhắn trong form */
 .wpcf7-submit,
@@ -1361,111 +1363,3 @@ footer#footer,
         width: 100% !important;
     }
 }
-
-/* ==========================================================================
-   KHỐI 1: CẶP BANNER TIỆN ÍCH TRANG SẢN PHẨM (ZOOM TỪ TÂM TỪ 0 ĐẾN 1)
-   ========================================================================== */
-@keyframes gobikeZoomFromCenter {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.gobike-dual-banners-row {
-    margin-top: 8px !important;
-    margin-bottom: 16px !important;
-    width: 100% !important;
-}
-
-.gobike-banner-col {
-    padding-bottom: 0 !important;
-}
-
-.gobike-zoom-banner {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 6px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    transform-origin: center center !important; /* Vị trí phóng to từ trung tâm */
-    animation: gobikeZoomFromCenter 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-
-.gobike-zoom-banner:hover {
-    transform: scale(1.02) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
-}
-
-.gobike-zoom-banner a {
-    display: block !important;
-    width: 100% !important;
-}
-
-.gobike-zoom-banner img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    border-radius: 6px !important;
-    object-fit: cover !important;
-}
-
-/* Tiêu đề trang danh mục chuẩn ảnh mẫu */
-.gobike-shop-page-title {
-    font-size: 19px !important;
-    font-weight: 700 !important;
-    color: #111 !important;
-    text-transform: uppercase !important;
-    margin: 16px 0 10px 0 !important;
-    line-height: 1.3 !important;
-}
-
-/* ==========================================================================
-   KHỐI 2: NỘI DUNG SEO CUỐI TRANG SẢN PHẨM (TIÊU ĐỀ + EDITOR) - CHUẨN ẢNH MẪU
-   ========================================================================== */
-.gobike-shop-bottom-seo-row {
-    margin-top: 30px !important;
-    margin-bottom: 30px !important;
-    padding-top: 20px !important;
-    width: 100% !important;
-}
-
-.gobike-shop-seo-box {
-    width: 100% !important;
-    background: transparent !important;
-}
-
-/* Tiêu đề chân trang kèm đường line gạch đứt (dashed line) chuẩn 100% ảnh mẫu */
-.gobike-shop-seo-box .gobike-seo-title {
-    font-size: 16.5px !important;
-    font-weight: 700 !important;
-    color: #222 !important;
-    margin-top: 0 !important;
-    margin-bottom: 16px !important;
-    padding-bottom: 10px !important;
-    border-bottom: 1px dashed #ccc !important;
-    line-height: 1.4 !important;
-    text-transform: none !important;
-}
-
-/* Nội dung văn bản chi tiết: Font 14px, màu chữ #333, giãn dòng thoáng đẹp */
-.gobike-shop-seo-box .gobike-seo-content {
-    font-size: 14px !important;
-    line-height: 1.85 !important;
-    color: #333 !important;
-}
-
-.gobike-shop-seo-box .gobike-seo-content p {
-    margin-bottom: 6px !important;
-    line-height: 1.85 !important;
-    color: #333 !important;
-}
-
-.gobike-shop-seo-box .gobike-seo-content p:last-child {
-    margin-bottom: 0 !important;
-}
-

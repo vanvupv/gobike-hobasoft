@@ -50,93 +50,37 @@ global $product, $post;
 					});
 				</script>
 			</div>
-			<div class="col large-3">
-				<div class="description-product">
-					<?php the_field( 'description_product' ); ?>
-				</div>
+			<div class="col large-3 col-support-single">
+				<?php echo gobike_render_single_product_support_box(); ?>
 			</div>
 		</div>
 	</div>
-	<div class="row tab-product-related">
-		<div class="col small-12">
-			<div class="tabs nav nav-outline">
-				<?php if ( $upsells ) : ?>
-				<button class="tab" onclick="opentab(event, 'Upsell')" id="tab-active">Phụ kiện mua cùng</button>
-				<?php endif; ?>
-				<button class="tab" onclick="opentab(event, 'Related')">Sản phẩm tương tự</button>
-			</div>
-			<?php if ( $upsells ) : ?>
-			<div id="Upsell" class="tab-content">
-				<?php echo do_shortcode( '[ux_product_upsell style="grid"]' ); ?>
-			</div>
-			<?php endif; ?>
-			<div id="Related" class="tab-content">
-				<?php echo do_shortcode( '[ux_product_related style="grid"]' ); ?> 
-			</div>
-			<script>
-				function opentab(evt, Name) {
-				  var i, tabcontent, tab;
-				  tabcontent = document.getElementsByClassName("tab-content");
-				  for (i = 0; i < tabcontent.length; i++) {
-					tabcontent[i].style.display = "none";
-				  }
-				  tab = document.getElementsByClassName("tab");
-				  for (i = 0; i < tab.length; i++) {
-					tab[i].className = tab[i].className.replace(" active", "");
-				  }
-				  document.getElementById(Name).style.display = "block";
-				  evt.currentTarget.className += " active";
-				}
-				document.getElementById("tab-active").click();
-			</script>
-		</div>
-		
-	</div>
-	
 	
   <div class="product-footer">
   	<div class="container">
 		<div class="row row-small content-product-page">
-			<div class="col medium-9 product-footer-left">
+			<div class="col large-9 medium-8 small-12 product-footer-left">
     		<?php
 //     			do_action( 'woocommerce_after_single_product_summary' );
     		?>
 				<div class="product-page-sections">
+					<div class="product-section-header">
+						<span class="product-section-title active">THÔNG TIN SẢN PHẨM</span>
+					</div>
 					<div class="product-section">
 						<div class="entry-content">
 							<?php the_content() ;?>
 						</div>
 						<div class="product-footer-showmore"><a title="Đọc thêm" href="javascript:void(0);" class="button_readmore">Xem thêm <i class="fa fa-angle-down"></i></a></div>
 						<script type="text/javascript">
-							jQuery(document).ready(function () {
-								jQuery(".product-footer-showmore .button_readmore").click(function(){	
-									jQuery(".product-page-sections .product-section").addClass("active");
-									jQuery(".product-page-sections .product-section.active .product-footer-showmore").remove();
+							jQuery(document).ready(function ($) {
+								$(".product-footer-showmore .button_readmore").click(function(e){
+									e.preventDefault();
+									$(".product-page-sections .product-section").addClass("active");
+									$(".product-footer-showmore").remove();
 								});	
 							});
 						</script>
-					</div>
-					<div class="product-video-reviews show-for-medium">
-						<?php 
-							$rows = get_field('list_video_review');
-							if( $rows ) {
-								echo '<h3>Video đánh giá sản phẩm</h3>
-								<div class="list-video-reviews">';
-								foreach( $rows as $row ) {
-									$id_video_review = $row['id_video_review'];
-									$apikey = 'AIzaSyD07N7LWo8xPVMXkrNsDNL3aadK09RuPPA'; // change this
-									$json = file_get_contents('https://www.googleapis.com/youtube/v3/videos?id=' . $id_video_review . '&key=' . $apikey . '&part=snippet');
-									$data = json_decode($json, true);
-
-									echo '<div class="item-video"><a href="https://www.youtube.com/watch?v=' . $id_video_review . '" class="open-video">';
-									echo '<div class="img-video"><img src="https://img.youtube.com/vi/' . $id_video_review .'/maxresdefault.jpg" />';
-									echo '</div>';
-									echo '<div class="title-video">';
-									echo $data['items'][0]['snippet']['title'];
-									echo '</div></a></div>';
-								}
-								echo '</div>';
-							} ?>
 					</div>
 					<div class="product-reviews">
 					<?php
@@ -161,49 +105,206 @@ global $product, $post;
 					
 				</div>
 			</div>
-			<div class="col medium-3 content-product-footer-right">
+			<div class="col large-3 medium-4 small-12 content-product-footer-right">
 				<div class="product-footer-right">
 					<?php $thong_so_ky_thuat = get_field( 'thong_so_ky_thuat' ); 
 						if ( $thong_so_ky_thuat )  {
 					?>
-						<h3>Thông số kỹ thuật</h3>
-						<div class="table">
+						<h3 class="spec-title">Thông số kỹ thuật</h3>
+						<div class="table spec-table-wrapper">
 							<?php the_field( 'thong_so_ky_thuat' ); ?>
-							<a id="more-specific" class="btn btn-default btn-sm" href="javascript:void()">Xem thêm</a>
+							<a id="more-specific" class="btn-more-specific" href="javascript:void(0);">Xem cấu hình chi tiết</a>
 							<script type="text/javascript">
-							jQuery(document).ready(function () {
-								jQuery("#more-specific").click(function(){	
-									jQuery(".product-footer-right .table table tr").css("display", "table-row");
+							jQuery(document).ready(function ($) {
+								$("#more-specific").click(function(e){
+									e.preventDefault();
+									var $wrapper = $(this).closest(".spec-table-wrapper");
+									$wrapper.toggleClass("expanded");
+									if ($wrapper.hasClass("expanded")) {
+										$(this).text("Thu gọn cấu hình");
+									} else {
+										$(this).text("Xem cấu hình chi tiết");
+										$('html, body').animate({
+											scrollTop: $wrapper.offset().top - 80
+										}, 300);
+									}
 								});
 							});
-						</script>
+							</script>
 						</div>
 					<?php } ?>
 				</div>
-				<div class="product-video-reviews hide-for-medium">
-						<?php 
-							$rows = get_field('list_video_review');
-							if( $rows ) {
-								echo '<h3>Video đánh giá sản phẩm</h3>
-								<div class="list-video-reviews">';
-								foreach( $rows as $row ) {
-									$id_video_review = $row['id_video_review'];
-									$apikey = 'AIzaSyD07N7LWo8xPVMXkrNsDNL3aadK09RuPPA'; // change this
-									$json = file_get_contents('https://www.googleapis.com/youtube/v3/videos?id=' . $id_video_review . '&key=' . $apikey . '&part=snippet');
-									$data = json_decode($json, true);
-
-									echo '<div class="item-video"><a href="https://www.youtube.com/watch?v=' . $id_video_review . '" class="open-video">';
-									echo '<div class="img-video"><img src="https://img.youtube.com/vi/' . $id_video_review .'/maxresdefault.jpg" />';
-									echo '</div>';
-									echo '<div class="title-video">';
-									echo $data['items'][0]['snippet']['title'];
-									echo '</div></a></div>';
-								}
-								echo '</div>';
-							} ?>
-					</div>
 			</div>
 		</div>
     </div>
+  </div>
+  
+  <div class="container">
+	<div class="gobike-related-wrapper">
+		<div class="gobike-related-header">
+			<div class="gobike-related-title-box">
+				<?php if ( ! empty( $upsells ) ) : ?>
+					<button type="button" class="gobike-related-tab-btn active" data-target="#RelatedSwiperBox">SẢN PHẨM CÙNG LOẠI</button>
+					<button type="button" class="gobike-related-tab-btn" data-target="#UpsellSwiperBox">PHỤ KIỆN MUA CÙNG</button>
+				<?php else : ?>
+					<span class="gobike-related-title">SẢN PHẨM CÙNG LOẠI</span>
+				<?php endif; ?>
+			</div>
+			<div class="gobike-related-nav">
+				<button type="button" class="gobike-nav-btn gobike-btn-prev" aria-label="Trước">
+					<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+				</button>
+				<button type="button" class="gobike-nav-btn gobike-btn-next" aria-label="Sau">
+					<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+				</button>
+			</div>
+		</div>
+
+		<?php if ( ! empty( $upsells ) ) : ?>
+		<div id="UpsellSwiperBox" class="gobike-swiper-box" style="display:none;">
+			<div class="swiper-container gobike-related-swiper gobike-upsell-swiper">
+				<div class="swiper-wrapper">
+					<?php
+					foreach ( $upsells as $upsell_id ) :
+						$post_object = get_post( $upsell_id );
+						if ( ! $post_object ) continue;
+						setup_postdata( $GLOBALS['post'] =& $post_object );
+					?>
+						<div class="swiper-slide">
+							<?php wc_get_template_part( 'content', 'product' ); ?>
+						</div>
+					<?php endforeach; wp_reset_postdata(); ?>
+				</div>
+			</div>
+		</div>
+		<?php endif; ?>
+
+		<div id="RelatedSwiperBox" class="gobike-swiper-box">
+			<?php
+			global $product;
+			$related_ids = array();
+			if ( $product ) {
+				$related_ids = wc_get_related_products( $product->get_id(), 15, $product->get_upsell_ids() );
+				if ( count( $related_ids ) < 5 ) {
+					$cats = $product->get_category_ids();
+					if ( ! empty( $cats ) ) {
+						$more_ids = wc_get_products( array(
+							'category' => $cats,
+							'exclude'  => array( $product->get_id() ),
+							'limit'    => 15,
+							'return'   => 'ids',
+						) );
+						$related_ids = array_unique( array_merge( $related_ids, $more_ids ) );
+					}
+				}
+			}
+			if ( ! empty( $related_ids ) ) :
+			?>
+			<div class="swiper-container gobike-related-swiper gobike-main-related-swiper">
+				<div class="swiper-wrapper">
+					<?php
+					foreach ( $related_ids as $rel_id ) :
+						$post_object = get_post( $rel_id );
+						if ( ! $post_object ) continue;
+						setup_postdata( $GLOBALS['post'] =& $post_object );
+					?>
+						<div class="swiper-slide">
+							<?php wc_get_template_part( 'content', 'product' ); ?>
+						</div>
+					<?php endforeach; wp_reset_postdata(); ?>
+				</div>
+			</div>
+			<?php endif; ?>
+		</div>
+
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+		<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			function initSwipers() {
+				if (typeof Swiper === 'undefined') return;
+
+				var swiperRelated = new Swiper('.gobike-main-related-swiper', {
+					slidesPerView: 5,
+					spaceBetween: 15,
+					watchOverflow: true,
+					navigation: {
+						nextEl: '.gobike-btn-next',
+						prevEl: '.gobike-btn-prev',
+					},
+					breakpoints: {
+						0: {
+							slidesPerView: 2,
+							spaceBetween: 10
+						},
+						550: {
+							slidesPerView: 3,
+							spaceBetween: 12
+						},
+						850: {
+							slidesPerView: 4,
+							spaceBetween: 14
+						},
+						1050: {
+							slidesPerView: 5,
+							spaceBetween: 15
+						}
+					}
+				});
+
+				if ($('.gobike-upsell-swiper').length) {
+					var swiperUpsell = new Swiper('.gobike-upsell-swiper', {
+						slidesPerView: 5,
+						spaceBetween: 15,
+						watchOverflow: true,
+						navigation: {
+							nextEl: '.gobike-btn-next',
+							prevEl: '.gobike-btn-prev',
+						},
+						breakpoints: {
+							0: {
+								slidesPerView: 2,
+								spaceBetween: 10
+							},
+							550: {
+								slidesPerView: 3,
+								spaceBetween: 12
+							},
+							850: {
+								slidesPerView: 4,
+								spaceBetween: 14
+							},
+							1050: {
+								slidesPerView: 5,
+								spaceBetween: 15
+							}
+						}
+					});
+				}
+
+				$('.gobike-related-tab-btn').on('click', function(e) {
+					e.preventDefault();
+					var target = $(this).data('target');
+					$('.gobike-related-tab-btn').removeClass('active');
+					$(this).addClass('active');
+					$('.gobike-swiper-box').hide();
+					$(target).show();
+					if (target === '#RelatedSwiperBox' && swiperRelated) {
+						swiperRelated.update();
+					} else if (target === '#UpsellSwiperBox' && typeof swiperUpsell !== 'undefined') {
+						swiperUpsell.update();
+					}
+				});
+			}
+
+			if (typeof Swiper === 'undefined') {
+				$.getScript('https://unpkg.com/swiper/swiper-bundle.min.js', function() {
+					initSwipers();
+				});
+			} else {
+				initSwipers();
+			}
+		});
+		</script>
+	</div>
   </div>
 </div>

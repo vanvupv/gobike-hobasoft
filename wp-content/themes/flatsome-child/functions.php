@@ -62,20 +62,90 @@ register_sidebar(array(
     'after_title' => '</span></span>',
 ));
 
-function register_footer_menu_mobile()
+// function register_footer_menu_mobile() {
+// 	register_nav_menus(
+// 		array( 'footer-menu-mobile' => __( 'Footer Menu Mobile' ) )
+// 	);}
+// add_action( 'init', 'register_footer_menu_mobile' );
+// 
+/**
+ * GOBIKE - THANH ĐIỀU HƯỚNG DƯỚI ĐÁY MOBILE (CHUẨN MẪU SENCOM 5 NÚT + FAB GỌI ĐIỆN NỔI)
+ */
+function gobike_mobile_bottom_nav_bar()
 {
-    register_nav_menus(
-        array('footer-menu-mobile' => __('Footer Menu Mobile'))
-    );
-}
-add_action('init', 'register_footer_menu_mobile');
+    $home_url = home_url('/');
+    $shop_url = home_url('/san-pham/');
+    $phone_num = '0988888888'; // Thay bằng số điện thoại Hotline của bạn
+    $messenger = 'https://m.me/gobiketrulucdien'; // Thay bằng link Fanpage Messenger của bạn
+    $zalo_link = 'https://zalo.me/0988888888'; // Thay bằng link hoặc số Zalo của bạn
+    ?>
+    <nav class="gobike-bottom-bar-nav" aria-label="Thanh điều hướng nhanh dưới đáy">
+        <ul class="wrap-fixed-footer">
+            <!-- 1. Trang chủ -->
+            <li class="item-home">
+                <a href="<?php echo esc_url($home_url); ?>">
+                    <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                    </svg>
+                    <span>Trang chủ</span>
+                </a>
+            </li>
 
-function add_footer_menu_mobile()
-{
-    wp_nav_menu(array('theme_location' => 'footer-menu-mobile', 'container_class' => 'footer-menu-mobile'));
-}
-add_action('flatsome_after_header', 'add_footer_menu_mobile');
+            <!-- 2. Sản phẩm -->
+            <li class="item-products">
+                <a href="<?php echo esc_url($shop_url); ?>">
+                    <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" />
+                    </svg>
+                    <span>Sản phẩm</span>
+                </a>
+            </li>
 
+            <!-- 3. Nút Gọi Điện (FAB Tròn Đỏ Nổi Lên Ở Giữa) -->
+            <li class="item-phone-fab">
+                <a href="tel:<?php echo esc_attr($phone_num); ?>" class="btn-phone-call">
+                    <span class="phone-circle-glow"></span>
+                    <span class="phone-circle-btn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
+                            <path
+                                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.053 15.053 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.01A11.36 11.36 0 0 1 8.5 3.92c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.54c0-.55-.45-1-.99-1z" />
+                        </svg>
+                    </span>
+                    <span class="btn_phone_txt">Gọi điện</span>
+                </a>
+            </li>
+
+            <!-- 4. Messenger -->
+            <li class="item-messenger">
+                <a href="<?php echo esc_url($messenger); ?>" target="_blank" rel="nofollow">
+                    <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="#0084FF">
+                        <path
+                            d="M12 2C6.477 2 2 6.145 2 11.258c0 2.91 1.455 5.514 3.734 7.215V22l3.376-1.854c.915.253 1.884.39 2.89.39 5.523 0 10-4.145 10-9.258C22 6.145 17.523 2 12 2zm1.066 12.443l-2.607-2.78-5.086 2.78 5.594-5.94 2.673 2.78 5.02-2.78-5.594 5.94z" />
+                    </svg>
+                    <span>Messenger</span>
+                </a>
+            </li>
+
+            <!-- 5. Zalo -->
+            <li class="item-zalo">
+                <a href="<?php echo esc_url($zalo_link); ?>" target="_blank" rel="nofollow">
+                    <span class="zalo-badge-wrap">
+                        <svg class="nav-icon" width="23" height="23" viewBox="0 0 48 48">
+                            <circle cx="24" cy="24" r="23" fill="#0068FF" />
+                            <path fill="#ffffff"
+                                d="M14.5 17.5h7.2l-6.7 9.8v2.7h9.5v-3.2h-6.2l6.7-9.3v-2.8H14.5v2.8zm14.3-2.8c-2.3 0-4.1 1.2-4.9 3l2.8 1.4c.5-1 1.2-1.5 2.1-1.5 1.3 0 2.1.8 2.1 2.3v.4c-.8-.2-1.8-.3-2.9-.3-3.2 0-5.1 1.6-5.1 3.9 0 2.2 1.8 3.7 4.3 3.7 1.8 0 3.2-.8 3.8-2v1.7h3.1V22c0-4.4-2.5-7.3-6.3-7.3zm3.1 7.7c0 .6-.2 1.2-.6 1.7-.7.9-1.8 1.4-2.8 1.4-1.2 0-2-.6-2-1.6 0-1.2 1-1.8 2.6-1.8.9 0 1.9.1 2.8.3zm6.3-8.4v13.6h3.4V14h-3.4z" />
+                        </svg>
+                    </span>
+                    <span>Zalo</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <?php
+}
+add_action('wp_footer', 'gobike_mobile_bottom_nav_bar', 50);
+
+// 
 function load_custom_wp_admin_style()
 {
     wp_register_style('custom_wp_admin_css', get_bloginfo('stylesheet_directory') . '/admin.css', false, '1.0.0');
@@ -91,9 +161,6 @@ function load_custom_wp_admin_script()
 add_action('wp_footer', 'load_custom_wp_admin_script');
 
 
-
-
-
 add_action('init', function () {
     // remove duotone support for Gutenberg blocks
     remove_filter('render_block', 'wp_render_duotone_support');
@@ -103,14 +170,14 @@ add_action('init', function () {
 add_filter('term_description', 'do_shortcode');
 
 // Add Icon Menu in Widget
-add_filter('wp_nav_menu_args', 'wpex_ux_menu_icon');
-add_filter('widget_nav_menu_args', 'wpex_ux_menu_icon');
-function wpex_ux_menu_icon($args)
-{
-    return array_merge($args, array(
-        'walker' => new FlatsomeNavDropdown(),
-    ));
-}
+// add_filter('wp_nav_menu_args', 'wpex_ux_menu_icon');
+// add_filter('widget_nav_menu_args', 'wpex_ux_menu_icon');
+// function wpex_ux_menu_icon($args) {
+//    return array_merge( $args, array(
+// 	  'walker' => new FlatsomeNavDropdown(),
+//    ) );
+// }
+// 
 // Remove the Reviews and Additional information tab 
 function woo_remove_product_tab($tabs)
 {
@@ -163,6 +230,387 @@ function woocommerce_button_proceed_to_checkout()
     <?php
 }
 
+/* ============================================================================
+ * CẤU HÌNH TRANG SẢN PHẨM: ACF FIELDS & SHORTCODES BẢN QUYỀN GOBIKE
+ * 1. Khối 1: Cặp Banner đầu trang (dưới breadcrumb, trên bộ lọc) - Animation phóng to từ tâm
+ * 2. Khối 2: Nội dung chân trang SEO (Tiêu đề + Editor)
+ * ============================================================================
+ */
+
+// 1. Đăng ký ACF Field Group cho Trang sản phẩm
+add_action('acf/init', 'gobike_register_shop_page_acf_fields');
+function gobike_register_shop_page_acf_fields()
+{
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_6a9f83f739c54',
+            'title' => 'Banner Sản phẩm',
+            'fields' => array(
+
+                // TAB 1: Khối 1
+                array(
+                    'key' => 'field_tab_shop_banners',
+                    'label' => 'Khối 1: Cặp Banner Tiện Ích Đầu Trang',
+                    'name' => '',
+                    'type' => 'tab',
+                    'placement' => 'top',
+                ),
+                array(
+                    'key' => 'field_shop_banner_image_1',
+                    'label' => 'Hình ảnh Banner 1 (Trái)',
+                    'name' => 'shop_banner_image_1',
+                    'type' => 'image',
+                    'instructions' => 'Tải lên hình ảnh banner 1 (khuyên dùng ~ 600x120px)',
+                    'return_format' => 'url',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_shop_banner_link_1',
+                    'label' => 'Liên kết Banner 1',
+                    'name' => 'shop_banner_link_1',
+                    'type' => 'url',
+                    'instructions' => 'Đường dẫn khi click vào banner 1',
+                    'default_value' => '#',
+                ),
+                array(
+                    'key' => 'field_shop_banner_image_2',
+                    'label' => 'Hình ảnh Banner 2 (Phải)',
+                    'name' => 'shop_banner_image_2',
+                    'type' => 'image',
+                    'instructions' => 'Tải lên hình ảnh banner 2 (khuyên dùng ~ 600x120px)',
+                    'return_format' => 'url',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_shop_banner_link_2',
+                    'label' => 'Liên kết Banner 2',
+                    'name' => 'shop_banner_link_2',
+                    'type' => 'url',
+                    'instructions' => 'Đường dẫn khi click vào banner 2',
+                    'default_value' => '#',
+                ),
+
+                // TAB 2: Khối 2
+                array(
+                    'key' => 'field_tab_shop_bottom_content',
+                    'label' => 'Khối 2: Nội dung cuối trang (SEO)',
+                    'name' => '',
+                    'type' => 'tab',
+                    'placement' => 'top',
+                ),
+                array(
+                    'key' => 'field_shop_bottom_title',
+                    'label' => 'Tiêu đề nội dung chân trang',
+                    'name' => 'shop_bottom_title',
+                    'type' => 'text',
+                    'instructions' => 'Nhập tiêu đề khối nội dung cuối trang',
+                    'default_value' => 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos',
+                ),
+                array(
+                    'key' => 'field_shop_bottom_content',
+                    'label' => 'Nội dung chi tiết (Editor)',
+                    'name' => 'shop_bottom_content',
+                    'type' => 'wysiwyg',
+                    'instructions' => 'Nội dung giới thiệu chính sách, bảo hành cuối trang',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                    'default_value' => "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.",
+                ),
+
+                // TAB 3: Khối 3
+                array(
+                    'key' => 'field_tab_shop_single_support',
+                    'label' => 'Khối 3: Hỗ trợ khách hàng (Trang chi tiết)',
+                    'name' => '',
+                    'type' => 'tab',
+                    'placement' => 'top',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_title',
+                    'label' => 'Tiêu đề khối hỗ trợ',
+                    'name' => 'shop_single_support_title',
+                    'type' => 'textarea',
+                    'instructions' => 'Tiêu đề khối hỗ trợ (có thể xuống dòng để hiển thị đẹp)',
+                    'default_value' => "CHÚNG TÔI LUÔN SẴN SÀNG\nĐỂ GIÚP ĐỠ BẠN",
+                    'rows' => 2,
+                    'new_lines' => 'br',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_image',
+                    'label' => 'Hình ảnh nhân viên / Đội ngũ hỗ trợ',
+                    'name' => 'shop_single_support_image',
+                    'type' => 'image',
+                    'instructions' => 'Tải lên hình ảnh đội ngũ tư vấn hoặc showroom',
+                    'return_format' => 'url',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_call_text',
+                    'label' => 'Dòng chữ trước số điện thoại',
+                    'name' => 'shop_single_support_call_text',
+                    'type' => 'text',
+                    'instructions' => 'Ví dụ: Để được hỗ trợ tốt nhất. Hãy gọi',
+                    'default_value' => 'Để được hỗ trợ tốt nhất. Hãy gọi',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_phone',
+                    'label' => 'Số điện thoại Hotline',
+                    'name' => 'shop_single_support_phone',
+                    'type' => 'text',
+                    'instructions' => 'Số điện thoại Hotline hiển thị nổi bật',
+                    'default_value' => '0582000888',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_chat_text',
+                    'label' => 'Dòng chữ giới thiệu Chat',
+                    'name' => 'shop_single_support_chat_text',
+                    'type' => 'text',
+                    'instructions' => 'Ví dụ: Chat hỗ trợ trực tuyến',
+                    'default_value' => 'Chat hỗ trợ trực tuyến',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_chat_btn_text',
+                    'label' => 'Chữ trên nút Chat',
+                    'name' => 'shop_single_support_chat_btn_text',
+                    'type' => 'text',
+                    'instructions' => 'Ví dụ: CHAT VỚI CHÚNG TÔI',
+                    'default_value' => 'CHAT VỚI CHÚNG TÔI',
+                ),
+                array(
+                    'key' => 'field_shop_single_support_chat_link',
+                    'label' => 'Đường dẫn nút Chat',
+                    'name' => 'shop_single_support_chat_link',
+                    'type' => 'text',
+                    'instructions' => 'Đường dẫn Zalo, Messenger hoặc link chat (Ví dụ: https://zalo.me/0582000888)',
+                    'default_value' => 'https://zalo.me/0582000888',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'theme-general-settings',
+                    ),
+                ),
+            ),
+            'menu_order' => 15,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+        ));
+    }
+}
+
+// 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
+function gobike_render_shop_top_banners()
+{
+    // Fallback banner mặc định
+    $default_banner_url = content_url('/uploads/banners/store-banner-dual.png');
+
+    // Ưu tiên đọc từ Theme Settings (option)
+    $img1 = get_field('shop_banner_image_1', 'option');
+    if (!$img1)
+        $img1 = get_field('shop_banner_image_1');
+    if (!$img1)
+        $img1 = $default_banner_url;
+
+    $link1 = get_field('shop_banner_link_1', 'option');
+    if (!$link1)
+        $link1 = get_field('shop_banner_link_1');
+    if (!$link1)
+        $link1 = '#';
+
+    $img2 = get_field('shop_banner_image_2', 'option');
+    if (!$img2)
+        $img2 = get_field('shop_banner_image_2');
+    if (!$img2)
+        $img2 = $default_banner_url;
+
+    $link2 = get_field('shop_banner_link_2', 'option');
+    if (!$link2)
+        $link2 = get_field('shop_banner_link_2');
+    if (!$link2)
+        $link2 = '#';
+
+    $img1_url = is_array($img1) ? ($img1['url'] ?? '') : (is_numeric($img1) ? wp_get_attachment_image_url($img1, 'full') : $img1);
+    $img2_url = is_array($img2) ? ($img2['url'] ?? '') : (is_numeric($img2) ? wp_get_attachment_image_url($img2, 'full') : $img2);
+
+    if (empty($img1_url) && empty($img2_url)) {
+        return '';
+    }
+
+    ob_start();
+    ?>
+    <div class="row gobike-dual-banners-row" id="gobike-shop-top-banners">
+        <?php if (!empty($img1_url)): ?>
+            <div class="col medium-6 small-12 gobike-banner-col">
+                <div class="col-inner">
+                    <div class="gobike-zoom-banner">
+                        <a href="<?php echo esc_url($link1); ?>" title="Banner tiện ích cửa hàng 1">
+                            <img src="<?php echo esc_url($img1_url); ?>" alt="Banner tiện ích cửa hàng 1" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($img2_url)): ?>
+            <div class="col medium-6 small-12 gobike-banner-col">
+                <div class="col-inner">
+                    <div class="gobike-zoom-banner">
+                        <a href="<?php echo esc_url($link2); ?>" title="Banner tiện ích cửa hàng 2">
+                            <img src="<?php echo esc_url($img2_url); ?>" alt="Banner tiện ích cửa hàng 2" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
+
+// 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
+function gobike_render_shop_bottom_content()
+{
+    // Ưu tiên đọc từ Theme Settings (option)
+    $title = get_field('shop_bottom_title', 'option');
+    if (!$title)
+        $title = get_field('shop_bottom_title');
+    if (!$title)
+        $title = 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos';
+
+    $content = get_field('shop_bottom_content', 'option');
+    if (!$content)
+        $content = get_field('shop_bottom_content');
+    if (!$content) {
+        $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
+    }
+
+    if (empty($title) && empty($content)) {
+        return '';
+    }
+
+    ob_start();
+    ?>
+    <div class="row gobike-shop-bottom-seo-row" id="gobike-shop-bottom-seo">
+        <div class="col large-12 medium-12 small-12">
+            <div class="col-inner">
+                <div class="gobike-shop-seo-box">
+                    <?php if (!empty($title)): ?>
+                        <h3 class="gobike-seo-title"><?php echo esc_html($title); ?></h3>
+                    <?php endif; ?>
+                    <?php if (!empty($content)): ?>
+                        <div class="gobike-seo-content"><?php echo wpautop($content); ?></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('gobike_shop_bottom_content', 'gobike_render_shop_bottom_content');
+
+// 4. Render khối hỗ trợ khách hàng trang chi tiết sản phẩm (Single Product Support Box)
+function gobike_render_single_product_support_box()
+{
+    $title = get_field('shop_single_support_title', 'option');
+    if (!$title)
+        $title = get_field('shop_single_support_title');
+    if (!$title)
+        $title = "CHÚNG TÔI LUÔN SẴN SÀNG\nĐỂ GIÚP ĐỠ BẠN";
+
+    $img = get_field('shop_single_support_image', 'option');
+    if (!$img)
+        $img = get_field('shop_single_support_image');
+    $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'full') : $img);
+    if (!$img_url) {
+        $img_url = content_url('/uploads/support/support-team.png');
+    }
+
+    $call_text = get_field('shop_single_support_call_text', 'option');
+    if (!$call_text)
+        $call_text = get_field('shop_single_support_call_text');
+    if (!$call_text)
+        $call_text = 'Để được hỗ trợ tốt nhất. Hãy gọi';
+
+    $phone = get_field('shop_single_support_phone', 'option');
+    if (!$phone)
+        $phone = get_field('shop_single_support_phone');
+    if (!$phone)
+        $phone = '0582000888';
+    $phone_clean = preg_replace('/[^0-9+]/', '', $phone);
+
+    $chat_text = get_field('shop_single_support_chat_text', 'option');
+    if (!$chat_text)
+        $chat_text = get_field('shop_single_support_chat_text');
+    if (!$chat_text)
+        $chat_text = 'Chat hỗ trợ trực tuyến';
+
+    $chat_btn_text = get_field('shop_single_support_chat_btn_text', 'option');
+    if (!$chat_btn_text)
+        $chat_btn_text = get_field('shop_single_support_chat_btn_text');
+    if (!$chat_btn_text)
+        $chat_btn_text = 'CHAT VỚI CHÚNG TÔI';
+
+    $chat_link = get_field('shop_single_support_chat_link', 'option');
+    if (!$chat_link)
+        $chat_link = get_field('shop_single_support_chat_link');
+    if (!$chat_link)
+        $chat_link = 'https://zalo.me/' . $phone_clean;
+
+    ob_start();
+    ?>
+    <div class="gobike-single-support-card">
+        <?php if (!empty($title)): ?>
+            <h4 class="single-support-title"><?php echo wp_kses_post(nl2br(trim($title))); ?></h4>
+        <?php endif; ?>
+
+        <?php if (!empty($img_url)): ?>
+            <div class="single-support-image">
+                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr(strip_tags($title)); ?>" loading="lazy" />
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($call_text)): ?>
+            <p class="single-support-call-text"><?php echo esc_html($call_text); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($phone)): ?>
+            <div class="single-support-phone-wrap">
+                <a href="tel:<?php echo esc_attr($phone_clean); ?>" class="single-support-phone"><?php echo esc_html($phone); ?></a>
+            </div>
+        <?php endif; ?>
+
+        <div class="single-support-divider">
+            <span>HOẶC</span>
+        </div>
+
+        <?php if (!empty($chat_text)): ?>
+            <p class="single-support-chat-text"><?php echo esc_html($chat_text); ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty($chat_link) && !empty($chat_btn_text)): ?>
+            <div class="single-support-btn-wrap">
+                <a href="<?php echo esc_url($chat_link); ?>" target="_blank" rel="nofollow noopener" class="single-support-chat-btn">
+                    <?php echo esc_html($chat_btn_text); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('gobike_single_support_box', 'gobike_render_single_product_support_box');
+
 /* Remove Image Sizes */
 add_filter('intermediate_image_sizes_advanced', '__return_false');
 
@@ -188,26 +636,50 @@ function invert_formatted_sale_price($price, $regular_price, $sale_price)
 {
     return '<ins>' . (is_numeric($sale_price) ? wc_price($sale_price) : $sale_price) . '</ins><del><span>Giá niêm yết: </span>' . (is_numeric($regular_price) ? wc_price($regular_price) : $regular_price) . '</del>';
 }
-add_filter('woocommerce_variation_option_name', 'display_price_in_variation_option_name');
-function display_price_in_variation_option_name($term)
+// add_filter( 'woocommerce_variation_option_name', 'display_price_in_variation_option_name' );
+// function display_price_in_variation_option_name( $term ) {
+//     global $wpdb, $product;
+//     $result = $wpdb->get_col( "SELECT slug FROM {$wpdb->prefix}terms WHERE name = '$term'" );
+//     $term_slug = ( !empty( $result ) ) ? $result[0] : $term;
+//     $query = "SELECT postmeta.post_id AS product_id
+//                 FROM {$wpdb->prefix}postmeta AS postmeta
+//                     LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id )
+//                 WHERE postmeta.meta_key LIKE 'attribute_%'
+//                     AND postmeta.meta_value = '$term_slug'
+//                     AND products.post_parent = $product->id";
+//     $variation_id = $wpdb->get_col( $query );
+//     $parent = wp_get_post_parent_id( $variation_id[0] );
+//     if ( $parent > 0 ) {
+//         $_product = new WC_Product_Variation( $variation_id[0] );
+//         return $_product->get_price();
+//     }
+//     return $term;
+// }
+
+/**
+ * Cấu hình số lượng và số cột sản phẩm liên quan (15 sản phẩm, 5 cột)
+ */
+add_filter('woocommerce_output_related_products_args', function ($args) {
+    $args['posts_per_page'] = 15;
+    $args['columns'] = 5;
+    return $args;
+}, 20);
+
+// Hiển thị tên màu sắc đúng theo thiết lập (Màu đen, Màu xám) thay vì bị đè thành giá tiền số 19490000
+add_filter('woocommerce_variation_option_name', 'gobike_format_variation_color_name');
+function gobike_format_variation_color_name($term)
 {
-    global $wpdb, $product;
-    $result = $wpdb->get_col("SELECT slug FROM {$wpdb->prefix}terms WHERE name = '$term'");
-    $term_slug = (!empty($result)) ? $result[0] : $term;
-    $query = "SELECT postmeta.post_id AS product_id
-                FROM {$wpdb->prefix}postmeta AS postmeta
-                    LEFT JOIN {$wpdb->prefix}posts AS products ON ( products.ID = postmeta.post_id )
-                WHERE postmeta.meta_key LIKE 'attribute_%'
-                    AND postmeta.meta_value = '$term_slug'
-                    AND products.post_parent = $product->id";
-    $variation_id = $wpdb->get_col($query);
-    $parent = wp_get_post_parent_id($variation_id[0]);
-    if ($parent > 0) {
-        $_product = new WC_Product_Variation($variation_id[0]);
-        return $_product->get_price();
+    $trim_term = trim($term);
+    $lower = mb_strtolower($trim_term, 'UTF-8');
+    if ($lower === 'đen') {
+        return 'Màu đen';
+    }
+    if ($lower === 'xám') {
+        return 'Màu xám';
     }
     return $term;
 }
+
 // Add text before add to cart button
 add_action('woocommerce_before_single_variation', 'xt_before_single_variation');
 function xt_before_single_variation()
@@ -393,29 +865,7 @@ class Auto_Save_Images
 }
 new Auto_Save_Images();
 
-// Đoạn JS kích hoạt Pop-up Danh mục khi bấm trên Mobile (Dùng jQuery chuẩn Flatsome)
-add_action('wp_footer', function () { ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            // Bấm vào nút Danh mục ở đáy thì Bật/Tắt Pop-up
-            $('body').on('click', '.footer-menu-mobile li.open-menu-mobile > a, .footer-menu-mobile li.open-menu-mobile', function (e) {
-                if ($(e.target).closest('ul.sub-menu').length === 0) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    $('.footer-menu-mobile li.open-menu-mobile').toggleClass('active-popup');
-                }
-            });
 
-            // Bấm ra ngoài màn hình thì tự đóng Pop-up
-            $(document).on('click touchstart', function (e) {
-                if (!$(e.target).closest('.footer-menu-mobile li.open-menu-mobile').length) {
-                    $('.footer-menu-mobile li.open-menu-mobile').removeClass('active-popup');
-                }
-            });
-        });
-    </script>
-
-<?php });
 
 /**
  * Shortcode hiển thị Khối danh mục Xe đạp trợ lực điện chuẩn giao diện GOBIKE
@@ -597,7 +1047,7 @@ function gobike_render_category_block($atts)
                             <?php echo $price_custom_html; ?>
                         </div>
                     </div>
-                    <?php
+                <?php
                 endif;
             endwhile;
             wp_reset_postdata();
@@ -612,32 +1062,67 @@ function gobike_render_category_block($atts)
 }
 add_shortcode('gobike_category_block', 'gobike_render_category_block');
 
+
+
 // 1. Tạo trang cài đặt Theme Settings trong WP Admin
-add_action('acf/init', 'gobike_register_acf_options_pages');
-function gobike_register_acf_options_pages()
-{
-    if (function_exists('acf_add_options_page')) {
-        acf_add_options_page(array(
-            'page_title' => 'Cài đặt chung Website',
-            'menu_title' => 'Theme Settings',
-            'menu_slug' => 'theme-general-settings',
-            'capability' => 'edit_posts',
-            'redirect' => false,
-            'icon_url' => 'dashicons-admin-generic',
-            'position' => 30,
-        ));
-    }
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'Cài đặt chung Website',
+        'menu_title' => 'Theme Settings',
+        'menu_slug' => 'theme-general-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
 }
 
-// Shortcode [gobike_topbar_ticker] LẤY ĐÚNG 3 Ô BẠN VỪA TẠO Ở TRANG CHỦ
+// 2. Tạo Shortcode [gobike_topbar_ticker] tự động render dòng chữ chạy
+$items = get_field('topbar_marquee_items', 'option');
+
+// Nếu chưa nhập dữ liệu trong ACF thì dùng mặc định
+if (empty($items)) {
+    $items = array(
+        array('text' => 'Sản phẩm <strong>Chính hãng - Xuất VAT</strong> đầy đủ'),
+        array('text' => '<strong>Giao nhanh - Miễn phí</strong> cho đơn 300k'),
+        array('text' => '<strong>Thu cũ</strong> giá ngon - <strong>Lên đời</strong> tiết kiệm'),
+    );
+}
+
+ob_start();
+?>
+<div class="cps-marquee-wrapper">
+    <div class="cps-marquee-track">
+        <?php for ($i = 0; $i < 2; $i++): // Lặp 2 lần để chạy vô tận không đứt đoạn ?>
+            <?php foreach ($items as $item): ?>
+                <div class="cps-item">
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M4.5 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"></path>
+                        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="m8.5 10 2.267 3.927 1.065-2.156 2.399.155L11.964 8M5.035 8l-2.267 3.927 2.399-.156 1.065 2.155L8.499 10">
+                        </path>
+                    </svg>
+                    <span><?php echo $item['text']; ?></span>
+                </div>
+            <?php endforeach; ?>
+        <?php endfor; ?>
+    </div>
+</div>
+<?php
+return ob_get_clean();
+add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
+
+// 1. Ép Flatsome phải chạy Shortcode trong các ô Topbar/Header HTML
+add_filter('flatsome_topbar_text', 'do_shortcode');
+add_filter('flatsome_header_element', 'do_shortcode');
+
+// 2. Shortcode [gobike_topbar_ticker]
 function gobike_topbar_ticker_shortcode()
 {
     $front_page_id = get_option('page_on_front');
 
-    // Gọi đúng tên 3 trường trong ảnh ACF của bạn
-    $item1 = get_field('topbar_item_1', $front_page_id);
-    $item2 = get_field('topbar_item_2', $front_page_id);
-    $item3 = get_field('topbar_item_3', $front_page_id);
+    $item1 = function_exists('get_field') ? get_field('topbar_item_1', $front_page_id) : '';
+    $item2 = function_exists('get_field') ? get_field('topbar_item_2', $front_page_id) : '';
+    $item3 = function_exists('get_field') ? get_field('topbar_item_3', $front_page_id) : '';
 
     $items = array();
     if (!empty($item1))
@@ -647,7 +1132,6 @@ function gobike_topbar_ticker_shortcode()
     if (!empty($item3))
         $items[] = $item3;
 
-    // Nếu trang chủ chưa gõ gì thì lấy câu mặc định
     if (empty($items)) {
         $items = array(
             'Sản phẩm <strong>Chính hãng - Xuất VAT</strong> đầy đủ',
@@ -685,217 +1169,3 @@ function gobike_topbar_ticker_shortcode()
     return ob_get_clean();
 }
 add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
-
-
-/* ============================================================================
- * CẤU HÌNH TRANG SẢN PHẨM: ACF FIELDS & SHORTCODES BẢN QUYỀN GOBIKE
- * 1. Khối 1: Cặp Banner đầu trang (dưới breadcrumb, trên bộ lọc) - Animation phóng to từ tâm
- * 2. Khối 2: Nội dung chân trang SEO (Tiêu đề + Editor)
- * ============================================================================
- */
-
-// 1. Đăng ký ACF Field Group cho Trang sản phẩm
-add_action('acf/init', 'gobike_register_shop_page_acf_fields');
-function gobike_register_shop_page_acf_fields()
-{
-    if (function_exists('acf_add_local_field_group')) {
-        acf_add_local_field_group(array(
-            'key' => 'group_6a9f83f739c54',
-            'title' => 'Banner Sản phẩm',
-            'fields' => array(
-
-                // TAB 1: Khối 1
-                array(
-                    'key' => 'field_tab_shop_banners',
-                    'label' => 'Khối 1: Cặp Banner Tiện Ích Đầu Trang',
-                    'name' => '',
-                    'type' => 'tab',
-                    'placement' => 'top',
-                ),
-                array(
-                    'key' => 'field_shop_banner_image_1',
-                    'label' => 'Hình ảnh Banner 1 (Trái)',
-                    'name' => 'shop_banner_image_1',
-                    'type' => 'image',
-                    'instructions' => 'Tải lên hình ảnh banner 1 (khuyên dùng ~ 600x120px)',
-                    'return_format' => 'url',
-                    'preview_size' => 'medium',
-                    'library' => 'all',
-                ),
-                array(
-                    'key' => 'field_shop_banner_link_1',
-                    'label' => 'Liên kết Banner 1',
-                    'name' => 'shop_banner_link_1',
-                    'type' => 'url',
-                    'instructions' => 'Đường dẫn khi click vào banner 1',
-                    'default_value' => '#',
-                ),
-                array(
-                    'key' => 'field_shop_banner_image_2',
-                    'label' => 'Hình ảnh Banner 2 (Phải)',
-                    'name' => 'shop_banner_image_2',
-                    'type' => 'image',
-                    'instructions' => 'Tải lên hình ảnh banner 2 (khuyên dùng ~ 600x120px)',
-                    'return_format' => 'url',
-                    'preview_size' => 'medium',
-                    'library' => 'all',
-                ),
-                array(
-                    'key' => 'field_shop_banner_link_2',
-                    'label' => 'Liên kết Banner 2',
-                    'name' => 'shop_banner_link_2',
-                    'type' => 'url',
-                    'instructions' => 'Đường dẫn khi click vào banner 2',
-                    'default_value' => '#',
-                ),
-
-                // TAB 2: Khối 2
-                array(
-                    'key' => 'field_tab_shop_bottom_content',
-                    'label' => 'Khối 2: Nội dung cuối trang (SEO)',
-                    'name' => '',
-                    'type' => 'tab',
-                    'placement' => 'top',
-                ),
-                array(
-                    'key' => 'field_shop_bottom_title',
-                    'label' => 'Tiêu đề nội dung chân trang',
-                    'name' => 'shop_bottom_title',
-                    'type' => 'text',
-                    'instructions' => 'Nhập tiêu đề khối nội dung cuối trang',
-                    'default_value' => 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos',
-                ),
-                array(
-                    'key' => 'field_shop_bottom_content',
-                    'label' => 'Nội dung chi tiết (Editor)',
-                    'name' => 'shop_bottom_content',
-                    'type' => 'wysiwyg',
-                    'instructions' => 'Nội dung giới thiệu chính sách, bảo hành cuối trang',
-                    'tabs' => 'all',
-                    'toolbar' => 'full',
-                    'media_upload' => 1,
-                    'default_value' => "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.",
-                ),
-            ),
-            'location' => array(
-                array(
-                    array(
-                        'param' => 'options_page',
-                        'operator' => '==',
-                        'value' => 'theme-general-settings',
-                    ),
-                ),
-            ),
-            'menu_order' => 15,
-            'position' => 'normal',
-            'style' => 'default',
-            'label_placement' => 'top',
-            'instruction_placement' => 'label',
-        ));
-    }
-}
-
-// 2. Render 2 banner bằng cấu trúc HTML Flatsome row - col (hỗ trợ cả gọi hàm trực tiếp lẫn shortcode)
-function gobike_render_shop_top_banners()
-{
-    // Fallback banner mặc định
-    $default_banner_url = content_url('/uploads/banners/store-banner-dual.png');
-
-    // Ưu tiên đọc từ Theme Settings (option)
-    $img1 = get_field('shop_banner_image_1', 'option');
-    if (!$img1) $img1 = get_field('shop_banner_image_1');
-    if (!$img1) $img1 = $default_banner_url;
-
-    $link1 = get_field('shop_banner_link_1', 'option');
-    if (!$link1) $link1 = get_field('shop_banner_link_1');
-    if (!$link1) $link1 = '#';
-
-    $img2 = get_field('shop_banner_image_2', 'option');
-    if (!$img2) $img2 = get_field('shop_banner_image_2');
-    if (!$img2) $img2 = $default_banner_url;
-
-    $link2 = get_field('shop_banner_link_2', 'option');
-    if (!$link2) $link2 = get_field('shop_banner_link_2');
-    if (!$link2) $link2 = '#';
-
-    $img1_url = is_array($img1) ? ($img1['url'] ?? '') : (is_numeric($img1) ? wp_get_attachment_image_url($img1, 'full') : $img1);
-    $img2_url = is_array($img2) ? ($img2['url'] ?? '') : (is_numeric($img2) ? wp_get_attachment_image_url($img2, 'full') : $img2);
-
-    if (empty($img1_url) && empty($img2_url)) {
-        return '';
-    }
-
-    ob_start();
-    ?>
-    <div class="row gobike-dual-banners-row" id="gobike-shop-top-banners">
-        <?php if (!empty($img1_url)): ?>
-            <div class="col medium-6 small-12 gobike-banner-col">
-                <div class="col-inner">
-                    <div class="gobike-zoom-banner">
-                        <a href="<?php echo esc_url($link1); ?>" title="Banner tiện ích cửa hàng 1">
-                            <img src="<?php echo esc_url($img1_url); ?>" alt="Banner tiện ích cửa hàng 1" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-
-        <?php if (!empty($img2_url)): ?>
-            <div class="col medium-6 small-12 gobike-banner-col">
-                <div class="col-inner">
-                    <div class="gobike-zoom-banner">
-                        <a href="<?php echo esc_url($link2); ?>" title="Banner tiện ích cửa hàng 2">
-                            <img src="<?php echo esc_url($img2_url); ?>" alt="Banner tiện ích cửa hàng 2" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-    </div>
-    <?php
-    return ob_get_clean();
-}
-add_shortcode('gobike_shop_top_banners', 'gobike_render_shop_top_banners');
-
-// 3. Render nội dung cuối trang (Tiêu đề + Editor) bằng cấu trúc HTML Flatsome row - col
-function gobike_render_shop_bottom_content()
-{
-    // Ưu tiên đọc từ Theme Settings (option)
-    $title = get_field('shop_bottom_title', 'option');
-    if (!$title) $title = get_field('shop_bottom_title');
-    if (!$title) $title = 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos';
-
-    $content = get_field('shop_bottom_content', 'option');
-    if (!$content) $content = get_field('shop_bottom_content');
-    if (!$content) {
-        $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
-    }
-
-    if (empty($title) && empty($content)) {
-        return '';
-    }
-
-    ob_start();
-    ?>
-    <div class="row gobike-shop-bottom-seo-row" id="gobike-shop-bottom-seo">
-        <div class="col large-12 medium-12 small-12">
-            <div class="col-inner">
-                <div class="gobike-shop-seo-box">
-                    <?php if (!empty($title)): ?>
-                        <h3 class="gobike-seo-title"><?php echo esc_html($title); ?></h3>
-                    <?php endif; ?>
-                    <?php if (!empty($content)): ?>
-                        <div class="gobike-seo-content"><?php echo wpautop($content); ?></div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php
-    return ob_get_clean();
-}
-add_shortcode('gobike_shop_bottom_content', 'gobike_render_shop_bottom_content');
-
-
-
-

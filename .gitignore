@@ -30,3 +30,7 @@ $RECYCLE.BIN/
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Archives
+*.zip
+.tmb/

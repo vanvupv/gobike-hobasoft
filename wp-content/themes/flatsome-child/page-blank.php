@@ -29,14 +29,15 @@ get_header(); ?>
 								$image = $row['image_slide'];
 								$link_url = $row['link_url'];
 								echo '<div class="swiper-slide">';
-									echo '<a href="' . $link_url . '">' ;
-									echo '<img src="' . $image['url'] . '" /></a>';
+									echo '<a href="' . $link_url . '" style="display:block; width:100%; height:100%;">' ;
+									echo '<img src="' . $image['url'] . '" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;" /></a>';
 								echo '</div>';
 							}
 							echo '</div>
 							  <div class="swiper-button-next"></div>
 							  <div class="swiper-button-prev"></div>
 							</div>';
+							echo '<div class="swiper-pagination banner-home-pagination"></div>';
 							echo '<div class="mySwiper">
 							  <div class="swiper-wrapper">';
 							foreach( $rows as $row ) {
@@ -62,12 +63,16 @@ get_header(); ?>
 			spaceBetween: 0,
 			loop: true,
 			autoplay: {
-			  delay: 2500,
+			  delay: 3500,
 			  disableOnInteraction: false,
 			},
 			navigation: {
 			  nextEl: ".swiper-button-next",
 			  prevEl: ".swiper-button-prev",
+			},
+			pagination: {
+			  el: ".banner-home-pagination",
+			  clickable: true,
 			},
 			thumbs: {
 			  swiper: swiper,
@@ -117,10 +122,9 @@ get_header(); ?>
 							?>
 						</div>
 
-						<!-- ĐOẠN ẢNH HIỂN THỊ 100% TRỌN VẸN KHÔNG BỊ ĂN MẤT CHI TIẾT -->
-						<div class="bottom-news-image" style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #eee;">
+						<div class="bottom-news-image" style="margin-top: auto; padding-top: 8px; border-top: 1px dashed #eee;">
 							<a href="#" style="display:block;">
-								<img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/a1e918d9-98b2-4b9d-a3ee-e8b471e1c491.webp" alt="Banner quảng cáo" style="width:100%; height:auto; display:block; border-radius:8px;">
+								<img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/a1e918d9-98b2-4b9d-a3ee-e8b471e1c491.webp" alt="Banner quảng cáo" style="width:100%; height:115px; object-fit:cover; object-position:center; display:block; border-radius:8px;">
 							</a>
 						</div>
 
