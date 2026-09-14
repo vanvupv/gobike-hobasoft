@@ -35,14 +35,36 @@ function hide_notice()
 {
     remove_action('admin_notices', 'flatsome_maintenance_admin_notice');
 }
-register_sidebar(array(
-    'name' => __('Main Menu', 'flatsome'),
-    'id' => 'menu-main',
-    'before_widget' => '<div id="%1$s" class="%2$s">',
-    'after_widget' => '</div>',
-    'before_title' => '<span class="widget-title"><span>',
-    'after_title' => '</span></span>',
-));
+add_action('widgets_init', 'gobike_register_custom_sidebars');
+function gobike_register_custom_sidebars()
+{
+    register_sidebar(array(
+        'name' => __('Main Menu', 'flatsome'),
+        'id' => 'menu-main',
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<span class="widget-title"><span>',
+        'after_title' => '</span></span>',
+    ));
+
+    register_sidebar(array(
+        'name' => __('Menu Tab', 'flatsome'),
+        'id' => 'sidebar-brand',
+        'before_widget' => '<div id="%1$s" class="%2$s menu-tab">',
+        'after_widget' => '</div>',
+        'before_title' => '<span class="widget-title"><span>',
+        'after_title' => '</span></span>',
+    ));
+
+    register_sidebar(array(
+        'name' => __('Bộ lọc sản phẩm', 'flatsome'),
+        'id' => 'filter-sidebar',
+        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<span class="widget-title"><span>',
+        'after_title' => '</span></span>',
+    ));
+}
 
 register_sidebar(array(
     'name' => __('Menu Tab', 'flatsome'),
@@ -896,9 +918,10 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
-// 1. Ép Flatsome phải chạy Shortcode trong các ô Topbar/Header HTML
-add_filter('flatsome_topbar_text', 'do_shortcode');
-add_filter('flatsome_header_element', 'do_shortcode');
+// 1. Ép Flatsome chạy Shortcode an toàn trong Topbar Text (Kiểm tra kiểu chuỗi)
+add_filter('flatsome_topbar_text', function ($text) {
+    return is_string($text) ? do_shortcode($text) : $text;
+});
 
 // 2. Shortcode [gobike_topbar_ticker]
 function gobike_topbar_ticker_shortcode()
