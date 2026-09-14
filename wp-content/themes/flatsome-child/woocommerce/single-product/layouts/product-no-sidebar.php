@@ -139,8 +139,16 @@ global $product, $post;
     </div>
   </div>
   
+  <?php
+  // Khối Video Trải Nghiệm Thực Tế cho sản phẩm (ACF hoặc CPT Video Review liên kết)
+  if ( function_exists( 'gobike_render_single_product_videos' ) && isset( $product ) ) {
+      echo gobike_render_single_product_videos( $product->get_id() );
+  }
+  ?>
+
   <div class="container">
 	<div class="gobike-related-wrapper">
+
 		<div class="gobike-related-header">
 			<div class="gobike-related-title-box">
 				<?php if ( ! empty( $upsells ) ) : ?>

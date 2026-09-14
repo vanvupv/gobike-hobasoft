@@ -24,8 +24,10 @@ foreach (glob(__DIR__ . '/shortcodes/home/*.php') as $file) {
 | **03** | **Khối Tabs Thương Hiệu** (ADO, Phoenix...) | [sc-brand-tabs.php](file:///e:/1.%20D%E1%BB%B0%20%C3%81N%20TH%E1%BB%B0C%20T%E1%BA%BE%20(2026)/(17)%20GOBIKE%20(28082026)/wp-content/themes/flatsome-child/shortcodes/home/sc-brand-tabs.php) | `[gobike_home_brand_tabs]` | `title`: tiêu đề khối<br>`limit`: số sản phẩm mỗi tab (mặc định 8) |
 | **04** | **Khối Video Reviews** (Trải nghiệm thực tế) | [sc-video-reviews.php](file:///e:/1.%20D%E1%BB%B0%20%C3%81N%20TH%E1%BB%B0C%20T%E1%BA%BE%20(2026)/(17)%20GOBIKE%20(28082026)/wp-content/themes/flatsome-child/shortcodes/home/sc-video-reviews.php) | `[gobike_home_video_reviews]` | `title`: tiêu đề khối<br>`subtitle`: dòng mô tả phụ<br>`view_all`: link xem tất cả<br>*(Tích hợp CPT `video_review`, lọc tab động, popup YouTube và khối marketing Tại sao nên xem)* |
 | **05** | **Bộ Lọc Nhanh & Tư Vấn 60 Giây** | [sc-quick-finder.php](file:///e:/1.%20D%E1%BB%B0%20%C3%81N%20TH%E1%BB%B0C%20T%E1%BA%BE%20(2026)/(17)%20GOBIKE%20(28082026)/wp-content/themes/flatsome-child/shortcodes/home/sc-quick-finder.php) | `[gobike_quick_finder]` | Không cần tham số (Tích hợp sẵn 5 bộ lọc, popup tư vấn, gửi mail & lưu Lead vào CPT `customer_lead`) |
+| **06** | **Video Shorts Trải Nghiệm Thật** (CellphoneS Style) | [sc-experience-videos.php](file:///e:/1.%20D%E1%BB%B0%20%C3%81N%20TH%E1%BB%B0C%20T%E1%BA%BE%20(2026)/(17)%20GOBIKE%20(28082026)/wp-content/themes/flatsome-child/shortcodes/home/sc-experience-videos.php) | `[gobike_experience_videos]`<br>`[gobike_product_videos]` | `title`: tiêu đề section (Mặc định: `NGƯỜI THẬT - XE THẬT - TRẢI NGHIỆM THẬT`)<br>`limit`: số video hiển thị (mặc định 4)<br>`view_all`: link xem thêm video<br>*(Chuẩn tỉ lệ dọc 9:16 Shorts, chữ quote nghệ thuật, lượt xem, badge đỏ Shorts, gắn kèm mini card xe WooCommerce bên dưới và popup xem video kèm nút mua ngay)* |
 
 ---
+
 
 ## 3. Ví dụ cách chèn trong Flatsome UX Builder
 
