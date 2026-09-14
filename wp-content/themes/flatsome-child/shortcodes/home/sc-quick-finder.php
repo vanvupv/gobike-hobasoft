@@ -304,7 +304,7 @@ function gobike_render_quick_finder_shortcode($atts)
                         </svg>
                         <span>Chỉ mất 60 giây</span>
                     </div>
-                    <h2 class="gqf-title">60 GIÂY<br>CHỌN ĐÚNG XE</h2>
+                    <h2 class="gqf-title"><span class="gqf-title-yellow">60 GIÂY</span><br>CHỌN ĐÚNG XE</h2>
                     <p class="gqf-desc">Trả lời vài câu hỏi đơn giản, GoBike sẽ gợi ý những mẫu xe phù hợp nhất dành cho bạn.</p>
                 </div>
 
@@ -312,10 +312,10 @@ function gobike_render_quick_finder_shortcode($atts)
                 <div class="gqf-steps">
                     <!-- Bước 1 -->
                     <div class="gqf-step-item">
+                        <span class="gqf-step-num">1</span>
                         <div class="gqf-step-circle">
-                            <span class="gqf-step-num">1</span>
                             <div class="gqf-step-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                     <polyline points="14 2 14 8 20 8"></polyline>
                                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -329,10 +329,10 @@ function gobike_render_quick_finder_shortcode($atts)
 
                     <!-- Bước 2 -->
                     <div class="gqf-step-item">
+                        <span class="gqf-step-num">2</span>
                         <div class="gqf-step-circle">
-                            <span class="gqf-step-num">2</span>
                             <div class="gqf-step-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="8" cy="8" r="6"></circle>
                                     <path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path>
                                     <path d="M7 6h1v4"></path>
@@ -345,10 +345,10 @@ function gobike_render_quick_finder_shortcode($atts)
 
                     <!-- Bước 3 -->
                     <div class="gqf-step-item">
+                        <span class="gqf-step-num">3</span>
                         <div class="gqf-step-circle">
-                            <span class="gqf-step-num">3</span>
                             <div class="gqf-step-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                 </svg>
                             </div>
@@ -358,10 +358,10 @@ function gobike_render_quick_finder_shortcode($atts)
 
                     <!-- Bước 4 -->
                     <div class="gqf-step-item">
+                        <span class="gqf-step-num">4</span>
                         <div class="gqf-step-circle">
-                            <span class="gqf-step-num">4</span>
                             <div class="gqf-step-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="20 12 20 22 4 22 4 12"></polyline>
                                     <rect x="2" y="7" width="20" height="5"></rect>
                                     <line x1="12" y1="22" x2="12" y2="7"></line>
@@ -695,9 +695,9 @@ function gobike_render_quick_finder_modal_footer()
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     }
     .gqf-container {
-        background: linear-gradient(135deg, #149d29 0%, #0e701d 100%);
+        background: linear-gradient(135deg, #149d29 0%, #0c6a1b 100%);
         border-radius: 16px;
-        padding: 24px 28px 20px 28px;
+        padding: 16px 20px 14px 20px;
         color: #ffffff;
         box-shadow: none !important;
         position: relative;
@@ -722,99 +722,109 @@ function gobike_render_quick_finder_modal_footer()
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        margin-bottom: 22px;
+        gap: 16px;
+        margin-bottom: 14px;
     }
 
     /* Cột trái: Intro */
     .gqf-intro {
-        flex: 0 0 260px;
+        flex: 0 0 280px;
     }
     .gqf-badge {
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        background: #fbbf24;
-        color: #1f2937;
-        font-size: 11px;
+        background: #facc15;
+        color: #0f172a;
+        font-size: 12px;
         font-weight: 700;
-        padding: 3px 10px;
+        padding: 4px 12px;
         border-radius: 20px;
         margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.2px;
     }
     .gqf-title {
-        font-size: 26px;
+        font-size: 34px;
         font-weight: 700;
-        line-height: 1.15;
+        line-height: 1.08;
         color: #ffffff;
-        margin: 0 0 6px 0;
-        letter-spacing: 0.5px;
+        margin: 0 0 8px 0;
+        letter-spacing: -0.5px;
+    }
+    .gqf-title-yellow {
+        color: #facc15;
     }
     .gqf-desc {
-        font-size: 12.5px;
+        font-size: 16px;
         line-height: 1.45;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.9);
         margin: 0;
     }
 
     /* Cột giữa: 4 Bước */
     .gqf-steps {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
-        gap: 24px;
+        gap: 10px;
         flex: 1;
     }
     .gqf-step-item {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
-        max-width: 110px;
-    }
-    .gqf-step-circle {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        display: flex;
-        align-items: center;
         justify-content: center;
-        position: relative;
-        margin-bottom: 8px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 14px 10px 10px 10px;
+        width: 125px;
+        min-height: 125px;
+        box-shadow: none !important;
         transition: transform 0.2s, background 0.2s;
     }
-    .gqf-step-item:hover .gqf-step-circle {
+    .gqf-step-item:hover {
         transform: translateY(-2px);
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.24);
     }
     .gqf-step-num {
         position: absolute;
-        top: -3px;
-        left: -3px;
-        width: 18px;
-        height: 18px;
+        top: 8px;
+        left: 8px;
+        width: 22px;
+        height: 22px;
         border-radius: 50%;
         background: #ffffff;
-        color: #149d29;
-        font-size: 11px;
+        color: #0f172a;
+        font-size: 12px;
         font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: none !important;
     }
-    .gqf-step-icon {
-        color: #ffffff;
+    .gqf-step-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 4px 0 8px 0;
+        color: #ffffff;
+    }
+    .gqf-step-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #ffffff;
+        display: block;
     }
     .gqf-step-label {
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         color: #ffffff;
         line-height: 1.3;
@@ -825,36 +835,47 @@ function gobike_render_quick_finder_modal_footer()
         display: flex;
         flex-direction: column;
         align-items: center;
-        flex: 0 0 210px;
+        flex: 0 0 220px;
     }
     .gqf-btn-primary {
         width: 100%;
-        background: #fbbf24;
-        color: #111827;
-        font-size: 13.5px;
-        font-weight: 700;
-        padding: 12px 18px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        background: #facc15 !important;
+        color: #0f172a !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        padding: 13px 20px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border: none !important;
+        border-radius: 30px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
         box-shadow: none !important;
-        transition: all 0.25s ease;
+        white-space: nowrap !important;
+        transition: all 0.2s ease !important;
     }
     .gqf-btn-primary:hover {
-        background: #f59e0b;
+        background: #eab308 !important;
         transform: translateY(-2px);
-        box-shadow: none !important;
-        color: #000000;
+        color: #0f172a !important;
+    }
+    .gqf-btn-primary span {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        line-height: 1.2 !important;
+    }
+    .gqf-btn-primary svg {
+        stroke: #0f172a !important;
     }
     .gqf-cta-subtext {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.85);
         margin-top: 6px;
-        letter-spacing: 0.2px;
+        white-space: nowrap;
     }
 
     /* ==========================================================================
@@ -962,48 +983,53 @@ function gobike_render_quick_finder_modal_footer()
         flex-shrink: 0;
     }
     .gqf-btn-loc-nhanh {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 700;
-        height: 38px;
-        padding: 0 14px;
-        border-radius: 20px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.2s;
-        white-space: nowrap;
+        background: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        color: #ffffff !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        height: 38px !important;
+        padding: 0 14px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border-radius: 20px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        transition: all 0.2s !important;
+        white-space: nowrap !important;
+        box-shadow: none !important;
     }
     .gqf-btn-loc-nhanh:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: #ffffff;
-        color: #ffffff;
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: #ffffff !important;
+        color: #ffffff !important;
     }
     .gqf-btn-tim-xe {
-        background: #fbbf24;
-        border: 1px solid #fbbf24;
-        color: #111827;
-        font-size: 12px;
-        font-weight: 700;
-        height: 38px;
-        padding: 0 16px;
-        border-radius: 20px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.2s;
-        white-space: nowrap;
+        background: #facc15 !important;
+        border: 1px solid #facc15 !important;
+        color: #0f172a !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        height: 38px !important;
+        padding: 0 16px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border-radius: 20px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        transition: all 0.2s !important;
+        white-space: nowrap !important;
         box-shadow: none !important;
     }
     .gqf-btn-tim-xe:hover {
-        background: #f59e0b;
-        border-color: #f59e0b;
+        background: #eab308 !important;
+        border-color: #eab308 !important;
         transform: translateY(-1px);
-        color: #000000;
+        color: #0f172a !important;
     }
 
     /* ==========================================================================
@@ -1340,11 +1366,25 @@ function gobike_render_quick_finder_modal_footer()
             gap: 6px;
         }
         .gqf-step-item {
-            max-width: 100%;
+            width: 100%;
+            min-height: unset;
+            padding: 8px 4px;
+        }
+        .gqf-step-num {
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            top: 4px;
+            left: 4px;
         }
         .gqf-step-circle {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
+            margin: 2px 0 4px 0;
+        }
+        .gqf-step-icon svg {
+            width: 18px;
+            height: 18px;
         }
         .gqf-step-label {
             font-size: 10.5px;
