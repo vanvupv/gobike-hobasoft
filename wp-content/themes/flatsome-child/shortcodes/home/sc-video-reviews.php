@@ -1240,7 +1240,7 @@ function gobike_render_video_player_modal_footer()
     .gvr-vm-close {
         position: absolute;
         top: -12px;
-        left: -12px;
+        right: -12px;
         background: #ffffff !important;
         border: 1px solid #cbd5e1 !important;
         color: #000000 !important;
@@ -1308,7 +1308,7 @@ function gobike_render_video_player_modal_footer()
         }
         .gvr-vm-close {
             top: -10px;
-            left: -8px;
+            right: -8px;
         }
         .gvr-side-list {
             grid-template-columns: 1fr;
