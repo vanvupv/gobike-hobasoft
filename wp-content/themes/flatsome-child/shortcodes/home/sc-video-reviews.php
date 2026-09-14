@@ -785,6 +785,7 @@ function gobike_render_video_player_modal_footer()
             grid-template-columns: 1.25fr 1fr;
             gap: 8px;
             margin-bottom: 25px;
+            align-items: start;
         }
 
         /* FEATURED CARD LỚN */
@@ -1038,6 +1039,8 @@ function gobike_render_video_player_modal_footer()
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
+            align-content: start;
+            align-items: start;
         }
 
         .gvr-card-horizontal {
@@ -1050,6 +1053,7 @@ function gobike_render_video_player_modal_footer()
             cursor: pointer;
             box-shadow: none !important;
             transition: transform 0.2s;
+            height: fit-content;
         }
 
         .gvr-card-horizontal:hover {
