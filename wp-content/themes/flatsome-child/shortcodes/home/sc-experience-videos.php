@@ -44,46 +44,73 @@ function gobike_render_experience_videos_shortcode($atts)
             'views'         => '125K lượt xem',
             'thumb'         => 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&auto=format&fit=crop&q=80',
             'yt_id'         => 'dQw4w9WgXcQ',
+            'prod_id'       => 0,
             'prod_name'     => 'PHOENIX M3',
             'prod_cat'      => 'Xe đạp trợ lực điện',
             'prod_price'    => '16.990.000đ',
             'prod_thumb'    => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=200&auto=format&fit=crop&q=80',
-            'prod_url'      => '#',
+            'prod_url'      => home_url('/cua-hang/'),
         ),
         array(
             'video_title'   => 'Khám phá thành phố theo cách riêng!',
             'views'         => '98K lượt xem',
             'thumb'         => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&auto=format&fit=crop&q=80',
             'yt_id'         => 'dQw4w9WgXcQ',
+            'prod_id'       => 0,
             'prod_name'     => 'SHENGMILO S600',
             'prod_cat'      => 'Xe đạp trợ lực điện',
             'prod_price'    => '22.900.000đ',
             'prod_thumb'    => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=200&auto=format&fit=crop&q=80',
-            'prod_url'      => '#',
+            'prod_url'      => home_url('/cua-hang/'),
         ),
         array(
             'video_title'   => 'Nhỏ gọn đồng hành mọi hành trình!',
             'views'         => '76K lượt xem',
             'thumb'         => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
             'yt_id'         => 'dQw4w9WgXcQ',
+            'prod_id'       => 0,
             'prod_name'     => 'RAPIDX P1',
             'prod_cat'      => 'Xe gấp trợ lực điện',
             'prod_price'    => '18.500.000đ',
             'prod_thumb'    => 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=200&auto=format&fit=crop&q=80',
-            'prod_url'      => '#',
+            'prod_url'      => home_url('/cua-hang/'),
         ),
         array(
             'video_title'   => 'Thêm năng lượng cho những chuyến đi xa!',
             'views'         => '62K lượt xem',
             'thumb'         => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=600&auto=format&fit=crop&q=80',
             'yt_id'         => 'dQw4w9WgXcQ',
+            'prod_id'       => 0,
             'prod_name'     => 'TRƯỜNG VƯƠNG X1',
             'prod_cat'      => 'Xe đạp trợ lực điện',
             'prod_price'    => '19.990.000đ',
             'prod_thumb'    => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=200&auto=format&fit=crop&q=80',
-            'prod_url'      => '#',
+            'prod_url'      => home_url('/cua-hang/'),
         ),
     );
+
+    // Tự động tìm sản phẩm thực tế trong WooCommerce nếu chưa có bài CPT
+    if (!$v_query->have_posts() && function_exists('wc_get_products')) {
+        $real_products = wc_get_products(array(
+            'limit'   => 4,
+            'status'  => 'publish',
+            'orderby' => 'date',
+            'order'   => 'DESC',
+        ));
+        if (!empty($real_products)) {
+            foreach ($real_products as $idx => $rp) {
+                if (isset($demo_shorts[$idx])) {
+                    $demo_shorts[$idx]['prod_id']    = $rp->get_id();
+                    $demo_shorts[$idx]['prod_name']  = $rp->get_name();
+                    $demo_shorts[$idx]['prod_price'] = $rp->get_price_html();
+                    $demo_shorts[$idx]['prod_url']   = $rp->get_permalink();
+                    $demo_shorts[$idx]['prod_thumb'] = wp_get_attachment_image_url($rp->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($rp->get_id(), 'thumbnail') ?: $demo_shorts[$idx]['prod_thumb']);
+                    $demo_shorts[$idx]['prod_cat']   = strip_tags(wc_get_product_category_list($rp->get_id(), ', ', '', ''));
+                    $demo_shorts[$idx]['is_variable']= $rp->is_type('variable');
+                }
+            }
+        }
+    }
 
     ob_start();
     ?>
@@ -123,20 +150,26 @@ function gobike_render_experience_videos_shortcode($atts)
                     $product_obj  = $rel_prod_id ? wc_get_product($rel_prod_id) : null;
 
                     if ($product_obj) {
+                        $p_id    = $product_obj->get_id();
                         $p_name  = $product_obj->get_name();
-                        $p_thumb = wp_get_attachment_image_url($product_obj->get_image_id(), 'thumbnail') ?: wc_placeholder_img_src();
+                        $p_thumb = wp_get_attachment_image_url($product_obj->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($p_id, 'thumbnail') ?: wc_placeholder_img_src());
                         $p_price = $product_obj->get_price_html();
                         $p_url   = $product_obj->get_permalink();
-                        $p_cats  = wc_get_product_category_list($product_obj->get_id(), ', ', '', '');
+                        $p_cats  = wc_get_product_category_list($p_id, ', ', '', '');
                         $p_cart  = $product_obj->add_to_cart_url();
+                        $p_is_var= $product_obj->is_type('variable');
                     } else {
+                        $p_id    = 0;
                         $p_name  = 'XE ĐẠP GOBIKE';
                         $p_thumb = $thumb;
                         $p_price = '18.990.000đ';
                         $p_url   = home_url('/cua-hang/');
                         $p_cats  = 'Xe đạp trợ lực điện';
                         $p_cart  = home_url('/cua-hang/');
+                        $p_is_var= false;
                     }
+
+                    $btn_add_to_cart_url = $p_id ? add_query_arg('add-to-cart', $p_id, $p_url) : $p_url;
                     ?>
                     <div class="gev-card">
                         <!-- PHẦN TRÊN: VIDEO SHORTS 9:16 -->
@@ -192,11 +225,25 @@ function gobike_render_experience_videos_shortcode($atts)
                                 <span class="gev-prod-cat"><?php echo strip_tags($p_cats); ?></span>
                                 <div class="gev-prod-price"><?php echo $p_price; ?></div>
                             </div>
-                            <a href="<?php echo esc_url($p_url); ?>" class="gev-prod-cart-btn" aria-label="Xem sản phẩm">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <a href="<?php echo esc_url($btn_add_to_cart_url); ?>" 
+                               class="gev-prod-cart-btn button product_type_simple add_to_cart_button ajax_add_to_cart <?php echo $p_is_var ? 'quick-view' : ''; ?>" 
+                               data-product_id="<?php echo esc_attr($p_id); ?>"
+                               data-prod="<?php echo esc_attr($p_id); ?>"
+                               data-product_name="<?php echo esc_attr($p_name); ?>"
+                               data-quantity="1"
+                               aria-label="Thêm <?php echo esc_attr($p_name); ?> vào giỏ hàng" 
+                               title="Thêm vào giỏ hàng"
+                               rel="nofollow">
+                                <svg class="gev-cart-icon-default" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <svg class="gev-cart-icon-loading" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                    <path d="M12 2v4m0 12v4m-7-7H1m22 0h-4m-2.93-7.07l2.83-2.83M6.1 17.9l2.83-2.83m0-8.97L6.1 6.1m11.8 11.8l-2.83-2.83"/>
+                                </svg>
+                                <svg class="gev-cart-icon-added" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
                             </a>
                         </div>
@@ -208,6 +255,9 @@ function gobike_render_experience_videos_shortcode($atts)
                 // RENDER DỮ LIỆU MẪU ĐÚNG 100% ẢNH THIẾT KẾ
                 foreach ($demo_shorts as $ds) {
                     $embed_src = 'https://www.youtube.com/embed/' . $ds['yt_id'] . '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+                    $d_prod_id = isset($ds['prod_id']) ? $ds['prod_id'] : 0;
+                    $d_cart_url = $d_prod_id ? add_query_arg('add-to-cart', $d_prod_id, $ds['prod_url']) : $ds['prod_url'];
+                    $d_is_var  = !empty($ds['is_variable']);
                     ?>
                     <div class="gev-card">
                         <!-- PHẦN TRÊN: VIDEO SHORTS 9:16 -->
@@ -263,11 +313,25 @@ function gobike_render_experience_videos_shortcode($atts)
                                 <span class="gev-prod-cat"><?php echo esc_html($ds['prod_cat']); ?></span>
                                 <div class="gev-prod-price"><?php echo esc_html($ds['prod_price']); ?></div>
                             </div>
-                            <a href="<?php echo esc_url($ds['prod_url']); ?>" class="gev-prod-cart-btn" aria-label="Xem sản phẩm">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <a href="<?php echo esc_url($d_cart_url); ?>" 
+                               class="gev-prod-cart-btn button product_type_simple add_to_cart_button ajax_add_to_cart <?php echo $d_is_var ? 'quick-view' : ''; ?>" 
+                               data-product_id="<?php echo esc_attr($d_prod_id); ?>"
+                               data-prod="<?php echo esc_attr($d_prod_id); ?>"
+                               data-product_name="<?php echo esc_attr($ds['prod_name']); ?>"
+                               data-quantity="1"
+                               aria-label="Thêm <?php echo esc_attr($ds['prod_name']); ?> vào giỏ hàng" 
+                               title="Thêm vào giỏ hàng"
+                               rel="nofollow">
+                                <svg class="gev-cart-icon-default" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="9" cy="21" r="1"></circle>
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <svg class="gev-cart-icon-loading" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                    <path d="M12 2v4m0 12v4m-7-7H1m22 0h-4m-2.93-7.07l2.83-2.83M6.1 17.9l2.83-2.83m0-8.97L6.1 6.1m11.8 11.8l-2.83-2.83"/>
+                                </svg>
+                                <svg class="gev-cart-icon-added" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
                             </a>
                         </div>
@@ -281,6 +345,7 @@ function gobike_render_experience_videos_shortcode($atts)
     <?php
     return ob_get_clean();
 }
+
 
 
 /* ============================================================================
@@ -590,8 +655,9 @@ function gobike_render_experience_shorts_modal_footer()
         line-height: 1.2;
     }
     .gev-prod-cart-btn {
-        width: 34px;
-        height: 34px;
+        position: relative;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background: #ecfdf5;
         border: 1px solid #a7f3d0;
@@ -600,13 +666,87 @@ function gobike_render_experience_shorts_modal_footer()
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        transition: all 0.2s;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        padding: 0 !important;
+        text-decoration: none;
     }
     .gev-prod-cart-btn:hover {
         background: #059669;
         color: #ffffff;
         border-color: #059669;
-        transform: scale(1.05);
+        transform: scale(1.08);
+    }
+    .gev-prod-cart-btn .gev-cart-icon-loading,
+    .gev-prod-cart-btn .gev-cart-icon-added {
+        display: none;
+    }
+    .gev-prod-cart-btn.loading {
+        pointer-events: none;
+        background: #f1f5f9 !important;
+        border-color: #cbd5e1 !important;
+        color: #64748b !important;
+    }
+    .gev-prod-cart-btn.loading .gev-cart-icon-default {
+        display: none !important;
+    }
+    .gev-prod-cart-btn.loading .gev-cart-icon-loading {
+        display: block !important;
+        animation: gevSpin 0.7s linear infinite;
+    }
+    .gev-prod-cart-btn.added {
+        background: #10b981 !important;
+        border-color: #10b981 !important;
+        color: #ffffff !important;
+    }
+    .gev-prod-cart-btn.added .gev-cart-icon-default {
+        display: none !important;
+    }
+    .gev-prod-cart-btn.added .gev-cart-icon-added {
+        display: block !important;
+    }
+    @keyframes gevSpin {
+        100% { transform: rotate(360deg); }
+    }
+
+    /* TOAST THÔNG BÁO THÊM GIỎ HÀNG THÀNH CÔNG */
+    .gev-toast-notice {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #064e3b;
+        color: #ffffff;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        z-index: 9999999;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        pointer-events: none;
+    }
+    .gev-toast-notice.show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .gev-toast-notice svg {
+        flex-shrink: 0;
+        color: #34d399;
+    }
+    @media (max-width: 600px) {
+        .gev-toast-notice {
+            bottom: 75px;
+            right: 15px;
+            left: 15px;
+            font-size: 12.5px;
+            padding: 10px 14px;
+        }
     }
 
     /* RESPONSIVE */
@@ -647,7 +787,7 @@ function gobike_render_experience_shorts_modal_footer()
     }
     </style>
 
-    <!-- SCRIPT PHÁT VIDEO TRỰC TIẾP TRÊN CARD (INLINE RUNNER) -->
+    <!-- SCRIPT PHÁT VIDEO TRỰC TIẾP TRÊN CARD (INLINE RUNNER) & AJAX ADD TO CART -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Hàm dừng video đang phát trên 1 card
@@ -718,6 +858,96 @@ function gobike_render_experience_shorts_modal_footer()
                 }
             }
         });
+
+        // 3. Xử lý Thêm vào giỏ hàng AJAX mượt mà
+        function showGevToast(msg) {
+            var toast = document.getElementById('js-gev-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'js-gev-toast';
+                toast.className = 'gev-toast-notice';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span>' + msg + '</span>';
+            toast.classList.add('show');
+            clearTimeout(window.gevToastTimeout);
+            window.gevToastTimeout = setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        if (window.jQuery) {
+            jQuery(document).on('click', '.gev-prod-cart-btn', function(e) {
+                var $btn = jQuery(this);
+                var productId = $btn.data('product_id');
+                var prodName = $btn.data('product_name') || 'Sản phẩm';
+
+                if (!productId || productId == '0') {
+                    // Nếu chưa gắn ID sản phẩm thật (chế độ demo)
+                    var href = $btn.attr('href');
+                    if (href && href !== '#' && href.indexOf('?add-to-cart=0') === -1) {
+                        return; // Chuyển trang bình thường
+                    }
+                    e.preventDefault();
+                    showGevToast('Đang chuyển đến danh mục sản phẩm...');
+                    setTimeout(function() {
+                        window.location.href = '<?php echo esc_url(home_url("/cua-hang/")); ?>';
+                    }, 500);
+                    return;
+                }
+
+                // Nếu là variable product và đang có trigger quick-view thì để Flatsome mở popup chọn phiên bản
+                if ($btn.hasClass('quick-view')) {
+                    return;
+                }
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                if ($btn.hasClass('loading')) return;
+
+                $btn.addClass('loading');
+
+                var ajaxUrl = (window.wc_add_to_cart_params && wc_add_to_cart_params.wc_ajax_url)
+                    ? wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart')
+                    : '<?php echo esc_url(home_url("/?wc-ajax=add_to_cart")); ?>';
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: ajaxUrl,
+                    data: {
+                        product_id: productId,
+                        quantity: 1
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        $btn.removeClass('loading').addClass('added');
+
+                        // Kích hoạt event WooCommerce & Flatsome để mở giỏ hàng dropdown / drawer
+                        if (response && response.fragments) {
+                            jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $btn]);
+                        } else {
+                            jQuery(document.body).trigger('added_to_cart', ['', '', $btn]);
+                        }
+                        jQuery(document.body).trigger('wc_fragment_refresh');
+
+                        showGevToast('Đã thêm <strong>' + prodName + '</strong> vào giỏ hàng!');
+
+                        setTimeout(function() {
+                            $btn.removeClass('added');
+                        }, 3000);
+                    },
+                    error: function() {
+                        $btn.removeClass('loading');
+                        // Nếu AJAX lỗi, fallback chuyển qua link thêm giỏ URL
+                        var fallbackUrl = $btn.attr('href');
+                        if (fallbackUrl && fallbackUrl !== '#') {
+                            window.location.href = fallbackUrl;
+                        }
+                    }
+                });
+            });
+        }
     });
     </script>
     <?php
