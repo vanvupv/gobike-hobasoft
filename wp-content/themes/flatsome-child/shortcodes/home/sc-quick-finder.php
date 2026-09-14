@@ -783,10 +783,9 @@ function gobike_render_quick_finder_modal_footer()
         width: 125px;
         min-height: 125px;
         box-shadow: none !important;
-        transition: transform 0.2s, background 0.2s;
+        transition: background 0.2s ease;
     }
     .gqf-step-item:hover {
-        transform: translateY(-2px);
         background: rgba(0, 0, 0, 0.24);
     }
     .gqf-step-num {
@@ -859,7 +858,6 @@ function gobike_render_quick_finder_modal_footer()
     }
     .gqf-btn-primary:hover {
         background: #eab308 !important;
-        transform: translateY(-2px);
         color: #0f172a !important;
     }
     .gqf-btn-primary span {
@@ -1028,7 +1026,6 @@ function gobike_render_quick_finder_modal_footer()
     .gqf-btn-tim-xe:hover {
         background: #eab308 !important;
         border-color: #eab308 !important;
-        transform: translateY(-1px);
         color: #0f172a !important;
     }
 
