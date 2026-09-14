@@ -725,294 +725,569 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-           8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (.gobike-section)
+           8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
+           - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
+           - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
            ========================================================================== */
-        .gobike-section {
-            margin-bottom: 30px;
-            background: #fff;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        .gobike-category-block-wrapper {
+            max-width: 1230px;
+            margin: 0 auto 35px auto;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
 
-        .gobike-mobile-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .gobike-section-head {
-            background: #149d29;
+        /* Header của khối */
+        .gobike-category-block-wrapper .gobike-block-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 16px;
-        }
-
-        .gobike-section-head .title_blog {
-            color: #fff;
-            font-size: 15px;
-            font-weight: 700;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .gobike-section-head .viewallcat {
-            display: flex !important;
-        }
-
-        .gobike-section-head .viewallcat a {
-            color: #fff;
-            font-size: 13px;
-            margin-left: 18px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .gobike-section-head .viewallcat a:hover {
-            color: #ffe0b2;
-            text-decoration: underline;
-        }
-
-        .gobike-grid-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            background: #eee;
-            gap: 1px;
-            border: 1px solid #eee;
-        }
-
-        .gobike-big-item {
-            grid-column: span 2;
-            display: flex;
-            background: #fff;
-            padding: 16px;
-            align-items: center;
+            border-bottom: 2px solid #0c5436;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
             gap: 15px;
         }
 
-        .gobike-big-item .img-box {
-            width: 48%;
-            position: relative;
-            text-align: center;
+        .gobike-category-block-wrapper .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .gobike-big-item .img-box img {
-            max-width: 100%;
-            height: auto;
-            max-height: 220px;
-            object-fit: contain;
-            transition: transform 0.3s;
+        .gobike-category-block-wrapper .header-brand-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: #0c5436;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .gobike-big-item:hover .img-box img {
-            transform: scale(1.04);
-        }
-
-        .gobike-big-item .info-box {
-            width: 52%;
-        }
-
-        .gobike-big-item .product-title {
-            font-size: 14.5px;
-            font-weight: 700;
-            margin: 0 0 6px 0;
-            color: #222;
-            line-height: 1.35;
-        }
-
-        .gobike-big-item .product-title:hover {
-            color: #f36f21;
-        }
-
-        .gobike-big-item .spec-table {
-            margin-top: 10px;
-            font-size: 12px;
-        }
-
-        .gobike-big-item .spec-table table {
-            width: 100%;
-            border-collapse: collapse;
+        .gobike-category-block-wrapper .block-title {
             margin: 0;
+            font-size: 19px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
 
-        .gobike-big-item .spec-table td {
-            padding: 3px 0;
-            border: none;
-            line-height: 1.4;
-            color: #444;
+        .gobike-category-block-wrapper .block-title a {
+            color: #0c5436;
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        .gobike-big-item .spec-table td:first-child {
-            font-weight: 600;
-            color: #222;
-            width: 52%;
+        .gobike-category-block-wrapper .block-title a:hover {
+            color: #149d29;
         }
 
-        .gobike-small-item {
-            background: #fff;
-            padding: 12px;
-            text-align: center;
+        .gobike-category-block-wrapper .block-slogan {
+            font-size: 13.5px;
+            color: #64748b;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .gobike-category-block-wrapper .header-right .view-all-link {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #0c5436;
+            text-decoration: none;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .gobike-category-block-wrapper .header-right .view-all-link:hover {
+            color: #149d29;
+            transform: translateX(3px);
+        }
+
+        /* Layout chính: Khung sản phẩm + Cột Banner */
+        .gobike-cat-main-content {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        /* Cột sản phẩm bên trái */
+        .gobike-products-container {
+            flex: 1 1 calc(100% - 240px);
+            min-width: 0;
+        }
+
+        /* Desktop: Lưới 4 cột x 2 hàng = 8 sản phẩm */
+        @media screen and (min-width: 1025px) {
+            .gobike-cat-swiper {
+                overflow: visible !important;
+                width: 100% !important;
+            }
+
+            .gobike-products-grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 12px !important;
+                transform: none !important;
+                width: 100% !important;
+            }
+
+            .gobike-pcard-slide {
+                width: auto !important;
+                height: 100% !important;
+                margin: 0 !important;
+            }
+
+            .gobike-cat-pagination {
+                display: none !important;
+            }
+        }
+
+        /* Thẻ sản phẩm chuẩn Ảnh 2 */
+        .gobike-pcard {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 10px 12px 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            height: 100%;
+            box-sizing: border-box;
             transition: all 0.25s ease;
         }
 
-        .gobike-small-item:hover {
-            background: #fafafa;
-            box-shadow: inset 0 0 0 1px #149d29;
-            z-index: 2;
+        .gobike-pcard:hover {
+            border-color: #0c5436;
+            box-shadow: 0 4px 16px rgba(12, 84, 54, 0.12);
+            transform: translateY(-2px);
         }
 
-        .gobike-small-item .img-wrap {
-            position: relative;
-            padding-top: 95%;
+        /* Badge giảm giá góc trên trái */
+        .gobike-card-discount {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 2;
+            background: #e5101d;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            line-height: 1.2;
+            box-shadow: 0 2px 4px rgba(229,16,29,0.25);
+        }
+
+        /* Khung ảnh xe đạp */
+        .gobike-pcard-thumb {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 8px;
             overflow: hidden;
+            background: #fff;
         }
 
-        .gobike-small-item .img-wrap img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .gobike-pcard-thumb a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s;
         }
 
-        .gobike-small-item:hover .img-wrap img {
+        .gobike-pcard-thumb img {
+            max-height: 135px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gobike-pcard:hover .gobike-pcard-thumb img {
             transform: scale(1.05);
         }
 
-        .gobike-small-item .item-title {
-            font-size: 12.5px;
+        /* Nội dung thẻ */
+        .gobike-pcard-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            justify-content: space-between;
+        }
+
+        .gobike-pcard-title {
+            font-size: 13px;
             font-weight: 600;
-            color: #333;
             line-height: 1.35;
             margin: 0 0 6px 0;
-            height: 34px;
+            height: 35px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            text-align: left;
         }
 
-        .gobike-small-item .item-title:hover {
+        .gobike-pcard-title a {
+            color: #0c5436;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .gobike-pcard-title a:hover {
             color: #149d29;
         }
 
-        .gobike-price-box {
+        /* 3 Thông số có icon (GPS km, kg, W) */
+        .gobike-pcard-specs {
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 4px;
+            justify-content: space-between;
+            gap: 4px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 4px;
+            padding: 4px 6px;
+            border: 1px solid #f1f5f9;
         }
 
-        .gobike-big-item .gobike-price-box {
-            justify-content: flex-start;
-        }
-
-        .gobike-price-box .price-current,
-        .gobike-small-item .item-price ins, 
-        .gobike-small-item .item-price > .amount,
-        .gobike-big-item .product-price ins, 
-        .gobike-big-item .product-price > .amount {
-            color: #d70018;
-            font-size: 13.5px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .gobike-big-item .gobike-price-box .price-current,
-        .gobike-big-item .product-price ins, 
-        .gobike-big-item .product-price > .amount {
-            font-size: 16px;
-        }
-
-        .gobike-price-box .price-old,
-        .gobike-small-item .item-price del,
-        .gobike-big-item .product-price del {
-            color: #888;
-            font-size: 11px;
-            text-decoration: line-through;
-        }
-
-        .gobike-big-item .product-price del {
-            font-size: 12.5px;
-            margin-left: 6px;
-        }
-
-        .gobike-badge-sale {
-            position: absolute;
-            bottom: 6px;
-            left: 6px;
-            background: #ff5722;
-            color: #fff;
-            font-size: 10.5px;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 12px;
+        .gobike-pcard-specs .spec-badge {
             display: inline-flex;
             align-items: center;
-            gap: 2px;
-            z-index: 2;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .gobike-badge-sale svg {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .gobike-mobile-viewmore {
-            display: none;
-            text-align: center;
-            background: #fff;
-            color: #f36f21;
-            font-size: 13px;
+            gap: 3px;
+            font-size: 11px;
             font-weight: 600;
-            padding: 10px;
-            border: 1px solid #f36f21;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .gobike-pcard-specs .spec-badge svg {
+            flex-shrink: 0;
+            color: #0c5436;
+        }
+
+        /* Cụm giá tiền */
+        .gobike-pcard-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .gobike-pcard-price-box .price-current,
+        .gobike-pcard-price-box .price-current .woocommerce-Price-amount {
+            color: #d70018 !important;
+            font-size: 14.5px !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+        }
+
+        .gobike-pcard-price-box .price-old,
+        .gobike-pcard-price-box .price-old .woocommerce-Price-amount {
+            color: #94a3b8 !important;
+            font-size: 11.5px !important;
+            text-decoration: line-through !important;
+        }
+
+        /* Nút Xem chi tiết */
+        .gobike-pcard-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #0c5436;
+            color: #0c5436;
+            background: #ffffff;
+            padding: 5px 8px;
             border-radius: 4px;
-            margin: 12px auto 0 auto;
-            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            cursor: pointer;
         }
 
+        .gobike-pcard-btn:hover {
+            background: #0c5436;
+            color: #ffffff !important;
+            box-shadow: 0 2px 6px rgba(12, 84, 54, 0.2);
+        }
+
+        /* CỘT BANNER DỌC (CHIẾM ~20% BÊN PHẢI TRÊN DESKTOP, Ở CUỐI TRÊN MOBILE) */
+        .gobike-cat-banner-col {
+            flex: 0 0 230px;
+            width: 230px;
+            min-width: 230px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .gobike-cat-banner-link {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none !important;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .gobike-cat-banner-link.custom-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .gobike-cat-banner-link.branded-card {
+            background: linear-gradient(180deg, #0b2f4c 0%, #0d4b68 35%, #153852 70%, #0a1f2e 100%);
+            color: #fff;
+            padding: 24px 18px 18px 18px;
+            box-shadow: 0 4px 15px rgba(11, 47, 76, 0.2);
+        }
+
+        .gobike-cat-banner-link.branded-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(20, 157, 41, 0.25) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .banner-brand-logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .banner-title {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.35;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .banner-features {
+            list-style: none;
+            margin: 0 0 20px 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .banner-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: #e2e8f0;
+            line-height: 1.3;
+        }
+
+        .banner-features .chk-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #22c55e;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .banner-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #ffffff;
+            color: #0c5436 !important;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, background 0.2s ease;
+            width: fit-content;
+        }
+
+        .banner-cta-btn:hover {
+            transform: scale(1.04);
+            background: #f8fafc;
+        }
+
+        .banner-card-bottom {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 12px;
+        }
+
+        .banner-slogan {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE TABLET & MOBILE (<= 1024px) ---
+           Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
         @media screen and (max-width: 1024px) {
-            .gobike-grid-container {
-                grid-template-columns: repeat(3, 1fr);
+            .gobike-cat-main-content {
+                flex-direction: column !important;
+                gap: 16px !important;
             }
-        }
 
-        @media screen and (max-width: 767px) {
-            .gobike-section-head .viewallcat {
+            .gobike-products-container {
+                width: 100% !important;
+                flex: none !important;
+            }
+
+            /* Swiper kích hoạt: trượt 2 sản phẩm / view */
+            .gobike-cat-swiper {
+                width: 100% !important;
+                overflow: hidden !important;
+                padding-bottom: 24px !important;
+                position: relative !important;
+            }
+
+            .gobike-products-grid {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                gap: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            .gobike-pcard-slide {
+                width: calc(50% - 5px) !important;
+                flex-shrink: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Chấm phân trang Swiper */
+            .gobike-cat-pagination {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 6px !important;
+                position: absolute !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                z-index: 5 !important;
+            }
+
+            .gobike-cat-pagination .swiper-pagination-bullet {
+                width: 8px !important;
+                height: 8px !important;
+                background: #cbd5e1 !important;
+                border-radius: 50% !important;
+                opacity: 0.8 !important;
+                margin: 0 !important;
+                transition: all 0.3s ease !important;
+                cursor: pointer !important;
+            }
+
+            .gobike-cat-pagination .swiper-pagination-bullet-active {
+                width: 22px !important;
+                background: #0c5436 !important;
+                border-radius: 4px !important;
+                opacity: 1 !important;
+            }
+
+            /* Banner chuyển xuống ở cuối khối */
+            .gobike-cat-banner-col {
+                flex: none !important;
+                width: 100% !important;
+                min-width: 0 !important;
+                order: 2 !important;
+            }
+
+            .gobike-cat-banner-link.branded-card {
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                padding: 20px !important;
+                gap: 20px !important;
+            }
+
+            .gobike-cat-banner-link.branded-card .banner-card-top {
+                flex: 1 1 auto !important;
+            }
+
+            .gobike-cat-banner-link.branded-card .banner-card-bottom {
+                margin-top: 0 !important;
+                border-top: none !important;
+                border-left: 1px solid rgba(255,255,255,0.15) !important;
+                padding-top: 0 !important;
+                padding-left: 20px !important;
+                flex: 0 0 auto !important;
+            }
+
+            .gobike-category-block-wrapper .block-slogan {
                 display: none !important;
             }
+        }
 
-            .gobike-mobile-viewmore {
-                display: block;
+        @media screen and (max-width: 640px) {
+            .gobike-category-block-wrapper .block-title {
+                font-size: 16px !important;
             }
 
-            .gobike-grid-container {
-                grid-template-columns: repeat(2, 1fr);
+            .gobike-category-block-wrapper .header-right .view-all-link {
+                font-size: 12px !important;
             }
 
-            .gobike-big-item {
-                grid-column: span 2;
-                flex-direction: column;
+            .gobike-cat-banner-link.branded-card {
+                flex-direction: column !important;
+                text-align: center !important;
             }
 
-            .gobike-big-item .img-box, 
-            .gobike-big-item .info-box {
-                width: 100%;
+            .gobike-cat-banner-link.branded-card .banner-cta-btn {
+                margin: 0 auto !important;
+            }
+
+            .gobike-cat-banner-link.branded-card .banner-card-bottom {
+                border-left: none !important;
+                border-top: 1px solid rgba(255,255,255,0.15) !important;
+                padding-left: 0 !important;
+                padding-top: 12px !important;
+                margin-top: 15px !important;
+                width: 100% !important;
             }
         }
 
