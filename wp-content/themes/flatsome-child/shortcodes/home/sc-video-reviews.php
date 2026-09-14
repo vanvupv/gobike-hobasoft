@@ -640,11 +640,24 @@ function gobike_render_video_player_modal_footer()
         border: 1px solid #e2e8f0;
         border-radius: 30px;
         padding: 6px 14px;
-        font-size: 12.5px;
-        font-weight: 600;
+        margin: 0 !important;
         color: #334155;
         cursor: pointer;
         transition: all 0.2s;
+        box-shadow: none !important;
+        outline: none;
+    }
+    .gvr-tab-btn svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        display: block;
+        stroke: currentColor;
+    }
+    .gvr-tab-btn span {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
     }
     .gvr-tab-btn:hover {
         background: #f1f5f9;
@@ -659,6 +672,9 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-tab-btn.active svg {
         stroke: #ffffff;
+    }
+    .gvr-tab-btn.active span {
+        color: #ffffff;
     }
 
     .gvr-view-all-link {
