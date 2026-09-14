@@ -2290,6 +2290,47 @@ function gobike_custom_styles_output()
         .gobike-shop-seo-box .gobike-seo-content p:last-child {
             margin-bottom: 0 !important;
         }
+
+        /* --- 11.8. Khối Flash Sale Plugin MH (.hbfs-slider-wrap) --- */
+        .hbfs-slider-wrap {
+            max-width: 100% !important;
+            margin: 0 auto 30px auto !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+        }
+
+        .hbfs-slider-banner {
+            line-height: 0 !important;
+        }
+
+        .hbfs-slider-banner img {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            border-radius: 10px 10px 0 0 !important;
+        }
+
+        .hbfs-slider-box-frame {
+            border-radius: 0 0 10px 10px !important;
+            padding: 10px !important;
+        }
+
+        .hbfs-products-row {
+            border-radius: 0 0 6px 6px !important;
+        }
+
+        .hbfs-products-row.splide .splide__arrow:disabled {
+            display: none !important;
+        }
+
+        .hbfs-products-row.splide .splide__track {
+            overflow: hidden !important;
+        }
+
+        .hbfs-products-row.splide .splide__list {
+            display: flex !important;
+            align-items: stretch !important;
+        }
     </style>
     <?php
 }

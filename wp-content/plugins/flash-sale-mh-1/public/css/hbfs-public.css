@@ -576,9 +576,7 @@ HBWeb Flash Sale - Frontend CSS
 	flex-shrink: 0;
 }
 .hbfs-products-row.splide .splide__arrow:disabled {
-	opacity: .3 !important;
-	cursor: default;
-	pointer-events: none;
+	display: none !important;
 }
 .hbfs-products-row.splide .splide__arrow--prev {
 	left: -10px;

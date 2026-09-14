@@ -123,29 +123,30 @@ $frame_style    = $frame_bg_color ? 'background:' . esc_attr( $frame_bg_color ) 
 			}
 		}
 
-		$product_count = count( $products );
-		$use_loop      = $product_count > $show_col;
-		$use_autoplay  = $autoplay_enabled && $use_loop;
+		$product_count      = count( $products );
+		$effective_per_page = max( 1, min( $show_col, $product_count ) );
+		$use_loop           = $product_count > $show_col;
+		$use_autoplay       = $autoplay_enabled && $use_loop;
 
 		$splide_config = wp_json_encode( [
 			'type'         => $use_loop ? 'loop' : 'slide',
 			'rewind'       => ! $use_loop,
-			'perPage'      => $show_col,
+			'perPage'      => $effective_per_page,
 			'perMove'      => 1,
 			'gap'          => '15px',
 			'padding'      => 0,
-			'arrows'       => $product_count > 1,
+			'arrows'       => $product_count > $show_col,
 			'pagination'   => false,
-			'drag'         => $product_count > 1,
+			'drag'         => $product_count > $show_col,
 			'autoplay'     => $use_autoplay,
 			'interval'     => $autoplay_interval * 1000,
 			'pauseOnHover' => $autoplay_pause_hover,
 			'resetProgress'=> false,
 			'lazyLoad'     => 'nearby',
 			'breakpoints'  => [
-				992 => [ 'perPage' => min( $show_col, 4 ) ],
-				768 => [ 'perPage' => min( $show_col, 3 ) ],
-				480 => [ 'perPage' => min( $show_col, 2 ) ],
+				992 => [ 'perPage' => min( $effective_per_page, 4 ) ],
+				768 => [ 'perPage' => min( $effective_per_page, 3 ) ],
+				480 => [ 'perPage' => min( $effective_per_page, 2 ) ],
 			],
 		] );
 	?>
