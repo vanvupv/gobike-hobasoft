@@ -1018,13 +1018,13 @@ function gobike_custom_styles_output()
             min-width: 0;
         }
 
-        /* Cụm giá tiền: Giá bán dòng trên, giá cũ rơi xuống dòng dưới */
+        /* Cụm giá tiền: Bình thường 2 giá cùng 1 hàng, khi giá dài sẽ rơi giá cũ xuống dòng 2, giá đỏ dài quá 100% dòng thì hiển thị ... */
         .gobike-pcard-price-box {
             display: flex !important;
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            justify-content: center !important;
-            gap: 4px;
+            flex-wrap: wrap !important;
+            align-items: baseline !important;
+            align-content: flex-start !important;
+            gap: 4px 8px;
             margin-bottom: 8px;
             width: 100%;
             min-width: 0;
@@ -1041,8 +1041,8 @@ function gobike_custom_styles_output()
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
-            width: 100%;
-            display: block !important;
+            flex-shrink: 0;
+            display: inline-block !important;
         }
 
         .gobike-pcard-price-box .price-current .woocommerce-Price-amount,
@@ -1068,8 +1068,8 @@ function gobike_custom_styles_output()
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
-            width: 100%;
-            display: block !important;
+            flex-shrink: 0;
+            display: inline-block !important;
             opacity: 1 !important;
             margin: 0 !important;
         }
