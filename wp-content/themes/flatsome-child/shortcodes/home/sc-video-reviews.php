@@ -598,7 +598,12 @@ function gobike_render_video_player_modal_footer()
     <div class="gvr-video-modal-overlay" id="js-gvr-video-modal" style="display: none;">
         <div class="gvr-vm-backdrop"></div>
         <div class="gvr-vm-dialog">
-            <button type="button" class="gvr-vm-close" id="js-gvr-vm-close" aria-label="Đóng">&times;</button>
+            <button type="button" class="gvr-vm-close" id="js-gvr-vm-close" aria-label="Đóng">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
             <div class="gvr-vm-content">
                 <div class="gvr-vm-iframe-wrap">
                     <iframe id="js-gvr-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1219,9 +1224,6 @@ function gobike_render_video_player_modal_footer()
         z-index: 1000000000;
         width: 100%;
         max-width: 850px;
-        background: #000000;
-        border-radius: 16px;
-        overflow: hidden;
         box-shadow: none !important;
         animation: gvrModalPop 0.25s ease-out;
     }
@@ -1229,27 +1231,46 @@ function gobike_render_video_player_modal_footer()
         from { transform: scale(0.92); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
     }
+    .gvr-vm-content {
+        background: #000000;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 100%;
+    }
     .gvr-vm-close {
         position: absolute;
-        top: 10px;
-        right: 14px;
-        background: rgba(0, 0, 0, 0.6);
-        border: none;
-        color: #ffffff;
-        font-size: 28px;
-        line-height: 1;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
+        top: -12px;
+        left: -12px;
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #000000 !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: unset !important;
+        border-radius: 50% !important;
         cursor: pointer;
-        z-index: 10;
-        display: flex;
+        z-index: 100;
+        display: flex !important;
         align-items: center;
         justify-content: center;
-        transition: background 0.2s;
+        padding: 0 !important;
+        margin: 0 !important;
+        line-height: 1 !important;
+        box-shadow: none !important;
+        outline: none !important;
+        transition: transform 0.15s ease, background-color 0.15s ease;
     }
     .gvr-vm-close:hover {
-        background: #ef4444;
+        background: #f1f5f9 !important;
+        transform: scale(1.08);
+        color: #000000 !important;
+    }
+    .gvr-vm-close svg {
+        width: 12px !important;
+        height: 12px !important;
+        stroke: #000000 !important;
+        display: block;
     }
     .gvr-vm-iframe-wrap {
         position: relative;
@@ -1282,6 +1303,13 @@ function gobike_render_video_player_modal_footer()
         }
     }
     @media (max-width: 640px) {
+        .gvr-video-modal-overlay {
+            padding: 14px;
+        }
+        .gvr-vm-close {
+            top: -10px;
+            left: -8px;
+        }
         .gvr-side-list {
             grid-template-columns: 1fr;
         }
