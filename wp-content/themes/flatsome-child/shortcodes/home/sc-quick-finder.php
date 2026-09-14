@@ -605,10 +605,8 @@ function gobike_render_quick_finder_modal_footer()
                         <label class="gqf-label">Ngân sách dự kiến</label>
                         <div class="gqf-input-icon-wrap">
                             <svg class="gqf-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
-                                <line x1="12" y1="6" x2="12" y2="8"></line>
-                                <line x1="12" y1="16" x2="12" y2="18"></line>
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <line x1="2" y1="10" x2="22" y2="10"></line>
                             </svg>
                             <select name="budget" id="modal_lead_budget" class="gqf-input gqf-select-field">
                                 <option value="">Chọn khoảng ngân sách</option>
@@ -646,20 +644,24 @@ function gobike_render_quick_finder_modal_footer()
                 <!-- HÀNG 4: Ghi chú thêm -->
                 <div class="gqf-form-field">
                     <label class="gqf-label">Ghi chú thêm (không bắt buộc)</label>
-                    <div class="gqf-input-icon-wrap" style="align-items: flex-start;">
-                        <svg class="gqf-input-icon" style="margin-top: 10px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    <div class="gqf-input-icon-wrap gqf-textarea-wrap">
+                        <svg class="gqf-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
                         </svg>
-                        <textarea name="note" id="modal_lead_note" class="gqf-input gqf-textarea" rows="2" placeholder="Ví dụ: màu sắc yêu thích, chiều cao, dòng xe đang quan tâm..."></textarea>
+                        <textarea name="note" id="modal_lead_note" maxlength="200" class="gqf-input gqf-textarea" rows="2" placeholder="Ví dụ: màu sắc yêu thích, chiều cao, dòng xe đang quan tâm..."></textarea>
+                        <span class="gqf-char-count" id="js-gqf-char-count">0/200</span>
                     </div>
                 </div>
 
                 <!-- CAM KẾT BẢO MẬT -->
                 <div class="gqf-form-security">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#0d6e2e" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#0d6e2e" stroke="#0d6e2e"></path>
+                        <polyline points="9 12 11 14 15 10" stroke="#ffffff" stroke-width="2.5"></polyline>
                     </svg>
                     <span>Bảo mật thông tin • Tư vấn nhanh • Miễn phí</span>
                 </div>
@@ -947,26 +949,41 @@ function gobike_render_quick_finder_modal_footer()
         margin-right: 6px;
         flex-shrink: 0;
     }
-    .gqf-select {
-        width: 100%;
-        background: transparent;
-        border: none;
-        color: #ffffff;
-        font-size: 12.5px;
-        font-weight: 500;
-        outline: none;
-        cursor: pointer;
-        padding-right: 14px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        /*  */
-        padding: 0px;
-        margin: 0px;
+    .gqf-select,
+    .gqf-select:focus,
+    .gqf-select:active,
+    .gqf-select:hover,
+    .gqf-select:visited {
+        width: 100% !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-size: 12.5px !important;
+        font-weight: 500 !important;
+        outline: none !important;
+        cursor: pointer !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        padding: 0 14px 0 0 !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        min-height: unset !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+    .gqf-select-box:focus-within {
+        background: rgba(255, 255, 255, 0.18) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
     }
     .gqf-select option {
-        background: #149d29;
-        color: #ffffff;
+        background: #0d6e2e !important;
+        background-color: #0d6e2e !important;
+        color: #ffffff !important;
+        padding: 6px 10px !important;
+        font-size: 13px !important;
     }
     .gqf-arrow {
         position: absolute;
@@ -1131,82 +1148,144 @@ function gobike_render_quick_finder_modal_footer()
         color: #ef4444;
     }
     .gqf-input-icon-wrap {
-        position: relative;
-        display: flex;
-        align-items: center;
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     .gqf-input-icon {
-        position: absolute;
-        left: 12px;
-        color: #94a3b8;
-        pointer-events: none;
+        position: absolute !important;
+        left: 14px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        color: #64748b !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
     }
     .gqf-input {
-        width: 100%;
-        height: 40px;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        padding: 0 12px 0 38px;
-        font-size: 13.5px;
-        color: #1e293b;
-        background: #ffffff;
-        outline: none;
-        transition: border-color 0.2s;
+        width: 100% !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        max-height: 42px !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+        padding: 0 14px 0 40px !important;
+        font-size: 13.5px !important;
+        color: #0f172a !important;
+        background: #ffffff !important;
+        outline: none !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        margin: 0 !important;
+        margin-bottom: 0 !important;
+        line-height: 40px !important;
+        box-sizing: border-box !important;
+        transition: border-color 0.2s !important;
     }
     .gqf-input:focus {
-        border-color: #149d29;
+        border-color: #149d29 !important;
         box-shadow: none !important;
+        outline: none !important;
+    }
+    .gqf-input::placeholder {
+        color: #94a3b8 !important;
+        font-size: 13px !important;
     }
     .gqf-select-field {
-        cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+        cursor: pointer !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        background-size: 14px 14px !important;
+        padding-right: 32px !important;
+    }
+    .gqf-input-icon-wrap.gqf-textarea-wrap {
+        align-items: flex-start !important;
+    }
+    .gqf-textarea-wrap .gqf-input-icon {
+        top: 14px !important;
+        transform: none !important;
     }
     .gqf-textarea {
-        height: auto;
-        padding-top: 8px;
-        resize: none;
+        height: 76px !important;
+        min-height: 76px !important;
+        max-height: 120px !important;
+        padding: 10px 14px 22px 40px !important;
+        line-height: 1.4 !important;
+        resize: none !important;
+    }
+    .gqf-char-count {
+        position: absolute !important;
+        right: 12px !important;
+        bottom: 6px !important;
+        font-size: 11px !important;
+        color: #94a3b8 !important;
+        pointer-events: none !important;
+        line-height: 1 !important;
     }
 
     /* Chips Group */
     .gqf-chip-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     .gqf-chip {
-        background: #f1f5f9;
-        border: 1px solid #e2e8f0;
-        color: #475569;
-        font-size: 12.5px;
-        font-weight: 600;
-        padding: 6px 14px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.18s;
+        background: #f1f5f9 !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #475569 !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        padding: 7px 16px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border-radius: 20px !important;
+        cursor: pointer !important;
+        transition: all 0.18s !important;
+        box-shadow: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        outline: none !important;
     }
     .gqf-chip:hover {
-        background: #e2e8f0;
-        color: #0f172a;
+        background: #e2e8f0 !important;
+        color: #0f172a !important;
     }
     .gqf-chip.active {
-        background: #ecfdf5;
-        border-color: #149d29;
-        color: #149d29;
+        background: #dcfce7 !important;
+        border-color: #149d29 !important;
+        color: #0f172a !important;
+        font-weight: 600 !important;
         box-shadow: none !important;
     }
 
     /* Security Notice */
     .gqf-form-security {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        font-size: 12px;
-        color: #149d29;
-        font-weight: 500;
-        margin-top: 2px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        font-size: 12px !important;
+        color: #0d6e2e !important;
+        font-weight: 500 !important;
+        margin-top: 4px !important;
+        margin-bottom: 2px !important;
     }
 
     /* Message Alert */
@@ -1227,48 +1306,62 @@ function gobike_render_quick_finder_modal_footer()
         color: #991b1b;
     }
 
-    /* Buttons Action */
+    /* Buttons Action - 2 NÚT BẰNG NHAU (ẢNH 3 & ẢNH 5) */
     .gqf-form-actions {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 12px;
-        margin-top: 4px;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+        margin-top: 4px !important;
     }
     .gqf-btn-cancel {
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        color: #64748b;
-        font-size: 14px;
-        font-weight: 600;
-        height: 44px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s;
+        background: #ffffff !important;
+        border: 1.5px solid #149d29 !important;
+        color: #0d6e2e !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        height: 44px !important;
+        width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: none !important;
+        transition: all 0.2s !important;
     }
     .gqf-btn-cancel:hover {
-        background: #f1f5f9;
-        color: #0f172a;
+        background: #f0fdf4 !important;
+        color: #0a5222 !important;
+        border-color: #0d6e2e !important;
     }
     .gqf-btn-submit {
-        background: #149d29;
-        border: none;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 700;
-        height: 44px;
-        border-radius: 8px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+        background: #149d29 !important;
+        border: 1.5px solid #149d29 !important;
+        color: #ffffff !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        height: 44px !important;
+        width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
         box-shadow: none !important;
-        transition: all 0.2s;
+        transition: all 0.2s !important;
     }
     .gqf-btn-submit:hover {
-        background: #0e701d;
-        box-shadow: none !important;
-        color: #ffffff;
+        background: #0d6e2e !important;
+        border-color: #0d6e2e !important;
+        color: #ffffff !important;
     }
     .gqf-btn-submit:disabled {
         opacity: 0.65;
@@ -1403,8 +1496,10 @@ function gobike_render_quick_finder_modal_footer()
             font-size: 18px;
         }
         .gqf-chip {
-            font-size: 11.5px;
-            padding: 5px 10px;
+            font-size: 11.5px !important;
+            padding: 6px 12px !important;
+            margin: 0 !important;
+            line-height: 1.2 !important;
         }
     }
     </style>
@@ -1578,6 +1673,22 @@ function gobike_render_quick_finder_modal_footer()
                 if (demandInput) {
                     demandInput.value = chip.getAttribute('data-val');
                 }
+            });
+        });
+
+        // 3.1 ĐẾM KÝ TỰ TEXTAREA GHI CHÚ
+        var noteInput = document.getElementById('modal_lead_note');
+        var charCounter = document.getElementById('js-gqf-char-count');
+        if (noteInput && charCounter) {
+            noteInput.addEventListener('input', function() {
+                charCounter.textContent = this.value.length + '/200';
+            });
+        }
+
+        // 3.2 BỎ FOCUS KHI CHỌN SELECT DROPDOWN ĐỂ KHÔNG BỊ GIỮ FOCUS TRẮNG
+        document.querySelectorAll('.gqf-select').forEach(function(sel) {
+            sel.addEventListener('change', function() {
+                this.blur();
             });
         });
 
