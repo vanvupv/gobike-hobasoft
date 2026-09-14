@@ -5,7 +5,7 @@
  * Section: BỘ LỌC NHANH & TƯ VẤN CHỌN XE 60 GIÂY
  * Chức năng:
  * 1. Product Discovery: Thanh lọc nhanh 5 tiêu chí (Nhu cầu, Mức giá, Dòng xe, Quãng đường, Thương hiệu)
- * 2. Lead Generation: Modal Popup "Tư vấn chọn xe trong 60 giây"
+ * 2. Lead Generation: Modal Popup "Tư vấn chọn xe trong 60 giây" (được in ở wp_footer để tránh lỗi Stacking Context)
  * 3. Quản lý Lead trong WordPress: Tự động lưu vào CPT customer_lead và gửi email thông báo cho Admin
  * 
  * @package Flatsome-Child
@@ -283,10 +283,11 @@ add_shortcode('gobike_filter_60s', 'gobike_render_quick_finder_shortcode');
 
 function gobike_render_quick_finder_shortcode($atts)
 {
-    // Xác định link trang Shop/Cửa hàng
+    // Đánh dấu để in Modal ở wp_footer
+    global $gobike_has_quick_finder;
+    $gobike_has_quick_finder = true;
+
     $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/cua-hang/');
-    $ajax_url = admin_url('admin-ajax.php');
-    $nonce    = wp_create_nonce('gobike_lead_nonce');
 
     ob_start();
     ?>
@@ -527,8 +528,23 @@ function gobike_render_quick_finder_shortcode($atts)
             </div>
         </div>
     </div>
+    <?php
+    return ob_get_clean();
+}
 
-    <!-- MODAL POPUP: TƯ VẤN CHỌN XE TRONG 60 GIÂY -->
+
+/* ============================================================================
+ * 4. RENDER MODAL POPUP Ở WP_FOOTER ĐỂ HOÀN TOÀN TRÁNH BỊ ĐÈ STACKING CONTEXT
+ * ============================================================================
+ */
+add_action('wp_footer', 'gobike_render_quick_finder_modal_footer', 9999);
+function gobike_render_quick_finder_modal_footer()
+{
+    $ajax_url = admin_url('admin-ajax.php');
+    $nonce    = wp_create_nonce('gobike_lead_nonce');
+    $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/cua-hang/');
+    ?>
+    <!-- MODAL POPUP: TƯ VẤN CHỌN XE TRONG 60 GIÂY (ĐẶT Ở GỐC BODY ĐỂ KHÔNG BỊ PHẦN TỬ KHÁC ĐÈ) -->
     <div class="gqf-modal-overlay" id="js-gqf-modal" style="display: none;">
         <div class="gqf-modal-dialog">
             <button type="button" class="gqf-modal-close" id="js-gqf-modal-close">&times;</button>
@@ -668,7 +684,7 @@ function gobike_render_quick_finder_shortcode($atts)
         </div>
     </div>
 
-    <!-- STYLE & SCRIPT ĐỒNG BỘ -->
+    <!-- CSS VÀ JS ĐỒNG BỘ -->
     <style>
     /* ==========================================================================
        GOBIKE QUICK FINDER WRAPPER
@@ -991,18 +1007,20 @@ function gobike_render_quick_finder_shortcode($atts)
     }
 
     /* ==========================================================================
-       MODAL POPUP STYLES
+       MODAL POPUP STYLES - ÁP DỤNG Z-INDEX VÀ FIXED GỐC ĐỂ KHÔNG BỊ ĐÈ
        ========================================================================== */
     .gqf-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(15, 23, 42, 0.65);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        z-index: 999999;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(15, 23, 42, 0.72) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        z-index: 999999999 !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1014,13 +1032,14 @@ function gobike_render_quick_finder_shortcode($atts)
         to { opacity: 1; }
     }
     .gqf-modal-dialog {
-        background: #ffffff;
-        width: 100%;
-        max-width: 580px;
-        border-radius: 16px;
-        padding: 28px 30px 24px 30px;
-        position: relative;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        background: #ffffff !important;
+        width: 100% !important;
+        max-width: 580px !important;
+        border-radius: 16px !important;
+        padding: 28px 30px 24px 30px !important;
+        position: relative !important;
+        z-index: 1000000000 !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
         animation: gqfSlideUp 0.25s ease-out;
     }
     @keyframes gqfSlideUp {
@@ -1338,7 +1357,7 @@ function gobike_render_quick_finder_shortcode($atts)
             gap: 12px;
         }
         .gqf-modal-dialog {
-            padding: 20px 18px 18px 18px;
+            padding: 20px 18px 18px 18px !important;
         }
         .gqf-modal-title {
             font-size: 18px;
@@ -1355,15 +1374,31 @@ function gobike_render_quick_finder_shortcode($atts)
         var shopUrl = <?php echo json_encode($shop_url); ?>;
         var ajaxUrl = <?php echo json_encode($ajax_url); ?>;
 
+        var modal = document.getElementById('js-gqf-modal');
+        var openBtns = document.querySelectorAll('.js-open-gqf-modal');
+        var closeBtn = document.getElementById('js-gqf-modal-close');
+        var cancelBtn = document.getElementById('js-btn-gqf-cancel');
+
+        // BẢO ĐẢM MODAL LUÔN NẰM TRỰC TIẾP Ở ROOT BODY ĐỂ TRÁNH BỊ BẤT KỲ SECTION NÀO ĐÈ LÊN
+        if (modal && modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+
         // 1. XỬ LÝ NÚT "LỌC NHANH" (Chuyển hướng Shop kèm parameters)
         var btnLocNhanh = document.getElementById('js-btn-loc-nhanh');
         if (btnLocNhanh) {
             btnLocNhanh.addEventListener('click', function() {
-                var nhuCau     = document.getElementById('gqf_nhu_cau').value;
-                var mucGia     = document.getElementById('gqf_muc_gia').value;
-                var dongXe     = document.getElementById('gqf_dong_xe').value;
-                var quangDuong = document.getElementById('gqf_quang_duong').value;
-                var thuongHieu = document.getElementById('gqf_thuong_hieu').value;
+                var elNhuCau     = document.getElementById('gqf_nhu_cau');
+                var elMucGia     = document.getElementById('gqf_muc_gia');
+                var elDongXe     = document.getElementById('gqf_dong_xe');
+                var elQuangDuong = document.getElementById('gqf_quang_duong');
+                var elThuongHieu = document.getElementById('gqf_thuong_hieu');
+
+                var nhuCau     = elNhuCau ? elNhuCau.value : '';
+                var mucGia     = elMucGia ? elMucGia.value : '';
+                var dongXe     = elDongXe ? elDongXe.value : '';
+                var quangDuong = elQuangDuong ? elQuangDuong.value : '';
+                var thuongHieu = elThuongHieu ? elThuongHieu.value : '';
 
                 var params = new URLSearchParams();
                 if (nhuCau) params.append('nhu_cau', nhuCau);
@@ -1389,20 +1424,26 @@ function gobike_render_quick_finder_shortcode($atts)
         }
 
         // 2. XỬ LÝ MỞ / ĐÓNG MODAL POPUP
-        var modal = document.getElementById('js-gqf-modal');
-        var openBtns = document.querySelectorAll('.js-open-gqf-modal');
-        var closeBtn = document.getElementById('js-gqf-modal-close');
-        var cancelBtn = document.getElementById('js-btn-gqf-cancel');
-
         function openModal() {
             if (!modal) return;
 
+            // Đảm bảo phần tử modal nằm ở trực tiếp document.body
+            if (modal.parentElement !== document.body) {
+                document.body.appendChild(modal);
+            }
+
             // Đồng bộ dữ liệu vừa chọn ngoài thanh filter vào modal
-            var nhuCau     = document.getElementById('gqf_nhu_cau').value;
-            var mucGia     = document.getElementById('gqf_muc_gia').value;
-            var dongXe     = document.getElementById('gqf_dong_xe').value;
-            var quangDuong = document.getElementById('gqf_quang_duong').value;
-            var thuongHieu = document.getElementById('gqf_thuong_hieu').value;
+            var elNhuCau     = document.getElementById('gqf_nhu_cau');
+            var elMucGia     = document.getElementById('gqf_muc_gia');
+            var elDongXe     = document.getElementById('gqf_dong_xe');
+            var elQuangDuong = document.getElementById('gqf_quang_duong');
+            var elThuongHieu = document.getElementById('gqf_thuong_hieu');
+
+            var nhuCau     = elNhuCau ? elNhuCau.value : '';
+            var mucGia     = elMucGia ? elMucGia.value : '';
+            var dongXe     = elDongXe ? elDongXe.value : '';
+            var quangDuong = elQuangDuong ? elQuangDuong.value : '';
+            var thuongHieu = elThuongHieu ? elThuongHieu.value : '';
 
             // Đồng bộ chips Nhu cầu
             var demandInput = document.getElementById('modal_lead_demand');
@@ -1420,7 +1461,7 @@ function gobike_render_quick_finder_shortcode($atts)
                 chips.forEach(function(c) {
                     if (c.getAttribute('data-val') === targetText) {
                         c.classList.add('active');
-                        demandInput.value = targetText;
+                        if (demandInput) demandInput.value = targetText;
                     } else {
                         c.classList.remove('active');
                     }
@@ -1459,8 +1500,13 @@ function gobike_render_quick_finder_shortcode($atts)
             document.body.style.overflow = '';
         }
 
-        openBtns.forEach(function(btn) {
-            btn.addEventListener('click', openModal);
+        // Ủy quyền sự kiện mở modal cho các nút
+        document.addEventListener('click', function(e) {
+            var btn = e.target.closest('.js-open-gqf-modal');
+            if (btn) {
+                e.preventDefault();
+                openModal();
+            }
         });
 
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -1474,6 +1520,13 @@ function gobike_render_quick_finder_shortcode($atts)
                 }
             });
         }
+
+        // Đóng bằng phím ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
 
         // 3. CHIPS NHU CẦU TRONG MODAL
         var chipBtns = document.querySelectorAll('#js-gqf-demand-chips .gqf-chip');
@@ -1548,5 +1601,4 @@ function gobike_render_quick_finder_shortcode($atts)
     });
     </script>
     <?php
-    return ob_get_clean();
 }
