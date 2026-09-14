@@ -731,7 +731,7 @@ function gobike_render_video_player_modal_footer()
     /* MAIN GRID: 1 FEATURED + 4 CARDS */
     .gvr-main-grid {
         display: grid;
-        grid-template-columns: 1.15fr 1fr;
+        grid-template-columns: 1.25fr 1fr;
         gap: 8px;
         margin-bottom: 25px;
     }
@@ -788,9 +788,9 @@ function gobike_render_video_player_modal_footer()
         right: 12px;
         background: rgba(15, 23, 42, 0.85);
         color: #ffffff;
-        font-size: 11.5px;
+        font-size: 12px;
         font-weight: 700;
-        padding: 2px 8px;
+        padding: 3px 8px;
         border-radius: 6px;
     }
 
@@ -800,7 +800,7 @@ function gobike_render_video_player_modal_footer()
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        pointer-events: none;
+        z-index: 2;
     }
     .gvr-play-btn {
         width: 56px;
@@ -822,7 +822,7 @@ function gobike_render_video_player_modal_footer()
     }
 
     .gvr-featured-body {
-        padding: 18px 20px 20px 20px;
+        padding: 16px 18px 18px 18px;
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -854,29 +854,31 @@ function gobike_render_video_player_modal_footer()
         overflow: hidden;
     }
 
-    /* 3 Cam kết & Nút Xem video: Nằm chung 1 hàng chuẩn Ảnh 2 */
+    /* 3 Cam kết & Nút Xem video: Nằm chung 1 hàng chuẩn Ảnh 2, không chèn đè lên nhau */
     .gvr-featured-tags {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 8px;
         margin-top: auto;
-        padding-top: 14px;
+        padding-top: 12px;
         border-top: 1px solid #f1f5f9;
         flex-wrap: nowrap;
         width: 100%;
+        min-width: 0;
     }
     .gvr-ft-commitments {
         display: flex;
         align-items: center;
-        gap: 8px;
-        flex: 1;
+        justify-content: flex-start;
+        gap: 6px;
+        flex: 1 1 auto;
         min-width: 0;
     }
     .gvr-ft-tag {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px;
         background: transparent;
         border: none;
         padding: 0;
@@ -884,8 +886,8 @@ function gobike_render_video_player_modal_footer()
         flex-shrink: 0;
     }
     .gvr-ft-icon {
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
         background: #ecfdf5;
         display: flex;
@@ -894,15 +896,15 @@ function gobike_render_video_player_modal_footer()
         flex-shrink: 0;
     }
     .gvr-ft-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 13px;
+        height: 13px;
         display: block;
     }
     .gvr-ft-label {
         display: flex;
         flex-direction: column;
-        font-size: 11px;
-        line-height: 1.25;
+        font-size: 10px;
+        line-height: 1.2;
         color: #64748b;
         white-space: nowrap;
     }
@@ -913,30 +915,48 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-ft-sep {
         width: 1px;
-        height: 24px;
+        height: 18px;
         background: #e2e8f0;
         flex-shrink: 0;
     }
     .gvr-btn-watch {
         margin: 0 !important;
-        background: #149d29;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        flex-shrink: 0;
-        white-space: nowrap;
+        background: #149d29 !important;
+        color: #ffffff !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
+        height: auto !important;
+        min-height: unset !important;
+        padding: 7px 13px !important;
+        border-radius: 20px !important;
+        border: none !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
         transition: background 0.2s;
         box-shadow: none !important;
+        outline: none !important;
+    }
+    .gvr-btn-watch span {
+        line-height: 1 !important;
+        font-size: 13px !important;
+        color: #ffffff !important;
+        display: inline-block !important;
+    }
+    .gvr-btn-watch svg {
+        width: 13px !important;
+        height: 13px !important;
+        display: block !important;
+        stroke: #ffffff !important;
+        flex-shrink: 0 !important;
     }
     .gvr-btn-watch:hover {
-        background: #0f7a20;
+        background: #0f7a20 !important;
     }
 
     /* LƯỚI 4 THẺ NGANG BÊN PHẢI */
