@@ -266,7 +266,7 @@ function gobike_render_experience_videos_shortcode($atts)
                              data-video-title="<?php echo esc_attr($ds['video_title']); ?>"
                              data-prod-name="<?php echo esc_attr($ds['prod_name']); ?>"
                              data-prod-url="<?php echo esc_attr($ds['prod_url']); ?>"
-                             data-prod-price="<?php echo esc_attr($ds['prod_price']); ?>"
+                             data-prod-price="<?php echo esc_attr(strip_tags($ds['prod_price'])); ?>"
                              data-prod-thumb="<?php echo esc_attr($ds['prod_thumb']); ?>">
                             
                             <img src="<?php echo esc_url($ds['thumb']); ?>" alt="<?php echo esc_attr($ds['video_title']); ?>" class="gev-shorts-img">
@@ -311,8 +311,9 @@ function gobike_render_experience_videos_shortcode($atts)
                                     <a href="<?php echo esc_url($ds['prod_url']); ?>"><?php echo esc_html($ds['prod_name']); ?></a>
                                 </h4>
                                 <span class="gev-prod-cat"><?php echo esc_html($ds['prod_cat']); ?></span>
-                                <div class="gev-prod-price"><?php echo esc_html($ds['prod_price']); ?></div>
+                                <div class="gev-prod-price"><?php echo $ds['prod_price']; ?></div>
                             </div>
+
                             <a href="<?php echo esc_url($d_cart_url); ?>" 
                                class="gev-prod-cart-btn button product_type_simple add_to_cart_button ajax_add_to_cart <?php echo $d_is_var ? 'quick-view' : ''; ?>" 
                                data-product_id="<?php echo esc_attr($d_prod_id); ?>"
@@ -652,8 +653,32 @@ function gobike_render_experience_shorts_modal_footer()
         font-size: 13.5px;
         font-weight: 800;
         color: #dc2626;
-        line-height: 1.2;
+        line-height: 1.3;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        flex-wrap: wrap;
     }
+    .gev-prod-price ins {
+        color: #dc2626;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 13.5px;
+    }
+    .gev-prod-price del {
+        color: #94a3b8;
+        font-size: 11px;
+        font-weight: normal;
+        text-decoration: line-through;
+        opacity: 0.85;
+    }
+    .gev-prod-price del span {
+        font-weight: normal;
+    }
+    .gev-prod-price bdi {
+        font-weight: inherit;
+    }
+
     .gev-prod-cart-btn {
         position: relative;
         width: 36px;
