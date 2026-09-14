@@ -601,10 +601,9 @@ function gobike_render_video_player_modal_footer()
     .gvr-header-wrap {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         gap: 16px;
         margin-bottom: 22px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
     .gvr-title-box {
         flex-shrink: 0;
@@ -625,12 +624,24 @@ function gobike_render_video_player_modal_footer()
         margin: 0;
     }
 
-    /* Tabs Filter */
+    /* Tabs Filter: Tự động cuộn ngang mượt mà khi có nhiều tab, không đẩy nút hay tràn vỡ layout */
     .gvr-filter-tabs {
         display: flex;
         align-items: center;
         gap: 8px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 4px 2px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    .gvr-filter-tabs::-webkit-scrollbar {
+        display: none;
     }
     .gvr-tab-btn {
         display: inline-flex;
@@ -646,6 +657,8 @@ function gobike_render_video_player_modal_footer()
         transition: all 0.2s;
         box-shadow: none !important;
         outline: none;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
     .gvr-tab-btn svg {
         width: 16px;
@@ -681,12 +694,14 @@ function gobike_render_video_player_modal_footer()
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        font-size: 13.5px;
+        font-size: 14px;
         font-weight: 700;
         color: #149d29;
         text-decoration: none;
         transition: color 0.15s;
         margin-left: auto;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
     .gvr-view-all-link:hover {
         color: #149d29;
@@ -1262,6 +1277,17 @@ function gobike_render_video_player_modal_footer()
                 });
             });
         });
+
+        // 4. CUỘN NGANG DANH SÁCH TAB BẰNG CON LĂN CHUỘT
+        var filterTabs = document.querySelector('.gvr-filter-tabs');
+        if (filterTabs) {
+            filterTabs.addEventListener('wheel', function(e) {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    filterTabs.scrollLeft += e.deltaY;
+                }
+            }, { passive: false });
+        }
     });
     </script>
     <?php
