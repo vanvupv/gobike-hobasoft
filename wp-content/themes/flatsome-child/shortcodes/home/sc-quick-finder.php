@@ -960,6 +960,9 @@ function gobike_render_quick_finder_modal_footer()
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
+        /*  */
+        padding: 0px;
+        margin: 0px;
     }
     .gqf-select option {
         background: #149d29;
