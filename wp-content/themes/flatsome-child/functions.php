@@ -806,3 +806,25 @@ function gobike_topbar_ticker_shortcode()
     return ob_get_clean();
 }
 add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
+
+// Cập nhật Placeholder tìm kiếm Header chuẩn theo mẫu thiết kế
+add_filter('theme_mod_search_placeholder', function() {
+    return 'Bạn đang tìm xe đạp trợ lực điện nào?';
+});
+add_filter('get_product_search_form', function ($html) {
+    if (!empty($html) && is_string($html)) {
+        $html = preg_replace('/placeholder=["\'][^"\']*["\']/i', 'placeholder="Bạn đang tìm xe đạp trợ lực điện nào?"', $html);
+    }
+    return $html;
+}, 99);
+add_action('wp_footer', function() {
+    ?>
+    <script type="text/javascript">
+    (function($) {
+        $(function() {
+            $('.header-search-form input.search-field, .searchform input.search-field').attr('placeholder', 'Bạn đang tìm xe đạp trợ lực điện nào?');
+        });
+    })(jQuery);
+    </script>
+    <?php
+}, 99);
