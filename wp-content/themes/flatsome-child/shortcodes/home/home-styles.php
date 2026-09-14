@@ -1018,39 +1018,73 @@ function gobike_custom_styles_output()
             min-width: 0;
         }
 
-        /* Cụm giá tiền */
+        /* Cụm giá tiền: Giá bán dòng trên, giá cũ rơi xuống dòng dưới */
         .gobike-pcard-price-box {
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            gap: 4px;
             margin-bottom: 8px;
             width: 100%;
             min-width: 0;
-            overflow: hidden;
+            min-height: 40px;
         }
 
-        .gobike-pcard-price-box .price-current,
-        .gobike-pcard-price-box .price-current .woocommerce-Price-amount {
+        .gobike-pcard-price-box .price-current {
             color: #d70018 !important;
             font-size: 16px !important;
             font-weight: 700 !important;
             text-decoration: none !important;
-            line-height: 1.3;
+            line-height: 1.25;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            min-width: 0;
             max-width: 100%;
+            width: 100%;
+            display: block !important;
         }
 
-        .gobike-pcard-price-box .price-old,
-        .gobike-pcard-price-box .price-old .woocommerce-Price-amount {
+        .gobike-pcard-price-box .price-current .woocommerce-Price-amount,
+        .gobike-pcard-price-box .price-current bdi {
+            color: #d70018 !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+
+        .gobike-pcard-price-box .price-old {
             color: #94a3b8 !important;
             font-size: 12px !important;
             text-decoration: line-through !important;
-            line-height: 1.3;
+            line-height: 1.25;
             white-space: nowrap;
-            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            width: 100%;
+            display: block !important;
+            opacity: 1 !important;
+            margin: 0 !important;
+        }
+
+        .gobike-pcard-price-box .price-old .woocommerce-Price-amount,
+        .gobike-pcard-price-box .price-old bdi {
+            color: #94a3b8 !important;
+            font-size: 12px !important;
+            text-decoration: line-through !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            display: inline-block;
+            vertical-align: bottom;
         }
 
         /* Nút Xem chi tiết */
