@@ -712,7 +712,7 @@ function gobike_render_video_player_modal_footer()
     .gvr-main-grid {
         display: grid;
         grid-template-columns: 1.15fr 1fr;
-        gap: 20px;
+        gap: 8px;
         margin-bottom: 25px;
     }
 
@@ -869,7 +869,7 @@ function gobike_render_video_player_modal_footer()
     .gvr-side-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        gap: 8px;
     }
     .gvr-card-horizontal {
         background: #ffffff;
@@ -943,7 +943,7 @@ function gobike_render_video_player_modal_footer()
         flex: 1;
     }
     .gvr-ch-title {
-        font-size: 13.5px;
+        font-size: 14px;
         font-weight: 700;
         color: #0f172a;
         line-height: 1.35;
@@ -957,7 +957,7 @@ function gobike_render_video_player_modal_footer()
         color: #149d29;
     }
     .gvr-ch-desc {
-        font-size: 11.5px;
+        font-size: 12px;
         color: #64748b;
         line-height: 1.4;
         margin: 0 0 8px 0;
@@ -969,17 +969,25 @@ function gobike_render_video_player_modal_footer()
     .gvr-ch-meta {
         margin-top: auto;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 10.5px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        width: 100%;
+    }
+    .gvr-ch-views {
+        font-size: 12px;
         color: #94a3b8;
+        line-height: 1.3;
     }
     .gvr-ch-badge {
         background: #ecfdf5;
         color: #149d29;
-        font-weight: 700;
-        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 2px 8px;
         border-radius: 4px;
+        line-height: 1.3;
+        display: inline-block;
     }
 
     /* KHỐI "TẠI SAO NÊN XEM?" */
