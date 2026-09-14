@@ -785,7 +785,6 @@ function gobike_render_video_player_modal_footer()
             grid-template-columns: 1.25fr 1fr;
             gap: 8px;
             margin-bottom: 25px;
-            align-items: start;
         }
 
         /* FEATURED CARD LỚN */
@@ -1038,9 +1037,9 @@ function gobike_render_video_player_modal_footer()
         .gvr-side-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(2, minmax(0, 1fr));
             gap: 8px;
-            align-content: start;
-            align-items: start;
+            height: 100%;
         }
 
         .gvr-card-horizontal {
@@ -1053,7 +1052,7 @@ function gobike_render_video_player_modal_footer()
             cursor: pointer;
             box-shadow: none !important;
             transition: transform 0.2s;
-            height: fit-content;
+            height: 100%;
         }
 
         .gvr-card-horizontal:hover {
@@ -1436,6 +1435,15 @@ function gobike_render_video_player_modal_footer()
                 grid-template-columns: 1fr;
             }
 
+            .gvr-side-list {
+                height: auto;
+                grid-template-rows: auto;
+            }
+
+            .gvr-card-horizontal {
+                height: auto;
+            }
+
             .gvr-ww-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
@@ -1454,6 +1462,8 @@ function gobike_render_video_player_modal_footer()
 
             .gvr-side-list {
                 grid-template-columns: 1fr;
+                height: auto;
+                grid-template-rows: auto;
             }
 
             .gvr-ww-grid {
