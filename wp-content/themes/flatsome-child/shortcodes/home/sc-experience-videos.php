@@ -378,14 +378,14 @@ function gobike_render_experience_shorts_modal_footer()
         gap: 8px;
     }
     .gev-bar-prefix {
-        color: #064e3b;
+        color: #149d29;
         font-size: 24px;
-        font-weight: 900;
+        font-weight: 700;
         line-height: 1;
     }
     .gev-main-title {
         font-size: 22px;
-        font-weight: 900;
+        font-weight: 700;
         color: #0f172a;
         margin: 0;
         letter-spacing: 0.3px;
@@ -395,14 +395,14 @@ function gobike_render_experience_shorts_modal_footer()
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        color: #059669;
+        color: #149d29;
         font-size: 14.5px;
         font-weight: 700;
         text-decoration: none;
         transition: transform 0.2s, color 0.2s;
     }
     .gev-view-all:hover {
-        color: #047857;
+        color: #149d29;
         transform: translateX(3px);
     }
 
@@ -419,14 +419,14 @@ function gobike_render_experience_shorts_modal_footer()
         border-radius: 14px;
         overflow: hidden;
         border: 1px solid #f1f5f9;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        box-shadow: none !important;
         display: flex;
         flex-direction: column;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        transition: transform 0.25s ease;
     }
     .gev-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        box-shadow: none !important;
     }
 
     /* PHẦN TRÊN: VIDEO SHORTS 9:16 */
@@ -469,7 +469,7 @@ function gobike_render_experience_shorts_modal_footer()
     .gev-quote-text {
         color: #ffffff;
         font-size: 15px;
-        font-weight: 800;
+        font-weight: 700;
         line-height: 1.35;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0,0,0,0.9);
         display: inline-block;
@@ -535,10 +535,10 @@ function gobike_render_experience_shorts_modal_footer()
         background: #ef4444;
         color: #ffffff;
         font-size: 11px;
-        font-weight: 800;
+        font-weight: 700;
         padding: 2px 7px;
         border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+        box-shadow: none !important;
     }
 
     /* INLINE VIDEO PLAYER (CHẠY TRỰC TIẾP TRÊN CARD) */
@@ -625,7 +625,7 @@ function gobike_render_experience_shorts_modal_footer()
     }
     .gev-prod-name {
         font-size: 13px;
-        font-weight: 800;
+        font-weight: 700;
         color: #0f172a;
         margin: 0 0 2px 0;
         white-space: nowrap;
@@ -638,7 +638,7 @@ function gobike_render_experience_shorts_modal_footer()
         text-decoration: none;
     }
     .gev-prod-name a:hover {
-        color: #059669;
+        color: #149d29;
     }
     .gev-prod-cat {
         font-size: 11px;
@@ -651,7 +651,7 @@ function gobike_render_experience_shorts_modal_footer()
     }
     .gev-prod-price {
         font-size: 13.5px;
-        font-weight: 800;
+        font-weight: 700;
         color: #dc2626;
         line-height: 1.3;
         display: flex;
@@ -662,7 +662,7 @@ function gobike_render_experience_shorts_modal_footer()
     .gev-prod-price ins {
         color: #dc2626;
         text-decoration: none;
-        font-weight: 800;
+        font-weight: 700;
         font-size: 13.5px;
     }
     .gev-prod-price del {
@@ -686,7 +686,7 @@ function gobike_render_experience_shorts_modal_footer()
         border-radius: 50%;
         background: #ecfdf5;
         border: 1px solid #a7f3d0;
-        color: #059669;
+        color: #149d29;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -697,9 +697,9 @@ function gobike_render_experience_shorts_modal_footer()
         text-decoration: none;
     }
     .gev-prod-cart-btn:hover {
-        background: #059669;
+        background: #149d29;
         color: #ffffff;
-        border-color: #059669;
+        border-color: #149d29;
         transform: scale(1.08);
     }
     .gev-prod-cart-btn .gev-cart-icon-loading,
@@ -720,8 +720,8 @@ function gobike_render_experience_shorts_modal_footer()
         animation: gevSpin 0.7s linear infinite;
     }
     .gev-prod-cart-btn.added {
-        background: #10b981 !important;
-        border-color: #10b981 !important;
+        background: #149d29 !important;
+        border-color: #149d29 !important;
         color: #ffffff !important;
     }
     .gev-prod-cart-btn.added .gev-cart-icon-default {
@@ -739,13 +739,13 @@ function gobike_render_experience_shorts_modal_footer()
         position: fixed;
         bottom: 24px;
         right: 24px;
-        background: #064e3b;
+        background: #149d29;
         color: #ffffff;
         padding: 12px 18px;
         border-radius: 10px;
         font-size: 13.5px;
         font-weight: 600;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: none !important;
         z-index: 9999999;
         transform: translateY(100px);
         opacity: 0;
@@ -762,7 +762,7 @@ function gobike_render_experience_shorts_modal_footer()
     }
     .gev-toast-notice svg {
         flex-shrink: 0;
-        color: #34d399;
+        color: #ffffff;
     }
     @media (max-width: 600px) {
         .gev-toast-notice {

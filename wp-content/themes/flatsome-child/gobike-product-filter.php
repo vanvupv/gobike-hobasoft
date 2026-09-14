@@ -282,7 +282,7 @@ function gobike_filter_enqueue_styles()
         .woof_redraw_zone .woof_container.active>.gobike-dropdown-btn {
             border-color: #149d29 !important;
             color: #149d29 !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+            box-shadow: none !important;
         }
 
         .woof_redraw_zone .gobike-dropdown-btn::after {
@@ -314,7 +314,7 @@ function gobike_filter_enqueue_styles()
             background: #fff !important;
             border: 1px solid #e2e8f0 !important;
             border-radius: 8px !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+            box-shadow: none !important;
             padding: 12px 14px !important;
             z-index: 99999 !important;
             max-height: 280px !important;
@@ -512,7 +512,7 @@ function gobike_filter_enqueue_styles()
             align-items: center !important;
             gap: 6px !important;
             line-height: 1.4 !important;
-            box-shadow: 0 2px 5px rgba(20, 157, 41, 0.25) !important;
+            box-shadow: none !important;
             transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease !important;
         }
 
@@ -544,7 +544,7 @@ function gobike_filter_enqueue_styles()
             text-decoration: none !important;
             line-height: 1.4 !important;
             transition: opacity 0.2s ease, transform 0.2s ease !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08) !important;
+            box-shadow: none !important;
         }
 
         /* Khôi phục hiển thị toàn bộ chữ nhãn giá trị badge bên trong span */

@@ -126,7 +126,7 @@ function gobike_video_review_column_data($column, $post_id)
 
         case 'vr_featured':
             $feat = get_field('is_featured', $post_id);
-            echo $feat ? '<strong style="color:#059669;">★ Nổi bật</strong>' : '—';
+            echo $feat ? '<strong style="color:#149d29;">★ Nổi bật</strong>' : '—';
             break;
     }
 }
@@ -384,19 +384,19 @@ function gobike_render_home_video_reviews($atts)
                     <!-- 3 Điểm Cam Kết Review -->
                     <div class="gvr-featured-tags">
                         <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                             </svg>
                             <span>Review từ người dùng thật</span>
                         </div>
                         <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                             </svg>
                             <span>Cảm giác lái sau thời gian dài</span>
                         </div>
                         <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                             <span>Đánh giá ưu nhược điểm khách quan nhất</span>
@@ -482,7 +482,7 @@ function gobike_render_home_video_reviews($atts)
         <div class="gvr-why-watch-wrap">
             <div class="gvr-ww-header">
                 <div class="gvr-ww-title-box">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                     </svg>
@@ -498,7 +498,7 @@ function gobike_render_home_video_reviews($atts)
                 <!-- Thẻ 1 -->
                 <div class="gvr-ww-card">
                     <div class="gvr-ww-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                             <circle cx="9" cy="7" r="4"></circle>
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -515,7 +515,7 @@ function gobike_render_home_video_reviews($atts)
                 <!-- Thẻ 2 -->
                 <div class="gvr-ww-card">
                     <div class="gvr-ww-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <circle cx="12" cy="12" r="6"></circle>
                             <circle cx="12" cy="12" r="2"></circle>
@@ -531,7 +531,7 @@ function gobike_render_home_video_reviews($atts)
                 <!-- Thẻ 3 -->
                 <div class="gvr-ww-card">
                     <div class="gvr-ww-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                             <polyline points="14 2 14 8 20 8"></polyline>
                             <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -548,7 +548,7 @@ function gobike_render_home_video_reviews($atts)
                 <!-- Thẻ 4 -->
                 <div class="gvr-ww-card">
                     <div class="gvr-ww-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
@@ -611,13 +611,13 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-main-title {
         font-size: 24px;
-        font-weight: 900;
+        font-weight: 700;
         color: #0f172a;
         margin: 0 0 4px 0;
         letter-spacing: 0.5px;
     }
     .gvr-main-title .text-highlight {
-        color: #059669;
+        color: #149d29;
     }
     .gvr-sub-title {
         font-size: 13px;
@@ -652,10 +652,10 @@ function gobike_render_video_player_modal_footer()
         color: #0f172a;
     }
     .gvr-tab-btn.active {
-        background: #059669;
-        border-color: #059669;
+        background: #149d29;
+        border-color: #149d29;
         color: #ffffff;
-        box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+        box-shadow: none !important;
     }
     .gvr-tab-btn.active svg {
         stroke: #ffffff;
@@ -667,13 +667,13 @@ function gobike_render_video_player_modal_footer()
         gap: 6px;
         font-size: 13.5px;
         font-weight: 700;
-        color: #059669;
+        color: #149d29;
         text-decoration: none;
         transition: color 0.15s;
         margin-left: auto;
     }
     .gvr-view-all-link:hover {
-        color: #047857;
+        color: #149d29;
         text-decoration: underline;
     }
 
@@ -691,13 +691,13 @@ function gobike_render_video_player_modal_footer()
         border: 1px solid #e2e8f0;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        box-shadow: none !important;
         display: flex;
         flex-direction: column;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform 0.2s;
     }
     .gvr-featured-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        box-shadow: none !important;
     }
     .gvr-featured-media {
         position: relative;
@@ -722,14 +722,14 @@ function gobike_render_video_player_modal_footer()
         position: absolute;
         top: 12px;
         left: 12px;
-        background: #059669;
+        background: #149d29;
         color: #ffffff;
         font-size: 11px;
-        font-weight: 800;
+        font-weight: 700;
         padding: 4px 10px;
         border-radius: 20px;
         letter-spacing: 0.3px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: none !important;
     }
     .gvr-duration-badge {
         position: absolute;
@@ -761,13 +761,13 @@ function gobike_render_video_player_modal_footer()
         align-items: center;
         justify-content: center;
         color: #ffffff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: none !important;
         transition: transform 0.2s, background 0.2s;
     }
     .gvr-featured-card:hover .gvr-play-btn {
         transform: scale(1.1);
-        background: #059669;
-        border-color: #059669;
+        background: #149d29;
+        border-color: #149d29;
     }
 
     .gvr-featured-body {
@@ -778,7 +778,7 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-featured-title {
         font-size: 18px;
-        font-weight: 800;
+        font-weight: 700;
         color: #0f172a;
         margin: 0 0 8px 0;
         line-height: 1.35;
@@ -786,7 +786,7 @@ function gobike_render_video_player_modal_footer()
         transition: color 0.15s;
     }
     .gvr-featured-title:hover {
-        color: #059669;
+        color: #149d29;
     }
     .gvr-featured-desc {
         font-size: 13px;
@@ -817,7 +817,7 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-btn-watch {
         margin-left: auto;
-        background: #059669;
+        background: #149d29;
         color: #ffffff;
         font-size: 12.5px;
         font-weight: 700;
@@ -831,7 +831,7 @@ function gobike_render_video_player_modal_footer()
         transition: background 0.2s;
     }
     .gvr-btn-watch:hover {
-        background: #047857;
+        background: #149d29;
     }
 
     /* LƯỚI 4 THẺ NGANG BÊN PHẢI */
@@ -848,12 +848,12 @@ function gobike_render_video_player_modal_footer()
         display: flex;
         flex-direction: column;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: none !important;
+        transition: transform 0.2s;
     }
     .gvr-card-horizontal:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+        box-shadow: none !important;
     }
     .gvr-ch-thumb {
         position: relative;
@@ -891,8 +891,8 @@ function gobike_render_video_player_modal_footer()
         transition: background 0.2s;
     }
     .gvr-card-horizontal:hover .gvr-ch-play {
-        background: #059669;
-        border-color: #059669;
+        background: #149d29;
+        border-color: #149d29;
     }
     .gvr-ch-duration {
         position: absolute;
@@ -923,7 +923,7 @@ function gobike_render_video_player_modal_footer()
         overflow: hidden;
     }
     .gvr-card-horizontal:hover .gvr-ch-title {
-        color: #059669;
+        color: #149d29;
     }
     .gvr-ch-desc {
         font-size: 11.5px;
@@ -945,7 +945,7 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-ch-badge {
         background: #ecfdf5;
-        color: #059669;
+        color: #149d29;
         font-weight: 700;
         padding: 2px 6px;
         border-radius: 4px;
@@ -973,7 +973,7 @@ function gobike_render_video_player_modal_footer()
     }
     .gvr-ww-title-box h3 {
         font-size: 19px;
-        font-weight: 800;
+        font-weight: 700;
         color: #0f172a;
         margin: 0;
     }
@@ -985,11 +985,11 @@ function gobike_render_video_player_modal_footer()
     .gvr-ww-slogan {
         font-size: 13.5px;
         font-style: italic;
-        color: #059669;
+        color: #149d29;
         font-weight: 600;
     }
     .gvr-ww-btn {
-        background: #059669;
+        background: #149d29;
         color: #ffffff;
         font-size: 13px;
         font-weight: 700;
@@ -999,7 +999,7 @@ function gobike_render_video_player_modal_footer()
         transition: background 0.2s;
     }
     .gvr-ww-btn:hover {
-        background: #047857;
+        background: #149d29;
         color: #ffffff;
     }
     .gvr-ww-grid {
@@ -1015,7 +1015,7 @@ function gobike_render_video_player_modal_footer()
         display: flex;
         align-items: flex-start;
         gap: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        box-shadow: none !important;
     }
     .gvr-ww-icon {
         width: 36px;
@@ -1038,7 +1038,7 @@ function gobike_render_video_player_modal_footer()
         margin: 0 0 4px 0;
     }
     .gvr-ww-content h4 .highlight {
-        color: #059669;
+        color: #149d29;
     }
     .gvr-ww-content p {
         font-size: 11.5px;
@@ -1089,7 +1089,7 @@ function gobike_render_video_player_modal_footer()
         background: #000000;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        box-shadow: none !important;
         animation: gvrModalPop 0.25s ease-out;
     }
     @keyframes gvrModalPop {
