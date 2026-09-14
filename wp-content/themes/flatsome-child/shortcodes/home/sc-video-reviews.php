@@ -381,25 +381,45 @@ function gobike_render_home_video_reviews($atts)
                     </h3>
                     <p class="gvr-featured-desc"><?php echo esc_html($f_desc); ?></p>
 
-                    <!-- 3 Điểm Cam Kết Review -->
+                    <!-- 3 Điểm Cam Kết Review & Nút Xem Video (Nằm 1 hàng chuẩn Ảnh 2) -->
                     <div class="gvr-featured-tags">
-                        <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                            </svg>
-                            <span>Review từ người dùng thật</span>
-                        </div>
-                        <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                            </svg>
-                            <span>Cảm giác lái sau thời gian dài</span>
-                        </div>
-                        <div class="gvr-ft-tag">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                            <span>Đánh giá ưu nhược điểm khách quan nhất</span>
+                        <div class="gvr-ft-commitments">
+                            <div class="gvr-ft-tag">
+                                <div class="gvr-ft-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="gvr-ft-label">
+                                    <strong>Review từ</strong>
+                                    <span>người dùng thật</span>
+                                </div>
+                            </div>
+                            <div class="gvr-ft-sep"></div>
+                            <div class="gvr-ft-tag">
+                                <div class="gvr-ft-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                    </svg>
+                                </div>
+                                <div class="gvr-ft-label">
+                                    <strong>Cảm giác lái</strong>
+                                    <span>sau thời gian dài</span>
+                                </div>
+                            </div>
+                            <div class="gvr-ft-sep"></div>
+                            <div class="gvr-ft-tag">
+                                <div class="gvr-ft-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                </div>
+                                <div class="gvr-ft-label">
+                                    <strong>Đánh giá ưu nhược điểm</strong>
+                                    <span>khách quan nhất</span>
+                                </div>
+                            </div>
                         </div>
 
                         <button type="button" class="gvr-btn-watch js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>" data-video-title="<?php echo esc_attr($f_title); ?>">
@@ -815,54 +835,108 @@ function gobike_render_video_player_modal_footer()
         line-height: 1.35;
         cursor: pointer;
         transition: color 0.15s;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     .gvr-featured-title:hover {
         color: #149d29;
     }
     .gvr-featured-desc {
-        font-size: 13px;
+        font-size: 14px;
         color: #475569;
         line-height: 1.5;
         margin: 0 0 14px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
-    /* 3 Cam kết Tags */
+    /* 3 Cam kết & Nút Xem video: Nằm chung 1 hàng chuẩn Ảnh 2 */
     .gvr-featured-tags {
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid #f1f5f9;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    .gvr-ft-commitments {
+        display: flex;
         align-items: center;
         gap: 8px;
-        margin-top: auto;
+        flex: 1;
+        min-width: 0;
     }
     .gvr-ft-tag {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 20px;
-        padding: 4px 10px;
-        font-size: 11.5px;
-        color: #334155;
-        font-weight: 600;
+        gap: 6px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        flex-shrink: 0;
+    }
+    .gvr-ft-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ecfdf5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .gvr-ft-icon svg {
+        width: 16px;
+        height: 16px;
+        display: block;
+    }
+    .gvr-ft-label {
+        display: flex;
+        flex-direction: column;
+        font-size: 11px;
+        line-height: 1.25;
+        color: #64748b;
+        white-space: nowrap;
+    }
+    .gvr-ft-label strong {
+        color: #0f172a;
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .gvr-ft-sep {
+        width: 1px;
+        height: 24px;
+        background: #e2e8f0;
+        flex-shrink: 0;
     }
     .gvr-btn-watch {
-        margin-left: auto;
+        margin: 0 !important;
         background: #149d29;
         color: #ffffff;
-        font-size: 12.5px;
-        font-weight: 700;
-        padding: 7px 14px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 16px;
         border-radius: 20px;
         border: none;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         gap: 6px;
+        flex-shrink: 0;
+        white-space: nowrap;
         transition: background 0.2s;
+        box-shadow: none !important;
     }
     .gvr-btn-watch:hover {
-        background: #149d29;
+        background: #0f7a20;
     }
 
     /* LƯỚI 4 THẺ NGANG BÊN PHẢI */
@@ -1211,6 +1285,20 @@ function gobike_render_video_player_modal_footer()
             flex-direction: column;
             align-items: flex-start;
             gap: 6px;
+        }
+        .gvr-featured-tags {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+        .gvr-ft-commitments {
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+        .gvr-btn-watch {
+            width: 100%;
+            justify-content: center;
         }
     }
     </style>
