@@ -116,7 +116,7 @@ function gobike_render_experience_videos_shortcode($atts)
                     $thumb        = get_field('video_thumbnail', $vid_id) ?: $yt_info['thumbnail'];
                     $overlay_txt  = get_field('video_title_overlay', $vid_id) ?: get_the_title();
                     $views_txt    = get_field('video_views', $vid_id) ?: (get_field('video_views_text', $vid_id) ?: '100K lượt xem');
-                    $embed_src    = $yt_info['embed_url'] ?: 'https://www.youtube.com/embed/' . $yt_info['id'] . '?autoplay=1';
+                    $embed_src    = 'https://www.youtube.com/embed/' . $yt_info['id'] . '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
 
                     // Lấy sản phẩm WooCommerce liên kết
                     $rel_prod_id  = get_field('related_product', $vid_id);
@@ -207,7 +207,7 @@ function gobike_render_experience_videos_shortcode($atts)
             } else {
                 // RENDER DỮ LIỆU MẪU ĐÚNG 100% ẢNH THIẾT KẾ
                 foreach ($demo_shorts as $ds) {
-                    $embed_src = 'https://www.youtube.com/embed/' . $ds['yt_id'] . '?autoplay=1';
+                    $embed_src = 'https://www.youtube.com/embed/' . $ds['yt_id'] . '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
                     ?>
                     <div class="gev-card">
                         <!-- PHẦN TRÊN: VIDEO SHORTS 9:16 -->
@@ -284,36 +284,14 @@ function gobike_render_experience_videos_shortcode($atts)
 
 
 /* ============================================================================
- * 2. RENDER POPUP XEM VIDEO SHORTS ĐỊNH DẠNG DỌC TẠI WP_FOOTER
+ * 2. RENDER CSS VÀ SCRIPT PHÁT VIDEO TRỰC TIẾP TRÊN CARD (INLINE PLAYER)
  * ============================================================================
  */
 add_action('wp_footer', 'gobike_render_experience_shorts_modal_footer', 9998);
 function gobike_render_experience_shorts_modal_footer()
 {
     ?>
-    <!-- POPUP XEM VIDEO SHORTS CELLPHONES STYLE -->
-    <div class="gev-modal-overlay" id="js-gev-modal" style="display: none;">
-        <div class="gev-modal-backdrop"></div>
-        <div class="gev-modal-dialog">
-            <button type="button" class="gev-modal-close" id="js-gev-modal-close" aria-label="Đóng">&times;</button>
-            
-            <div class="gev-modal-video-frame">
-                <iframe id="js-gev-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <!-- Thanh thông tin sản phẩm ghim dưới video trong popup -->
-            <div class="gev-modal-prod-bar" id="js-gev-prod-bar" style="display: none;">
-                <img id="js-gev-prod-thumb" src="" alt="" class="gev-mp-thumb">
-                <div class="gev-mp-details">
-                    <h5 id="js-gev-prod-name" class="gev-mp-name"></h5>
-                    <span id="js-gev-prod-price" class="gev-mp-price"></span>
-                </div>
-                <a id="js-gev-prod-btn" href="" class="gev-mp-btn">Đặt mua ngay</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- CSS GIAO DIỆN SHORTS -->
+    <!-- CSS GIAO DIỆN SHORTS VÀ INLINE PLAYER -->
     <style>
     .gobike-experience-videos-wrap {
         width: 100%;
@@ -351,29 +329,31 @@ function gobike_render_experience_shorts_modal_footer()
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        font-size: 13.5px;
+        color: #059669;
+        font-size: 14.5px;
         font-weight: 700;
-        color: #064e3b;
         text-decoration: none;
-        transition: all 0.15s;
+        transition: transform 0.2s, color 0.2s;
     }
     .gev-view-all:hover {
         color: #047857;
-        text-decoration: underline;
+        transform: translateX(3px);
     }
 
-    /* LƯỚI 4 CỘT DỌC */
+    /* GRID 4 CỘT CHUẨN CELLPHONES */
     .gev-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
+        gap: 20px;
     }
+
+    /* CARD KHUNG VIỀN */
     .gev-card {
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
+        border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        border: 1px solid #f1f5f9;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
         display: flex;
         flex-direction: column;
         transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -384,15 +364,18 @@ function gobike_render_experience_shorts_modal_footer()
     }
 
     /* PHẦN TRÊN: VIDEO SHORTS 9:16 */
-    .gev-shorts-box {
+    .gev-shorts-box,
+    .gev-video-box {
         position: relative;
         width: 100%;
         padding-top: 155%; /* Tỉ lệ dọc đẹp như Shorts */
         overflow: hidden;
         cursor: pointer;
         background: #0f172a;
+        border-radius: 14px 14px 0 0;
     }
-    .gev-shorts-img {
+    .gev-shorts-img,
+    .gev-video-img {
         position: absolute;
         top: 0;
         left: 0;
@@ -401,18 +384,21 @@ function gobike_render_experience_shorts_modal_footer()
         object-fit: cover;
         transition: transform 0.4s ease;
     }
-    .gev-card:hover .gev-shorts-img {
+    .gev-card:hover .gev-shorts-img,
+    .gev-card:hover .gev-video-img {
         transform: scale(1.04);
     }
 
     /* Chữ nổi nghệ thuật trên video */
-    .gev-overlay-top {
+    .gev-overlay-top,
+    .gev-video-top {
         position: absolute;
         top: 14px;
         left: 14px;
         right: 14px;
         z-index: 2;
         pointer-events: none;
+        transition: opacity 0.2s ease;
     }
     .gev-quote-text {
         color: #ffffff;
@@ -425,7 +411,8 @@ function gobike_render_experience_shorts_modal_footer()
     }
 
     /* Play Icon Center */
-    .gev-play-center {
+    .gev-play-center,
+    .gev-play-icon {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -440,16 +427,18 @@ function gobike_render_experience_shorts_modal_footer()
         align-items: center;
         justify-content: center;
         z-index: 2;
-        transition: transform 0.2s, background 0.2s;
+        transition: transform 0.2s, background 0.2s, opacity 0.2s ease;
     }
-    .gev-card:hover .gev-play-center {
+    .gev-card:hover .gev-play-center,
+    .gev-card:hover .gev-play-icon {
         transform: translate(-50%, -50%) scale(1.12);
         background: #ef4444;
         border-color: #ef4444;
     }
 
     /* Dải thông tin dưới video Shorts */
-    .gev-overlay-bottom {
+    .gev-overlay-bottom,
+    .gev-video-bottom {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -461,8 +450,10 @@ function gobike_render_experience_shorts_modal_footer()
         justify-content: space-between;
         z-index: 2;
         color: #ffffff;
+        transition: opacity 0.2s ease;
     }
-    .gev-views {
+    .gev-views,
+    .gev-views-tag {
         display: flex;
         align-items: center;
         gap: 5px;
@@ -470,7 +461,8 @@ function gobike_render_experience_shorts_modal_footer()
         font-weight: 600;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
     }
-    .gev-shorts-badge {
+    .gev-shorts-badge,
+    .gev-shorts-tag {
         display: inline-flex;
         align-items: center;
         gap: 4px;
@@ -478,19 +470,71 @@ function gobike_render_experience_shorts_modal_footer()
         color: #ffffff;
         font-size: 11px;
         font-weight: 800;
-        padding: 3px 8px;
-        border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        padding: 2px 7px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+    }
+
+    /* INLINE VIDEO PLAYER (CHẠY TRỰC TIẾP TRÊN CARD) */
+    .gev-inline-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 10;
+        background: #000000;
+        border-radius: 14px 14px 0 0;
+    }
+    .gev-inline-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.75);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 20;
+        transition: all 0.2s ease;
+        padding: 0;
+    }
+    .gev-inline-close-btn:hover {
+        background: #ef4444;
+        border-color: #ef4444;
+        transform: scale(1.1);
+    }
+    /* Ẩn các layer tĩnh khi đang phát video */
+    .js-open-gev-video.is-playing .gev-shorts-img,
+    .js-open-gev-video.is-playing .gev-video-img,
+    .js-open-gev-video.is-playing .gev-overlay-top,
+    .js-open-gev-video.is-playing .gev-video-top,
+    .js-open-gev-video.is-playing .gev-play-center,
+    .js-open-gev-video.is-playing .gev-play-icon,
+    .js-open-gev-video.is-playing .gev-overlay-bottom,
+    .js-open-gev-video.is-playing .gev-video-bottom {
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     /* PHẦN DƯỚI: MINI CARD SẢN PHẨM */
     .gev-product-box {
-        padding: 12px;
+        padding: 12px 14px;
+        background: #ffffff;
         display: flex;
         align-items: center;
-        gap: 10px;
-        background: #ffffff;
+        gap: 12px;
         border-top: 1px solid #f1f5f9;
+        margin-top: auto;
     }
     .gev-prod-img-link {
         width: 52px;
@@ -565,157 +609,27 @@ function gobike_render_experience_shorts_modal_footer()
         transform: scale(1.05);
     }
 
-    /* POPUP SHORTS MODAL DỌC */
-    .gev-modal-overlay {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        z-index: 999999999 !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-    }
-    .gev-modal-backdrop {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(15, 23, 42, 0.85);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-    }
-    .gev-modal-dialog {
-        position: relative;
-        z-index: 1000000000;
-        width: 100%;
-        max-width: 400px;
-        max-height: 90vh;
-        background: #000000;
-        border-radius: 18px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-        animation: gevModalPop 0.25s ease-out;
-    }
-    @keyframes gevModalPop {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-    .gev-modal-close {
-        position: absolute;
-        top: 10px;
-        right: 12px;
-        background: rgba(0, 0, 0, 0.65);
-        border: none;
-        color: #ffffff;
-        font-size: 26px;
-        line-height: 1;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
-    .gev-modal-close:hover {
-        background: #ef4444;
-    }
-    .gev-modal-video-frame {
-        position: relative;
-        width: 100%;
-        padding-top: 165%; /* Tỉ lệ Shorts 9:16 */
-        background: #000000;
-    }
-    .gev-modal-video-frame iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Thanh sản phẩm trong modal */
-    .gev-modal-prod-bar {
-        background: #ffffff;
-        padding: 10px 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-top: 1px solid #e2e8f0;
-    }
-    .gev-mp-thumb {
-        width: 44px;
-        height: 44px;
-        border-radius: 6px;
-        object-fit: contain;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-    }
-    .gev-mp-details {
-        flex: 1;
-        min-width: 0;
-    }
-    .gev-mp-name {
-        font-size: 13px;
-        font-weight: 800;
-        color: #0f172a;
-        margin: 0 0 2px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .gev-mp-price {
-        font-size: 13px;
-        font-weight: 800;
-        color: #dc2626;
-        display: block;
-    }
-    .gev-mp-btn {
-        background: #059669;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 700;
-        padding: 6px 12px;
-        border-radius: 6px;
-        text-decoration: none;
-        white-space: nowrap;
-        transition: background 0.2s;
-    }
-    .gev-mp-btn:hover {
-        background: #047857;
-        color: #ffffff;
-    }
-
     /* RESPONSIVE */
     @media (max-width: 1024px) {
         .gev-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
         }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
         .gev-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
         .gev-main-title {
-            font-size: 18px;
+            font-size: 17px;
         }
         .gev-quote-text {
-            font-size: 13px;
+            font-size: 12.5px;
         }
         .gev-product-box {
-            padding: 8px;
-            gap: 6px;
+            padding: 8px 10px;
+            gap: 8px;
         }
         .gev-prod-img-link {
             width: 40px;
@@ -733,69 +647,75 @@ function gobike_render_experience_shorts_modal_footer()
     }
     </style>
 
-    <!-- SCRIPT MỞ POPUP SHORTS -->
+    <!-- SCRIPT PHÁT VIDEO TRỰC TIẾP TRÊN CARD (INLINE RUNNER) -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var modal = document.getElementById('js-gev-modal');
-        var iframe = document.getElementById('js-gev-iframe');
-        var closeBtn = document.getElementById('js-gev-modal-close');
-        var backdrop = modal ? modal.querySelector('.gev-modal-backdrop') : null;
-
-        var prodBar = document.getElementById('js-gev-prod-bar');
-        var prodThumb = document.getElementById('js-gev-prod-thumb');
-        var prodName = document.getElementById('js-gev-prod-name');
-        var prodPrice = document.getElementById('js-gev-prod-price');
-        var prodBtn = document.getElementById('js-gev-prod-btn');
-
-        if (modal && modal.parentElement !== document.body) {
-            document.body.appendChild(modal);
+        // Hàm dừng video đang phát trên 1 card
+        function stopInlineVideo(box) {
+            if (!box) return;
+            box.classList.remove('is-playing');
+            var existingIframe = box.querySelector('.gev-inline-iframe');
+            if (existingIframe) existingIframe.remove();
+            var existingBtn = box.querySelector('.gev-inline-close-btn');
+            if (existingBtn) existingBtn.remove();
         }
 
-        // Mở popup
         document.addEventListener('click', function(e) {
+            // 1. Nhấp nút đóng video để quay lại thumbnail
+            var closeBtn = e.target.closest('.gev-inline-close-btn');
+            if (closeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                var currentBox = closeBtn.closest('.js-open-gev-video');
+                stopInlineVideo(currentBox);
+                return;
+            }
+
+            // 2. Nhấp vào card video để phát trực tiếp tại chỗ
             var trigger = e.target.closest('.js-open-gev-video');
             if (trigger) {
+                // Nếu video này đang phát thì giữ nguyên cho người dùng xem/thao tác
+                if (trigger.classList.contains('is-playing')) {
+                    return;
+                }
+
                 e.preventDefault();
+
+                // Dừng tất cả các card video khác đang phát
+                document.querySelectorAll('.js-open-gev-video.is-playing').forEach(function(otherBox) {
+                    stopInlineVideo(otherBox);
+                });
+
                 var videoSrc = trigger.getAttribute('data-video-src');
-                var pName = trigger.getAttribute('data-prod-name');
-                var pUrl = trigger.getAttribute('data-prod-url');
-                var pPrice = trigger.getAttribute('data-prod-price');
-                var pThumb = trigger.getAttribute('data-prod-thumb');
-
-                if (videoSrc && iframe && modal) {
-                    iframe.src = videoSrc;
-
-                    if (pName && prodBar) {
-                        prodBar.style.display = 'flex';
-                        if (prodThumb) prodThumb.src = pThumb || '';
-                        if (prodName) prodName.textContent = pName;
-                        if (prodPrice) prodPrice.textContent = pPrice;
-                        if (prodBtn) prodBtn.href = pUrl || '#';
-                    } else if (prodBar) {
-                        prodBar.style.display = 'none';
+                if (videoSrc) {
+                    // Đảm bảo video tự phát (autoplay=1) và phát nội tuyến trên mobile (playsinline=1)
+                    if (videoSrc.indexOf('autoplay=') === -1) {
+                        videoSrc += (videoSrc.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1&playsinline=1';
+                    } else if (videoSrc.indexOf('playsinline=') === -1) {
+                        videoSrc += '&playsinline=1';
                     }
 
-                    modal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
+                    trigger.classList.add('is-playing');
+
+                    // Nhúng Iframe phát trực tiếp
+                    var iframe = document.createElement('iframe');
+                    iframe.className = 'gev-inline-iframe';
+                    iframe.src = videoSrc;
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                    iframe.setAttribute('allowfullscreen', 'true');
+
+                    // Thêm nút Đóng video ở góc trên để quay lại ảnh bìa khi cần
+                    var stopBtn = document.createElement('button');
+                    stopBtn.className = 'gev-inline-close-btn';
+                    stopBtn.type = 'button';
+                    stopBtn.innerHTML = '&times;';
+                    stopBtn.setAttribute('title', 'Đóng video');
+                    stopBtn.setAttribute('aria-label', 'Đóng video');
+
+                    trigger.appendChild(iframe);
+                    trigger.appendChild(stopBtn);
                 }
-            }
-        });
-
-        // Đóng popup
-        function closeShortsModal() {
-            if (modal && iframe) {
-                modal.style.display = 'none';
-                iframe.src = '';
-                document.body.style.overflow = '';
-            }
-        }
-
-        if (closeBtn) closeBtn.addEventListener('click', closeShortsModal);
-        if (backdrop) backdrop.addEventListener('click', closeShortsModal);
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
-                closeShortsModal();
             }
         });
     });
