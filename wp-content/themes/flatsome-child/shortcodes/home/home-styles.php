@@ -1028,7 +1028,6 @@ function gobike_custom_styles_output()
             margin-bottom: 8px;
             width: 100%;
             min-width: 0;
-            min-height: 40px;
         }
 
         .gobike-pcard-price-box .price-current {
@@ -1103,6 +1102,7 @@ function gobike_custom_styles_output()
             transition: all 0.2s ease;
             box-sizing: border-box;
             cursor: pointer;
+            margin-top: auto;
         }
 
         .gobike-pcard-btn:hover {
