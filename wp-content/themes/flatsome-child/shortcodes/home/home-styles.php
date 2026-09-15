@@ -49,7 +49,6 @@ function gobike_custom_styles_output()
         .gobike-video-review-section,
         .gobike-experience-videos-wrap,
         .gobike-quick-finder-wrap,
-        .gobike-category-block-wrapper,
         .gobike-home-flashsale-block,
         .gobike-home-brand-tabs-block,
         .banner-home,
@@ -1363,94 +1362,7 @@ function gobike_custom_styles_output()
             }
         }
 
-        /* ==========================================================================
-               7. TRANG CHỦ: DANH MỤC CUỘN NGANG (.row_cat / .row_cat1 - DANH MỤC XE)
-               ========================================================================== */
-        .row_cat,
-        .row_cat1 {
-            display: flex !important;
-            flex-wrap: nowrap !important;
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            padding-bottom: 12px !important;
-            padding-top: 4px !important;
-        }
-
-        .row_cat::-webkit-scrollbar,
-        .row_cat1::-webkit-scrollbar {
-            display: none !important;
-            width: 0 !important;
-            height: 0 !important;
-        }
-
-        .row_cat>.col,
-        .row_cat1>.col {
-            min-width: 140px !important;
-            padding: 0 6px !important;
-            flex: 0 0 auto !important;
-        }
-
-        /* Bổ sung viền bo tròn 10px, nền trắng & hover cho từng thẻ danh mục xe */
-        .row_cat>.col .col-inner,
-        .row_cat1>.col .col-inner,
-        #row-1054741809>.col .col-inner {
-            height: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background-color: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 10px !important;
-            padding: 16px 8px 12px 8px !important;
-            box-shadow: none !important;
-            transition: border-color 0.25s ease, transform 0.25s ease !important;
-            cursor: pointer;
-        }
-
-        .row_cat>.col:hover .col-inner,
-        .row_cat1>.col:hover .col-inner,
-        #row-1054741809>.col:hover .col-inner {
-            border-color: #149d29 !important;
-        }
-
-        .row_cat .icon-box-img,
-        .row_cat1 .icon-box-img {
-            margin-bottom: 6px !important;
-        }
-
-        .row_cat .icon-box-img img,
-        .row_cat1 .icon-box-img img {
-            transition: transform 0.25s ease !important;
-            max-height: 75px !important;
-            width: auto !important;
-            object-fit: contain !important;
-        }
-
-        .row_cat>.col:hover .icon-box-img img,
-        .row_cat1>.col:hover .icon-box-img img {
-            transform: scale(1.05) !important;
-        }
-
-        .row_cat .icon-box-text h3,
-        .row_cat1 .icon-box-text h3 {
-            font-size: 12px !important;
-            font-weight: 700 !important;
-            line-height: 1.3 !important;
-            margin-top: 6px !important;
-            margin-bottom: 0 !important;
-            white-space: normal !important;
-            color: #1e293b !important;
-            transition: color 0.2s ease !important;
-        }
-
-        .row_cat>.col:hover .icon-box-text h3,
-        .row_cat1>.col:hover .icon-box-text h3 {
-            color: #149d29 !important;
-        }
+        
 
         /* ==========================================================================
                                                                            8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
@@ -1459,9 +1371,16 @@ function gobike_custom_styles_output()
                                                                            ========================================================================== */
         .gobike-category-block-wrapper {
             max-width: 1230px;
-            margin: 0 auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-top: 0 !important;
+            margin-bottom: 30px !important;
             padding: 0 10px;
             box-sizing: border-box;
+        }
+
+        .gobike-category-block-wrapper:last-child {
+            margin-bottom: 0 !important;
         }
 
         /* Header của khối */
