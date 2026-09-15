@@ -4542,42 +4542,148 @@ function gobike_custom_styles_output()
             background: #149d29;
         }
 
+        /* Ẩn triệt để form ordering và radio sắp xếp thừa ngoài thanh toolbar */
+        .gobike-products-main-col > .col-inner > .woocommerce-ordering,
+        .gobike-products-main-col > .col-inner > .woocommerce-result-count,
+        .gobike-custom-sorting-toolbar,
+        .gobike-products-main-col .badge-container {
+            display: none !important;
+        }
+
         .gobike-shop-toolbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 0 16px 0;
-            margin-bottom: 10px;
+            padding: 10px 0 16px 0;
+            margin-bottom: 20px;
             border-bottom: 1px solid #f1f5f9;
         }
 
         .gobike-shop-toolbar .toolbar-result-count {
-            font-size: 13px;
-            color: #64748b;
-            font-weight: 500;
+            font-size: 14px;
+            color: #475569;
+            font-weight: 400;
+        }
+
+        .gobike-shop-toolbar .toolbar-result-count strong {
+            color: #0f172a;
+            font-weight: 700;
         }
 
         .gobike-shop-toolbar .toolbar-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
         .gobike-shop-toolbar .sort-prefix-label {
-            font-size: 13px;
+            font-size: 14px;
             color: #475569;
             font-weight: 500;
+            white-space: nowrap;
         }
 
-        .gobike-shop-toolbar .custom-ordering-form select {
-            height: 34px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 13px;
-            padding: 0 10px;
+        .gobike-shop-toolbar .custom-ordering-form {
+            margin: 0 !important;
+            float: none !important;
+        }
+
+        .gobike-shop-toolbar .sort-select-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .gobike-shop-toolbar .custom-ordering-form select.orderby {
+            height: 38px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 0 34px 0 14px;
             color: #1e293b;
             background: #ffffff;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            outline: none;
+            box-shadow: none;
+            margin: 0;
+            min-width: 140px;
+            transition: border-color 0.2s ease;
         }
+
+        .gobike-shop-toolbar .custom-ordering-form select.orderby:hover,
+        .gobike-shop-toolbar .custom-ordering-form select.orderby:focus {
+            border-color: #149d29;
+        }
+
+        .gobike-shop-toolbar .sort-select-arrow {
+            position: absolute;
+            right: 12px;
+            pointer-events: none;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Nút chuyển chế độ Grid / List chuẩn Ảnh 2 */
+        .gobike-shop-toolbar .view-switch-btns {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .gobike-shop-toolbar .btn-view-mode {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #475569;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+
+        .gobike-shop-toolbar .btn-view-mode.active,
+        .gobike-shop-toolbar .btn-view-mode.btn-view-grid.active {
+            background: #149d29;
+            color: #ffffff;
+        }
+
+        .gobike-shop-toolbar .btn-view-mode:hover:not(.active) {
+            color: #149d29;
+            background: #f8fafc;
+        }
+
+        @media screen and (max-width: 768px) {
+            .gobike-shop-toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .gobike-shop-toolbar .toolbar-right {
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .gobike-shop-toolbar .custom-ordering-form {
+                flex: 1;
+            }
+
+            .gobike-shop-toolbar .custom-ordering-form select.orderby {
+                width: 100%;
+            }
+        }
+
 
         @media (min-width: 850px) {
             /* .gobike-products-main-col .products.row .col {

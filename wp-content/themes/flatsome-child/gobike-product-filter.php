@@ -111,8 +111,8 @@ function gobike_filter_translate_strings($translated_text, $text, $domain)
     return $translated_text;
 }
 
-// 1.5 Hàm render thanh radio sắp xếp chuẩn mẫu GOBIKE
-add_action('woocommerce_before_shop_loop', 'gobike_render_custom_sorting_toolbar', 35);
+// 1.5 Hàm render thanh radio sắp xếp chuẩn mẫu GOBIKE (Tắt bỏ theo yêu cầu giao diện mới)
+// add_action('woocommerce_before_shop_loop', 'gobike_render_custom_sorting_toolbar', 35);
 function gobike_render_custom_sorting_toolbar()
 {
     static $rendered = false;

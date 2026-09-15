@@ -47,7 +47,7 @@ do_action( 'woocommerce_archive_description' );
 		<div class="col large-9 medium-8 small-12 gobike-products-main-col">
 			<div class="col-inner">
 				
-				<!-- THANH TOOLBAR KẾT QUẢ & SẮP XẾP CHUẨN ẢNH 4 -->
+				<!-- THANH TOOLBAR KẾT QUẢ & SẮP XẾP CHUẨN ẢNH 2 -->
 				<div class="gobike-shop-toolbar">
 					<div class="toolbar-left">
 						<?php
@@ -58,7 +58,7 @@ do_action( 'woocommerce_archive_description' );
 						$first   = ($paged - 1) * $per_page + 1;
 						$last    = min($total, $paged * $per_page);
 						if ($total > 0) {
-							echo '<span class="toolbar-result-count">Hiển thị ' . $first . ' - ' . $last . ' của ' . $total . ' kết quả</span>';
+							echo '<span class="toolbar-result-count">Hiển thị <strong>' . $first . ' - ' . $last . '</strong> của <strong>' . $total . '</strong> kết quả</span>';
 						} else {
 							echo '<span class="toolbar-result-count">0 kết quả</span>';
 						}
@@ -68,16 +68,21 @@ do_action( 'woocommerce_archive_description' );
 					<div class="toolbar-right">
 						<span class="sort-prefix-label">Sắp xếp theo:</span>
 						<form class="woocommerce-ordering custom-ordering-form" method="get">
-							<?php
-							$current_orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
-							?>
-							<select name="orderby" class="orderby" aria-label="Sắp xếp sản phẩm" onchange="this.form.submit()">
-								<option value="date" <?php selected($current_orderby, 'date'); ?>>Hàng mới</option>
-								<option value="price" <?php selected($current_orderby, 'price'); ?>>Giá thấp đến cao</option>
-								<option value="price-desc" <?php selected($current_orderby, 'price-desc'); ?>>Giá cao xuống thấp</option>
-								<option value="title-asc" <?php selected($current_orderby, 'title-asc'); ?>>Tên A-Z</option>
-								<option value="title-desc" <?php selected($current_orderby, 'title-desc'); ?>>Tên Z-A</option>
-							</select>
+							<div class="sort-select-wrapper">
+								<?php
+								$current_orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
+								?>
+								<select name="orderby" class="orderby" aria-label="Sắp xếp sản phẩm" onchange="this.form.submit()">
+									<option value="date" <?php selected($current_orderby, 'date'); ?>>Hàng mới</option>
+									<option value="price" <?php selected($current_orderby, 'price'); ?>>Giá thấp đến cao</option>
+									<option value="price-desc" <?php selected($current_orderby, 'price-desc'); ?>>Giá cao xuống thấp</option>
+									<option value="title-asc" <?php selected($current_orderby, 'title-asc'); ?>>Tên A-Z</option>
+									<option value="title-desc" <?php selected($current_orderby, 'title-desc'); ?>>Tên Z-A</option>
+								</select>
+								<span class="sort-select-arrow">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+								</span>
+							</div>
 							<?php
 							// Giữ lại các tham số lọc nếu có
 							foreach ($_GET as $key => $val) {
@@ -92,10 +97,38 @@ do_action( 'woocommerce_archive_description' );
 							}
 							?>
 						</form>
+
+						<div class="view-switch-btns">
+							<button type="button" class="btn-view-mode btn-view-grid active" title="Hiển thị dạng lưới">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+									<rect x="3" y="3" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="9.75" y="3" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="16.5" y="3" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="3" y="9.75" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="9.75" y="9.75" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="16.5" y="9.75" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="3" y="16.5" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="9.75" y="16.5" width="4.5" height="4.5" rx="1"></rect>
+									<rect x="16.5" y="16.5" width="4.5" height="4.5" rx="1"></rect>
+								</svg>
+							</button>
+							<button type="button" class="btn-view-mode btn-view-list" title="Hiển thị danh sách">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+									<line x1="8" y1="6" x2="21" y2="6"></line>
+									<line x1="8" y1="12" x2="21" y2="12"></line>
+									<line x1="8" y1="18" x2="21" y2="18"></line>
+									<line x1="3" y1="6" x2="3.01" y2="6"></line>
+									<line x1="3" y1="12" x2="3.01" y2="12"></line>
+									<line x1="3" y1="18" x2="3.01" y2="18"></line>
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
 
 				<?php
+				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 				do_action( 'woocommerce_before_shop_loop' );
 
 				if ( woocommerce_product_loop() ) {
@@ -137,3 +170,25 @@ do_action( 'woocommerce_archive_description' );
 	do_action( 'woocommerce_after_main_content' );
 	?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var btnGrid = document.querySelector('.btn-view-grid');
+    var btnList = document.querySelector('.btn-view-list');
+    var productsRow = document.querySelector('.gobike-products-main-col .products.row');
+    if (btnGrid && btnList) {
+        btnGrid.addEventListener('click', function(e) {
+            e.preventDefault();
+            btnGrid.classList.add('active');
+            btnList.classList.remove('active');
+            if (productsRow) productsRow.classList.remove('view-mode-list');
+        });
+        btnList.addEventListener('click', function(e) {
+            e.preventDefault();
+            btnList.classList.add('active');
+            btnGrid.classList.remove('active');
+            if (productsRow) productsRow.classList.add('view-mode-list');
+        });
+    }
+});
+</script>
