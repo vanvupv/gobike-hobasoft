@@ -1270,6 +1270,7 @@ function gobike_custom_styles_output()
                 gap: 8px !important;
                 transform: none !important;
                 width: 100% !important;
+                align-items: stretch !important;
             }
 
             .gobike-pcard-slide {
@@ -1277,6 +1278,9 @@ function gobike_custom_styles_output()
                 height: 100% !important;
                 margin: 0 !important;
                 min-width: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-self: stretch !important;
             }
 
             .gobike-cat-pagination {
@@ -1284,20 +1288,20 @@ function gobike_custom_styles_output()
             }
         }
 
-        /* Thẻ sản phẩm chuẩn Ảnh 2 */
+        /* Thẻ sản phẩm chuẩn Ảnh 2 - Đảm bảo các khối luôn bằng nhau 100% */
         .gobike-pcard {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 10px 10px 12px 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            display: flex !important;
+            flex-direction: column !important;
             position: relative;
-            height: 100%;
+            height: 100% !important;
             min-width: 0;
             box-sizing: border-box;
             transition: all 0.25s ease;
+            flex: 1 1 auto !important;
         }
 
         .gobike-pcard:hover {
@@ -1361,10 +1365,10 @@ function gobike_custom_styles_output()
 
         /* Nội dung thẻ */
         .gobike-pcard-body {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            justify-content: space-between;
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 1 auto !important;
+            justify-content: flex-start !important;
         }
 
         .gobike-pcard-title {
@@ -1377,6 +1381,7 @@ function gobike_custom_styles_output()
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             text-align: left;
+            min-height: 48px !important;
         }
 
         .gobike-pcard-title a {
@@ -1438,6 +1443,8 @@ function gobike_custom_styles_output()
             margin-bottom: 8px;
             width: 100%;
             min-width: 0;
+            min-height: 24px !important;
+            margin-top: auto !important;
         }
 
         .gobike-pcard-price-box .price-current {
@@ -1684,12 +1691,17 @@ function gobike_custom_styles_output()
                 flex-wrap: nowrap !important;
                 gap: 0 !important;
                 box-sizing: border-box !important;
+                align-items: stretch !important;
             }
 
             .gobike-pcard-slide {
                 width: calc(50% - 5px) !important;
                 flex-shrink: 0 !important;
                 box-sizing: border-box !important;
+                height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-self: stretch !important;
             }
 
             /* Chấm phân trang Swiper */
