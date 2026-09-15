@@ -3847,8 +3847,67 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
-                                                                                       ========================================================================== */
+           DANH MỤC XE (ROW: .vp-category-list / #row-1732247694)
+           ========================================================================== */
+        .vp-category-list,
+        #row-1732247694 {
+            margin-bottom: 30px !important;
+        }
+
+        .vp-category-list > .col > .col-inner,
+        #row-1732247694 > .col > .col-inner {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            box-shadow: none !important;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+        }
+
+        .vp-category-list > .col > .col-inner:hover,
+        #row-1732247694 > .col > .col-inner:hover {
+            border-color: #149d29 !important;
+        }
+
+        .vp-category-list .icon-box,
+        #row-1732247694 .icon-box {
+            margin-bottom: 0 !important;
+            width: 100% !important;
+        }
+
+        .vp-category-list .icon-box-img img,
+        #row-1732247694 .icon-box-img img {
+            transition: transform 0.3s ease !important;
+            object-fit: contain !important;
+        }
+
+        .vp-category-list > .col > .col-inner:hover .icon-box-img img,
+        #row-1732247694 > .col > .col-inner:hover .icon-box-img img {
+            transform: scale(1.06) !important;
+        }
+
+        .vp-category-list .icon-box-text h3,
+        #row-1732247694 .icon-box-text h3 {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #1e293b !important;
+            margin-top: 8px !important;
+            margin-bottom: 0 !important;
+            transition: color 0.25s ease !important;
+        }
+
+        .vp-category-list > .col > .col-inner:hover .icon-box-text h3,
+        #row-1732247694 > .col > .col-inner:hover .icon-box-text h3 {
+            color: #149d29 !important;
+        }
+
+        /* ==========================================================================
+           GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
+           ========================================================================== */
         .gobike-catalog-card-col {
             margin-bottom: 20px !important;
         }
