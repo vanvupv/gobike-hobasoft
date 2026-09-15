@@ -856,7 +856,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 	.mySwiper .swiper-slide {font-size:0}
 	.mySwiper {height:1%}
 	.mySwiper2 {height:99%}
-	.mySwiper .swiper-slide:before {position: absolute;content: '';width: 100%;height: 2px;background: #e1e1e1;left: 0;bottom: 0;}
+	.mySwiper .swiper-slide:before {position: absolute;content: '';width: 100%;height: 2px;background: #ffffff;left: 0;bottom: 0;}
 	.row-slider .flickity-prev-next-button svg {padding: 20% !important;}
 	.product-info.summary .quantity input[type="number"] {width: 40px;}
 	.product-footer-left, .product-footer-right {max-width: 100%;-ms-flex-preferred-size: 100%;flex-basis: 100%;}

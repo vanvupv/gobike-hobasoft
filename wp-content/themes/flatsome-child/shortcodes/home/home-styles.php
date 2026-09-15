@@ -721,6 +721,16 @@ function gobike_custom_styles_output()
             display: none;
         }
 
+        .mySwiper .swiper-slide:before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: #ffffff !important;
+            left: 0;
+            bottom: 0;
+        }
+
         /* --- 6.1. Desktop (>= 850px) --- */
         @media screen and (min-width: 850px) {
             .banner-home .row.gobike-hero-row {
