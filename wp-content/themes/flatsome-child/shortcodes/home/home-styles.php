@@ -2288,6 +2288,34 @@ function gobike_custom_styles_output()
             color: #333;
         }
 
+        /* Video Review Thực Tế Mobile Slider - Tiêu đề 2 dòng & Mô tả 2 dòng */
+        .gvr-ms-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            margin: 0 0 4px 0 !important;
+            line-height: 1.35 !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            min-height: 38px !important;
+        }
+
+        .gvr-ms-desc {
+            font-size: 12px !important;
+            color: #64748b !important;
+            margin: 0 !important;
+            line-height: 1.35 !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: normal !important;
+            min-height: 32px !important;
+        }
+
         /* Video Shorts Trải Nghiệm Thật - Cân bằng chiều cao thẻ trên Mobile & Tablet */
         .gobike-experience-videos-wrap .gev-grid {
             align-items: stretch !important;

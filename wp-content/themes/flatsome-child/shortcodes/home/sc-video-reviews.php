@@ -372,7 +372,7 @@ function gobike_render_home_video_reviews($atts)
 
                 $all_video_items[] = array(
                     'title'    => $f_title,
-                    'desc'     => 'Di chuyển xanh - Cuộc sống tốt hơn',
+                    'desc'     => $f_desc ?: 'Trải nghiệm thực tế GoBike sau thời gian dài sử dụng: cảm giác lái, pin và độ bền.',
                     'duration' => $f_duration,
                     'thumb'    => $f_thumb,
                     'embed'    => $f_embed,
@@ -485,7 +485,7 @@ function gobike_render_home_video_reviews($atts)
                         $p_embed = $p_yt_info['embed_url'];
                         $all_video_items[] = array(
                             'title'    => $p_title,
-                            'desc'     => wp_trim_words($p_desc, 12, '...'),
+                            'desc'     => wp_trim_words($p_desc, 18, '...'),
                             'duration' => $p_dur,
                             'thumb'    => $p_thumb,
                             'embed'    => $p_embed,
@@ -1621,21 +1621,26 @@ function gobike_render_video_player_modal_footer()
             font-size: 14px !important;
             font-weight: 700 !important;
             color: #0f172a !important;
-            margin: 0 0 3px 0 !important;
+            margin: 0 0 4px 0 !important;
             line-height: 1.35 !important;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            min-height: 38px !important;
         }
         .gvr-ms-desc {
             font-size: 12px !important;
             color: #64748b !important;
             margin: 0 !important;
             line-height: 1.35 !important;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: normal !important;
+            min-height: 32px !important;
         }
         .gvr-ms-more {
             flex-shrink: 0;
