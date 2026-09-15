@@ -2288,9 +2288,62 @@ function gobike_custom_styles_output()
             color: #333;
         }
 
+        /* Video Shorts Trải Nghiệm Thật - Cân bằng chiều cao thẻ trên Mobile & Tablet */
+        .gobike-experience-videos-wrap .gev-grid {
+            align-items: stretch !important;
+        }
+
+        .gobike-experience-videos-wrap .gev-card {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-self: stretch !important;
+            height: auto !important;
+        }
+
+        .gobike-experience-videos-wrap .gev-product-box {
+            margin-top: auto !important;
+            flex: 1 1 auto !important;
+            min-height: 86px !important;
+            box-sizing: border-box !important;
+        }
+
+        @media (max-width: 600px) {
+            .gobike-experience-videos-wrap .gev-product-box {
+                min-height: 84px !important;
+            }
+
+            .gobike-experience-videos-wrap .gev-prod-info {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                min-height: 52px !important;
+            }
+
+            .gobike-experience-videos-wrap .gev-prod-name {
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                margin-bottom: 2px !important;
+                line-height: 1.25 !important;
+            }
+
+            .gobike-experience-videos-wrap .gev-prod-cat {
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                margin-bottom: 2px !important;
+                line-height: 1.25 !important;
+            }
+
+            .gobike-experience-videos-wrap .gev-prod-price {
+                min-height: 16px !important;
+            }
+        }
+
         /* ==========================================================================
-                                                                           10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
-                                                                           ========================================================================== */
+           10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
+           ========================================================================== */
         .woof_redraw_zone {
             display: flex !important;
             align-items: center !important;

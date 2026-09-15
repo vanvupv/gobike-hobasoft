@@ -102,7 +102,7 @@ function gobike_render_experience_videos_shortcode($atts)
                 if (isset($demo_shorts[$idx])) {
                     $demo_shorts[$idx]['prod_id']    = $rp->get_id();
                     $demo_shorts[$idx]['prod_name']  = $rp->get_name();
-                    $demo_shorts[$idx]['prod_price'] = $rp->get_price_html();
+                    $demo_shorts[$idx]['prod_price'] = $rp->get_price_html() ?: '<span class="amount">Liên hệ</span>';
                     $demo_shorts[$idx]['prod_url']   = $rp->get_permalink();
                     $demo_shorts[$idx]['prod_thumb'] = wp_get_attachment_image_url($rp->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($rp->get_id(), 'thumbnail') ?: $demo_shorts[$idx]['prod_thumb']);
                     $demo_shorts[$idx]['prod_cat']   = strip_tags(wc_get_product_category_list($rp->get_id(), ', ', '', ''));
@@ -152,7 +152,7 @@ function gobike_render_experience_videos_shortcode($atts)
                         $p_id    = $product_obj->get_id();
                         $p_name  = $product_obj->get_name();
                         $p_thumb = wp_get_attachment_image_url($product_obj->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($p_id, 'thumbnail') ?: wc_placeholder_img_src());
-                        $p_price = $product_obj->get_price_html();
+                        $p_price = $product_obj->get_price_html() ?: '<span class="amount">Liên hệ</span>';
                         $p_url   = $product_obj->get_permalink();
                         $p_cats  = wc_get_product_category_list($p_id, ', ', '', '');
                         $p_cart  = $product_obj->add_to_cart_url();
@@ -300,7 +300,7 @@ function gobike_render_experience_videos_shortcode($atts)
                                     <a href="<?php echo esc_url($ds['prod_url']); ?>"><?php echo esc_html($ds['prod_name']); ?></a>
                                 </h4>
                                 <span class="gev-prod-cat"><?php echo esc_html($ds['prod_cat']); ?></span>
-                                <div class="gev-prod-price"><?php echo $ds['prod_price']; ?></div>
+                                <div class="gev-prod-price"><?php echo !empty($ds['prod_price']) ? $ds['prod_price'] : '<span class="amount">Liên hệ</span>'; ?></div>
                             </div>
 
                             <a href="<?php echo esc_url($d_cart_url); ?>" 
@@ -409,7 +409,9 @@ function gobike_render_experience_shorts_modal_footer()
         box-shadow: none !important;
         display: flex !important;
         flex-direction: column !important;
+        justify-content: space-between !important;
         height: 100% !important;
+        align-self: stretch !important;
         margin: 0 !important;
         padding: 0 !important;
         transform: none !important;
@@ -595,6 +597,8 @@ function gobike_render_experience_shorts_modal_footer()
         margin-right: 0 !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        flex: 1 1 auto !important;
+        min-height: 86px !important;
     }
     .gev-prod-img-link {
         width: 66px !important;
@@ -840,6 +844,7 @@ function gobike_render_experience_shorts_modal_footer()
         }
         .gev-grid {
             display: flex !important;
+            align-items: stretch !important;
             overflow-x: auto !important;
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
@@ -859,6 +864,17 @@ function gobike_render_experience_shorts_modal_footer()
             min-width: 240px !important;
             scroll-snap-align: start !important;
             box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-self: stretch !important;
+            height: auto !important;
+        }
+        .gev-product-box {
+            margin-top: auto !important;
+            flex: 1 1 auto !important;
+            min-height: 86px !important;
+            box-sizing: border-box !important;
         }
     }
     @media (max-width: 600px) {
@@ -866,6 +882,11 @@ function gobike_render_experience_shorts_modal_footer()
             flex: 0 0 78% !important;
             max-width: 78% !important;
             min-width: 220px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-self: stretch !important;
+            height: auto !important;
         }
         .gev-main-title {
             font-size: 16px !important;
@@ -873,22 +894,46 @@ function gobike_render_experience_shorts_modal_footer()
         .gev-product-box {
             padding: 8px !important;
             gap: 6px !important;
+            margin-top: auto !important;
+            flex: 1 1 auto !important;
+            min-height: 84px !important;
+            box-sizing: border-box !important;
         }
         .gev-prod-img-link {
             width: 52px !important;
             height: 52px !important;
             min-width: 52px !important;
             max-width: 52px !important;
+            flex-shrink: 0 !important;
+        }
+        .gev-prod-info {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            min-height: 52px !important;
         }
         .gev-prod-name {
             font-size: 13.5px !important;
+            margin-bottom: 2px !important;
+            line-height: 1.25 !important;
         }
         .gev-prod-cat {
             font-size: 12px !important;
             display: block !important;
+            margin-bottom: 2px !important;
+            line-height: 1.25 !important;
         }
         .gev-prod-price {
             font-size: 12.5px !important;
+            line-height: 1.2 !important;
+            min-height: 16px !important;
+        }
+        .gev-prod-cart-btn {
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
+            min-height: 36px !important;
+            flex-shrink: 0 !important;
         }
     }
     </style>
