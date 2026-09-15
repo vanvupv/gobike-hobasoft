@@ -1363,3 +1363,10 @@ footer#footer,
         width: 100% !important;
     }
 }
+
+/* Ẩn banner danh mục trên Tablet và Mobile */
+@media screen and (max-width: 1024px) {
+    .gobike-cat-banner-col {
+        display: none !important;
+    }
+}

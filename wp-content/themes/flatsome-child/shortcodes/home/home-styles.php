@@ -2015,33 +2015,9 @@ function gobike_custom_styles_output()
                 opacity: 1 !important;
             }
 
-            /* Banner chuyển xuống ở cuối khối */
+            /* Ẩn cột banner trên Tablet & Mobile */
             .gobike-cat-banner-col {
-                flex: none !important;
-                width: 100% !important;
-                min-width: 0 !important;
-                order: 2 !important;
-            }
-
-            .gobike-cat-banner-link.branded-card {
-                flex-direction: row !important;
-                align-items: center !important;
-                justify-content: space-between !important;
-                padding: 20px !important;
-                gap: 20px !important;
-            }
-
-            .gobike-cat-banner-link.branded-card .banner-card-top {
-                flex: 1 1 auto !important;
-            }
-
-            .gobike-cat-banner-link.branded-card .banner-card-bottom {
-                margin-top: 0 !important;
-                border-top: none !important;
-                border-left: 1px solid rgba(255, 255, 255, 0.15) !important;
-                padding-top: 0 !important;
-                padding-left: 20px !important;
-                flex: 0 0 auto !important;
+                display: none !important;
             }
 
             .gobike-category-block-wrapper .block-slogan {
@@ -2128,23 +2104,6 @@ function gobike_custom_styles_output()
                 padding: 4px 4px !important;
             }
 
-            .gobike-cat-banner-link.branded-card {
-                flex-direction: column !important;
-                text-align: center !important;
-            }
-
-            .gobike-cat-banner-link.branded-card .banner-cta-btn {
-                margin: 0 auto !important;
-            }
-
-            .gobike-cat-banner-link.branded-card .banner-card-bottom {
-                border-left: none !important;
-                border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-                padding-left: 0 !important;
-                padding-top: 12px !important;
-                margin-top: 15px !important;
-                width: 100% !important;
-            }
         }
 
         /* ==========================================================================
