@@ -508,17 +508,17 @@ function gobike_custom_styles_output()
             /* CỘT 1: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM */
             .banner-home .box_left.gobike-hero-box-left {
                 display: block !important;
-                width: 125px !important;
-                max-width: 125px !important;
-                min-width: 125px !important;
-                flex: 0 0 125px !important;
+                width: 135px !important;
+                max-width: 135px !important;
+                min-width: 135px !important;
+                flex: 0 0 135px !important;
                 padding: 0 !important;
                 margin: 0 !important;
             }
 
             .banner-home .gobike-vert-banner-card {
-                height: 380px !important;
-                max-height: 380px !important;
+                height: 430px !important;
+                max-height: 430px !important;
                 border-radius: 12px !important;
                 overflow: hidden !important;
                 background: #0d6e2e !important;
@@ -553,8 +553,8 @@ function gobike_custom_styles_output()
 
             .banner-home .box_center .swiper-container {
                 width: 100% !important;
-                height: 380px !important;
-                max-height: 380px !important;
+                height: 430px !important;
+                max-height: 430px !important;
                 display: flex !important;
                 flex-direction: column !important;
                 border-radius: 12px !important;
@@ -567,9 +567,9 @@ function gobike_custom_styles_output()
 
             .banner-home .mySwiper2 {
                 width: 100% !important;
-                height: 315px !important;
-                max-height: 315px !important;
-                flex: 0 0 315px !important;
+                height: 350px !important;
+                max-height: 350px !important;
+                flex: 0 0 350px !important;
                 overflow: hidden !important;
                 position: relative !important;
             }
@@ -578,16 +578,16 @@ function gobike_custom_styles_output()
             .banner-home .mySwiper2 .swiper-slide,
             .banner-home .mySwiper2 .swiper-slide a,
             .banner-home .mySwiper2 .swiper-slide img {
-                height: 315px !important;
-                min-height: 315px !important;
-                max-height: 315px !important;
+                height: 350px !important;
+                min-height: 350px !important;
+                max-height: 350px !important;
             }
 
             .banner-home .mySwiper.gobike-service-thumbs {
                 width: 100% !important;
-                height: 65px !important;
-                max-height: 65px !important;
-                flex: 0 0 65px !important;
+                height: 80px !important;
+                max-height: 80px !important;
+                flex: 0 0 80px !important;
                 background: #ffffff !important;
                 border-top: 1px solid #e2e8f0 !important;
                 padding: 0 !important;
@@ -596,45 +596,51 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .mySwiper.gobike-service-thumbs .swiper-wrapper {
-                height: 65px !important;
+                height: 80px !important;
                 display: flex !important;
             }
 
             .banner-home .service-thumb-item {
                 width: 25% !important;
                 flex: 0 0 25% !important;
-                height: 65px !important;
-                max-height: 65px !important;
-                padding: 6px 10px !important;
+                height: 80px !important;
+                max-height: 80px !important;
+                padding: 8px 12px !important;
                 cursor: pointer !important;
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: flex-start !important;
                 align-items: center !important;
-                gap: 8px !important;
+                gap: 10px !important;
                 text-align: left !important;
                 border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+                background: #ffffff !important;
                 box-sizing: border-box !important;
-                transition: background 0.2s ease, border-color 0.2s ease !important;
+                transition: color 0.2s ease !important;
             }
 
             .banner-home .service-thumb-item:last-child {
                 border-right: none !important;
             }
 
+            .banner-home .service-thumb-item::after {
+                display: none !important;
+                content: none !important;
+            }
+
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 32px !important;
-                height: 32px !important;
+                width: 36px !important;
+                height: 36px !important;
                 flex-shrink: 0 !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
             }
 
-            .banner-home .service-thumb-item .thumb-icon-wrap img {
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: contain !important;
+            .banner-home .service-thumb-item .thumb-icon-wrap svg {
+                width: 32px !important;
+                height: 32px !important;
                 display: block !important;
             }
 
@@ -643,11 +649,11 @@ function gobike_custom_styles_output()
                 flex-direction: column !important;
                 justify-content: center !important;
                 min-width: 0 !important;
-                line-height: 1.25 !important;
+                line-height: 1.3 !important;
             }
 
             .banner-home .service-thumb-item .thumb-title {
-                font-size: 11px !important;
+                font-size: 11.5px !important;
                 font-weight: 700 !important;
                 color: #1e293b !important;
                 text-transform: uppercase !important;
@@ -658,23 +664,27 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-desc {
-                font-size: 10.5px !important;
+                font-size: 11px !important;
                 font-weight: 600 !important;
                 color: #64748b !important;
                 text-transform: uppercase !important;
                 display: block !important;
             }
 
-            .banner-home .service-thumb-item.swiper-slide-thumb-active {
-                background: #f0fdf4 !important;
-                border-bottom: 2px solid #149d29 !important;
+            /* BỎ MÀU NỀN TRÊN TAB ACTIVE & HOVER (Duy trì nền trắng sạch sẽ) */
+            .banner-home .service-thumb-item.swiper-slide-thumb-active,
+            .banner-home .service-thumb-item:hover {
+                background: #ffffff !important;
+                border-bottom: none !important;
             }
 
-            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title {
+            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title,
+            .banner-home .service-thumb-item:hover .thumb-title {
                 color: #0d6e2e !important;
             }
 
-            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc {
+            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc,
+            .banner-home .service-thumb-item:hover .thumb-desc {
                 color: #149d29 !important;
             }
 
@@ -690,8 +700,8 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .gobike-news-card {
-                height: 380px !important;
-                max-height: 380px !important;
+                height: 430px !important;
+                max-height: 430px !important;
                 background: #ffffff !important;
                 border-radius: 12px !important;
                 border: 1px solid #e2e8f0 !important;

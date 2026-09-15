@@ -154,8 +154,7 @@ function gobike_render_home_hero_banner($atts = array())
                                 <?php foreach ($service_items as $index => $item): ?>
                                     <div class="swiper-slide service-thumb-item">
                                         <div class="thumb-icon-wrap">
-                                            <img src="<?php echo esc_url($item['icon']); ?>" alt="<?php echo esc_attr($item['line1']); ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                                            <span class="thumb-svg-fallback" style="display:none;"><?php echo $item['svg']; ?></span>
+                                            <?php echo $item['svg']; ?>
                                         </div>
                                         <div class="thumb-text-wrap">
                                             <span class="thumb-title"><?php echo esc_html($item['line1']); ?></span>
