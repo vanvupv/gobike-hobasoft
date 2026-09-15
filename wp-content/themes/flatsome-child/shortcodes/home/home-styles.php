@@ -1769,6 +1769,51 @@ function gobike_custom_styles_output()
             }
         }
 
+        @media screen and (max-width: 1024px) {
+            .gobike-pcard {
+                padding: 8px 8px 10px 8px !important;
+            }
+
+            .gobike-pcard-title {
+                font-size: 15px !important;
+                line-height: 1.3 !important;
+                min-height: 40px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .gobike-pcard-specs {
+                padding: 4px 2px !important;
+                gap: 2px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .gobike-pcard-specs .spec-badge {
+                font-size: 11px !important;
+                gap: 2px !important;
+            }
+
+            .gobike-pcard-specs .spec-badge svg {
+                width: 13px !important;
+                height: 13px !important;
+            }
+
+            .gobike-pcard-price-box {
+                margin-bottom: 6px !important;
+                min-height: 22px !important;
+            }
+
+            .gobike-pcard-price-box .price-current,
+            .gobike-pcard-price-box .price-current .woocommerce-Price-amount,
+            .gobike-pcard-price-box .price-current bdi {
+                font-size: 15px !important;
+            }
+
+            .gobike-pcard-btn {
+                font-size: 13.5px !important;
+                padding: 5px 6px !important;
+            }
+        }
+
         @media screen and (max-width: 640px) {
             .gobike-category-block-wrapper .block-title {
                 font-size: 16px !important;
@@ -1776,6 +1821,31 @@ function gobike_custom_styles_output()
 
             .gobike-category-block-wrapper .header-right .view-all-link {
                 font-size: 12px !important;
+            }
+
+            .gobike-pcard-title {
+                font-size: 13.5px !important;
+                min-height: 36px !important;
+            }
+
+            .gobike-pcard-specs .spec-badge {
+                font-size: 10px !important;
+            }
+
+            .gobike-pcard-specs .spec-badge svg {
+                width: 12px !important;
+                height: 12px !important;
+            }
+
+            .gobike-pcard-price-box .price-current,
+            .gobike-pcard-price-box .price-current .woocommerce-Price-amount,
+            .gobike-pcard-price-box .price-current bdi {
+                font-size: 13.5px !important;
+            }
+
+            .gobike-pcard-btn {
+                font-size: 12px !important;
+                padding: 4px 4px !important;
             }
 
             .gobike-cat-banner-link.branded-card {
