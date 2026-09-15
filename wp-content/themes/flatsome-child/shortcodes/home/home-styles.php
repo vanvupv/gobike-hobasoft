@@ -357,7 +357,15 @@ function gobike_custom_styles_output()
                 max-height: 38px !important;
                 width: auto !important;
                 object-fit: contain !important;
+            }
+
+            /* Chỉ hiển thị duy nhất 1 logo đầu tiên, ẩn triệt để các logo phụ (sticky/dark) */
+            .header-main .header-inner #logo a img:first-child {
                 display: block !important;
+            }
+
+            .header-main .header-inner #logo a img ~ img {
+                display: none !important;
             }
 
             /* Ẩn nút "Danh mục" desktop nếu có trên mobile */
