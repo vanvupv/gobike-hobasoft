@@ -3595,12 +3595,6 @@ function gobike_custom_styles_output()
             box-sizing: border-box !important;
         }
 
-        /* Khoảng cách giữa 2 cột: Bài viết lớn bên trái & Cột 4 bài viết bên phải */
-        .pv-row-custom .tab-panels .row.vp-row-custom {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 12px !important;
-        }
 
         /* Thẻ bài viết lớn bên trái - Bo góc và viền theo chuẩn thiết kế Ảnh 1 */
         .pv-row-custom .tab-panels .col.large-6:first-child .box-blog-post {
