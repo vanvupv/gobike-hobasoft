@@ -198,6 +198,77 @@ function gobike_custom_styles_output()
             font-size: 13px !important;
         }
 
+        /* --- 3.1. Hai khối Tiện ích Header: Hotline & Cửa hàng gần bạn --- */
+        .gobike-header-item {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            text-decoration: none !important;
+            padding: 4px 10px !important;
+            transition: all 0.25s ease !important;
+            border-radius: 8px !important;
+            line-height: 1.2 !important;
+            box-shadow: none !important;
+        }
+
+        .gobike-header-item:hover {
+            text-decoration: none !important;
+            opacity: 0.9 !important;
+        }
+
+        .gobike-header-item .gobike-hi-icon {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+            width: 28px !important;
+            height: 28px !important;
+            color: #0d6e2e !important;
+        }
+
+        .gobike-header-item .gobike-hi-icon svg {
+            width: 24px !important;
+            height: 24px !important;
+            stroke: #0d6e2e !important;
+            stroke-width: 2 !important;
+            display: block !important;
+            transition: transform 0.25s ease !important;
+        }
+
+        .gobike-header-item:hover .gobike-hi-icon svg {
+            transform: scale(1.1) !important;
+        }
+
+        .gobike-header-item .gobike-hi-content {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            text-align: left !important;
+        }
+
+        .gobike-header-item .gobike-hi-title {
+            font-size: 14.5px !important;
+            font-weight: 700 !important;
+            color: #0d6e2e !important;
+            letter-spacing: 0.2px !important;
+            white-space: nowrap !important;
+            line-height: 1.2 !important;
+            transition: color 0.2s ease !important;
+        }
+
+        .gobike-header-item:hover .gobike-hi-title {
+            color: #149d29 !important;
+        }
+
+        .gobike-header-item .gobike-hi-desc {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #64748b !important;
+            white-space: nowrap !important;
+            line-height: 1.2 !important;
+            margin-top: 2px !important;
+        }
+
         /* Responsive Header trên Mobile / Tablet (<= 849px) */
         @media screen and (max-width: 849px) {
             header.header .header-wrapper.stuck .show-for-medium.flex-right .mobile-nav {
