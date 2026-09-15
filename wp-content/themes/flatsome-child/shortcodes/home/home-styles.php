@@ -3749,6 +3749,278 @@ function gobike_custom_styles_output()
             margin-left: 2px;
         }
 
+        /* Tinh chỉnh Section Tin Tức (Bao gồm #row-1679372379 và .pv-row-custom): Bo viền, khoảng cách khối & Responsive Mobile */
+        .pv-row-custom#row-1679372379,
+        #row-1679372379,
+        .pv-row-custom {
+            margin-bottom: 30px !important;
+        }
+
+        .pv-row-custom#row-1679372379 > .col > .col-inner,
+        #row-1679372379 > .col > .col-inner {
+            background-color: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 16px !important;
+            padding: 24px 20px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Khoảng cách giữa 2 cột: Bài viết lớn bên trái & Cột 4 bài viết bên phải */
+        .pv-row-custom .tab-panels .row.vp-row-custom {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 24px 0 !important;
+        }
+
+        /* Thẻ bài viết lớn bên trái - Bo góc và viền theo chuẩn thiết kế Ảnh 1 */
+        .pv-row-custom .tab-panels .col.large-6:first-child .box-blog-post {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            box-sizing: border-box !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .box-image {
+            width: 100% !important;
+            border-radius: 0 !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .box-image .image-cover {
+            padding-top: 56.25% !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .box-text {
+            padding: 16px 18px 20px 18px !important;
+            flex: 1 1 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .post-title {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            line-height: 1.4 !important;
+            margin-bottom: 8px !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .post-title a {
+            color: #0f172a !important;
+            transition: color 0.2s ease !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:first-child .post-title a:hover {
+            color: #149d29 !important;
+        }
+
+        /* Cột bên phải (4 bài viết): Mỗi bài viết là 1 card có viền bo tròn theo Ảnh 1 */
+        .pv-row-custom .tab-panels .col.large-6:last-child .row-masonry,
+        .pv-row-custom .tab-panels .col.large-6:last-child .vp-blog-custom,
+        .pv-row-custom .tab-panels .col.large-6:last-child .vp-row-custom {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            height: auto !important;
+            position: static !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .post-item {
+            position: static !important;
+            width: 100% !important;
+            transform: none !important;
+            left: auto !important;
+            top: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-bottom: none !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-vertical {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            padding: 10px 14px 10px 10px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 14px !important;
+            margin: 0 !important;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-vertical:hover {
+            border-color: #cbd5e1 !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-image {
+            width: 120px !important;
+            min-width: 120px !important;
+            max-width: 120px !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-image .image-cover {
+            padding-top: 62% !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-text {
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            padding: 0 !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .post-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            line-height: 1.35 !important;
+            margin-bottom: 6px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .post-title a {
+            color: #0f172a !important;
+        }
+
+        .pv-row-custom .tab-panels .col.large-6:last-child .post-title a:hover {
+            color: #149d29 !important;
+        }
+
+        /* Nút 'Đọc thêm' / 'Đọc bài viết' màu xanh kèm mũi tên chuẩn thiết kế */
+        .pv-row-custom .tab-panels .box-text-inner .doc-them-link {
+            margin-left: auto !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            color: #149d29 !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+        }
+
+        /* RESPONSIVE TABLET & MOBILE (CHUẨN ẢNH 2 & ẢNH 3) */
+        @media screen and (max-width: 849px) {
+            .pv-row-custom#row-1679372379 > .col > .col-inner,
+            #row-1679372379 > .col > .col-inner {
+                padding: 16px 12px !important;
+                border-radius: 12px !important;
+            }
+
+            .pv-row-custom .tabbed-content > ul.nav {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                gap: 8px !important;
+                margin-bottom: 16px !important;
+                padding-bottom: 4px !important;
+            }
+
+            .pv-row-custom .tabbed-content > ul.nav::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .pv-row-custom .tabbed-content > ul.nav > li.tab {
+                flex-shrink: 0 !important;
+            }
+
+            .pv-row-custom .tabbed-content > ul.nav > li.tab > a {
+                padding: 6px 16px !important;
+                font-size: 13px !important;
+                white-space: nowrap !important;
+            }
+
+            /* Đảm bảo 2 cột medium-12 / large-6 xếp chồng tự nhiên: bài lớn trên, bài phụ dưới */
+            .pv-row-custom .tab-panels .row.vp-row-custom {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6,
+            .pv-row-custom .tab-panels .col.medium-12,
+            .pv-row-custom .tab-panels .col.medium-6 {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+                padding: 0 !important;
+            }
+
+            /* Sửa triệt để lỗi Masonry Packery làm các bài viết tab Tất cả bị xếp đè / xếp ngang 1 hàng trên Mobile */
+            .pv-row-custom .tab-panels .col.large-6:last-child .row-masonry,
+            .pv-row-custom .tab-panels .col.large-6:last-child .vp-blog-custom,
+            .pv-row-custom .tab-panels .col.large-6:last-child .vp-row-custom {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 12px !important;
+                position: static !important;
+                height: auto !important;
+                width: 100% !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:last-child .post-item {
+                position: static !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                transform: none !important;
+                left: auto !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                margin-bottom: 0 !important;
+            }
+
+            /* Giao diện chuẩn bài viết phụ trên mobile: ảnh thumbnail nằm bên trái 95px, text bên phải */
+            .pv-row-custom .tab-panels .col.large-6:last-child .box-vertical {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 12px !important;
+                padding: 8px !important;
+                border-radius: 10px !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:last-child .box-image {
+                width: 95px !important;
+                min-width: 95px !important;
+                max-width: 95px !important;
+                border-radius: 6px !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:last-child .box-image .image-cover {
+                padding-top: 65% !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:last-child .post-title {
+                font-size: 13.5px !important;
+                line-height: 1.35 !important;
+                margin-bottom: 4px !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:last-child .post-meta {
+                font-size: 11.5px !important;
+            }
+
+            /* Bài lớn trên mobile */
+            .pv-row-custom .tab-panels .col.large-6:first-child .box-text {
+                padding: 12px 14px 14px 14px !important;
+            }
+
+            .pv-row-custom .tab-panels .col.large-6:first-child .post-title {
+                font-size: 16px !important;
+            }
+        }
+
         /* ==========================================================================
                                                                            GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
                                                                            ========================================================================== */
