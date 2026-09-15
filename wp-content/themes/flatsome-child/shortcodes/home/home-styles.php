@@ -4844,7 +4844,7 @@ function gobike_custom_styles_output()
             /* KẾT QUẢ TÌM KIẾM TRỰC TIẾP (LIVE SEARCH RESULTS) */
             .header .search-form .live-search-results {
                 background-color: #ffffff !important;
-                border: 1px solid #e2e8f0 !important;
+                border: none !important;
                 border-radius: 8px !important;
                 box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
                 margin-top: 6px !important;
