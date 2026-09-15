@@ -4833,29 +4833,73 @@ function gobike_custom_styles_output()
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
             text-align: left;
+            align-items: stretch;
         }
 
         .gobike-showrooms-section .showroom-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px 18px;
+            border-radius: 14px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .gobike-showrooms-section .showroom-card:hover {
+            transform: translateY(-3px);
             border-color: #cbd5e1;
-            box-shadow: none !important;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06) !important;
+        }
+
+        .gobike-showrooms-section .showroom-thumb {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .gobike-showrooms-section .showroom-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .gobike-showrooms-section .showroom-card:hover .showroom-thumb img {
+            transform: scale(1.06);
+        }
+
+        .gobike-showrooms-section .showroom-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(15, 23, 42, 0.75);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.3px;
+        }
+
+        .gobike-showrooms-section .showroom-info {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
         }
 
         .gobike-showrooms-section .showroom-card h5 {
             font-size: 15px !important;
             font-weight: 700 !important;
             color: #0f172a !important;
-            margin: 0 0 8px 0 !important;
+            margin: 0 0 6px 0 !important;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -4878,6 +4922,22 @@ function gobike_custom_styles_output()
         .gobike-showrooms-section .showroom-card.card-contact {
             background: #f0fdf4;
             border-color: #bbf7d0;
+            padding: 22px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .gobike-showrooms-section .contact-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #dcfce7;
+            color: #15803d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
         }
 
         .gobike-showrooms-section .card-contact .hotline-label {
@@ -4889,7 +4949,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-showrooms-section .card-contact .hotline-number {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             color: #15803d;
             text-decoration: none;
@@ -4902,7 +4962,7 @@ function gobike_custom_styles_output()
             font-size: 12px;
             color: #4b5563;
             display: block;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .gobike-showrooms-section .card-contact .map-link-btn {
@@ -4913,10 +4973,13 @@ function gobike_custom_styles_output()
             display: inline-flex;
             align-items: center;
             gap: 4px;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .gobike-showrooms-section .card-contact .map-link-btn:hover {
-            text-decoration: underline;
+            color: #166534;
+            transform: translateX(3px);
+            text-decoration: none;
         }
 
         @media (max-width: 849px) {
@@ -5013,11 +5076,22 @@ function gobike_custom_styles_output()
                 flex: 0 0 50% !important;
             }
 
-            .gobike-shop-bottom-cards,
-            .gobike-why-choose-section .why-grid,
+            .gobike-why-choose-section .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gobike-showrooms-section .showroom-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 549px) {
             .gobike-showrooms-section .showroom-grid {
                 grid-template-columns: 1fr;
             }
+        }
+
+        @media (max-width: 849px) {
 
             /* ==========================================================================
                                            HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)

@@ -560,27 +560,56 @@ function gobike_render_shop_bottom_features()
     </div>
 
     <!-- HỆ THỐNG SHOWROOM GOBIKE (CHUẨN ẢNH 4 & ĐỊA CHỈ YÊU CẦU) -->
+    <?php
+    $theme_uri = get_stylesheet_directory_uri();
+    $img_hn = $theme_uri . '/assets/images/showroom-hanoi.jpg';
+    $img_pt = $theme_uri . '/assets/images/showroom-phutho.jpg';
+    $img_bn = $theme_uri . '/assets/images/showroom-bacninh.jpg';
+    ?>
     <div class="gobike-showrooms-section">
         <h3 class="showroom-title">Hệ thống showroom GoBike</h3>
         <p class="showroom-subtitle">Đón tiếp trải nghiệm trực tiếp các mẫu xe tại showroom gần bạn</p>
         <div class="showroom-grid">
-            <div class="showroom-card">
-                <h5>📍 Hà Nội</h5>
-                <p class="showroom-address">71 Trần Đăng Ninh, Phường Hà Đông, Hà Nội</p>
-                <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+            <div class="showroom-card has-thumb">
+                <div class="showroom-thumb">
+                    <img src="<?php echo esc_url($img_hn); ?>" alt="CS1 TỔNG KHO HÀ NỘI" loading="lazy" />
+                    <span class="showroom-badge">CS1</span>
+                </div>
+                <div class="showroom-info">
+                    <h5>📍 Hà Nội</h5>
+                    <p class="showroom-address">71 Trần Đăng Ninh, Phường Hà Đông, Hà Nội</p>
+                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                </div>
             </div>
-            <div class="showroom-card">
-                <h5>📍 Phú Thọ</h5>
-                <p class="showroom-address">47 Mã Lao, Phường Việt Trì, Phú Thọ</p>
-                <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+            <div class="showroom-card has-thumb">
+                <div class="showroom-thumb">
+                    <img src="<?php echo esc_url($img_pt); ?>" alt="CS2 TỔNG KHO PHÚ THỌ" loading="lazy" />
+                    <span class="showroom-badge">CS2</span>
+                </div>
+                <div class="showroom-info">
+                    <h5>📍 Phú Thọ</h5>
+                    <p class="showroom-address">47 Mã Lao, Phường Việt Trì, Phú Thọ</p>
+                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                </div>
             </div>
-            <div class="showroom-card">
-                <h5>📍 Bắc Ninh</h5>
-                <p class="showroom-address">567 Nguyễn Trãi, Phường Khắc Niệm, Bắc Ninh</p>
-                <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+            <div class="showroom-card has-thumb">
+                <div class="showroom-thumb">
+                    <img src="<?php echo esc_url($img_bn); ?>" alt="CS3 TỔNG KHO BẮC NINH" loading="lazy" />
+                    <span class="showroom-badge">CS3</span>
+                </div>
+                <div class="showroom-info">
+                    <h5>📍 Bắc Ninh</h5>
+                    <p class="showroom-address">567 Nguyễn Trãi, Phường Khắc Niệm, Bắc Ninh</p>
+                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                </div>
             </div>
             <div class="showroom-card card-contact">
-                <div class="hotline-wrap">
+                <div class="contact-card-top">
+                    <div class="contact-card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
                     <span class="hotline-label">Hotline tư vấn</span>
                     <a href="tel:0944988699" class="hotline-number">0944 988 699</a>
                     <span class="hotline-time">8:00 - 22:00 (Tất cả các ngày)</span>
@@ -591,4 +620,5 @@ function gobike_render_shop_bottom_features()
     </div>
     <?php
 }
+
 
