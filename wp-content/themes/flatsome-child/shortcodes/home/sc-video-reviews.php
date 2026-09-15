@@ -554,12 +554,12 @@ function gobike_render_home_video_reviews($atts)
         </div>
         </div> <!-- /.gvr-desktop-layout -->
 
-        <!-- 2.B GIAO DIỆN MOBILE SLIDER (Hiển thị dạng slide ngang trên tablet & mobile chuẩn Ảnh 2) -->
+        <!-- 2.B GIAO DIỆN MOBILE SLIDER (Dạng trượt ngang 1 khối + 1 phần khối tiếp theo chuẩn như Shorts) -->
         <div class="gvr-mobile-layout">
-            <div class="swiper gvr-mobile-swiper">
-                <div class="swiper-wrapper gvr-mobile-track">
+            <div class="gvr-mobile-slider-wrap">
+                <div class="gvr-mobile-track">
                     <?php foreach ($all_video_items as $vitem): ?>
-                        <div class="swiper-slide gvr-mobile-slide js-open-gvr-video"
+                        <div class="gvr-mobile-slide js-open-gvr-video"
                             data-cat="<?php echo esc_attr($vitem['cat']); ?>"
                             data-video-src="<?php echo esc_attr($vitem['embed']); ?>"
                             data-video-title="<?php echo esc_attr($vitem['title']); ?>">
@@ -591,12 +591,12 @@ function gobike_render_home_video_reviews($atts)
                     <?php endforeach; ?>
                 </div>
 
-                <!-- Nút Next chuyển slide tròn màu trắng (chuẩn Ảnh 2) -->
-                <div class="gvr-mobile-nav-next swiper-button-next">
+                <!-- Nút Next chuyển slide tròn màu trắng -->
+                <button type="button" class="gvr-mobile-nav-next" aria-label="Xem video tiếp theo">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                </div>
+                </button>
             </div>
         </div>
 
@@ -1514,23 +1514,37 @@ function gobike_render_video_player_modal_footer()
             display: block;
         }
 
-        /* MOBILE SLIDER STYLES (MATCHING ANH 2) */
-        .gvr-mobile-swiper {
+        /* MOBILE SLIDER STYLES (CHUẨN CUỘN SCROLL-SNAP NHƯ SHORTS) */
+        .gvr-mobile-slider-wrap {
             position: relative;
             width: 100%;
-            overflow: hidden;
-            padding: 4px 0 16px 0;
         }
         .gvr-mobile-track {
-            display: flex;
-            align-items: stretch;
+            display: flex !important;
+            align-items: stretch !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            gap: 12px !important;
+            padding: 4px 16px 14px 2px !important;
+            scrollbar-width: none !important;
+            margin: 0 !important;
+            list-style: none !important;
+        }
+        .gvr-mobile-track::-webkit-scrollbar {
+            display: none !important;
         }
         .gvr-mobile-slide {
-            flex-shrink: 0;
-            width: 82% !important;
+            flex: 0 0 78% !important;
+            max-width: 78% !important;
+            min-width: 220px !important;
+            scroll-snap-align: start !important;
             cursor: pointer;
             user-select: none;
-            box-sizing: border-box;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+            background: transparent !important;
         }
         .gvr-ms-media {
             position: relative;
@@ -1631,46 +1645,35 @@ function gobike_render_video_player_modal_footer()
             align-items: center;
         }
 
-        /* Next Button (Chuẩn nút tròn trắng có mũi tên ở Ảnh 2) */
+        /* Next Button (Nút tròn trắng có mũi tên chuyển slide mượt mà) */
         .gvr-mobile-nav-next {
-            position: absolute;
-            top: 28%;
-            right: 12%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-            z-index: 10;
-            cursor: pointer;
-            margin-top: 0;
+            position: absolute !important;
+            top: 32% !important;
+            right: 8px !important;
+            transform: translateY(-50%) !important;
+            width: 38px !important;
+            height: 38px !important;
+            border-radius: 50% !important;
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #0f172a !important;
+            z-index: 10 !important;
+            cursor: pointer !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+            transition: all 0.2s ease !important;
+        }
+        .gvr-mobile-nav-next:hover {
+            background: #149d29 !important;
+            color: #ffffff !important;
+            border-color: #149d29 !important;
         }
         .gvr-mobile-nav-next:after {
             display: none !important;
-        }
-        .gvr-mobile-nav-next.swiper-button-disabled {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* Fallback khi Swiper chưa load hoặc chưa init */
-        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-track {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            gap: 12px;
-        }
-        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-track::-webkit-scrollbar {
-            display: none;
-        }
-        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-slide {
-            scroll-snap-align: start;
         }
 
         /* RESPONSIVE TABLET & MOBILE */
@@ -1718,9 +1721,11 @@ function gobike_render_video_player_modal_footer()
             .gvr-view-all-link span {
                 display: inline !important;
             }
-            .gvr-ww-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
+            .gvr-mobile-slide {
+                flex: 0 0 72% !important;
+                max-width: 72% !important;
+                min-width: 240px !important;
+                scroll-snap-align: start !important;
             }
         }
 
@@ -1745,7 +1750,10 @@ function gobike_render_video_player_modal_footer()
                 font-size: 16.5px !important;
             }
             .gvr-mobile-slide {
-                width: 80% !important;
+                flex: 0 0 78% !important;
+                max-width: 78% !important;
+                min-width: 220px !important;
+                scroll-snap-align: start !important;
             }
         }
     </style>
@@ -1832,51 +1840,24 @@ function gobike_render_video_player_modal_footer()
                 }, { passive: false });
             }
 
-            // 5. KHỞI TẠO SWIPER TRÊN TABLET & MOBILE (<= 1024px)
-            function initGvrMobileSwiper() {
-                if (window.innerWidth <= 1024) {
-                    var swiperEl = document.querySelector('.gvr-mobile-swiper');
-                    if (swiperEl && !swiperEl.classList.contains('swiper-initialized') && typeof Swiper !== 'undefined') {
-                        new Swiper(swiperEl, {
-                            slidesPerView: 1.18,
-                            spaceBetween: 12,
-                            watchOverflow: true,
-                            navigation: {
-                                nextEl: swiperEl.querySelector('.gvr-mobile-nav-next'),
-                            },
-                            breakpoints: {
-                                320: {
-                                    slidesPerView: 1.18,
-                                    spaceBetween: 12
-                                },
-                                600: {
-                                    slidesPerView: 1.5,
-                                    spaceBetween: 14
-                                },
-                                768: {
-                                    slidesPerView: 2.2,
-                                    spaceBetween: 16
-                                }
-                            }
-                        });
+            // 5. NÚT NEXT CUỘN SLIDE TRÊN MOBILE / TABLET (Chuẩn native scroll-snap như Shorts)
+            var gvrNextBtn = document.querySelector('.gvr-mobile-nav-next');
+            var gvrTrack = document.querySelector('.gvr-mobile-track');
+            if (gvrNextBtn && gvrTrack) {
+                gvrNextBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var slide = gvrTrack.querySelector('.gvr-mobile-slide');
+                    var cardWidth = slide ? (slide.offsetWidth + 12) : (gvrTrack.offsetWidth * 0.78 + 12);
+                    
+                    // Nếu gần đến cuối thì quay vòng về đầu, ngược lại cuộn sang đúng 1 thẻ
+                    if (gvrTrack.scrollLeft + gvrTrack.clientWidth >= gvrTrack.scrollWidth - 25) {
+                        gvrTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        gvrTrack.scrollBy({ left: cardWidth, behavior: 'smooth' });
                     }
-                }
+                });
             }
-
-            if (typeof Swiper === 'undefined') {
-                var script = document.createElement('script');
-                script.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
-                script.onload = function() {
-                    initGvrMobileSwiper();
-                };
-                document.head.appendChild(script);
-            } else {
-                initGvrMobileSwiper();
-            }
-
-            window.addEventListener('resize', function() {
-                initGvrMobileSwiper();
-            });
         });
     </script>
     <?php
