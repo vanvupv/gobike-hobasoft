@@ -489,83 +489,94 @@ function gobike_render_shop_brand_banner()
  */
 function gobike_render_shop_bottom_features()
 {
+    $current_term = get_queried_object();
+    $brand_or_cat_name = '';
+    if ( $current_term && ! is_wp_error( $current_term ) && isset( $current_term->name ) ) {
+        $brand_or_cat_name = $current_term->name;
+    }
+    $why_title = ! empty( $brand_or_cat_name ) ? 'Vì sao chọn GoBike khi mua xe ' . esc_html( $brand_or_cat_name ) . '?' : 'Vì sao chọn GoBike khi mua xe đạp trợ lực điện?';
+    $brand_text = ! empty( $brand_or_cat_name ) ? esc_html( $brand_or_cat_name ) : 'chính hãng';
     ?>
-    <!-- 3 THẺ TÍNH NĂNG ĐẶC BIỆT -->
-    <div class="gobike-shop-bottom-cards">
-        <div class="feature-card card-video">
-            <div class="card-bg"></div>
-            <div class="card-content">
-                <span class="play-btn-circle">▶</span>
-                <h4>Video review xe</h4>
-                <p>Trải nghiệm thực tế từng tính năng thật</p>
-                <a href="<?php echo home_url('/video-review/'); ?>" class="card-link">Xem ngay ➔</a>
-            </div>
-        </div>
-
-        <div class="feature-card card-compare">
-            <div class="card-bg"></div>
-            <div class="card-content">
-                <h4>So sánh nhanh</h4>
-                <p>Nhiều mẫu, xe nào phù hợp với bạn?</p>
-                <a href="<?php echo home_url('/so-sanh/'); ?>" class="card-link">Xem ngay ➔</a>
-            </div>
-        </div>
-
-        <div class="feature-card card-finder">
-            <div class="card-bg"></div>
-            <div class="card-content">
-                <h4>60 giây chọn đúng xe</h4>
-                <p>Trả lời vài câu hỏi để tìm xe phù hợp ngay</p>
-                <a href="<?php echo home_url('/tu-van-60s/'); ?>" class="card-link btn-action">Bắt đầu ngay ➔</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- KHỐI VÌ SAO CHỌN GOBIKE -->
+    <!-- KHỐI VÌ SAO CHỌN GOBIKE (CHUẨN ẢNH 3: ICON TO TRÒN XANH NGỌC) -->
     <div class="gobike-why-choose-section">
-        <h3 class="why-title">Vì sao chọn GoBike khi mua xe đạp trợ lực điện?</h3>
+        <h3 class="why-title"><?php echo esc_html($why_title); ?></h3>
         <div class="why-grid">
             <div class="why-item">
-                <div class="why-icon">🛡️</div>
-                <h5>Chính hãng 100%</h5>
-                <p>Sản phẩm phân phối chính hãng, đầy đủ CO, CQ, xuất VAT.</p>
+                <div class="why-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                </div>
+                <div class="why-info">
+                    <h5>Chính hãng 100%</h5>
+                    <p>Sản phẩm <?php echo esc_html($brand_text); ?> chính hãng, đầy đủ CO, CQ, xuất VAT</p>
+                </div>
             </div>
+
             <div class="why-item">
-                <div class="why-icon">👥</div>
-                <h5>Tư vấn đúng nhu cầu</h5>
-                <p>Đội ngũ am hiểu, giúp bạn chọn xe phù hợp nhất.</p>
+                <div class="why-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="why-info">
+                    <h5>Tư vấn đúng nhu cầu</h5>
+                    <p>Đội ngũ am hiểu, giúp bạn chọn xe phù hợp nhất</p>
+                </div>
             </div>
+
             <div class="why-item">
-                <div class="why-icon">🚲</div>
-                <h5>Lái thử tại showroom</h5>
-                <p>Trải nghiệm thực tế trước khi quyết định mua.</p>
+                <div class="why-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                        <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                        <circle cx="15" cy="5" r="1"></circle>
+                        <path d="M12 17.5V14l-3-3 4-3 2 3h2"></path>
+                    </svg>
+                </div>
+                <div class="why-info">
+                    <h5>Lái thử tại showroom</h5>
+                    <p>Trải nghiệm thực tế trước khi quyết định</p>
+                </div>
             </div>
+
             <div class="why-item">
-                <div class="why-icon">⚙️</div>
-                <h5>Bảo trì hậu mãi</h5>
-                <p>Hỗ trợ kỹ thuật trọn đời, phụ tùng chính hãng giá gốc.</p>
+                <div class="why-icon-wrap">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </div>
+                <div class="why-info">
+                    <h5>Bảo trì hậu mãi</h5>
+                    <p>Hỗ trợ kỹ thuật trọn đời, phụ tùng chính hãng</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- HỆ THỐNG SHOWROOM GOBIKE -->
+    <!-- HỆ THỐNG SHOWROOM GOBIKE (CHUẨN ẢNH 4 & ĐỊA CHỈ YÊU CẦU) -->
     <div class="gobike-showrooms-section">
         <h3 class="showroom-title">Hệ thống showroom GoBike</h3>
         <p class="showroom-subtitle">Đón tiếp trải nghiệm trực tiếp các mẫu xe tại showroom gần bạn</p>
         <div class="showroom-grid">
             <div class="showroom-card">
                 <h5>📍 Hà Nội</h5>
-                <p>71 Trần Đăng Ninh, Cầu Giấy, Hà Nội</p>
+                <p class="showroom-address">71 Trần Đăng Ninh, Phường Hà Đông, Hà Nội</p>
                 <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
             </div>
             <div class="showroom-card">
                 <h5>📍 Phú Thọ</h5>
-                <p>47 Mê Linh, Việt Trì, Phú Thọ</p>
+                <p class="showroom-address">47 Mã Lao, Phường Việt Trì, Phú Thọ</p>
                 <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
             </div>
             <div class="showroom-card">
                 <h5>📍 Bắc Ninh</h5>
-                <p>567 Nguyễn Trãi, TP Bắc Ninh</p>
+                <p class="showroom-address">567 Nguyễn Trãi, Phường Khắc Niệm, Bắc Ninh</p>
                 <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
             </div>
             <div class="showroom-card card-contact">
@@ -580,3 +591,4 @@ function gobike_render_shop_bottom_features()
     </div>
     <?php
 }
+

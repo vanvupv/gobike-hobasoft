@@ -97,34 +97,9 @@ do_action( 'woocommerce_archive_description' );
 							}
 							?>
 						</form>
-
-						<div class="view-switch-btns">
-							<button type="button" class="btn-view-mode btn-view-grid active" title="Hiển thị dạng lưới">
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-									<rect x="3" y="3" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="9.75" y="3" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="16.5" y="3" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="3" y="9.75" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="9.75" y="9.75" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="16.5" y="9.75" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="3" y="16.5" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="9.75" y="16.5" width="4.5" height="4.5" rx="1"></rect>
-									<rect x="16.5" y="16.5" width="4.5" height="4.5" rx="1"></rect>
-								</svg>
-							</button>
-							<button type="button" class="btn-view-mode btn-view-list" title="Hiển thị danh sách">
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-									<line x1="8" y1="6" x2="21" y2="6"></line>
-									<line x1="8" y1="12" x2="21" y2="12"></line>
-									<line x1="8" y1="18" x2="21" y2="18"></line>
-									<line x1="3" y1="6" x2="3.01" y2="6"></line>
-									<line x1="3" y1="12" x2="3.01" y2="12"></line>
-									<line x1="3" y1="18" x2="3.01" y2="18"></line>
-								</svg>
-							</button>
-						</div>
 					</div>
 				</div>
+
 
 				<?php
 				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
@@ -170,25 +145,3 @@ do_action( 'woocommerce_archive_description' );
 	do_action( 'woocommerce_after_main_content' );
 	?>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var btnGrid = document.querySelector('.btn-view-grid');
-    var btnList = document.querySelector('.btn-view-list');
-    var productsRow = document.querySelector('.gobike-products-main-col .products.row');
-    if (btnGrid && btnList) {
-        btnGrid.addEventListener('click', function(e) {
-            e.preventDefault();
-            btnGrid.classList.add('active');
-            btnList.classList.remove('active');
-            if (productsRow) productsRow.classList.remove('view-mode-list');
-        });
-        btnList.addEventListener('click', function(e) {
-            e.preventDefault();
-            btnList.classList.add('active');
-            btnGrid.classList.remove('active');
-            if (productsRow) productsRow.classList.add('view-mode-list');
-        });
-    }
-});
-</script>
