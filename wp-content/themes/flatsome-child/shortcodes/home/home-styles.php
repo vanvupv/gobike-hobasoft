@@ -494,18 +494,24 @@ function gobike_custom_styles_output()
             .banner-home .row.gobike-hero-row {
                 display: flex !important;
                 flex-direction: row !important;
+                flex-wrap: nowrap !important;
                 align-items: stretch !important;
                 gap: 12px !important;
-                margin: 0 auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                width: 100% !important;
                 max-width: 1230px !important;
             }
 
             /* CỘT 1: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM */
             .banner-home .box_left.gobike-hero-box-left {
                 display: block !important;
-                width: 140px !important;
-                max-width: 140px !important;
-                flex: 0 0 140px !important;
+                width: 125px !important;
+                max-width: 125px !important;
+                min-width: 125px !important;
+                flex: 0 0 125px !important;
                 padding: 0 !important;
                 margin: 0 !important;
             }
@@ -519,7 +525,12 @@ function gobike_custom_styles_output()
                 box-shadow: none !important;
             }
 
-            .banner-home .gobike-vert-banner-card a,
+            .banner-home .gobike-vert-banner-card a {
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
             .banner-home .gobike-vert-banner-card img {
                 width: 100% !important;
                 height: 100% !important;
@@ -531,8 +542,11 @@ function gobike_custom_styles_output()
 
             /* CỘT 2: KHỐI SLIDER CHÍNH & 4 DỊCH VỤ CAM KẾT */
             .banner-home .box_center.gobike-hero-box-center {
-                flex: 1 1 auto !important;
+                display: block !important;
+                flex: 1 1 0% !important;
                 min-width: 0 !important;
+                width: auto !important;
+                max-width: none !important;
                 padding: 0 !important;
                 margin: 0 !important;
             }
@@ -666,8 +680,10 @@ function gobike_custom_styles_output()
 
             /* CỘT 3: TIN TỨC MỚI NHẤT & SHOWROOM */
             .banner-home .box_right.gobike-hero-box-right {
+                display: block !important;
                 width: 315px !important;
                 max-width: 315px !important;
+                min-width: 315px !important;
                 flex: 0 0 315px !important;
                 padding: 0 !important;
                 margin: 0 !important;

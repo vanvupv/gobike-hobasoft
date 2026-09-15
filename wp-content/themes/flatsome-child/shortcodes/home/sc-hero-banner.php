@@ -97,13 +97,18 @@ function gobike_render_home_hero_banner($atts = array())
     ));
 
     $theme_uri = get_stylesheet_directory_uri();
-    $left_banner_img = file_exists(get_stylesheet_directory() . '/assets/images/banner-left-vert.png')
-        ? $theme_uri . '/assets/images/banner-left-vert.png'
-        : content_url('/uploads/2026/09/banner-left-vert.png');
+    $theme_dir = get_stylesheet_directory();
+    $left_banner_file = $theme_dir . '/assets/images/banner-left-vert.png';
+    $v_left = file_exists($left_banner_file) ? filemtime($left_banner_file) : time();
+    $left_banner_img = file_exists($left_banner_file)
+        ? $theme_uri . '/assets/images/banner-left-vert.png?v=' . $v_left
+        : content_url('/uploads/2026/09/banner-left-vert.png?v=' . $v_left);
 
-    $showroom_img = file_exists(get_stylesheet_directory() . '/assets/images/banner-showroom.png')
-        ? $theme_uri . '/assets/images/banner-showroom.png'
-        : content_url('/uploads/2026/09/banner-showroom.png');
+    $showroom_file = $theme_dir . '/assets/images/banner-showroom.png';
+    $v_show = file_exists($showroom_file) ? filemtime($showroom_file) : time();
+    $showroom_img = file_exists($showroom_file)
+        ? $theme_uri . '/assets/images/banner-showroom.png?v=' . $v_show
+        : content_url('/uploads/2026/09/banner-showroom.png?v=' . $v_show);
 
     ob_start();
     ?>
