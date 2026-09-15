@@ -220,18 +220,28 @@ function gobike_custom_styles_output()
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            flex-shrink: 0 !important;
+            flex: 0 0 28px !important;
             width: 28px !important;
+            min-width: 28px !important;
+            max-width: 28px !important;
             height: 28px !important;
+            min-height: 28px !important;
+            max-height: 28px !important;
             color: #0d6e2e !important;
         }
 
         .gobike-header-item .gobike-hi-icon svg {
-            width: 24px !important;
-            height: 24px !important;
+            width: 26px !important;
+            min-width: 26px !important;
+            max-width: 26px !important;
+            height: 26px !important;
+            min-height: 26px !important;
+            max-height: 26px !important;
             stroke: #0d6e2e !important;
-            stroke-width: 2 !important;
+            stroke-width: 2.2 !important;
+            shape-rendering: geometricPrecision !important;
             display: block !important;
+            flex-shrink: 0 !important;
             transition: transform 0.25s ease !important;
         }
 
