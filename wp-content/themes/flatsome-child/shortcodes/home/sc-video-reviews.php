@@ -338,34 +338,48 @@ function gobike_render_home_video_reviews($atts)
             </a>
         </div>
 
-        <!-- 2. MAIN GRID: 1 FEATURED LỚN (TRÁI) + 4 VIDEO CARD NGANG (PHẢI) -->
-        <div class="gvr-main-grid">
-            <?php
-            // A. RENDER VIDEO NỔI BẬT (BÊN TRÁI)
-            if ($featured_post) {
-                $f_id = $featured_post->ID;
-                $f_title = get_the_title($f_id);
-                $f_desc = get_field('video_desc', $f_id) ?: get_the_excerpt($f_id);
-                $f_duration = get_field('video_duration', $f_id) ?: '10:00';
-                $f_url = get_field('video_url', $f_id);
-                $f_yt_info = gobike_extract_youtube_info($f_url);
-                $f_thumb = get_field('video_thumbnail', $f_id);
-                if (!$f_thumb)
-                    $f_thumb = $f_yt_info['thumbnail'];
-                $f_cat_terms = get_the_terms($f_id, 'video_category');
-                $f_cat_slug = (!empty($f_cat_terms) && !is_wp_error($f_cat_terms)) ? $f_cat_terms[0]->slug : 'all';
-                $f_embed = $f_yt_info['embed_url'];
-            } else {
-                // Fallback Demo
-                $f_title = $demo_featured['title'];
-                $f_desc = $demo_featured['desc'];
-                $f_duration = $demo_featured['duration'];
-                $f_thumb = $demo_featured['thumb'];
-                $f_cat_slug = $demo_featured['category'];
-                $f_embed = 'https://www.youtube.com/embed/' . $demo_featured['youtube_id'] . '?autoplay=1&rel=0';
-            }
-            ?>
-            <div class="gvr-featured-card gvr-filterable-item" data-cat="<?php echo esc_attr($f_cat_slug); ?>">
+        <?php
+        // Chuẩn bị mảng chứa toàn bộ video phục vụ Mobile Slider
+        $all_video_items = array();
+        ?>
+        <!-- 2. MAIN CONTENT: DESKTOP GRID & MOBILE SLIDER -->
+        <div class="gvr-desktop-layout">
+            <div class="gvr-main-grid">
+                <?php
+                // A. RENDER VIDEO NỔI BẬT (BÊN TRÁI)
+                if ($featured_post) {
+                    $f_id = $featured_post->ID;
+                    $f_title = get_the_title($f_id);
+                    $f_desc = get_field('video_desc', $f_id) ?: get_the_excerpt($f_id);
+                    $f_duration = get_field('video_duration', $f_id) ?: '10:00';
+                    $f_url = get_field('video_url', $f_id);
+                    $f_yt_info = gobike_extract_youtube_info($f_url);
+                    $f_thumb = get_field('video_thumbnail', $f_id);
+                    if (!$f_thumb)
+                        $f_thumb = $f_yt_info['thumbnail'];
+                    $f_cat_terms = get_the_terms($f_id, 'video_category');
+                    $f_cat_slug = (!empty($f_cat_terms) && !is_wp_error($f_cat_terms)) ? $f_cat_terms[0]->slug : 'all';
+                    $f_embed = $f_yt_info['embed_url'];
+                } else {
+                    // Fallback Demo
+                    $f_title = $demo_featured['title'];
+                    $f_desc = $demo_featured['desc'];
+                    $f_duration = $demo_featured['duration'];
+                    $f_thumb = $demo_featured['thumb'];
+                    $f_cat_slug = $demo_featured['category'];
+                    $f_embed = 'https://www.youtube.com/embed/' . $demo_featured['youtube_id'] . '?autoplay=1&rel=0';
+                }
+
+                $all_video_items[] = array(
+                    'title'    => $f_title,
+                    'desc'     => 'Di chuyển xanh - Cuộc sống tốt hơn',
+                    'duration' => $f_duration,
+                    'thumb'    => $f_thumb,
+                    'embed'    => $f_embed,
+                    'cat'      => $f_cat_slug,
+                );
+                ?>
+                <div class="gvr-featured-card gvr-filterable-item" data-cat="<?php echo esc_attr($f_cat_slug); ?>">
                 <div class="gvr-featured-media js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
                     data-video-title="<?php echo esc_attr($f_title); ?>">
                     <img src="<?php echo esc_url($f_thumb); ?>" alt="<?php echo esc_attr($f_title); ?>"
@@ -469,6 +483,14 @@ function gobike_render_home_video_reviews($atts)
                         $p_cat_terms = get_the_terms($p_id, 'video_category');
                         $p_cat_slug = (!empty($p_cat_terms) && !is_wp_error($p_cat_terms)) ? $p_cat_terms[0]->slug : 'all';
                         $p_embed = $p_yt_info['embed_url'];
+                        $all_video_items[] = array(
+                            'title'    => $p_title,
+                            'desc'     => wp_trim_words($p_desc, 12, '...'),
+                            'duration' => $p_dur,
+                            'thumb'    => $p_thumb,
+                            'embed'    => $p_embed,
+                            'cat'      => $p_cat_slug,
+                        );
                         ?>
                         <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
                             data-cat="<?php echo esc_attr($p_cat_slug); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
@@ -496,6 +518,14 @@ function gobike_render_home_video_reviews($atts)
                     // Render 4 thẻ demo
                     foreach ($demo_items as $item) {
                         $p_embed = 'https://www.youtube.com/embed/' . $item['yt_id'] . '?autoplay=1&rel=0';
+                        $all_video_items[] = array(
+                            'title'    => $item['title'],
+                            'desc'     => $item['desc'],
+                            'duration' => $item['duration'],
+                            'thumb'    => $item['thumb'],
+                            'embed'    => $p_embed,
+                            'cat'      => $item['category'],
+                        );
                         ?>
                         <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
                             data-cat="<?php echo esc_attr($item['category']); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
@@ -520,6 +550,53 @@ function gobike_render_home_video_reviews($atts)
                     }
                 }
                 ?>
+            </div>
+        </div>
+        </div> <!-- /.gvr-desktop-layout -->
+
+        <!-- 2.B GIAO DIỆN MOBILE SLIDER (Hiển thị dạng slide ngang trên tablet & mobile chuẩn Ảnh 2) -->
+        <div class="gvr-mobile-layout">
+            <div class="swiper gvr-mobile-swiper">
+                <div class="swiper-wrapper gvr-mobile-track">
+                    <?php foreach ($all_video_items as $vitem): ?>
+                        <div class="swiper-slide gvr-mobile-slide js-open-gvr-video"
+                            data-cat="<?php echo esc_attr($vitem['cat']); ?>"
+                            data-video-src="<?php echo esc_attr($vitem['embed']); ?>"
+                            data-video-title="<?php echo esc_attr($vitem['title']); ?>">
+                            
+                            <div class="gvr-ms-media">
+                                <img src="<?php echo esc_url($vitem['thumb']); ?>" alt="<?php echo esc_attr($vitem['title']); ?>" loading="lazy">
+                                <div class="gvr-ms-play">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </div>
+                                <span class="gvr-ms-duration"><?php echo esc_html($vitem['duration']); ?></span>
+                            </div>
+
+                            <div class="gvr-ms-info">
+                                <div class="gvr-ms-text">
+                                    <h3 class="gvr-ms-title"><?php echo esc_html($vitem['title']); ?></h3>
+                                    <p class="gvr-ms-desc"><?php echo esc_html($vitem['desc']); ?></p>
+                                </div>
+                                <div class="gvr-ms-more">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <circle cx="12" cy="5" r="2"></circle>
+                                        <circle cx="12" cy="12" r="2"></circle>
+                                        <circle cx="12" cy="19" r="2"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Nút Next chuyển slide tròn màu trắng (chuẩn Ảnh 2) -->
+                <div class="gvr-mobile-nav-next swiper-button-next">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
             </div>
         </div>
 
@@ -1429,21 +1506,218 @@ function gobike_render_video_player_modal_footer()
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* RESPONSIVE */
+        /* DESKTOP vs MOBILE TOGGLE */
+        .gvr-mobile-layout {
+            display: none;
+        }
+        .gvr-desktop-layout {
+            display: block;
+        }
+
+        /* MOBILE SLIDER STYLES (MATCHING ANH 2) */
+        .gvr-mobile-swiper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 4px 0 16px 0;
+        }
+        .gvr-mobile-track {
+            display: flex;
+            align-items: stretch;
+        }
+        .gvr-mobile-slide {
+            flex-shrink: 0;
+            width: 82% !important;
+            cursor: pointer;
+            user-select: none;
+            box-sizing: border-box;
+        }
+        .gvr-ms-media {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+        .gvr-ms-media img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .gvr-mobile-slide:hover .gvr-ms-media img {
+            transform: scale(1.03);
+        }
+        .gvr-ms-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: transform 0.2s ease, background 0.2s ease;
+            z-index: 2;
+        }
+        .gvr-mobile-slide:hover .gvr-ms-play {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: rgba(20, 157, 41, 0.9);
+        }
+        .gvr-ms-play svg {
+            margin-left: 2px;
+        }
+        .gvr-ms-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+            z-index: 2;
+        }
+        .gvr-ms-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 8px 2px 0 2px;
+            gap: 8px;
+        }
+        .gvr-ms-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .gvr-ms-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            margin: 0 0 3px 0 !important;
+            line-height: 1.35 !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .gvr-ms-desc {
+            font-size: 12px !important;
+            color: #64748b !important;
+            margin: 0 !important;
+            line-height: 1.35 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .gvr-ms-more {
+            flex-shrink: 0;
+            color: #94a3b8;
+            padding-top: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Next Button (Chuẩn nút tròn trắng có mũi tên ở Ảnh 2) */
+        .gvr-mobile-nav-next {
+            position: absolute;
+            top: 28%;
+            right: 12%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            z-index: 10;
+            cursor: pointer;
+            margin-top: 0;
+        }
+        .gvr-mobile-nav-next:after {
+            display: none !important;
+        }
+        .gvr-mobile-nav-next.swiper-button-disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Fallback khi Swiper chưa load hoặc chưa init */
+        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-track {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            gap: 12px;
+        }
+        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-track::-webkit-scrollbar {
+            display: none;
+        }
+        .gvr-mobile-swiper:not(.swiper-initialized) .gvr-mobile-slide {
+            scroll-snap-align: start;
+        }
+
+        /* RESPONSIVE TABLET & MOBILE */
         @media (max-width: 1024px) {
-            .gvr-main-grid {
-                grid-template-columns: 1fr;
+            .gvr-desktop-layout {
+                display: none !important;
             }
-
-            .gvr-side-list {
-                height: auto;
-                grid-template-rows: auto;
+            .gvr-mobile-layout {
+                display: block !important;
             }
-
-            .gvr-card-horizontal {
-                height: auto;
+            .gvr-header-wrap {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                margin-bottom: 12px !important;
+                flex-wrap: nowrap !important;
             }
-
+            .gvr-title-box {
+                margin-bottom: 0 !important;
+            }
+            .gvr-main-title {
+                font-size: 18px !important;
+                color: #0d6e2e !important;
+                margin: 0 !important;
+                white-space: nowrap;
+            }
+            .gvr-sub-title {
+                display: none !important;
+            }
+            .gvr-filter-tabs {
+                display: none !important;
+            }
+            .gvr-view-all-link {
+                margin-left: auto !important;
+                font-size: 13px !important;
+                font-weight: 600 !important;
+                color: #0d6e2e !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 4px !important;
+                text-decoration: none !important;
+                flex-shrink: 0 !important;
+            }
+            .gvr-view-all-link span {
+                display: inline !important;
+            }
             .gvr-ww-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
@@ -1454,66 +1728,29 @@ function gobike_render_video_player_modal_footer()
             .gvr-video-modal-overlay {
                 padding: 14px;
             }
-
             .gvr-vm-close {
                 top: -10px;
                 right: -8px;
             }
-
-            .gvr-side-list {
-                grid-template-columns: 1fr;
-                height: auto;
-                grid-template-rows: auto;
-            }
-
             .gvr-ww-grid {
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
-
-            .gvr-header-wrap {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .gvr-view-all-link {
-                margin-left: 0;
-            }
-
-            .gvr-featured-title {
-                font-size: 16px;
-            }
-
-            .gvr-main-title {
-                font-size: 20px;
-            }
-
             .gvr-ww-cta-box {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 6px;
             }
-
-            .gvr-featured-tags {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
+            .gvr-main-title {
+                font-size: 16.5px !important;
             }
-
-            .gvr-ft-commitments {
-                overflow-x: auto;
-                padding-bottom: 4px;
-                scrollbar-width: none;
-            }
-
-            .gvr-btn-watch {
-                width: 100%;
-                justify-content: center;
+            .gvr-mobile-slide {
+                width: 80% !important;
             }
         }
     </style>
 
-    <!-- SCRIPT CHUYỂN TAB DANH MỤC & MỞ POPUP VIDEO -->
+    <!-- SCRIPT CHUYỂN TAB DANH MỤC & MỞ POPUP VIDEO & SWIPER MOBILE -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var modal = document.getElementById('js-gvr-video-modal');
@@ -1562,7 +1799,7 @@ function gobike_render_video_player_modal_footer()
                 }
             });
 
-            // 3. TAB FILTER DANH MỤC
+            // 3. TAB FILTER DANH MỤC (DESKTOP)
             var tabBtns = document.querySelectorAll('.gvr-tab-btn');
             var filterItems = document.querySelectorAll('.gvr-filterable-item');
 
@@ -1594,6 +1831,52 @@ function gobike_render_video_player_modal_footer()
                     }
                 }, { passive: false });
             }
+
+            // 5. KHỞI TẠO SWIPER TRÊN TABLET & MOBILE (<= 1024px)
+            function initGvrMobileSwiper() {
+                if (window.innerWidth <= 1024) {
+                    var swiperEl = document.querySelector('.gvr-mobile-swiper');
+                    if (swiperEl && !swiperEl.classList.contains('swiper-initialized') && typeof Swiper !== 'undefined') {
+                        new Swiper(swiperEl, {
+                            slidesPerView: 1.18,
+                            spaceBetween: 12,
+                            watchOverflow: true,
+                            navigation: {
+                                nextEl: swiperEl.querySelector('.gvr-mobile-nav-next'),
+                            },
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.18,
+                                    spaceBetween: 12
+                                },
+                                600: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 14
+                                },
+                                768: {
+                                    slidesPerView: 2.2,
+                                    spaceBetween: 16
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+
+            if (typeof Swiper === 'undefined') {
+                var script = document.createElement('script');
+                script.src = 'https://unpkg.com/swiper/swiper-bundle.min.js';
+                script.onload = function() {
+                    initGvrMobileSwiper();
+                };
+                document.head.appendChild(script);
+            } else {
+                initGvrMobileSwiper();
+            }
+
+            window.addEventListener('resize', function() {
+                initGvrMobileSwiper();
+            });
         });
     </script>
     <?php

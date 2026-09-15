@@ -815,20 +815,60 @@ function gobike_render_experience_shorts_modal_footer()
         }
     }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE TABLET & MOBILE */
     @media (max-width: 1024px) {
+        .gev-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 12px !important;
+        }
+        .gev-main-title {
+            font-size: 18px !important;
+            color: #0d6e2e !important;
+            margin: 0 !important;
+        }
+        .gev-view-all {
+            color: #0d6e2e !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 4px !important;
+            text-decoration: none !important;
+            flex-shrink: 0 !important;
+        }
         .gev-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px !important;
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            gap: 12px !important;
+            padding-bottom: 12px !important;
+            padding-left: 2px !important;
+            padding-right: 16px !important;
+            scrollbar-width: none !important;
+            margin-right: -10px;
+        }
+        .gev-grid::-webkit-scrollbar {
+            display: none !important;
+        }
+        .gev-card {
+            flex: 0 0 72% !important;
+            max-width: 72% !important;
+            min-width: 240px !important;
+            scroll-snap-align: start !important;
+            box-sizing: border-box !important;
         }
     }
     @media (max-width: 600px) {
-        .gev-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px !important;
+        .gev-card {
+            flex: 0 0 78% !important;
+            max-width: 78% !important;
+            min-width: 220px !important;
         }
         .gev-main-title {
-            font-size: 17px !important;
+            font-size: 16px !important;
         }
         .gev-product-box {
             padding: 8px !important;
