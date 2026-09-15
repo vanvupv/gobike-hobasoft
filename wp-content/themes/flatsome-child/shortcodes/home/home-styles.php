@@ -305,8 +305,77 @@ function gobike_custom_styles_output()
             margin-top: 2px !important;
         }
 
-        /* Responsive Header trên Mobile / Tablet (<= 849px) */
+        /* Responsive Header trên Mobile & Tablet (<= 849px): Đưa Logo về bên trái cạnh Menu Icon */
         @media screen and (max-width: 849px) {
+            /* Khung chứa các phần tử Header chính */
+            .header-main .header-inner,
+            .header-main .header-inner.medium-logo-center {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+            }
+
+            /* 1. Nút Menu hamburger bên trái */
+            .header-main .header-inner .flex-col.show-for-medium.flex-left,
+            .header-main .header-inner.medium-logo-center .flex-col.show-for-medium.flex-left {
+                order: 1 !important;
+                flex: 0 0 auto !important;
+                margin: 0 !important;
+                padding-right: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            /* 2. Logo: Nằm ngay cạnh phải của Menu icon, chiếm order: 2 */
+            .header-main .header-inner #logo,
+            .header-main .header-inner .logo,
+            .header-main .header-inner.medium-logo-center #logo,
+            .header-main .header-inner.medium-logo-center .logo {
+                order: 2 !important;
+                flex: 0 0 auto !important;
+                margin: 0 0 0 10px !important;
+                margin-right: auto !important; /* Đẩy cụm tài khoản & giỏ hàng sang phải */
+                text-align: left !important;
+                justify-content: flex-start !important;
+                display: flex !important;
+                align-items: center !important;
+                width: auto !important;
+                max-width: none !important;
+                position: relative !important;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
+            }
+
+            .header-main .header-inner #logo a {
+                display: inline-flex !important;
+                align-items: center !important;
+            }
+
+            .header-main .header-inner #logo img {
+                max-height: 38px !important;
+                width: auto !important;
+                object-fit: contain !important;
+                display: block !important;
+            }
+
+            /* Ẩn nút "Danh mục" desktop nếu có trên mobile */
+            .header-main .header-inner .flex-col:has(#btnHeaderMenu),
+            .header-main .header-inner #btnHeaderMenu {
+                display: none !important;
+            }
+
+            /* 3. Cụm icon bên phải (Tài khoản & Giỏ hàng) */
+            .header-main .header-inner .flex-col.show-for-medium.flex-right,
+            .header-main .header-inner.medium-logo-center .flex-col.show-for-medium.flex-right {
+                order: 3 !important;
+                flex: 0 0 auto !important;
+                margin: 0 0 0 auto !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
             header.header .header-wrapper.stuck .show-for-medium.flex-right .mobile-nav {
                 display: flex !important;
                 align-items: center !important;
