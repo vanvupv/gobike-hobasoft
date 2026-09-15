@@ -304,7 +304,7 @@ function gobike_render_shop_top_banners()
 
     ob_start();
     ?>
-    <div class="row gobike-dual-banners-row" id="gobike-shop-top-banners">
+    <div class="row vp-row-custom gobike-dual-banners-row" id="gobike-shop-top-banners">
         <?php if (!empty($img1_url)): ?>
             <div class="col medium-6 small-12 gobike-banner-col">
                 <div class="col-inner">
@@ -357,7 +357,7 @@ function gobike_render_shop_bottom_content()
 
     ob_start();
     ?>
-    <div class="row gobike-shop-bottom-seo-row" id="gobike-shop-bottom-seo">
+    <div class="row vp-row-custom gobike-shop-bottom-seo-row" id="gobike-shop-bottom-seo">
         <div class="col large-12 medium-12 small-12">
             <div class="col-inner">
                 <div class="gobike-shop-seo-box">
@@ -828,3 +828,52 @@ add_action('wp_footer', function() {
     </script>
     <?php
 }, 99);
+
+/**
+ * Tự động bổ sung class vp-row-custom vào tất cả các hàng row (Flatsome [row] shortcode, the_content và dynamic)
+ */
+function gobike_filter_row_shortcode_class($out, $pairs, $atts, $shortcode = '') {
+    if (empty($out['class'])) {
+        $out['class'] = 'vp-row-custom';
+    } elseif (strpos($out['class'], 'vp-row-custom') === false) {
+        $out['class'] .= ' vp-row-custom';
+    }
+    return $out;
+}
+add_filter('shortcode_atts_row', 'gobike_filter_row_shortcode_class', 10, 4);
+add_filter('shortcode_atts_row_inner', 'gobike_filter_row_shortcode_class', 10, 4);
+add_filter('shortcode_atts_row_inner_1', 'gobike_filter_row_shortcode_class', 10, 4);
+add_filter('shortcode_atts_row_inner_2', 'gobike_filter_row_shortcode_class', 10, 4);
+
+add_filter('do_shortcode_tag', function($output, $tag, $attr, $m) {
+    if (in_array($tag, array('row', 'row_inner', 'row_inner_1', 'row_inner_2'), true)) {
+        if (strpos($output, 'class="row') !== false && strpos($output, 'vp-row-custom') === false) {
+            $output = preg_replace('/class=["\']row\b([^"\']*)["\']/', 'class="row vp-row-custom$1"', $output, 1);
+        }
+    }
+    return $output;
+}, 10, 4);
+
+add_filter('the_content', function($content) {
+    if (is_admin() || empty($content)) return $content;
+    return preg_replace_callback('/<div\s+([^>]*?)class=["\']([^"\']*?\brow\b[^"\']*?)["\']([^>]*?)>/i', function($matches) {
+        $classes = $matches[2];
+        if (strpos($classes, 'vp-row-custom') === false) {
+            $classes .= ' vp-row-custom';
+        }
+        return '<div ' . $matches[1] . 'class="' . $classes . '"' . $matches[3] . '>';
+    }, $content);
+}, 99);
+
+add_action('wp_footer', function() {
+    ?>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.row:not(.vp-row-custom)').forEach(function(el) {
+            el.classList.add('vp-row-custom');
+        });
+    });
+    </script>
+    <?php
+}, 9999);
+

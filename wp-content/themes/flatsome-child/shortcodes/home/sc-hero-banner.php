@@ -114,7 +114,7 @@ function gobike_render_home_hero_banner($atts = array())
     ?>
     <div class="banner-home gobike-hero-banner-section">
         <div class="container">
-            <div class="row gobike-hero-row">
+            <div class="row vp-row-custom gobike-hero-row">
                 <!-- 1. CỘT TRÁI: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM -->
                 <div class="col hide-for-medium box_left gobike-hero-box-left">
                     <div class="gobike-vert-banner-card">

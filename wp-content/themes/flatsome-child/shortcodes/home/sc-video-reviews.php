@@ -728,7 +728,7 @@ function gobike_render_video_player_modal_footer()
         /* SECTION CONTAINER */
         .gobike-video-review-section {
             width: 100%;
-            margin: 35px 0 25px 0;
+            margin: 0 !important;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
         }
 

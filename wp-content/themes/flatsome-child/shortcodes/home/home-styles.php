@@ -40,8 +40,22 @@ function gobike_custom_styles_output()
             font-weight: 600;
         }
 
-        .vp-row-custom .col {
-            padding-bottom: 0px;
+        .vp-row-custom .col,
+        .row.vp-row-custom .col {
+            padding-bottom: 0px !important;
+        }
+
+        /* Xóa margin trên dưới cho tất cả các khối section trang chủ */
+        .gobike-video-review-section,
+        .gobike-experience-videos-wrap,
+        .gobike-quick-finder-wrap,
+        .gobike-category-block-wrapper,
+        .gobike-home-flashsale-block,
+        .gobike-home-brand-tabs-block,
+        .banner-home,
+        .gobike-hero-banner-section {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
         }
 
         .tab-product-related .related-products-wrapper .row {
@@ -1445,7 +1459,7 @@ function gobike_custom_styles_output()
                                                                            ========================================================================== */
         .gobike-category-block-wrapper {
             max-width: 1230px;
-            margin: 0 auto 35px auto;
+            margin: 0 auto !important;
             padding: 0 10px;
             box-sizing: border-box;
         }
@@ -2200,7 +2214,7 @@ function gobike_custom_styles_output()
         /* Tabs Thương hiệu */
         .gobike-home-brand-tabs-block {
             max-width: 1230px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto !important;
             padding: 0 10px;
             box-sizing: border-box;
         }

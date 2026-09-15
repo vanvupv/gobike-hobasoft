@@ -693,7 +693,7 @@ function gobike_render_quick_finder_modal_footer()
        ========================================================================== */
     .gobike-quick-finder-wrap {
         width: 100%;
-        margin: 20px 0 25px 0;
+        margin: 0 !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     }
     .gqf-container {
