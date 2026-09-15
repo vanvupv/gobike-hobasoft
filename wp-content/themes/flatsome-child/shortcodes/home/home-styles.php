@@ -163,10 +163,6 @@ function gobike_custom_styles_output()
             box-shadow: none !important;
         }
 
-        /* Ô tìm kiếm header chính */
-        header.header .header-search-form input[type="search"] {
-            border: 1px solid #149d29;
-        }
 
         /* Ẩn / Hiện Form tìm kiếm hàng trên theo trạng thái Sticky */
         header.header .header-wrapper:not(.stuck) .html_nav_position_text,
