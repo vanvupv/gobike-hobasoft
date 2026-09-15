@@ -3556,157 +3556,6 @@ function gobike_custom_styles_output()
             font-weight: 600 !important;
             box-shadow: none !important;
         }
-
-        /* Bài viết nổi bật bên trái */
-        #row-1141733086 .medium-6:first-child .box-blog-post,
-        .pv-row-custom .medium-6:first-child .box-blog-post {
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        #row-1141733086 .medium-6:first-child .box-image,
-        .pv-row-custom .medium-6:first-child .box-image {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        #row-1141733086 .medium-6:first-child .box-image .image-cover,
-        .pv-row-custom .medium-6:first-child .box-image .image-cover {
-            padding-top: 66% !important;
-        }
-
-        #row-1141733086 .medium-6:first-child .box-image img,
-        .pv-row-custom .medium-6:first-child .box-image img {
-            transition: transform 0.4s ease !important;
-            object-fit: cover !important;
-        }
-
-        #row-1141733086 .medium-6:first-child .box-blog-post:hover .box-image img,
-        .pv-row-custom .medium-6:first-child .box-blog-post:hover .box-image img {
-            transform: scale(1.04) !important;
-        }
-
-        #row-1141733086 .medium-6:first-child .post-title,
-        .pv-row-custom .medium-6:first-child .post-title {
-            font-size: 17px !important;
-            font-weight: 700 !important;
-            line-height: 1.4 !important;
-            margin-top: 12px !important;
-            margin-bottom: 6px !important;
-        }
-
-        #row-1141733086 .medium-6:first-child .post-title a,
-        .pv-row-custom .medium-6:first-child .post-title a {
-            color: #1e293b !important;
-            transition: color 0.2s ease !important;
-        }
-
-        #row-1141733086 .medium-6:first-child .post-title a:hover,
-        .pv-row-custom .medium-6:first-child .post-title a:hover {
-            color: #149d29 !important;
-        }
-
-        /* Cột bài viết phụ bên phải - Thêm khoảng cách rộng rãi, thoáng đẹp */
-        #row-1141733086 .medium-6:last-child .row-masonry,
-        .pv-row-custom .medium-6:last-child .row-masonry,
-        .pv-row-custom .medium-6:last-child .vp-blog-custom {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 16px !important;
-            height: auto !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-item,
-        .pv-row-custom .medium-6:last-child .post-item {
-            position: static !important;
-            width: 100% !important;
-            transform: none !important;
-            left: auto !important;
-            top: auto !important;
-            padding-top: 14px !important;
-            padding-bottom: 14px !important;
-            margin-bottom: 0 !important;
-            border-bottom: 1px solid #f1f5f9 !important;
-            box-sizing: border-box !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-item:first-child,
-        .pv-row-custom .medium-6:last-child .post-item:first-child {
-            padding-top: 0 !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-item:last-child,
-        .pv-row-custom .medium-6:last-child .post-item:last-child {
-            border-bottom: none !important;
-            padding-bottom: 0 !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-vertical,
-        .pv-row-custom .medium-6:last-child .box-vertical {
-            display: flex !important;
-            flex-direction: row !important;
-            align-items: center !important;
-            gap: 16px !important;
-            margin: 0 !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-image,
-        .pv-row-custom .medium-6:last-child .box-image {
-            width: 120px !important;
-            min-width: 120px !important;
-            max-width: 120px !important;
-            border-radius: 8px !important;
-            overflow: hidden !important;
-            flex-shrink: 0 !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-image .image-cover,
-        .pv-row-custom .medium-6:last-child .box-image .image-cover {
-            padding-top: 65% !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-image img,
-        .pv-row-custom .medium-6:last-child .box-image img {
-            object-fit: cover !important;
-            transition: transform 0.3s ease !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-vertical:hover .box-image img,
-        .pv-row-custom .medium-6:last-child .box-vertical:hover .box-image img {
-            transform: scale(1.08) !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .box-text,
-        .pv-row-custom .medium-6:last-child .box-text {
-            flex: 1 !important;
-            padding: 0 !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-title,
-        .pv-row-custom .medium-6:last-child .post-title {
-            font-size: 14px !important;
-            font-weight: 600 !important;
-            line-height: 1.4 !important;
-            margin-bottom: 4px !important;
-            display: -webkit-box !important;
-            -webkit-line-clamp: 2 !important;
-            -webkit-box-orient: vertical !important;
-            overflow: hidden !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-title a,
-        .pv-row-custom .medium-6:last-child .post-title a {
-            color: #1e293b !important;
-            transition: color 0.2s ease !important;
-        }
-
-        #row-1141733086 .medium-6:last-child .post-title a:hover,
-        .pv-row-custom .medium-6:last-child .post-title a:hover {
-            color: #149d29 !important;
-        }
-
-        #row-1141733086 .post-meta,
         .pv-row-custom .post-meta {
             font-size: 12px !important;
             color: #94a3b8 !important;
@@ -3716,7 +3565,6 @@ function gobike_custom_styles_output()
             margin-top: 4px !important;
         }
 
-        #row-1141733086 .post-meta::before,
         .pv-row-custom .post-meta::before {
             content: "";
             display: inline-block;
@@ -3726,28 +3574,10 @@ function gobike_custom_styles_output()
             flex-shrink: 0;
         }
 
-        #row-1141733086 .is-divider,
         .pv-row-custom .is-divider {
             display: none !important;
         }
 
-        #row-1141733086 .overlay-icon,
-        .pv-row-custom .overlay-icon {
-            width: 30px !important;
-            height: 30px !important;
-            background: rgba(0, 0, 0, 0.55) !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-        }
-
-        #row-1141733086 .overlay-icon i,
-        .pv-row-custom .overlay-icon i {
-            font-size: 12px !important;
-            color: #ffffff !important;
-            margin-left: 2px;
-        }
 
         /* Tinh chỉnh Section Tin Tức (Bao gồm #row-1679372379 và .pv-row-custom): Bo viền, khoảng cách khối & Responsive Mobile */
         .pv-row-custom#row-1679372379,
