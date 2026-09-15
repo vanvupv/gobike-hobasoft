@@ -1177,7 +1177,7 @@ function gobike_custom_styles_output()
                 display: none !important;
             }
 
-            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home - Đầy khối, KHÔNG đè lên ảnh banner */
+            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home - Đầy khối, bo viền 2 bên trên, KHÔNG đè lên ảnh banner */
             .banner-home .mySwiper.gobike-service-thumbs {
                 display: block !important;
                 width: 100% !important;
@@ -1190,7 +1190,10 @@ function gobike_custom_styles_output()
                 border-bottom: 1px solid #e2e8f0 !important;
                 border-left: none !important;
                 border-right: none !important;
-                border-radius: 0 !important;
+                border-top-left-radius: 16px !important;
+                border-top-right-radius: 16px !important;
+                border-bottom-left-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 position: relative !important;
@@ -1228,7 +1231,14 @@ function gobike_custom_styles_output()
                 box-sizing: border-box !important;
             }
 
+            .banner-home .service-thumb-item:first-child {
+                border-top-left-radius: 16px !important;
+                border-bottom-left-radius: 0 !important;
+            }
+
             .banner-home .service-thumb-item:last-child {
+                border-top-right-radius: 16px !important;
+                border-bottom-right-radius: 0 !important;
                 border-right: none !important;
             }
 
