@@ -1177,34 +1177,31 @@ function gobike_custom_styles_output()
                 display: none !important;
             }
 
-            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home - Đầy khối & chỉ bo viền 2 đầu trên (chuẩn Ảnh 2) */
+            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home - Đầy khối, KHÔNG đè lên ảnh banner */
             .banner-home .mySwiper.gobike-service-thumbs {
                 display: block !important;
                 width: 100% !important;
                 height: auto !important;
-                min-height: 60px !important;
+                min-height: 56px !important;
                 max-height: none !important;
                 flex: 0 0 auto !important;
                 background: #ffffff !important;
-                border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+                border-top: 1px solid #e2e8f0 !important;
                 border-bottom: 1px solid #e2e8f0 !important;
                 border-left: none !important;
                 border-right: none !important;
-                border-radius: 20px 20px 0 0 !important;
-                margin-top: -18px !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                margin-bottom: 0 !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
                 padding: 0 !important;
                 position: relative !important;
-                z-index: 10 !important;
+                z-index: 5 !important;
                 box-sizing: border-box !important;
                 overflow: hidden !important;
             }
 
             .banner-home .mySwiper.gobike-service-thumbs .swiper-wrapper {
                 height: auto !important;
-                min-height: 60px !important;
+                min-height: 56px !important;
                 display: flex !important;
                 flex-direction: row !important;
                 width: 100% !important;
@@ -1214,9 +1211,9 @@ function gobike_custom_styles_output()
                 width: 25% !important;
                 flex: 0 0 25% !important;
                 height: auto !important;
-                min-height: 60px !important;
+                min-height: 56px !important;
                 max-height: none !important;
-                padding: 8px 4px 6px 4px !important;
+                padding: 6px 4px !important;
                 cursor: pointer !important;
                 display: flex !important;
                 flex-direction: row !important;
@@ -1226,18 +1223,12 @@ function gobike_custom_styles_output()
                 text-align: left !important;
                 border-right: 1px solid #f1f5f9 !important;
                 border-bottom: none !important;
+                border-radius: 0 !important;
                 background: #ffffff !important;
                 box-sizing: border-box !important;
             }
 
-            .banner-home .service-thumb-item:first-child {
-                border-top-left-radius: 20px !important;
-                border-bottom-left-radius: 0 !important;
-            }
-
             .banner-home .service-thumb-item:last-child {
-                border-top-right-radius: 20px !important;
-                border-bottom-right-radius: 0 !important;
                 border-right: none !important;
             }
 
