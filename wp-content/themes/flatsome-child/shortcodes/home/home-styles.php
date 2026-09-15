@@ -19,8 +19,8 @@ function gobike_custom_styles_output()
     ?>
     <style id="gobike-custom-css">
         /* ==========================================================================
-                                               CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
-                                               ========================================================================== */
+                                                   CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
+                                                   ========================================================================== */
         *,
         *::before,
         *::after {
@@ -29,8 +29,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                               1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
-                                               ========================================================================== */
+                                                   1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
+                                                   ========================================================================== */
         .m-0 {
             margin: 0px !important;
         }
@@ -103,12 +103,12 @@ function gobike_custom_styles_output()
         }
 
         /* .medium-logo-center .flex-left {
-                                                        flex: none;
-                                                    } */
+                                                            flex: none;
+                                                        } */
 
         /* ==========================================================================
-                                                       2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
-                                                       ========================================================================== */
+                                                           2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
+                                                           ========================================================================== */
         .qc-left,
         .qc-right {
             position: fixed;
@@ -142,8 +142,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
-                                                       ========================================================================== */
+                                                           3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
+                                                           ========================================================================== */
         /* Giữ nền trắng tinh từ đầu, khử độ trễ chuyển động chống nhấp nháy */
         #header,
         .header-wrapper,
@@ -223,8 +223,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
-                                                       ========================================================================== */
+                                                           4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
+                                                           ========================================================================== */
         .footer-wrapper .wpcf7 {
             display: flex;
             justify-content: center;
@@ -300,8 +300,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
-                                                       ========================================================================== */
+                                                           5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
+                                                           ========================================================================== */
         @media screen and (min-width: 850px) {
 
             .footer-menu-mobile,
@@ -469,8 +469,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
-                                                       ========================================================================== */
+                                                           6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
+                                                           ========================================================================== */
         .banner-home {
             background: #f0f0f0;
             margin-top: 0px !important;
@@ -706,8 +706,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       7. TRANG CHỦ: DANH MỤC CUỘN NGANG (.row_cat)
-                                                       ========================================================================== */
+                                                           7. TRANG CHỦ: DANH MỤC CUỘN NGANG (.row_cat)
+                                                           ========================================================================== */
         .row_cat {
             display: flex !important;
             flex-wrap: nowrap !important;
@@ -745,10 +745,10 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
-                                                       - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
-                                                       - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
-                                                       ========================================================================== */
+                                                           8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
+                                                           - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
+                                                           - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
+                                                           ========================================================================== */
         .gobike-category-block-wrapper {
             max-width: 1230px;
             margin: 0 auto 35px auto;
@@ -1245,7 +1245,7 @@ function gobike_custom_styles_output()
         }
 
         /* --- RESPONSIVE TABLET & MOBILE (<= 1024px) ---
-                                                       Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
+                                                           Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
         @media screen and (max-width: 1024px) {
             .gobike-cat-main-content {
                 flex-direction: column !important;
@@ -1372,8 +1372,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
-                                                       ========================================================================== */
+                                                           9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
+                                                           ========================================================================== */
         /* Flash Sale */
         .gobike-home-flashsale-block {
             max-width: 1230px;
@@ -1554,8 +1554,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
-                                                       ========================================================================== */
+                                                           10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
+                                                           ========================================================================== */
         .woof_redraw_zone {
             display: flex !important;
             align-items: center !important;
@@ -1689,8 +1689,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
-                                                       ========================================================================== */
+                                                           11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
+                                                           ========================================================================== */
         /* --- 11.1. Cặp Banner Tiện Ích (Zoom từ tâm) --- */
         @keyframes gobikeZoomFromCenter {
             0% {
@@ -2707,13 +2707,13 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE)
-                                                       ========================================================================== */
+                                                           KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE)
+                                                           ========================================================================== */
         #row-1141733086,
         .pv-row-custom {
-            background: #ffffff;
+
             border-radius: 12px;
-            padding: 16px 20px;
+            padding: 0px;
             margin-bottom: 30px;
             box-shadow: none !important;
         }
@@ -2996,8 +2996,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
-                                                       ========================================================================== */
+                                                           GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
+                                                           ========================================================================== */
         .gobike-catalog-card-col {
             margin-bottom: 20px !important;
         }
@@ -3215,8 +3215,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                       BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
-                                                       ========================================================================== */
+                                                           BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
+                                                           ========================================================================== */
         .gobike-shop-page-container {
             padding-top: 15px;
             padding-bottom: 40px;
@@ -3649,10 +3649,10 @@ function gobike_custom_styles_output()
 
         @media (min-width: 850px) {
             /* .gobike-products-main-col .products.row .col {
-                                                            width: 25% !important;
-                                                            max-width: 25% !important;
-                                                            flex: 0 0 25% !important;
-                                                        } */
+                                                                width: 25% !important;
+                                                                max-width: 25% !important;
+                                                                flex: 0 0 25% !important;
+                                                            } */
         }
 
         .gobike-shop-bottom-cards {
@@ -3917,201 +3917,202 @@ function gobike_custom_styles_output()
             .gobike-showrooms-section .showroom-grid {
                 grid-template-columns: 1fr;
             }
-        /* ==========================================================================
-           HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
-           ========================================================================== */
-        .header-nav li.header-search-form:before,
-        .header-nav li.header-search-form:after {
-            display: none !important;
-            content: none !important;
-        }
 
-        li.header-search-form {
-            width: 100% !important;
-            max-width: 540px !important;
-        }
+            /* ==========================================================================
+               HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
+               ========================================================================== */
+            .header-nav li.header-search-form:before,
+            .header-nav li.header-search-form:after {
+                display: none !important;
+                content: none !important;
+            }
 
-        .header-search-form-wrapper,
-        .header-search-form .searchform-wrapper,
-        .header .searchform-wrapper {
-            width: 100% !important;
-            max-width: 540px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
+            li.header-search-form {
+                width: 100% !important;
+                max-width: 540px !important;
+            }
 
-        .header-search-form form.searchform,
-        .header form.searchform {
-            background: #ffffff !important;
-            border: 1.5px solid #dbe2ea !important;
-            border-radius: 8px !important;
-            height: 42px !important;
-            min-height: 42px !important;
-            position: relative !important;
-            display: flex !important;
-            align-items: center !important;
-            padding: 3px 3px 3px 14px !important;
-            box-shadow: none !important;
-            box-sizing: border-box !important;
-            transition: border-color 0.2s ease !important;
-            margin: 0 !important;
-        }
+            .header-search-form-wrapper,
+            .header-search-form .searchform-wrapper,
+            .header .searchform-wrapper {
+                width: 100% !important;
+                max-width: 540px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
 
-        .header-search-form form.searchform:focus-within,
-        .header form.searchform:focus-within {
-            border-color: #149d29 !important;
-            box-shadow: none !important;
-        }
+            .header-search-form form.searchform,
+            .header form.searchform {
+                background: #ffffff !important;
+                border: 1.5px solid #dbe2ea !important;
+                border-radius: 8px !important;
+                height: 42px !important;
+                min-height: 42px !important;
+                position: relative !important;
+                display: flex !important;
+                align-items: center !important;
+                padding: 3px 3px 3px 14px !important;
+                box-shadow: none !important;
+                box-sizing: border-box !important;
+                transition: border-color 0.2s ease !important;
+                margin: 0 !important;
+            }
 
-        .header-search-form form.searchform .flex-row,
-        .header form.searchform .flex-row {
-            width: 100% !important;
-            height: 100% !important;
-            display: flex !important;
-            align-items: center !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
+            .header-search-form form.searchform:focus-within,
+            .header form.searchform:focus-within {
+                border-color: #149d29 !important;
+                box-shadow: none !important;
+            }
 
-        .header-search-form form.searchform .flex-col.flex-grow,
-        .header form.searchform .flex-col.flex-grow {
-            flex: 1 1 auto !important;
-            height: 100% !important;
-            display: flex !important;
-            align-items: center !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
+            .header-search-form form.searchform .flex-row,
+            .header form.searchform .flex-row {
+                width: 100% !important;
+                height: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
 
-        .header-search-form form.searchform input[type="search"],
-        .header form.searchform input[type="search"] {
-            width: 100% !important;
-            height: 100% !important;
-            min-height: unset !important;
-            border: none !important;
-            background: transparent !important;
-            box-shadow: none !important;
-            outline: none !important;
-            padding: 0 10px 0 0 !important;
-            margin: 0 !important;
-            font-size: 14px !important;
-            font-weight: 400 !important;
-            color: #1e293b !important;
-            line-height: normal !important;
-            box-sizing: border-box !important;
-        }
+            .header-search-form form.searchform .flex-col.flex-grow,
+            .header form.searchform .flex-col.flex-grow {
+                flex: 1 1 auto !important;
+                height: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
 
-        .header-search-form form.searchform input[type="search"]::placeholder,
-        .header form.searchform input[type="search"]::placeholder {
-            color: #596377 !important;
-            font-size: 13.5px !important;
-            font-weight: 400 !important;
-            opacity: 1 !important;
-        }
+            .header-search-form form.searchform input[type="search"],
+            .header form.searchform input[type="search"] {
+                width: 100% !important;
+                height: 100% !important;
+                min-height: unset !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                outline: none !important;
+                padding: 0 10px 0 0 !important;
+                margin: 0 !important;
+                font-size: 14px !important;
+                font-weight: 400 !important;
+                color: #1e293b !important;
+                line-height: normal !important;
+                box-sizing: border-box !important;
+            }
 
-        .header-search-form form.searchform .flex-col:not(.flex-grow),
-        .header form.searchform .flex-col:not(.flex-grow) {
-            padding: 0 !important;
-            margin: 0 !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            flex-shrink: 0 !important;
-        }
+            .header-search-form form.searchform input[type="search"]::placeholder,
+            .header form.searchform input[type="search"]::placeholder {
+                color: #596377 !important;
+                font-size: 13.5px !important;
+                font-weight: 400 !important;
+                opacity: 1 !important;
+            }
 
-        /* NÚT TÌM KIẾM MÀU XANH BO GÓC NHƯ MẪU */
-        .header-search-form form.searchform .ux-search-submit,
-        .header form.searchform .ux-search-submit,
-        .header form.searchform .button.submit-button,
-        .searchform .button.submit-button {
-            background: #0d6e2e !important;
-            background-color: #0d6e2e !important;
-            border: none !important;
-            border-radius: 6px !important;
-            width: 38px !important;
-            height: 34px !important;
-            min-width: 38px !important;
-            min-height: 34px !important;
-            max-width: 38px !important;
-            max-height: 34px !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            cursor: pointer !important;
-            color: #ffffff !important;
-            box-shadow: none !important;
-            transform: none !important;
-            transition: background-color 0.2s ease !important;
-        }
+            .header-search-form form.searchform .flex-col:not(.flex-grow),
+            .header form.searchform .flex-col:not(.flex-grow) {
+                padding: 0 !important;
+                margin: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+            }
 
-        .header-search-form form.searchform .ux-search-submit:hover,
-        .header form.searchform .ux-search-submit:hover,
-        .header form.searchform .button.submit-button:hover,
-        .searchform .button.submit-button:hover {
-            background: #149d29 !important;
-            background-color: #149d29 !important;
-            color: #ffffff !important;
-            transform: none !important;
-            box-shadow: none !important;
-        }
+            /* NÚT TÌM KIẾM MÀU XANH BO GÓC NHƯ MẪU */
+            .header-search-form form.searchform .ux-search-submit,
+            .header form.searchform .ux-search-submit,
+            .header form.searchform .button.submit-button,
+            .searchform .button.submit-button {
+                background: #0d6e2e !important;
+                background-color: #0d6e2e !important;
+                border: none !important;
+                border-radius: 6px !important;
+                width: 38px !important;
+                height: 34px !important;
+                min-width: 38px !important;
+                min-height: 34px !important;
+                max-width: 38px !important;
+                max-height: 34px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                cursor: pointer !important;
+                color: #ffffff !important;
+                box-shadow: none !important;
+                transform: none !important;
+                transition: background-color 0.2s ease !important;
+            }
 
-        .header-search-form form.searchform .ux-search-submit i,
-        .header-search-form form.searchform .ux-search-submit .icon-search,
-        .header form.searchform .ux-search-submit i,
-        .header form.searchform .ux-search-submit .icon-search,
-        .searchform .button.icon i {
-            color: #ffffff !important;
-            font-size: 15px !important;
-            display: block !important;
-            line-height: 1 !important;
-            margin: 0 !important;
-        }
+            .header-search-form form.searchform .ux-search-submit:hover,
+            .header form.searchform .ux-search-submit:hover,
+            .header form.searchform .button.submit-button:hover,
+            .searchform .button.submit-button:hover {
+                background: #149d29 !important;
+                background-color: #149d29 !important;
+                color: #ffffff !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
 
-        /* KẾT QUẢ TÌM KIẾM TRỰC TIẾP (LIVE SEARCH RESULTS) */
-        .header .search-form .live-search-results {
-            background-color: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 8px !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
-            margin-top: 6px !important;
-            overflow: hidden !important;
-        }
+            .header-search-form form.searchform .ux-search-submit i,
+            .header-search-form form.searchform .ux-search-submit .icon-search,
+            .header form.searchform .ux-search-submit i,
+            .header form.searchform .ux-search-submit .icon-search,
+            .searchform .button.icon i {
+                color: #ffffff !important;
+                font-size: 15px !important;
+                display: block !important;
+                line-height: 1 !important;
+                margin: 0 !important;
+            }
 
-        .live-search-results .autocomplete-suggestion {
-            padding: 10px 12px !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 10px !important;
-            border-bottom: 1px solid #f1f5f9 !important;
-            transition: background-color 0.15s ease !important;
-        }
+            /* KẾT QUẢ TÌM KIẾM TRỰC TIẾP (LIVE SEARCH RESULTS) */
+            .header .search-form .live-search-results {
+                background-color: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 8px !important;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+                margin-top: 6px !important;
+                overflow: hidden !important;
+            }
 
-        .live-search-results .autocomplete-suggestion:hover {
-            background-color: #f8fafc !important;
-        }
+            .live-search-results .autocomplete-suggestion {
+                padding: 10px 12px !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
+                border-bottom: 1px solid #f1f5f9 !important;
+                transition: background-color 0.15s ease !important;
+            }
 
-        .live-search-results .autocomplete-suggestion img {
-            width: 48px !important;
-            height: 48px !important;
-            border-radius: 6px !important;
-            object-fit: contain !important;
-            flex-shrink: 0 !important;
-        }
+            .live-search-results .autocomplete-suggestion:hover {
+                background-color: #f8fafc !important;
+            }
 
-        .live-search-results .search-name {
-            font-size: 13.5px !important;
-            font-weight: 600 !important;
-            color: #0f172a !important;
-            line-height: 1.3 !important;
-        }
+            .live-search-results .autocomplete-suggestion img {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 6px !important;
+                object-fit: contain !important;
+                flex-shrink: 0 !important;
+            }
 
-        .live-search-results .search-price ins span.amount {
-            color: #dc2626 !important;
-            font-size: 13.5px !important;
-            font-weight: 700 !important;
-        }
+            .live-search-results .search-name {
+                font-size: 13.5px !important;
+                font-weight: 600 !important;
+                color: #0f172a !important;
+                line-height: 1.3 !important;
+            }
+
+            .live-search-results .search-price ins span.amount {
+                color: #dc2626 !important;
+                font-size: 13.5px !important;
+                font-weight: 700 !important;
+            }
     </style>
     <?php
 }
