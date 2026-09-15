@@ -130,14 +130,43 @@ function gobike_render_home_hero_banner($atts = array())
                         <!-- Swiper chính (Ảnh to) -->
                         <div class="mySwiper2">
                             <div class="swiper-wrapper">
-                                <?php foreach ($slides as $slide): 
-                                    $img_url = isset($slide['image_slide']['url']) ? $slide['image_slide']['url'] : '';
+                                <?php 
+                                $fallback_images = array(
+                                    content_url('/uploads/2026/08/0ecfa5aa-9eb2-4477-92eb-44f613a12080.webp'),
+                                    content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
+                                    content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp'),
+                                    content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp'),
+                                );
+                                foreach ($slides as $slide_idx => $slide): 
+                                    $img_url = '';
+                                    if (!empty($slide['image_slide'])) {
+                                        if (is_array($slide['image_slide'])) {
+                                            if (!empty($slide['image_slide']['url'])) {
+                                                $img_url = $slide['image_slide']['url'];
+                                            } elseif (!empty($slide['image_slide']['ID'])) {
+                                                $img_url = wp_get_attachment_image_url($slide['image_slide']['ID'], 'full');
+                                            }
+                                        } elseif (is_numeric($slide['image_slide'])) {
+                                            $img_url = wp_get_attachment_image_url($slide['image_slide'], 'full');
+                                        } elseif (is_string($slide['image_slide'])) {
+                                            $img_url = $slide['image_slide'];
+                                        }
+                                    }
+                                    if (empty($img_url) && !empty($slide['image'])) {
+                                        if (is_array($slide['image']) && !empty($slide['image']['url'])) {
+                                            $img_url = $slide['image']['url'];
+                                        } elseif (is_string($slide['image'])) {
+                                            $img_url = $slide['image'];
+                                        }
+                                    }
+                                    if (empty($img_url)) {
+                                        $img_url = isset($fallback_images[$slide_idx % 4]) ? $fallback_images[$slide_idx % 4] : $fallback_images[0];
+                                    }
                                     $link_url = !empty($slide['link_url']) ? $slide['link_url'] : home_url('/san-pham/');
-                                    if (empty($img_url)) continue;
                                 ?>
                                     <div class="swiper-slide">
                                         <a href="<?php echo esc_url($link_url); ?>" style="display:block; width:100%; height:100%;">
-                                            <img src="<?php echo esc_url($img_url); ?>" alt="Banner GoBike" />
+                                            <img src="<?php echo esc_url($img_url); ?>" alt="Banner GoBike" loading="eager" />
                                         </a>
                                     </div>
                                 <?php endforeach; ?>
@@ -229,10 +258,14 @@ function gobike_render_home_hero_banner($atts = array())
                 allowTouchMove: false,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
+                observer: true,
+                observeParents: true,
             });
             var bannerSwiper = new Swiper(".mySwiper2", {
                 spaceBetween: 0,
                 loop: true,
+                observer: true,
+                observeParents: true,
                 autoplay: {
                     delay: 3500,
                     disableOnInteraction: false,

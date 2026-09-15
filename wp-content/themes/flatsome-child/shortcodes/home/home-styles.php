@@ -405,12 +405,6 @@ function gobike_custom_styles_output()
                 align-items: center !important;
             }
 
-            .header-main .header-inner #logo img {
-                max-height: 38px !important;
-                width: auto !important;
-                object-fit: contain !important;
-            }
-
             /* Chỉ hiển thị duy nhất 1 logo đầu tiên, ẩn triệt để các logo phụ (sticky/dark) */
             .header-main .header-inner #logo a img:first-child {
                 display: block !important;
@@ -1130,13 +1124,13 @@ function gobike_custom_styles_output()
                 border-radius: 0 !important;
                 border: none !important;
                 box-shadow: none !important;
-                overflow: hidden !important;
-                background: #ffffff !important;
+                overflow: visible !important;
+                background: transparent !important;
                 margin: 0 !important;
                 padding: 0 !important;
             }
 
-            /* 2. Chiều cao banner tăng lên (chuẩn Ảnh 1) */
+            /* 2. Chiều cao banner tăng lên (chuẩn Ảnh 1) & fix lỗi tràn hiển thị Swiper */
             .banner-home .mySwiper2 {
                 width: 100% !important;
                 height: 250px !important;
@@ -1146,22 +1140,26 @@ function gobike_custom_styles_output()
                 border-radius: 0 !important;
                 overflow: hidden !important;
                 position: relative !important;
+                background: #f8fafc !important;
             }
 
-            .banner-home .mySwiper2 .swiper-wrapper,
+            .banner-home .mySwiper2 .swiper-wrapper {
+                height: 100% !important;
+                display: flex !important;
+            }
+
             .banner-home .mySwiper2 .swiper-slide,
             .banner-home .mySwiper2 .swiper-slide a {
                 width: 100% !important;
-                height: 250px !important;
-                min-height: 250px !important;
-                max-height: 280px !important;
-                border-radius: 0 !important;
+                height: 100% !important;
+                min-height: 100% !important;
+                display: block !important;
                 overflow: hidden !important;
             }
 
             .banner-home .mySwiper2 .swiper-slide img {
                 width: 100% !important;
-                height: 250px !important;
+                height: 100% !important;
                 min-height: 250px !important;
                 max-height: 280px !important;
                 object-fit: cover !important;
@@ -1176,17 +1174,18 @@ function gobike_custom_styles_output()
                 display: none !important;
             }
 
-            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home (chuẩn Ảnh 2) */
+            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home - bo viền 2 đầu (chuẩn Ảnh 2) */
             .banner-home .mySwiper.gobike-service-thumbs {
                 display: block !important;
-                width: 100% !important;
+                width: calc(100% - 20px) !important;
                 height: auto !important;
                 min-height: 56px !important;
                 max-height: none !important;
                 flex: 0 0 auto !important;
                 background: #ffffff !important;
-                border-top: 1px solid #e2e8f0 !important;
-                border-bottom: 1px solid #e2e8f0 !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 12px !important;
+                margin: 8px auto 0 auto !important;
                 padding: 0 !important;
                 box-sizing: border-box !important;
                 overflow: hidden !important;
@@ -1220,7 +1219,14 @@ function gobike_custom_styles_output()
                 box-sizing: border-box !important;
             }
 
+            .banner-home .service-thumb-item:first-child {
+                border-top-left-radius: 11px !important;
+                border-bottom-left-radius: 11px !important;
+            }
+
             .banner-home .service-thumb-item:last-child {
+                border-top-right-radius: 11px !important;
+                border-bottom-right-radius: 11px !important;
                 border-right: none !important;
             }
 
@@ -1285,12 +1291,13 @@ function gobike_custom_styles_output()
 
         /* Tablet riêng biệt (601px -> 849px) tăng chiều cao banner và padding khối dịch vụ */
         @media screen and (min-width: 601px) and (max-width: 849px) {
-            .banner-home .mySwiper2,
-            .banner-home .mySwiper2 .swiper-wrapper,
-            .banner-home .mySwiper2 .swiper-slide,
-            .banner-home .mySwiper2 .swiper-slide a,
-            .banner-home .mySwiper2 .swiper-slide img {
+            .banner-home .mySwiper2 {
                 height: 320px !important;
+                min-height: 320px !important;
+                max-height: 350px !important;
+            }
+
+            .banner-home .mySwiper2 .swiper-slide img {
                 min-height: 320px !important;
                 max-height: 350px !important;
             }
