@@ -199,7 +199,23 @@ function gobike_custom_styles_output()
         }
 
         /* --- 3.1. Hai khối Tiện ích Header: Hotline & Cửa hàng gần bạn --- */
+        /* Triệt tiêu triệt để icon PNG cũ từ style.css (2021) trên Flatsome li.html */
+        .header-nav li.html:before,
+        .header-nav li.html:after,
+        .header-nav li.html_topbar_left:before,
+        .header-nav li.html_topbar_left:after,
+        .header-nav li.html_topbar_right:before,
+        .header-nav li.html_topbar_right:after {
+            display: none !important;
+            content: none !important;
+            background: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
         .gobike-header-item {
+            position: relative !important;
+            z-index: 2 !important;
             display: inline-flex !important;
             align-items: center !important;
             gap: 10px !important;
@@ -209,11 +225,13 @@ function gobike_custom_styles_output()
             border-radius: 8px !important;
             line-height: 1.2 !important;
             box-shadow: none !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
         }
 
         .gobike-header-item:hover {
             text-decoration: none !important;
-            opacity: 0.9 !important;
+            opacity: 0.95 !important;
         }
 
         .gobike-header-item .gobike-hi-icon {
@@ -228,25 +246,33 @@ function gobike_custom_styles_output()
             min-height: 28px !important;
             max-height: 28px !important;
             color: #0d6e2e !important;
+            position: relative !important;
         }
 
         .gobike-header-item .gobike-hi-icon svg {
-            width: 26px !important;
-            min-width: 26px !important;
-            max-width: 26px !important;
-            height: 26px !important;
-            min-height: 26px !important;
-            max-height: 26px !important;
+            width: 24px !important;
+            min-width: 24px !important;
+            max-width: 24px !important;
+            height: 24px !important;
+            min-height: 24px !important;
+            max-height: 24px !important;
             stroke: #0d6e2e !important;
-            stroke-width: 2.2 !important;
-            shape-rendering: geometricPrecision !important;
+            stroke-width: 2 !important;
+            stroke-linecap: round !important;
+            stroke-linejoin: round !important;
             display: block !important;
             flex-shrink: 0 !important;
-            transition: transform 0.25s ease !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+            -webkit-backface-visibility: hidden !important;
+            will-change: transform !important;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
         .gobike-header-item:hover .gobike-hi-icon svg {
-            transform: scale(1.1) !important;
+            transform: scale(1.12) translateZ(0) !important;
+            -webkit-transform: scale(1.12) translateZ(0) !important;
         }
 
         .gobike-header-item .gobike-hi-content {
