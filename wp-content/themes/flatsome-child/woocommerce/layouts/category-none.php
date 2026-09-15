@@ -67,7 +67,7 @@ do_action( 'woocommerce_archive_description' );
 					
 					<div class="toolbar-right">
 						<span class="sort-prefix-label">Sắp xếp theo:</span>
-						<form class="woocommerce-ordering custom-ordering-form" method="get">
+						<form class="gobike-ordering-form" method="get">
 							<div class="sort-select-wrapper">
 								<?php
 								$current_orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';

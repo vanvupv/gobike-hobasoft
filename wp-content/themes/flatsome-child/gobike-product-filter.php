@@ -460,26 +460,15 @@ function gobike_filter_enqueue_styles()
             display: block !important;
         }
 
-        /* 4. Dải Active Filter Badges màu sắc rực rỡ & nút Bỏ hết màu chủ đạo #149d29 */
+        /* 4. Ẩn dải Active Filter Badges & nút Bỏ hết theo yêu cầu */
         .woof_products_top_panel,
-        .woof_products_top_panel_ul {
-            display: flex !important;
-            align-items: center !important;
-            flex-wrap: wrap !important;
-            gap: 8px 10px !important;
-            margin: 10px 0 14px 0 !important;
-            padding: 0 !important;
-            list-style: none !important;
-            width: 100% !important;
-            clear: both !important;
-        }
-
+        .woof_products_top_panel_ul,
         .woof_products_top_panel li {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
             margin: 0 !important;
             padding: 0 !important;
-            list-style: none !important;
-            display: inline-flex !important;
-            align-items: center !important;
         }
 
         /* Ẩn các text nhãn thô lồng nhau như 'Thương hiệu:', 'Danh mục sản phẩm:' */
