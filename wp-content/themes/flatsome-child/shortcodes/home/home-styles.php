@@ -305,8 +305,60 @@ function gobike_custom_styles_output()
             margin-top: 2px !important;
         }
 
-        /* Responsive Header trên Mobile & Tablet (<= 849px): Đưa Logo về bên trái cạnh Menu Icon */
+        /* Responsive Header trên Mobile & Tablet (<= 849px): Nền màu #149d29, icon và logo trắng, logo cạnh Menu */
         @media screen and (max-width: 849px) {
+            /* Nền màu Header trên Mobile & Tablet là #149d29 (chuẩn Ảnh 1) */
+            #header,
+            .header,
+            .header-wrapper,
+            .header-wrapper.stuck,
+            .header.active .header-wrapper,
+            .header-main,
+            .header-bottom,
+            .header-bg-color {
+                background-color: #149d29 !important;
+                background: #149d29 !important;
+                border-bottom: none !important;
+                box-shadow: none !important;
+            }
+
+            /* Icon Menu, Icon Tài khoản & Giỏ hàng chuyển sang màu trắng */
+            .header-main .mobile-nav a,
+            .header-main .mobile-nav i,
+            .header-main .mobile-nav svg,
+            .header-main .icon-menu,
+            .header-main .icon-user,
+            .header-main .header-cart-link,
+            .header-main .cart-icon,
+            .header-main .cart-icon i {
+                color: #ffffff !important;
+                stroke: #ffffff !important;
+                fill: #ffffff !important;
+            }
+
+            /* Logo chuyển sang màu trắng trên nền xanh (chuẩn Ảnh 1) */
+            .header-main .header-inner #logo img {
+                filter: brightness(0) invert(1) !important;
+            }
+
+            /* Badge số lượng giỏ hàng màu đỏ nổi bật với số trắng */
+            .header-main .cart-icon strong {
+                background-color: #e52828 !important;
+                color: #ffffff !important;
+            }
+
+            /* Search form trên Mobile / Tablet nền trắng bo tròn */
+            .header-bottom .searchform-wrapper,
+            .header-bottom form.searchform,
+            .header-bottom .searchform,
+            header.header .header-wrapper.stuck .html_nav_position_text .searchform-wrapper,
+            header.header .header-wrapper.stuck .html_nav_position_text form.searchform {
+                background: #ffffff !important;
+                border-radius: 20px !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+
             /* Khung chứa các phần tử Header chính */
             .header-main .header-inner,
             .header-main .header-inner.medium-logo-center {
@@ -1031,91 +1083,240 @@ function gobike_custom_styles_output()
 
         /* --- 6.2. Mobile & Tablet (<= 849px) --- */
         @media screen and (max-width: 849px) {
+            /* 1. Kích thước Banner đầy màn theo chiều rộng */
             .banner-home {
-                padding: 10px !important;
-            }
-
-            .banner-home .box_center,
-            .banner-home .box_right {
+                padding: 0 !important;
+                margin: 0 !important;
                 width: 100% !important;
                 max-width: 100% !important;
-                flex: 0 0 100% !important;
-                margin: 0 auto !important;
+                overflow: hidden !important;
+            }
+
+            .banner-home .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                margin: 0 !important;
+            }
+
+            .banner-home .row.gobike-hero-row {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
                 padding: 0 !important;
             }
 
-            .banner-home .swiper-container {
+            .banner-home .box_center,
+            .banner-home .box_center.gobike-hero-box-center {
                 width: 100% !important;
-                height: auto !important;
-                overflow: visible !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                background: transparent !important;
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
+            .banner-home .box_right.gobike-hero-box-right {
+                display: none !important;
+            }
+
+            .banner-home .box_center .swiper-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                max-height: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+                border-radius: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                overflow: hidden !important;
+                background: #ffffff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* 2. Chiều cao banner tăng lên (chuẩn Ảnh 1) */
             .banner-home .mySwiper2 {
                 width: 100% !important;
-                height: auto !important;
-                border-radius: 12px !important;
+                height: 250px !important;
+                min-height: 250px !important;
+                max-height: 280px !important;
+                flex: 0 0 auto !important;
+                border-radius: 0 !important;
                 overflow: hidden !important;
+                position: relative !important;
             }
 
-            .banner-home .mySwiper2 .swiper-slide {
-                background: #fff !important;
-                border-radius: 12px !important;
-                overflow: hidden !important;
-            }
-
+            .banner-home .mySwiper2 .swiper-wrapper,
+            .banner-home .mySwiper2 .swiper-slide,
             .banner-home .mySwiper2 .swiper-slide a {
-                display: block !important;
                 width: 100% !important;
-                line-height: 0 !important;
+                height: 250px !important;
+                min-height: 250px !important;
+                max-height: 280px !important;
+                border-radius: 0 !important;
+                overflow: hidden !important;
             }
 
             .banner-home .mySwiper2 .swiper-slide img {
                 width: 100% !important;
-                height: auto !important;
+                height: 250px !important;
+                min-height: 250px !important;
+                max-height: 280px !important;
                 object-fit: cover !important;
+                object-position: center !important;
                 display: block !important;
-                margin: 0 auto !important;
-                border-radius: 12px !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
             }
 
             .banner-home .mySwiper2 .swiper-button-next,
-            .banner-home .mySwiper2 .swiper-button-prev,
-            .banner-home .mySwiper {
+            .banner-home .mySwiper2 .swiper-button-prev {
                 display: none !important;
             }
 
-            .banner-home .banner-home-pagination {
+            /* 3. Hiển thị 4 khối cam kết / dịch vụ bên dưới Banner Home (chuẩn Ảnh 2) */
+            .banner-home .mySwiper.gobike-service-thumbs {
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 56px !important;
+                max-height: none !important;
+                flex: 0 0 auto !important;
+                background: #ffffff !important;
+                border-top: 1px solid #e2e8f0 !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                padding: 0 !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+            }
+
+            .banner-home .mySwiper.gobike-service-thumbs .swiper-wrapper {
+                height: auto !important;
+                min-height: 56px !important;
                 display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
+            }
+
+            .banner-home .service-thumb-item {
+                width: 25% !important;
+                flex: 0 0 25% !important;
+                height: auto !important;
+                min-height: 56px !important;
+                max-height: none !important;
+                padding: 6px 4px !important;
+                cursor: pointer !important;
+                display: flex !important;
+                flex-direction: row !important;
                 justify-content: center !important;
                 align-items: center !important;
-                position: relative !important;
-                margin: 12px auto 0 !important;
-                width: 100% !important;
-                gap: 7px !important;
-                z-index: 10 !important;
+                gap: 5px !important;
+                text-align: left !important;
+                border-right: 1px solid #f1f5f9 !important;
+                border-bottom: none !important;
+                background: #ffffff !important;
+                box-sizing: border-box !important;
             }
 
-            .banner-home .banner-home-pagination .swiper-pagination-bullet {
-                width: 8px !important;
-                height: 8px !important;
-                background: #b0b0b0 !important;
-                opacity: 0.8 !important;
-                border-radius: 50% !important;
-                margin: 0 !important;
-                display: inline-block !important;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                cursor: pointer !important;
+            .banner-home .service-thumb-item:last-child {
+                border-right: none !important;
             }
 
-            .banner-home .banner-home-pagination .swiper-pagination-bullet-active {
-                width: 24px !important;
-                height: 8px !important;
-                background: #e52828 !important;
-                border-radius: 4px !important;
-                opacity: 1 !important;
+            .banner-home .service-thumb-item .thumb-icon-wrap {
+                width: 26px !important;
+                height: 26px !important;
+                flex-shrink: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-icon-wrap svg {
+                width: 22px !important;
+                height: 22px !important;
+                display: block !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-text-wrap {
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                min-width: 0 !important;
+                line-height: 1.2 !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-title {
+                font-size: 10px !important;
+                font-weight: 700 !important;
+                color: #1e293b !important;
+                text-transform: uppercase !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                display: block !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-desc {
+                font-size: 9px !important;
+                font-weight: 600 !important;
+                color: #64748b !important;
+                text-transform: uppercase !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                display: block !important;
+            }
+
+            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title {
+                color: #0d6e2e !important;
+            }
+
+            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc {
+                color: #149d29 !important;
+            }
+
+            /* Ẩn phân trang chấm tròn khi đã hiển thị 4 khối dịch vụ (chuẩn Ảnh 2) */
+            .banner-home .banner-home-pagination {
+                display: none !important;
+            }
+        }
+
+        /* Tablet riêng biệt (601px -> 849px) tăng chiều cao banner và padding khối dịch vụ */
+        @media screen and (min-width: 601px) and (max-width: 849px) {
+            .banner-home .mySwiper2,
+            .banner-home .mySwiper2 .swiper-wrapper,
+            .banner-home .mySwiper2 .swiper-slide,
+            .banner-home .mySwiper2 .swiper-slide a,
+            .banner-home .mySwiper2 .swiper-slide img {
+                height: 320px !important;
+                min-height: 320px !important;
+                max-height: 350px !important;
+            }
+
+            .banner-home .service-thumb-item {
+                padding: 8px 8px !important;
+                gap: 8px !important;
+                min-height: 64px !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-icon-wrap {
+                width: 30px !important;
+                height: 30px !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-icon-wrap svg {
+                width: 26px !important;
+                height: 26px !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-title {
+                font-size: 11px !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-desc {
+                font-size: 10px !important;
             }
         }
 
