@@ -5532,8 +5532,11 @@ function gobike_custom_styles_output()
                 overflow: hidden !important;
                 background: #ffffff !important;
                 min-height: 480px !important;
+                height: auto !important;
                 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
                 position: relative !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
 
             .tab_list_showroom .tab-panels .panel {
@@ -5545,6 +5548,7 @@ function gobike_custom_styles_output()
                 height: 100% !important;
                 min-height: 480px !important;
                 display: none !important; /* Mặc định ẩn các panel không active */
+                flex: 1 1 auto !important;
             }
 
             /* Panel active BẮT BUỘC DISPLAY: BLOCK !IMPORTANT */
@@ -5559,11 +5563,13 @@ function gobike_custom_styles_output()
                 padding: 0 !important;
                 width: 100% !important;
                 height: 100% !important;
+                min-height: 480px !important;
+                display: block !important;
             }
 
             .tab_list_showroom .tab-panels iframe {
                 width: 100% !important;
-                height: 100% !important;
+                height: 480px !important;
                 min-height: 480px !important;
                 border: 0 !important;
                 display: block !important;

@@ -16,12 +16,18 @@ function wptangtoc_remove_x_pingback($headers)
 }
 
 
-// 
 if (file_exists(__DIR__ . '/gobike-product-filter.php')) {
     require_once __DIR__ . '/gobike-product-filter.php';
 }
 if (file_exists(__DIR__ . '/inc/shop-sidebar-filter.php')) {
     require_once __DIR__ . '/inc/shop-sidebar-filter.php';
+}
+
+// Tự động nạp toàn bộ các shortcode và styles trong thư mục shortcodes/home/
+if (is_dir(__DIR__ . '/shortcodes/home')) {
+    foreach (glob(__DIR__ . '/shortcodes/home/*.php') as $shortcode_file) {
+        require_once $shortcode_file;
+    }
 }
 
 
