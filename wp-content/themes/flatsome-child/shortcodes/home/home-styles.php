@@ -5330,180 +5330,210 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-               HỆ THỐNG CỬA HÀNG - TAB DỌC GOOGLE MAPS (.tab_list_showroom)
+               9. HỆ THỐNG CỬA HÀNG (STORE LOCATOR / SHOWROOM TABS)
                ========================================================================== */
-            .section_list_showroom,
             .gobike-store-locator-wrapper {
-                background-color: #f6f4f4;
-                border-radius: 12px;
-                padding: 25px 20px;
+                padding: 30px 25px !important;
+                border-radius: 8px !important;
+                background-color: rgb(246, 244, 244) !important;
                 margin: 20px 0 35px;
             }
 
             .gobike-store-locator-wrapper .ch_main_title,
             .section_list_showroom h3 {
-                font-size: 22px;
-                font-weight: 700;
+                font-size: 22px !important;
+                font-weight: 700 !important;
                 color: #d92121 !important;
-                margin-top: 0;
-                margin-bottom: 20px;
-                text-transform: none;
+                margin-top: 0 !important;
+                margin-bottom: 22px !important;
+                text-transform: none !important;
                 letter-spacing: -0.2px;
             }
 
-            .tab_list_showroom {
-                margin-bottom: 0;
-            }
-
-            /* Bố cục 2 cột dạng Flex cho Flatsome Vertical Tab */
             .tab_list_showroom.tabbed-content {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                align-items: stretch;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 25px !important;
+                align-items: stretch !important;
+                margin-bottom: 0 !important;
             }
 
-            /* Danh sách Tab bên trái */
-            .tab_list_showroom > ul.nav.nav-vertical {
-                width: 38%;
-                max-width: 440px;
-                min-width: 320px;
-                padding: 0;
-                margin: 0;
-                list-style: none;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                border: none !important;
+            /* KHỐI DANH SÁCH ĐỊA CHỈ BÊN TRÁI: NỀN TRẮNG CÓ VIỀN BAO QUANH CHUẨN MẪU */
+            .tab_list_showroom > ul.nav.nav-vertical,
+            .tab_list_showroom ul.nav.nav-vertical {
+                width: 36% !important;
+                max-width: 420px !important;
+                min-width: 310px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                list-style: none !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 0 !important; /* Không có gap giữa các item */
+                background: #ffffff !important; /* NỀN TRẮNG NGUYÊN KHỐI */
+                border: 1px solid #e0e0e0 !important; /* VIỀN KHỐI BÊN NGOÀI */
+                border-radius: 4px !important;
+                overflow: hidden !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+                height: fit-content !important;
             }
 
-            .tab_list_showroom > ul.nav.nav-vertical li.tab {
-                background: #ffffff;
-                border: 1.5px solid #eaeaea;
-                border-radius: 10px;
-                padding: 16px 18px;
-                margin: 0;
-                cursor: pointer;
-                transition: all 0.25s ease;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-                position: relative;
-            }
-
-            .tab_list_showroom > ul.nav.nav-vertical li.tab:hover {
-                border-color: #d92121;
-                box-shadow: 0 4px 12px rgba(217, 33, 33, 0.08);
-            }
-
-            /* Trạng thái Tab Active - Bo viền đỏ nổi bật */
-            .tab_list_showroom > ul.nav.nav-vertical li.tab.active {
-                border-color: #d92121 !important;
+            /* Từng item địa chỉ trong khối */
+            .tab_list_showroom > ul.nav.nav-vertical > li.tab,
+            .tab_list_showroom .nav-vertical > li.tab,
+            .tab_list_showroom ul.nav li.tab {
                 background: #ffffff !important;
-                box-shadow: 0 4px 14px rgba(217, 33, 33, 0.12) !important;
+                border: none !important;
+                border-bottom: 1px solid #e5e5e5 !important; /* ĐƯỜNG KẺ PHÂN CÁCH GIỮA CÁC ĐỊA CHỈ */
+                border-radius: 0 !important;
+                padding: 16px 18px !important;
+                margin: 0 !important;
+                cursor: pointer !important;
+                transition: background 0.2s ease, border-left-color 0.2s ease !important;
+                box-shadow: none !important;
+                position: relative !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                text-align: left !important;
             }
 
-            /* Ẩn thẻ a mặc định rỗng của Flatsome nếu có */
-            .tab_list_showroom > ul.nav.nav-vertical li.tab > a[tabindex="-1"],
-            .tab_list_showroom > ul.nav.nav-vertical li.tab > a:empty {
+            .tab_list_showroom > ul.nav.nav-vertical > li.tab:last-child,
+            .tab_list_showroom .nav-vertical > li.tab:last-child,
+            .tab_list_showroom ul.nav li.tab:last-child {
+                border-bottom: none !important;
+            }
+
+            .tab_list_showroom > ul.nav.nav-vertical > li.tab:hover,
+            .tab_list_showroom .nav-vertical > li.tab:hover,
+            .tab_list_showroom ul.nav li.tab:hover {
+                background: #fafafa !important;
+            }
+
+            /* Trạng thái tab được chọn (Active) */
+            .tab_list_showroom > ul.nav.nav-vertical > li.tab.active,
+            .tab_list_showroom .nav-vertical > li.tab.active,
+            .tab_list_showroom ul.nav li.tab.active {
+                background: #ffffff !important;
+                border-left: 3px solid #d92121 !important; /* Chỉ thị đỏ tinh tế ở mép trái */
+                padding-left: 15px !important;
+                box-shadow: none !important;
+            }
+
+            /* Ẩn các thẻ a rỗng mặc định của Flatsome nếu có */
+            .tab_list_showroom .nav li.tab > a[tabindex="-1"],
+            .tab_list_showroom .nav li.tab > a:empty {
                 display: none !important;
             }
 
             .tab_list_showroom .info_ch {
-                width: 100%;
+                width: 100% !important;
             }
 
+            /* Tiêu đề địa chỉ - MÀU ĐỎ ĐẬM NỔI BẬT */
             .tab_list_showroom .ch_title {
-                font-size: 15.5px;
-                font-weight: 700;
-                color: #d92121;
-                line-height: 1.45;
-                margin-bottom: 8px;
-                transition: color 0.2s ease;
+                font-size: 14.5px !important;
+                font-weight: 700 !important;
+                color: #d92121 !important;
+                line-height: 1.45 !important;
+                margin-bottom: 8px !important;
+                text-decoration: none !important;
+            }
+
+            .tab_list_showroom .info_ch a {
+                text-decoration: none !important;
+                display: block !important;
+                padding: 0 !important;
+                border: none !important;
+                background: transparent !important;
             }
 
             .tab_list_showroom .ch_info {
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-                font-size: 13.5px;
-                line-height: 1.5;
-                color: #444444;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 6px !important;
+                font-size: 13px !important;
+                line-height: 1.5 !important;
+                color: #333333 !important;
             }
 
             .tab_list_showroom .item_x {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                color: #333333;
-                font-size: 13.5px;
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+                color: #333333 !important;
+                font-size: 13px !important;
             }
 
             .tab_list_showroom .item_x i {
-                color: #666666;
-                font-size: 14px;
-                width: 16px;
-                text-align: center;
-                flex-shrink: 0;
+                color: #555555 !important;
+                font-size: 13px !important;
+                width: 15px !important;
+                text-align: center !important;
+                flex-shrink: 0 !important;
             }
 
             /* Link Zalo */
             .tab_list_showroom .link_zalo {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 6px !important;
                 color: #0068ff !important;
-                font-weight: 600;
-                font-size: 13px;
+                font-weight: 600 !important;
+                font-size: 13px !important;
                 text-decoration: none !important;
-                cursor: pointer;
-                transition: opacity 0.2s ease;
+                cursor: pointer !important;
             }
 
             .tab_list_showroom .link_zalo:hover {
-                opacity: 0.85;
                 text-decoration: underline !important;
             }
 
             .tab_list_showroom .link_zalo img,
             .tab_list_showroom .link_zalo svg {
-                width: 16px;
-                height: 16px;
+                width: 16px !important;
+                height: 16px !important;
                 object-fit: contain;
                 flex-shrink: 0;
             }
 
             /* Link Chỉ đường Google Maps */
             .tab_list_showroom .link_chiduong {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                color: #1a73e8 !important;
-                font-weight: 600;
-                font-size: 13px;
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 6px !important;
+                color: #111111 !important;
+                font-weight: 600 !important;
+                font-size: 13px !important;
                 text-decoration: none !important;
-                cursor: pointer;
-                transition: opacity 0.2s ease;
+                cursor: pointer !important;
             }
 
             .tab_list_showroom .link_chiduong:hover {
-                opacity: 0.85;
+                color: #d92121 !important;
                 text-decoration: underline !important;
             }
 
             .tab_list_showroom .link_chiduong img,
             .tab_list_showroom .link_chiduong svg {
-                width: 14px;
-                height: 16px;
+                width: 14px !important;
+                height: 16px !important;
                 object-fit: contain;
                 flex-shrink: 0;
             }
 
-            /* Khung Panel bản đồ bên phải */
+            /* KHỐI BẢN ĐỒ GOOGLE MAPS BÊN PHẢI */
             .tab_list_showroom .tab-panels {
-                flex: 1 1 0%;
-                min-width: 320px;
-                padding: 0;
-                margin: 0;
-                border: none !important;
+                flex: 1 1 0% !important;
+                min-width: 320px !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: 1px solid #e0e0e0 !important;
+                border-radius: 4px !important;
+                overflow: hidden !important;
+                background: #ffffff !important;
+                min-height: 480px !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+                position: relative !important;
             }
 
             .tab_list_showroom .tab-panels .panel {
@@ -5511,51 +5541,57 @@ function gobike_custom_styles_output()
                 margin: 0 !important;
                 border: none !important;
                 background: transparent !important;
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-                height: 100%;
-                min-height: 450px;
-                display: none;
+                width: 100% !important;
+                height: 100% !important;
+                min-height: 480px !important;
+                display: none !important; /* Mặc định ẩn các panel không active */
             }
 
+            /* Panel active BẮT BUỘC DISPLAY: BLOCK !IMPORTANT */
             .tab_list_showroom .tab-panels .panel.active {
-                display: block;
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
             }
 
             .tab_list_showroom .tab-panels .panel p {
                 margin: 0 !important;
-                height: 100%;
+                padding: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
             }
 
             .tab_list_showroom .tab-panels iframe {
                 width: 100% !important;
                 height: 100% !important;
-                min-height: 450px;
+                min-height: 480px !important;
                 border: 0 !important;
-                border-radius: 10px;
-                display: block;
+                display: block !important;
             }
 
             /* Responsive Mobile / Tablet */
             @media (max-width: 849px) {
                 .tab_list_showroom.tabbed-content {
-                    flex-direction: column;
+                    flex-direction: column !important;
+                    gap: 18px !important;
                 }
 
-                .tab_list_showroom > ul.nav.nav-vertical {
+                .tab_list_showroom > ul.nav.nav-vertical,
+                .tab_list_showroom ul.nav.nav-vertical {
                     width: 100% !important;
                     max-width: 100% !important;
+                    min-width: 100% !important;
                 }
 
                 .tab_list_showroom .tab-panels {
                     width: 100% !important;
+                    min-height: 340px !important;
                 }
 
                 .tab_list_showroom .tab-panels .panel,
                 .tab_list_showroom .tab-panels iframe {
-                    min-height: 320px;
-                    height: 320px !important;
+                    min-height: 340px !important;
+                    height: 340px !important;
                 }
             }
     </style>
@@ -5565,27 +5601,108 @@ function gobike_custom_styles_output()
 /**
  * Script tương tác cho Hệ thống Cửa hàng Tab Google Maps (.tab_list_showroom)
  */
-add_action('wp_footer', 'gobike_showroom_tabs_script');
+add_action('wp_footer', 'gobike_showroom_tabs_script', 999);
 function gobike_showroom_tabs_script() {
     ?>
     <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        // Ngăn chặn Flatsome tab nuốt sự kiện click của Zalo và Chỉ đường
-        $('body').on('click', '.tab_list_showroom .link_zalo, .tab_list_showroom .link_chiduong', function(e) {
+    (function($) {
+        function initGobikeShowroom() {
+            $('.tab_list_showroom').each(function() {
+                var $wrapper = $(this);
+                var $tabs = $wrapper.find('ul.nav li.tab');
+                var $panels = $wrapper.find('.tab-panels .panel');
+
+                // 1. Tháo bỏ toàn bộ click listener cũ của Flatsome trên các thẻ a bên trong tab
+                $tabs.find('a').each(function() {
+                    var $link = $(this);
+                    if (!$link.hasClass('link_zalo') && !$link.hasClass('link_chiduong')) {
+                        $link.off('click').on('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            $(this).closest('li.tab').trigger('click');
+                        });
+                    }
+                });
+
+                // 2. Chặn click link Zalo và Chỉ đường kích hoạt chuyển tab
+                $wrapper.find('.link_zalo, .link_chiduong').off('click').on('click', function(e) {
+                    e.stopPropagation();
+                });
+
+                // 3. Xử lý click chuyển tab theo index chuẩn xác 100%
+                $tabs.off('click').on('click', function(e) {
+                    if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
+                        return;
+                    }
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    var $currentTab = $(this);
+                    var index = $tabs.index($currentTab);
+                    if (index < 0) return;
+
+                    // Cập nhật tab active
+                    $tabs.removeClass('active').removeAttr('aria-selected');
+                    $currentTab.addClass('active').attr('aria-selected', 'true');
+                    $currentTab.find('a[role="tab"]').attr('aria-selected', 'true');
+
+                    // Cập nhật panel active
+                    $panels.removeClass('active').removeAttr('style');
+                    var $targetPanel = $panels.eq(index);
+                    $targetPanel.addClass('active');
+
+                    // Kích hoạt iframe bên trong nếu có
+                    var $iframe = $targetPanel.find('iframe');
+                    if ($iframe.length) {
+                        $iframe.css({'display': 'block', 'width': '100%', 'height': '100%'});
+                    }
+                });
+
+                // 4. Trạng thái ban đầu: tab 0 active nếu chưa có tab nào active
+                var $activeTab = $tabs.filter('.active');
+                if (!$activeTab.length) {
+                    $activeTab = $tabs.first().addClass('active');
+                }
+                var activeIdx = $tabs.index($activeTab);
+                if (activeIdx < 0) activeIdx = 0;
+                $panels.removeClass('active').removeAttr('style');
+                $panels.eq(activeIdx).addClass('active');
+            });
+        }
+
+        // Delegate listener hỗ trợ click mọi lúc
+        $(document).on('click', '.tab_list_showroom ul.nav li.tab', function(e) {
+            if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
+                return;
+            }
+            e.preventDefault();
             e.stopPropagation();
+
+            var $wrapper = $(this).closest('.tab_list_showroom');
+            var $tabs = $wrapper.find('ul.nav li.tab');
+            var $panels = $wrapper.find('.tab-panels .panel');
+            var index = $tabs.index($(this));
+            if (index < 0) return;
+
+            $tabs.removeClass('active').removeAttr('aria-selected');
+            $(this).addClass('active').attr('aria-selected', 'true');
+
+            $panels.removeClass('active').removeAttr('style');
+            $panels.eq(index).addClass('active');
         });
 
-        // Hỗ trợ chuyển tab mượt mà cho .tab_list_showroom
-        $('body').on('click', '.tab_list_showroom ul.nav li.tab', function(e) {
-            var $this = $(this);
-            var index = $this.index();
-            $this.addClass('active').siblings().removeClass('active');
-            var $panels = $this.closest('.tab_list_showroom').find('.tab-panels .panel');
-            $panels.removeClass('active').hide();
-            $panels.eq(index).addClass('active').fadeIn(200);
+        $(document).ready(function() {
+            initGobikeShowroom();
+            setTimeout(initGobikeShowroom, 150);
+            setTimeout(initGobikeShowroom, 500);
         });
-    });
+
+        $(window).on('load', function() {
+            initGobikeShowroom();
+        });
+    })(jQuery);
     </script>
     <?php
 }
+
 
