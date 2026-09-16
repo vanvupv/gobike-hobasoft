@@ -1,14 +1,14 @@
 /**
  * ==========================================================================
  * HEADER STYLES - GOBIKE
- * Quản lý toàn bộ giao diện Header, Topbar, Menu, Search, Mobile Header
+ * Tất cả selector đều bắt đầu từ class .header để không đè vào các khối khác.
  * ==========================================================================
  */
 
 /* ==========================================================================
    1. TOPBAR GOBIKE (#149D29) - HIỆU ỨNG CHỮ CHẠY VÔ TẬN (MARQUEE)
    ========================================================================== */
-#top-bar {
+.header #top-bar {
     background-color: #149D29 !important; /* Xanh lá GoBike */
     background-image: none !important;
     min-height: 34px !important;
@@ -17,7 +17,7 @@
     overflow: hidden !important;
 }
 
-#top-bar .flex-row {
+.header #top-bar .flex-row {
     min-height: 34px !important;
     display: flex !important;
     align-items: center !important;
@@ -25,7 +25,7 @@
 }
 
 /* Khung bọc giới hạn chiều rộng chữ chạy */
-.cps-marquee-wrapper {
+.header .cps-marquee-wrapper {
     overflow: hidden !important;
     white-space: nowrap !important;
     max-width: 650px !important;
@@ -34,7 +34,7 @@
 }
 
 /* Thanh chạy chữ liên tục */
-.cps-marquee-track {
+.header .cps-marquee-track {
     display: inline-flex !important;
     align-items: center !important;
     gap: 24px !important;
@@ -42,7 +42,7 @@
 }
 
 /* Rê chuột vào thì tạm dừng chuyển động để khách đọc */
-.cps-marquee-wrapper:hover .cps-marquee-track {
+.header .cps-marquee-wrapper:hover .cps-marquee-track {
     animation-play-state: paused !important;
 }
 
@@ -57,7 +57,7 @@
 }
 
 /* Từng phần tử cam kết trong topbar */
-.cps-item {
+.header .cps-item {
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
@@ -66,13 +66,13 @@
     color: #ffffff !important;
 }
 
-.cps-item span, 
-.cps-item strong {
+.header .cps-item span, 
+.header .cps-item strong {
     color: #ffffff !important;
 }
 
 /* Dấu chấm tròn ngăn cách */
-.cps-item::after {
+.header .cps-item::after {
     content: "";
     display: inline-block;
     width: 4px;
@@ -83,10 +83,10 @@
 }
 
 /* 3 nút Menu bên phải (Cửa hàng, Tra cứu, Hotline) */
-#top-bar ul.nav > li > a {
+.header #top-bar ul.nav > li > a {
     color: #ffffff !important;
     font-size: 12px !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     padding: 0 10px !important;
     line-height: 34px !important;
     display: inline-flex !important;
@@ -96,7 +96,7 @@
 }
 
 /* Vạch kẻ đứng phân cách giữa 3 nút */
-#top-bar ul.nav > li:not(:first-child) > a::before {
+.header #top-bar ul.nav > li:not(:first-child) > a::before {
     content: "";
     position: absolute;
     left: 0;
@@ -108,24 +108,20 @@
 }
 
 @media (max-width: 849px) {
-    #top-bar .flex-col:last-child {
+    .header #top-bar .flex-col:last-child {
         display: none !important;
     }
-    .cps-marquee-wrapper {
+    .header .cps-marquee-wrapper {
         max-width: 100% !important;
         width: 100% !important;
     }
 }
 
 /* ==========================================================================
-   2. HEADER CHÍNH, LOGO & STICKY HEADER
+   2. ĐỊNH DẠNG ĐIỀU HƯỚNG HEADER CHUNG (NAV > LI > A)
    ========================================================================== */
-#logo {
-    display: flex;
-    align-items: center;
-    position: relative;
-    line-height: inherit;
-    margin-right: 10px;
+.header .nav > li > a {
+    font-weight: 600 !important;
 }
 
 .header .header-main .nav > li > a, 
@@ -133,11 +129,34 @@
     line-height: 1;
 }
 
-.header-main .logo-left {
+.header .header-bottom-nav > li > a {
+    font-weight: 600 !important;
+    letter-spacing: 0.02em;
+}
+
+/* Active & hover menu item */
+.header .header-bottom-nav > li.active > a,
+.header .header-bottom-nav > li.current-menu-item > a,
+.header .header-bottom-nav > li > a:hover {
+    color: #0d6e2e !important;
+}
+
+/* ==========================================================================
+   3. HEADER CHÍNH, LOGO & STICKY HEADER
+   ========================================================================== */
+.header #logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    line-height: inherit;
+    margin-right: 10px;
+}
+
+.header .header-main .logo-left {
     position: relative;
 }
 
-.header-overlay {
+.header .header-overlay {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -148,71 +167,69 @@
     background: rgb(0 0 0 / 0.6);
     display: block;
     -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -o-transition: 0.5s;
     transition: 0.5s;
     visibility: hidden;
     opacity: 0;
 }
 
-.header-overlay.active {
+.header .header-overlay.active {
     visibility: visible;
     opacity: 1;
 }
 
 .header.active .header-wrapper .header-logo-sticky, 
-.header-wrapper.stuck .header-logo-sticky {
+.header .header-wrapper.stuck .header-logo-sticky {
     display: none !important;
 }
 
 .header.active .header-wrapper .header-logo-sticky + img, 
-.header-wrapper.stuck .header-logo-sticky + img {
+.header .header-wrapper.stuck .header-logo-sticky + img {
     display: block !important;
 }
 
 /* Đổi 3 vạch icon menu thành màu trắng */
-.nav-icon .header-button a.button,
-.nav-icon .header-button a i.icon-menu {
+.header .nav-icon .header-button a.button,
+.header .nav-icon .header-button a i.icon-menu {
     color: #ffffff !important;
 }
 
-.nav > li > a > i.icon-menu {
+.header .nav > li > a > i.icon-menu {
     color: #fff;
 }
 
 /* ==========================================================================
-   3. MENU DESKTOP & SUBMENU
+   4. MENU DESKTOP & SUBMENU
    ========================================================================== */
-.header-nav-main {
+.header .header-nav-main {
     font-size: 14px;
 }
 
-.header-nav-main .menu-item-has-children:after {
+.header .header-nav-main .menu-item-has-children:after {
     content: none !important;
     display: none !important;
 }
 
-.flex-col #btnHeaderMenu,
-.flex-col .header-main-menu {
+.header .flex-col #btnHeaderMenu,
+.header .flex-col .header-main-menu {
     display: none !important;
 }
 
-.menu .widget {
+.header .menu .widget {
     margin-bottom: 0;
 }
 
-.menu, 
-ul.sub-menu {
+.header .menu, 
+.header ul.sub-menu {
     background: #fff;
     margin: 0;
 }
 
-.menu li {
+.header .menu li {
     position: relative;
 }
 
-.menu > li > ul, 
-.menu > li > ul > li > ul {
+.header .menu > li > ul, 
+.header .menu > li > ul > li > ul {
     height: auto;
     margin: 0 !important;
     padding: 0 !important;
@@ -225,24 +242,24 @@ ul.sub-menu {
     opacity: 0;
 }
 
-.menu > li:hover > ul, 
-.menu > li:hover > ul > li:hover > ul {
+.header .menu > li:hover > ul, 
+.header .menu > li:hover > ul > li:hover > ul {
     visibility: visible;
     opacity: 1;
     display: block;
 }
 
-ul.menu > li + li, 
-.widget > ul > li + li {
+.header ul.menu > li + li, 
+.header .widget > ul > li + li {
     border-top: 0;
 }
 
-ul.menu > li li > a, 
-.widget > ul > li li > a {
+.header ul.menu > li li > a, 
+.header .widget > ul > li li > a {
     display: block;
 }
 
-ul.menu li a {
+.header ul.menu li a {
     padding: 6px 10px !important;
     font-size: 13px !important;
     font-weight: 600;
@@ -252,26 +269,26 @@ ul.menu li a {
     align-items: center;
 }
 
-.menu-top ul.menu li a:hover {
+.header .menu-top ul.menu li a:hover {
     background: #f1f1f1;
 }
 
-.menu-top ul.menu li a img {
+.header .menu-top ul.menu li a img {
     margin-right: 5px;
 }
 
 .header.active .header-wrapper #logo .header-main-menu ul.menu li a img, 
-.header-wrapper.stuck #logo .header-main-menu ul.menu li a img {
+.header .header-wrapper.stuck #logo .header-main-menu ul.menu li a img {
     max-height: 20px !important;
 }
 
 .header.active .header-wrapper .menu, 
-.header-wrapper.stuck .menu {
+.header .header-wrapper.stuck .menu {
     border-radius: 5px;
     overflow: hidden;
 }
 
-.header-main-menu {
+.header .header-main-menu {
     width: 220px;
     visibility: hidden;
     position: absolute;
@@ -279,13 +296,10 @@ ul.menu li a {
     left: 15px;
     opacity: 0;
     -webkit-transition: .2s ease-out;
-    -moz-transition: .2s ease-out;
-    -ms-transition: .2s ease-out;
-    -o-transition: .2s ease-out;
     transition: .2s ease-out;
 }
 
-#btnHeaderMenu {
+.header #btnHeaderMenu {
     margin-right: 10px;
     font-size: 15px;
     line-height: 1;
@@ -298,28 +312,28 @@ ul.menu li a {
     border-radius: 10px;
 }
 
-#btnHeaderMenu:hover + .header-main-menu, 
-.header-main-menu:hover {
+.header #btnHeaderMenu:hover + .header-main-menu, 
+.header .header-main-menu:hover {
     visibility: visible;
     opacity: 1;
 }
 
-.home .header-wrapper.stuck #btnHeaderMenu {
+.header .header-wrapper.stuck #btnHeaderMenu {
     display: block;
 }
 
-.ux-menu-horizontal a {
+.header .ux-menu-horizontal a {
     display: inline-block;
     margin: 0 15px;
     color: #fff;
     text-decoration: none;
 }
 
-.ux-menu-horizontal a:hover {
+.header .ux-menu-horizontal a:hover {
     color: #ff0000;
 }
 
-.header-nav li.html:before {
+.header .header-nav li.html:before {
     position: absolute;
     width: 25px;
     height: 25px;
@@ -329,62 +343,99 @@ ul.menu li a {
     transform: translateY(-50%);
 }
 
-.header-nav li.html_topbar_left:before {
+.header .header-nav li.html_topbar_left:before {
     background: url(/wp-content/uploads/2021/07/call-icon.png);
 }
 
-.header-nav li.html_topbar_right:before {
+.header .header-nav li.html_topbar_right:before {
     background: url(/wp-content/uploads/2021/07/map-icon.png);
 }
 
-.nav li.html a, 
-.nav li.html a:hover {
+.header .nav li.html a, 
+.header .nav li.html a:hover {
     color: #fff;
     font-size: 14px;
 }
 
 /* ==========================================================================
-   4. GIỎ HÀNG TRÊN HEADER
+   5. CÁC NÚT HOTLINE & CỬA HÀNG TRÊN HEADER (GOBIKER-HEADER-ITEM)
    ========================================================================== */
-.cart-icon {
+.header .gobike-header-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 4px 10px !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+}
+
+.header .gobike-hi-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.header .gobike-hi-content {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.header .gobike-hi-title {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: #0d6e2e !important;
+    white-space: nowrap !important;
+}
+
+.header .gobike-hi-desc {
+    font-size: 11px !important;
+    color: #64748b !important;
+    white-space: nowrap !important;
+}
+
+/* ==========================================================================
+   6. GIỎ HÀNG & TÀI KHOẢN TRÊN HEADER
+   ========================================================================== */
+.header .cart-icon {
     margin-right: 10px;
 }
 
-.cart-item .cart-icon strong, 
-.cart-item .cart-icon strong:after {
+.header .cart-item .cart-icon strong, 
+.header .cart-item .cart-icon strong:after {
     border-color: #fff;
     color: #fff;
 }
 
-.nav li.cart-item a, 
-.nav li.cart-item a:hover {
+.header .nav li.cart-item a, 
+.header .nav li.cart-item a:hover {
     color: #fff;
     font-size: 14px;
 }
 
-.mini_cart_item a {
+.header .mini_cart_item a {
     color: #000 !important;
 }
 
-.mobile-nav a {
+.header .mobile-nav a {
     color: #000;
 }
 
-.mobile-nav > .nav-icon > a {
+.header .mobile-nav > .nav-icon > a {
     color: var(--primary-color);
 }
 
 /* ==========================================================================
-   5. FORM TÌM KIẾM HEADER & LIVE SEARCH
+   7. FORM TÌM KIẾM HEADER & LIVE SEARCH
    ========================================================================== */
-.header-search-form input[type="search"] {
+.header .header-search-form input[type="search"] {
     border: 0;
     box-shadow: none;
     height: 33px;
     font-size: 14px;
 }
 
-.searchform .ux-search-submit {
+.header .searchform .ux-search-submit {
     background-color: #d22d2d !important;
     border-color: #d22d2d !important;
     border-radius: 50% !important;
@@ -397,18 +448,18 @@ ul.menu li a {
     transition: all 0.3s ease;
 }
 
-.searchform .ux-search-submit .icon-search {
+.header .searchform .ux-search-submit .icon-search {
     color: #ffffff !important;
     font-size: 16px;
 }
 
-.searchform .ux-search-submit:hover {
+.header .searchform .ux-search-submit:hover {
     background-color: #b01b1b !important;
     border-color: #b01b1b !important;
     transform: translateY(-3px);
 }
 
-.searchform .button.submit-button {
+.header .searchform .button.submit-button {
     background-color: #149d29 !important;
     color: #000;
     border-radius: 0 10px 10px 0;
@@ -417,11 +468,11 @@ ul.menu li a {
     width: 35px;
 }
 
-.searchform .button.icon i {
+.header .searchform .button.icon i {
     font-size: 14px;
 }
 
-.searchform .button.submit-button:hover {
+.header .searchform .button.submit-button:hover {
     box-shadow: none;
 }
 
@@ -429,58 +480,58 @@ ul.menu li a {
     background-color: #fff;
 }
 
-.live-search-results .autocomplete-suggestion {
+.header .live-search-results .autocomplete-suggestion {
     padding: 10px;
     display: block;
 }
 
-.live-search-results .autocomplete-suggestion img {
+.header .live-search-results .autocomplete-suggestion img {
     width: 50px;
     border-radius: 0;
     height: 50px;
     float: left;
 }
 
-.live-search-results .search-name {
+.header .live-search-results .search-name {
     width: 100%;
     font-size: 12px;
 }
 
-.live-search-results .search-price ins span.amount {
+.header .live-search-results .search-price ins span.amount {
     color: var(--primary-color);
     font-size: 14px;
 }
 
-.search-item-right {
+.header .search-item-right {
     display: inline-block;
     height: 50px;
 }
 
 /* ==========================================================================
-   6. HEADER MOBILE & MENU MOBILE POPUP
+   8. HEADER MOBILE & MENU MOBILE POPUP
    ========================================================================== */
-.menu-mobile-header {
+.header .menu-mobile-header {
     padding: 5px 10px;
     background-color: var(--primary-color);
 }
 
-.menu-mobile-header .logo img.header-logo-sticky {
+.header .menu-mobile-header .logo img.header-logo-sticky {
     display: block !important;
 }
 
-.menu-mobile-header input[type=search] {
+.header .menu-mobile-header input[type=search] {
     box-shadow: none !important;
     border: 0;
     border-radius: 10px 0 0 10px;
     font-size: 14px;
 }
 
-.menu-mobile-header button.ux-search-submit {
+.header .menu-mobile-header button.ux-search-submit {
     min-height: 33px;
     border-radius: 0 10px 10px 0 !important;
 }
 
-.menu-mobile-header .live-search-results {
+.header .menu-mobile-header .live-search-results {
     position: absolute;
     background: #fff;
     border-radius: 0 0 10px 10px;
@@ -651,14 +702,14 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
 }
 
 /* ==========================================================================
-   7. MENU TAB VÀ RESPONSIVE HEADER
+   9. MENU TAB VÀ RESPONSIVE HEADER
    ========================================================================== */
-.menu-tab {
+.header .menu-tab {
     overflow-x: auto;
     display: block;
 }
 
-.menu-tab ul {
+.header .menu-tab ul {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -668,11 +719,11 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
     box-shadow: none !important;
 }
 
-.menu-tab ul li {
+.header .menu-tab ul li {
     width: 16.6666%;
 }
 
-.menu-tab ul > li > a {
+.header .menu-tab ul > li > a {
     padding: 5px 0px !important;
     text-align: center;
     flex-direction: column;
@@ -681,7 +732,7 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
     font-size: 12px !important;
 }
 
-.menu-tab ul li a img {
+.header .menu-tab ul li a img {
     width: 60px;
     height: 60px;
     background: #f5f5f5;
@@ -689,18 +740,18 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
     margin-bottom: 5px;
 }
 
-.menu-tab ul li:nth-child(1) a img { background: #FEE2E2; }
-.menu-tab ul li:nth-child(2) a img { background: #FFEDD5; }
-.menu-tab ul li:nth-child(3) a img { background: #FEF9C3; }
-.menu-tab ul li:nth-child(4) a img { background: #ECFCCB; }
-.menu-tab ul li:nth-child(5) a img { background: #D1FAE5; }
-.menu-tab ul li:nth-child(6) a img { background: #CCFBF1; }
-.menu-tab ul li:nth-child(7) a img { background: #E0F2FE; }
-.menu-tab ul li:nth-child(8) a img { background: #E0E7FF; }
-.menu-tab ul li:nth-child(9) a img { background: #EDE9FE; }
-.menu-tab ul li:nth-child(10) a img { background: #CCFBF1; }
-.menu-tab ul li:nth-child(11) a img { background: #FAE8FF; }
-.menu-tab ul li:nth-child(12) a img { background: #FCE7F3; }
+.header .menu-tab ul li:nth-child(1) a img { background: #FEE2E2; }
+.header .menu-tab ul li:nth-child(2) a img { background: #FFEDD5; }
+.header .menu-tab ul li:nth-child(3) a img { background: #FEF9C3; }
+.header .menu-tab ul li:nth-child(4) a img { background: #ECFCCB; }
+.header .menu-tab ul li:nth-child(5) a img { background: #D1FAE5; }
+.header .menu-tab ul li:nth-child(6) a img { background: #CCFBF1; }
+.header .menu-tab ul li:nth-child(7) a img { background: #E0F2FE; }
+.header .menu-tab ul li:nth-child(8) a img { background: #E0E7FF; }
+.header .menu-tab ul li:nth-child(9) a img { background: #EDE9FE; }
+.header .menu-tab ul li:nth-child(10) a img { background: #CCFBF1; }
+.header .menu-tab ul li:nth-child(11) a img { background: #FAE8FF; }
+.header .menu-tab ul li:nth-child(12) a img { background: #FCE7F3; }
 
 /* Ẩn thanh cuộn của các menu mobile */
 .main-menu-mobile::-webkit-scrollbar,
@@ -712,20 +763,20 @@ ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
 ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar,
 ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
 ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
-.menu-tab::-webkit-scrollbar,
-.menu-tab::-webkit-scrollbar-thumb,
-.menu-tab::-webkit-scrollbar-track {
+.header .menu-tab::-webkit-scrollbar,
+.header .menu-tab::-webkit-scrollbar-thumb,
+.header .menu-tab::-webkit-scrollbar-track {
     display: none;
 }
 
 @media only screen and (max-width: 849px) {
-    .home .header .header-wrapper, 
-    .home .header .header-bg-color {
+    .header .header-wrapper, 
+    .header .header-bg-color {
         background-color: transparent;
     }
     
     .header.active .header-wrapper, 
-    .header-wrapper.stuck {
+    .header .header-wrapper.stuck {
         background-color: #fff;
         z-index: 999;
         position: fixed;
@@ -733,41 +784,41 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
     }
     
     .header .header-wrapper .header-logo-sticky, 
-    .header-wrapper .header-logo-sticky, 
+    .header .header-logo-sticky, 
     .header.active .header-wrapper .header-logo-sticky, 
-    .header-wrapper.stuck .header-logo-sticky {
+    .header .header-wrapper.stuck .header-logo-sticky {
         display: block !important;
     }
     
     .header .header-wrapper .header-logo-sticky + img, 
-    .header-wrapper .header-logo-sticky + img, 
+    .header .header-logo-sticky + img, 
     .header.active .header-wrapper .header-logo-sticky + img, 
-    .header-wrapper.stuck .header-logo-sticky + img {
+    .header .header-wrapper.stuck .header-logo-sticky + img {
         display: none !important;
     }
     
     .header.active, 
-    .header-wrapper.stuck, 
-    .body-scroll-lock--active #header {
+    .header .header-wrapper.stuck, 
+    .header#header {
         z-index: 999;
     }
     
-    .home .header.active .header-wrapper:after, 
-    .home .header-wrapper.stuck:after {
+    .header.active .header-wrapper:after, 
+    .header .header-wrapper.stuck:after {
         display: none;
     }
     
-    #btnHeaderMenu {
+    .header #btnHeaderMenu {
         display: none !important;
     }
     
-    .menu-mobile-header {
+    .header .menu-mobile-header {
         padding: 5px 15px;
     }
 }
 
 @media only screen and (max-width: 550px) {
-    .menu-mobile-header {
+    .header .menu-mobile-header {
         padding: 5px 10px;
     }
     
