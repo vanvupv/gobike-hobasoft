@@ -722,6 +722,24 @@ function gobike_custom_styles_output()
             padding: 15px 0 0 0 !important;
         }
 
+        /* Xóa bỏ hoàn toàn clearfix ::before và ::after của Flatsome gây lỗi layout trong .banner-home */
+        .banner-home::before,
+        .banner-home::after,
+        .banner-home .container::before,
+        .banner-home .container::after,
+        .banner-home .row::before,
+        .banner-home .row::after,
+        .gobike-hero-banner-section::before,
+        .gobike-hero-banner-section::after,
+        .gobike-hero-banner-section .container::before,
+        .gobike-hero-banner-section .container::after,
+        .gobike-hero-banner-section .row::before,
+        .gobike-hero-banner-section .row::after {
+            content: none !important;
+            display: none !important;
+            clear: none !important;
+        }
+
         .banner-home .swiper-slide img,
         .banner-home .image-ads img {
             width: 100% !important;
