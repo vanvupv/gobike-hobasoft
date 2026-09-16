@@ -5328,7 +5328,264 @@ function gobike_custom_styles_output()
                 font-size: 13.5px !important;
                 font-weight: 700 !important;
             }
+
+            /* ==========================================================================
+               HỆ THỐNG CỬA HÀNG - TAB DỌC GOOGLE MAPS (.tab_list_showroom)
+               ========================================================================== */
+            .section_list_showroom,
+            .gobike-store-locator-wrapper {
+                background-color: #f6f4f4;
+                border-radius: 12px;
+                padding: 25px 20px;
+                margin: 20px 0 35px;
+            }
+
+            .gobike-store-locator-wrapper .ch_main_title,
+            .section_list_showroom h3 {
+                font-size: 22px;
+                font-weight: 700;
+                color: #d92121 !important;
+                margin-top: 0;
+                margin-bottom: 20px;
+                text-transform: none;
+                letter-spacing: -0.2px;
+            }
+
+            .tab_list_showroom {
+                margin-bottom: 0;
+            }
+
+            /* Bố cục 2 cột dạng Flex cho Flatsome Vertical Tab */
+            .tab_list_showroom.tabbed-content {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                align-items: stretch;
+            }
+
+            /* Danh sách Tab bên trái */
+            .tab_list_showroom > ul.nav.nav-vertical {
+                width: 38%;
+                max-width: 440px;
+                min-width: 320px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                border: none !important;
+            }
+
+            .tab_list_showroom > ul.nav.nav-vertical li.tab {
+                background: #ffffff;
+                border: 1.5px solid #eaeaea;
+                border-radius: 10px;
+                padding: 16px 18px;
+                margin: 0;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                position: relative;
+            }
+
+            .tab_list_showroom > ul.nav.nav-vertical li.tab:hover {
+                border-color: #d92121;
+                box-shadow: 0 4px 12px rgba(217, 33, 33, 0.08);
+            }
+
+            /* Trạng thái Tab Active - Bo viền đỏ nổi bật */
+            .tab_list_showroom > ul.nav.nav-vertical li.tab.active {
+                border-color: #d92121 !important;
+                background: #ffffff !important;
+                box-shadow: 0 4px 14px rgba(217, 33, 33, 0.12) !important;
+            }
+
+            /* Ẩn thẻ a mặc định rỗng của Flatsome nếu có */
+            .tab_list_showroom > ul.nav.nav-vertical li.tab > a[tabindex="-1"],
+            .tab_list_showroom > ul.nav.nav-vertical li.tab > a:empty {
+                display: none !important;
+            }
+
+            .tab_list_showroom .info_ch {
+                width: 100%;
+            }
+
+            .tab_list_showroom .ch_title {
+                font-size: 15.5px;
+                font-weight: 700;
+                color: #d92121;
+                line-height: 1.45;
+                margin-bottom: 8px;
+                transition: color 0.2s ease;
+            }
+
+            .tab_list_showroom .ch_info {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                font-size: 13.5px;
+                line-height: 1.5;
+                color: #444444;
+            }
+
+            .tab_list_showroom .item_x {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: #333333;
+                font-size: 13.5px;
+            }
+
+            .tab_list_showroom .item_x i {
+                color: #666666;
+                font-size: 14px;
+                width: 16px;
+                text-align: center;
+                flex-shrink: 0;
+            }
+
+            /* Link Zalo */
+            .tab_list_showroom .link_zalo {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #0068ff !important;
+                font-weight: 600;
+                font-size: 13px;
+                text-decoration: none !important;
+                cursor: pointer;
+                transition: opacity 0.2s ease;
+            }
+
+            .tab_list_showroom .link_zalo:hover {
+                opacity: 0.85;
+                text-decoration: underline !important;
+            }
+
+            .tab_list_showroom .link_zalo img,
+            .tab_list_showroom .link_zalo svg {
+                width: 16px;
+                height: 16px;
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+
+            /* Link Chỉ đường Google Maps */
+            .tab_list_showroom .link_chiduong {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: #1a73e8 !important;
+                font-weight: 600;
+                font-size: 13px;
+                text-decoration: none !important;
+                cursor: pointer;
+                transition: opacity 0.2s ease;
+            }
+
+            .tab_list_showroom .link_chiduong:hover {
+                opacity: 0.85;
+                text-decoration: underline !important;
+            }
+
+            .tab_list_showroom .link_chiduong img,
+            .tab_list_showroom .link_chiduong svg {
+                width: 14px;
+                height: 16px;
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+
+            /* Khung Panel bản đồ bên phải */
+            .tab_list_showroom .tab-panels {
+                flex: 1 1 0%;
+                min-width: 320px;
+                padding: 0;
+                margin: 0;
+                border: none !important;
+            }
+
+            .tab_list_showroom .tab-panels .panel {
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                background: transparent !important;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+                height: 100%;
+                min-height: 450px;
+                display: none;
+            }
+
+            .tab_list_showroom .tab-panels .panel.active {
+                display: block;
+            }
+
+            .tab_list_showroom .tab-panels .panel p {
+                margin: 0 !important;
+                height: 100%;
+            }
+
+            .tab_list_showroom .tab-panels iframe {
+                width: 100% !important;
+                height: 100% !important;
+                min-height: 450px;
+                border: 0 !important;
+                border-radius: 10px;
+                display: block;
+            }
+
+            /* Responsive Mobile / Tablet */
+            @media (max-width: 849px) {
+                .tab_list_showroom.tabbed-content {
+                    flex-direction: column;
+                }
+
+                .tab_list_showroom > ul.nav.nav-vertical {
+                    width: 100% !important;
+                    max-width: 100% !important;
+                }
+
+                .tab_list_showroom .tab-panels {
+                    width: 100% !important;
+                }
+
+                .tab_list_showroom .tab-panels .panel,
+                .tab_list_showroom .tab-panels iframe {
+                    min-height: 320px;
+                    height: 320px !important;
+                }
+            }
     </style>
+    <?php
+}
+
+/**
+ * Script tương tác cho Hệ thống Cửa hàng Tab Google Maps (.tab_list_showroom)
+ */
+add_action('wp_footer', 'gobike_showroom_tabs_script');
+function gobike_showroom_tabs_script() {
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        // Ngăn chặn Flatsome tab nuốt sự kiện click của Zalo và Chỉ đường
+        $('body').on('click', '.tab_list_showroom .link_zalo, .tab_list_showroom .link_chiduong', function(e) {
+            e.stopPropagation();
+        });
+
+        // Hỗ trợ chuyển tab mượt mà cho .tab_list_showroom
+        $('body').on('click', '.tab_list_showroom ul.nav li.tab', function(e) {
+            var $this = $(this);
+            var index = $this.index();
+            $this.addClass('active').siblings().removeClass('active');
+            var $panels = $this.closest('.tab_list_showroom').find('.tab-panels .panel');
+            $panels.removeClass('active').hide();
+            $panels.eq(index).addClass('active').fadeIn(200);
+        });
+    });
+    </script>
     <?php
 }
 
