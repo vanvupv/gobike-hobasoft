@@ -995,6 +995,8 @@ function gobike_custom_styles_output()
                 display: inline-flex !important;
                 align-items: center !important;
                 gap: 2px !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
             }
 
             .banner-home .news-header-more:hover {
