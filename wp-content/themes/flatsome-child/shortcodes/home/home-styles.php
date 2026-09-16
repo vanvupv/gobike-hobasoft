@@ -5343,7 +5343,7 @@ function gobike_custom_styles_output()
             .section_list_showroom h3 {
                 font-size: 22px !important;
                 font-weight: 700 !important;
-                color: #d92121 !important;
+                color: #0d6e2e !important;
                 margin-top: 0 !important;
                 margin-bottom: 22px !important;
                 text-transform: none !important;
@@ -5414,7 +5414,7 @@ function gobike_custom_styles_output()
             .tab_list_showroom .nav-vertical > li.tab.active,
             .tab_list_showroom ul.nav li.tab.active {
                 background: #ffffff !important;
-                border-left: 3px solid #d92121 !important; /* Chỉ thị đỏ tinh tế ở mép trái */
+                border-left: 3px solid #0d6e2e !important; /* Chỉ thị xanh tinh tế ở mép trái */
                 padding-left: 15px !important;
                 box-shadow: none !important;
             }
@@ -5429,11 +5429,11 @@ function gobike_custom_styles_output()
                 width: 100% !important;
             }
 
-            /* Tiêu đề địa chỉ - MÀU ĐỎ ĐẬM NỔI BẬT */
+            /* Tiêu đề địa chỉ - MÀU XANH NỔI BẬT */
             .tab_list_showroom .ch_title {
                 font-size: 14.5px !important;
                 font-weight: 700 !important;
-                color: #d92121 !important;
+                color: #0d6e2e !important;
                 line-height: 1.45 !important;
                 margin-bottom: 8px !important;
                 text-decoration: none !important;
@@ -5509,7 +5509,7 @@ function gobike_custom_styles_output()
             }
 
             .tab_list_showroom .link_chiduong:hover {
-                color: #d92121 !important;
+                color: #0d6e2e !important;
                 text-decoration: underline !important;
             }
 
