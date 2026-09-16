@@ -2570,79 +2570,92 @@ function gobike_custom_styles_output()
             text-transform: none;
         }
 
-        .product-footer-right .spec-table-wrapper {
-            width: 100%;
+        .content-product-page .content-product-footer-right .table,
+        .product-footer-right .spec-table-wrapper,
+        .product-footer .product-footer-right .table {
+            width: 100% !important;
         }
 
+        .product-footer .product-footer-right .table table,
         .product-footer-right .spec-table-wrapper table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 1px solid #ddd;
-            border-radius: 0;
-            margin-bottom: 10px;
-            overflow: visible;
+            width: 100% !important;
+            border-collapse: collapse !important;
+            border: 1px solid #ddd !important;
+            border-radius: 0 !important;
+            margin-bottom: 10px !important;
+            overflow: visible !important;
         }
 
+        .product-footer .product-footer-right .table table tr,
         .product-footer-right .spec-table-wrapper table tr {
             display: none;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #ddd !important;
         }
 
+        .product-footer .product-footer-right .table table tr:nth-child(-n+10),
         .product-footer-right .spec-table-wrapper table tr:nth-child(-n+10),
+        .product-footer-right .table table tr:nth-child(-n+10),
         .product-footer-right .spec-table-wrapper.expanded table tr {
-            display: table-row;
+            display: table-row !important;
         }
 
         .product-footer-right .spec-table-wrapper.no-more #more-specific,
-        .product-footer-right .spec-table-wrapper.no-more .btn-more-specific {
+        .product-footer-right .spec-table-wrapper.no-more .btn-more-specific,
+        .product-footer .product-footer-right .table.no-more #more-specific,
+        .product-footer .product-footer-right .table #more-specific.no-more {
             display: none !important;
         }
 
+        .product-footer .product-footer-right .table td,
         .product-footer-right .spec-table-wrapper table td {
-            padding: 8px 10px;
-            font-size: 13px;
-            line-height: 1.45;
-            border: 1px solid #e5e5e5;
-            vertical-align: middle;
+            padding: 8px 10px !important;
+            font-size: 13px !important;
+            line-height: 1.45 !important;
+            border: 1px solid #e5e5e5 !important;
+            vertical-align: middle !important;
         }
 
+        .product-footer .product-footer-right .table td:first-child,
         .product-footer-right .spec-table-wrapper table tr td:first-child {
-            width: 35%;
-            font-weight: 700;
-            color: #111;
-            background-color: #f9f9f9;
-            padding-left: 10px;
+            width: 35% !important;
+            font-weight: 700 !important;
+            color: #111 !important;
+            background-color: #f9f9f9 !important;
+            padding-left: 10px !important;
         }
 
+        .product-footer .product-footer-right .table td:last-child,
         .product-footer-right .spec-table-wrapper table tr td:last-child {
-            width: 65%;
-            color: #333;
-            background-color: #fff;
+            width: 65% !important;
+            color: #333 !important;
+            background-color: #fff !important;
         }
 
+        .product-footer .product-footer-right .table #more-specific,
         .product-footer-right .btn-more-specific,
         .product-footer-right #more-specific {
-            width: 100%;
+            width: 100% !important;
             display: block;
-            border: 1px solid #288ad6;
-            color: #288ad6;
-            background: #fff;
-            text-align: center;
-            padding: 8px 12px;
-            margin: 12px 0 20px 0;
-            border-radius: 4px;
-            font-size: 13.5px;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.25s ease;
+            border: 1px solid #288ad6 !important;
+            color: #288ad6 !important;
+            background: #fff !important;
+            text-align: center !important;
+            padding: 8px 12px !important;
+            margin: 12px 0 20px 0 !important;
+            border-radius: 4px !important;
+            font-size: 13.5px !important;
+            font-weight: 500 !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            transition: all 0.25s ease !important;
         }
 
+        .product-footer .product-footer-right .table #more-specific:hover,
         .product-footer-right .btn-more-specific:hover,
         .product-footer-right #more-specific:hover {
-            border-color: #1a6cb3;
-            color: #1a6cb3;
-            background-color: #f0f7fd;
+            border-color: #1a6cb3 !important;
+            color: #1a6cb3 !important;
+            background-color: #f0f7fd !important;
         }
 
         .product-sidebar-related {
@@ -2780,26 +2793,27 @@ function gobike_custom_styles_output()
         }
 
         .product-section {
-            border-top: 0;
-            background: transparent;
+            border-top: 0 !important;
+            background: transparent !important;
             position: relative;
         }
 
+        /* Mặc định chiều cao tự động theo nội dung (ghi đè triệt để height:500px từ style.css) */
         .product-page-sections .product-section {
-            padding: 0;
-            height: auto;
-            max-height: none;
-            overflow: visible;
-            margin-top: 0;
-            margin-bottom: 15px;
+            padding: 0 !important;
+            height: auto !important;
+            max-height: none !important;
+            overflow: visible !important;
+            margin-top: 0 !important;
+            margin-bottom: 15px !important;
             position: relative;
             transition: max-height 0.4s ease;
         }
 
-        /* Chỉ thu gọn khi nội dung vượt ngưỡng quy định và có class has-readmore */
+        /* Chỉ thu gọn khi nội dung thực tế dài vượt ngưỡng và có class has-readmore */
         .product-page-sections .product-section.has-readmore:not(.active) {
-            max-height: 500px;
-            overflow: hidden;
+            max-height: 500px !important;
+            overflow: hidden !important;
         }
 
         .product-page-sections .product-section.active {
@@ -2855,7 +2869,10 @@ function gobike_custom_styles_output()
             border-radius: 4px;
         }
 
-        .product-footer-showmore {
+        /* Nút Xem thêm - mặc định ẨN bằng !important để ghi đè style.css */
+        .product-footer-showmore,
+        .product-page-sections .product-footer-showmore {
+            display: none !important;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -2864,21 +2881,22 @@ function gobike_custom_styles_output()
             padding-top: 60px;
             padding-bottom: 5px;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 45%, #fff 100%);
-            display: none; /* Mặc định ẩn, chỉ hiển thị khi có class has-readmore hoặc active */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 45%, #fff 100%) !important;
             margin-bottom: 0;
             z-index: 5;
         }
 
+        /* Chỉ hiển thị nút khi nội dung dài vượt ngưỡng và có class has-readmore */
         .product-page-sections .product-section.has-readmore:not(.active) .product-footer-showmore {
-            display: block;
+            display: block !important;
         }
 
+        /* Khi đã bấm Xem thêm (active): nút chuyển xuống dưới nội dung, không bị gradient che chữ */
         .product-page-sections .product-section.active .product-footer-showmore {
-            display: block;
-            position: relative;
-            padding-top: 15px;
-            background: none;
+            display: block !important;
+            position: relative !important;
+            padding-top: 15px !important;
+            background: none !important;
         }
 
         .button_readmore {
