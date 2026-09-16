@@ -170,8 +170,8 @@ function gobike_render_home_hero_banner($atts = array())
 
                         <div class="swiper-pagination banner-home-pagination"></div>
 
-                        <!-- Swiper Thumbs (4 cam kết dưới slide - Bỏ Khuyến Mãi) -->
-                        <div class="mySwiper gobike-service-thumbs">
+                        <!-- Swiper Thumbs (4 cam kết dưới slide - Bỏ Khuyến Mãi - Ẩn trên tablet & mobile) -->
+                        <div class="mySwiper gobike-service-thumbs hide-for-medium">
                             <div class="swiper-wrapper">
                                 <?php foreach ($service_items as $index => $item): ?>
                                     <div class="swiper-slide service-thumb-item">
