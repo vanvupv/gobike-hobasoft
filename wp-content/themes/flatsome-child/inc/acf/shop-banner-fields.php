@@ -76,19 +76,19 @@ function gobike_register_shop_page_acf_fields()
                     'label' => 'Tiêu đề nội dung chân trang',
                     'name' => 'shop_bottom_title',
                     'type' => 'text',
-                    'instructions' => 'Nhập tiêu đề khối nội dung cuối trang',
-                    'default_value' => 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos',
+                    'instructions' => 'Nhập tiêu đề khối nội dung cuối trang (Để trống nếu không muốn hiển thị)',
+                    'default_value' => '',
                 ),
                 array(
                     'key' => 'field_shop_bottom_content',
                     'label' => 'Nội dung chi tiết (Editor)',
                     'name' => 'shop_bottom_content',
                     'type' => 'wysiwyg',
-                    'instructions' => 'Nội dung giới thiệu chính sách, bảo hành cuối trang',
+                    'instructions' => 'Nội dung giới thiệu chính sách, bảo hành cuối trang (Để trống nếu không muốn hiển thị)',
                     'tabs' => 'all',
                     'toolbar' => 'full',
                     'media_upload' => 1,
-                    'default_value' => "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.",
+                    'default_value' => '',
                 ),
 
                 // TAB 3: Khối 3

@@ -339,16 +339,21 @@ function gobike_render_shop_bottom_content()
 {
     // Ưu tiên đọc từ Theme Settings (option)
     $title = get_field('shop_bottom_title', 'option');
-    if (!$title)
+    if (!$title) {
         $title = get_field('shop_bottom_title');
-    if (!$title)
-        $title = 'Hệ thống cửa hàng bán lẻ xe đạp trợ lực điện Aimos';
+    }
+    // Bỏ dữ liệu mẫu Aimos
+    if ($title && (str_contains($title, 'Aimos') || str_contains($title, 'aimos'))) {
+        $title = '';
+    }
 
     $content = get_field('shop_bottom_content', 'option');
-    if (!$content)
-        $content = get_field('shop_bottom_content');
     if (!$content) {
-        $content = "Giá rẻ nhất Việt Nam\nTrả góp 0% qua thẻ tín dụng\nBảo hành 12 tháng\nHỗ trợ bảo trì trọn đời - Mua phụ tùng xe với giá gốc trong 5 năm\nCông ty chịu mọi rủi ro trong quá trình vận chuyển\nShip hàng COD Toàn Quốc Quý khách nhận hàng, kiểm tra và thu tiền tại nhà, an tâm tuyệt đối.";
+        $content = get_field('shop_bottom_content');
+    }
+    // Bỏ dữ liệu mẫu cũ
+    if ($content && (str_contains($content, 'Aimos') || str_contains($content, 'aimos') || str_contains($content, 'Giá rẻ nhất Việt Nam'))) {
+        $content = '';
     }
 
     if (empty($title) && empty($content)) {
