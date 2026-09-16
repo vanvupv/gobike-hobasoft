@@ -53,30 +53,31 @@ function gobike_render_home_hero_banner($atts = array())
         }
     }
 
-    // Fallback nếu không có slide nào sau khi lọc
+    // Đảm bảo số lượng slide luôn khớp đủ với số lượng tab (ít nhất 4 slide)
+    $default_banner_images = array(
+        content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
+        content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp'),
+        content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp'),
+        content_url('/uploads/2026/08/0ecfa5aa-9eb2-4477-92eb-44f613a12080.webp'),
+    );
+
     if (empty($slides)) {
-        $slides = array(
-            array(
-                'image_slide' => array('url' => content_url('/uploads/2026/08/0ecfa5aa-9eb2-4477-92eb-44f613a12080.webp')),
+        foreach ($service_items as $idx => $s_item) {
+            $slides[] = array(
+                'image_slide' => array('url' => $default_banner_images[$idx % count($default_banner_images)]),
                 'link_url'    => home_url('/san-pham/'),
-                'title_slide' => 'XE ĐẠP THỂ THAO MỚI',
-            ),
-            array(
-                'image_slide' => array('url' => content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp')),
+                'title_slide' => $s_item['title'],
+            );
+        }
+    } else {
+        while (count($slides) < count($service_items)) {
+            $idx = count($slides);
+            $slides[] = array(
+                'image_slide' => array('url' => isset($default_banner_images[$idx]) ? $default_banner_images[$idx] : $default_banner_images[0]),
                 'link_url'    => home_url('/san-pham/'),
-                'title_slide' => 'PHỤ KIỆN XE ĐẠP CHÍNH HÃNG',
-            ),
-            array(
-                'image_slide' => array('url' => content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp')),
-                'link_url'    => home_url('/san-pham/'),
-                'title_slide' => 'XE ĐẠP TRẺ EM AN TOÀN',
-            ),
-            array(
-                'image_slide' => array('url' => content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp')),
-                'link_url'    => home_url('/san-pham/'),
-                'title_slide' => 'DỊCH VỤ BẢO DƯỠNG MIỄN PHÍ',
-            ),
-        );
+                'title_slide' => isset($service_items[$idx]['title']) ? $service_items[$idx]['title'] : 'GoBike',
+            );
+        }
     }
 
     // Query 3 tin tức mới nhất
@@ -242,17 +243,21 @@ function gobike_render_home_hero_banner($atts = array())
                 setTimeout(initHeroSwiper, 100);
                 return;
             }
-            var serviceSwiper = new Swiper(".mySwiper", {
+            var heroSection = document.querySelector('.gobike-hero-banner-section');
+            if (!heroSection) return;
+
+            var serviceSwiper = new Swiper(heroSection.querySelector('.mySwiper'), {
                 spaceBetween: 0,
                 slidesPerView: 4,
                 freeMode: false,
-                allowTouchMove: false,
+                slideToClickedSlide: true,
                 watchSlidesVisibility: true,
                 watchSlidesProgress: true,
                 observer: true,
                 observeParents: true,
             });
-            var bannerSwiper = new Swiper(".mySwiper2", {
+
+            var bannerSwiper = new Swiper(heroSection.querySelector('.mySwiper2'), {
                 spaceBetween: 0,
                 loop: true,
                 observer: true,
@@ -262,16 +267,47 @@ function gobike_render_home_hero_banner($atts = array())
                     disableOnInteraction: false,
                 },
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                    nextEl: heroSection.querySelector('.swiper-button-next'),
+                    prevEl: heroSection.querySelector('.swiper-button-prev'),
                 },
                 pagination: {
-                    el: ".banner-home-pagination",
+                    el: heroSection.querySelector('.banner-home-pagination'),
                     clickable: true,
                 },
                 thumbs: {
                     swiper: serviceSwiper,
                 },
+            });
+
+            var thumbItems = heroSection.querySelectorAll('.mySwiper .service-thumb-item');
+            function syncActiveThumb(realIdx) {
+                thumbItems.forEach(function(el, i) {
+                    if (i === realIdx) {
+                        el.classList.add('swiper-slide-thumb-active');
+                    } else {
+                        el.classList.remove('swiper-slide-thumb-active');
+                    }
+                });
+            }
+
+            thumbItems.forEach(function(item, idx) {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (bannerSwiper) {
+                        if (typeof bannerSwiper.slideToLoop === 'function') {
+                            bannerSwiper.slideToLoop(idx);
+                        } else {
+                            bannerSwiper.slideTo(idx);
+                        }
+                        syncActiveThumb(idx);
+                    }
+                });
+            });
+
+            bannerSwiper.on('slideChange', function() {
+                var realIdx = (typeof bannerSwiper.realIndex !== 'undefined') ? bannerSwiper.realIndex : (bannerSwiper.activeIndex % thumbItems.length);
+                syncActiveThumb(realIdx);
             });
         }
         if (document.readyState === 'loading') {
