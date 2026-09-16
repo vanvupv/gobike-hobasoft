@@ -87,7 +87,291 @@ if (!function_exists('gobike_extract_product_specs')) {
 }
 
 /**
- * 1. Render Cột Bộ lọc Sidebar bên trái chuẩn Ảnh 4
+ * 0. ĐĂNG KÝ TAXONOMIES DÒNG XE & NHU CẦU SỬ DỤNG CHO SẢN PHẨM GOBIKE
+ */
+add_action('init', 'gobike_register_product_filter_taxonomies', 10);
+function gobike_register_product_filter_taxonomies()
+{
+    // 1. Dòng xe
+    register_taxonomy('product_dong_xe', array('product'), array(
+        'labels' => array(
+            'name'              => 'Dòng xe',
+            'singular_name'     => 'Dòng xe',
+            'search_items'      => 'Tìm dòng xe',
+            'all_items'         => 'Tất cả dòng xe',
+            'parent_item'       => 'Dòng xe cha',
+            'parent_item_colon' => 'Dòng xe cha:',
+            'edit_item'         => 'Sửa dòng xe',
+            'update_item'       => 'Cập nhật dòng xe',
+            'add_new_item'      => 'Thêm dòng xe mới',
+            'new_item_name'     => 'Tên dòng xe mới',
+            'menu_name'         => 'Dòng xe',
+        ),
+        'hierarchical'      => true,
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_in_rest'      => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'dong-xe'),
+    ));
+
+    // 2. Nhu cầu sử dụng
+    register_taxonomy('product_nhu_cau', array('product'), array(
+        'labels' => array(
+            'name'              => 'Nhu cầu sử dụng',
+            'singular_name'     => 'Nhu cầu',
+            'search_items'      => 'Tìm nhu cầu',
+            'all_items'         => 'Tất cả nhu cầu',
+            'edit_item'         => 'Sửa nhu cầu',
+            'update_item'       => 'Cập nhật nhu cầu',
+            'add_new_item'      => 'Thêm nhu cầu mới',
+            'new_item_name'     => 'Tên nhu cầu mới',
+            'menu_name'         => 'Nhu cầu sử dụng',
+        ),
+        'hierarchical'      => true,
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_in_rest'      => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'nhu-cau'),
+    ));
+
+    // 3. Khởi tạo terms và gán ban đầu
+    gobike_seed_product_filter_terms();
+}
+
+/**
+ * Tự động tạo các terms mặc định & gán thông minh ban đầu cho sản phẩm
+ */
+function gobike_seed_product_filter_terms()
+{
+    if (get_option('gobike_filter_terms_seeded_v1')) {
+        return;
+    }
+
+    $default_dong_xe = array(
+        'Xe đô thị'   => 'xe-do-thi',
+        'Xe gấp gọn'  => 'xe-gap-gon',
+        'Xe địa hình' => 'xe-dia-hinh',
+        'Xe touring'  => 'xe-touring',
+    );
+    foreach ($default_dong_xe as $name => $slug) {
+        if (!term_exists($slug, 'product_dong_xe')) {
+            wp_insert_term($name, 'product_dong_xe', array('slug' => $slug));
+        }
+    }
+
+    $default_nhu_cau = array(
+        'Đi làm - đi học'       => 'di-lam-di-hoc',
+        'Học sinh - sinh viên' => 'hoc-sinh-sinh-vien',
+        'Du lịch - dã ngoại'   => 'du-lich-da-ngoai',
+        'Cho người lớn tuổi'  => 'cho-nguoi-lon-tuoi',
+    );
+    foreach ($default_nhu_cau as $name => $slug) {
+        if (!term_exists($slug, 'product_nhu_cau')) {
+            wp_insert_term($name, 'product_nhu_cau', array('slug' => $slug));
+        }
+    }
+
+    // Tự động phân loại ban đầu cho các xe hiện có trong web
+    gobike_auto_tag_existing_products();
+
+    update_option('gobike_filter_terms_seeded_v1', 1);
+}
+
+function gobike_auto_tag_existing_products()
+{
+    $product_ids = get_posts(array(
+        'post_type'      => 'product',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'post_status'    => 'publish',
+    ));
+    if (empty($product_ids)) {
+        return;
+    }
+
+    foreach ($product_ids as $pid) {
+        $title = mb_strtolower(get_the_title($pid));
+        $dong_xe_terms = array();
+        $nhu_cau_terms = array();
+
+        if (str_contains($title, 'gập') || str_contains($title, 'gap') || str_contains($title, 'lite') || str_contains($title, 'air20') || str_contains($title, 'a20') || str_contains($title, 'k20')) {
+            $dong_xe_terms[] = 'xe-gap-gon';
+            $nhu_cau_terms[] = 'hoc-sinh-sinh-vien';
+            $nhu_cau_terms[] = 'di-lam-di-hoc';
+        } elseif (str_contains($title, 'địa hình') || str_contains($title, 'dia hinh') || str_contains($title, 'rx70') || str_contains($title, 'm16') || str_contains($title, 'c05') || str_contains($title, 'm1-pro') || str_contains($title, 'gt-2000') || str_contains($title, 'v8')) {
+            $dong_xe_terms[] = 'xe-dia-hinh';
+            $nhu_cau_terms[] = 'du-lich-da-ngoai';
+        } elseif (str_contains($title, 'touring') || str_contains($title, 'a28') || str_contains($title, 'aq177') || str_contains($title, 'air28')) {
+            $dong_xe_terms[] = 'xe-touring';
+            $nhu_cau_terms[] = 'di-lam-di-hoc';
+        } else {
+            $dong_xe_terms[] = 'xe-do-thi';
+            $nhu_cau_terms[] = 'di-lam-di-hoc';
+        }
+
+        if (str_contains($title, 'c1') || str_contains($title, 'city girl') || str_contains($title, 'air ultra') || str_contains($title, 'x5')) {
+            $nhu_cau_terms[] = 'cho-nguoi-lon-tuoi';
+        }
+
+        if (!empty($dong_xe_terms)) {
+            wp_set_object_terms($pid, $dong_xe_terms, 'product_dong_xe', true);
+        }
+        if (!empty($nhu_cau_terms)) {
+            wp_set_object_terms($pid, $nhu_cau_terms, 'product_nhu_cau', true);
+        }
+    }
+}
+
+/**
+ * XỬ LÝ TRUY VẤN LỌC SẢN PHẨM WOOCOMMERCE ĐỘNG
+ */
+add_action('woocommerce_product_query', 'gobike_handle_shop_filter_query', 99);
+add_action('pre_get_posts', 'gobike_handle_shop_filter_query_pre', 99);
+
+function gobike_handle_shop_filter_query_pre($q)
+{
+    if (is_admin() || !$q->is_main_query()) {
+        return;
+    }
+    if (is_shop() || is_product_taxonomy() || is_product_category()) {
+        gobike_handle_shop_filter_query($q);
+    }
+}
+
+function gobike_handle_shop_filter_query($q)
+{
+    if (is_admin()) {
+        return;
+    }
+    if ($q->get('_gobike_filter_applied')) {
+        return;
+    }
+    $q->set('_gobike_filter_applied', true);
+
+    $tax_query = (array) $q->get('tax_query');
+
+    // 1. Lọc theo Dòng xe
+    $dong_xe = array();
+    if (!empty($_GET['filter_dong_xe'])) {
+        $dong_xe = is_array($_GET['filter_dong_xe']) ? array_map('sanitize_title', $_GET['filter_dong_xe']) : explode(',', sanitize_text_field($_GET['filter_dong_xe']));
+    } elseif (!empty($_GET['filter_dong-xe'])) {
+        $dong_xe = explode(',', sanitize_text_field($_GET['filter_dong-xe']));
+    }
+    $dong_xe = array_filter(array_map('trim', $dong_xe));
+    if (!empty($dong_xe)) {
+        $tax_query[] = array(
+            'taxonomy' => 'product_dong_xe',
+            'field'    => 'slug',
+            'terms'    => $dong_xe,
+            'operator' => 'IN',
+        );
+    }
+
+    // 2. Lọc theo Nhu cầu sử dụng
+    $nhu_cau = array();
+    if (!empty($_GET['filter_nhu_cau'])) {
+        $nhu_cau = is_array($_GET['filter_nhu_cau']) ? array_map('sanitize_title', $_GET['filter_nhu_cau']) : explode(',', sanitize_text_field($_GET['filter_nhu_cau']));
+    } elseif (!empty($_GET['filter_nhu-cau'])) {
+        $nhu_cau = explode(',', sanitize_text_field($_GET['filter_nhu-cau']));
+    }
+    $nhu_cau = array_filter(array_map('trim', $nhu_cau));
+    if (!empty($nhu_cau)) {
+        $tax_query[] = array(
+            'taxonomy' => 'product_nhu_cau',
+            'field'    => 'slug',
+            'terms'    => $nhu_cau,
+            'operator' => 'IN',
+        );
+    }
+
+    // 3. Lọc theo Thông số (Quãng đường, Trọng lượng, Công suất nếu có attribute hoặc tax)
+    if (!empty($_GET['filter_quang_duong'])) {
+        $qd = sanitize_text_field($_GET['filter_quang_duong']);
+        if (taxonomy_exists('pa_quang-duong')) {
+            $tax_query[] = array(
+                'taxonomy' => 'pa_quang-duong',
+                'field'    => 'slug',
+                'terms'    => $qd,
+                'operator' => 'IN',
+            );
+        }
+    }
+    if (!empty($_GET['filter_trong_luong'])) {
+        $tl = sanitize_text_field($_GET['filter_trong_luong']);
+        if (taxonomy_exists('pa_trong-luong')) {
+            $tax_query[] = array(
+                'taxonomy' => 'pa_trong-luong',
+                'field'    => 'slug',
+                'terms'    => $tl,
+                'operator' => 'IN',
+            );
+        }
+    }
+    if (!empty($_GET['filter_cong_suat'])) {
+        $cs = sanitize_text_field($_GET['filter_cong_suat']);
+        if (taxonomy_exists('pa_cong-suat')) {
+            $tax_query[] = array(
+                'taxonomy' => 'pa_cong-suat',
+                'field'    => 'slug',
+                'terms'    => $cs,
+                'operator' => 'IN',
+            );
+        }
+    }
+
+    if (count($tax_query) > 1 && !isset($tax_query['relation'])) {
+        $tax_query['relation'] = 'AND';
+    }
+
+    $q->set('tax_query', $tax_query);
+}
+
+/**
+ * Helper: Tạo link xóa một điều kiện lọc khỏi URL
+ */
+if (!function_exists('gobike_get_filter_remove_url')) {
+    function gobike_get_filter_remove_url($param_key, $slug_to_remove = '')
+    {
+        $current_url = strtok($_SERVER["REQUEST_URI"], '?');
+        $params = $_GET;
+
+        if (empty($slug_to_remove)) {
+            unset($params[$param_key]);
+            unset($params[$param_key . '[]']);
+        } else {
+            if (isset($params[$param_key])) {
+                if (is_array($params[$param_key])) {
+                    $params[$param_key] = array_values(array_diff($params[$param_key], array($slug_to_remove)));
+                    if (empty($params[$param_key])) {
+                        unset($params[$param_key]);
+                    }
+                } else {
+                    $items = explode(',', $params[$param_key]);
+                    $items = array_values(array_diff($items, array($slug_to_remove)));
+                    if (empty($items)) {
+                        unset($params[$param_key]);
+                    } else {
+                        $params[$param_key] = implode(',', $items);
+                    }
+                }
+            }
+        }
+
+        if (empty($params)) {
+            return $current_url;
+        }
+        return $current_url . '?' . http_build_query($params);
+    }
+}
+
+/**
+ * 1. Render Cột Bộ lọc Sidebar bên trái chuẩn Ảnh 4 (DỮ LIỆU ĐỘNG 100%)
  */
 function gobike_render_shop_sidebar_filter()
 {
@@ -96,13 +380,72 @@ function gobike_render_shop_sidebar_filter()
     $max_price = isset($_GET['max_price']) ? floatval($_GET['max_price']) : 0;
     $current_cat = is_product_category() ? get_queried_object() : null;
     $brand_name = $current_cat ? $current_cat->name : '';
-    
+
+    // Dòng xe selected
+    $dong_xe_selected = array();
+    if (!empty($_GET['filter_dong_xe'])) {
+        $dong_xe_selected = is_array($_GET['filter_dong_xe']) ? array_map('sanitize_title', $_GET['filter_dong_xe']) : explode(',', sanitize_text_field($_GET['filter_dong_xe']));
+    } elseif (!empty($_GET['filter_dong-xe'])) {
+        $dong_xe_selected = explode(',', sanitize_text_field($_GET['filter_dong-xe']));
+    }
+
+    // Nhu cầu selected
+    $nhu_cau_selected = array();
+    if (!empty($_GET['filter_nhu_cau'])) {
+        $nhu_cau_selected = is_array($_GET['filter_nhu_cau']) ? array_map('sanitize_title', $_GET['filter_nhu_cau']) : explode(',', sanitize_text_field($_GET['filter_nhu_cau']));
+    } elseif (!empty($_GET['filter_nhu-cau'])) {
+        $nhu_cau_selected = explode(',', sanitize_text_field($_GET['filter_nhu-cau']));
+    }
+
+    // Lấy danh sách Terms động từ CSDL
+    $dong_xe_terms = get_terms(array(
+        'taxonomy'   => 'product_dong_xe',
+        'hide_empty' => false,
+    ));
+    $dong_xe_options = array();
+    if (!empty($dong_xe_terms) && !is_wp_error($dong_xe_terms)) {
+        foreach ($dong_xe_terms as $t) {
+            $dong_xe_options[$t->slug] = array(
+                'name'  => $t->name,
+                'count' => $t->count,
+            );
+        }
+    } else {
+        $dong_xe_options = array(
+            'xe-do-thi'   => array('name' => 'Xe đô thị', 'count' => 0),
+            'xe-gap-gon'  => array('name' => 'Xe gấp gọn', 'count' => 0),
+            'xe-dia-hinh' => array('name' => 'Xe địa hình', 'count' => 0),
+            'xe-touring'  => array('name' => 'Xe touring', 'count' => 0),
+        );
+    }
+
+    $nhu_cau_terms = get_terms(array(
+        'taxonomy'   => 'product_nhu_cau',
+        'hide_empty' => false,
+    ));
+    $nhu_cau_options = array();
+    if (!empty($nhu_cau_terms) && !is_wp_error($nhu_cau_terms)) {
+        foreach ($nhu_cau_terms as $t) {
+            $nhu_cau_options[$t->slug] = array(
+                'name'  => $t->name,
+                'count' => $t->count,
+            );
+        }
+    } else {
+        $nhu_cau_options = array(
+            'di-lam-di-hoc'       => array('name' => 'Đi làm - đi học', 'count' => 0),
+            'hoc-sinh-sinh-vien' => array('name' => 'Học sinh - sinh viên', 'count' => 0),
+            'du-lich-da-ngoai'   => array('name' => 'Du lịch - dã ngoại', 'count' => 0),
+            'cho-nguoi-lon-tuoi'  => array('name' => 'Cho người lớn tuổi', 'count' => 0),
+        );
+    }
+
     // Thu thập các active tags để hiển thị dải "Đang chọn"
     $active_tags = array();
     if ($current_cat) {
         $active_tags[] = array(
-            'label' => 'Hãng: ' . esc_html($brand_name),
-            'remove_url' => get_permalink(wc_get_page_id('shop'))
+            'label'      => 'Hãng: ' . esc_html($brand_name),
+            'remove_url' => get_permalink(wc_get_page_id('shop')),
         );
     }
     if ($max_price > 0 || $min_price > 0) {
@@ -120,28 +463,55 @@ function gobike_render_shop_sidebar_filter()
         } else {
             $price_label = number_format($min_price, 0, ',', '.') . 'đ - ' . number_format($max_price, 0, ',', '.') . 'đ';
         }
-        $remove_price_url = remove_query_arg(array('min_price', 'max_price'));
         $active_tags[] = array(
-            'label' => 'Giá: ' . $price_label,
-            'remove_url' => $remove_price_url
+            'label'      => 'Giá: ' . $price_label,
+            'remove_url' => remove_query_arg(array('min_price', 'max_price')),
         );
     }
 
-    // Xử lý các query khác nếu có
-    if (!empty($_GET['filter_dong-xe'])) {
+    // Tags Dòng xe
+    if (!empty($dong_xe_selected)) {
+        foreach ($dong_xe_selected as $s_slug) {
+            $t_name = isset($dong_xe_options[$s_slug]) ? $dong_xe_options[$s_slug]['name'] : $s_slug;
+            $active_tags[] = array(
+                'label'      => 'Dòng xe: ' . esc_html($t_name),
+                'remove_url' => gobike_get_filter_remove_url('filter_dong_xe', $s_slug),
+            );
+        }
+    }
+
+    // Tags Nhu cầu
+    if (!empty($nhu_cau_selected)) {
+        foreach ($nhu_cau_selected as $s_slug) {
+            $t_name = isset($nhu_cau_options[$s_slug]) ? $nhu_cau_options[$s_slug]['name'] : $s_slug;
+            $active_tags[] = array(
+                'label'      => 'Nhu cầu: ' . esc_html($t_name),
+                'remove_url' => gobike_get_filter_remove_url('filter_nhu_cau', $s_slug),
+            );
+        }
+    }
+
+    // Tags Thông số
+    if (!empty($_GET['filter_quang_duong'])) {
         $active_tags[] = array(
-            'label' => 'Dòng xe: ' . sanitize_text_field($_GET['filter_dong-xe']),
-            'remove_url' => remove_query_arg('filter_dong-xe')
+            'label'      => 'Quãng đường: ' . esc_html($_GET['filter_quang_duong']),
+            'remove_url' => remove_query_arg('filter_quang_duong'),
         );
     }
-    if (!empty($_GET['filter_nhu-cau'])) {
+    if (!empty($_GET['filter_trong_luong'])) {
         $active_tags[] = array(
-            'label' => 'Nhu cầu: ' . sanitize_text_field($_GET['filter_nhu-cau']),
-            'remove_url' => remove_query_arg('filter_nhu-cau')
+            'label'      => 'Trọng lượng: ' . esc_html($_GET['filter_trong_luong']),
+            'remove_url' => remove_query_arg('filter_trong_luong'),
         );
     }
-    
-    $reset_all_url = get_permalink(wc_get_page_id('shop'));
+    if (!empty($_GET['filter_cong_suat'])) {
+        $active_tags[] = array(
+            'label'      => 'Công suất: ' . esc_html($_GET['filter_cong_suat']),
+            'remove_url' => remove_query_arg('filter_cong_suat'),
+        );
+    }
+
+    $reset_all_url = strtok($_SERVER["REQUEST_URI"], '?');
     ?>
     <aside class="gobike-sidebar-filter-wrapper">
         <div class="gobike-filter-header">
@@ -191,27 +561,27 @@ function gobike_render_shop_sidebar_filter()
                 </div>
                 <div class="filter-group-content">
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_range" value="0-5000000" <?php checked($min_price == 0 && $max_price == 5000000); ?> onchange="gobikeApplyPriceRange(0, 5000000)">
+                        <input type="radio" name="price_choice" value="0-5000000" <?php checked($min_price == 0 && $max_price == 5000000); ?> onchange="gobikeApplyPriceRange(0, 5000000)">
                         <span class="checkmark"></span>
                         <span class="label-text">Dưới 5 triệu</span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_range" value="5000000-10000000" <?php checked($min_price == 5000000 && $max_price == 10000000); ?> onchange="gobikeApplyPriceRange(5000000, 10000000)">
+                        <input type="radio" name="price_choice" value="5000000-10000000" <?php checked($min_price == 5000000 && $max_price == 10000000); ?> onchange="gobikeApplyPriceRange(5000000, 10000000)">
                         <span class="checkmark"></span>
                         <span class="label-text">5 - 10 triệu</span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_range" value="10000000-15000000" <?php checked($min_price == 10000000 && $max_price == 15000000); ?> onchange="gobikeApplyPriceRange(10000000, 15000000)">
+                        <input type="radio" name="price_choice" value="10000000-15000000" <?php checked($min_price == 10000000 && $max_price == 15000000); ?> onchange="gobikeApplyPriceRange(10000000, 15000000)">
                         <span class="checkmark"></span>
                         <span class="label-text">10 - 15 triệu</span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_range" value="15000000-20000000" <?php checked($min_price == 15000000 && $max_price == 20000000); ?> onchange="gobikeApplyPriceRange(15000000, 20000000)">
+                        <input type="radio" name="price_choice" value="15000000-20000000" <?php checked($min_price == 15000000 && $max_price == 20000000); ?> onchange="gobikeApplyPriceRange(15000000, 20000000)">
                         <span class="checkmark"></span>
                         <span class="label-text">15 - 20 triệu</span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_range" value="20000000-100000000" <?php checked($min_price == 20000000 && $max_price == 100000000); ?> onchange="gobikeApplyPriceRange(20000000, 100000000)">
+                        <input type="radio" name="price_choice" value="20000000-100000000" <?php checked($min_price == 20000000 && $max_price == 100000000); ?> onchange="gobikeApplyPriceRange(20000000, 100000000)">
                         <span class="checkmark"></span>
                         <span class="label-text">20 - 100 triệu</span>
                     </label>
@@ -236,13 +606,6 @@ function gobike_render_shop_sidebar_filter()
                 </div>
                 <div class="filter-group-content">
                     <?php
-                    $dong_xe_selected = isset($_GET['filter_dong-xe']) ? explode(',', sanitize_text_field($_GET['filter_dong-xe'])) : array();
-                    $dong_xe_options = array(
-                        'xe-do-thi'   => array('name' => 'Xe đô thị', 'count' => 12),
-                        'xe-gap-gon'  => array('name' => 'Xe gấp gọn', 'count' => 10),
-                        'xe-dia-hinh' => array('name' => 'Xe địa hình', 'count' => 4),
-                        'xe-touring'  => array('name' => 'Xe touring', 'count' => 3)
-                    );
                     foreach ($dong_xe_options as $slug => $data):
                         $checked = in_array($slug, $dong_xe_selected);
                     ?>
@@ -269,13 +632,6 @@ function gobike_render_shop_sidebar_filter()
                 </div>
                 <div class="filter-group-content">
                     <?php
-                    $nhu_cau_selected = isset($_GET['filter_nhu-cau']) ? explode(',', sanitize_text_field($_GET['filter_nhu-cau'])) : array();
-                    $nhu_cau_options = array(
-                        'di-lam-di-hoc'       => array('name' => 'Đi làm - đi học', 'count' => 14),
-                        'hoc-sinh-sinh-vien' => array('name' => 'Học sinh - sinh viên', 'count' => 8),
-                        'du-lich-da-ngoai'   => array('name' => 'Du lịch - dã ngoại', 'count' => 5),
-                        'cho-nguoi-lon-tuoi'  => array('name' => 'Cho người lớn tuổi', 'count' => 2)
-                    );
                     foreach ($nhu_cau_options as $slug => $data):
                         $checked = in_array($slug, $nhu_cau_selected);
                     ?>
@@ -301,14 +657,19 @@ function gobike_render_shop_sidebar_filter()
                     <span class="toggle-icon">▾</span>
                 </div>
                 <div class="filter-group-content">
+                    <?php
+                    $sel_qd = isset($_GET['filter_quang_duong']) ? sanitize_text_field($_GET['filter_quang_duong']) : '';
+                    $sel_tl = isset($_GET['filter_trong_luong']) ? sanitize_text_field($_GET['filter_trong_luong']) : '';
+                    $sel_cs = isset($_GET['filter_cong_suat']) ? sanitize_text_field($_GET['filter_cong_suat']) : '';
+                    ?>
                     <div class="filter-select-field">
                         <label>Quãng đường di chuyển</label>
                         <select name="filter_quang_duong">
                             <option value="">Tất cả</option>
-                            <option value="duoi-50km">Dưới 50 km</option>
-                            <option value="50-80km">50 - 80 km</option>
-                            <option value="80-120km">80 - 120 km</option>
-                            <option value="tren-120km">Trên 120 km</option>
+                            <option value="duoi-50km" <?php selected($sel_qd, 'duoi-50km'); ?>>Dưới 50 km</option>
+                            <option value="50-80km" <?php selected($sel_qd, '50-80km'); ?>>50 - 80 km</option>
+                            <option value="80-120km" <?php selected($sel_qd, '80-120km'); ?>>80 - 120 km</option>
+                            <option value="tren-120km" <?php selected($sel_qd, 'tren-120km'); ?>>Trên 120 km</option>
                         </select>
                     </div>
 
@@ -316,9 +677,9 @@ function gobike_render_shop_sidebar_filter()
                         <label>Trọng lượng</label>
                         <select name="filter_trong_luong">
                             <option value="">Tất cả</option>
-                            <option value="duoi-18kg">Dưới 18 kg</option>
-                            <option value="18-22kg">18 - 22 kg</option>
-                            <option value="tren-22kg">Trên 22 kg</option>
+                            <option value="duoi-18kg" <?php selected($sel_tl, 'duoi-18kg'); ?>>Dưới 18 kg</option>
+                            <option value="18-22kg" <?php selected($sel_tl, '18-22kg'); ?>>18 - 22 kg</option>
+                            <option value="tren-22kg" <?php selected($sel_tl, 'tren-22kg'); ?>>Trên 22 kg</option>
                         </select>
                     </div>
 
@@ -326,10 +687,10 @@ function gobike_render_shop_sidebar_filter()
                         <label>Công suất động cơ</label>
                         <select name="filter_cong_suat">
                             <option value="">Tất cả</option>
-                            <option value="250w">250 W</option>
-                            <option value="350w">350 W</option>
-                            <option value="500w">500 W</option>
-                            <option value="tren-500w">Trên 500 W</option>
+                            <option value="250w" <?php selected($sel_cs, '250w'); ?>>250 W</option>
+                            <option value="350w" <?php selected($sel_cs, '350w'); ?>>350 W</option>
+                            <option value="500w" <?php selected($sel_cs, '500w'); ?>>500 W</option>
+                            <option value="tren-500w" <?php selected($sel_cs, 'tren-500w'); ?>>Trên 500 W</option>
                         </select>
                     </div>
                 </div>
@@ -371,6 +732,17 @@ function gobike_render_shop_sidebar_filter()
             var group = $(this).closest('.filter-group');
             group.toggleClass('open');
             group.find('.filter-group-content').slideToggle(200);
+        });
+
+        // Loại bỏ các input rỗng trước khi submit form để URL sạch
+        $('#gobike-filter-form').on('submit', function() {
+            $(this).find('input, select').each(function() {
+                if ($(this).attr('type') === 'radio' && $(this).attr('name') === 'price_choice') {
+                    $(this).prop('disabled', true);
+                } else if (!$(this).val() || $(this).val() === '') {
+                    $(this).prop('disabled', true);
+                }
+            });
         });
     });
     </script>
