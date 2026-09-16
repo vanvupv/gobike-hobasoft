@@ -2588,9 +2588,14 @@ function gobike_custom_styles_output()
             border-bottom: 1px solid #ddd;
         }
 
-        .product-footer-right .spec-table-wrapper table tr:nth-child(-n+7),
+        .product-footer-right .spec-table-wrapper table tr:nth-child(-n+10),
         .product-footer-right .spec-table-wrapper.expanded table tr {
             display: table-row;
+        }
+
+        .product-footer-right .spec-table-wrapper.no-more #more-specific,
+        .product-footer-right .spec-table-wrapper.no-more .btn-more-specific {
+            display: none !important;
         }
 
         .product-footer-right .spec-table-wrapper table td {
@@ -2782,19 +2787,25 @@ function gobike_custom_styles_output()
 
         .product-page-sections .product-section {
             padding: 0;
-            max-height: 650px;
             height: auto;
-            overflow: hidden;
+            max-height: none;
+            overflow: visible;
             margin-top: 0;
             margin-bottom: 15px;
             position: relative;
             transition: max-height 0.4s ease;
         }
 
+        /* Chỉ thu gọn khi nội dung vượt ngưỡng quy định và có class has-readmore */
+        .product-page-sections .product-section.has-readmore:not(.active) {
+            max-height: 500px;
+            overflow: hidden;
+        }
+
         .product-page-sections .product-section.active {
             max-height: none !important;
             height: auto !important;
-            overflow: visible;
+            overflow: visible !important;
         }
 
         .product-section .entry-content {
@@ -2854,9 +2865,20 @@ function gobike_custom_styles_output()
             padding-bottom: 5px;
             text-align: center;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.85) 45%, #fff 100%);
-            display: block;
+            display: none; /* Mặc định ẩn, chỉ hiển thị khi có class has-readmore hoặc active */
             margin-bottom: 0;
             z-index: 5;
+        }
+
+        .product-page-sections .product-section.has-readmore:not(.active) .product-footer-showmore {
+            display: block;
+        }
+
+        .product-page-sections .product-section.active .product-footer-showmore {
+            display: block;
+            position: relative;
+            padding-top: 15px;
+            background: none;
         }
 
         .button_readmore {

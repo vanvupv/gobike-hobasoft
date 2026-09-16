@@ -71,16 +71,7 @@ global $product, $post;
 						<div class="entry-content">
 							<?php the_content() ;?>
 						</div>
-						<div class="product-footer-showmore"><a title="Đọc thêm" href="javascript:void(0);" class="button_readmore">Xem thêm <i class="fa fa-angle-down"></i></a></div>
-						<script type="text/javascript">
-							jQuery(document).ready(function ($) {
-								$(".product-footer-showmore .button_readmore").click(function(e){
-									e.preventDefault();
-									$(".product-page-sections .product-section").addClass("active");
-									$(".product-footer-showmore").remove();
-								});	
-							});
-						</script>
+						<div class="product-footer-showmore" style="display: none;"><a title="Đọc thêm" href="javascript:void(0);" class="button_readmore">Xem thêm <i class="fa fa-angle-down"></i></a></div>
 					</div>
 					<div class="product-reviews">
 					<?php
@@ -113,29 +104,109 @@ global $product, $post;
 						<h3 class="spec-title">Thông số kỹ thuật</h3>
 						<div class="table spec-table-wrapper">
 							<?php the_field( 'thong_so_ky_thuat' ); ?>
-							<a id="more-specific" class="btn-more-specific" href="javascript:void(0);">Xem cấu hình chi tiết</a>
-							<script type="text/javascript">
-							jQuery(document).ready(function ($) {
-								$("#more-specific").click(function(e){
-									e.preventDefault();
-									var $wrapper = $(this).closest(".spec-table-wrapper");
-									$wrapper.toggleClass("expanded");
-									if ($wrapper.hasClass("expanded")) {
-										$(this).text("Thu gọn cấu hình");
-									} else {
-										$(this).text("Xem cấu hình chi tiết");
-										$('html, body').animate({
-											scrollTop: $wrapper.offset().top - 80
-										}, 300);
-									}
-								});
-							});
-							</script>
+							<a id="more-specific" class="btn-more-specific" href="javascript:void(0);" style="display: none;">Xem cấu hình chi tiết</a>
 						</div>
 					<?php } ?>
 				</div>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			// 1. Xử lý "Xem thêm" Thông tin sản phẩm (chỉ hiện khi nội dung vượt quá chiều cao quy định)
+			var $productSection = $(".product-page-sections .product-section");
+			var $entryContent = $productSection.find(".entry-content");
+			var $showMoreWrap = $productSection.find(".product-footer-showmore");
+			var $btnReadMore = $showMoreWrap.find(".button_readmore");
+			var limitHeight = 500; // Ngưỡng chiều cao (px) để kích hoạt thu gọn / xem thêm
+
+			function updateProductReadmore() {
+				if (!$productSection.length || !$entryContent.length) return;
+				if ($productSection.hasClass("active")) return; // Giữ nguyên trạng thái nếu người dùng đang mở rộng
+
+				var actualHeight = $entryContent[0] ? $entryContent[0].scrollHeight : 0;
+
+				if (actualHeight > limitHeight + 35) {
+					$productSection.addClass("has-readmore");
+					$showMoreWrap.show();
+					$btnReadMore.html('Xem thêm <i class="fa fa-angle-down"></i>');
+				} else {
+					$productSection.removeClass("has-readmore active");
+					$showMoreWrap.hide();
+				}
+			}
+
+			// Kiểm tra khi DOM ready
+			updateProductReadmore();
+
+			// Lắng nghe khi toàn bộ ảnh trong nội dung tải xong
+			$entryContent.find("img").on("load", function() {
+				updateProductReadmore();
+			});
+
+			// Lắng nghe window load
+			$(window).on("load", function() {
+				updateProductReadmore();
+			});
+
+			// Tự động cập nhật nếu layout/hình ảnh thay đổi kích thước
+			if (window.ResizeObserver && $entryContent[0]) {
+				var ro = new ResizeObserver(function() {
+					updateProductReadmore();
+				});
+				ro.observe($entryContent[0]);
+			}
+
+			// Xử lý sự kiện click nút Xem thêm / Thu gọn
+			$btnReadMore.on("click", function(e){
+				e.preventDefault();
+				if ($productSection.hasClass("active")) {
+					$productSection.removeClass("active").addClass("has-readmore");
+					$(this).html('Xem thêm <i class="fa fa-angle-down"></i>');
+					$("html, body").animate({
+						scrollTop: $productSection.offset().top - 80
+					}, 300);
+				} else {
+					$productSection.addClass("active").removeClass("has-readmore");
+					$(this).html('Thu gọn <i class="fa fa-angle-up"></i>');
+				}
+			});
+
+			// 2. Xử lý "Xem cấu hình chi tiết" Thông số kỹ thuật (chỉ hiện khi số hàng > 10)
+			var $specWrapper = $(".spec-table-wrapper");
+			if ($specWrapper.length) {
+				var $btnSpec = $("#more-specific");
+				var maxVisibleRows = 10;
+
+				function updateSpecTable() {
+					var rowCount = $specWrapper.find("table tr").length;
+					if (rowCount <= maxVisibleRows) {
+						$btnSpec.hide();
+						$specWrapper.addClass("no-more");
+					} else {
+						$btnSpec.show();
+						$specWrapper.removeClass("no-more");
+					}
+				}
+
+				updateSpecTable();
+				$(window).on("load", updateSpecTable);
+
+				$btnSpec.on("click", function(e){
+					e.preventDefault();
+					$specWrapper.toggleClass("expanded");
+					if ($specWrapper.hasClass("expanded")) {
+						$(this).text("Thu gọn cấu hình");
+					} else {
+						$(this).text("Xem cấu hình chi tiết");
+						$("html, body").animate({
+							scrollTop: $specWrapper.offset().top - 80
+						}, 300);
+					}
+				});
+			}
+		});
+		</script>
     </div>
   </div>
   
