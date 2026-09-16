@@ -4184,20 +4184,23 @@ function gobike_custom_styles_output()
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            gap: 32px;
         }
 
         .gobike-shop-hero-banner .hero-text-col {
-            flex: 1;
-            max-width: 600px;
+            flex: 0 0 calc(50% - 16px);
+            max-width: calc(50% - 16px);
+            width: calc(50% - 16px);
+            box-sizing: border-box;
         }
 
         .gobike-shop-hero-banner .hero-title {
-            font-size: 24px !important;
+            font-size: 26px !important;
             font-weight: 700 !important;
             color: #0f172a !important;
             margin-bottom: 6px !important;
             text-transform: uppercase;
+            line-height: 1.25 !important;
         }
 
         .gobike-shop-hero-banner .hero-slogan {
@@ -4205,18 +4208,20 @@ function gobike_custom_styles_output()
             font-weight: 600;
             color: #149d29;
             margin-bottom: 10px;
+            line-height: 1.4;
         }
 
         .gobike-shop-hero-banner .hero-intro {
-            font-size: 13px;
+            font-size: 13.5px;
             color: #475569;
-            line-height: 1.5;
+            line-height: 1.55;
             margin-bottom: 18px;
         }
 
         .gobike-shop-hero-banner .hero-buttons {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 12px;
         }
 
@@ -4235,7 +4240,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-shop-hero-banner .hero-btn-primary:hover {
-            background: #149d29;
+            background: #0d6e2e;
         }
 
         .gobike-shop-hero-banner .hero-btn-outline {
@@ -4259,16 +4264,29 @@ function gobike_custom_styles_output()
         }
 
         .gobike-shop-hero-banner .hero-image-col {
-            width: 320px;
-            flex-shrink: 0;
-            text-align: right;
+            flex: 0 0 calc(50% - 16px);
+            max-width: calc(50% - 16px);
+            width: calc(50% - 16px);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .gobike-shop-hero-banner .hero-featured-bike {
-            max-height: 200px;
-            width: auto;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            max-height: 260px;
             object-fit: contain;
+            mix-blend-mode: multiply;
             filter: none !important;
+            transition: transform 0.3s ease;
+        }
+
+        .gobike-shop-hero-banner .hero-featured-bike:hover {
+            transform: scale(1.03);
         }
 
         .gobike-shop-trust-badges-bar {
@@ -5060,11 +5078,19 @@ function gobike_custom_styles_output()
             .gobike-shop-hero-banner .hero-banner-inner {
                 flex-direction: column;
                 text-align: center;
+                gap: 20px;
             }
 
+            .gobike-shop-hero-banner .hero-text-col,
             .gobike-shop-hero-banner .hero-image-col {
-                width: 100%;
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+                width: 100% !important;
                 text-align: center;
+            }
+
+            .gobike-shop-hero-banner .hero-featured-bike {
+                max-height: 220px;
             }
 
             .gobike-shop-hero-banner .hero-buttons {

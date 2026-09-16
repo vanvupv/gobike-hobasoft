@@ -818,9 +818,10 @@ function gobike_render_shop_trust_badges()
  */
 function gobike_render_shop_brand_banner()
 {
-    $title = 'XE ĐẠP TRỢ LỰC ĐIỆN';
-    $desc  = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
-    $intro = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
+    $title     = 'XE ĐẠP TRỢ LỰC ĐIỆN';
+    $desc      = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
+    $intro     = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
+    $image_url = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-the-thao-tro-luc-dien-Phoenix-999.webp';
     
     if (is_product_category()) {
         $cat = get_queried_object();
@@ -828,6 +829,13 @@ function gobike_render_shop_brand_banner()
             $title = 'XE ĐẠP TRỢ LỰC ĐIỆN ' . mb_strtoupper($cat->name);
             if (!empty($cat->description)) {
                 $intro = wp_strip_all_tags($cat->description);
+            }
+            $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
+            if ($thumbnail_id) {
+                $cat_img = wp_get_attachment_url($thumbnail_id);
+                if ($cat_img) {
+                    $image_url = $cat_img;
+                }
             }
         }
     }
@@ -849,7 +857,7 @@ function gobike_render_shop_brand_banner()
                 </div>
             </div>
             <div class="hero-image-col">
-                <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-the-thao-tro-luc-dien-Phoenix-999.webp" alt="<?php echo esc_attr($title); ?>" class="hero-featured-bike" />
+                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" class="hero-featured-bike" />
             </div>
         </div>
     </div>
