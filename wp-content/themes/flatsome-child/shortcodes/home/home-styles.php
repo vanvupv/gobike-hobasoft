@@ -1046,8 +1046,12 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .news-item-thumb {
-                width: 68px !important;
-                height: 48px !important;
+                width: 40% !important;
+                max-width: 40% !important;
+                flex: 0 0 40% !important;
+                height: 0 !important;
+                padding-bottom: 25% !important;
+                position: relative !important;
                 flex-shrink: 0 !important;
                 border-radius: 6px !important;
                 overflow: hidden !important;
@@ -1055,14 +1059,18 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .news-item-thumb img {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
                 width: 100% !important;
                 height: 100% !important;
                 object-fit: cover !important;
+                object-position: center !important;
                 display: block !important;
             }
 
             .banner-home .news-item-body {
-                flex: 1 1 auto !important;
+                flex: 1 1 60% !important;
                 min-width: 0 !important;
             }
 
