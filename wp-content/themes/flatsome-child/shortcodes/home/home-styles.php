@@ -840,9 +840,9 @@ function gobike_custom_styles_output()
 
             .banner-home .mySwiper2 {
                 width: 100% !important;
-                height: 350px !important;
-                max-height: 350px !important;
-                flex: 0 0 350px !important;
+                height: 360px !important;
+                max-height: 360px !important;
+                flex: 0 0 360px !important;
                 overflow: hidden !important;
                 position: relative !important;
             }
@@ -851,16 +851,16 @@ function gobike_custom_styles_output()
             .banner-home .mySwiper2 .swiper-slide,
             .banner-home .mySwiper2 .swiper-slide a,
             .banner-home .mySwiper2 .swiper-slide img {
-                height: 350px !important;
-                min-height: 350px !important;
-                max-height: 350px !important;
+                height: 360px !important;
+                min-height: 360px !important;
+                max-height: 360px !important;
             }
 
             .banner-home .mySwiper.gobike-service-thumbs {
                 width: 100% !important;
-                height: 80px !important;
-                max-height: 80px !important;
-                flex: 0 0 80px !important;
+                height: 70px !important;
+                max-height: 70px !important;
+                flex: 0 0 70px !important;
                 background: #ffffff !important;
                 border-top: 1px solid #e2e8f0 !important;
                 padding: 0 !important;
@@ -869,22 +869,22 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .mySwiper.gobike-service-thumbs .swiper-wrapper {
-                height: 80px !important;
+                height: 70px !important;
                 display: flex !important;
             }
 
             .banner-home .service-thumb-item {
                 width: 25% !important;
                 flex: 0 0 25% !important;
-                height: 80px !important;
-                max-height: 80px !important;
-                padding: 8px 12px !important;
+                height: 70px !important;
+                max-height: 70px !important;
+                padding: 10px 14px !important;
                 cursor: pointer !important;
                 display: flex !important;
                 flex-direction: row !important;
-                justify-content: flex-start !important;
+                justify-content: center !important;
                 align-items: center !important;
-                gap: 10px !important;
+                gap: 12px !important;
                 text-align: left !important;
                 border-right: 1px solid #f1f5f9 !important;
                 border-bottom: none !important;
@@ -903,8 +903,8 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 36px !important;
-                height: 36px !important;
+                width: 32px !important;
+                height: 32px !important;
                 flex-shrink: 0 !important;
                 display: flex !important;
                 align-items: center !important;
@@ -912,36 +912,33 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap svg {
-                width: 32px !important;
-                height: 32px !important;
+                width: 28px !important;
+                height: 28px !important;
                 display: block !important;
             }
 
             .banner-home .service-thumb-item .thumb-text-wrap {
                 display: flex !important;
-                flex-direction: column !important;
+                align-items: center !important;
                 justify-content: center !important;
                 min-width: 0 !important;
-                line-height: 1.3 !important;
+                line-height: 1.2 !important;
             }
 
             .banner-home .service-thumb-item .thumb-title {
-                font-size: 11.5px !important;
+                font-size: 13px !important;
                 font-weight: 700 !important;
-                color: #1e293b !important;
+                color: #0f172a !important;
                 text-transform: uppercase !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
                 display: block !important;
+                margin: 0 !important;
             }
 
             .banner-home .service-thumb-item .thumb-desc {
-                font-size: 11px !important;
-                font-weight: 600 !important;
-                color: #64748b !important;
-                text-transform: uppercase !important;
-                display: block !important;
+                display: none !important;
             }
 
             /* BỎ MÀU NỀN TRÊN TAB ACTIVE & HOVER (Duy trì nền trắng sạch sẽ) */
@@ -1328,14 +1325,7 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-desc {
-                font-size: 9px !important;
-                font-weight: 600 !important;
-                color: #64748b !important;
-                text-transform: uppercase !important;
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
-                display: block !important;
+                display: none !important;
             }
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title {
