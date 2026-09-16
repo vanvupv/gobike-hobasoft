@@ -5190,14 +5190,14 @@ function gobike_custom_styles_output()
 
             li.header-search-form {
                 width: 100% !important;
-                max-width: 540px !important;
+                max-width: none !important;
             }
 
             .header-search-form-wrapper,
             .header-search-form .searchform-wrapper,
             .header .searchform-wrapper {
                 width: 100% !important;
-                max-width: 540px !important;
+                max-width: none !important;
                 margin: 0 !important;
                 padding: 0 !important;
             }

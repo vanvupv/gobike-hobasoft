@@ -428,6 +428,26 @@
 /* ==========================================================================
    7. FORM TÌM KIẾM HEADER & LIVE SEARCH
    ========================================================================== */
+.header li.header-search-form {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.header .header-search-form-wrapper,
+.header .header-search-form .searchform-wrapper,
+.header .searchform-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.header .header-search-form form.searchform,
+.header form.searchform {
+    width: 100% !important;
+    max-width: none !important;
+}
+
 .header .header-search-form input[type="search"] {
     border: 0;
     box-shadow: none;
