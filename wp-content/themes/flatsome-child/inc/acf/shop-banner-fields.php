@@ -133,7 +133,7 @@ function gobike_register_shop_page_acf_fields()
                     'name' => 'shop_single_support_phone',
                     'type' => 'text',
                     'instructions' => 'Số điện thoại Hotline hiển thị nổi bật',
-                    'default_value' => '0582000888',
+                    'default_value' => '0944 988 699',
                 ),
                 array(
                     'key' => 'field_shop_single_support_chat_text',
@@ -156,8 +156,8 @@ function gobike_register_shop_page_acf_fields()
                     'label' => 'Đường dẫn nút Chat',
                     'name' => 'shop_single_support_chat_link',
                     'type' => 'text',
-                    'instructions' => 'Đường dẫn Zalo, Messenger hoặc link chat (Ví dụ: https://zalo.me/0582000888)',
-                    'default_value' => 'https://zalo.me/0582000888',
+                    'instructions' => 'Đường dẫn Zalo, Messenger hoặc link chat (Ví dụ: https://zalo.me/0944988699)',
+                    'default_value' => 'https://zalo.me/0944988699',
                 ),
             ),
             'location' => array(

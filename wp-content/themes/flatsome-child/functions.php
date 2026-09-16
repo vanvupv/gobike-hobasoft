@@ -402,8 +402,8 @@ function gobike_render_single_product_support_box()
     $phone = get_field('shop_single_support_phone', 'option');
     if (!$phone)
         $phone = get_field('shop_single_support_phone');
-    if (!$phone)
-        $phone = '0582000888';
+    if (!$phone || str_contains($phone, '0582000888') || str_contains($phone, '0582'))
+        $phone = '0944 988 699';
     $phone_clean = preg_replace('/[^0-9+]/', '', $phone);
 
     $chat_text = get_field('shop_single_support_chat_text', 'option');
@@ -421,7 +421,7 @@ function gobike_render_single_product_support_box()
     $chat_link = get_field('shop_single_support_chat_link', 'option');
     if (!$chat_link)
         $chat_link = get_field('shop_single_support_chat_link');
-    if (!$chat_link)
+    if (!$chat_link || str_contains($chat_link, '0582000888') || str_contains($chat_link, '0582'))
         $chat_link = 'https://zalo.me/' . $phone_clean;
 
     ob_start();

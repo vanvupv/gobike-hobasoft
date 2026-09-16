@@ -3172,7 +3172,7 @@ function gobike_custom_styles_output()
             max-width: 100% !important;
             height: 100% !important;
             margin: 0 !important;
-            padding: 10px !important;
+            padding: 0px !important;
             background: #ffffff !important;
             position: relative !important;
             border-radius: 10px !important;
