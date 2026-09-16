@@ -30,6 +30,28 @@ if (is_dir(__DIR__ . '/shortcodes/home')) {
     }
 }
 
+/**
+ * Nạp các file CSS mô-đun hóa (header-style.css, product-style.css, footer-style.css)
+ * Sử dụng priority 999 và phụ thuộc vào flatsome-style để đảm bảo độ ưu tiên cao nhất,
+ * kèm filemtime chống dính cache trình duyệt.
+ */
+add_action('wp_enqueue_scripts', 'gobike_enqueue_modular_styles', 999);
+function gobike_enqueue_modular_styles()
+{
+    $theme_dir = get_stylesheet_directory();
+    $theme_uri = get_stylesheet_directory_uri();
+
+    if (file_exists($theme_dir . '/header-style.css')) {
+        wp_enqueue_style('gobike-header-style', $theme_uri . '/header-style.css', array('flatsome-style'), filemtime($theme_dir . '/header-style.css'));
+    }
+    if (file_exists($theme_dir . '/product-style.css')) {
+        wp_enqueue_style('gobike-product-style', $theme_uri . '/product-style.css', array('flatsome-style'), filemtime($theme_dir . '/product-style.css'));
+    }
+    if (file_exists($theme_dir . '/footer-style.css')) {
+        wp_enqueue_style('gobike-footer-style', $theme_uri . '/footer-style.css', array('flatsome-style'), filemtime($theme_dir . '/footer-style.css'));
+    }
+}
+
 
 function wp_version_remove_version()
 {

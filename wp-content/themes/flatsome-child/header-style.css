@@ -1,0 +1,799 @@
+/**
+ * ==========================================================================
+ * HEADER STYLES - GOBIKE
+ * Quản lý toàn bộ giao diện Header, Topbar, Menu, Search, Mobile Header
+ * ==========================================================================
+ */
+
+/* ==========================================================================
+   1. TOPBAR GOBIKE (#149D29) - HIỆU ỨNG CHỮ CHẠY VÔ TẬN (MARQUEE)
+   ========================================================================== */
+#top-bar {
+    background-color: #149D29 !important; /* Xanh lá GoBike */
+    background-image: none !important;
+    min-height: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+#top-bar .flex-row {
+    min-height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Khung bọc giới hạn chiều rộng chữ chạy */
+.cps-marquee-wrapper {
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    max-width: 650px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Thanh chạy chữ liên tục */
+.cps-marquee-track {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    animation: cpsScrollLeft 20s linear infinite !important;
+}
+
+/* Rê chuột vào thì tạm dừng chuyển động để khách đọc */
+.cps-marquee-wrapper:hover .cps-marquee-track {
+    animation-play-state: paused !important;
+}
+
+/* Hiệu ứng chuyển động từ phải sang trái vô tận */
+@keyframes cpsScrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Từng phần tử cam kết trong topbar */
+.cps-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    font-size: 12px !important;
+    color: #ffffff !important;
+}
+
+.cps-item span, 
+.cps-item strong {
+    color: #ffffff !important;
+}
+
+/* Dấu chấm tròn ngăn cách */
+.cps-item::after {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    margin-left: 20px;
+}
+
+/* 3 nút Menu bên phải (Cửa hàng, Tra cứu, Hotline) */
+#top-bar ul.nav > li > a {
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 0 10px !important;
+    line-height: 34px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    position: relative;
+    white-space: nowrap !important;
+}
+
+/* Vạch kẻ đứng phân cách giữa 3 nút */
+#top-bar ul.nav > li:not(:first-child) > a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+@media (max-width: 849px) {
+    #top-bar .flex-col:last-child {
+        display: none !important;
+    }
+    .cps-marquee-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* ==========================================================================
+   2. HEADER CHÍNH, LOGO & STICKY HEADER
+   ========================================================================== */
+#logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    line-height: inherit;
+    margin-right: 10px;
+}
+
+.header .header-main .nav > li > a, 
+.header .stuck .header-main .nav > li > a {
+    line-height: 1;
+}
+
+.header-main .logo-left {
+    position: relative;
+}
+
+.header-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    content: "";
+    top: 0;
+    left: 0;
+    z-index: 22;
+    background: rgb(0 0 0 / 0.6);
+    display: block;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.header-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.header.active .header-wrapper .header-logo-sticky, 
+.header-wrapper.stuck .header-logo-sticky {
+    display: none !important;
+}
+
+.header.active .header-wrapper .header-logo-sticky + img, 
+.header-wrapper.stuck .header-logo-sticky + img {
+    display: block !important;
+}
+
+/* Đổi 3 vạch icon menu thành màu trắng */
+.nav-icon .header-button a.button,
+.nav-icon .header-button a i.icon-menu {
+    color: #ffffff !important;
+}
+
+.nav > li > a > i.icon-menu {
+    color: #fff;
+}
+
+/* ==========================================================================
+   3. MENU DESKTOP & SUBMENU
+   ========================================================================== */
+.header-nav-main {
+    font-size: 14px;
+}
+
+.header-nav-main .menu-item-has-children:after {
+    content: none !important;
+    display: none !important;
+}
+
+.flex-col #btnHeaderMenu,
+.flex-col .header-main-menu {
+    display: none !important;
+}
+
+.menu .widget {
+    margin-bottom: 0;
+}
+
+.menu, 
+ul.sub-menu {
+    background: #fff;
+    margin: 0;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu > li > ul, 
+.menu > li > ul > li > ul {
+    height: auto;
+    margin: 0 !important;
+    padding: 0 !important;
+    visibility: hidden;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    z-index: 100;
+    opacity: 0;
+}
+
+.menu > li:hover > ul, 
+.menu > li:hover > ul > li:hover > ul {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+ul.menu > li + li, 
+.widget > ul > li + li {
+    border-top: 0;
+}
+
+ul.menu > li li > a, 
+.widget > ul > li li > a {
+    display: block;
+}
+
+ul.menu li a {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    text-transform: inherit;
+    align-items: center;
+}
+
+.menu-top ul.menu li a:hover {
+    background: #f1f1f1;
+}
+
+.menu-top ul.menu li a img {
+    margin-right: 5px;
+}
+
+.header.active .header-wrapper #logo .header-main-menu ul.menu li a img, 
+.header-wrapper.stuck #logo .header-main-menu ul.menu li a img {
+    max-height: 20px !important;
+}
+
+.header.active .header-wrapper .menu, 
+.header-wrapper.stuck .menu {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.header-main-menu {
+    width: 220px;
+    visibility: hidden;
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    opacity: 0;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    -ms-transition: .2s ease-out;
+    -o-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+#btnHeaderMenu {
+    margin-right: 10px;
+    font-size: 15px;
+    line-height: 1;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 5px;
+    border-radius: 10px;
+}
+
+#btnHeaderMenu:hover + .header-main-menu, 
+.header-main-menu:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.home .header-wrapper.stuck #btnHeaderMenu {
+    display: block;
+}
+
+.ux-menu-horizontal a {
+    display: inline-block;
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.ux-menu-horizontal a:hover {
+    color: #ff0000;
+}
+
+.header-nav li.html:before {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    content: "";
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header-nav li.html_topbar_left:before {
+    background: url(/wp-content/uploads/2021/07/call-icon.png);
+}
+
+.header-nav li.html_topbar_right:before {
+    background: url(/wp-content/uploads/2021/07/map-icon.png);
+}
+
+.nav li.html a, 
+.nav li.html a:hover {
+    color: #fff;
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   4. GIỎ HÀNG TRÊN HEADER
+   ========================================================================== */
+.cart-icon {
+    margin-right: 10px;
+}
+
+.cart-item .cart-icon strong, 
+.cart-item .cart-icon strong:after {
+    border-color: #fff;
+    color: #fff;
+}
+
+.nav li.cart-item a, 
+.nav li.cart-item a:hover {
+    color: #fff;
+    font-size: 14px;
+}
+
+.mini_cart_item a {
+    color: #000 !important;
+}
+
+.mobile-nav a {
+    color: #000;
+}
+
+.mobile-nav > .nav-icon > a {
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   5. FORM TÌM KIẾM HEADER & LIVE SEARCH
+   ========================================================================== */
+.header-search-form input[type="search"] {
+    border: 0;
+    box-shadow: none;
+    height: 33px;
+    font-size: 14px;
+}
+
+.searchform .ux-search-submit {
+    background-color: #d22d2d !important;
+    border-color: #d22d2d !important;
+    border-radius: 50% !important;
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.searchform .ux-search-submit .icon-search {
+    color: #ffffff !important;
+    font-size: 16px;
+}
+
+.searchform .ux-search-submit:hover {
+    background-color: #b01b1b !important;
+    border-color: #b01b1b !important;
+    transform: translateY(-3px);
+}
+
+.searchform .button.submit-button {
+    background-color: #149d29 !important;
+    color: #000;
+    border-radius: 0 10px 10px 0;
+    border: 0;
+    height: 33px;
+    width: 35px;
+}
+
+.searchform .button.icon i {
+    font-size: 14px;
+}
+
+.searchform .button.submit-button:hover {
+    box-shadow: none;
+}
+
+.header .search-form .live-search-results {
+    background-color: #fff;
+}
+
+.live-search-results .autocomplete-suggestion {
+    padding: 10px;
+    display: block;
+}
+
+.live-search-results .autocomplete-suggestion img {
+    width: 50px;
+    border-radius: 0;
+    height: 50px;
+    float: left;
+}
+
+.live-search-results .search-name {
+    width: 100%;
+    font-size: 12px;
+}
+
+.live-search-results .search-price ins span.amount {
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.search-item-right {
+    display: inline-block;
+    height: 50px;
+}
+
+/* ==========================================================================
+   6. HEADER MOBILE & MENU MOBILE POPUP
+   ========================================================================== */
+.menu-mobile-header {
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+}
+
+.menu-mobile-header .logo img.header-logo-sticky {
+    display: block !important;
+}
+
+.menu-mobile-header input[type=search] {
+    box-shadow: none !important;
+    border: 0;
+    border-radius: 10px 0 0 10px;
+    font-size: 14px;
+}
+
+.menu-mobile-header button.ux-search-submit {
+    min-height: 33px;
+    border-radius: 0 10px 10px 0 !important;
+}
+
+.menu-mobile-header .live-search-results {
+    position: absolute;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    -webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+}
+
+.menu-mobile-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 999;
+    display: none;
+}
+
+.list-menu-mobile {
+    width: 100%;
+    height: calc(100% - 88px);
+    position: relative;
+    overflow-y: auto;
+}
+
+.main-menu-mobile {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: #F3F4F6;
+}
+
+ul.nav-menu-mobile {
+    height: max-content;
+    padding: 0;
+    margin: 0;
+}
+
+ul.nav-menu-mobile li a {
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+ul.nav-menu-mobile li a img {
+    width: 35px;
+    height: 35px;
+}
+
+ul.nav-menu-mobile > li > a > img {
+    width: 40px;
+    height: 40px;
+}
+
+ul.nav-menu-mobile > li > a {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    -webkit-box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+}
+
+ul.nav-menu-mobile > li:nth-child(1) > a { background: #FEE2E2; }
+ul.nav-menu-mobile > li:nth-child(2) > a { background: #FFEDD5; }
+ul.nav-menu-mobile > li:nth-child(3) > a { background: #FEF9C3; }
+ul.nav-menu-mobile > li:nth-child(4) > a { background: #ECFCCB; }
+ul.nav-menu-mobile > li:nth-child(5) > a { background: #D1FAE5; }
+ul.nav-menu-mobile > li:nth-child(6) > a { background: #CCFBF1; }
+ul.nav-menu-mobile > li:nth-child(7) > a { background: #E0F2FE; }
+ul.nav-menu-mobile > li:nth-child(8) > a { background: #E0E7FF; }
+ul.nav-menu-mobile > li:nth-child(9) > a { background: #EDE9FE; }
+ul.nav-menu-mobile > li:nth-child(10) > a { background: #CCFBF1; }
+ul.nav-menu-mobile > li:nth-child(11) > a { background: #FAE8FF; }
+ul.nav-menu-mobile > li:nth-child(12) > a { background: #FCE7F3; }
+
+ul.nav-menu-mobile > li > ul.sub-menu {
+    width: calc(100% - 80px);
+    height: 100%;
+    display: none;
+    float: left;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ffffff;
+    -webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+ul.nav-menu-mobile > li.active > ul.sub-menu {
+    padding: 10px 0 0 10px;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li {
+    width: calc((100% - 30px) / 3);
+    min-height: 85px;
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 5px;
+    border: 1px solid #E5E7EB;
+    border-radius: 1rem;
+    background: #ffffff;
+    position: relative;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li.menu-item-has-children {
+    width: calc(100% - 10px);
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li > a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li.menu-item-has-children > a {
+    align-items: flex-start;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu {
+    padding: 0;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li {
+    width: calc((100% - 10px) / 3);
+    min-height: unset;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+ul.nav-menu-mobile > li > ul.sub-menu > li > ul.sub-menu > li > a {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.menu-mobile-section .search-mobile-header {
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.menu-mobile-section li {
+    list-style: none;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   7. MENU TAB VÀ RESPONSIVE HEADER
+   ========================================================================== */
+.menu-tab {
+    overflow-x: auto;
+    display: block;
+}
+
+.menu-tab ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #fff;
+    box-shadow: none !important;
+}
+
+.menu-tab ul li {
+    width: 16.6666%;
+}
+
+.menu-tab ul > li > a {
+    padding: 5px 0px !important;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+}
+
+.menu-tab ul li a img {
+    width: 60px;
+    height: 60px;
+    background: #f5f5f5;
+    margin-right: 0;
+    margin-bottom: 5px;
+}
+
+.menu-tab ul li:nth-child(1) a img { background: #FEE2E2; }
+.menu-tab ul li:nth-child(2) a img { background: #FFEDD5; }
+.menu-tab ul li:nth-child(3) a img { background: #FEF9C3; }
+.menu-tab ul li:nth-child(4) a img { background: #ECFCCB; }
+.menu-tab ul li:nth-child(5) a img { background: #D1FAE5; }
+.menu-tab ul li:nth-child(6) a img { background: #CCFBF1; }
+.menu-tab ul li:nth-child(7) a img { background: #E0F2FE; }
+.menu-tab ul li:nth-child(8) a img { background: #E0E7FF; }
+.menu-tab ul li:nth-child(9) a img { background: #EDE9FE; }
+.menu-tab ul li:nth-child(10) a img { background: #CCFBF1; }
+.menu-tab ul li:nth-child(11) a img { background: #FAE8FF; }
+.menu-tab ul li:nth-child(12) a img { background: #FCE7F3; }
+
+/* Ẩn thanh cuộn của các menu mobile */
+.main-menu-mobile::-webkit-scrollbar,
+.main-menu-mobile::-webkit-scrollbar-thumb,
+.main-menu-mobile::-webkit-scrollbar-track,
+.list-menu-mobile::-webkit-scrollbar,
+.list-menu-mobile::-webkit-scrollbar-thumb,
+.list-menu-mobile::-webkit-scrollbar-track,
+ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar,
+ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-thumb,
+ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
+.menu-tab::-webkit-scrollbar,
+.menu-tab::-webkit-scrollbar-thumb,
+.menu-tab::-webkit-scrollbar-track {
+    display: none;
+}
+
+@media only screen and (max-width: 849px) {
+    .home .header .header-wrapper, 
+    .home .header .header-bg-color {
+        background-color: transparent;
+    }
+    
+    .header.active .header-wrapper, 
+    .header-wrapper.stuck {
+        background-color: #fff;
+        z-index: 999;
+        position: fixed;
+        top: 0;
+    }
+    
+    .header .header-wrapper .header-logo-sticky, 
+    .header-wrapper .header-logo-sticky, 
+    .header.active .header-wrapper .header-logo-sticky, 
+    .header-wrapper.stuck .header-logo-sticky {
+        display: block !important;
+    }
+    
+    .header .header-wrapper .header-logo-sticky + img, 
+    .header-wrapper .header-logo-sticky + img, 
+    .header.active .header-wrapper .header-logo-sticky + img, 
+    .header-wrapper.stuck .header-logo-sticky + img {
+        display: none !important;
+    }
+    
+    .header.active, 
+    .header-wrapper.stuck, 
+    .body-scroll-lock--active #header {
+        z-index: 999;
+    }
+    
+    .home .header.active .header-wrapper:after, 
+    .home .header-wrapper.stuck:after {
+        display: none;
+    }
+    
+    #btnHeaderMenu {
+        display: none !important;
+    }
+    
+    .menu-mobile-header {
+        padding: 5px 15px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .menu-mobile-header {
+        padding: 5px 10px;
+    }
+    
+    .off-canvas-center .nav-sidebar.nav-vertical > li > a {
+        padding-right: 2px;
+        padding-left: 2px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .mfp-bg.off-canvas-center:not(.dark) {
+        height: 260px !important;
+        box-shadow: 0 0 3px;
+        position: fixed !important;
+    }
+    
+    .mfp-container {
+        padding: 0;
+    }
+    
+    .off-canvas .sidebar-menu {
+        padding: 0;
+    }
+    
+    .menu-mobile ul.menu {
+        width: 120%;
+    }
+}
