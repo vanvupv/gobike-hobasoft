@@ -371,187 +371,188 @@ function gobike_render_home_video_reviews($atts)
                 }
 
                 $all_video_items[] = array(
-                    'title'    => $f_title,
-                    'desc'     => $f_desc ?: 'Trải nghiệm thực tế GoBike sau thời gian dài sử dụng: cảm giác lái, pin và độ bền.',
+                    'title' => $f_title,
+                    'desc' => $f_desc ?: 'Trải nghiệm thực tế GoBike sau thời gian dài sử dụng: cảm giác lái, pin và độ bền.',
                     'duration' => $f_duration,
-                    'thumb'    => $f_thumb,
-                    'embed'    => $f_embed,
-                    'cat'      => $f_cat_slug,
+                    'thumb' => $f_thumb,
+                    'embed' => $f_embed,
+                    'cat' => $f_cat_slug,
                 );
                 ?>
                 <div class="gvr-featured-card gvr-filterable-item" data-cat="<?php echo esc_attr($f_cat_slug); ?>">
-                <div class="gvr-featured-media js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
-                    data-video-title="<?php echo esc_attr($f_title); ?>">
-                    <img src="<?php echo esc_url($f_thumb); ?>" alt="<?php echo esc_attr($f_title); ?>"
-                        class="gvr-featured-img">
-                    <span class="gvr-badge-featured">★ VIDEO NỔI BẬT NHẤT</span>
-
-                    <!-- Nút Play Tròn Nổi Bật -->
-                    <div class="gvr-play-button-wrap">
-                        <div class="gvr-play-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <span class="gvr-duration-badge"><?php echo esc_html($f_duration); ?></span>
-                </div>
-
-                <div class="gvr-featured-body">
-                    <h3 class="gvr-featured-title js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
+                    <div class="gvr-featured-media js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
                         data-video-title="<?php echo esc_attr($f_title); ?>">
-                        <?php echo esc_html($f_title); ?>
-                    </h3>
-                    <p class="gvr-featured-desc"><?php echo esc_html($f_desc); ?></p>
+                        <img src="<?php echo esc_url($f_thumb); ?>" alt="<?php echo esc_attr($f_title); ?>"
+                            class="gvr-featured-img">
+                        <span class="gvr-badge-featured">★ VIDEO NỔI BẬT NHẤT</span>
 
-                    <!-- 3 Điểm Cam Kết Review & Nút Xem Video (Nằm 1 hàng chuẩn Ảnh 2) -->
-                    <div class="gvr-featured-tags">
-                        <div class="gvr-ft-commitments">
-                            <div class="gvr-ft-tag">
-                                <div class="gvr-ft-icon">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
-                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                </div>
-                                <div class="gvr-ft-label">
-                                    <strong>Review từ</strong>
-                                    <span>người dùng thật</span>
-                                </div>
-                            </div>
-                            <div class="gvr-ft-sep"></div>
-                            <div class="gvr-ft-tag">
-                                <div class="gvr-ft-icon">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
-                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                                    </svg>
-                                </div>
-                                <div class="gvr-ft-label">
-                                    <strong>Cảm giác lái</strong>
-                                    <span>sau thời gian dài</span>
-                                </div>
-                            </div>
-                            <div class="gvr-ft-sep"></div>
-                            <div class="gvr-ft-tag">
-                                <div class="gvr-ft-icon">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
-                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </div>
-                                <div class="gvr-ft-label">
-                                    <strong>Đánh giá ưu nhược điểm</strong>
-                                    <span>khách quan nhất</span>
-                                </div>
+                        <!-- Nút Play Tròn Nổi Bật -->
+                        <div class="gvr-play-button-wrap">
+                            <div class="gvr-play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
                             </div>
                         </div>
 
-                        <button type="button" class="gvr-btn-watch js-open-gvr-video"
-                            data-video-src="<?php echo esc_attr($f_embed); ?>"
+                        <span class="gvr-duration-badge"><?php echo esc_html($f_duration); ?></span>
+                    </div>
+
+                    <div class="gvr-featured-body">
+                        <h3 class="gvr-featured-title js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
                             data-video-title="<?php echo esc_attr($f_title); ?>">
-                            <span>Xem video ngay</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </button>
+                                <?php echo esc_html($f_title); ?>
+                        </h3>
+                        <p class="gvr-featured-desc"><?php echo esc_html($f_desc); ?></p>
+
+                        <!-- 3 Điểm Cam Kết Review & Nút Xem Video (Nằm 1 hàng chuẩn Ảnh 2) -->
+                        <div class="gvr-featured-tags">
+                            <div class="gvr-ft-commitments">
+                                <div class="gvr-ft-tag">
+                                    <div class="gvr-ft-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
+                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="gvr-ft-label">
+                                        <strong>Review từ</strong>
+                                        <span>người dùng thật</span>
+                                    </div>
+                                </div>
+                                <div class="gvr-ft-sep"></div>
+                                <div class="gvr-ft-tag">
+                                    <div class="gvr-ft-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
+                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="gvr-ft-label">
+                                        <strong>Cảm giác lái</strong>
+                                        <span>sau thời gian dài</span>
+                                    </div>
+                                </div>
+                                <div class="gvr-ft-sep"></div>
+                                <div class="gvr-ft-tag">
+                                    <div class="gvr-ft-icon">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#149d29"
+                                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                            <path d="m9 12 2 2 4-4"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="gvr-ft-label">
+                                        <strong>Đánh giá ưu nhược điểm</strong>
+                                        <span>khách quan nhất</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="gvr-btn-watch js-open-gvr-video"
+                                data-video-src="<?php echo esc_attr($f_embed); ?>"
+                                data-video-title="<?php echo esc_attr($f_title); ?>">
+                                <span>Xem video ngay</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- B. LƯỚI 4 VIDEO CON BÊN PHẢI (2x2 GRID DẠNG THẺ NGANG) -->
-            <div class="gvr-side-list">
-                <?php
-                if ($has_real_data && $side_query->have_posts()) {
-                    while ($side_query->have_posts()) {
-                        $side_query->the_post();
-                        $p_id = get_the_ID();
-                        $p_title = get_the_title();
-                        $p_desc = get_field('video_desc', $p_id) ?: get_the_excerpt();
-                        $p_dur = get_field('video_duration', $p_id) ?: '05:00';
-                        $p_views = get_field('video_views_text', $p_id) ?: '25K lượt xem • 1 tuần trước';
-                        $p_badge = get_field('video_badge_tag', $p_id) ?: 'Review từ người thật';
-                        $p_url = get_field('video_url', $p_id);
-                        $p_yt_info = gobike_extract_youtube_info($p_url);
-                        $p_thumb = get_field('video_thumbnail', $p_id);
-                        if (!$p_thumb)
-                            $p_thumb = $p_yt_info['thumbnail'];
-                        $p_cat_terms = get_the_terms($p_id, 'video_category');
-                        $p_cat_slug = (!empty($p_cat_terms) && !is_wp_error($p_cat_terms)) ? $p_cat_terms[0]->slug : 'all';
-                        $p_embed = $p_yt_info['embed_url'];
-                        $all_video_items[] = array(
-                            'title'    => $p_title,
-                            'desc'     => wp_trim_words($p_desc, 18, '...'),
-                            'duration' => $p_dur,
-                            'thumb'    => $p_thumb,
-                            'embed'    => $p_embed,
-                            'cat'      => $p_cat_slug,
-                        );
-                        ?>
-                        <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
-                            data-cat="<?php echo esc_attr($p_cat_slug); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
-                            data-video-title="<?php echo esc_attr($p_title); ?>">
-                            <div class="gvr-ch-thumb">
-                                <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_title); ?>">
-                                <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg></div>
-                                <span class="gvr-ch-duration"><?php echo esc_html($p_dur); ?></span>
-                            </div>
-                            <div class="gvr-ch-info">
-                                <h4 class="gvr-ch-title"><?php echo esc_html($p_title); ?></h4>
-                                <p class="gvr-ch-desc"><?php echo wp_trim_words($p_desc, 14, '...'); ?></p>
-                                <div class="gvr-ch-meta">
-                                    <span class="gvr-ch-views"><?php echo esc_html($p_views); ?></span>
-                                    <span class="gvr-ch-badge"><?php echo esc_html($p_badge); ?></span>
+                <!-- B. LƯỚI 4 VIDEO CON BÊN PHẢI (2x2 GRID DẠNG THẺ NGANG) -->
+                <div class="gvr-side-list">
+                        <?php
+                        if ($has_real_data && $side_query->have_posts()) {
+                            while ($side_query->have_posts()) {
+                                $side_query->the_post();
+                                $p_id = get_the_ID();
+                                $p_title = get_the_title();
+                                $p_desc = get_field('video_desc', $p_id) ?: get_the_excerpt();
+                                $p_dur = get_field('video_duration', $p_id) ?: '05:00';
+                                $p_views = get_field('video_views_text', $p_id) ?: '25K lượt xem • 1 tuần trước';
+                                $p_badge = get_field('video_badge_tag', $p_id) ?: 'Review từ người thật';
+                                $p_url = get_field('video_url', $p_id);
+                                $p_yt_info = gobike_extract_youtube_info($p_url);
+                                $p_thumb = get_field('video_thumbnail', $p_id);
+                                if (!$p_thumb)
+                                    $p_thumb = $p_yt_info['thumbnail'];
+                                $p_cat_terms = get_the_terms($p_id, 'video_category');
+                                $p_cat_slug = (!empty($p_cat_terms) && !is_wp_error($p_cat_terms)) ? $p_cat_terms[0]->slug : 'all';
+                                $p_embed = $p_yt_info['embed_url'];
+                                $all_video_items[] = array(
+                                    'title' => $p_title,
+                                    'desc' => wp_trim_words($p_desc, 18, '...'),
+                                    'duration' => $p_dur,
+                                    'thumb' => $p_thumb,
+                                    'embed' => $p_embed,
+                                    'cat' => $p_cat_slug,
+                                );
+                                ?>
+                            <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
+                                data-cat="<?php echo esc_attr($p_cat_slug); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
+                                data-video-title="<?php echo esc_attr($p_title); ?>">
+                                <div class="gvr-ch-thumb">
+                                    <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_title); ?>">
+                                    <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg></div>
+                                    <span class="gvr-ch-duration"><?php echo esc_html($p_dur); ?></span>
+                                </div>
+                                <div class="gvr-ch-info">
+                                    <h4 class="gvr-ch-title"><?php echo esc_html($p_title); ?></h4>
+                                    <p class="gvr-ch-desc"><?php echo wp_trim_words($p_desc, 14, '...'); ?></p>
+                                    <div class="gvr-ch-meta">
+                                        <span class="gvr-ch-views"><?php echo esc_html($p_views); ?></span>
+                                        <span class="gvr-ch-badge"><?php echo esc_html($p_badge); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    }
-                    wp_reset_postdata();
-                } else {
-                    // Render 4 thẻ demo
-                    foreach ($demo_items as $item) {
-                        $p_embed = 'https://www.youtube.com/embed/' . $item['yt_id'] . '?autoplay=1&rel=0';
-                        $all_video_items[] = array(
-                            'title'    => $item['title'],
-                            'desc'     => $item['desc'],
-                            'duration' => $item['duration'],
-                            'thumb'    => $item['thumb'],
-                            'embed'    => $p_embed,
-                            'cat'      => $item['category'],
-                        );
-                        ?>
-                        <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
-                            data-cat="<?php echo esc_attr($item['category']); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
-                            data-video-title="<?php echo esc_attr($item['title']); ?>">
-                            <div class="gvr-ch-thumb">
-                                <img src="<?php echo esc_url($item['thumb']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
-                                <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg></div>
-                                <span class="gvr-ch-duration"><?php echo esc_html($item['duration']); ?></span>
-                            </div>
-                            <div class="gvr-ch-info">
-                                <h4 class="gvr-ch-title"><?php echo esc_html($item['title']); ?></h4>
-                                <p class="gvr-ch-desc"><?php echo esc_html($item['desc']); ?></p>
-                                <div class="gvr-ch-meta">
-                                    <span class="gvr-ch-views"><?php echo esc_html($item['views']); ?></span>
-                                    <span class="gvr-ch-badge"><?php echo esc_html($item['badge']); ?></span>
+                                <?php
+                            }
+                            wp_reset_postdata();
+                        } else {
+                            // Render 4 thẻ demo
+                            foreach ($demo_items as $item) {
+                                $p_embed = 'https://www.youtube.com/embed/' . $item['yt_id'] . '?autoplay=1&rel=0';
+                                $all_video_items[] = array(
+                                    'title' => $item['title'],
+                                    'desc' => $item['desc'],
+                                    'duration' => $item['duration'],
+                                    'thumb' => $item['thumb'],
+                                    'embed' => $p_embed,
+                                    'cat' => $item['category'],
+                                );
+                                ?>
+                            <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
+                                data-cat="<?php echo esc_attr($item['category']); ?>"
+                                data-video-src="<?php echo esc_attr($p_embed); ?>"
+                                data-video-title="<?php echo esc_attr($item['title']); ?>">
+                                <div class="gvr-ch-thumb">
+                                    <img src="<?php echo esc_url($item['thumb']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
+                                    <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        </svg></div>
+                                    <span class="gvr-ch-duration"><?php echo esc_html($item['duration']); ?></span>
+                                </div>
+                                <div class="gvr-ch-info">
+                                    <h4 class="gvr-ch-title"><?php echo esc_html($item['title']); ?></h4>
+                                    <p class="gvr-ch-desc"><?php echo esc_html($item['desc']); ?></p>
+                                    <div class="gvr-ch-meta">
+                                        <span class="gvr-ch-views"><?php echo esc_html($item['views']); ?></span>
+                                        <span class="gvr-ch-badge"><?php echo esc_html($item['badge']); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
+                                <?php
+                            }
+                        }
+                        ?>
+                </div>
             </div>
-        </div>
         </div> <!-- /.gvr-desktop-layout -->
 
         <!-- 2.B GIAO DIỆN MOBILE SLIDER (Dạng trượt ngang 1 khối + 1 phần khối tiếp theo chuẩn như Shorts) -->
@@ -559,13 +560,13 @@ function gobike_render_home_video_reviews($atts)
             <div class="gvr-mobile-slider-wrap">
                 <div class="gvr-mobile-track">
                     <?php foreach ($all_video_items as $vitem): ?>
-                        <div class="gvr-mobile-slide js-open-gvr-video"
-                            data-cat="<?php echo esc_attr($vitem['cat']); ?>"
+                        <div class="gvr-mobile-slide js-open-gvr-video" data-cat="<?php echo esc_attr($vitem['cat']); ?>"
                             data-video-src="<?php echo esc_attr($vitem['embed']); ?>"
                             data-video-title="<?php echo esc_attr($vitem['title']); ?>">
-                            
+
                             <div class="gvr-ms-media">
-                                <img src="<?php echo esc_url($vitem['thumb']); ?>" alt="<?php echo esc_attr($vitem['title']); ?>" loading="lazy">
+                                <img src="<?php echo esc_url($vitem['thumb']); ?>"
+                                    alt="<?php echo esc_attr($vitem['title']); ?>" loading="lazy">
                                 <div class="gvr-ms-play">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -593,7 +594,8 @@ function gobike_render_home_video_reviews($atts)
 
                 <!-- Nút Next chuyển slide tròn màu trắng -->
                 <button type="button" class="gvr-mobile-nav-next" aria-label="Xem video tiếp theo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                 </button>
@@ -1201,7 +1203,7 @@ function gobike_render_video_player_modal_footer()
         }
 
         .gvr-ch-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 700;
             color: #0f172a;
             line-height: 1.35;
@@ -1510,6 +1512,7 @@ function gobike_render_video_player_modal_footer()
         .gvr-mobile-layout {
             display: none;
         }
+
         .gvr-desktop-layout {
             display: block;
         }
@@ -1519,6 +1522,7 @@ function gobike_render_video_player_modal_footer()
             position: relative;
             width: 100%;
         }
+
         .gvr-mobile-track {
             display: flex !important;
             align-items: stretch !important;
@@ -1531,9 +1535,11 @@ function gobike_render_video_player_modal_footer()
             margin: 0 !important;
             list-style: none !important;
         }
+
         .gvr-mobile-track::-webkit-scrollbar {
             display: none !important;
         }
+
         .gvr-mobile-slide {
             flex: 0 0 78% !important;
             max-width: 78% !important;
@@ -1546,14 +1552,17 @@ function gobike_render_video_player_modal_footer()
             flex-direction: column !important;
             background: transparent !important;
         }
+
         .gvr-ms-media {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 ratio */
+            padding-top: 56.25%;
+            /* 16:9 ratio */
             border-radius: 12px;
             overflow: hidden;
             background: #0f172a;
         }
+
         .gvr-ms-media img {
             position: absolute;
             top: 0;
@@ -1565,9 +1574,11 @@ function gobike_render_video_player_modal_footer()
             border-radius: 12px;
             transition: transform 0.3s ease;
         }
+
         .gvr-mobile-slide:hover .gvr-ms-media img {
             transform: scale(1.03);
         }
+
         .gvr-ms-play {
             position: absolute;
             top: 50%;
@@ -1586,13 +1597,16 @@ function gobike_render_video_player_modal_footer()
             transition: transform 0.2s ease, background 0.2s ease;
             z-index: 2;
         }
+
         .gvr-mobile-slide:hover .gvr-ms-play {
             transform: translate(-50%, -50%) scale(1.08);
             background: rgba(20, 157, 41, 0.9);
         }
+
         .gvr-ms-play svg {
             margin-left: 2px;
         }
+
         .gvr-ms-duration {
             position: absolute;
             bottom: 8px;
@@ -1606,6 +1620,7 @@ function gobike_render_video_player_modal_footer()
             letter-spacing: 0.3px;
             z-index: 2;
         }
+
         .gvr-ms-info {
             display: flex;
             justify-content: space-between;
@@ -1613,10 +1628,12 @@ function gobike_render_video_player_modal_footer()
             padding: 8px 2px 0 2px;
             gap: 8px;
         }
+
         .gvr-ms-text {
             flex: 1;
             min-width: 0;
         }
+
         .gvr-ms-title {
             font-size: 14px !important;
             font-weight: 700 !important;
@@ -1629,6 +1646,7 @@ function gobike_render_video_player_modal_footer()
             overflow: hidden !important;
             min-height: 38px !important;
         }
+
         .gvr-ms-desc {
             font-size: 12px !important;
             color: #64748b !important;
@@ -1642,6 +1660,7 @@ function gobike_render_video_player_modal_footer()
             white-space: normal !important;
             min-height: 32px !important;
         }
+
         .gvr-ms-more {
             flex-shrink: 0;
             color: #94a3b8;
@@ -1672,11 +1691,13 @@ function gobike_render_video_player_modal_footer()
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
             transition: all 0.2s ease !important;
         }
+
         .gvr-mobile-nav-next:hover {
             background: #149d29 !important;
             color: #ffffff !important;
             border-color: #149d29 !important;
         }
+
         .gvr-mobile-nav-next:after {
             display: none !important;
         }
@@ -1686,9 +1707,11 @@ function gobike_render_video_player_modal_footer()
             .gvr-desktop-layout {
                 display: none !important;
             }
+
             .gvr-mobile-layout {
                 display: block !important;
             }
+
             .gvr-header-wrap {
                 display: flex !important;
                 flex-direction: row !important;
@@ -1697,21 +1720,26 @@ function gobike_render_video_player_modal_footer()
                 margin-bottom: 12px !important;
                 flex-wrap: nowrap !important;
             }
+
             .gvr-title-box {
                 margin-bottom: 0 !important;
             }
+
             .gvr-main-title {
                 font-size: 18px !important;
                 color: #0d6e2e !important;
                 margin: 0 !important;
                 white-space: nowrap;
             }
+
             .gvr-sub-title {
                 display: none !important;
             }
+
             .gvr-filter-tabs {
                 display: none !important;
             }
+
             .gvr-view-all-link {
                 margin-left: auto !important;
                 font-size: 13px !important;
@@ -1723,9 +1751,11 @@ function gobike_render_video_player_modal_footer()
                 text-decoration: none !important;
                 flex-shrink: 0 !important;
             }
+
             .gvr-view-all-link span {
                 display: inline !important;
             }
+
             .gvr-mobile-slide {
                 flex: 0 0 72% !important;
                 max-width: 72% !important;
@@ -1738,22 +1768,27 @@ function gobike_render_video_player_modal_footer()
             .gvr-video-modal-overlay {
                 padding: 14px;
             }
+
             .gvr-vm-close {
                 top: -10px;
                 right: -8px;
             }
+
             .gvr-ww-grid {
                 grid-template-columns: 1fr;
                 gap: 8px;
             }
+
             .gvr-ww-cta-box {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 6px;
             }
+
             .gvr-main-title {
                 font-size: 16.5px !important;
             }
+
             .gvr-mobile-slide {
                 flex: 0 0 78% !important;
                 max-width: 78% !important;
@@ -1854,7 +1889,7 @@ function gobike_render_video_player_modal_footer()
                     e.stopPropagation();
                     var slide = gvrTrack.querySelector('.gvr-mobile-slide');
                     var cardWidth = slide ? (slide.offsetWidth + 12) : (gvrTrack.offsetWidth * 0.78 + 12);
-                    
+
                     // Nếu gần đến cuối thì quay vòng về đầu, ngược lại cuộn sang đúng 1 thẻ
                     if (gvrTrack.scrollLeft + gvrTrack.clientWidth >= gvrTrack.scrollWidth - 25) {
                         gvrTrack.scrollTo({ left: 0, behavior: 'smooth' });
