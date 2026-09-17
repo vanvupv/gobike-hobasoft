@@ -19,8 +19,8 @@ function gobike_custom_styles_output()
     ?>
     <style id="gobike-custom-css">
         /* ==========================================================================
-                                                                               CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
-                                                                               ========================================================================== */
+                                                                                   CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
+                                                                                   ========================================================================== */
         *,
         *::before,
         *::after {
@@ -29,8 +29,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                               1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
-                                                                               ========================================================================== */
+                                                                                   1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
+                                                                                   ========================================================================== */
         .m-0 {
             margin: 0px !important;
         }
@@ -116,12 +116,12 @@ function gobike_custom_styles_output()
         }
 
         /* .medium-logo-center .flex-left {
-                                                                                        flex: none;
-                                                                                    } */
+                                                                                            flex: none;
+                                                                                        } */
 
         /* ==========================================================================
-                                                                                       2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
-                                                                                       ========================================================================== */
+                                                                                           2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
+                                                                                           ========================================================================== */
         .qc-left,
         .qc-right {
             position: fixed;
@@ -155,8 +155,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
-                                                                                       ========================================================================== */
+                                                                                           3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
+                                                                                           ========================================================================== */
         /* Giữ nền trắng tinh từ đầu, khử độ trễ chuyển động chống nhấp nháy */
         #header,
         .header-wrapper,
@@ -468,8 +468,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
-                                                                                       ========================================================================== */
+                                                                                           4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
+                                                                                           ========================================================================== */
         .footer-wrapper .wpcf7 {
             display: flex;
             justify-content: center;
@@ -545,8 +545,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
-                                                                                       ========================================================================== */
+                                                                                           5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
+                                                                                           ========================================================================== */
         @media screen and (min-width: 850px) {
 
             .footer-menu-mobile,
@@ -714,8 +714,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
-                                                                                       ========================================================================== */
+                                                                                           6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
+                                                                                           ========================================================================== */
         .banner-home {
             background: #fff;
             margin-top: 0px !important;
@@ -1277,17 +1277,17 @@ function gobike_custom_styles_output()
 
 
         /* ==========================================================================
-                                                                                       8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
-                                                                                       - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
-                                                                                       - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
-                                                                                       ========================================================================== */
+                                                                                           8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
+                                                                                           - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
+                                                                                           - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
+                                                                                           ========================================================================== */
         .gobike-category-block-wrapper {
-            max-width: 1230px;
+            /* max-width: 1230px; */
             margin-left: auto !important;
             margin-right: auto !important;
             margin-top: 0 !important;
             margin-bottom: 30px !important;
-            padding: 0 10px;
+            /* padding: 0 10px; */
             box-sizing: border-box;
         }
 
@@ -1791,7 +1791,7 @@ function gobike_custom_styles_output()
         }
 
         /* --- RESPONSIVE TABLET & MOBILE (<= 1024px) ---
-                                                                                       Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
+                                                                                           Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
         @media screen and (max-width: 1024px) {
             .gobike-cat-main-content {
                 flex-direction: column !important;
@@ -1952,8 +1952,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
-                                                                                       ========================================================================== */
+                                                                                           9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
+                                                                                           ========================================================================== */
         /* Flash Sale */
         .gobike-home-flashsale-block {
             max-width: 1230px;
@@ -2215,8 +2215,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                       10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
-                       ========================================================================== */
+                           10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
+                           ========================================================================== */
         .woof_redraw_zone {
             display: flex !important;
             align-items: center !important;
@@ -2350,8 +2350,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
-                                                                                       ========================================================================== */
+                                                                                           11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
+                                                                                           ========================================================================== */
         /* --- 11.1. Cặp Banner Tiện Ích (Zoom từ tâm) --- */
         @keyframes gobikeZoomFromCenter {
             0% {
@@ -3408,8 +3408,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE)
-                                                                                       ========================================================================== */
+                                                                                           KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE)
+                                                                                           ========================================================================== */
         #row-1141733086,
         .pv-row-custom {
 
@@ -3508,6 +3508,7 @@ function gobike_custom_styles_output()
             font-weight: 600 !important;
             box-shadow: none !important;
         }
+
         .pv-row-custom .post-meta {
             font-size: 12px !important;
             color: #94a3b8 !important;
@@ -3799,15 +3800,15 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-           DANH MỤC XE (ROW: .vp-category-list / #row-1732247694)
-           ========================================================================== */
+               DANH MỤC XE (ROW: .vp-category-list / #row-1732247694)
+               ========================================================================== */
         .vp-category-list,
         #row-1732247694 {
             margin-bottom: 30px !important;
         }
 
-        .vp-category-list > .col > .col-inner,
-        #row-1732247694 > .col > .col-inner {
+        .vp-category-list>.col>.col-inner,
+        #row-1732247694>.col>.col-inner {
             border: 1px solid #e2e8f0 !important;
             border-radius: 12px !important;
             box-shadow: none !important;
@@ -3820,8 +3821,8 @@ function gobike_custom_styles_output()
             box-sizing: border-box !important;
         }
 
-        .vp-category-list > .col > .col-inner:hover,
-        #row-1732247694 > .col > .col-inner:hover {
+        .vp-category-list>.col>.col-inner:hover,
+        #row-1732247694>.col>.col-inner:hover {
             border-color: #149d29 !important;
         }
 
@@ -3837,8 +3838,8 @@ function gobike_custom_styles_output()
             object-fit: contain !important;
         }
 
-        .vp-category-list > .col > .col-inner:hover .icon-box-img img,
-        #row-1732247694 > .col > .col-inner:hover .icon-box-img img {
+        .vp-category-list>.col>.col-inner:hover .icon-box-img img,
+        #row-1732247694>.col>.col-inner:hover .icon-box-img img {
             transform: scale(1.06) !important;
         }
 
@@ -3852,14 +3853,14 @@ function gobike_custom_styles_output()
             transition: color 0.25s ease !important;
         }
 
-        .vp-category-list > .col > .col-inner:hover .icon-box-text h3,
-        #row-1732247694 > .col > .col-inner:hover .icon-box-text h3 {
+        .vp-category-list>.col>.col-inner:hover .icon-box-text h3,
+        #row-1732247694>.col>.col-inner:hover .icon-box-text h3 {
             color: #149d29 !important;
         }
 
         /* ==========================================================================
-           GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
-           ========================================================================== */
+               GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
+               ========================================================================== */
         .gobike-catalog-card-col {
             margin-bottom: 20px !important;
         }
@@ -4077,8 +4078,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                       BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
-                                                                                       ========================================================================== */
+                                                                                           BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
+                                                                                           ========================================================================== */
         .gobike-shop-page-container {
             padding-top: 15px;
             padding-bottom: 40px;
@@ -4513,8 +4514,8 @@ function gobike_custom_styles_output()
         }
 
         /* Ẩn triệt để form ordering và radio sắp xếp thừa ngoài thanh toolbar */
-        .gobike-products-main-col > .col-inner > .woocommerce-ordering,
-        .gobike-products-main-col > .col-inner > .woocommerce-result-count,
+        .gobike-products-main-col>.col-inner>.woocommerce-ordering,
+        .gobike-products-main-col>.col-inner>.woocommerce-result-count,
         .gobike-custom-sorting-toolbar,
         .gobike-products-main-col .badge-container {
             display: none !important;
@@ -4679,10 +4680,10 @@ function gobike_custom_styles_output()
 
         @media (min-width: 850px) {
             /* .gobike-products-main-col .products.row .col {
-                                                                                            width: 25% !important;
-                                                                                            max-width: 25% !important;
-                                                                                            flex: 0 0 25% !important;
-                                                                                        } */
+                                                                                                width: 25% !important;
+                                                                                                max-width: 25% !important;
+                                                                                                flex: 0 0 25% !important;
+                                                                                            } */
         }
 
         /* Bỏ khối gobike-shop-bottom-cards theo yêu cầu */
@@ -5072,8 +5073,8 @@ function gobike_custom_styles_output()
         @media (max-width: 849px) {
 
             /* ==========================================================================
-                                           HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
-                                           ========================================================================== */
+                                               HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
+                                               ========================================================================== */
             .header-nav li.header-search-form:before,
             .header-nav li.header-search-form:after {
                 display: none !important;
@@ -5268,8 +5269,8 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-               9. HỆ THỐNG CỬA HÀNG (STORE LOCATOR / SHOWROOM TABS)
-               ========================================================================== */
+                   9. HỆ THỐNG CỬA HÀNG (STORE LOCATOR / SHOWROOM TABS)
+                   ========================================================================== */
             .gobike-store-locator-wrapper {
                 padding: 30px 25px !important;
                 border-radius: 8px !important;
@@ -5297,7 +5298,7 @@ function gobike_custom_styles_output()
             }
 
             /* KHỐI DANH SÁCH ĐỊA CHỈ BÊN TRÁI: NỀN TRẮNG CÓ VIỀN BAO QUANH CHUẨN MẪU */
-            .tab_list_showroom > ul.nav.nav-vertical,
+            .tab_list_showroom>ul.nav.nav-vertical,
             .tab_list_showroom ul.nav.nav-vertical {
                 width: 36% !important;
                 max-width: 420px !important;
@@ -5307,9 +5308,12 @@ function gobike_custom_styles_output()
                 list-style: none !important;
                 display: flex !important;
                 flex-direction: column !important;
-                gap: 0 !important; /* Không có gap giữa các item */
-                background: #ffffff !important; /* NỀN TRẮNG NGUYÊN KHỐI */
-                border: 1px solid #e0e0e0 !important; /* VIỀN KHỐI BÊN NGOÀI */
+                gap: 0 !important;
+                /* Không có gap giữa các item */
+                background: #ffffff !important;
+                /* NỀN TRẮNG NGUYÊN KHỐI */
+                border: 1px solid #e0e0e0 !important;
+                /* VIỀN KHỐI BÊN NGOÀI */
                 border-radius: 4px !important;
                 overflow: hidden !important;
                 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
@@ -5317,12 +5321,13 @@ function gobike_custom_styles_output()
             }
 
             /* Từng item địa chỉ trong khối */
-            .tab_list_showroom > ul.nav.nav-vertical > li.tab,
-            .tab_list_showroom .nav-vertical > li.tab,
+            .tab_list_showroom>ul.nav.nav-vertical>li.tab,
+            .tab_list_showroom .nav-vertical>li.tab,
             .tab_list_showroom ul.nav li.tab {
                 background: #ffffff !important;
                 border: none !important;
-                border-bottom: 1px solid #e5e5e5 !important; /* ĐƯỜNG KẺ PHÂN CÁCH GIỮA CÁC ĐỊA CHỈ */
+                border-bottom: 1px solid #e5e5e5 !important;
+                /* ĐƯỜNG KẺ PHÂN CÁCH GIỮA CÁC ĐỊA CHỈ */
                 border-radius: 0 !important;
                 padding: 16px 18px !important;
                 margin: 0 !important;
@@ -5335,31 +5340,32 @@ function gobike_custom_styles_output()
                 text-align: left !important;
             }
 
-            .tab_list_showroom > ul.nav.nav-vertical > li.tab:last-child,
-            .tab_list_showroom .nav-vertical > li.tab:last-child,
+            .tab_list_showroom>ul.nav.nav-vertical>li.tab:last-child,
+            .tab_list_showroom .nav-vertical>li.tab:last-child,
             .tab_list_showroom ul.nav li.tab:last-child {
                 border-bottom: none !important;
             }
 
-            .tab_list_showroom > ul.nav.nav-vertical > li.tab:hover,
-            .tab_list_showroom .nav-vertical > li.tab:hover,
+            .tab_list_showroom>ul.nav.nav-vertical>li.tab:hover,
+            .tab_list_showroom .nav-vertical>li.tab:hover,
             .tab_list_showroom ul.nav li.tab:hover {
                 background: #fafafa !important;
             }
 
             /* Trạng thái tab được chọn (Active) */
-            .tab_list_showroom > ul.nav.nav-vertical > li.tab.active,
-            .tab_list_showroom .nav-vertical > li.tab.active,
+            .tab_list_showroom>ul.nav.nav-vertical>li.tab.active,
+            .tab_list_showroom .nav-vertical>li.tab.active,
             .tab_list_showroom ul.nav li.tab.active {
                 background: #ffffff !important;
-                border-left: 3px solid #0d6e2e !important; /* Chỉ thị xanh tinh tế ở mép trái */
+                border-left: 3px solid #0d6e2e !important;
+                /* Chỉ thị xanh tinh tế ở mép trái */
                 padding-left: 15px !important;
                 box-shadow: none !important;
             }
 
             /* Ẩn các thẻ a rỗng mặc định của Flatsome nếu có */
-            .tab_list_showroom .nav li.tab > a[tabindex="-1"],
-            .tab_list_showroom .nav li.tab > a:empty {
+            .tab_list_showroom .nav li.tab>a[tabindex="-1"],
+            .tab_list_showroom .nav li.tab>a:empty {
                 display: none !important;
             }
 
@@ -5485,7 +5491,8 @@ function gobike_custom_styles_output()
                 width: 100% !important;
                 height: 100% !important;
                 min-height: 480px !important;
-                display: none !important; /* Mặc định ẩn các panel không active */
+                display: none !important;
+                /* Mặc định ẩn các panel không active */
                 flex: 1 1 auto !important;
             }
 
@@ -5520,7 +5527,7 @@ function gobike_custom_styles_output()
                     gap: 18px !important;
                 }
 
-                .tab_list_showroom > ul.nav.nav-vertical,
+                .tab_list_showroom>ul.nav.nav-vertical,
                 .tab_list_showroom ul.nav.nav-vertical {
                     width: 100% !important;
                     max-width: 100% !important;
@@ -5546,105 +5553,106 @@ function gobike_custom_styles_output()
  * Script tương tác cho Hệ thống Cửa hàng Tab Google Maps (.tab_list_showroom)
  */
 add_action('wp_footer', 'gobike_showroom_tabs_script', 999);
-function gobike_showroom_tabs_script() {
+function gobike_showroom_tabs_script()
+{
     ?>
     <script type="text/javascript">
-    (function($) {
-        function initGobikeShowroom() {
-            $('.tab_list_showroom').each(function() {
-                var $wrapper = $(this);
+        (function ($) {
+            function initGobikeShowroom() {
+                $('.tab_list_showroom').each(function () {
+                    var $wrapper = $(this);
+                    var $tabs = $wrapper.find('ul.nav li.tab');
+                    var $panels = $wrapper.find('.tab-panels .panel');
+
+                    // 1. Tháo bỏ toàn bộ click listener cũ của Flatsome trên các thẻ a bên trong tab
+                    $tabs.find('a').each(function () {
+                        var $link = $(this);
+                        if (!$link.hasClass('link_zalo') && !$link.hasClass('link_chiduong')) {
+                            $link.off('click').on('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(this).closest('li.tab').trigger('click');
+                            });
+                        }
+                    });
+
+                    // 2. Chặn click link Zalo và Chỉ đường kích hoạt chuyển tab
+                    $wrapper.find('.link_zalo, .link_chiduong').off('click').on('click', function (e) {
+                        e.stopPropagation();
+                    });
+
+                    // 3. Xử lý click chuyển tab theo index chuẩn xác 100%
+                    $tabs.off('click').on('click', function (e) {
+                        if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
+                            return;
+                        }
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        var $currentTab = $(this);
+                        var index = $tabs.index($currentTab);
+                        if (index < 0) return;
+
+                        // Cập nhật tab active
+                        $tabs.removeClass('active').removeAttr('aria-selected');
+                        $currentTab.addClass('active').attr('aria-selected', 'true');
+                        $currentTab.find('a[role="tab"]').attr('aria-selected', 'true');
+
+                        // Cập nhật panel active
+                        $panels.removeClass('active').removeAttr('style');
+                        var $targetPanel = $panels.eq(index);
+                        $targetPanel.addClass('active');
+
+                        // Kích hoạt iframe bên trong nếu có
+                        var $iframe = $targetPanel.find('iframe');
+                        if ($iframe.length) {
+                            $iframe.css({ 'display': 'block', 'width': '100%', 'height': '100%' });
+                        }
+                    });
+
+                    // 4. Trạng thái ban đầu: tab 0 active nếu chưa có tab nào active
+                    var $activeTab = $tabs.filter('.active');
+                    if (!$activeTab.length) {
+                        $activeTab = $tabs.first().addClass('active');
+                    }
+                    var activeIdx = $tabs.index($activeTab);
+                    if (activeIdx < 0) activeIdx = 0;
+                    $panels.removeClass('active').removeAttr('style');
+                    $panels.eq(activeIdx).addClass('active');
+                });
+            }
+
+            // Delegate listener hỗ trợ click mọi lúc
+            $(document).on('click', '.tab_list_showroom ul.nav li.tab', function (e) {
+                if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
+                    return;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+
+                var $wrapper = $(this).closest('.tab_list_showroom');
                 var $tabs = $wrapper.find('ul.nav li.tab');
                 var $panels = $wrapper.find('.tab-panels .panel');
+                var index = $tabs.index($(this));
+                if (index < 0) return;
 
-                // 1. Tháo bỏ toàn bộ click listener cũ của Flatsome trên các thẻ a bên trong tab
-                $tabs.find('a').each(function() {
-                    var $link = $(this);
-                    if (!$link.hasClass('link_zalo') && !$link.hasClass('link_chiduong')) {
-                        $link.off('click').on('click', function(e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            $(this).closest('li.tab').trigger('click');
-                        });
-                    }
-                });
+                $tabs.removeClass('active').removeAttr('aria-selected');
+                $(this).addClass('active').attr('aria-selected', 'true');
 
-                // 2. Chặn click link Zalo và Chỉ đường kích hoạt chuyển tab
-                $wrapper.find('.link_zalo, .link_chiduong').off('click').on('click', function(e) {
-                    e.stopPropagation();
-                });
-
-                // 3. Xử lý click chuyển tab theo index chuẩn xác 100%
-                $tabs.off('click').on('click', function(e) {
-                    if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
-                        return;
-                    }
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    var $currentTab = $(this);
-                    var index = $tabs.index($currentTab);
-                    if (index < 0) return;
-
-                    // Cập nhật tab active
-                    $tabs.removeClass('active').removeAttr('aria-selected');
-                    $currentTab.addClass('active').attr('aria-selected', 'true');
-                    $currentTab.find('a[role="tab"]').attr('aria-selected', 'true');
-
-                    // Cập nhật panel active
-                    $panels.removeClass('active').removeAttr('style');
-                    var $targetPanel = $panels.eq(index);
-                    $targetPanel.addClass('active');
-
-                    // Kích hoạt iframe bên trong nếu có
-                    var $iframe = $targetPanel.find('iframe');
-                    if ($iframe.length) {
-                        $iframe.css({'display': 'block', 'width': '100%', 'height': '100%'});
-                    }
-                });
-
-                // 4. Trạng thái ban đầu: tab 0 active nếu chưa có tab nào active
-                var $activeTab = $tabs.filter('.active');
-                if (!$activeTab.length) {
-                    $activeTab = $tabs.first().addClass('active');
-                }
-                var activeIdx = $tabs.index($activeTab);
-                if (activeIdx < 0) activeIdx = 0;
                 $panels.removeClass('active').removeAttr('style');
-                $panels.eq(activeIdx).addClass('active');
+                $panels.eq(index).addClass('active');
             });
-        }
 
-        // Delegate listener hỗ trợ click mọi lúc
-        $(document).on('click', '.tab_list_showroom ul.nav li.tab', function(e) {
-            if ($(e.target).closest('.link_zalo, .link_chiduong').length) {
-                return;
-            }
-            e.preventDefault();
-            e.stopPropagation();
+            $(document).ready(function () {
+                initGobikeShowroom();
+                setTimeout(initGobikeShowroom, 150);
+                setTimeout(initGobikeShowroom, 500);
+            });
 
-            var $wrapper = $(this).closest('.tab_list_showroom');
-            var $tabs = $wrapper.find('ul.nav li.tab');
-            var $panels = $wrapper.find('.tab-panels .panel');
-            var index = $tabs.index($(this));
-            if (index < 0) return;
-
-            $tabs.removeClass('active').removeAttr('aria-selected');
-            $(this).addClass('active').attr('aria-selected', 'true');
-
-            $panels.removeClass('active').removeAttr('style');
-            $panels.eq(index).addClass('active');
-        });
-
-        $(document).ready(function() {
-            initGobikeShowroom();
-            setTimeout(initGobikeShowroom, 150);
-            setTimeout(initGobikeShowroom, 500);
-        });
-
-        $(window).on('load', function() {
-            initGobikeShowroom();
-        });
-    })(jQuery);
+            $(window).on('load', function () {
+                initGobikeShowroom();
+            });
+        })(jQuery);
     </script>
     <?php
 }
