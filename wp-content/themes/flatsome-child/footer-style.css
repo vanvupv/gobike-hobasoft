@@ -53,7 +53,7 @@ footer#footer,
     color: #111111 !important;
     text-transform: inherit !important;
     letter-spacing: normal !important;
-    margin-top: 0px;
+    margin-top: 0px !important;
     margin-bottom: 8px !important;
 }
 
