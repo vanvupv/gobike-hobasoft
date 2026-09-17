@@ -1291,6 +1291,8 @@ function gobike_custom_styles_output()
             box-sizing: border-box;
         }
 
+        .gobike-category-block-wrapper:not(:has(~ .gobike-category-block-wrapper)),
+        .gobike-category-block-wrapper:last-of-type,
         .gobike-category-block-wrapper:last-child {
             margin-bottom: 0 !important;
         }
