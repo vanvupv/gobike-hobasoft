@@ -5583,6 +5583,150 @@ function gobike_custom_styles_output()
                     height: 340px !important;
                 }
             }
+
+            /* ==========================================================================
+                               KHỐI PHÂN LOẠI NHU CẦU SỬ DỤNG (GOBIKES USER NEEDS ROW)
+                               Desktop: 5 cột dàn ngang - Mobile/Tablet: Slide trượt cảm ứng
+                               ========================================================================== */
+            .gobike-user-needs-container {
+                max-width: 1230px;
+                margin: 20px auto;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .gobike-needs-track {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 12px;
+                width: 100%;
+            }
+
+            .gobike-need-card {
+                background: #ffffff;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 10px 14px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+                transition: all 0.25s ease;
+                box-sizing: border-box;
+            }
+
+            .gobike-need-card:hover {
+                border-color: #149d29;
+                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12);
+                transform: translateY(-2px);
+            }
+
+            .gobike-need-thumb {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+                max-width: 52px;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #f8fafc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .gobike-need-thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+                display: block;
+            }
+
+            .gobike-need-thumb .gobike-need-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .gobike-need-info {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .gobike-need-title {
+                font-size: 14px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                margin: 0 0 3px 0 !important;
+                line-height: 1.3 !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .gobike-need-card:hover .gobike-need-title {
+                color: #149d29 !important;
+            }
+
+            .gobike-need-desc {
+                font-size: 12px !important;
+                color: #64748b !important;
+                line-height: 1.3 !important;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Responsive: Tablet và Mobile tự động chuyển thành Slide vuốt mượt */
+            @media screen and (max-width: 1024px) {
+                .gobike-needs-track {
+                    display: flex !important;
+                    overflow-x: auto !important;
+                    scroll-snap-type: x mandatory !important;
+                    gap: 10px !important;
+                    -webkit-overflow-scrolling: touch !important;
+                    padding-bottom: 6px !important;
+                    padding-left: 2px !important;
+                    padding-right: 2px !important;
+                    scrollbar-width: none !important;
+                }
+
+                .gobike-needs-track::-webkit-scrollbar {
+                    display: none !important;
+                }
+
+                .gobike-need-card {
+                    flex: 0 0 72% !important;
+                    max-width: 72% !important;
+                    scroll-snap-align: start !important;
+                }
+            }
+
+            @media screen and (max-width: 549px) {
+                .gobike-need-card {
+                    flex: 0 0 76% !important;
+                    max-width: 76% !important;
+                    padding: 8px 12px !important;
+                    gap: 10px !important;
+                }
+
+                .gobike-need-thumb {
+                    width: 46px !important;
+                    height: 46px !important;
+                    min-width: 46px !important;
+                    max-width: 46px !important;
+                }
+
+                .gobike-need-title {
+                    font-size: 13.5px !important;
+                }
+
+                .gobike-need-desc {
+                    font-size: 11.5px !important;
+                }
+            }
     </style>
     <?php
 }
