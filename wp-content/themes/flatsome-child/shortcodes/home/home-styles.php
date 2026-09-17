@@ -3511,22 +3511,29 @@ function gobike_custom_styles_output()
             box-shadow: none !important;
         }
 
-        .pv-row-custom .post-meta {
+        .pv-row-custom .post-meta,
+        .vp-blog-custom .post-meta,
+        .vp-blog-hot-custom .post-meta {
             font-size: 12px !important;
             color: #94a3b8 !important;
             display: inline-flex !important;
             align-items: center !important;
-            gap: 4px !important;
             margin-top: 4px !important;
         }
 
-        .pv-row-custom .post-meta::before {
-            content: "";
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center / contain;
-            flex-shrink: 0;
+        /* Bỏ hoàn toàn icon trước ngày tháng bài viết theo yêu cầu */
+        .post-item .box-blog-post .box-text .post-meta:before,
+        .post-item .box-blog-post .box-text .post-meta::before,
+        .post-item .box-blog-post .post-meta:before,
+        .post-item .box-blog-post .post-meta::before,
+        .pv-row-custom .post-meta:before,
+        .pv-row-custom .post-meta::before,
+        .vp-blog-custom .post-meta:before,
+        .vp-blog-custom .post-meta::before,
+        .vp-blog-hot-custom .post-meta:before,
+        .vp-blog-hot-custom .post-meta::before {
+            display: none !important;
+            content: none !important;
         }
 
         .pv-row-custom .is-divider {
@@ -3583,10 +3590,7 @@ function gobike_custom_styles_output()
             border-radius: 0 !important;
         }
 
-        .vp-blog-hot-custom .box-image .image-cover,
-        .pv-row-custom .tab-panels .col.large-6:first-child .box-image .image-cover {
-            padding-top: 56.25% !important;
-        }
+        /* Giữ nguyên tỉ lệ padding-top/width mặc định của Flatsome, không ghi đè ép 56.25% để ảnh to đúng thiết lập */
 
         .vp-blog-hot-custom .box-text,
         .pv-row-custom .tab-panels .col.large-6:first-child .box-text {
@@ -3662,6 +3666,30 @@ function gobike_custom_styles_output()
         .pv-row-custom .tab-panels .col.large-6:last-child .box-vertical:hover {
             border-color: #cbd5e1 !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        /* Giữ nguyên width 40% và padding-top mặc định của Flatsome cho ảnh, không giới hạn pixel */
+        .vp-blog-custom .box-image,
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-image {
+            flex: 0 0 40% !important;
+            width: 40% !important;
+            max-width: 40% !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+        }
+
+        .vp-blog-custom .box-image img,
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-image img {
+            border-radius: 8px !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        .vp-blog-custom .box-text,
+        .pv-row-custom .tab-panels .col.large-6:last-child .box-text {
+            flex: 1 1 60% !important;
+            min-width: 0 !important;
         }
 
         .vp-blog-custom .post-title,
