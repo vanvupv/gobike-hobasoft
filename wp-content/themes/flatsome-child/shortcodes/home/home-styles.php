@@ -5827,6 +5827,17 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
+               HÀNG COLLAPSE TÙY BIẾN (.row.row-collapse.vp-row-custom)
+               - Ép luôn trên 1 hàng (nowrap) không bị rớt cột và khoảng cách giữa các cột là 8px
+               ========================================================================== */
+            .row.row-collapse.vp-row-custom {
+                display: flex !important;
+                flex-flow: row nowrap !important;
+                flex-wrap: nowrap !important;
+                gap: 8px !important;
+            }
+
+            /* ==========================================================================
                KHỐI ICON BOX CĂN TRÁI (.icon-box-left / .vp-icon-box-custom.icon-box-left)
                - Tắt flex-flow: row wrap mặc định của Flatsome (chuyển sang row nowrap)
                - Bố cục nằm ngang căn trái không bị rớt dòng chữ xuống dưới icon
