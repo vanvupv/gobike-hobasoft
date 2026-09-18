@@ -5824,32 +5824,59 @@ function gobike_custom_styles_output()
                 letter-spacing: 0.2px !important;
             }
 
-            /* Tablet (<= 849px): Thu nhỏ văn bản */
+            /* Tablet (<= 849px): Icon ở trên, văn bản rơi xuống dưới căn giữa */
             @media screen and (max-width: 849px) {
                 .vp-icon-box-custom {
+                    flex-direction: column !important;
+                    text-align: center !important;
                     gap: 6px !important;
                 }
 
+                .vp-icon-box-custom .icon-box-img {
+                    margin: 0 auto !important;
+                }
+
+                .vp-icon-box-custom .icon-box-text {
+                    text-align: center !important;
+                    width: 100% !important;
+                }
+
                 .vp-icon-box-custom .text,
                 .vp-icon-box-custom .text h3,
                 .vp-icon-box-custom h3 {
-                    font-size: 0.65rem !important;
-                    line-height: 1.2 !important;
+                    font-size: 0.7rem !important;
+                    line-height: 1.25 !important;
+                    text-align: center !important;
+                    white-space: normal !important;
+                    word-break: break-word !important;
                 }
             }
 
-            /* Mobile (<= 549px): Thu nhỏ văn bản hơn nữa gọn gàng */
+            /* Mobile (<= 549px): Tối ưu khoảng cách và kích thước chữ trên điện thoại */
             @media screen and (max-width: 549px) {
                 .vp-icon-box-custom {
+                    flex-direction: column !important;
+                    text-align: center !important;
                     gap: 4px !important;
+                }
+
+                .vp-icon-box-custom .icon-box-img {
+                    margin: 0 auto !important;
+                }
+
+                .vp-icon-box-custom .icon-box-text {
+                    text-align: center !important;
+                    width: 100% !important;
                 }
 
                 .vp-icon-box-custom .text,
                 .vp-icon-box-custom .text h3,
                 .vp-icon-box-custom h3 {
-                    font-size: 0.56rem !important;
-                    line-height: 1.15 !important;
-                    white-space: nowrap !important;
+                    font-size: 0.62rem !important;
+                    line-height: 1.2 !important;
+                    text-align: center !important;
+                    white-space: normal !important;
+                    word-break: break-word !important;
                 }
             }
     </style>
