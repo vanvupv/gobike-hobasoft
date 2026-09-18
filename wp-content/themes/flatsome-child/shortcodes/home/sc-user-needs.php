@@ -27,9 +27,9 @@ function gobike_register_user_needs_acf_fields()
     $location = array(
         array(
             array(
-                'param'    => 'page_type',
+                'param' => 'page_type',
                 'operator' => '==',
-                'value'    => 'front_page',
+                'value' => 'front_page',
             ),
         ),
     );
@@ -37,91 +37,91 @@ function gobike_register_user_needs_acf_fields()
     if (!empty($front_page_id)) {
         $location[] = array(
             array(
-                'param'    => 'page',
+                'param' => 'page',
                 'operator' => '==',
-                'value'    => strval($front_page_id),
+                'value' => strval($front_page_id),
             ),
         );
     }
 
     acf_add_local_field_group(array(
-        'key'                   => 'group_gobike_user_needs',
-        'title'                 => '[Trang chủ] Danh mục xe theo Nhu cầu sử dụng',
-        'fields'                => array(
+        'key' => 'group_gobike_user_needs',
+        'title' => '[Trang chủ] Danh mục xe theo Nhu cầu sử dụng',
+        'fields' => array(
             array(
-                'key'           => 'field_needs_section_title_mobile',
-                'label'         => 'Tiêu đề khối trên Mobile',
-                'name'          => 'needs_section_title_mobile',
-                'type'          => 'text',
+                'key' => 'field_needs_section_title_mobile',
+                'label' => 'Tiêu đề khối trên Mobile',
+                'name' => 'needs_section_title_mobile',
+                'type' => 'text',
                 'default_value' => 'CHỌN XE THEO NHU CẦU',
-                'instructions'  => 'Tiêu đề hiển thị ở đầu khối khi xem trên điện thoại (mặc định: CHỌN XE THEO NHU CẦU)',
-                'wrapper'       => array('width' => '50'),
+                'instructions' => 'Tiêu đề hiển thị ở đầu khối khi xem trên điện thoại (mặc định: CHỌN XE THEO NHU CẦU)',
+                'wrapper' => array('width' => '50'),
             ),
             array(
-                'key'           => 'field_needs_section_viewall_link',
-                'label'         => 'Link "Xem tất cả" trên Mobile',
-                'name'          => 'needs_section_viewall_link',
-                'type'          => 'text',
+                'key' => 'field_needs_section_viewall_link',
+                'label' => 'Link "Xem tất cả" trên Mobile',
+                'name' => 'needs_section_viewall_link',
+                'type' => 'text',
                 'default_value' => '/danh-muc-san-pham/xe-dap-tro-luc-dien/',
-                'instructions'  => 'Đường dẫn khi click "Xem tất cả →"',
-                'wrapper'       => array('width' => '50'),
+                'instructions' => 'Đường dẫn khi click "Xem tất cả →"',
+                'wrapper' => array('width' => '50'),
             ),
             array(
-                'key'          => 'field_home_user_needs',
-                'label'        => 'Danh sách nhu cầu sử dụng',
-                'name'         => 'home_user_needs',
-                'type'         => 'repeater',
+                'key' => 'field_home_user_needs',
+                'label' => 'Danh sách nhu cầu sử dụng',
+                'name' => 'home_user_needs',
+                'type' => 'repeater',
                 'instructions' => 'Thêm các nhu cầu xe (Desktop hiển thị 5 card ngang, Mobile tự động thành Swiper slide dọc).',
                 'button_label' => '+ Thêm nhu cầu',
-                'layout'       => 'row',
-                'sub_fields'   => array(
+                'layout' => 'row',
+                'sub_fields' => array(
                     array(
-                        'key'          => 'field_user_need_title',
-                        'label'        => 'Tiêu đề',
-                        'name'         => 'title',
-                        'type'         => 'text',
+                        'key' => 'field_user_need_title',
+                        'label' => 'Tiêu đề',
+                        'name' => 'title',
+                        'type' => 'text',
                         'instructions' => 'Ví dụ: Đi làm hằng ngày, Học sinh, sinh viên, Thể thao, khám phá...',
-                        'placeholder'  => 'Đi làm hằng ngày...',
-                        'required'     => 1,
-                        'wrapper'      => array('width' => '30'),
+                        'placeholder' => 'Đi làm hằng ngày...',
+                        'required' => 1,
+                        'wrapper' => array('width' => '30'),
                     ),
                     array(
-                        'key'          => 'field_user_need_desc',
-                        'label'        => 'Mô tả phụ (Desktop)',
-                        'name'         => 'desc',
-                        'type'         => 'text',
+                        'key' => 'field_user_need_desc',
+                        'label' => 'Mô tả phụ (Desktop)',
+                        'name' => 'desc',
+                        'type' => 'text',
                         'instructions' => 'Ví dụ: Gọn nhẹ, linh hoạt...',
-                        'placeholder'  => 'Mô tả ngắn...',
-                        'wrapper'      => array('width' => '30'),
+                        'placeholder' => 'Mô tả ngắn...',
+                        'wrapper' => array('width' => '30'),
                     ),
                     array(
-                        'key'          => 'field_user_need_link',
-                        'label'        => 'Đường dẫn liên kết',
-                        'name'         => 'link',
-                        'type'         => 'text',
+                        'key' => 'field_user_need_link',
+                        'label' => 'Đường dẫn liên kết',
+                        'name' => 'link',
+                        'type' => 'text',
                         'instructions' => 'Link danh mục sản phẩm khi click vào',
-                        'placeholder'  => 'https://... hoặc /danh-muc/...',
-                        'wrapper'      => array('width' => '40'),
+                        'placeholder' => 'https://... hoặc /danh-muc/...',
+                        'wrapper' => array('width' => '40'),
                     ),
                     array(
-                        'key'           => 'field_user_need_image',
-                        'label'         => 'Ảnh đại diện',
-                        'name'          => 'image',
-                        'type'          => 'image',
-                        'instructions'  => 'Chọn ảnh đại diện cho nhu cầu này',
+                        'key' => 'field_user_need_image',
+                        'label' => 'Ảnh đại diện',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'instructions' => 'Chọn ảnh đại diện cho nhu cầu này',
                         'return_format' => 'url',
-                        'preview_size'  => 'medium',
-                        'library'       => 'all',
-                        'wrapper'       => array('width' => '100'),
+                        'preview_size' => 'medium',
+                        'library' => 'all',
+                        'wrapper' => array('width' => '100'),
                     ),
                 ),
             ),
         ),
-        'location'              => $location,
-        'menu_order'            => 5,
-        'position'              => 'normal',
-        'style'                 => 'default',
-        'label_placement'       => 'top',
+        'location' => $location,
+        'menu_order' => 5,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
         'instruction_placement' => 'label',
     ));
 }
@@ -170,9 +170,11 @@ function gobike_render_user_needs_shortcode($atts)
         if (!empty($front_page_id)) {
             $rows = get_field('home_user_needs', $front_page_id);
             $custom_title = get_field('needs_section_title_mobile', $front_page_id);
-            if (!empty($custom_title)) $mobile_title = $custom_title;
+            if (!empty($custom_title))
+                $mobile_title = $custom_title;
             $custom_link = get_field('needs_section_viewall_link', $front_page_id);
-            if (!empty($custom_link)) $mobile_viewall = $custom_link;
+            if (!empty($custom_link))
+                $mobile_viewall = $custom_link;
         }
         if (empty($rows)) {
             $rows = get_field('home_user_needs');
@@ -195,12 +197,15 @@ function gobike_render_user_needs_shortcode($atts)
     ?>
     <!-- CHỈ 1 KHỐI DUY NHẤT: TỰ ĐỘNG CHUYỂN ĐỔI LAYOUT THEO THIẾT BỊ -->
     <div class="gobike-user-needs-unified <?php echo esc_attr($atts['class']); ?>">
-        
+
         <!-- Header: Chỉ hiển thị trên Mobile/Tablet -->
         <div class="gobike-needs-header">
             <h3 class="needs-main-title"><?php echo esc_html($mobile_title); ?></h3>
             <a href="<?php echo esc_url($mobile_viewall); ?>" class="needs-viewall-link">
-                Xem tất cả <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Xem tất cả <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
             </a>
         </div>
 
@@ -209,12 +214,15 @@ function gobike_render_user_needs_shortcode($atts)
             <div class="swiper-wrapper">
                 <?php foreach ($rows as $item):
                     $title = !empty($item['title']) ? trim($item['title']) : '';
-                    if (empty($title)) continue;
-                    $desc  = !empty($item['desc']) ? trim($item['desc']) : '';
-                    $link  = !empty($item['link']) ? trim($item['link']) : '#';
-                    $img   = !empty($item['image']) ? $item['image'] : '';
-                    if (is_array($img) && isset($img['url'])) $img = $img['url'];
-                    elseif (is_numeric($img)) $img = wp_get_attachment_image_url($img, 'medium');
+                    if (empty($title))
+                        continue;
+                    $desc = !empty($item['desc']) ? trim($item['desc']) : '';
+                    $link = !empty($item['link']) ? trim($item['link']) : '#';
+                    $img = !empty($item['image']) ? $item['image'] : '';
+                    if (is_array($img) && isset($img['url']))
+                        $img = $img['url'];
+                    elseif (is_numeric($img))
+                        $img = wp_get_attachment_image_url($img, 'medium');
 
                     $svg_icon = gobike_get_need_icon_svg($title);
                     ?>
@@ -254,7 +262,8 @@ function gobike_render_user_needs_shortcode($atts)
             }
 
             .gobike-needs-header {
-                display: none; /* Ẩn trên desktop */
+                display: none;
+                /* Ẩn trên desktop */
                 justify-content: space-between;
                 align-items: center;
                 gap: 10px;
@@ -293,9 +302,9 @@ function gobike_render_user_needs_shortcode($atts)
             }
 
             /* =================================================================
-               1. GIAO DIỆN DESKTOP (MÀN HÌNH >= 850px): CHUẨN ẢNH 1
-               Card ngang 5 cột, ảnh vuông 48px bên trái, chữ bên phải
-               ================================================================= */
+                   1. GIAO DIỆN DESKTOP (MÀN HÌNH >= 850px): CHUẨN ẢNH 1
+                   Card ngang 5 cột, ảnh vuông 48px bên trái, chữ bên phải
+                   ================================================================= */
             @media screen and (min-width: 850px) {
                 .gobike-needs-swiper .swiper-wrapper {
                     display: grid !important;
@@ -315,7 +324,7 @@ function gobike_render_user_needs_shortcode($atts)
                     background: #ffffff !important;
                     border: 1px solid #e2e8f0 !important;
                     border-radius: 12px !important;
-                    padding: 10px 14px !important;
+                    padding: 8px !important;
                     display: flex !important;
                     flex-direction: row !important;
                     align-items: center !important;
@@ -350,7 +359,7 @@ function gobike_render_user_needs_shortcode($atts)
                     height: 60px;
                     max-width: 60px;
                     max-height: 60px;
-                    object-fit: contain;
+                    object-fit: cover;
                     border-radius: 8px;
                     display: block;
                 }
@@ -362,7 +371,8 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 .need-icon-bubble {
-                    display: none !important; /* Ẩn icon tròn trên Desktop */
+                    display: none !important;
+                    /* Ẩn icon tròn trên Desktop */
                 }
 
                 .need-title {
@@ -400,9 +410,9 @@ function gobike_render_user_needs_shortcode($atts)
             }
 
             /* =================================================================
-               2. GIAO DIỆN MOBILE & TABLET (< 850px): CHUẨN ẢNH 2
-               Swiper trượt card dọc có ảnh trên, vòm icon dưới, dots
-               ================================================================= */
+                   2. GIAO DIỆN MOBILE & TABLET (< 850px): CHUẨN ẢNH 2
+                   Swiper trượt card dọc có ảnh trên, vòm icon dưới, dots
+                   ================================================================= */
             @media screen and (max-width: 849px) {
                 .gobike-needs-header {
                     display: flex !important;
@@ -491,7 +501,8 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 .need-desc {
-                    display: none !important; /* Ẩn mô tả trên mobile theo đúng ảnh mẫu 2 */
+                    display: none !important;
+                    /* Ẩn mô tả trên mobile theo đúng ảnh mẫu 2 */
                 }
 
                 .gobike-needs-dots {
@@ -526,17 +537,17 @@ function gobike_render_user_needs_shortcode($atts)
 
     <!-- Script Swiper chỉ chạy trên màn hình Mobile/Tablet (< 850px) -->
     <script type="text/javascript">
-        (function($) {
+        (function ($) {
             function initGobikeNeedsSwiper() {
                 if ($(window).width() >= 850) return; // Desktop không chạy slider, dùng Grid 5 cột
                 if ($('.gobike-needs-swiper').length === 0) return;
-                
+
                 function runSwiper() {
                     if (typeof Swiper === 'undefined') return;
-                    $('.gobike-needs-swiper').each(function() {
+                    $('.gobike-needs-swiper').each(function () {
                         var $el = $(this);
                         if ($el.data('swiper-initialized')) return;
-                        
+
                         var needsSwiper = new Swiper($el[0], {
                             slidesPerView: 2.2,
                             spaceBetween: 8,
@@ -562,7 +573,7 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 if (typeof Swiper === 'undefined') {
-                    $.getScript('https://unpkg.com/swiper/swiper-bundle.min.js', function() {
+                    $.getScript('https://unpkg.com/swiper/swiper-bundle.min.js', function () {
                         runSwiper();
                     });
                 } else {
@@ -570,11 +581,11 @@ function gobike_render_user_needs_shortcode($atts)
                 }
             }
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 initGobikeNeedsSwiper();
                 setTimeout(initGobikeNeedsSwiper, 300);
             });
-            $(window).on('load resize', function() {
+            $(window).on('load resize', function () {
                 initGobikeNeedsSwiper();
             });
         })(jQuery);
