@@ -5798,6 +5798,71 @@ function gobike_custom_styles_output()
                     font-size: 11.5px !important;
                 }
             }
+
+            /* ==========================================================================
+               KHỐI ICON BOX TÙY BIẾN (.vp-icon-box-custom)
+               - Căn giữa chiều ngang và dọc (justify-content & align-items: center)
+               - Thu nhỏ văn bản khi về Tablet và Mobile
+               ========================================================================== */
+            .vp-icon-box-custom {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                margin-bottom: 0 !important;
+            }
+
+            .vp-icon-box-custom .icon-box-text {
+                padding: 0 !important;
+                flex: 0 1 auto !important;
+            }
+
+            .vp-icon-box-custom .text h3,
+            .vp-icon-box-custom h3 {
+                margin: 0 !important;
+                line-height: 1.2 !important;
+                letter-spacing: 0.2px !important;
+            }
+
+            /* Tablet (<= 849px): Thu nhỏ văn bản và icon */
+            @media screen and (max-width: 849px) {
+                .vp-icon-box-custom {
+                    gap: 6px !important;
+                }
+
+                .vp-icon-box-custom .icon-box-img {
+                    width: 32px !important;
+                    min-width: 32px !important;
+                    max-width: 32px !important;
+                }
+
+                .vp-icon-box-custom .text,
+                .vp-icon-box-custom .text h3,
+                .vp-icon-box-custom h3 {
+                    font-size: 0.65rem !important;
+                    line-height: 1.2 !important;
+                }
+            }
+
+            /* Mobile (<= 549px): Thu nhỏ văn bản hơn nữa gọn gàng */
+            @media screen and (max-width: 549px) {
+                .vp-icon-box-custom {
+                    gap: 4px !important;
+                }
+
+                .vp-icon-box-custom .icon-box-img {
+                    width: 26px !important;
+                    min-width: 26px !important;
+                    max-width: 26px !important;
+                }
+
+                .vp-icon-box-custom .text,
+                .vp-icon-box-custom .text h3,
+                .vp-icon-box-custom h3 {
+                    font-size: 0.56rem !important;
+                    line-height: 1.15 !important;
+                    white-space: nowrap !important;
+                }
+            }
     </style>
     <?php
 }
