@@ -601,18 +601,22 @@ function gobike_custom_styles_output()
 
         /* ==========================================================================
            KHỐI ICON CHIA SẺ MẠNG XÃ HỘI CHÂN TRANG MOBILE (.vp-footer-mobile .vp-social-share-links)
-           - Dùng Flexbox căn giữa, chia khoảng cách đều 20px
-           - Màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
+           - Dùng Flexbox có flex-wrap: wrap tự động rơi dòng khi không đủ chiều rộng
+           - Căn giữa các dòng, màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
            ========================================================================== */
         .vp-footer-mobile .vp-social-share-links,
         .vp-social-share-links {
             display: flex !important;
+            flex-flow: row wrap !important;
+            flex-wrap: wrap !important;
             align-items: center !important;
             justify-content: center !important;
-            gap: 20px !important;
+            gap: 12px 16px !important;
             margin: 15px auto !important;
             padding: 0 !important;
             width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
         }
 
         .vp-footer-mobile .vp-social-share-links .social-item,
@@ -620,6 +624,7 @@ function gobike_custom_styles_output()
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
+            flex-shrink: 0 !important;
             width: 32px !important;
             height: 32px !important;
             color: #4b6584 !important;
