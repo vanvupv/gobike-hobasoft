@@ -5847,6 +5847,28 @@ function gobike_custom_styles_output()
                     gap: 4px !important;
                 }
             }
+
+            /* ==========================================================================
+               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (#section_1895392805)
+               - Bo góc tròn 2 đầu và đè lên banner phía trên (margin-top âm) để lộ 2 góc xanh
+               - Thêm đường vạch kẻ dọc ngăn cách giữa các cột chuẩn Ảnh 2
+               ========================================================================== */
+            #section_1895392805,
+            .vp-banner-sub-features {
+                background: #ffffff !important;
+                border-top-left-radius: 20px !important;
+                border-top-right-radius: 20px !important;
+                margin-top: -20px !important; /* Đè nhô lên banner xanh phía trên */
+                position: relative !important;
+                z-index: 10 !important;
+                padding-top: 15px !important;
+                padding-bottom: 20px !important;
+            }
+
+            #section_1895392805 .col:not(:last-child) .col-inner,
+            .vp-banner-sub-features .col:not(:last-child) .col-inner {
+                border-right: 1px solid #e5e7eb !important;
+            }
     </style>
     <?php
 }
