@@ -5943,15 +5943,12 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                   KHỐI ICON BOX CĂN TRÁI (.icon-box-left / .vp-icon-box-custom.icon-box-left)
+                   KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left)
                    - Tắt flex-flow: row wrap mặc định của Flatsome (chuyển sang row nowrap)
                    - Bố cục nằm ngang căn trái không bị rớt dòng chữ xuống dưới icon
                    - Tiêu đề tối đa 2 dòng, mô tả tối đa 2 dòng (chuẩn Ảnh 2)
                    ========================================================================== */
-            .icon-box-left,
-            .icon-box.icon-box-left,
-            .vp-icon-box-custom.icon-box-left,
-            .vp-icon-box-custom.text-left {
+            .vp-icon-box-custom.icon-box-left {
                 display: flex !important;
                 flex-direction: row !important;
                 flex-flow: row nowrap !important;
@@ -5968,13 +5965,11 @@ function gobike_custom_styles_output()
                 box-sizing: border-box !important;
             }
 
-            .vp-icon-box-custom.icon-box-left:last-child,
-            .vp-icon-box-custom.text-left:last-child {
+            .vp-icon-box-custom.icon-box-left:last-child {
                 margin-bottom: 0 !important;
             }
 
-            .vp-icon-box-custom.icon-box-left .icon-box-img,
-            .vp-icon-box-custom.text-left .icon-box-img {
+            .vp-icon-box-custom.icon-box-left .icon-box-img {
                 flex: 0 0 28px !important;
                 width: 28px !important;
                 max-width: 28px !important;
@@ -5982,8 +5977,7 @@ function gobike_custom_styles_output()
                 margin: 0 !important;
             }
 
-            .vp-icon-box-custom.icon-box-left .icon-box-text,
-            .vp-icon-box-custom.text-left .icon-box-text {
+            .vp-icon-box-custom.icon-box-left .icon-box-text {
                 flex: 1 1 auto !important;
                 min-width: 0 !important;
                 text-align: left !important;
@@ -5993,9 +5987,7 @@ function gobike_custom_styles_output()
 
             /* Tiêu đề: Tối đa 2 dòng, ngắt theo từ chuẩn */
             .vp-icon-box-custom.icon-box-left .icon-box-text h3,
-            .vp-icon-box-custom.icon-box-left h3,
-            .vp-icon-box-custom.text-left .icon-box-text h3,
-            .vp-icon-box-custom.text-left h3 {
+            .vp-icon-box-custom.icon-box-left h3 {
                 display: -webkit-box !important;
                 -webkit-line-clamp: 2 !important;
                 -webkit-box-orient: vertical !important;
@@ -6011,9 +6003,7 @@ function gobike_custom_styles_output()
 
             /* Mô tả: Giữ cụm từ "1 showroom" liền khối trên 1 dòng, không ngắt đôi cộc lốc */
             .vp-icon-box-custom.icon-box-left .icon-box-text p,
-            .vp-icon-box-custom.icon-box-left p,
-            .vp-icon-box-custom.text-left .icon-box-text p,
-            .vp-icon-box-custom.text-left p {
+            .vp-icon-box-custom.icon-box-left p {
                 font-size: 11.5px !important;
                 line-height: 1.25 !important;
                 text-align: left !important;
@@ -6026,9 +6016,7 @@ function gobike_custom_styles_output()
 
             /* Tablet & Mobile (<= 849px): Giữ nguyên bố cục ngang căn trái và khoảng cách gọn */
             @media screen and (max-width: 849px) {
-
-                .vp-icon-box-custom.icon-box-left,
-                .vp-icon-box-custom.text-left {
+                .vp-icon-box-custom.icon-box-left {
                     flex-direction: row !important;
                     justify-content: flex-start !important;
                     align-items: center !important;
@@ -6037,14 +6025,107 @@ function gobike_custom_styles_output()
                     padding: 6px 8px !important;
                 }
 
-                .vp-icon-box-custom.icon-box-left .icon-box-img,
-                .vp-icon-box-custom.text-left .icon-box-img {
+                .vp-icon-box-custom.icon-box-left .icon-box-img {
                     margin: 0 !important;
                 }
 
-                .vp-icon-box-custom.icon-box-left .icon-box-text,
-                .vp-icon-box-custom.text-left .icon-box-text {
+                .vp-icon-box-custom.icon-box-left .icon-box-text {
                     text-align: left !important;
+                }
+            }
+
+            /* ==========================================================================
+               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (.vp-banner-sub-features / #section_1127472381)
+               - Chuẩn giao diện: Card viền bo góc, nền trắng, icon tròn xanh nằm ngang cùng chữ
+               - Cân đối trên 1 hàng 3 cột, hiển thị sắc nét
+               ========================================================================== */
+            .vp-banner-sub-features .vp-row-custom {
+                display: flex !important;
+                flex-flow: row wrap !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+            }
+
+            .vp-banner-sub-features .vp-row-custom > .col.medium-4,
+            .vp-banner-sub-features .vp-row-custom > .col.small-4 {
+                flex: 1 1 0 !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                padding: 0 !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 8px !important;
+                padding: 8px 10px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 8px !important;
+                height: 100% !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+                transition: all 0.2s ease !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom:hover {
+                border-color: #cbd5e1 !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom .icon-box-img {
+                width: 32px !important;
+                min-width: 32px !important;
+                max-width: 32px !important;
+                height: 32px !important;
+                margin: 0 !important;
+                flex-shrink: 0 !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom .icon-box-img img,
+            .vp-banner-sub-features .vp-icon-box-custom .icon-inner img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                display: block !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom .icon-box-text {
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+                text-align: left !important;
+                padding: 0 !important;
+            }
+
+            .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
+                font-size: 11.5px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                line-height: 1.2 !important;
+                margin: 0 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+
+            @media screen and (min-width: 550px) {
+                .vp-banner-sub-features .vp-row-custom {
+                    gap: 12px !important;
+                }
+                .vp-banner-sub-features .vp-icon-box-custom {
+                    padding: 10px 14px !important;
+                    gap: 10px !important;
+                }
+                .vp-banner-sub-features .vp-icon-box-custom .icon-box-img {
+                    width: 38px !important;
+                    min-width: 38px !important;
+                    max-width: 38px !important;
+                    height: 38px !important;
+                }
+                .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
+                    font-size: 13.5px !important;
                 }
             }
 
