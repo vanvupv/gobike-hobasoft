@@ -5802,6 +5802,7 @@ function gobike_custom_styles_output()
             /* ==========================================================================
                KHỐI ICON BOX TÙY BIẾN (.vp-icon-box-custom)
                - Căn giữa chiều ngang và dọc (justify-content & align-items: center)
+               - Icon chỉnh tự do bằng Flatsome UX Builder (không can thiệp bằng CSS)
                - Thu nhỏ văn bản khi về Tablet và Mobile
                ========================================================================== */
             .vp-icon-box-custom {
@@ -5823,16 +5824,10 @@ function gobike_custom_styles_output()
                 letter-spacing: 0.2px !important;
             }
 
-            /* Tablet (<= 849px): Thu nhỏ văn bản và icon */
+            /* Tablet (<= 849px): Thu nhỏ văn bản */
             @media screen and (max-width: 849px) {
                 .vp-icon-box-custom {
                     gap: 6px !important;
-                }
-
-                .vp-icon-box-custom .icon-box-img {
-                    width: 32px !important;
-                    min-width: 32px !important;
-                    max-width: 32px !important;
                 }
 
                 .vp-icon-box-custom .text,
@@ -5847,12 +5842,6 @@ function gobike_custom_styles_output()
             @media screen and (max-width: 549px) {
                 .vp-icon-box-custom {
                     gap: 4px !important;
-                }
-
-                .vp-icon-box-custom .icon-box-img {
-                    width: 26px !important;
-                    min-width: 26px !important;
-                    max-width: 26px !important;
                 }
 
                 .vp-icon-box-custom .text,
