@@ -5827,14 +5827,19 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-               KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left / .text-left)
-               - Bố cục nằm ngang căn trái (icon bên trái, văn bản bên phải)
+               KHỐI ICON BOX CĂN TRÁI (.icon-box-left / .vp-icon-box-custom.icon-box-left)
+               - Tắt flex-flow: row wrap mặc định của Flatsome (chuyển sang row nowrap)
+               - Bố cục nằm ngang căn trái không bị rớt dòng chữ xuống dưới icon
                - Tiêu đề tối đa 2 dòng, mô tả tối đa 2 dòng (chuẩn Ảnh 2)
                ========================================================================== */
+            .icon-box-left,
+            .icon-box.icon-box-left,
             .vp-icon-box-custom.icon-box-left,
             .vp-icon-box-custom.text-left {
                 display: flex !important;
                 flex-direction: row !important;
+                flex-flow: row nowrap !important;
+                flex-wrap: nowrap !important;
                 justify-content: flex-start !important;
                 align-items: center !important;
                 text-align: left !important;
