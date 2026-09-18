@@ -257,6 +257,7 @@ function gobike_render_user_needs_shortcode($atts)
                 display: none; /* Ẩn trên desktop */
                 justify-content: space-between;
                 align-items: center;
+                gap: 10px;
                 margin-bottom: 14px;
             }
 
@@ -277,6 +278,8 @@ function gobike_render_user_needs_shortcode($atts)
                 align-items: center !important;
                 gap: 4px !important;
                 text-decoration: none !important;
+                white-space: nowrap !important;
+                flex-shrink: 0 !important;
             }
 
             .gobike-needs-swiper {
@@ -536,7 +539,7 @@ function gobike_render_user_needs_shortcode($atts)
                         
                         var needsSwiper = new Swiper($el[0], {
                             slidesPerView: 2.2,
-                            spaceBetween: 12,
+                            spaceBetween: 8,
                             speed: 400,
                             grabCursor: true,
                             pagination: {
@@ -546,11 +549,11 @@ function gobike_render_user_needs_shortcode($atts)
                             breakpoints: {
                                 550: {
                                     slidesPerView: 3.2,
-                                    spaceBetween: 14,
+                                    spaceBetween: 8,
                                 },
                                 768: {
                                     slidesPerView: 4,
-                                    spaceBetween: 16,
+                                    spaceBetween: 8,
                                 }
                             }
                         });
