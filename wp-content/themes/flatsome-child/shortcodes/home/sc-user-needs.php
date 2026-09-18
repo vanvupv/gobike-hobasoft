@@ -249,11 +249,8 @@ function gobike_render_user_needs_shortcode($atts)
         <!-- CSS ĐÓNG GÓI TRỰC TIẾP TRONG SHORTCODE ĐẢM BẢO ĂN 100% KHÔNG BAO GIỜ BỊ ĐÈ -->
         <style>
             .gobike-user-needs-unified {
-                max-width: 1230px;
-                margin: 20px auto 30px auto;
                 width: 100%;
                 box-sizing: border-box;
-                padding: 0 15px;
             }
 
             .gobike-needs-header {
