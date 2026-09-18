@@ -5867,6 +5867,56 @@ function gobike_custom_styles_output()
                 /* padding-top: 15px !important; */
                 /* padding-bottom: 20px !important; */
             }
+
+            /* ==========================================================================
+               NÚT "KHÁM PHÁ NGAY" TRÊN MOBILE (.gobike-btn-explore)
+               - Định hình kích thước hoàn toàn bằng padding (không dùng height/min-height)
+               - Bo tròn dạng viên thuốc và gradient xanh lá GoBike
+               ========================================================================== */
+            .gobike-btn-explore-wrap {
+                width: 100%;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding: 14px 15px 5px 15px !important;
+                box-sizing: border-box !important;
+            }
+
+            .gobike-btn-explore {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                width: 100% !important;
+                max-width: 380px !important;
+                padding: 11px 24px !important;
+                background: linear-gradient(180deg, #0d7030 0%, #064e20 100%) !important;
+                color: #ffffff !important;
+                font-size: 13.5px !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.5px !important;
+                text-transform: uppercase !important;
+                text-decoration: none !important;
+                border-radius: 999px !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                box-sizing: border-box !important;
+                transition: all 0.25s ease !important;
+            }
+
+            .gobike-btn-explore svg {
+                flex-shrink: 0 !important;
+                transition: transform 0.25s ease !important;
+            }
+
+            .gobike-btn-explore:hover,
+            .gobike-btn-explore:active {
+                background: linear-gradient(180deg, #0f7e36 0%, #095925 100%) !important;
+                color: #ffffff !important;
+            }
+
+            .gobike-btn-explore:hover svg {
+                transform: translateX(4px) !important;
+            }
     </style>
     <?php
 }
