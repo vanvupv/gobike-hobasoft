@@ -468,8 +468,10 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                       4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
-                                                                                                                                       ========================================================================== */
+           4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
+           - Giao diện form đăng ký nhận tin dạng viên thuốc (Pill shape)
+           - Nút bấm gradient xanh lá cây GoBike
+           ========================================================================== */
         .footer-wrapper .wpcf7 {
             display: flex;
             justify-content: center;
@@ -485,63 +487,107 @@ function gobike_custom_styles_output()
             width: 100%;
         }
 
+        .gobike-newsletter-pill,
         .newsletter-input-group {
-            width: 100%;
-            max-width: 405px;
+            display: flex !important;
+            align-items: center !important;
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 999px !important;
+            padding: 3px 3px 3px 18px !important;
+            width: 100% !important;
+            max-width: 480px !important;
+            box-sizing: border-box !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+            margin: 0 auto !important;
+            position: relative !important;
         }
 
+        .gobike-newsletter-pill p,
         .newsletter-input-group p {
-            display: flex;
-            align-items: stretch;
-            width: 100%;
-            margin: 0;
-            padding: 0;
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
+        .gobike-newsletter-pill .wpcf7-form-control-wrap,
         .newsletter-input-group .wpcf7-form-control-wrap {
-            flex: 1;
-            min-width: 0;
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            display: block !important;
         }
 
-        .newsletter-input-group .newsletter-email {
-            display: block;
-            width: 100%;
-            height: 40px;
-            padding: 0 10px;
-            border: 1px solid #ddd;
-            border-right: none;
-            border-radius: 3px 0 0 3px;
-            background: #fff;
-            color: #333;
-            font-size: 13px;
-            box-sizing: border-box;
-            outline: none;
+        .gobike-newsletter-pill input.gobike-newsletter-input,
+        .gobike-newsletter-pill input[type="email"],
+        .newsletter-input-group .newsletter-email,
+        .newsletter-input-group input[type="email"] {
+            width: 100% !important;
+            border: none !important;
+            outline: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 8px 10px 8px 0 !important;
+            margin: 0 !important;
+            height: auto !important;
+            min-height: auto !important;
+            font-size: 13.5px !important;
+            color: #1e293b !important;
+            box-sizing: border-box !important;
         }
 
-        .newsletter-input-group .newsletter-email::placeholder {
-            color: #999;
+        .gobike-newsletter-pill input.gobike-newsletter-input::placeholder,
+        .gobike-newsletter-pill input[type="email"]::placeholder,
+        .newsletter-input-group .newsletter-email::placeholder,
+        .newsletter-input-group input[type="email"]::placeholder {
+            color: #94a3b8 !important;
+            font-weight: 400 !important;
         }
 
-        .newsletter-input-group .newsletter-submit {
-            flex: 0 0 90px;
-            width: 90px;
-            height: 40px;
-            padding: 0 10px;
-            border: 0;
-            border-radius: 0 3px 3px 0;
-            background: #149d29;
-            color: #fff;
-            font-size: 13px;
-            cursor: pointer;
-            box-sizing: border-box;
+        .gobike-newsletter-pill input.gobike-newsletter-submit,
+        .gobike-newsletter-pill input[type="submit"],
+        .newsletter-input-group .newsletter-submit,
+        .newsletter-input-group input[type="submit"] {
+            flex-shrink: 0 !important;
+            border: none !important;
+            outline: none !important;
+            border-radius: 999px !important;
+            background: linear-gradient(180deg, #0d7030 0%, #064e20 100%) !important;
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            padding: 9px 24px !important;
+            margin: 0 !important;
+            height: auto !important;
+            min-height: auto !important;
+            cursor: pointer !important;
+            transition: all 0.25s ease !important;
+            box-shadow: 0 2px 6px rgba(13, 112, 48, 0.25) !important;
         }
 
-        .newsletter-input-group .newsletter-submit:hover {
-            background: #c00000;
+        .gobike-newsletter-pill input.gobike-newsletter-submit:hover,
+        .gobike-newsletter-pill input[type="submit"]:hover,
+        .newsletter-input-group .newsletter-submit:hover,
+        .newsletter-input-group input[type="submit"]:hover {
+            background: linear-gradient(180deg, #0f7e36 0%, #085623 100%) !important;
+            box-shadow: 0 4px 10px rgba(13, 112, 48, 0.35) !important;
         }
 
+        .gobike-newsletter-pill .wpcf7-spinner,
         .newsletter-input-group .wpcf7-spinner {
-            display: none;
+            display: none !important;
+        }
+
+        .wpcf7 form.sent .wpcf7-response-output,
+        .wpcf7 form.invalid .wpcf7-response-output {
+            border-radius: 8px !important;
+            font-size: 13px !important;
+            margin: 8px 0 0 0 !important;
+            padding: 8px 12px !important;
         }
 
         /* ==========================================================================
