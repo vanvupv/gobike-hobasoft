@@ -1,85 +1,175 @@
 <?php
 /**
  * Shortcode: Khối Phân Loại Theo Nhu Cầu Sử Dụng (GoBike User Needs)
+ * Dữ liệu được quản lý động qua ACF tại Trang Chủ.
  * Cú pháp dùng trong Flatsome UX Builder: [gobike_user_needs]
- * Tự động hiển thị 5 card trên Desktop, tự động trượt Slide trên Mobile/Tablet.
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
+/**
+ * 1. Đăng ký nhóm trường ACF cho Trang Chủ
+ */
+add_action('acf/init', 'gobike_register_user_needs_acf_fields');
+function gobike_register_user_needs_acf_fields()
+{
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $front_page_id = get_option('page_on_front');
+
+    $location = array(
+        array(
+            array(
+                'param'    => 'page_type',
+                'operator' => '==',
+                'value'    => 'front_page',
+            ),
+        ),
+    );
+
+    if (!empty($front_page_id)) {
+        $location[] = array(
+            array(
+                'param'    => 'page',
+                'operator' => '==',
+                'value'    => strval($front_page_id),
+            ),
+        );
+    }
+
+    acf_add_local_field_group(array(
+        'key'                   => 'group_gobike_user_needs',
+        'title'                 => '[Trang chủ] Danh mục xe theo Nhu cầu sử dụng',
+        'fields'                => array(
+            array(
+                'key'          => 'field_home_user_needs',
+                'label'        => 'Danh sách nhu cầu sử dụng',
+                'name'         => 'home_user_needs',
+                'type'         => 'repeater',
+                'instructions' => 'Thêm các khối nhu cầu sử dụng hiển thị trên trang chủ (khuyên dùng 5 khối). Hiển thị 5 cột trên Máy tính và dạng Slide trượt trên Mobile.',
+                'button_label' => '+ Thêm nhu cầu',
+                'layout'       => 'table',
+                'sub_fields'   => array(
+                    array(
+                        'key'           => 'field_user_need_image',
+                        'label'         => 'Ảnh / Icon đại diện',
+                        'name'          => 'image',
+                        'type'          => 'image',
+                        'instructions'  => 'Chọn ảnh vuông hoặc icon',
+                        'return_format' => 'url',
+                        'preview_size'  => 'thumbnail',
+                        'library'       => 'all',
+                        'wrapper'       => array('width' => '25'),
+                    ),
+                    array(
+                        'key'          => 'field_user_need_title',
+                        'label'        => 'Tiêu đề',
+                        'name'         => 'title',
+                        'type'         => 'text',
+                        'instructions' => 'Ví dụ: Đi làm hằng ngày, Học sinh - Sinh viên...',
+                        'placeholder'  => 'Tiêu đề nhu cầu...',
+                        'required'     => 1,
+                        'wrapper'      => array('width' => '30'),
+                    ),
+                    array(
+                        'key'          => 'field_user_need_desc',
+                        'label'        => 'Mô tả phụ',
+                        'name'         => 'desc',
+                        'type'         => 'text',
+                        'instructions' => 'Ví dụ: Gọn nhẹ, linh hoạt...',
+                        'placeholder'  => 'Mô tả ngắn...',
+                        'wrapper'      => array('width' => '25'),
+                    ),
+                    array(
+                        'key'          => 'field_user_need_link',
+                        'label'        => 'Đường dẫn liên kết',
+                        'name'         => 'link',
+                        'type'         => 'text',
+                        'instructions' => 'Link danh mục sản phẩm khi click vào',
+                        'placeholder'  => 'https://... hoặc /danh-muc/...',
+                        'wrapper'      => array('width' => '20'),
+                    ),
+                ),
+            ),
+        ),
+        'location'              => $location,
+        'menu_order'            => 5,
+        'position'              => 'normal',
+        'style'                 => 'default',
+        'label_placement'       => 'top',
+        'instruction_placement' => 'label',
+    ));
+}
+
+/**
+ * 2. Render Shortcode [gobike_user_needs]
+ */
 function gobike_render_user_needs_shortcode($atts)
 {
     $atts = shortcode_atts(array(
         'class' => '',
     ), $atts, 'gobike_user_needs');
 
-    // Danh sách 5 nhu cầu sử dụng chuẩn thiết kế
-    $items = array(
-        array(
-            'title' => 'Đi làm hàng ngày',
-            'desc'  => 'Gọn nhẹ, linh hoạt',
-            'link'  => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/?nhu-cau=di-lam-di-hoc'),
-            'type'  => 'svg',
-            'img'   => '',
-        ),
-        array(
-            'title' => 'Học sinh – Sinh viên',
-            'desc'  => 'Bền bỉ, dễ sử dụng',
-            'link'  => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/?nhu-cau=hoc-sinh-sinh-vien'),
-            'type'  => 'img',
-            'img'   => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/2375.jpg',
-        ),
-        array(
-            'title' => 'Thể thao – Khám phá',
-            'desc'  => 'Mạnh mẽ, chinh phục',
-            'link'  => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/xe-dap-tro-luc-dia-hinh/'),
-            'type'  => 'img',
-            'img'   => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-the-thao-tro-luc-dien-Phoenix-999.webp',
-        ),
-        array(
-            'title' => 'Du lịch – Dã ngoại',
-            'desc'  => 'Tự do, trải nghiệm',
-            'link'  => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/?nhu-cau=du-lich-da-ngoai'),
-            'type'  => 'img',
-            'img'   => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-2.jpg',
-        ),
-        array(
-            'title' => 'Người lớn tuổi',
-            'desc'  => 'An toàn, thoải mái',
-            'link'  => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/?nhu-cau=cho-nguoi-lon-tuoi'),
-            'type'  => 'img',
-            'img'   => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-        ),
-    );
+    $front_page_id = get_option('page_on_front');
+    $rows = false;
+
+    if (function_exists('get_field')) {
+        if (!empty($front_page_id)) {
+            $rows = get_field('home_user_needs', $front_page_id);
+        }
+        if (empty($rows)) {
+            $rows = get_field('home_user_needs');
+        }
+        if (empty($rows)) {
+            $rows = get_field('home_user_needs', 'option');
+        }
+    }
+
+    // Bỏ hết dữ liệu mẫu theo yêu cầu: nếu chưa có dữ liệu thì không hiển thị
+    if (empty($rows) || !is_array($rows)) {
+        if (current_user_can('manage_options') && is_user_logged_in()) {
+            return '<div style="padding:15px; background:#fff; border:1px dashed #f59e0b; border-radius:8px; margin:15px 0; text-align:center; color:#b45309; font-size:13px;">'
+                . '<strong>[GoBike User Needs]</strong> Chưa có dữ liệu. Vui lòng vào <em>Trang quản trị > Trang > Chỉnh sửa Trang Chủ</em> và nhập dữ liệu trong mục <strong>[Trang chủ] Danh mục xe theo Nhu cầu sử dụng</strong>.'
+                . '</div>';
+        }
+        return '';
+    }
 
     ob_start();
     ?>
     <div class="gobike-user-needs-container <?php echo esc_attr($atts['class']); ?>">
         <div class="gobike-needs-track">
-            <?php foreach ($items as $item): ?>
-                <a href="<?php echo esc_url($item['link']); ?>" class="gobike-need-card">
-                    <div class="gobike-need-thumb">
-                        <?php if ($item['type'] === 'svg'): ?>
-                            <svg class="gobike-need-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="17" cy="46" r="10" stroke="#149d29" stroke-width="3.5" />
-                                <circle cx="47" cy="46" r="10" stroke="#149d29" stroke-width="3.5" />
-                                <circle cx="17" cy="46" r="3" fill="#149d29" />
-                                <circle cx="47" cy="46" r="3" fill="#149d29" />
-                                <path d="M17 46L28 27L37 46H17Z" stroke="#149d29" stroke-width="3.5" stroke-linejoin="round" />
-                                <path d="M37 46L30 31L47 46" stroke="#149d29" stroke-width="3.5" stroke-linejoin="round" />
-                                <path d="M28 27L38 27L43 19" stroke="#149d29" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <circle cx="34" cy="14" r="4.5" fill="#149d29" />
-                                <path d="M41 19H48" stroke="#149d29" stroke-width="3.5" stroke-linecap="round" />
-                            </svg>
-                        <?php else: ?>
-                            <img src="<?php echo esc_url($item['img']); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy" />
-                        <?php endif; ?>
-                    </div>
+            <?php foreach ($rows as $item):
+                $title = !empty($item['title']) ? trim($item['title']) : '';
+                if (empty($title)) {
+                    continue;
+                }
+                $desc = !empty($item['desc']) ? trim($item['desc']) : '';
+                $link = !empty($item['link']) ? trim($item['link']) : '#';
+                $img  = !empty($item['image']) ? $item['image'] : '';
+
+                // Xử lý nếu ACF trả về ID hoặc Array
+                if (is_array($img) && isset($img['url'])) {
+                    $img = $img['url'];
+                } elseif (is_numeric($img)) {
+                    $img = wp_get_attachment_image_url($img, 'thumbnail');
+                }
+                ?>
+                <a href="<?php echo esc_url($link); ?>" class="gobike-need-card">
+                    <?php if (!empty($img)): ?>
+                        <div class="gobike-need-thumb">
+                            <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" />
+                        </div>
+                    <?php endif; ?>
                     <div class="gobike-need-info">
-                        <h4 class="gobike-need-title"><?php echo esc_html($item['title']); ?></h4>
-                        <span class="gobike-need-desc"><?php echo esc_html($item['desc']); ?></span>
+                        <h4 class="gobike-need-title"><?php echo esc_html($title); ?></h4>
+                        <?php if (!empty($desc)): ?>
+                            <span class="gobike-need-desc"><?php echo esc_html($desc); ?></span>
+                        <?php endif; ?>
                     </div>
                 </a>
             <?php endforeach; ?>
