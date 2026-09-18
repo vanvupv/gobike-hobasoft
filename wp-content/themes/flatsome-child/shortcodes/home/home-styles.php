@@ -5801,9 +5801,8 @@ function gobike_custom_styles_output()
 
             /* ==========================================================================
                KHỐI ICON BOX TÙY BIẾN (.vp-icon-box-custom)
-               - Căn giữa chiều ngang và dọc (justify-content & align-items: center)
-               - Icon chỉnh tự do bằng Flatsome UX Builder (không can thiệp bằng CSS)
-               - Thu nhỏ văn bản khi về Tablet và Mobile
+               - Chỉ kiểm soát đúng vị trí (flex layout) và khoảng cách (gap, margin, padding)
+               - Hình ảnh và văn bản chỉnh 100% bằng Flatsome UX Builder
                ========================================================================== */
             .vp-icon-box-custom {
                 display: flex !important;
@@ -5814,20 +5813,19 @@ function gobike_custom_styles_output()
 
             .vp-icon-box-custom .icon-box-text {
                 padding: 0 !important;
-                flex: 0 1 auto !important;
             }
 
-            .vp-icon-box-custom .text h3,
+            .vp-icon-box-custom .icon-box-text .text,
             .vp-icon-box-custom h3 {
                 margin: 0 !important;
-                line-height: 1.2 !important;
-                letter-spacing: 0.2px !important;
             }
 
-            /* Tablet (<= 849px): Icon ở trên, văn bản rơi xuống dưới căn giữa */
+            /* Tablet (<= 849px): Icon ở trên, văn bản ở dưới căn giữa, khoảng cách 6px */
             @media screen and (max-width: 849px) {
                 .vp-icon-box-custom {
                     flex-direction: column !important;
+                    justify-content: center !important;
+                    align-items: center !important;
                     text-align: center !important;
                     gap: 6px !important;
                 }
@@ -5838,45 +5836,15 @@ function gobike_custom_styles_output()
 
                 .vp-icon-box-custom .icon-box-text {
                     text-align: center !important;
-                    width: 100% !important;
-                }
-
-                .vp-icon-box-custom .text,
-                .vp-icon-box-custom .text h3,
-                .vp-icon-box-custom h3 {
-                    font-size: 0.7rem !important;
-                    line-height: 1.25 !important;
-                    text-align: center !important;
-                    white-space: normal !important;
-                    word-break: break-word !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
                 }
             }
 
-            /* Mobile (<= 549px): Tối ưu khoảng cách và kích thước chữ trên điện thoại */
+            /* Mobile (<= 549px): Khoảng cách 4px */
             @media screen and (max-width: 549px) {
                 .vp-icon-box-custom {
-                    flex-direction: column !important;
-                    text-align: center !important;
                     gap: 4px !important;
-                }
-
-                .vp-icon-box-custom .icon-box-img {
-                    margin: 0 auto !important;
-                }
-
-                .vp-icon-box-custom .icon-box-text {
-                    text-align: center !important;
-                    width: 100% !important;
-                }
-
-                .vp-icon-box-custom .text,
-                .vp-icon-box-custom .text h3,
-                .vp-icon-box-custom h3 {
-                    font-size: 0.62rem !important;
-                    line-height: 1.2 !important;
-                    text-align: center !important;
-                    white-space: normal !important;
-                    word-break: break-word !important;
                 }
             }
     </style>
