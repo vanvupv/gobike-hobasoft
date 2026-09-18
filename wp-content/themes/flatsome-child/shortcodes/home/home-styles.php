@@ -4974,11 +4974,6 @@ function gobike_custom_styles_output()
 
         @media (max-width: 849px) {
 
-            #row-1141733086,
-            .pv-row-custom {
-                padding: 12px !important;
-            }
-
             #row-1141733086 .tabbed-content>ul.nav,
             .pv-row-custom .tabbed-content>ul.nav {
                 gap: 8px !important;
