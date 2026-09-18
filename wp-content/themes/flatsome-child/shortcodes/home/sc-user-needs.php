@@ -2,6 +2,7 @@
 /**
  * Shortcode: Khối Phân Loại Theo Nhu Cầu Sử Dụng (GoBike User Needs)
  * Dữ liệu được quản lý động qua ACF tại Trang Chủ.
+ * Tích hợp Flickity JS Slider chuẩn Flatsome: Desktop 5 cột / hàng, Tablet 3 cột, Mobile vuốt trượt cảm ứng.
  * Cú pháp dùng trong Flatsome UX Builder: [gobike_user_needs]
  */
 
@@ -139,10 +140,25 @@ function gobike_render_user_needs_shortcode($atts)
         return '';
     }
 
+    // Thiết lập cấu hình Flickity JS Slider của Flatsome
+    $flickity_options = array(
+        'cellAlign'       => 'left',
+        'wrapAround'      => false,
+        'autoPlay'        => false,
+        'prevNextButtons' => true,
+        'contain'         => true,
+        'percentPosition' => true,
+        'pageDots'        => false,
+        'draggable'       => true,
+        'friction'        => 0.6,
+        'selectedAttraction' => 0.1,
+    );
+    $json_options = esc_attr(json_encode($flickity_options));
+
     ob_start();
     ?>
-    <div class="gobike-user-needs-container <?php echo esc_attr($atts['class']); ?>">
-        <div class="gobike-needs-track">
+    <div class="slider-wrapper relative gobike-user-needs-wrapper <?php echo esc_attr($atts['class']); ?>">
+        <div class="slider slider-nav-circle slider-nav-light slider-nav-simple gobike-user-needs-slider is-draggable" data-flickity-options="<?php echo $json_options; ?>">
             <?php foreach ($rows as $item):
                 $title = !empty($item['title']) ? trim($item['title']) : '';
                 if (empty($title)) {
@@ -159,22 +175,55 @@ function gobike_render_user_needs_shortcode($atts)
                     $img = wp_get_attachment_image_url($img, 'thumbnail');
                 }
                 ?>
-                <a href="<?php echo esc_url($link); ?>" class="gobike-need-card">
-                    <?php if (!empty($img)): ?>
-                        <div class="gobike-need-thumb">
-                            <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" />
-                        </div>
-                    <?php endif; ?>
-                    <div class="gobike-need-info">
-                        <h4 class="gobike-need-title"><?php echo esc_html($title); ?></h4>
-                        <?php if (!empty($desc)): ?>
-                            <span class="gobike-need-desc"><?php echo esc_html($desc); ?></span>
+                <div class="gobike-need-slide-item">
+                    <a href="<?php echo esc_url($link); ?>" class="gobike-need-card">
+                        <?php if (!empty($img)): ?>
+                            <div class="gobike-need-thumb">
+                                <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($title); ?>" loading="lazy" />
+                            </div>
                         <?php endif; ?>
-                    </div>
-                </a>
+                        <div class="gobike-need-info">
+                            <h4 class="gobike-need-title"><?php echo esc_html($title); ?></h4>
+                            <?php if (!empty($desc)): ?>
+                                <span class="gobike-need-desc"><?php echo esc_html($desc); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
+    <script type="text/javascript">
+        (function($) {
+            function initGobikeNeedsFlickity() {
+                $('.gobike-user-needs-slider').each(function() {
+                    var $slider = $(this);
+                    if (typeof $.fn.flickity !== 'undefined' && !$slider.hasClass('flickity-enabled')) {
+                        try {
+                            $slider.flickity({
+                                cellAlign: 'left',
+                                wrapAround: false,
+                                autoPlay: false,
+                                prevNextButtons: true,
+                                contain: true,
+                                percentPosition: true,
+                                pageDots: false,
+                                draggable: true,
+                                friction: 0.6
+                            });
+                        } catch(e) {}
+                    }
+                });
+            }
+            $(document).ready(function() {
+                initGobikeNeedsFlickity();
+                setTimeout(initGobikeNeedsFlickity, 200);
+            });
+            $(window).on('load resize', function() {
+                initGobikeNeedsFlickity();
+            });
+        })(jQuery);
+    </script>
     <?php
     return ob_get_clean();
 }
