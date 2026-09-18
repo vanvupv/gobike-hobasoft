@@ -490,11 +490,12 @@ function gobike_custom_styles_output()
         .gobike-newsletter-pill,
         .newsletter-input-group {
             display: flex !important;
-            align-items: center !important;
+            align-items: stretch !important;
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
-            border-radius: 999px !important;
-            padding: 3px 3px 3px 18px !important;
+            border-radius: 10px !important; /* Bo viền 8 - 12px */
+            padding: 0 !important; /* Bỏ padding ngoài để nút nằm sát cùng viền với input */
+            overflow: hidden !important;
             width: 100% !important;
             max-width: 480px !important;
             box-sizing: border-box !important;
@@ -506,7 +507,7 @@ function gobike_custom_styles_output()
         .gobike-newsletter-pill p,
         .newsletter-input-group p {
             display: flex !important;
-            align-items: center !important;
+            align-items: stretch !important;
             width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
@@ -517,7 +518,8 @@ function gobike_custom_styles_output()
             flex: 1 1 auto !important;
             min-width: 0 !important;
             margin: 0 !important;
-            display: block !important;
+            display: flex !important;
+            align-items: stretch !important;
         }
 
         .gobike-newsletter-pill input.gobike-newsletter-input,
@@ -527,15 +529,16 @@ function gobike_custom_styles_output()
             width: 100% !important;
             border: none !important;
             outline: none !important;
-            background: transparent !important;
+            background: #ffffff !important;
             box-shadow: none !important;
-            padding: 8px 10px 8px 0 !important;
+            padding: 10px 14px !important;
             margin: 0 !important;
-            height: auto !important;
-            min-height: auto !important;
+            height: 100% !important;
+            min-height: 40px !important;
             font-size: 13.5px !important;
             color: #1e293b !important;
             box-sizing: border-box !important;
+            border-radius: 10px 0 0 10px !important;
         }
 
         .gobike-newsletter-pill input.gobike-newsletter-input::placeholder,
@@ -553,20 +556,23 @@ function gobike_custom_styles_output()
             flex-shrink: 0 !important;
             border: none !important;
             outline: none !important;
-            border-radius: 999px !important;
+            border-radius: 0 10px 10px 0 !important; /* Khớp góc phải cùng viền */
             background: linear-gradient(180deg, #0d7030 0%, #064e20 100%) !important;
             color: #ffffff !important;
             font-size: 13px !important;
             font-weight: 700 !important;
             text-transform: uppercase !important;
             letter-spacing: 0.5px !important;
-            padding: 9px 24px !important;
+            padding: 0 22px !important;
             margin: 0 !important;
             height: auto !important;
-            min-height: auto !important;
+            min-height: 40px !important;
             cursor: pointer !important;
             transition: all 0.25s ease !important;
-            box-shadow: 0 2px 6px rgba(13, 112, 48, 0.25) !important;
+            box-shadow: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
         .gobike-newsletter-pill input.gobike-newsletter-submit:hover,
