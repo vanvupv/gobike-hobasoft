@@ -5727,6 +5727,176 @@ function gobike_custom_styles_output()
                     font-size: 11.5px !important;
                 }
             }
+
+            /* ==========================================================================
+                               FLATSOME SLIDER DANH MỤC XE (.vp-slide-cat-custom)
+                               Chuẩn 5 cột 1 hàng trên Desktop, 3 cột Tablet, Slide trượt Mobile
+                               Khắc phục lỗi ảnh xe phóng to và rớt dòng
+                               ========================================================================== */
+            .vp-slide-cat-custom {
+                margin: 15px auto 25px auto !important;
+                max-width: 1230px !important;
+                width: 100% !important;
+            }
+
+            .vp-slide-cat-custom .flickity-slider > * {
+                width: 20% !important;
+                max-width: 20% !important;
+                min-width: 20% !important;
+                padding: 0 6px !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+            }
+
+            .vp-slide-cat-custom .flickity-slider > * .col {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 0 0 100% !important;
+                padding: 0 !important;
+            }
+
+            .vp-slide-cat-custom .flickity-slider > * .col-inner {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 12px !important;
+                padding: 10px 14px !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+                transition: all 0.25s ease !important;
+                box-sizing: border-box !important;
+                height: 100% !important;
+            }
+
+            .vp-slide-cat-custom .flickity-slider > * .col-inner:hover {
+                border-color: #149d29 !important;
+                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
+                transform: translateY(-2px);
+            }
+
+            .vp-slide-cat-custom .icon-box.featured-box {
+                margin-bottom: 0 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 12px !important;
+                width: 100% !important;
+            }
+
+            .vp-slide-cat-custom .icon-box .icon-box-img,
+            .vp-slide-cat-custom .icon-box-img {
+                width: 48px !important;
+                min-width: 48px !important;
+                max-width: 48px !important;
+                height: 48px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border-radius: 8px !important;
+                overflow: hidden !important;
+                background: #f8fafc !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+            }
+
+            .vp-slide-cat-custom .icon-box-img .icon,
+            .vp-slide-cat-custom .icon-box-img .icon-inner {
+                width: 100% !important;
+                height: 100% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .vp-slide-cat-custom .icon-box-img img {
+                border-radius: 8px !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-height: 48px !important;
+                object-fit: contain !important;
+                display: block !important;
+                margin: 0 auto !important;
+            }
+
+            .vp-slide-cat-custom .icon-box-text {
+                padding: 0 !important;
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+            }
+
+            .vp-slide-cat-custom .icon-box-text h3 {
+                font-size: 14px !important;
+                font-weight: 700 !important;
+                color: #0f172a !important;
+                margin: 0 0 2px 0 !important;
+                line-height: 1.3 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+
+            .vp-slide-cat-custom .col-inner:hover .icon-box-text h3 {
+                color: #149d29 !important;
+            }
+
+            .vp-slide-cat-custom .icon-box-text p {
+                font-size: 12px !important;
+                color: #64748b !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+
+            /* Ẩn các nút mũi tên quá to trên desktop, làm nút mũi tên nhỏ gọn tinh tế */
+            .vp-slide-cat-custom .flickity-prev-next-button {
+                width: 32px !important;
+                height: 32px !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            }
+
+            .vp-slide-cat-custom .flickity-prev-next-button svg {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .vp-slide-cat-custom .flickity-page-dots {
+                display: none !important;
+            }
+
+            /* Responsive Tablet (3 cột / hàng) */
+            @media screen and (max-width: 1024px) {
+                .vp-slide-cat-custom .flickity-slider > * {
+                    width: 33.333% !important;
+                    max-width: 33.333% !important;
+                    min-width: 33.333% !important;
+                }
+            }
+
+            /* Responsive Mobile (Slide trượt cảm ứng mượt mà) */
+            @media screen and (max-width: 600px) {
+                .vp-slide-cat-custom .flickity-slider > * {
+                    width: 72% !important;
+                    max-width: 72% !important;
+                    min-width: 72% !important;
+                }
+
+                .vp-slide-cat-custom .icon-box-img {
+                    width: 44px !important;
+                    min-width: 44px !important;
+                    max-width: 44px !important;
+                    height: 44px !important;
+                }
+
+                .vp-slide-cat-custom .icon-box-text h3 {
+                    font-size: 13.5px !important;
+                }
+
+                .vp-slide-cat-custom .icon-box-text p {
+                    font-size: 11.5px !important;
+                }
+            }
     </style>
     <?php
 }
