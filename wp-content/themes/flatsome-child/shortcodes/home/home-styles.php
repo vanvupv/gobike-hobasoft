@@ -602,7 +602,7 @@ function gobike_custom_styles_output()
         /* ==========================================================================
            KHỐI ICON CHIA SẺ MẠNG XÃ HỘI CHÂN TRANG MOBILE (.vp-footer-mobile .vp-social-share-links)
            - Dùng Flexbox có flex-wrap: wrap tự động rơi dòng khi không đủ chiều rộng
-           - Căn trái (flex-start) thẳng hàng, màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
+           - Căn phải (flex-end) theo yêu cầu, màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
            ========================================================================== */
         .vp-footer-mobile .vp-social-share-links,
         .vp-social-share-links {
@@ -610,7 +610,7 @@ function gobike_custom_styles_output()
             flex-flow: row wrap !important;
             flex-wrap: wrap !important;
             align-items: center !important;
-            justify-content: flex-start !important;
+            justify-content: flex-end !important;
             gap: 12px 16px !important;
             margin: 15px 0 !important;
             padding: 0 !important;
