@@ -5584,33 +5584,34 @@ function gobike_custom_styles_output()
                 }
             }
             /* ==========================================================================
-                               KHỐI PHÂN LOẠI NHU CẦU SỬ DỤNG (GOBIKES USER NEEDS SLIDER)
-                               Flickity Slider JS: Desktop 5 cột / hàng, Tablet 3 cột, Mobile trượt cảm ứng
+                               KHỐI PHÂN LOẠI NHU CẦU SỬ DỤNG (GOBIKES USER NEEDS)
+                               - Desktop: 5 cột dàn đều 1 hàng ngang (Chuẩn Ảnh 1)
+                               - Mobile & Tablet: Swiper Slider card dọc vòm tròn (Chuẩn Ảnh 2)
                                ========================================================================== */
-            .gobike-user-needs-wrapper {
+            .gobike-user-needs-main-section {
                 max-width: 1230px;
-                margin: 20px auto;
+                margin: 20px auto 30px auto;
                 width: 100%;
                 box-sizing: border-box;
             }
 
-            .gobike-user-needs-slider .flickity-slider > * {
-                width: 20% !important;
-                max-width: 20% !important;
-                min-width: 20% !important;
-                padding: 0 6px !important;
-                margin: 0 !important;
-                box-sizing: border-box !important;
+            /* --- 1. GIAO DIỆN DESKTOP (CHUẨN ẢNH 1) --- */
+            .gobike-needs-desktop-layout {
+                display: block;
             }
 
-            .gobike-need-slide-item {
-                width: 20%;
-                max-width: 20%;
-                padding: 0 6px;
-                box-sizing: border-box;
+            .gobike-needs-mobile-layout {
+                display: none;
             }
 
-            .gobike-need-card {
+            .gobike-needs-desktop-grid {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 12px;
+                width: 100%;
+            }
+
+            .gobike-need-card-desktop {
                 background: #ffffff;
                 border: 1px solid #e2e8f0;
                 border-radius: 12px;
@@ -5620,18 +5621,17 @@ function gobike_custom_styles_output()
                 gap: 12px;
                 text-decoration: none !important;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-                transition: all 0.25s ease;
+                transition: border-color 0.25s ease, box-shadow 0.25s ease;
                 box-sizing: border-box;
                 height: 100%;
-                width: 100%;
             }
 
-            .gobike-need-card:hover {
+            .gobike-need-card-desktop:hover {
                 border-color: #149d29;
                 box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12);
             }
 
-            .gobike-need-thumb {
+            .need-thumb-desktop {
                 width: 48px;
                 height: 48px;
                 min-width: 48px;
@@ -5645,7 +5645,7 @@ function gobike_custom_styles_output()
                 flex-shrink: 0;
             }
 
-            .gobike-need-thumb img {
+            .need-thumb-desktop img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
@@ -5653,12 +5653,17 @@ function gobike_custom_styles_output()
                 display: block;
             }
 
-            .gobike-need-info {
+            .need-thumb-desktop svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .need-info-desktop {
                 flex: 1;
                 min-width: 0;
             }
 
-            .gobike-need-title {
+            .need-title-desktop {
                 font-size: 14px !important;
                 font-weight: 700 !important;
                 color: #0f172a !important;
@@ -5669,11 +5674,11 @@ function gobike_custom_styles_output()
                 text-overflow: ellipsis;
             }
 
-            .gobike-need-card:hover .gobike-need-title {
+            .gobike-need-card-desktop:hover .need-title-desktop {
                 color: #149d29 !important;
             }
 
-            .gobike-need-desc {
+            .need-desc-desktop {
                 font-size: 12px !important;
                 color: #64748b !important;
                 line-height: 1.3 !important;
@@ -5683,219 +5688,165 @@ function gobike_custom_styles_output()
                 text-overflow: ellipsis;
             }
 
-            .gobike-user-needs-wrapper .flickity-prev-next-button {
-                width: 32px !important;
-                height: 32px !important;
-                background: rgba(255, 255, 255, 0.9) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-            }
-
-            .gobike-user-needs-wrapper .flickity-prev-next-button svg {
-                width: 14px !important;
-                height: 14px !important;
-            }
-
-            /* Responsive Tablet (3 cột / hàng) */
-            @media screen and (max-width: 1024px) {
-                .gobike-user-needs-slider .flickity-slider > *,
-                .gobike-need-slide-item {
-                    width: 33.333% !important;
-                    max-width: 33.333% !important;
-                    min-width: 33.333% !important;
-                }
-            }
-
-            /* Responsive Mobile (Slide trượt cảm ứng) */
-            @media screen and (max-width: 600px) {
-                .gobike-user-needs-slider .flickity-slider > *,
-                .gobike-need-slide-item {
-                    width: 72% !important;
-                    max-width: 72% !important;
-                    min-width: 72% !important;
+            /* --- 2. GIAO DIỆN MOBILE & TABLET (CHUẨN ẢNH 2 - SWIPER SLIDER DỌC) --- */
+            @media screen and (max-width: 849px) {
+                .gobike-needs-desktop-layout {
+                    display: none !important;
                 }
 
-                .gobike-need-thumb {
-                    width: 44px !important;
-                    height: 44px !important;
-                    min-width: 44px !important;
-                    max-width: 44px !important;
+                .gobike-needs-mobile-layout {
+                    display: block !important;
+                    margin: 15px 0 25px 0 !important;
                 }
 
-                .gobike-need-title {
+                .gobike-needs-mobile-header {
+                    display: flex !important;
+                    justify-content: space-between !important;
+                    align-items: center !important;
+                    margin-bottom: 14px !important;
+                    padding: 0 4px !important;
+                }
+
+                .needs-mobile-main-title {
+                    font-size: 17px !important;
+                    font-weight: 700 !important;
+                    color: #0d6e2e !important;
+                    margin: 0 !important;
+                    letter-spacing: 0.2px !important;
+                    text-transform: uppercase !important;
+                }
+
+                .needs-mobile-viewall-link {
                     font-size: 13.5px !important;
+                    font-weight: 600 !important;
+                    color: #0d6e2e !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    gap: 4px !important;
+                    text-decoration: none !important;
                 }
 
-                .gobike-need-desc {
-                    font-size: 11.5px !important;
-                }
-            }
-
-            /* ==========================================================================
-                               FLATSOME SLIDER DANH MỤC XE (.vp-slide-cat-custom)
-                               Chuẩn 5 cột 1 hàng trên Desktop, 3 cột Tablet, Slide trượt Mobile
-                               Khắc phục lỗi ảnh xe phóng to và rớt dòng
-                               ========================================================================== */
-            .vp-slide-cat-custom {
-                margin: 15px auto 25px auto !important;
-                max-width: 1230px !important;
-                width: 100% !important;
-            }
-
-            .vp-slide-cat-custom .flickity-slider > * {
-                width: 20% !important;
-                max-width: 20% !important;
-                min-width: 20% !important;
-                padding: 0 6px !important;
-                margin: 0 !important;
-                box-sizing: border-box !important;
-            }
-
-            .vp-slide-cat-custom .flickity-slider > * .col {
-                width: 100% !important;
-                max-width: 100% !important;
-                flex: 0 0 100% !important;
-                padding: 0 !important;
-            }
-
-            .vp-slide-cat-custom .flickity-slider > * .col-inner {
-                background: #ffffff !important;
-                border: 1px solid #e2e8f0 !important;
-                border-radius: 12px !important;
-                padding: 10px 14px !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
-                transition: all 0.25s ease !important;
-                box-sizing: border-box !important;
-                height: 100% !important;
-            }
-
-            .vp-slide-cat-custom .flickity-slider > * .col-inner:hover {
-                border-color: #149d29 !important;
-                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
-            }
-
-            .vp-slide-cat-custom .icon-box.featured-box {
-                margin-bottom: 0 !important;
-                display: flex !important;
-                flex-direction: row !important;
-                align-items: center !important;
-                gap: 12px !important;
-                width: 100% !important;
-            }
-
-            .vp-slide-cat-custom .icon-box .icon-box-img,
-            .vp-slide-cat-custom .icon-box-img {
-                width: 48px !important;
-                min-width: 48px !important;
-                max-width: 48px !important;
-                height: 48px !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                border-radius: 8px !important;
-                overflow: hidden !important;
-                background: #f8fafc !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                flex-shrink: 0 !important;
-            }
-
-            .vp-slide-cat-custom .icon-box-img .icon,
-            .vp-slide-cat-custom .icon-box-img .icon-inner {
-                width: 100% !important;
-                height: 100% !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-            }
-
-            .vp-slide-cat-custom .icon-box-img img {
-                border-radius: 8px !important;
-                width: 100% !important;
-                height: 100% !important;
-                max-height: 48px !important;
-                object-fit: contain !important;
-                display: block !important;
-                margin: 0 auto !important;
-            }
-
-            .vp-slide-cat-custom .icon-box-text {
-                padding: 0 !important;
-                flex: 1 1 auto !important;
-                min-width: 0 !important;
-            }
-
-            .vp-slide-cat-custom .icon-box-text h3 {
-                font-size: 14px !important;
-                font-weight: 700 !important;
-                color: #0f172a !important;
-                margin: 0 0 2px 0 !important;
-                line-height: 1.3 !important;
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
-            }
-
-            .vp-slide-cat-custom .col-inner:hover .icon-box-text h3 {
-                color: #149d29 !important;
-            }
-
-            .vp-slide-cat-custom .icon-box-text p {
-                font-size: 12px !important;
-                color: #64748b !important;
-                margin: 0 !important;
-                line-height: 1.3 !important;
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
-            }
-
-            /* Ẩn các nút mũi tên quá to trên desktop, làm nút mũi tên nhỏ gọn tinh tế */
-            .vp-slide-cat-custom .flickity-prev-next-button {
-                width: 32px !important;
-                height: 32px !important;
-                background: rgba(255, 255, 255, 0.9) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-            }
-
-            .vp-slide-cat-custom .flickity-prev-next-button svg {
-                width: 14px !important;
-                height: 14px !important;
-            }
-
-            .vp-slide-cat-custom .flickity-page-dots {
-                display: none !important;
-            }
-
-            /* Responsive Tablet (3 cột / hàng) */
-            @media screen and (max-width: 1024px) {
-                .vp-slide-cat-custom .flickity-slider > * {
-                    width: 33.333% !important;
-                    max-width: 33.333% !important;
-                    min-width: 33.333% !important;
-                }
-            }
-
-            /* Responsive Mobile (Slide trượt cảm ứng mượt mà) */
-            @media screen and (max-width: 600px) {
-                .vp-slide-cat-custom .flickity-slider > * {
-                    width: 72% !important;
-                    max-width: 72% !important;
-                    min-width: 72% !important;
+                .gobike-needs-swiper-mobile {
+                    padding-bottom: 26px !important;
+                    position: relative !important;
+                    overflow: visible !important;
                 }
 
-                .vp-slide-cat-custom .icon-box-img {
-                    width: 44px !important;
-                    min-width: 44px !important;
-                    max-width: 44px !important;
-                    height: 44px !important;
+                .gobike-needs-slide-mobile {
+                    height: auto !important;
                 }
 
-                .vp-slide-cat-custom .icon-box-text h3 {
+                .gobike-need-card-mobile {
+                    background: #ffffff !important;
+                    border-radius: 18px !important;
+                    overflow: hidden !important;
+                    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07) !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    text-decoration: none !important;
+                    border: 1px solid #edf2f7 !important;
+                    height: 100% !important;
+                }
+
+                .need-photo-top-mobile {
+                    position: relative !important;
+                    width: 100% !important;
+                    padding-top: 105% !important;
+                    background: #e2e8f0 !important;
+                    overflow: hidden !important;
+                }
+
+                .need-photo-top-mobile img {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: cover !important;
+                    display: block !important;
+                }
+
+                .need-photo-placeholder {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 100% !important;
+                    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+                }
+
+                .need-content-bottom-mobile {
+                    background: #ffffff !important;
+                    border-radius: 22px 22px 0 0 !important;
+                    margin-top: -22px !important;
+                    position: relative !important;
+                    z-index: 2 !important;
+                    padding: 8px 6px 14px 6px !important;
+                    text-align: center !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    min-height: 76px !important;
+                    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.03) !important;
+                }
+
+                .need-icon-bubble-mobile {
+                    width: 36px !important;
+                    height: 36px !important;
+                    border-radius: 50% !important;
+                    background: #f0fdf4 !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    margin: -20px auto 6px auto !important;
+                    box-shadow: 0 2px 6px rgba(13, 110, 46, 0.12) !important;
+                    border: 1px solid #dcfce7 !important;
+                    flex-shrink: 0 !important;
+                }
+
+                .need-icon-bubble-mobile svg {
+                    width: 20px !important;
+                    height: 20px !important;
+                }
+
+                .need-title-mobile {
                     font-size: 13.5px !important;
+                    font-weight: 700 !important;
+                    color: #0f172a !important;
+                    margin: 0 !important;
+                    line-height: 1.35 !important;
+                    text-align: center !important;
+                    display: -webkit-box !important;
+                    -webkit-line-clamp: 2 !important;
+                    -webkit-box-orient: vertical !important;
+                    overflow: hidden !important;
                 }
 
-                .vp-slide-cat-custom .icon-box-text p {
-                    font-size: 11.5px !important;
+                .gobike-needs-pagination {
+                    position: absolute !important;
+                    bottom: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    gap: 6px !important;
+                }
+
+                .gobike-needs-pagination .swiper-pagination-bullet {
+                    width: 7px !important;
+                    height: 7px !important;
+                    margin: 0 !important;
+                    background: #cbd5e1 !important;
+                    opacity: 1 !important;
+                    border-radius: 50% !important;
+                    transition: all 0.25s ease !important;
+                }
+
+                .gobike-needs-pagination .swiper-pagination-bullet-active {
+                    background: #0d6e2e !important;
+                    width: 18px !important;
+                    border-radius: 5px !important;
                 }
             }
     </style>
