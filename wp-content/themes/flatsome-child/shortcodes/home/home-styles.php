@@ -5852,22 +5852,13 @@ function gobike_custom_styles_output()
 
             /* ==========================================================================
                                SLIDER DANH MỤC XE FLATSOME (.vp-slide-cat-custom)
+                               - Desktop (>= 1025px): Hủy absolute của Flickity, ép Flexbox 5 cột dàn đều 1 hàng
+                               - Tablet & Mobile (<= 1024px): Giữ nguyên Flickity Slider vuốt trượt
                                ========================================================================== */
             .vp-slide-cat-custom {
                 max-width: 1230px !important;
                 margin: 15px auto 25px auto !important;
                 width: 100% !important;
-            }
-
-            .vp-slide-cat-custom .flickity-slider > *,
-            .vp-slide-cat-custom .flickity-slider > .row,
-            .vp-slide-cat-custom .slider > .row {
-                width: 20% !important;
-                max-width: 20% !important;
-                min-width: 20% !important;
-                padding: 0 6px !important;
-                margin: 0 !important;
-                box-sizing: border-box !important;
             }
 
             .vp-slide-cat-custom .col {
@@ -5895,12 +5886,15 @@ function gobike_custom_styles_output()
             }
 
             .vp-slide-cat-custom .icon-box,
-            .vp-slide-cat-custom .icon-box.featured-box {
+            .vp-slide-cat-custom .icon-box.featured-box,
+            .vp-slide-cat-custom .featured-box {
                 display: flex !important;
                 flex-direction: row !important;
                 align-items: center !important;
+                text-align: left !important;
                 gap: 12px !important;
-                margin-bottom: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
                 width: 100% !important;
             }
 
@@ -5930,10 +5924,12 @@ function gobike_custom_styles_output()
                 justify-content: center !important;
             }
 
-            .vp-slide-cat-custom .icon-box-img img {
+            .vp-slide-cat-custom .icon-box-img img,
+            .vp-slide-cat-custom .icon-inner img,
+            .vp-slide-cat-custom .col-inner img {
                 border-radius: 8px !important;
-                width: 100% !important;
-                height: 100% !important;
+                width: 48px !important;
+                height: 48px !important;
                 max-width: 48px !important;
                 max-height: 48px !important;
                 object-fit: contain !important;
@@ -5943,8 +5939,10 @@ function gobike_custom_styles_output()
 
             .vp-slide-cat-custom .icon-box-text {
                 padding: 0 !important;
+                margin: 0 !important;
                 flex: 1 1 auto !important;
                 min-width: 0 !important;
+                text-align: left !important;
             }
 
             .vp-slide-cat-custom .icon-box-text h3 {
@@ -5972,22 +5970,49 @@ function gobike_custom_styles_output()
                 text-overflow: ellipsis !important;
             }
 
-            .vp-slide-cat-custom .flickity-prev-next-button {
-                width: 32px !important;
-                height: 32px !important;
-                background: rgba(255, 255, 255, 0.9) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            /* --- ĐẶC TRỊ CHO DESKTOP (MÀN HÌNH >= 1025px): Hủy toạ độ absolute của Flickity, xếp 5 cột Flexbox ngang --- */
+            @media screen and (min-width: 1025px) {
+                .vp-slide-cat-custom .flickity-viewport {
+                    height: auto !important;
+                    overflow: visible !important;
+                }
+
+                .vp-slide-cat-custom .flickity-slider {
+                    transform: none !important;
+                    position: static !important;
+                    display: flex !important;
+                    flex-direction: row !important;
+                    justify-content: space-between !important;
+                    gap: 12px !important;
+                    width: 100% !important;
+                }
+
+                .vp-slide-cat-custom .flickity-slider > *,
+                .vp-slide-cat-custom .flickity-slider > .row,
+                .vp-slide-cat-custom .slider > .row {
+                    position: static !important;
+                    left: auto !important;
+                    right: auto !important;
+                    top: auto !important;
+                    transform: none !important;
+                    width: calc(20% - 10px) !important;
+                    max-width: calc(20% - 10px) !important;
+                    min-width: calc(20% - 10px) !important;
+                    flex: 0 0 calc(20% - 10px) !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    pointer-events: auto !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+
+                .vp-slide-cat-custom .flickity-prev-next-button,
+                .vp-slide-cat-custom .flickity-page-dots {
+                    display: none !important;
+                }
             }
 
-            .vp-slide-cat-custom .flickity-prev-next-button svg {
-                width: 14px !important;
-                height: 14px !important;
-            }
-
-            .vp-slide-cat-custom .flickity-page-dots {
-                display: none !important;
-            }
-
+            /* --- TABLET & MOBILE (<= 1024px): Giữ nguyên cơ chế trượt của Flickity Slider --- */
             @media screen and (max-width: 1024px) {
                 .vp-slide-cat-custom .flickity-slider > *,
                 .vp-slide-cat-custom .flickity-slider > .row,
@@ -5995,6 +6020,13 @@ function gobike_custom_styles_output()
                     width: 33.333% !important;
                     max-width: 33.333% !important;
                     min-width: 33.333% !important;
+                    padding: 0 6px !important;
+                }
+
+                .vp-slide-cat-custom .flickity-prev-next-button {
+                    width: 32px !important;
+                    height: 32px !important;
+                    background: rgba(255, 255, 255, 0.9) !important;
                 }
             }
 
@@ -6012,6 +6044,15 @@ function gobike_custom_styles_output()
                     min-width: 44px !important;
                     max-width: 44px !important;
                     height: 44px !important;
+                }
+
+                .vp-slide-cat-custom .icon-box-img img,
+                .vp-slide-cat-custom .icon-inner img,
+                .vp-slide-cat-custom .col-inner img {
+                    width: 44px !important;
+                    height: 44px !important;
+                    max-width: 44px !important;
+                    max-height: 44px !important;
                 }
 
                 .vp-slide-cat-custom .icon-box-text h3 {
