@@ -5619,7 +5619,6 @@ function gobike_custom_styles_output()
             .gobike-need-card:hover {
                 border-color: #149d29;
                 box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12);
-                transform: translateY(-2px);
             }
 
             .gobike-need-thumb {
@@ -5769,7 +5768,6 @@ function gobike_custom_styles_output()
             .vp-slide-cat-custom .flickity-slider > * .col-inner:hover {
                 border-color: #149d29 !important;
                 box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
-                transform: translateY(-2px);
             }
 
             .vp-slide-cat-custom .icon-box.featured-box {
