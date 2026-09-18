@@ -5844,6 +5844,16 @@ function gobike_custom_styles_output()
                 align-items: center !important;
                 text-align: left !important;
                 gap: 10px !important;
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 8px !important;
+                padding: 10px 12px !important;
+                margin-bottom: 8px !important;
+                box-sizing: border-box !important;
+            }
+
+            .vp-icon-box-custom.icon-box-left:last-child,
+            .vp-icon-box-custom.text-left:last-child {
                 margin-bottom: 0 !important;
             }
 
