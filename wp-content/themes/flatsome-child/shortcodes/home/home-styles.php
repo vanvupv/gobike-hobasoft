@@ -5854,11 +5854,11 @@ function gobike_custom_styles_output()
                 justify-content: flex-start !important;
                 align-items: center !important;
                 text-align: left !important;
-                gap: 10px !important;
+                gap: 6px !important;
                 background: #ffffff !important;
                 border: 1px solid #e2e8f0 !important;
                 border-radius: 8px !important;
-                padding: 10px 12px !important;
+                padding: 6px 8px !important;
                 margin-bottom: 8px !important;
                 box-sizing: border-box !important;
             }
@@ -5870,6 +5870,9 @@ function gobike_custom_styles_output()
 
             .vp-icon-box-custom.icon-box-left .icon-box-img,
             .vp-icon-box-custom.text-left .icon-box-img {
+                flex: 0 0 28px !important;
+                width: 28px !important;
+                max-width: 28px !important;
                 flex-shrink: 0 !important;
                 margin: 0 !important;
             }
@@ -5883,7 +5886,7 @@ function gobike_custom_styles_output()
                 margin: 0 !important;
             }
 
-            /* Tiêu đề: Tối đa 2 dòng */
+            /* Tiêu đề: Tối đa 2 dòng, ngắt theo từ chuẩn */
             .vp-icon-box-custom.icon-box-left .icon-box-text h3,
             .vp-icon-box-custom.icon-box-left h3,
             .vp-icon-box-custom.text-left .icon-box-text h3,
@@ -5895,22 +5898,25 @@ function gobike_custom_styles_output()
                 text-overflow: ellipsis !important;
                 text-align: left !important;
                 margin: 0 0 2px 0 !important;
-                line-height: 1.3 !important;
+                font-size: 13px !important;
+                line-height: 1.25 !important;
+                word-break: normal !important;
+                overflow-wrap: break-word !important;
             }
 
-            /* Mô tả: Tối đa 2 dòng */
+            /* Mô tả: Giữ cụm từ "1 showroom" liền khối trên 1 dòng, không ngắt đôi cộc lốc */
             .vp-icon-box-custom.icon-box-left .icon-box-text p,
             .vp-icon-box-custom.icon-box-left p,
             .vp-icon-box-custom.text-left .icon-box-text p,
             .vp-icon-box-custom.text-left p {
-                display: -webkit-box !important;
-                -webkit-line-clamp: 2 !important;
-                -webkit-box-orient: vertical !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
+                font-size: 11.5px !important;
+                line-height: 1.25 !important;
                 text-align: left !important;
                 margin: 0 !important;
-                line-height: 1.3 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                display: block !important;
             }
 
             /* Tablet & Mobile (<= 849px): Giữ nguyên bố cục ngang căn trái và khoảng cách gọn */
@@ -5921,7 +5927,8 @@ function gobike_custom_styles_output()
                     justify-content: flex-start !important;
                     align-items: center !important;
                     text-align: left !important;
-                    gap: 8px !important;
+                    gap: 6px !important;
+                    padding: 6px 8px !important;
                 }
 
                 .vp-icon-box-custom.icon-box-left .icon-box-img,
