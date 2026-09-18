@@ -317,41 +317,39 @@ function gobike_render_user_needs_shortcode($atts)
                     flex-direction: row !important;
                     align-items: center !important;
                     gap: 12px !important;
-                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
-                    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+                    transition: border-color 0.25s ease !important;
                     height: 100% !important;
                     width: 100% !important;
                 }
 
                 .gobike-need-unified-card:hover {
                     border-color: #149d29 !important;
-                    box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
                 }
 
                 .need-media-wrap {
-                    width: 48px !important;
-                    min-width: 48px !important;
-                    max-width: 48px !important;
-                    height: 48px !important;
-                    min-height: 48px !important;
-                    max-height: 48px !important;
-                    border-radius: 8px !important;
-                    overflow: hidden !important;
-                    background: #f8fafc !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    flex-shrink: 0 !important;
+                    width: 60px;
+                    min-width: 60px;
+                    max-width: 60px;
+                    height: 60px;
+                    min-height: 60px;
+                    max-height: 60px;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    background: #f8fafc;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
                 }
 
                 .need-media-wrap img {
-                    width: 48px !important;
-                    height: 48px !important;
-                    max-width: 48px !important;
-                    max-height: 48px !important;
-                    object-fit: contain !important;
-                    border-radius: 8px !important;
-                    display: block !important;
+                    width: 60px;
+                    height: 60px;
+                    max-width: 60px;
+                    max-height: 60px;
+                    object-fit: contain;
+                    border-radius: 8px;
+                    display: block;
                 }
 
                 .need-body-wrap {
@@ -369,10 +367,11 @@ function gobike_render_user_needs_shortcode($atts)
                     font-weight: 700 !important;
                     color: #0f172a !important;
                     margin: 0 0 2px 0 !important;
-                    line-height: 1.3 !important;
-                    white-space: nowrap !important;
+                    line-height: 1.35 !important;
+                    display: -webkit-box !important;
+                    -webkit-line-clamp: 2 !important;
+                    -webkit-box-orient: vertical !important;
                     overflow: hidden !important;
-                    text-overflow: ellipsis !important;
                     text-align: left !important;
                 }
 
@@ -415,7 +414,6 @@ function gobike_render_user_needs_shortcode($atts)
                     background: #ffffff !important;
                     border-radius: 18px !important;
                     overflow: hidden !important;
-                    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07) !important;
                     display: flex !important;
                     flex-direction: column !important;
                     border: 1px solid #edf2f7 !important;
@@ -461,7 +459,6 @@ function gobike_render_user_needs_shortcode($atts)
                     flex-direction: column !important;
                     align-items: center !important;
                     min-height: 76px !important;
-                    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.03) !important;
                 }
 
                 .need-icon-bubble {
@@ -473,7 +470,6 @@ function gobike_render_user_needs_shortcode($atts)
                     align-items: center !important;
                     justify-content: center !important;
                     margin: -20px auto 6px auto !important;
-                    box-shadow: 0 2px 6px rgba(13, 110, 46, 0.12) !important;
                     border: 1px solid #dcfce7 !important;
                     flex-shrink: 0 !important;
                 }
