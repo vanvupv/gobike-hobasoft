@@ -5597,70 +5597,91 @@ function gobike_custom_styles_output()
 
             /* --- 1. GIAO DIỆN DESKTOP (CHUẨN ẢNH 1) --- */
             .gobike-needs-desktop-layout {
-                display: block;
+                display: block !important;
+                width: 100% !important;
             }
 
             .gobike-needs-mobile-layout {
-                display: none;
+                display: none !important;
             }
 
             .gobike-needs-desktop-grid {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                gap: 12px;
-                width: 100%;
+                display: grid !important;
+                grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+                gap: 12px !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                box-sizing: border-box !important;
             }
 
             .gobike-need-card-desktop {
-                background: #ffffff;
-                border: 1px solid #e2e8f0;
-                border-radius: 12px;
-                padding: 10px 14px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 12px !important;
+                padding: 10px 14px !important;
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 12px !important;
                 text-decoration: none !important;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-                transition: border-color 0.25s ease, box-shadow 0.25s ease;
-                box-sizing: border-box;
-                height: 100%;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+                transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+                box-sizing: border-box !important;
+                height: 100% !important;
+                width: 100% !important;
             }
 
             .gobike-need-card-desktop:hover {
-                border-color: #149d29;
-                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12);
+                border-color: #149d29 !important;
+                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
             }
 
             .need-thumb-desktop {
-                width: 48px;
-                height: 48px;
-                min-width: 48px;
-                max-width: 48px;
-                border-radius: 8px;
-                overflow: hidden;
-                background: #f8fafc;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
+                width: 48px !important;
+                min-width: 48px !important;
+                max-width: 48px !important;
+                height: 48px !important;
+                min-height: 48px !important;
+                max-height: 48px !important;
+                border-radius: 8px !important;
+                overflow: hidden !important;
+                background: #f8fafc !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             .need-thumb-desktop img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 8px;
-                display: block;
+                width: 48px !important;
+                min-width: 48px !important;
+                max-width: 48px !important;
+                height: 48px !important;
+                min-height: 48px !important;
+                max-height: 48px !important;
+                object-fit: contain !important;
+                border-radius: 8px !important;
+                display: block !important;
+                margin: 0 auto !important;
+                padding: 0 !important;
             }
 
             .need-thumb-desktop svg {
-                width: 32px;
-                height: 32px;
+                width: 28px !important;
+                height: 28px !important;
             }
 
             .need-info-desktop {
-                flex: 1;
-                min-width: 0;
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+                text-align: left !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
 
             .need-title-desktop {
@@ -5669,9 +5690,10 @@ function gobike_custom_styles_output()
                 color: #0f172a !important;
                 margin: 0 0 2px 0 !important;
                 line-height: 1.3 !important;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
             }
 
             .gobike-need-card-desktop:hover .need-title-desktop {
@@ -5681,11 +5703,13 @@ function gobike_custom_styles_output()
             .need-desc-desktop {
                 font-size: 12px !important;
                 color: #64748b !important;
+                margin: 0 !important;
                 line-height: 1.3 !important;
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                display: block !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
             }
 
             /* --- 2. GIAO DIỆN MOBILE & TABLET (CHUẨN ẢNH 2 - SWIPER SLIDER DỌC) --- */
