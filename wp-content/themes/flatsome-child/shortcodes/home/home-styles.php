@@ -5943,6 +5943,63 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
+               KHỐI LIÊN HỆ GOBIKE CHÂN TRANG MOBILE (.vp-footer-mobile .vp-lien-he-custom)
+               - Thêm viền bo góc và nền trắng cho từng ô showroom con (Hà Nội, Phú Thọ, Bắc Ninh)
+               - Canh đều 3 cột, hiển thị gọn gàng, đẹp mắt
+               ========================================================================== */
+            .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom,
+            .vp-lien-he-custom .row-collapse .vp-icon-box-custom {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 8px !important;
+                padding: 10px 6px !important;
+                box-sizing: border-box !important;
+                transition: all 0.2s ease !important;
+                height: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom:hover,
+            .vp-lien-he-custom .row-collapse .vp-icon-box-custom:hover {
+                border-color: #cbd5e1 !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .vp-footer-mobile .vp-lien-he-custom .row-collapse > .col,
+            .vp-lien-he-custom .row-collapse > .col {
+                flex: 1 1 0 !important;
+                min-width: 0 !important;
+            }
+
+            .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom .icon-box-img,
+            .vp-lien-he-custom .row-collapse .vp-icon-box-custom .icon-box-img {
+                margin: 0 auto 6px auto !important;
+            }
+
+            .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom h3,
+            .vp-lien-he-custom .row-collapse .vp-icon-box-custom h3 {
+                font-size: 12.5px !important;
+                font-weight: 700 !important;
+                line-height: 1.2 !important;
+                margin: 0 0 3px 0 !important;
+                color: #0f172a !important;
+                white-space: nowrap !important;
+            }
+
+            .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom p,
+            .vp-lien-he-custom .row-collapse .vp-icon-box-custom p {
+                font-size: 11px !important;
+                line-height: 1.2 !important;
+                color: #64748b !important;
+                margin: 0 !important;
+                white-space: nowrap !important;
+            }
+
+            /* ==========================================================================
                            KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (#section_1895392805)
                            - Bo góc tròn 2 đầu và đè lên banner phía trên (margin-top âm) để lộ 2 góc xanh
                            - Thêm đường vạch kẻ dọc ngăn cách giữa các cột chuẩn Ảnh 2
