@@ -5821,8 +5821,91 @@ function gobike_custom_styles_output()
 
             /* Mobile (<= 549px): Khoảng cách 4px */
             @media screen and (max-width: 549px) {
-                .vp-icon-box-custom {
+                .vp-icon-box-custom:not(.icon-box-left):not(.text-left) {
                     gap: 4px !important;
+                }
+            }
+
+            /* ==========================================================================
+               KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left / .text-left)
+               - Bố cục nằm ngang căn trái (icon bên trái, văn bản bên phải)
+               - Tiêu đề tối đa 2 dòng, mô tả tối đa 2 dòng (chuẩn Ảnh 2)
+               ========================================================================== */
+            .vp-icon-box-custom.icon-box-left,
+            .vp-icon-box-custom.text-left {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+                text-align: left !important;
+                gap: 10px !important;
+                margin-bottom: 0 !important;
+            }
+
+            .vp-icon-box-custom.icon-box-left .icon-box-img,
+            .vp-icon-box-custom.text-left .icon-box-img {
+                flex-shrink: 0 !important;
+                margin: 0 !important;
+            }
+
+            .vp-icon-box-custom.icon-box-left .icon-box-text,
+            .vp-icon-box-custom.text-left .icon-box-text {
+                flex: 1 1 auto !important;
+                min-width: 0 !important;
+                text-align: left !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            /* Tiêu đề: Tối đa 2 dòng */
+            .vp-icon-box-custom.icon-box-left .icon-box-text h3,
+            .vp-icon-box-custom.icon-box-left h3,
+            .vp-icon-box-custom.text-left .icon-box-text h3,
+            .vp-icon-box-custom.text-left h3 {
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
+                margin: 0 0 2px 0 !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Mô tả: Tối đa 2 dòng */
+            .vp-icon-box-custom.icon-box-left .icon-box-text p,
+            .vp-icon-box-custom.icon-box-left p,
+            .vp-icon-box-custom.text-left .icon-box-text p,
+            .vp-icon-box-custom.text-left p {
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                text-align: left !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Tablet & Mobile (<= 849px): Giữ nguyên bố cục ngang căn trái và khoảng cách gọn */
+            @media screen and (max-width: 849px) {
+                .vp-icon-box-custom.icon-box-left,
+                .vp-icon-box-custom.text-left {
+                    flex-direction: row !important;
+                    justify-content: flex-start !important;
+                    align-items: center !important;
+                    text-align: left !important;
+                    gap: 8px !important;
+                }
+
+                .vp-icon-box-custom.icon-box-left .icon-box-img,
+                .vp-icon-box-custom.text-left .icon-box-img {
+                    margin: 0 !important;
+                }
+
+                .vp-icon-box-custom.icon-box-left .icon-box-text,
+                .vp-icon-box-custom.text-left .icon-box-text {
+                    text-align: left !important;
                 }
             }
 
