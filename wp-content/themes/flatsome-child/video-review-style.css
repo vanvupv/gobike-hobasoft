@@ -32,12 +32,6 @@
     line-height: 1.5;
 }
 
-.gobike-video-review-page .gb-vr-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
 
 /* Common Section Header */
 .gb-vr-section-header {
@@ -1210,9 +1204,6 @@
         padding: 16px 0 40px 0 !important;
     }
 
-    .gobike-video-review-page .gb-vr-container {
-        padding: 0 16px !important;
-    }
 
     /* --- 1. HEADER MOBILE & PILLS SLIDER --- */
     .gb-vr-mobile-header {

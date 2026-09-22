@@ -149,23 +149,25 @@ $up_next_videos = array_slice($videos, 1, 5);
 $related_videos = array_slice($videos, 0, 6);
 ?>
 
-<div class="gobike-video-review-page">
-    <div class="gb-vr-container">
+<div id="content" role="main" class="content-area gobike-video-review-page">
+    <div class="row">
+        <div class="col large-12">
+            <div class="col-inner">
 
-        <!-- ===================================================================
-             MOBILE HEADER & PILLS SLIDER (ẢNH MOBILE)
-             =================================================================== -->
-        <div class="gb-vr-mobile-header">
-            <h1 class="gb-vr-mobile-title">Video Review</h1>
-            <p class="gb-vr-mobile-subtitle">Người thật • Trải nghiệm thật • Đánh giá thật</p>
-            <div class="gb-vr-mobile-pills">
-                <a class="gb-vr-pill-item active" data-cat-slug="all">Tất cả</a>
-                <a class="gb-vr-pill-item" data-cat-slug="trai-nghiem-thuc-te">Trải nghiệm thực tế</a>
-                <a class="gb-vr-pill-item" data-cat-slug="huong-dan-su-dung">Hướng dẫn</a>
-                <a class="gb-vr-pill-item" data-cat-slug="so-sanh-xe">So sánh</a>
-                <a class="gb-vr-pill-item" data-cat-slug="phu-kien">Phụ kiện</a>
-            </div>
-        </div>
+                <!-- ===================================================================
+                     MOBILE HEADER & PILLS SLIDER (ẢNH MOBILE)
+                     =================================================================== -->
+                <div class="gb-vr-mobile-header">
+                    <h1 class="gb-vr-mobile-title">Video Review</h1>
+                    <p class="gb-vr-mobile-subtitle">Người thật • Trải nghiệm thật • Đánh giá thật</p>
+                    <div class="gb-vr-mobile-pills">
+                        <a class="gb-vr-pill-item active" data-cat-slug="all">Tất cả</a>
+                        <a class="gb-vr-pill-item" data-cat-slug="trai-nghiem-thuc-te">Trải nghiệm thực tế</a>
+                        <a class="gb-vr-pill-item" data-cat-slug="huong-dan-su-dung">Hướng dẫn</a>
+                        <a class="gb-vr-pill-item" data-cat-slug="so-sanh-xe">So sánh</a>
+                        <a class="gb-vr-pill-item" data-cat-slug="phu-kien">Phụ kiện</a>
+                    </div>
+                </div>
 
         <!-- ===================================================================
              SECTION 1: HERO VIDEO PLAYER + SIDEBAR MENU + VIDEO TIẾP THEO (ẢNH 1)
@@ -797,7 +799,10 @@ $related_videos = array_slice($videos, 0, 6);
             </div>
         </section>
 
-    </div>
-</div>
+            </div><!-- .col-inner -->
+        </div><!-- .col.large-12 -->
+    </div><!-- .row -->
+</div><!-- #content.content-area -->
 
 <?php get_footer(); ?>
+
