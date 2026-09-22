@@ -506,11 +506,15 @@
     background: var(--gb-vr-primary-light);
 }
 
+/* Khối ảnh bài viết xử lý width 40% và padding-bottom 22.5% (tỉ lệ 16:9 của width 40%) */
 .gb-vr-up-next-thumb {
     position: relative;
-    width: 110px;
-    min-width: 110px;
-    height: 64px;
+    width: 40% !important;
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    padding-bottom: 22.5% !important;
     border-radius: 6px;
     overflow: hidden;
     background: #0f172a;
@@ -518,6 +522,9 @@
 }
 
 .gb-vr-up-next-thumb img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -533,9 +540,11 @@
     font-weight: 600;
     padding: 1px 4px;
     border-radius: 3px;
+    z-index: 2;
 }
 
 .gb-vr-up-next-info {
+    width: 60%;
     flex: 1;
     min-width: 0;
 }

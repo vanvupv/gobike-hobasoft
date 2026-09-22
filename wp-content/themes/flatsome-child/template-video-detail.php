@@ -364,7 +364,7 @@ $comments_sample = array(
                             <div class="gb-vd-product-card">
                                 <!-- Khung ảnh xe đạp có hiệu ứng hover zoom ảnh -->
                                 <div class="gb-vd-product-thumb">
-                                    <div class="gb-vd-zoom-wrap" style="width: 100%; height: 100%;">
+                                    <div class="gb-vd-zoom-wrap">
                                         <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg" alt="Phoenix C200">
                                     </div>
                                 </div>
@@ -414,7 +414,7 @@ $comments_sample = array(
                     <!-- ================= CỘT PHẢI: SIDEBAR ================= -->
                     <aside class="gb-vd-sidebar">
                         
-                        <!-- 2.6 Khối "Video tiếp theo" -->
+                        <!-- 2.6 Khối "Video tiếp theo" (Khối bài viết ngang width 40% xử lý padding-bottom) -->
                         <div class="gb-vd-upnext-box">
                             <div class="gb-vd-upnext-header">
                                 <h3>Video tiếp theo</h3>
@@ -430,9 +430,9 @@ $comments_sample = array(
                             <div class="gb-vd-upnext-list">
                                 <?php foreach ($up_next_videos as $item): ?>
                                     <a href="<?php echo esc_url($item['url']); ?>" class="gb-vd-upnext-item">
-                                        <!-- Thumbnail có badge thời lượng và hiệu ứng hover zoom ảnh -->
+                                        <!-- Thumbnail width 40% xử lý bằng padding-bottom 56.25% -->
                                         <div class="gb-vd-upnext-thumb">
-                                            <div class="gb-vd-zoom-wrap" style="width: 100%; height: 100%;">
+                                            <div class="gb-vd-zoom-wrap">
                                                 <img src="<?php echo esc_url($item['thumb']); ?>" alt="<?php echo esc_attr($item['title']); ?>">
                                             </div>
                                             <span class="gb-vd-duration-badge"><?php echo esc_html($item['duration']); ?></span>
@@ -453,7 +453,7 @@ $comments_sample = array(
                             <h3 class="gb-vd-booking-title">Đặt <span class="highlight">lịch</span> lái thử tại showroom GoBike</h3>
                             
                             <div class="gb-vd-booking-img-wrap">
-                                <div class="gb-vd-zoom-wrap" style="width: 100%; height: 100%;">
+                                <div class="gb-vd-zoom-wrap">
                                     <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg" alt="Showroom GoBike">
                                 </div>
                             </div>

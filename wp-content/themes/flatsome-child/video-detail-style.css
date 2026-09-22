@@ -669,6 +669,7 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-upnext-item {
     display: flex;
+    align-items: center;
     gap: 12px;
     text-decoration: none;
     padding: 6px;
@@ -680,15 +681,35 @@ a:hover .gb-vd-zoom-wrap img,
     background: #f8fafc;
 }
 
+/* Khối ảnh bài viết xử lý width 40% và padding-bottom 56.25% (16:9) */
 .gb-vd-upnext-thumb {
     position: relative;
-    width: 115px;
-    min-width: 115px;
-    height: 66px;
+    width: 40% !important;
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+    min-width: 0 !important;
     border-radius: 6px;
     overflow: hidden;
     background: #0f172a;
     flex-shrink: 0;
+}
+
+.gb-vd-upnext-thumb .gb-vd-zoom-wrap {
+    width: 100% !important;
+    height: 0 !important;
+    padding-bottom: 56.25% !important; /* Xử lý tỉ lệ 16:9 bằng padding-bottom */
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.gb-vd-upnext-thumb .gb-vd-zoom-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .gb-vd-duration-badge {
@@ -702,10 +723,13 @@ a:hover .gb-vd-zoom-wrap img,
     padding: 1px 5px;
     border-radius: 3px;
     line-height: 1.2;
+    z-index: 2;
 }
 
 .gb-vd-upnext-info {
+    width: 60%;
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
