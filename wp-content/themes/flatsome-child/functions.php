@@ -898,15 +898,5 @@ add_filter('the_content', function($content) {
     }, $content);
 }, 99);
 
-add_action('wp_footer', function() {
-    ?>
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.row:not(.vp-row-custom)').forEach(function(el) {
-            el.classList.add('vp-row-custom');
-        });
-    });
-    </script>
-    <?php
-}, 9999);
+
 
