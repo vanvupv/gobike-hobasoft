@@ -6045,9 +6045,20 @@ function gobike_custom_styles_output()
                 min-width: 0 !important;
                 max-width: none !important;
                 padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
 
-            /* Card tiện ích mặc định trên Mobile: bố cục dọc (column), căn giữa */
+            /* Đảm bảo col-inner và card kéo giãn bằng nhau 100% chiều cao */
+            .vp-banner-sub-features .col-inner {
+                height: 100% !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                flex: 1 1 auto !important;
+            }
+
+            /* Card tiện ích mặc định trên Mobile: bố cục dọc (column), căn giữa, chiều cao bằng nhau */
             .vp-banner-sub-features .vp-icon-box-custom {
                 background: #ffffff !important;
                 border: 1px solid #e2e8f0 !important;
@@ -6060,6 +6071,7 @@ function gobike_custom_styles_output()
                 text-align: center !important;
                 gap: 6px !important;
                 height: 100% !important;
+                flex: 1 1 auto !important;
                 box-sizing: border-box !important;
                 margin: 0 !important;
                 transition: all 0.2s ease !important;
@@ -6094,6 +6106,10 @@ function gobike_custom_styles_output()
                 text-align: center !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex: 1 1 auto !important;
             }
 
             .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
