@@ -8,6 +8,12 @@
 
 get_header();
 
+// Thiết lập dữ liệu post data chuẩn WordPress loop
+if (have_posts() && empty($GLOBALS['gb_vd_post_setup'])) {
+    the_post();
+    $GLOBALS['gb_vd_post_setup'] = true;
+}
+
 // Lấy thông tin bài viết hiện tại (TỰ ĐỘNG ăn theo bài viết post type: video_review)
 $current_id = get_the_ID();
 $is_video_cpt = (get_post_type($current_id) === 'video_review');
@@ -15,7 +21,15 @@ $is_video_cpt = (get_post_type($current_id) === 'video_review');
 $current_title = $is_video_cpt ? get_the_title() : 'Trải nghiệm thực tế Phoenix C200: Đạp nhẹ hơn, đi xa hơn';
 $current_date  = $is_video_cpt ? get_the_date('d/m/Y') : '12/09/2025';
 $current_views = ($is_video_cpt && get_field('video_views_text', $current_id)) ? get_field('video_views_text', $current_id) : '12.5K lượt xem';
+$current_url   = ($is_video_cpt && get_field('video_url', $current_id)) ? get_field('video_url', $current_id) : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
 $current_thumb = get_the_post_thumbnail_url($current_id, 'full');
+if (!$current_thumb && $is_video_cpt) {
+    $acf_thumb = get_field('video_thumbnail', $current_id);
+    if ($acf_thumb) {
+        $current_thumb = is_array($acf_thumb) ? $acf_thumb['url'] : $acf_thumb;
+    }
+}
 if (!$current_thumb) {
     $current_thumb = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg';
 }

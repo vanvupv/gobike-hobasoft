@@ -864,3 +864,14 @@ add_action('wp_footer', function() {
 
 // Đăng ký Custom Post Type: "NGƯỜI THẬT - XE THẬT - TRẢI NGHIỆM THẬT"
 require_once get_stylesheet_directory() . '/inc/cpt-experience.php';
+
+/**
+ * Tự động Flush Rewrite Rules cho Custom Post Type video_review
+ * Giúp nhận diện ngay lập tức đường dẫn chi tiết /video-review/ten-bai-viet/ mà không bị lỗi 404
+ */
+add_action('init', function() {
+    if (!get_option('gobike_video_review_perm_flushed_v1')) {
+        flush_rewrite_rules(false);
+        update_option('gobike_video_review_perm_flushed_v1', 1);
+    }
+}, 999);
