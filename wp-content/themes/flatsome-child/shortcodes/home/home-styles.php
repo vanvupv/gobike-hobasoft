@@ -6025,17 +6025,20 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (.vp-banner-sub-features / #section_1127472381)
-               - Chuẩn giao diện: Card viền bo góc, nền trắng, icon tròn xanh nằm ngang cùng chữ
-               - Cân đối trên 1 hàng 3 cột, hiển thị sắc nét
+               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (.vp-banner-sub-features)
+               - Mobile (<= 549px): Bố cục dọc (column), icon ở trên, chữ rơi xuống dưới và căn giữa
+               - Tablet & Desktop (>= 550px): Bố cục ngang (row), icon bên trái, chữ bên phải
                ========================================================================== */
+            .vp-banner-sub-features .row,
             .vp-banner-sub-features .vp-row-custom {
                 display: flex !important;
                 flex-flow: row wrap !important;
                 align-items: stretch !important;
-                gap: 8px !important;
+                gap: 6px !important;
             }
 
+            .vp-banner-sub-features .row > .col.medium-4,
+            .vp-banner-sub-features .row > .col.small-4,
             .vp-banner-sub-features .vp-row-custom > .col.medium-4,
             .vp-banner-sub-features .vp-row-custom > .col.small-4 {
                 flex: 1 1 0 !important;
@@ -6044,16 +6047,18 @@ function gobike_custom_styles_output()
                 padding: 0 !important;
             }
 
+            /* Card tiện ích mặc định trên Mobile: bố cục dọc (column), căn giữa */
             .vp-banner-sub-features .vp-icon-box-custom {
                 background: #ffffff !important;
                 border: 1px solid #e2e8f0 !important;
                 border-radius: 8px !important;
-                padding: 8px 10px !important;
+                padding: 10px 4px !important;
                 display: flex !important;
-                flex-direction: row !important;
+                flex-direction: column !important;
                 align-items: center !important;
-                justify-content: flex-start !important;
-                gap: 8px !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 6px !important;
                 height: 100% !important;
                 box-sizing: border-box !important;
                 margin: 0 !important;
@@ -6066,11 +6071,11 @@ function gobike_custom_styles_output()
             }
 
             .vp-banner-sub-features .vp-icon-box-custom .icon-box-img {
-                width: 32px !important;
-                min-width: 32px !important;
-                max-width: 32px !important;
-                height: 32px !important;
-                margin: 0 !important;
+                width: 36px !important;
+                min-width: 36px !important;
+                max-width: 36px !important;
+                height: 36px !important;
+                margin: 0 auto !important;
                 flex-shrink: 0 !important;
             }
 
@@ -6080,31 +6085,42 @@ function gobike_custom_styles_output()
                 height: 100% !important;
                 object-fit: contain !important;
                 display: block !important;
+                margin: 0 auto !important;
             }
 
             .vp-banner-sub-features .vp-icon-box-custom .icon-box-text {
-                flex: 1 1 auto !important;
+                width: 100% !important;
                 min-width: 0 !important;
-                text-align: left !important;
+                text-align: center !important;
                 padding: 0 !important;
+                margin: 0 !important;
             }
 
             .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
                 font-size: 11.5px !important;
                 font-weight: 700 !important;
                 color: #0f172a !important;
-                line-height: 1.2 !important;
+                line-height: 1.25 !important;
                 margin: 0 !important;
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
+                text-align: center !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+                display: block !important;
+                overflow: visible !important;
+                text-overflow: unset !important;
             }
 
+            /* Tablet & màn hình lớn hơn (>= 550px): Bố cục ngang, icon bên trái, chữ bên phải */
             @media screen and (min-width: 550px) {
+                .vp-banner-sub-features .row,
                 .vp-banner-sub-features .vp-row-custom {
                     gap: 12px !important;
                 }
                 .vp-banner-sub-features .vp-icon-box-custom {
+                    flex-direction: row !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
+                    text-align: left !important;
                     padding: 10px 14px !important;
                     gap: 10px !important;
                 }
@@ -6113,9 +6129,18 @@ function gobike_custom_styles_output()
                     min-width: 38px !important;
                     max-width: 38px !important;
                     height: 38px !important;
+                    margin: 0 !important;
+                }
+                .vp-banner-sub-features .vp-icon-box-custom .icon-box-text {
+                    text-align: left !important;
+                    flex: 1 1 auto !important;
                 }
                 .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
                     font-size: 13.5px !important;
+                    text-align: left !important;
+                    white-space: nowrap !important;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
                 }
             }
 
