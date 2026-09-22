@@ -1392,7 +1392,7 @@
     }
 
     /* --- 3. DẠNG SLIDE 2.5 CHO TẤT CẢ CÁC SECTION TRÊN MOBILE --- */
-    /* Quy tắc slide 2.5 chuẩn: Vuốt ngang mượt mà, hiển thị 2 card trọn vẹn và 1 nửa card thứ 3 */
+    /* Quy tắc slide 2.5 chuẩn: Vuốt ngang mượt mà, gap giữa các khối là 8px */
     .gb-vr-related-grid,
     .gb-vr-playlist-grid,
     .gb-vr-products-grid,
@@ -1403,8 +1403,8 @@
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
         -webkit-overflow-scrolling: touch !important;
-        gap: 12px !important;
-        padding-bottom: 12px !important;
+        gap: 8px !important;
+        padding-bottom: 10px !important;
         margin-right: -16px !important;
         padding-right: 16px !important;
         scrollbar-width: none !important;
@@ -1418,7 +1418,7 @@
         display: none !important;
     }
 
-    /* Kích thước mỗi card chuẩn tỉ lệ 2.5 (2 card rưỡi) */
+    /* Kích thước mỗi card chuẩn tỉ lệ 2.5 (gap 8px) */
     .gb-vr-related-grid > .gb-vr-video-card,
     .gb-vr-products-grid > .gb-vr-product-card,
     .gb-vr-experience-grid > .gb-vr-exp-card {
@@ -1429,7 +1429,7 @@
         box-sizing: border-box !important;
     }
 
-    /* Danh sách phát nổi bật (Playlist) trên mobile: slide 2.5 */
+    /* Danh sách phát nổi bật (Playlist) trên mobile: slide 2.5, gap 8px */
     .gb-vr-playlist-grid > .gb-vr-playlist-card {
         flex: 0 0 calc((100% - 16px) / 2.3) !important;
         min-width: calc((100% - 16px) / 2.3) !important;
@@ -1460,7 +1460,7 @@
         font-size: 14.5px !important;
     }
 
-    /* --- 4. HỆ THỐNG SHOWROOM GOBIKE TRÊN MOBILE: DẠNG SLIDE 2.5 --- */
+    /* --- 4. HỆ THỐNG SHOWROOM GOBIKE TRÊN MOBILE: DẠNG SLIDE 2.5 (GAP 8PX) --- */
     .gb-vr-showroom-grid > .gb-vr-showroom-card,
     .gb-vr-showroom-grid > .gb-vr-showroom-map-card {
         flex: 0 0 calc((100% - 16px) / 2.3) !important;
@@ -1496,8 +1496,9 @@
     .gb-vr-booking-banner {
         flex-direction: column !important;
         padding: 18px 16px !important;
-        gap: 16px !important;
+        gap: 12px !important;
         border-radius: 14px !important;
+        margin-bottom: 12px !important;
     }
 
     .gb-vr-booking-left {
@@ -1534,6 +1535,20 @@
     .gb-vr-btn-booking {
         width: 100% !important;
         justify-content: center !important;
+    }
+
+    /* --- 6. KHOẢNG CÁCH TRÊN DƯỚI GIỮA CÁC SECTION LÀ 12PX --- */
+    .gb-vr-hero-section,
+    .gb-vr-related-section,
+    .gb-vr-playlist-section,
+    .gb-vr-products-section,
+    .gb-vr-booking-experience-section,
+    .gb-vr-showroom-section {
+        margin-bottom: 12px !important;
+    }
+
+    .gb-vr-section-header {
+        margin-bottom: 10px !important;
     }
 }
 
