@@ -1185,3 +1185,355 @@
     background: var(--gb-vr-primary-hover);
     transform: translateX(-50%) translateY(-2px);
 }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE (<= 849px) - DẠNG SLIDE 2.5
+   - Header Mobile: Tiêu đề + Subtitle + Pills slider cuộn ngang
+   - Hero video nổi bật có badge NỔI BẬT và thông tin overlay
+   - Các khối danh sách: Slide 2.5 vuốt ngang mượt mà (Video liên quan, Sản phẩm,
+     Người thật việc thật, Hệ thống showroom GoBike)
+   ========================================================================== */
+
+/* Ẩn Header Mobile trên Desktop */
+.gb-vr-mobile-header {
+    display: none;
+}
+
+.gb-vr-featured-badge-mobile,
+.gb-vr-hero-overlay-mobile,
+.gb-vr-duration-badge-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 849px) {
+    .gobike-video-review-page {
+        padding: 16px 0 40px 0 !important;
+    }
+
+    .gobike-video-review-page .gb-vr-container {
+        padding: 0 16px !important;
+    }
+
+    /* --- 1. HEADER MOBILE & PILLS SLIDER --- */
+    .gb-vr-mobile-header {
+        display: block !important;
+        margin-bottom: 18px !important;
+    }
+
+    .gb-vr-mobile-title {
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        color: var(--gb-vr-dark) !important;
+        margin: 0 0 4px 0 !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    .gb-vr-mobile-subtitle {
+        font-size: 13px !important;
+        color: var(--gb-vr-gray) !important;
+        margin: 0 0 14px 0 !important;
+    }
+
+    .gb-vr-mobile-pills {
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        gap: 8px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 4px !important;
+        scrollbar-width: none;
+        margin-right: -16px !important;
+        padding-right: 16px !important;
+    }
+
+    .gb-vr-mobile-pills::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .gb-vr-pill-item {
+        display: inline-block !important;
+        padding: 7px 16px !important;
+        background: #f1f5f9 !important;
+        color: #334155 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        flex-shrink: 0 !important;
+    }
+
+    .gb-vr-pill-item.active {
+        background: #0f4c2c !important;
+        color: #ffffff !important;
+    }
+
+    /* --- 2. HERO SECTION MOBILE (ẢNH 1 MOBILE) --- */
+    .gb-vr-hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Ẩn sidebar Desktop trên mobile */
+    .gb-vr-sidebar {
+        display: none !important;
+    }
+
+    .gb-vr-main-player {
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .gb-vr-player-box {
+        border-radius: 14px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Badge Nổi Bật & Overlay Text trên Video Mobile */
+    .gb-vr-featured-badge-mobile {
+        display: inline-block !important;
+        position: absolute !important;
+        top: 12px !important;
+        left: 12px !important;
+        background: #0d7030 !important;
+        color: #ffffff !important;
+        font-size: 10.5px !important;
+        font-weight: 800 !important;
+        padding: 3px 8px !important;
+        border-radius: 4px !important;
+        letter-spacing: 0.5px !important;
+        z-index: 3 !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .gb-vr-hero-overlay-mobile {
+        display: flex !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        bottom: 12px !important;
+        left: 14px !important;
+        right: 65px !important;
+        z-index: 3 !important;
+        text-align: left !important;
+        pointer-events: none !important;
+    }
+
+    .gb-vr-hero-title-mobile {
+        color: #ffffff !important;
+        font-size: 14.5px !important;
+        font-weight: 700 !important;
+        line-height: 1.35 !important;
+        margin: 0 0 6px 0 !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .gb-vr-hero-channel-mobile {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        color: rgba(255, 255, 255, 0.92) !important;
+        font-size: 11.5px !important;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    .gb-vr-channel-icon {
+        width: 18px !important;
+        height: 18px !important;
+        background: #ffffff !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #0d7030 !important;
+    }
+
+    .gb-vr-duration-badge-mobile {
+        display: inline-block !important;
+        position: absolute !important;
+        bottom: 12px !important;
+        right: 12px !important;
+        background: rgba(0, 0, 0, 0.8) !important;
+        color: #ffffff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        padding: 2px 6px !important;
+        border-radius: 4px !important;
+        z-index: 3 !important;
+    }
+
+    /* Ẩn tiêu đề lặp lại bên dưới player trên mobile */
+    .gb-vr-player-title {
+        display: none !important;
+    }
+
+    .gb-vr-player-actions-bar {
+        padding-top: 10px !important;
+        justify-content: space-between !important;
+    }
+
+    /* Cột Video tiếp theo trên Mobile */
+    .gb-vr-up-next {
+        padding: 14px !important;
+        border-radius: 12px !important;
+    }
+
+    .gb-vr-up-next-thumb {
+        width: 95px !important;
+        min-width: 95px !important;
+        height: 56px !important;
+    }
+
+    /* --- 3. DẠNG SLIDE 2.5 CHO TẤT CẢ CÁC SECTION TRÊN MOBILE --- */
+    /* Quy tắc slide 2.5 chuẩn: Vuốt ngang mượt mà, hiển thị 2 card trọn vẹn và 1 nửa card thứ 3 */
+    .gb-vr-related-grid,
+    .gb-vr-playlist-grid,
+    .gb-vr-products-grid,
+    .gb-vr-experience-grid,
+    .gb-vr-showroom-grid {
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 12px !important;
+        margin-right: -16px !important;
+        padding-right: 16px !important;
+        scrollbar-width: none !important;
+    }
+
+    .gb-vr-related-grid::-webkit-scrollbar,
+    .gb-vr-playlist-grid::-webkit-scrollbar,
+    .gb-vr-products-grid::-webkit-scrollbar,
+    .gb-vr-experience-grid::-webkit-scrollbar,
+    .gb-vr-showroom-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* Kích thước mỗi card chuẩn tỉ lệ 2.5 (2 card rưỡi) */
+    .gb-vr-related-grid > .gb-vr-video-card,
+    .gb-vr-products-grid > .gb-vr-product-card,
+    .gb-vr-experience-grid > .gb-vr-exp-card {
+        flex: 0 0 calc((100% - 16px) / 2.3) !important;
+        min-width: calc((100% - 16px) / 2.3) !important;
+        max-width: calc((100% - 16px) / 2.3) !important;
+        scroll-snap-align: start !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Danh sách phát nổi bật (Playlist) trên mobile: slide 2.5 */
+    .gb-vr-playlist-grid > .gb-vr-playlist-card {
+        flex: 0 0 calc((100% - 16px) / 2.3) !important;
+        min-width: calc((100% - 16px) / 2.3) !important;
+        max-width: calc((100% - 16px) / 2.3) !important;
+        scroll-snap-align: start !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Card sản phẩm trên mobile */
+    .gb-vr-product-card {
+        padding: 12px 10px !important;
+    }
+
+    .gb-vr-prod-thumb-wrap {
+        height: 120px !important;
+    }
+
+    .gb-vr-prod-title {
+        font-size: 14px !important;
+    }
+
+    .gb-vr-prod-specs {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+    }
+
+    .gb-vr-price-current {
+        font-size: 14.5px !important;
+    }
+
+    /* --- 4. HỆ THỐNG SHOWROOM GOBIKE TRÊN MOBILE: DẠNG SLIDE 2.5 --- */
+    .gb-vr-showroom-grid > .gb-vr-showroom-card,
+    .gb-vr-showroom-grid > .gb-vr-showroom-map-card {
+        flex: 0 0 calc((100% - 16px) / 2.3) !important;
+        min-width: calc((100% - 16px) / 2.3) !important;
+        max-width: calc((100% - 16px) / 2.3) !important;
+        scroll-snap-align: start !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-vr-showroom-card {
+        padding: 12px 10px !important;
+    }
+
+    .gb-vr-sr-name {
+        font-size: 13.5px !important;
+    }
+
+    .gb-vr-sr-addr {
+        font-size: 11px !important;
+    }
+
+    .gb-vr-showroom-map-card {
+        min-height: 180px !important;
+    }
+
+    .gb-vr-showroom-map-card .gb-vr-map-overlay-btn {
+        font-size: 11.5px !important;
+        padding: 6px 12px !important;
+        bottom: 12px !important;
+    }
+
+    /* --- 5. BANNER ĐẶT LỊCH LÁI THỬ TRÊN MOBILE --- */
+    .gb-vr-booking-banner {
+        flex-direction: column !important;
+        padding: 18px 16px !important;
+        gap: 16px !important;
+        border-radius: 14px !important;
+    }
+
+    .gb-vr-booking-left {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    .gb-vr-booking-info h3 {
+        font-size: 17px !important;
+    }
+
+    .gb-vr-booking-checklist {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+    }
+
+    .gb-vr-booking-center-img {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .gb-vr-booking-center-img img {
+        width: 100% !important;
+        max-height: 140px !important;
+    }
+
+    .gb-vr-booking-right {
+        width: 100% !important;
+        align-items: center !important;
+    }
+
+    .gb-vr-btn-booking {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+

@@ -153,12 +153,27 @@ $related_videos = array_slice($videos, 0, 6);
     <div class="gb-vr-container">
 
         <!-- ===================================================================
+             MOBILE HEADER & PILLS SLIDER (ẢNH MOBILE)
+             =================================================================== -->
+        <div class="gb-vr-mobile-header">
+            <h1 class="gb-vr-mobile-title">Video Review</h1>
+            <p class="gb-vr-mobile-subtitle">Người thật • Trải nghiệm thật • Đánh giá thật</p>
+            <div class="gb-vr-mobile-pills">
+                <a class="gb-vr-pill-item active" data-cat-slug="all">Tất cả</a>
+                <a class="gb-vr-pill-item" data-cat-slug="trai-nghiem-thuc-te">Trải nghiệm thực tế</a>
+                <a class="gb-vr-pill-item" data-cat-slug="huong-dan-su-dung">Hướng dẫn</a>
+                <a class="gb-vr-pill-item" data-cat-slug="so-sanh-xe">So sánh</a>
+                <a class="gb-vr-pill-item" data-cat-slug="phu-kien">Phụ kiện</a>
+            </div>
+        </div>
+
+        <!-- ===================================================================
              SECTION 1: HERO VIDEO PLAYER + SIDEBAR MENU + VIDEO TIẾP THEO (ẢNH 1)
              =================================================================== -->
         <section class="gb-vr-hero-section">
             <div class="gb-vr-hero-grid">
 
-                <!-- 1.1 Cột trái: Sidebar Menu Danh mục Lọc Video -->
+                <!-- 1.1 Cột trái: Sidebar Menu Danh mục Lọc Video (Chỉ hiện Desktop) -->
                 <aside class="gb-vr-sidebar">
                     <h2 class="gb-vr-sidebar-title">Video</h2>
                     <nav class="gb-vr-category-nav">
@@ -191,8 +206,8 @@ $related_videos = array_slice($videos, 0, 6);
 
                 <!-- 1.2 Cột giữa: Video Player chính -->
                 <main class="gb-vr-main-player">
-                    <!-- Breadcrumb -->
-                    <div class="gb-vr-breadcrumb">
+                    <!-- Breadcrumb (Desktop) -->
+                    <div class="gb-vr-breadcrumb hide-for-small">
                         <a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a> &gt; 
                         <a href="<?php echo esc_url(home_url('/video-review/')); ?>">Video</a> &gt; 
                         <span class="current">Trải nghiệm thực tế</span>
@@ -203,9 +218,23 @@ $related_videos = array_slice($videos, 0, 6);
                         <div class="gb-vr-player-cover" 
                              style="background-image: url('<?php echo esc_url($hero_video['thumb']); ?>');"
                              data-video-url="<?php echo esc_attr($hero_video['url']); ?>">
+                            <!-- Badge Nổi Bật (Ảnh Mobile) -->
+                            <div class="gb-vr-featured-badge-mobile">NỔI BẬT</div>
+                            
                             <div class="gb-vr-big-play-btn">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                             </div>
+
+                            <!-- Overlay tiêu đề và kênh nổi bật góc dưới trên Mobile -->
+                            <div class="gb-vr-hero-overlay-mobile">
+                                <h2 class="gb-vr-hero-title-mobile"><?php echo esc_html($hero_video['title']); ?></h2>
+                                <div class="gb-vr-hero-channel-mobile">
+                                    <span class="gb-vr-channel-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
+                                    <span>GoBike Việt Nam • <?php echo esc_html($hero_video['views']); ?></span>
+                                </div>
+                            </div>
+
+                            <span class="gb-vr-duration-badge-mobile"><?php echo esc_html($hero_video['duration']); ?></span>
                         </div>
                     </div>
 
