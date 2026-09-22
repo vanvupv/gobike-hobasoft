@@ -8,7 +8,7 @@
 
 get_header();
 
-// Lấy thông tin bài viết hiện tại (nếu là CPT video_review hoặc Page)
+// Lấy thông tin bài viết hiện tại (TỰ ĐỘNG ăn theo bài viết post type: video_review)
 $current_id = get_the_ID();
 $is_video_cpt = (get_post_type($current_id) === 'video_review');
 
@@ -20,8 +20,35 @@ if (!$current_thumb) {
     $current_thumb = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg';
 }
 
-// 5 Video Tiếp Theo (Cột Phải)
-$up_next_videos = array(
+// 1. Tự động truy vấn 5 Video Tiếp Theo (Loại trừ bài viết hiện tại)
+$up_next_query = new WP_Query(array(
+    'post_type'      => 'video_review',
+    'post_status'    => 'publish',
+    'posts_per_page' => 5,
+    'post__not_in'   => array($current_id),
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+));
+
+$up_next_videos = array();
+if ($up_next_query->have_posts()) {
+    while ($up_next_query->have_posts()) {
+        $up_next_query->the_post();
+        $v_id = get_the_ID();
+        $up_next_videos[] = array(
+            'title'    => get_the_title(),
+            'channel'  => 'GoBike',
+            'meta'     => (get_field('video_views_text', $v_id) ?: '15K lượt xem') . ' • ' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' trước',
+            'duration' => get_field('video_duration', $v_id) ?: '08:15',
+            'thumb'    => get_the_post_thumbnail_url($v_id, 'medium') ?: 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
+            'url'      => get_permalink($v_id),
+        );
+    }
+    wp_reset_postdata();
+}
+
+// Fallback mẫu chuẩn thiết kế nếu chưa có đủ bài
+$fallback_upnext = array(
     array(
         'title'    => 'So sánh Phoenix C200 và Phoenix S1 – Nên chọn mẫu nào?',
         'channel'  => 'GoBike',
@@ -63,9 +90,36 @@ $up_next_videos = array(
         'url'      => home_url('/video-review/'),
     ),
 );
+while (count($up_next_videos) < 5) {
+    $up_next_videos[] = $fallback_upnext[count($up_next_videos) % count($fallback_upnext)];
+}
 
-// 4 Video Liên Quan (Ảnh 2)
-$related_videos = array(
+// 2. Tự động truy vấn 4 Video Liên Quan (Ảnh 2)
+$related_query = new WP_Query(array(
+    'post_type'      => 'video_review',
+    'post_status'    => 'publish',
+    'posts_per_page' => 4,
+    'post__not_in'   => array_merge(array($current_id), wp_list_pluck($up_next_videos, 'id')),
+    'orderby'        => 'rand',
+));
+
+$related_videos = array();
+if ($related_query->have_posts()) {
+    while ($related_query->have_posts()) {
+        $related_query->the_post();
+        $r_id = get_the_ID();
+        $related_videos[] = array(
+            'title'    => get_the_title(),
+            'meta'     => (get_field('video_views_text', $r_id) ?: '20K lượt xem') . ' • ' . human_time_diff(get_the_time('U'), current_time('timestamp')) . ' trước',
+            'duration' => get_field('video_duration', $r_id) ?: '09:30',
+            'thumb'    => get_the_post_thumbnail_url($r_id, 'medium') ?: 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
+            'url'      => get_permalink($r_id),
+        );
+    }
+    wp_reset_postdata();
+}
+
+$fallback_related = array(
     array(
         'title'    => 'Đánh giá chi tiết Phoenix C200: Hiệu năng vượt mong đợi',
         'meta'     => '28K lượt xem • 2 tuần trước',
@@ -95,6 +149,9 @@ $related_videos = array(
         'url'      => home_url('/video-review/'),
     ),
 );
+while (count($related_videos) < 4) {
+    $related_videos[] = $fallback_related[count($related_videos) % count($fallback_related)];
+}
 
 // 6 Câu hỏi thường gặp FAQ (Ảnh 2)
 $faqs = array(
