@@ -605,6 +605,7 @@ a:hover .gb-vd-zoom-wrap img,
     align-items: center;
     margin-bottom: 14px;
     padding-bottom: 6px;
+    gap: 12px;
 }
 
 .gb-vd-upnext-header h3 {
@@ -612,52 +613,88 @@ a:hover .gb-vd-zoom-wrap img,
     font-weight: 700;
     color: #0f172a;
     margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .gb-vd-autoplay-toggle {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #64748b;
-    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 12.5px !important;
+    color: #64748b !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    user-select: none !important;
+    margin: 0 !important;
+}
+
+.gb-vd-autoplay-toggle span {
+    white-space: nowrap !important;
+    display: inline-block !important;
+    font-size: 12.5px !important;
+    color: #475569 !important;
+    line-height: 1 !important;
 }
 
 .gb-vd-switch {
-    position: relative;
-    display: inline-block;
-    width: 32px;
-    height: 18px;
+    position: relative !important;
+    display: inline-block !important;
+    width: 36px !important;
+    height: 20px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
 }
 
 .gb-vd-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+    clip: rect(0, 0, 0, 0) !important;
 }
 
 .gb-vd-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #0d7030;
-    transition: 0.3s;
-    border-radius: 18px;
+    position: absolute !important;
+    cursor: pointer !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: #cbd5e1 !important;
+    transition: background-color 0.25s ease !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
 }
 
-.gb-vd-slider:before {
-    position: absolute;
-    content: "";
-    height: 12px;
-    width: 12px;
-    left: 16px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.3s;
-    border-radius: 50%;
+.gb-vd-slider::before {
+    position: absolute !important;
+    content: "" !important;
+    height: 14px !important;
+    width: 14px !important;
+    left: 3px !important;
+    top: 3px !important;
+    background-color: #ffffff !important;
+    transition: transform 0.25s ease !important;
+    border-radius: 50% !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+.gb-vd-switch input:checked + .gb-vd-slider {
+    background-color: #0d7030 !important;
+}
+
+.gb-vd-switch input:checked + .gb-vd-slider::before {
+    transform: translateX(16px) !important;
 }
 
 /* Danh sách 5 video tiếp theo */
