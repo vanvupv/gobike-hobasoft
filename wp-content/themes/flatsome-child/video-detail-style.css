@@ -1086,7 +1086,7 @@ a:hover .gb-vd-zoom-wrap img,
     color: #085623;
 }
 
-/* --- CỘT PHẢI: CÂU HỎI THƯỜNG GẶP (FAQ) --- */
+/* --- CỘT PHẢI: CÂU HỎI THƯỜNG GẶP (FAQ ACCORDION HOẠT ĐỘNG THẬT) --- */
 .gb-vd-faq-box {
     background: transparent;
 }
@@ -1094,30 +1094,47 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-faq-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .gb-vd-faq-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.gb-vd-faq-item[open] {
+    border-color: #0d7030;
+    box-shadow: 0 2px 8px rgba(13, 112, 48, 0.08);
+}
+
+.gb-vd-faq-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 12px 14px;
     font-size: 13px;
     font-weight: 600;
     color: #1e293b;
-    text-decoration: none;
-    transition: all 0.2s ease;
     cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s ease;
 }
 
-.gb-vd-faq-item:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
+.gb-vd-faq-summary::-webkit-details-marker {
+    display: none;
+}
+
+.gb-vd-faq-summary:hover {
     color: #0d7030;
+}
+
+.gb-vd-faq-question-text {
+    flex: 1;
 }
 
 .gb-vd-faq-plus {
@@ -1126,6 +1143,27 @@ a:hover .gb-vd-zoom-wrap img,
     color: #64748b;
     flex-shrink: 0;
     margin-left: 8px;
+    transition: transform 0.25s ease, color 0.25s ease;
+    line-height: 1;
+}
+
+.gb-vd-faq-item[open] .gb-vd-faq-plus {
+    transform: rotate(45deg);
+    color: #0d7030;
+}
+
+.gb-vd-faq-answer {
+    padding: 0 14px 14px 14px;
+    font-size: 12.5px;
+    color: #475569;
+    line-height: 1.55;
+    border-top: 1px dashed #f1f5f9;
+    margin-top: 2px;
+    padding-top: 10px;
+}
+
+.gb-vd-faq-answer p {
+    margin: 0;
 }
 
 /* Box "Vẫn còn thắc mắc?" */

@@ -167,17 +167,44 @@ while (count($related_videos) < 4) {
     $related_videos[] = $fallback_related[count($related_videos) % count($fallback_related)];
 }
 
-// 6 Câu hỏi thường gặp FAQ (Ảnh 2)
+// 6 Câu hỏi thường gặp FAQ (Ảnh 2 - Có câu trả lời chi tiết đóng/mở Accordion)
 $faqs = array(
-    'Phoenix C200 đi được bao xa sau mỗi lần sạc?',
-    'Thời gian sạc pin của Phoenix C200 là bao lâu?',
-    'Xe phù hợp với chiều cao bao nhiêu?',
-    'Có thể lái thử xe ở đâu?',
-    'Chính sách bảo hành như thế nào?',
-    'GoBike có hỗ trợ trả góp không?',
+    array(
+        'q' => 'Phoenix C200 đi được bao xa sau mỗi lần sạc?',
+        'a' => 'Phoenix C200 có thể di chuyển quãng đường từ 70 - 100km ở chế độ trợ lực điện và khoảng 40 - 50km ở chế độ thuần điện tùy thuộc vào tải trọng, địa hình và tốc độ di chuyển.',
+    ),
+    array(
+        'q' => 'Thời gian sạc pin của Phoenix C200 là bao lâu?',
+        'a' => 'Thời gian sạc đầy viên pin Lithium 48V-15Ah của Phoenix C200 mất khoảng 4 - 6 tiếng với củ sạc thông minh có tính năng tự động ngắt điện khi pin đầy an toàn chống cháy nổ.',
+    ),
+    array(
+        'q' => 'Xe phù hợp với chiều cao bao nhiêu?',
+        'a' => 'Xe được thiết kế công thái học phù hợp cho người có chiều cao từ 1m55 đến 1m85 nhờ cọc yên và ghi-đông có thể điều chỉnh linh hoạt.',
+    ),
+    array(
+        'q' => 'Có thể lái thử xe ở đâu?',
+        'a' => 'Bạn có thể đến trải nghiệm và lái thử trực tiếp tại hệ thống showroom GoBike trên toàn quốc (Hà Nội, TP.HCM, Đà Nẵng, Hải Phòng) hoặc đặt lịch trước trên website để được phục vụ tốt nhất.',
+    ),
+    array(
+        'q' => 'Chính sách bảo hành như thế nào?',
+        'a' => 'GoBike bảo hành chính hãng khung sườn 3 năm, động cơ và pin lithium 2 năm, linh kiện phụ tùng khác 1 năm. Hỗ trợ bảo dưỡng định kỳ miễn phí trọn đời tại các showroom.',
+    ),
+    array(
+        'q' => 'GoBike có hỗ trợ trả góp không?',
+        'a' => 'GoBike có hỗ trợ trả góp 0% lãi suất qua thẻ tín dụng của hơn 25 ngân hàng hoặc trả góp qua CCCD duyệt hồ sơ nhanh chỉ trong 15 phút.',
+    ),
 );
 
-// 3 Bình luận mẫu (Ảnh 2)
+// Lấy danh sách bình luận thật của bài viết này trong WordPress
+$real_comments = get_comments(array(
+    'post_id' => $current_id,
+    'status'  => 'approve',
+    'order'   => 'DESC',
+));
+$has_real_comments = !empty($real_comments);
+$comments_count = $has_real_comments ? count($real_comments) : 24;
+
+// 3 Bình luận mẫu fallback (Ảnh 2)
 $comments_sample = array(
     array(
         'name'    => 'Nguyễn Minh Tuấn',
@@ -460,87 +487,121 @@ $comments_sample = array(
                         <a href="<?php echo esc_url(home_url('/video-review/')); ?>" class="gb-vd-link-all">Xem tất cả &rarr;</a>
                     </div>
 
-                    <div class="gb-vd-related-grid">
-                        <?php foreach ($related_videos as $rel): ?>
-                            <a href="<?php echo esc_url($rel['url']); ?>" class="gb-vd-rel-card">
-                                <!-- Thumbnail 16:9 với hiệu ứng hover zoom ảnh -->
-                                <div class="gb-vd-rel-thumb">
-                                    <div class="gb-vd-zoom-wrap">
-                                        <img src="<?php echo esc_url($rel['thumb']); ?>" alt="<?php echo esc_attr($rel['title']); ?>">
-                                    </div>
-                                    <span class="gb-vd-duration-badge"><?php echo esc_html($rel['duration']); ?></span>
-                                </div>
-                                <h3 class="gb-vd-rel-title"><?php echo esc_html($rel['title']); ?></h3>
-                                <div class="gb-vd-rel-meta"><?php echo esc_html($rel['meta']); ?></div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </section>
-
-                <!-- 4. KHU VỰC 2 CỘT PHÍA DƯỚI: BÌNH LUẬN & CÂU HỎI THƯỜNG GẶP (Ảnh 2) -->
+                              <!-- 4. KHU VỰC 2 CỘT PHÍA DƯỚI: BÌNH LUẬN & CÂU HỎI THƯỜNG GẶP (Ảnh 2) -->
                 <div class="gb-vd-bottom-grid">
                     
-                    <!-- 4.1 Cột Trái: Bình Luận (24) -->
+                    <!-- 4.1 Cột Trái: Bình Luận (Dữ liệu động theo bài viết) -->
                     <div class="gb-vd-comments-box">
-                        <h3 class="gb-vd-comments-header">Bình luận (24)</h3>
+                        <h3 class="gb-vd-comments-header">Bình luận (<?php echo esc_html($comments_count); ?>)</h3>
 
-                        <!-- Form nhập bình luận giả lập -->
-                        <div class="gb-vd-comment-form-mock">
-                            <div class="gb-vd-user-avatar-mock">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                            </div>
-                            <div class="gb-vd-comment-input-wrap">
-                                <input type="text" placeholder="Viết bình luận..." class="gb-vd-comment-input">
-                                <button type="button" class="gb-vd-btn-send-comment" aria-label="Gửi bình luận">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Danh sách các bình luận mẫu -->
-                        <div class="gb-vd-comments-list">
-                            <?php foreach ($comments_sample as $cmt): ?>
-                                <div class="gb-vd-comment-item">
-                                    <div class="gb-vd-cmt-avatar">
-                                        <img src="<?php echo esc_url($cmt['avatar']); ?>" alt="<?php echo esc_attr($cmt['name']); ?>">
-                                    </div>
-                                    <div class="gb-vd-cmt-content">
-                                        <div class="gb-vd-cmt-top">
-                                            <span class="gb-vd-cmt-author"><?php echo esc_html($cmt['name']); ?></span>
-                                            <span class="gb-vd-cmt-time"><?php echo esc_html($cmt['time']); ?></span>
-                                        </div>
-                                        <p class="gb-vd-cmt-text"><?php echo esc_html($cmt['content']); ?></p>
-                                        <div class="gb-vd-cmt-actions">
-                                            <span class="gb-vd-cmt-action-btn">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
-                                                <span><?php echo esc_html($cmt['likes']); ?></span>
-                                            </span>
-                                            <span class="gb-vd-cmt-action-btn">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                                                <span>Trả lời</span>
-                                            </span>
-                                        </div>
-                                    </div>
+                        <!-- Form nhập bình luận hoạt động thật (gửi vào cơ sở dữ liệu WordPress) -->
+                        <form action="<?php echo esc_url(site_url('/wp-comments-post.php')); ?>" method="post" class="gb-vd-comment-form">
+                            <input type="hidden" name="comment_post_ID" value="<?php echo esc_attr($current_id); ?>">
+                            <input type="hidden" name="comment_parent" value="0">
+                            
+                            <div class="gb-vd-comment-form-mock">
+                                <div class="gb-vd-user-avatar-mock">
+                                    <?php 
+                                    if (is_user_logged_in()) {
+                                        echo get_avatar(get_current_user_id(), 38);
+                                    } else {
+                                        echo '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+                                    }
+                                    ?>
                                 </div>
-                            <?php endforeach; ?>
+                                <div class="gb-vd-comment-input-wrap">
+                                    <input type="text" name="comment" placeholder="Viết bình luận..." required class="gb-vd-comment-input">
+                                    <button type="submit" class="gb-vd-btn-send-comment" aria-label="Gửi bình luận">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <?php if (!is_user_logged_in()): ?>
+                                <input type="hidden" name="author" value="Khách hàng GoBike">
+                                <input type="hidden" name="email" value="guest_<?php echo time(); ?>@gobike.vn">
+                            <?php endif; ?>
+                        </form>
+
+                        <!-- Danh sách bình luận -->
+                        <div class="gb-vd-comments-list">
+                            <?php if ($has_real_comments): ?>
+                                <!-- 1. Hiển thị bình luận THỰC TẾ của bài viết này -->
+                                <?php foreach ($real_comments as $cmt): ?>
+                                    <div class="gb-vd-comment-item">
+                                        <div class="gb-vd-cmt-avatar">
+                                            <?php echo get_avatar($cmt, 36); ?>
+                                        </div>
+                                        <div class="gb-vd-cmt-content">
+                                            <div class="gb-vd-cmt-top">
+                                                <span class="gb-vd-cmt-author"><?php echo esc_html(get_comment_author($cmt)); ?></span>
+                                                <span class="gb-vd-cmt-time"><?php echo human_time_diff(get_comment_time('U', true, $cmt), current_time('timestamp')) . ' trước'; ?></span>
+                                            </div>
+                                            <div class="gb-vd-cmt-text"><?php echo wpautop(esc_html($cmt->comment_content)); ?></div>
+                                            <div class="gb-vd-cmt-actions">
+                                                <span class="gb-vd-cmt-action-btn">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                                                    <span>Thích</span>
+                                                </span>
+                                                <span class="gb-vd-cmt-action-btn">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                                    <span>Trả lời</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <!-- 2. Hiển thị bình luận mẫu chuẩn thiết kế khi bài viết chưa có bình luận -->
+                                <?php foreach ($comments_sample as $cmt): ?>
+                                    <div class="gb-vd-comment-item">
+                                        <div class="gb-vd-cmt-avatar">
+                                            <img src="<?php echo esc_url($cmt['avatar']); ?>" alt="<?php echo esc_attr($cmt['name']); ?>">
+                                        </div>
+                                        <div class="gb-vd-cmt-content">
+                                            <div class="gb-vd-cmt-top">
+                                                <span class="gb-vd-cmt-author"><?php echo esc_html($cmt['name']); ?></span>
+                                                <span class="gb-vd-cmt-time"><?php echo esc_html($cmt['time']); ?></span>
+                                            </div>
+                                            <p class="gb-vd-cmt-text"><?php echo esc_html($cmt['content']); ?></p>
+                                            <div class="gb-vd-cmt-actions">
+                                                <span class="gb-vd-cmt-action-btn">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                                                    <span><?php echo esc_html($cmt['likes']); ?></span>
+                                                </span>
+                                                <span class="gb-vd-cmt-action-btn">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                                    <span>Trả lời</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
 
                         <a href="javascript:void(0);" class="gb-vd-more-comments-btn">Xem thêm bình luận</a>
                     </div>
 
-                    <!-- 4.2 Cột Phải: Câu Hỏi Thường Gặp (FAQ) -->
+                    <!-- 4.2 Cột Phải: Câu Hỏi Thường Gặp (Accordion hoạt động thật) -->
                     <div class="gb-vd-faq-box">
                         <div class="gb-vd-sec-header" style="margin-bottom: 14px;">
                             <h3 style="font-size: 18px; font-weight: 800; margin: 0;">Câu hỏi thường gặp</h3>
                             <a href="#" class="gb-vd-link-all">Xem tất cả &rarr;</a>
                         </div>
 
+                        <!-- Accordion danh sách câu hỏi đóng mở -->
                         <div class="gb-vd-faq-list">
-                            <?php foreach ($faqs as $faq): ?>
-                                <a href="javascript:void(0);" class="gb-vd-faq-item">
-                                    <span><?php echo esc_html($faq); ?></span>
-                                    <span class="gb-vd-faq-plus">+</span>
-                                </a>
+                            <?php foreach ($faqs as $index => $faq): ?>
+                                <details class="gb-vd-faq-item" <?php echo ($index === 0) ? 'open' : ''; ?>>
+                                    <summary class="gb-vd-faq-summary">
+                                        <span class="gb-vd-faq-question-text"><?php echo esc_html($faq['q']); ?></span>
+                                        <span class="gb-vd-faq-plus">+</span>
+                                    </summary>
+                                    <div class="gb-vd-faq-answer">
+                                        <p><?php echo esc_html($faq['a']); ?></p>
+                                    </div>
+                                </details>
                             <?php endforeach; ?>
                         </div>
 

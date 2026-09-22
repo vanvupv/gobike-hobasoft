@@ -78,7 +78,7 @@ function gobike_register_video_review_cpt()
         'hierarchical' => false,
         'menu_position' => 27,
         'menu_icon' => 'dashicons-video-alt3',
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'),
     ));
 }
 
