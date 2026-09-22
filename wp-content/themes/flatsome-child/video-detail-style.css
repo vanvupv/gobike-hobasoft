@@ -1,0 +1,1248 @@
+/**
+ * GOBIKE - VIDEO DETAIL PAGE STYLES
+ * Giao diện trang chi tiết Video Review (chuẩn theo thiết kế 2 ảnh mẫu)
+ * Chỉ dùng CSS hiệu ứng hover vào ảnh thì phóng to, không dùng sự kiện JS
+ *
+ * @package Flatsome-Child
+ */
+
+/* ==========================================================================
+   BIẾN MÀU & CONTAINER
+   ========================================================================== */
+.gobike-video-detail-page {
+    background-color: #ffffff;
+    color: var(--gb-vr-dark, #0f172a);
+    padding: 20px 0 60px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   HIỆU ỨNG HOVER PHÓNG TO ẢNH THUẦN CSS (ZOOM ON HOVER)
+   "Chỉ có sự kiện hover vào ảnh thì phóng to lên thôi"
+   ========================================================================== */
+.gb-vd-zoom-wrap {
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+.gb-vd-zoom-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.gb-vd-zoom-wrap:hover img,
+a:hover .gb-vd-zoom-wrap img,
+.gb-vd-upnext-item:hover .gb-vd-zoom-wrap img,
+.gb-vd-rel-card:hover .gb-vd-zoom-wrap img,
+.gb-vd-product-card:hover .gb-vd-zoom-wrap img {
+    transform: scale(1.06);
+}
+
+/* ==========================================================================
+   BREADCRUMB
+   ========================================================================== */
+.gb-vd-breadcrumb {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.gb-vd-breadcrumb a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gb-vd-breadcrumb a:hover {
+    color: #0d7030;
+}
+
+.gb-vd-breadcrumb .current {
+    color: #0d7030;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   BỐ CỤC 2 CỘT CHÍNH (TOP HERO: MAIN PLAYER + SIDEBAR)
+   ========================================================================== */
+.gb-vd-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: start;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* --- CỘT TRÁI: VIDEO PLAYER & METADATA --- */
+.gb-vd-player-box {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Tỉ lệ 16:9 */
+    background: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.gb-vd-player-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.gb-vd-player-cover .gb-vd-zoom-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+/* Logo tròn GoBike góc phải trên */
+.gb-vd-player-brand-logo {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gb-vd-player-brand-logo svg {
+    color: #0d7030;
+    width: 20px;
+    height: 20px;
+}
+
+.gb-vd-player-brand-logo span.brand-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0d7030;
+    line-height: 1;
+}
+
+.gb-vd-player-brand-logo span.brand-tag {
+    font-size: 9px;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Nút Play to ở giữa */
+.gb-vd-big-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    background: rgba(13, 112, 48, 0.92);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, background 0.25s ease;
+    z-index: 4;
+}
+
+.gb-vd-player-cover:hover .gb-vd-big-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #0d7030;
+}
+
+/* Thanh điều khiển video giả lập (Mock Control Bar ở đáy player) */
+.gb-vd-player-controls-mock {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 18px 16px 10px 16px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+
+.gb-vd-progress-bar-mock {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    position: relative;
+}
+
+.gb-vd-progress-fill-mock {
+    width: 25%;
+    height: 100%;
+    background: #10b981;
+    border-radius: 2px;
+}
+
+.gb-vd-controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.gb-vd-ctrl-left,
+.gb-vd-ctrl-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gb-vd-ctrl-left svg,
+.gb-vd-ctrl-right svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* TIÊU ĐỀ VIDEO & METADATA */
+.gb-vd-title-info {
+    margin-top: 18px;
+}
+
+.gb-vd-main-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 10px 0;
+}
+
+.gb-vd-meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.gb-vd-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gb-vd-meta-item svg {
+    width: 14px;
+    height: 14px;
+}
+
+.gb-vd-hashtags {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 6px;
+}
+
+.gb-vd-tag {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.gb-vd-tag:hover {
+    color: #0d7030;
+}
+
+/* HÀNG NÚT TƯƠNG TÁC (ACTION BUTTONS) */
+.gb-vd-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.gb-vd-btn-buy-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0d7030;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(13, 112, 48, 0.25);
+}
+
+.gb-vd-btn-buy-now:hover {
+    background: #085623;
+    transform: translateY(-1px);
+}
+
+.gb-vd-btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #334155 !important;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.gb-vd-btn-action:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #0f172a !important;
+}
+
+.gb-vd-btn-action svg {
+    width: 15px;
+    height: 15px;
+    color: #475569;
+}
+
+/* HỘP THÔNG TIN KÊNH / TÁC GIẢ (CHANNEL BOX) */
+.gb-vd-channel-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.gb-vd-channel-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gb-vd-channel-avatar {
+    width: 44px;
+    height: 44px;
+    background: #0d7030;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.gb-vd-channel-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px 0;
+}
+
+.gb-vd-channel-sub {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+}
+
+.gb-vd-channel-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.gb-vd-channel-label {
+    font-size: 12px;
+    color: #64748b;
+    margin-right: 4px;
+}
+
+.gb-vd-btn-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0d7030;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.gb-vd-btn-phone:hover {
+    background: #085623;
+}
+
+.gb-vd-btn-zalo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #0284c7 !important;
+    border: 1px solid #bae6fd;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.gb-vd-btn-zalo:hover {
+    background: #f0f9ff;
+    border-color: #0284c7;
+}
+
+/* ==========================================================================
+   KHỐI "SẢN PHẨM TRONG VIDEO"
+   ========================================================================== */
+.gb-vd-product-section {
+    margin-top: 10px;
+}
+
+.gb-vd-section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+}
+
+.gb-vd-product-card {
+    display: grid;
+    grid-template-columns: 190px 1fr 140px;
+    gap: 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    align-items: center;
+}
+
+.gb-vd-product-thumb {
+    width: 100%;
+    height: 135px;
+    background: #f8fafc;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+}
+
+.gb-vd-product-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.gb-vd-prod-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.gb-vd-prod-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.gb-vd-prod-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+
+.gb-vd-prod-pricing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.gb-vd-price-current {
+    font-size: 17px;
+    font-weight: 800;
+    color: #dc2626;
+}
+
+.gb-vd-price-old {
+    font-size: 13px;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.gb-vd-price-disc {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #dc2626;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* 4 Thông số kỹ thuật của sản phẩm */
+.gb-vd-prod-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 16px;
+}
+
+.gb-vd-prod-spec-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    color: #475569;
+}
+
+.gb-vd-prod-spec-item svg {
+    width: 14px;
+    height: 14px;
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+/* Cột nút xem & đặt lái thử */
+.gb-vd-prod-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gb-vd-btn-prod-detail {
+    background: #0d7030;
+    color: #ffffff !important;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 9px 12px;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.gb-vd-btn-prod-detail:hover {
+    background: #085623;
+}
+
+.gb-vd-btn-prod-testdrive {
+    background: #ffffff;
+    color: #334155 !important;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.gb-vd-btn-prod-testdrive:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* ==========================================================================
+   CỘT PHẢI (SIDEBAR: VIDEO TIẾP THEO + BANNER ĐẶT LỊCH)
+   ========================================================================== */
+.gb-vd-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Khối Video tiếp theo */
+.gb-vd-upnext-box {
+    background: transparent;
+}
+
+.gb-vd-upnext-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+}
+
+.gb-vd-upnext-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.gb-vd-autoplay-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.gb-vd-switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 18px;
+}
+
+.gb-vd-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.gb-vd-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0d7030;
+    transition: 0.3s;
+    border-radius: 18px;
+}
+
+.gb-vd-slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 16px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+/* Danh sách 5 video tiếp theo */
+.gb-vd-upnext-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gb-vd-upnext-item {
+    display: flex;
+    gap: 12px;
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.gb-vd-upnext-item:hover {
+    background: #f8fafc;
+}
+
+.gb-vd-upnext-thumb {
+    position: relative;
+    width: 115px;
+    min-width: 115px;
+    height: 66px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #0f172a;
+    flex-shrink: 0;
+}
+
+.gb-vd-duration-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    line-height: 1.2;
+}
+
+.gb-vd-upnext-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gb-vd-upnext-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gb-vd-upnext-channel {
+    font-size: 11px;
+    color: #64748b;
+    margin: 0 0 2px 0;
+}
+
+.gb-vd-upnext-meta {
+    font-size: 11px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+/* Banner Đặt Lịch Lái Thử Tại Showroom GoBike */
+.gb-vd-booking-card {
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gb-vd-booking-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+}
+
+.gb-vd-booking-title span.highlight {
+    background: #22c55e;
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+.gb-vd-booking-img-wrap {
+    width: 100%;
+    height: 110px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    background: #ffffff;
+}
+
+.gb-vd-booking-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gb-vd-booking-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.gb-vd-booking-check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.gb-vd-booking-check-item svg {
+    width: 15px;
+    height: 15px;
+    color: #16a34a;
+    flex-shrink: 0;
+}
+
+.gb-vd-btn-booking-cta {
+    display: block;
+    width: 100%;
+    background: #0d7030;
+    color: #ffffff !important;
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.gb-vd-btn-booking-cta:hover {
+    background: #085623;
+}
+
+/* ==========================================================================
+   SECTION "VIDEO LIÊN QUAN" (4 CỘT)
+   ========================================================================== */
+.gb-vd-related-section {
+    margin-bottom: 40px;
+}
+
+.gb-vd-sec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.gb-vd-sec-header h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.gb-vd-link-all {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d7030;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.gb-vd-link-all:hover {
+    color: #085623;
+}
+
+.gb-vd-related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.gb-vd-rel-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.gb-vd-rel-thumb {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0f172a;
+    margin-bottom: 10px;
+}
+
+.gb-vd-rel-thumb .gb-vd-zoom-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gb-vd-rel-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.38;
+    margin: 0 0 6px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.gb-vd-rel-card:hover .gb-vd-rel-title {
+    color: #0d7030;
+}
+
+.gb-vd-rel-meta {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ==========================================================================
+   KHU VỰC 2 CỘT PHÍA DƯỚI: BÌNH LUẬN & CÂU HỎI THƯỜNG GẶP (FAQ)
+   ========================================================================== */
+.gb-vd-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 36px;
+    align-items: start;
+}
+
+/* --- CỘT TRÁI: BÌNH LUẬN (24) --- */
+.gb-vd-comments-box {
+    background: transparent;
+}
+
+.gb-vd-comments-header {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 16px 0;
+}
+
+/* Khung nhập bình luận */
+.gb-vd-comment-form-mock {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.gb-vd-user-avatar-mock {
+    width: 38px;
+    height: 38px;
+    background: #0284c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.gb-vd-comment-input-wrap {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.gb-vd-comment-input {
+    width: 100%;
+    height: 42px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 0 46px 0 16px;
+    font-size: 13.5px;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.gb-vd-comment-input:focus {
+    background: #ffffff;
+    border-color: #0d7030;
+    box-shadow: 0 0 0 3px rgba(13, 112, 48, 0.1);
+}
+
+.gb-vd-btn-send-comment {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.gb-vd-btn-send-comment:hover {
+    color: #0d7030;
+}
+
+/* Danh sách các bình luận mẫu */
+.gb-vd-comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.gb-vd-comment-item {
+    display: flex;
+    gap: 12px;
+}
+
+.gb-vd-cmt-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #e2e8f0;
+}
+
+.gb-vd-cmt-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gb-vd-cmt-content {
+    flex: 1;
+}
+
+.gb-vd-cmt-top {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.gb-vd-cmt-author {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.gb-vd-cmt-time {
+    font-size: 11.5px;
+    color: #94a3b8;
+}
+
+.gb-vd-cmt-text {
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.45;
+    margin: 0 0 6px 0;
+}
+
+.gb-vd-cmt-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.gb-vd-cmt-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #64748b;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.gb-vd-cmt-action-btn:hover {
+    color: #0d7030;
+}
+
+.gb-vd-cmt-action-btn svg {
+    width: 13px;
+    height: 13px;
+}
+
+.gb-vd-more-comments-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0d7030;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.gb-vd-more-comments-btn:hover {
+    color: #085623;
+}
+
+/* --- CỘT PHẢI: CÂU HỎI THƯỜNG GẶP (FAQ) --- */
+.gb-vd-faq-box {
+    background: transparent;
+}
+
+.gb-vd-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.gb-vd-faq-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.gb-vd-faq-item:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0d7030;
+}
+
+.gb-vd-faq-plus {
+    font-size: 16px;
+    font-weight: 700;
+    color: #64748b;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+/* Box "Vẫn còn thắc mắc?" */
+.gb-vd-faq-contact-card {
+    background: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.gb-vd-faq-contact-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gb-vd-faq-icon-headphone {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #dcfce7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+.gb-vd-faq-contact-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px 0;
+}
+
+.gb-vd-faq-contact-sub {
+    font-size: 11.5px;
+    color: #64748b;
+    margin: 0;
+}
+
+.gb-vd-faq-contact-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE CHO TABLET & MOBILE
+   ========================================================================== */
+@media screen and (max-width: 991px) {
+    .gb-vd-main-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .gb-vd-product-card {
+        grid-template-columns: 160px 1fr;
+    }
+    .gb-vd-prod-actions {
+        grid-column: span 2;
+        flex-direction: row;
+    }
+    .gb-vd-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gb-vd-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gb-vd-main-title {
+        font-size: 18px;
+    }
+    .gb-vd-action-buttons {
+        gap: 8px;
+    }
+    .gb-vd-btn-buy-now,
+    .gb-vd-btn-action {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12.5px;
+    }
+    .gb-vd-product-card {
+        grid-template-columns: 1fr;
+    }
+    .gb-vd-prod-actions {
+        grid-column: span 1;
+        flex-direction: column;
+    }
+    .gb-vd-prod-specs-grid {
+        grid-template-columns: 1fr;
+    }
+    .gb-vd-related-grid {
+        grid-template-columns: 1fr;
+    }
+    .gb-vd-channel-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .gb-vd-channel-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .gb-vd-faq-contact-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .gb-vd-faq-contact-right {
+        width: 100%;
+    }
+}
