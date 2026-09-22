@@ -404,15 +404,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 14px;
-    padding-bottom: 6px;
+    padding: 0 6px 6px 6px;
     border-bottom: none;
-}
-
-.gb-vr-up-next-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
+    width: 100%;
+    box-sizing: border-box;
     gap: 12px;
 }
 
@@ -508,10 +503,13 @@
 .gb-vr-up-next-list {
     display: flex;
     flex-direction: column;
+    align-items: stretch !important;
+    width: 100% !important;
     gap: 12px;
     max-height: 520px;
     overflow-y: auto;
     padding-right: 4px;
+    box-sizing: border-box;
 }
 
 .gb-vr-up-next-list::-webkit-scrollbar {
@@ -523,7 +521,11 @@
 }
 
 .gb-vr-up-next-item {
-    display: flex;
+    display: flex !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    align-self: stretch !important;
+    align-items: center;
     gap: 10px;
     cursor: pointer;
     text-decoration: none;
@@ -1111,8 +1113,9 @@
 
 .gb-vr-showroom-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 1.2fr;
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
+    align-items: stretch;
 }
 
 .gb-vr-showroom-card {
@@ -1184,17 +1187,23 @@
     flex-shrink: 0;
 }
 
-/* Card thứ 5: Bản đồ toàn quốc */
+/* Card thứ 5: Bản đồ toàn quốc - Chiều cao tự bám theo các card địa chỉ */
 .gb-vr-showroom-map-card {
     position: relative;
     border-radius: var(--gb-vr-radius);
     overflow: hidden;
     background: #e2e8f0;
-    min-height: 150px;
+    height: 100%;
+    min-height: 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .gb-vr-showroom-map-card img.gb-vr-map-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1219,6 +1228,7 @@
     align-items: center;
     gap: 6px;
     transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 2;
 }
 
 .gb-vr-showroom-map-card .gb-vr-map-overlay-btn:hover {
