@@ -5931,16 +5931,6 @@ function gobike_custom_styles_output()
                 }
             }
 
-            /* ==========================================================================
-                   HÀNG COLLAPSE TÙY BIẾN (.row.row-collapse.vp-row-custom)
-                   - Ép luôn trên 1 hàng (nowrap) không bị rớt cột và khoảng cách giữa các cột là 8px
-                   ========================================================================== */
-            .row.row-collapse.vp-row-custom {
-                display: flex !important;
-                flex-flow: row nowrap !important;
-                flex-wrap: nowrap !important;
-                gap: 8px !important;
-            }
 
             /* ==========================================================================
                    KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left)
@@ -6132,8 +6122,16 @@ function gobike_custom_styles_output()
             /* ==========================================================================
                    KHỐI LIÊN HỆ GOBIKE CHÂN TRANG MOBILE (.vp-footer-mobile .vp-lien-he-custom)
                    - Thêm viền bo góc và nền trắng cho từng ô showroom con (Hà Nội, Phú Thọ, Bắc Ninh)
-                   - Canh đều 3 cột, hiển thị gọn gàng, đẹp mắt
+                   - Canh đều 3 cột trên 1 hàng (nowrap) không bị rớt dòng
                    ========================================================================== */
+            .vp-footer-mobile .vp-lien-he-custom .row-collapse,
+            .vp-lien-he-custom .row-collapse {
+                display: flex !important;
+                flex-flow: row nowrap !important;
+                flex-wrap: nowrap !important;
+                gap: 8px !important;
+            }
+
             .vp-footer-mobile .vp-lien-he-custom .vp-icon-box-custom,
             .vp-lien-he-custom .row-collapse .vp-icon-box-custom {
                 background: #ffffff !important;
