@@ -862,7 +862,5 @@ add_action('wp_footer', function() {
     <?php
 }, 99);
 
-
-
-
-
+// Đăng ký Custom Post Type: "NGƯỜI THẬT - XE THẬT - TRẢI NGHIỆM THẬT"
+require_once get_stylesheet_directory() . '/inc/cpt-experience.php';
