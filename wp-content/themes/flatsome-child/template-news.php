@@ -331,8 +331,8 @@ $news_categories = array(
     <section class="gobike-featured-news-section">
         <div class="container">
             
-            <div class="section-header-row">
-                <h2 class="section-title">
+            <div class="gobike-news-header-row">
+                <h2 class="gobike-news-section-title">
                     <span class="leaf-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="#0d7030">
                             <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
@@ -430,8 +430,8 @@ $news_categories = array(
                 <!-- CỘT TRÁI (8 CỘT - ~68%): BÀI VIẾT MỚI NHẤT -->
                 <div class="col large-8 medium-12 small-12 news-content-col">
                     
-                    <div class="section-header-row mb-20">
-                        <h2 class="section-title">
+                    <div class="gobike-news-header-row mb-20">
+                        <h2 class="gobike-news-section-title">
                             <span class="leaf-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="#0d7030">
                                     <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>

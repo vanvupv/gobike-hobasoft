@@ -291,18 +291,18 @@
 /* ==========================================================================
    4. SECTION HEADER & COMMONS
    ========================================================================== */
-.section-header-row {
+.gobike-news-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 22px;
 }
 
-.section-header-row.mb-20 {
+.gobike-news-header-row.mb-20 {
     margin-bottom: 20px;
 }
 
-.section-title {
+.gobike-news-section-title {
     font-size: 24px;
     font-weight: 700;
     color: #0f172a;
@@ -311,9 +311,11 @@
     gap: 10px;
     margin: 0;
     letter-spacing: -0.3px;
+    border: none !important;
+    text-align: left !important;
 }
 
-.section-title .leaf-icon {
+.gobike-news-section-title .leaf-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
