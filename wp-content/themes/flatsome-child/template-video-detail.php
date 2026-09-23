@@ -487,7 +487,24 @@ $comments_sample = array(
                         <a href="<?php echo esc_url(home_url('/video-review/')); ?>" class="gb-vd-link-all">Xem tất cả &rarr;</a>
                     </div>
 
-                              <!-- 4. KHU VỰC 2 CỘT PHÍA DƯỚI: BÌNH LUẬN & CÂU HỎI THƯỜNG GẶP (Ảnh 2) -->
+                    <div class="gb-vd-related-grid">
+                        <?php foreach ($related_videos as $rel): ?>
+                            <a href="<?php echo esc_url($rel['url']); ?>" class="gb-vd-rel-card">
+                                <!-- Thumbnail 16:9 với hiệu ứng hover zoom ảnh -->
+                                <div class="gb-vd-rel-thumb">
+                                    <div class="gb-vd-zoom-wrap">
+                                        <img src="<?php echo esc_url($rel['thumb']); ?>" alt="<?php echo esc_attr($rel['title']); ?>">
+                                    </div>
+                                    <span class="gb-vd-duration-badge"><?php echo esc_html($rel['duration']); ?></span>
+                                </div>
+                                <h3 class="gb-vd-rel-title"><?php echo esc_html($rel['title']); ?></h3>
+                                <div class="gb-vd-rel-meta"><?php echo esc_html($rel['meta']); ?></div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </section>
+
+                <!-- 4. KHU VỰC 2 CỘT PHÍA DƯỚI: BÌNH LUẬN & CÂU HỎI THƯỜNG GẶP (Ảnh 2) -->
                 <div class="gb-vd-bottom-grid">
                     
                     <!-- 4.1 Cột Trái: Bình Luận (Dữ liệu động theo bài viết) -->
@@ -583,11 +600,10 @@ $comments_sample = array(
                         <a href="javascript:void(0);" class="gb-vd-more-comments-btn">Xem thêm bình luận</a>
                     </div>
 
-                    <!-- 4.2 Cột Phải: Câu Hỏi Thường Gặp (Accordion hoạt động thật) -->
+                    <!-- 4.2 Cột Phải: Câu Hỏi Thường GẶP (Accordion hoạt động thật) -->
                     <div class="gb-vd-faq-box">
-                        <div class="gb-vd-sec-header" style="margin-bottom: 14px;">
-                            <h3 style="font-size: 18px; font-weight: 800; margin: 0;">Câu hỏi thường gặp</h3>
-                            <a href="#" class="gb-vd-link-all">Xem tất cả &rarr;</a>
+                        <div class="gb-vd-sec-header">
+                            <h3>Câu hỏi thường gặp</h3>
                         </div>
 
                         <!-- Accordion danh sách câu hỏi đóng mở -->

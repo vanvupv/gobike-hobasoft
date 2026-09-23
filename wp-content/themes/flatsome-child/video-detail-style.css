@@ -899,8 +899,9 @@ a:hover .gb-vd-zoom-wrap img,
     margin-bottom: 18px;
 }
 
-.gb-vd-sec-header h2 {
-    font-size: 20px;
+.gb-vd-sec-header h2,
+.gb-vd-sec-header h3 {
+    font-size: 18px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
@@ -911,13 +912,17 @@ a:hover .gb-vd-zoom-wrap img,
     font-weight: 700;
     color: #0d7030;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .gb-vd-link-all:hover {
     color: #085623;
+    transform: translateX(3px);
 }
 
 .gb-vd-related-grid {
