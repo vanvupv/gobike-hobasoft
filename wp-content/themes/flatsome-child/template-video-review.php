@@ -557,30 +557,38 @@ $related_videos = array_slice($videos, 0, 6);
              SECTION 5: HERO BANNER ĐẶT LỊCH + NGƯỜI THẬT - VIỆC THẬT (ẢNH 4)
              =================================================================== -->
         <section class="gb-vr-booking-experience-section">
-            <!-- 5.1 Hero Banner Đặt Lịch Lái Thử -->
+            <!-- 5.1 Hero Banner Đặt Lịch Lái Thử (Chuẩn Ảnh Mẫu) -->
             <div class="gb-vr-booking-banner">
                 <div class="gb-vr-booking-left">
                     <div class="gb-vr-booking-icon-wrap">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
                     <div class="gb-vr-booking-info">
                         <h3>Đặt lịch lái thử tại showroom GoBike</h3>
                         <p>Trải nghiệm thực tế – Cảm nhận khác biệt</p>
                         <div class="gb-vr-booking-checklist">
                             <div class="gb-vr-check-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span class="gb-vr-check-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </span>
                                 <span>Trải nghiệm miễn phí</span>
                             </div>
                             <div class="gb-vr-check-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span class="gb-vr-check-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </span>
                                 <span>Nhiều mẫu xe để lựa chọn</span>
                             </div>
                             <div class="gb-vr-check-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span class="gb-vr-check-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </span>
                                 <span>Được tư vấn 1-1</span>
                             </div>
                             <div class="gb-vr-check-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span class="gb-vr-check-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </span>
                                 <span>Hỗ trợ đặt lịch nhanh chóng</span>
                             </div>
                         </div>
@@ -588,7 +596,7 @@ $related_videos = array_slice($videos, 0, 6);
                 </div>
 
                 <div class="gb-vr-booking-center-img">
-                    <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg" alt="Đặt lịch lái thử GoBike" loading="lazy">
+                    <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/booking-testdrive-people.png'); ?>" alt="Đặt lịch lái thử tại showroom GoBike" loading="lazy">
                 </div>
 
                 <div class="gb-vr-booking-right">
