@@ -1,0 +1,1035 @@
+/**
+ * Stylesheet cho trang: NGƯỜI THẬT - XE THẬT - TRẢI NGHIỆM THẬT (GoBike Community Experience)
+ * 
+ * QUY CHUẨN THIẾT KẾ BẮT BUỘC:
+ * 1. Font-weight tối đa là 700 (Tuyệt đối không dùng 800 hoặc 900).
+ * 2. Tất cả các nút/link có mũi tên (rarr) bắt buộc white-space: nowrap !important, display: inline-flex, chống rớt dòng.
+ * 3. Khung hình card dọc tỷ lệ Shorts chuẩn (aspect-ratio 9/14 hoặc padding-bottom), ảnh cover chống méo.
+ * 4. Không dùng style inline bừa bãi trong file template.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+
+/* ==========================================================================
+   WRAPPER CHÍNH CỦA TRANG
+   ========================================================================== */
+.gb-ce-page-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+    padding-bottom: 60px;
+    line-height: 1.5;
+}
+
+.gb-ce-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ==========================================================================
+   BREADCRUMB
+   ========================================================================== */
+.gb-ce-breadcrumb-wrap {
+    padding: 16px 0 10px;
+}
+
+.gb-ce-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gb-ce-breadcrumb a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gb-ce-breadcrumb a:hover {
+    color: #0d7030;
+}
+
+.gb-ce-breadcrumb .sep {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.gb-ce-breadcrumb .current {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   SECTION 1: HERO BANNER (CỘNG ĐỒNG GOBIKE)
+   ========================================================================== */
+.gb-ce-hero-section {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 28px;
+}
+
+.gb-ce-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 340px;
+}
+
+.gb-ce-hero-content {
+    padding: 36px 36px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gb-ce-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #0d7030;
+    background: #e8f7ee;
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 14px;
+}
+
+.gb-ce-hero-title {
+    font-size: 32px;
+    line-height: 1.15;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+    letter-spacing: -0.5px;
+}
+
+.gb-ce-hero-title .gb-ce-highlight {
+    color: #0d7030;
+    display: block;
+}
+
+.gb-ce-hero-desc {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    max-width: 480px;
+}
+
+/* 3 Chỉ số thống kê (Stats) */
+.gb-ce-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 20px;
+}
+
+.gb-ce-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gb-ce-stat-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e8f7ee;
+    color: #0d7030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.gb-ce-stat-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.gb-ce-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.gb-ce-stat-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.1;
+}
+
+.gb-ce-stat-label {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Ảnh Hero bên phải */
+.gb-ce-hero-image-wrap {
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    background: #e2e8f0;
+}
+
+.gb-ce-hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gb-ce-hero-quote-art {
+    position: absolute;
+    bottom: 24px;
+    right: 28px;
+    font-family: 'Caveat', 'Dancing Script', cursive;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    transform: rotate(-3deg);
+}
+
+/* ==========================================================================
+   SECTION 2: FILTER BAR (DANH MỤC & SẮP XẾP)
+   ========================================================================== */
+.gb-ce-filter-section {
+    margin-bottom: 28px;
+}
+
+.gb-ce-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: #ffffff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.gb-ce-filter-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 0;
+}
+
+.gb-ce-filter-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.gb-ce-tab-btn {
+    border: none;
+    outline: none;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.gb-ce-tab-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.gb-ce-tab-btn.active {
+    background: #0d7030;
+    color: #ffffff;
+}
+
+.gb-ce-sort-dropdown-wrap select {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.gb-ce-sort-dropdown-wrap select:focus {
+    border-color: #0d7030;
+}
+
+/* ==========================================================================
+   SECTION 3: LƯỚI CARD CÂU CHUYỆN NỔI BẬT (6 CỘT - DỌC 9:16)
+   ========================================================================== */
+.gb-ce-stories-section {
+    margin-bottom: 40px;
+}
+
+.gb-ce-sec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.gb-ce-sec-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gb-ce-sec-icon-leaf {
+    color: #0d7030;
+    display: flex;
+    align-items: center;
+}
+
+.gb-ce-sec-icon-leaf svg {
+    width: 20px;
+    height: 20px;
+}
+
+.gb-ce-sec-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* Link Xem tất cả với quy chuẩn chống rớt dòng */
+.gb-ce-link-all {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d7030;
+    text-decoration: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.gb-ce-link-all:hover {
+    color: #085623;
+    transform: translateX(3px);
+}
+
+/* Lưới 6 cột theo thiết kế ảnh */
+.gb-ce-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+/* Từng card câu chuyện */
+.gb-ce-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.gb-ce-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Khung ảnh tỷ lệ dọc Shorts */
+.gb-ce-card-thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 14;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.gb-ce-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gb-ce-card:hover .gb-ce-card-img {
+    transform: scale(1.06);
+}
+
+/* Overlay gradient che nhẹ để nổi bật quote & badge */
+.gb-ce-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+}
+
+/* Câu quote nghệ thuật phía trên card */
+.gb-ce-card-quote {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 28px;
+    font-family: 'Caveat', 'Dancing Script', cursive;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Nút 3 chấm menu góc phải trên */
+.gb-ce-card-dots {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.gb-ce-card-dots:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* Nút Play tròn ở giữa */
+.gb-ce-card-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    z-index: 2;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.gb-ce-card-play-btn svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+
+.gb-ce-card:hover .gb-ce-card-play-btn {
+    transform: translate(-50%, -50%) scale(1.12);
+    background: rgba(13, 112, 48, 0.85);
+    border-color: #ffffff;
+}
+
+/* Badge lượt xem góc dưới */
+.gb-ce-card-views {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+}
+
+.gb-ce-card-views svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* Thông tin dưới card */
+.gb-ce-card-info {
+    padding: 8px 2px 2px 2px;
+}
+
+.gb-ce-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.gb-ce-card:hover .gb-ce-card-title {
+    color: #0d7030;
+}
+
+.gb-ce-card-location {
+    font-size: 12px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.gb-ce-card-location svg {
+    width: 13px;
+    height: 13px;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+/* Nút Xem thêm câu chuyện ở giữa đáy */
+.gb-ce-loadmore-wrap {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.gb-ce-loadmore-btn {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.gb-ce-loadmore-btn:hover {
+    background: #f8fafc;
+    border-color: #0d7030;
+    color: #0d7030;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.12);
+}
+
+/* ==========================================================================
+   SECTION 4: COMMUNITY CALLOUT BANNER (KHỐI LAN TỎA HÀNH TRÌNH THẬT)
+   ========================================================================== */
+.gb-ce-community-section {
+    margin-bottom: 36px;
+}
+
+.gb-ce-comm-box {
+    background: #eaf8ef;
+    border-radius: 20px;
+    padding: 32px 36px;
+    border: 1px solid #d1fae5;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 28px;
+    align-items: center;
+    box-shadow: 0 4px 16px rgba(13, 112, 48, 0.04);
+}
+
+/* Cột 1: Quote & Social Proof */
+.gb-ce-comm-quote-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.gb-ce-comm-quote-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #064e3b;
+    line-height: 1.5;
+    margin: 0 0 6px 0;
+}
+
+.gb-ce-comm-quote-author {
+    font-size: 13px;
+    color: #047857;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+}
+
+.gb-ce-comm-avatars-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gb-ce-comm-avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.gb-ce-comm-avatar-group img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    margin-left: -8px;
+    object-fit: cover;
+}
+
+.gb-ce-comm-avatar-group img:first-child {
+    margin-left: 0;
+}
+
+.gb-ce-comm-avatar-caption {
+    font-size: 11px;
+    color: #065f46;
+    line-height: 1.35;
+    max-width: 220px;
+}
+
+/* Cột 2: 3 bước tham gia & Nút CTA */
+.gb-ce-comm-steps-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.gb-ce-comm-steps-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.gb-ce-comm-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 90px;
+}
+
+.gb-ce-comm-step-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0d7030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.gb-ce-comm-step-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.gb-ce-comm-step-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: #064e3b;
+    line-height: 1.3;
+}
+
+.gb-ce-comm-cta-btn {
+    background: #0d7030;
+    color: #ffffff;
+    padding: 10px 22px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.25);
+    transition: all 0.25s ease;
+}
+
+.gb-ce-comm-cta-btn:hover {
+    background: #085623;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 112, 48, 0.35);
+    color: #ffffff;
+}
+
+/* Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật */
+.gb-ce-comm-polaroid-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.gb-ce-polaroid-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.gb-ce-polaroid-item {
+    background: #ffffff;
+    padding: 4px 4px 10px 4px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+}
+
+.gb-ce-polaroid-item:nth-child(1) {
+    transform: rotate(-6deg);
+}
+
+.gb-ce-polaroid-item:nth-child(2) {
+    transform: rotate(2deg) translateY(-4px);
+    z-index: 2;
+}
+
+.gb-ce-polaroid-item:nth-child(3) {
+    transform: rotate(8deg);
+}
+
+.gb-ce-polaroid-item:hover {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 3;
+}
+
+.gb-ce-polaroid-item img {
+    width: 68px;
+    height: 78px;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+}
+
+.gb-ce-comm-polaroid-art {
+    font-family: 'Caveat', 'Dancing Script', cursive;
+    color: #064e3b;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin: 4px 0 0 0;
+    line-height: 1.2;
+}
+
+/* ==========================================================================
+   SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
+   ========================================================================= */
+.gb-ce-bottom-cta-section {
+    margin-bottom: 20px;
+}
+
+.gb-ce-bottom-banner {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 170px;
+    background: #0f172a;
+    display: flex;
+    align-items: center;
+}
+
+.gb-ce-bottom-banner-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+}
+
+.gb-ce-bottom-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0.25) 100%);
+}
+
+.gb-ce-bottom-banner-inner {
+    position: relative;
+    z-index: 2;
+    padding: 32px 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 24px;
+}
+
+.gb-ce-bottom-banner-text {
+    max-width: 650px;
+}
+
+.gb-ce-bottom-banner-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+}
+
+.gb-ce-bottom-banner-desc {
+    font-size: 13px;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.gb-ce-bottom-share-btn {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s ease;
+}
+
+.gb-ce-bottom-share-btn:hover {
+    background: #0d7030;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(13, 112, 48, 0.35);
+}
+
+/* ==========================================================================
+   VIDEO MODAL POPUP (XEM VIDEO THẬT)
+   ========================================================================== */
+.gb-ce-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gb-ce-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.gb-ce-modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 840px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+    animation: gbCeSlideUp 0.3s ease;
+}
+
+@keyframes gbCeSlideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.gb-ce-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s ease;
+}
+
+.gb-ce-modal-close:hover {
+    background: #0d7030;
+}
+
+.gb-ce-modal-video-box {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: #000;
+}
+
+.gb-ce-modal-video-box iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.gb-ce-modal-info {
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.gb-ce-modal-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #0f172a;
+}
+
+.gb-ce-modal-info p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .gb-ce-stories-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .gb-ce-comm-box {
+        grid-template-columns: 1fr 1fr;
+    }
+    .gb-ce-comm-polaroid-col {
+        grid-column: span 2;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 860px) {
+    .gb-ce-hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .gb-ce-hero-image-wrap {
+        min-height: 220px;
+    }
+    .gb-ce-hero-content {
+        padding: 24px 20px;
+    }
+    .gb-ce-hero-title {
+        font-size: 26px;
+    }
+    .gb-ce-stories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .gb-ce-comm-box {
+        grid-template-columns: 1fr;
+        padding: 24px 20px;
+    }
+    .gb-ce-comm-polaroid-col {
+        grid-column: span 1;
+    }
+    .gb-ce-bottom-banner-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 20px;
+    }
+}
+
+@media (max-width: 580px) {
+    .gb-ce-stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .gb-ce-card-thumb-wrap {
+        aspect-ratio: 9 / 14;
+    }
+    .gb-ce-card-quote {
+        font-size: 14px;
+        top: 8px;
+        left: 8px;
+    }
+    .gb-ce-card-play-btn {
+        width: 34px;
+        height: 34px;
+    }
+    .gb-ce-card-play-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    .gb-ce-stats-row {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+    .gb-ce-stat-number {
+        font-size: 16px;
+    }
+    .gb-ce-comm-steps-row {
+        gap: 8px;
+    }
+    .gb-ce-comm-step-item {
+        max-width: 78px;
+    }
+    .gb-ce-bottom-banner-title {
+        font-size: 20px;
+    }
+}
