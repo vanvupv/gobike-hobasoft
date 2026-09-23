@@ -499,33 +499,6 @@ if ($latest_posts_query->have_posts()) {
                     </div>
                 </section>
 
-                <!-- 7. SECTION 4: BÀI VIẾT LIÊN QUAN (HORIZONTAL CARDS) -->
-                <section class="post-related-section post-related-news-section">
-                    <div class="section-title-row">
-                        <h3 class="section-title-heading">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
-                            Bài viết liên quan
-                        </h3>
-                        <a href="<?php echo esc_url(home_url('/tin-tuc-cam-nang/')); ?>" class="section-view-all-link">
-                            Xem tất cả &rarr;
-                        </a>
-                    </div>
-
-                    <div class="post-related-news-grid">
-                        <?php foreach ($related_posts as $r_post): ?>
-                            <a href="<?php echo esc_url($r_post['url']); ?>" class="related-news-card">
-                                <div class="rel-thumb-wrap">
-                                    <img src="<?php echo esc_url($r_post['thumb']); ?>" alt="<?php echo esc_attr($r_post['title']); ?>" loading="lazy">
-                                </div>
-                                <div class="rel-info-wrap">
-                                    <div class="rel-date"><?php echo esc_html($r_post['date']); ?></div>
-                                    <h4 class="rel-title"><?php echo esc_html($r_post['title']); ?></h4>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </section>
-
             </main>
 
             <!-- ================= CỘT PHẢI: SECTION 5 - SIDEBAR (~32%) ================= -->
@@ -708,6 +681,33 @@ if ($latest_posts_query->have_posts()) {
             </aside>
 
         </div>
+
+        <!-- 7. SECTION 4: BÀI VIẾT LIÊN QUAN (FULL WIDTH TRONG CONTAINER) -->
+        <section class="post-related-section post-related-news-section post-related-news-fullwidth">
+            <div class="section-title-row">
+                <h3 class="section-title-heading">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+                    Bài viết liên quan
+                </h3>
+                <a href="<?php echo esc_url(home_url('/tin-tuc-cam-nang/')); ?>" class="section-view-all-link">
+                    Xem tất cả &rarr;
+                </a>
+            </div>
+
+            <div class="post-related-news-grid">
+                <?php foreach ($related_posts as $r_post): ?>
+                    <a href="<?php echo esc_url($r_post['url']); ?>" class="related-news-card">
+                        <div class="rel-thumb-wrap">
+                            <img src="<?php echo esc_url($r_post['thumb']); ?>" alt="<?php echo esc_attr($r_post['title']); ?>" loading="lazy">
+                        </div>
+                        <div class="rel-info-wrap">
+                            <div class="rel-date"><?php echo esc_html($r_post['date']); ?></div>
+                            <h4 class="rel-title"><?php echo esc_html($r_post['title']); ?></h4>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </section>
 
     </div>
 </div>
