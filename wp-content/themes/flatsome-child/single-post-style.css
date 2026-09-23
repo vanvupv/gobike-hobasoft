@@ -48,33 +48,11 @@
     position: sticky;
     top: 95px;
     align-self: flex-start;
-    max-height: calc(100vh - 110px);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 transparent;
 }
 
 /* Khi có thanh Admin Bar WordPress khi đăng nhập */
 .admin-bar .gobike-single-sidebar-col {
     top: 130px;
-    max-height: calc(100vh - 145px);
-}
-
-.gobike-single-sidebar-col::-webkit-scrollbar {
-    width: 4px;
-}
-
-.gobike-single-sidebar-col::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.gobike-single-sidebar-col::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-}
-
-.gobike-single-sidebar-col::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
 }
 
 /* ==========================================================================
@@ -1305,8 +1283,6 @@
     .gobike-single-sidebar-col {
         width: 100% !important;
         position: static !important;
-        max-height: none !important;
-        overflow: visible !important;
     }
 
     .post-products-grid {
