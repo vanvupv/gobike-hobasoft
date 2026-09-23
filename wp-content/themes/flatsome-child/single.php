@@ -844,6 +844,49 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // 4. Xử lý Sticky Sidebar thông minh (Smart Sticky Sidebar)
+    var sidebar = document.querySelector('.gobike-single-sidebar-col');
+    var mainCol = document.querySelector('.gobike-single-main-col');
+    if (sidebar && mainCol) {
+        var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        function handleStickySidebar() {
+            if (window.innerWidth <= 992) {
+                sidebar.style.top = '';
+                return;
+            }
+
+            var adminBar = document.getElementById('wpadminbar');
+            var topOffset = (adminBar ? adminBar.offsetHeight : 0) + 95;
+            var windowHeight = window.innerHeight;
+            var sidebarHeight = sidebar.offsetHeight;
+            var currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Nếu chiều cao sidebar ngắn hơn hoặc vừa màn hình: cố định ở đỉnh
+            if (sidebarHeight + topOffset <= windowHeight) {
+                sidebar.style.top = topOffset + 'px';
+                return;
+            }
+
+            // Nếu sidebar dài hơn chiều cao màn hình:
+            // Khi cuộn xuống: bám theo đáy màn hình để thấy trọn vẹn toàn bộ widget
+            // Khi cuộn lên: bám theo đỉnh màn hình
+            var bottomStickTop = windowHeight - sidebarHeight - 20;
+
+            if (currentScrollY > lastScrollY) {
+                sidebar.style.top = bottomStickTop + 'px';
+            } else {
+                sidebar.style.top = topOffset + 'px';
+            }
+
+            lastScrollY = currentScrollY;
+        }
+
+        window.addEventListener('scroll', handleStickySidebar, { passive: true });
+        window.addEventListener('resize', handleStickySidebar);
+        handleStickySidebar();
+    }
 });
 </script>
 

@@ -11,24 +11,39 @@
 /* ==========================================================================
    1. BỐ CỤC CHUNG TRANG BÀI VIẾT
    ========================================================================== */
+/* Đảm bảo toàn bộ các container cha không chặn position sticky */
+html,
+body,
+body.single,
+body.single-post,
+body.single-post #wrapper,
+body.single-post #main,
+.gobike-single-post-wrapper,
+.gobike-single-container {
+    overflow: visible !important;
+}
+
 .gobike-single-post-wrapper {
     background-color: #f8fafc;
     padding-top: 25px;
     padding-bottom: 60px;
     color: #334155;
     font-family: inherit;
+    position: relative;
 }
 
 .gobike-single-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    position: relative;
 }
 
 .gobike-single-grid {
     display: flex;
     gap: 32px;
     align-items: flex-start;
+    position: relative;
 }
 
 .gobike-single-main-col {
@@ -48,6 +63,7 @@
     position: sticky;
     top: 95px;
     align-self: flex-start;
+    z-index: 10;
 }
 
 /* Khi có thanh Admin Bar WordPress khi đăng nhập */
