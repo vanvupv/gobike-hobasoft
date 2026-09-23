@@ -454,13 +454,13 @@ if (!empty($db_experiences)) {
 
                     <div class="gb-ce-comm-steps-row">
                         
-                        <!-- Bước 1 -->
+                        <!-- Bước 1: Máy ảnh / Camera -->
                         <div class="gb-ce-comm-step-item">
                             <div class="gb-ce-comm-step-icon-wrap">
                                 <div class="gb-ce-comm-step-icon">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M23 7l-7 5 7 5V7z"></path>
-                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                        <circle cx="12" cy="13" r="4"></circle>
                                     </svg>
                                 </div>
                                 <span class="gb-ce-step-number">1</span>
@@ -470,14 +470,13 @@ if (!empty($db_experiences)) {
 
                         <span class="gb-ce-step-arrow">&rarr;</span>
 
-                        <!-- Bước 2 -->
+                        <!-- Bước 2: Tải lên / Cloud Upload -->
                         <div class="gb-ce-comm-step-item">
                             <div class="gb-ce-comm-step-icon-wrap">
                                 <div class="gb-ce-comm-step-icon">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                        <polyline points="17 8 12 3 7 8"></polyline>
-                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                        <path d="M16 16l-4-4-4 4M12 12v9"></path>
+                                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
                                     </svg>
                                 </div>
                                 <span class="gb-ce-step-number">2</span>
@@ -487,7 +486,7 @@ if (!empty($db_experiences)) {
 
                         <span class="gb-ce-step-arrow">&rarr;</span>
 
-                        <!-- Bước 3 -->
+                        <!-- Bước 3: Ngôi sao / Xuất hiện -->
                         <div class="gb-ce-comm-step-item">
                             <div class="gb-ce-comm-step-icon-wrap">
                                 <div class="gb-ce-comm-step-icon">
@@ -502,29 +501,29 @@ if (!empty($db_experiences)) {
 
                     </div>
 
-                    <a href="#gb-ce-share" class="gb-ce-comm-cta-btn">
+                    <a href="https://zalo.me" target="_blank" rel="noopener" class="gb-ce-comm-cta-btn">
                         <span>Chia sẻ câu chuyện của bạn</span> &rarr;
                     </a>
                 </div>
 
-                <!-- Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật -->
-                <div class="gb-ce-comm-polaroid-col">
-                    <div class="gb-ce-polaroid-heading-mobile">
-                        Cùng GoBike lan tỏa những hành trình thật
-                    </div>
+                <!-- Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật (CHỈ HIỆN TRÊN DESKTOP) -->
+                <div class="gb-ce-comm-polaroid-col gb-ce-desktop-only">
                     <div class="gb-ce-polaroid-stack">
                         <div class="gb-ce-polaroid-item">
-                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&auto=format&fit=crop&q=80" alt="GoBike Memory 1">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=240&auto=format&fit=crop&q=80" alt="GoBike Story 1">
                         </div>
                         <div class="gb-ce-polaroid-item">
-                            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=200&auto=format&fit=crop&q=80" alt="GoBike Memory 2">
+                            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=240&auto=format&fit=crop&q=80" alt="GoBike Story 2">
                         </div>
                         <div class="gb-ce-polaroid-item">
-                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=200&auto=format&fit=crop&q=80" alt="GoBike Memory 3">
+                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=240&auto=format&fit=crop&q=80" alt="GoBike Story 3">
+                        </div>
+                        <div class="gb-ce-polaroid-item">
+                            <img src="https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=240&auto=format&fit=crop&q=80" alt="GoBike Story 4">
                         </div>
                     </div>
                     <div class="gb-ce-comm-polaroid-art">
-                        Cùng sống GoBike lan tỏa những hành trình thật 🌿
+                        Cùng GoBike<br><span>lan tỏa những hành trình thật 🌿</span>
                     </div>
                 </div>
 
@@ -533,22 +532,56 @@ if (!empty($db_experiences)) {
 
         <!-- ==========================================================================
              SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
+             Nằm ngay trên khối Polaroid mobile theo chuẩn thiết kế
              ========================================================================== -->
         <section class="gb-ce-bottom-cta-section" id="gb-ce-share">
             <div class="gb-ce-bottom-banner">
-                <img class="gb-ce-bottom-banner-bg" src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1400&auto=format&fit=crop&q=80" alt="Con đường đẹp GoBike">
+                <img class="gb-ce-bottom-banner-bg" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/cyclist-mountain-road.jpg'); ?>" alt="Bạn cũng có câu chuyện để kể GoBike">
                 <div class="gb-ce-bottom-banner-overlay"></div>
                 
                 <div class="gb-ce-bottom-banner-inner">
                     <div class="gb-ce-bottom-banner-text">
                         <h2 class="gb-ce-bottom-banner-title">Bạn cũng có câu chuyện để kể?</h2>
                         <p class="gb-ce-bottom-banner-desc">
-                            Dù là hành trình nhỏ hay chuyến đi lớn, mọi câu chuyện đều xứng đáng được lắng nghe.
+                            Dù là hành trình nhỏ hay chuyến đi lớn, mọi câu chuyện đều đáng được lắng nghe.
                         </p>
                     </div>
                     <a href="https://zalo.me" target="_blank" rel="noopener" class="gb-ce-bottom-share-btn">
                         <span>Chia sẻ ngay</span> &rarr;
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SECTION 6: POLAROID CARD MOBILE (CÙNG GOBIKE LAN TỎA NHỮNG HÀNH TRÌNH THẬT)
+             Hiển thị độc quyền ở cuối giao diện Mobile/Tablet chuẩn theo thiết kế mẫu
+             ========================================================================== -->
+        <section class="gb-ce-polaroid-mobile-section gb-ce-mobile-only">
+            <div class="gb-ce-polaroid-mobile-card">
+                <div class="gb-ce-polaroid-mobile-left">
+                    <h3 class="gb-ce-polaroid-mobile-title">
+                        Cùng GoBike lan tỏa<br>những hành trình thật
+                    </h3>
+                </div>
+                <div class="gb-ce-polaroid-mobile-right">
+                    <div class="gb-ce-polaroid-mobile-stack">
+                        <div class="gb-ce-polaroid-item">
+                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&auto=format&fit=crop&q=80" alt="Hành trình GoBike 1">
+                        </div>
+                        <div class="gb-ce-polaroid-item">
+                            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=200&auto=format&fit=crop&q=80" alt="Hành trình GoBike 2">
+                        </div>
+                        <div class="gb-ce-polaroid-item">
+                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=200&auto=format&fit=crop&q=80" alt="Hành trình GoBike 3">
+                        </div>
+                        <div class="gb-ce-polaroid-item">
+                            <img src="https://images.unsplash.com/photo-1471506480208-91b3a4cc78be?w=200&auto=format&fit=crop&q=80" alt="Hành trình GoBike 4">
+                        </div>
+                    </div>
+                    <div class="gb-ce-polaroid-mobile-art">
+                        Cùng sống GoBike<br><span>lan tỏa những hành trình thật 🍃</span>
+                    </div>
                 </div>
             </div>
         </section>

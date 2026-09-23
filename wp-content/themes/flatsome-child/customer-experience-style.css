@@ -793,10 +793,6 @@
     position: relative;
 }
 
-.gb-ce-polaroid-heading-mobile {
-    display: none; /* Mặc định ẩn trên desktop, hiện trên mobile */
-}
-
 .gb-ce-polaroid-stack {
     display: flex;
     align-items: center;
@@ -815,26 +811,32 @@
 }
 
 .gb-ce-polaroid-item:nth-child(1) {
-    transform: rotate(-6deg);
+    transform: rotate(-10deg);
 }
 
 .gb-ce-polaroid-item:nth-child(2) {
-    transform: rotate(2deg) translateY(-4px);
+    transform: rotate(-2deg) translateY(-4px);
     z-index: 2;
 }
 
 .gb-ce-polaroid-item:nth-child(3) {
-    transform: rotate(8deg);
+    transform: rotate(6deg);
+    z-index: 3;
+}
+
+.gb-ce-polaroid-item:nth-child(4) {
+    transform: rotate(14deg);
+    z-index: 2;
 }
 
 .gb-ce-polaroid-item:hover {
     transform: scale(1.08) rotate(0deg);
-    z-index: 3;
+    z-index: 5;
 }
 
 .gb-ce-polaroid-item img {
-    width: 68px;
-    height: 78px;
+    width: 60px;
+    height: 72px;
     object-fit: cover;
     display: block;
     border-radius: 2px;
@@ -847,21 +849,27 @@
     font-weight: 700;
     text-align: center;
     margin: 4px 0 0 0;
-    line-height: 1.2;
+    line-height: 1.25;
+}
+
+.gb-ce-comm-polaroid-art span {
+    font-size: 14px;
+    display: block;
+    color: #047857;
 }
 
 /* ==========================================================================
    SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
-   ========================================================================= */
+   ========================================================================== */
 .gb-ce-bottom-cta-section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .gb-ce-bottom-banner {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    min-height: 170px;
+    min-height: 180px;
     background: #0f172a;
     display: flex;
     align-items: center;
@@ -873,19 +881,20 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.65;
+    object-position: center;
+    opacity: 1;
 }
 
 .gb-ce-bottom-banner-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0.25) 100%);
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.6) 45%, rgba(15, 23, 42, 0.15) 100%);
 }
 
 .gb-ce-bottom-banner-inner {
     position: relative;
     z-index: 2;
-    padding: 32px 42px;
+    padding: 36px 46px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -906,18 +915,18 @@
 }
 
 .gb-ce-bottom-banner-desc {
-    font-size: 13px;
-    color: #cbd5e1;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
     margin: 0;
     line-height: 1.5;
 }
 
 .gb-ce-bottom-share-btn {
     background: #ffffff;
-    color: #0f172a;
-    padding: 10px 24px;
+    color: #044b25;
+    padding: 11px 26px;
     border-radius: 24px;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 700;
     text-decoration: none;
     display: inline-flex !important;
@@ -930,10 +939,15 @@
 }
 
 .gb-ce-bottom-share-btn:hover {
-    background: #0d7030;
-    color: #ffffff;
+    background: #f1f5f9;
+    color: #044b25;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(13, 112, 48, 0.35);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Section 6 Mobile Polaroid Card: Mặc định ẩn trên Desktop */
+.gb-ce-polaroid-mobile-section {
+    display: none;
 }
 
 /* ==========================================================================
@@ -1269,29 +1283,47 @@
         border: none;
         box-shadow: none;
     }
+    /* ==========================================================================
+       SECTION 4: COMMUNITY CALLOUT BANNER TRÊN MOBILE
+       ========================================================================== */
+    .gb-ce-comm-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Khối trích dẫn Quote trực tiếp trên nền */
     .gb-ce-comm-quote-col {
-        background: #eaf8ef;
-        border-radius: 16px;
-        padding: 22px 18px;
-        border: 1px solid #d1fae5;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 4px !important;
+        border-radius: 0 !important;
     }
     .gb-ce-comm-quote-text {
-        font-size: 15px;
+        font-size: 17px;
+        font-weight: 700;
+        color: #064e3b;
         line-height: 1.45;
         margin-bottom: 6px;
     }
     .gb-ce-comm-quote-author {
-        font-size: 12px;
-        margin-bottom: 14px;
+        font-size: 13px;
+        color: #047857;
+        font-weight: 600;
+        margin-bottom: 12px;
     }
     .gb-ce-comm-avatars-wrap {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
     }
     .gb-ce-comm-avatar-caption {
-        font-size: 11px;
-        color: #047857;
+        font-size: 11.5px;
+        color: #065f46;
         line-height: 1.35;
     }
 
@@ -1309,128 +1341,252 @@
         font-size: 18px;
         font-weight: 700;
         color: #064e3b;
-        line-height: 1.3;
+        line-height: 1.35;
         text-align: center;
         margin: 0 0 18px 0;
     }
     .gb-ce-comm-steps-row {
         display: flex;
         align-items: flex-start;
-        justify-content: center;
-        gap: 8px;
+        justify-content: space-between;
+        gap: 4px;
         margin-bottom: 20px;
         width: 100%;
     }
     .gb-ce-comm-step-item {
         flex: 1;
-        max-width: 82px;
+        max-width: 90px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
     .gb-ce-comm-step-icon-wrap {
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
     .gb-ce-comm-step-icon {
-        width: 42px;
-        height: 42px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         background: #ffffff;
-        color: #0d7030;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        color: #044b25;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .gb-ce-comm-step-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
     .gb-ce-step-number {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
-        background: #064e3b;
+        background: #044b25;
         color: #ffffff;
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 700;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-top: 4px;
+        margin-top: -10px;
+        z-index: 2;
     }
     .gb-ce-step-arrow {
         color: #a7f3d0;
-        font-size: 16px;
-        margin-top: 12px;
+        font-size: 18px;
+        margin-top: 14px;
     }
     .gb-ce-comm-step-text {
-        font-size: 11px;
+        font-size: 11.5px;
         font-weight: 600;
         color: #064e3b;
         line-height: 1.3;
+        text-align: center;
+        margin-top: 4px;
     }
     .gb-ce-comm-cta-btn {
         width: 100%;
         justify-content: center;
-        padding: 12px 20px;
+        background: #044b25;
+        color: #ffffff;
+        padding: 13px 20px;
         font-size: 14px;
+        font-weight: 700;
         border-radius: 28px;
     }
 
-    /* Dải Polaroid ở đáy */
-    .gb-ce-comm-polaroid-col {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        background: #eaf8ef;
-        border-radius: 16px;
-        padding: 16px 14px;
-        border: 1px solid #d1fae5;
-    }
-    .gb-ce-polaroid-heading-mobile {
-        display: block;
-        font-size: 14px;
-        font-weight: 700;
-        color: #064e3b;
-        line-height: 1.35;
-        max-width: 125px;
-    }
-    .gb-ce-polaroid-item img {
-        width: 44px;
-        height: 52px;
-    }
-    .gb-ce-comm-polaroid-art {
-        font-size: 14px;
-        margin-top: 2px;
+    /* Ẩn dải Polaroid desktop trên Mobile */
+    .gb-ce-desktop-only {
+        display: none !important;
     }
 
-    /* Section 5: Bottom CTA banner trên Mobile */
+    /* ==========================================================================
+       SECTION 5: BOTTOM CTA BANNER TRÊN MOBILE (NẰM TRÊN KHỐI POLAROID)
+       ========================================================================== */
+    .gb-ce-bottom-cta-section {
+        margin-bottom: 18px;
+    }
     .gb-ce-bottom-banner {
         border-radius: 16px;
-        min-height: 220px;
+        min-height: 280px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+    }
+    .gb-ce-bottom-banner-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 72% center;
+        opacity: 1;
+    }
+    .gb-ce-bottom-banner-overlay {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.38) 50%, rgba(15, 23, 42, 0.1) 100%);
     }
     .gb-ce-bottom-banner-inner {
-        padding: 24px 18px;
+        padding: 22px 18px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 14px;
+        justify-content: flex-start;
+        gap: 12px;
+        z-index: 2;
+        width: 100%;
     }
     .gb-ce-bottom-banner-title {
         font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
         line-height: 1.25;
         margin-bottom: 6px;
     }
     .gb-ce-bottom-banner-desc {
-        font-size: 12.5px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.95);
         line-height: 1.45;
+        max-width: 250px;
+        margin-bottom: 4px;
     }
     .gb-ce-bottom-share-btn {
-        padding: 9px 20px;
-        font-size: 13px;
+        background: #ffffff;
+        color: #044b25;
+        padding: 10px 22px;
+        font-size: 13.5px;
+        font-weight: 700;
         border-radius: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ==========================================================================
+       SECTION 6: POLAROID CARD MOBILE (NẰM DƯỚI CÙNG TRÊN MOBILE)
+       ========================================================================== */
+    .gb-ce-mobile-only {
+        display: block !important;
+    }
+
+    .gb-ce-polaroid-mobile-section {
+        display: block !important;
+        margin-bottom: 24px;
+    }
+
+    .gb-ce-polaroid-mobile-card {
+        background: linear-gradient(135deg, #ebf7f0 0%, #e2f4e9 100%);
+        border: 1px solid #cbf0d8;
+        border-radius: 16px;
+        padding: 16px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        box-shadow: 0 2px 10px rgba(13, 112, 48, 0.04);
+    }
+
+    .gb-ce-polaroid-mobile-left {
+        flex: 1;
+    }
+
+    .gb-ce-polaroid-mobile-title {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #064e3b;
+        line-height: 1.35;
+        max-width: 125px;
+        margin: 0;
+    }
+
+    .gb-ce-polaroid-mobile-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .gb-ce-polaroid-mobile-stack {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        position: relative;
+        padding-bottom: 4px;
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item {
+        background: #ffffff;
+        padding: 3px 3px 7px 3px;
+        border-radius: 3px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        flex-shrink: 0;
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(1) {
+        transform: rotate(-10deg);
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(2) {
+        transform: rotate(-2deg);
+        z-index: 2;
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(3) {
+        transform: rotate(6deg);
+        z-index: 3;
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(4) {
+        transform: rotate(14deg);
+        z-index: 2;
+    }
+
+    .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item img {
+        width: 36px;
+        height: 44px;
+        object-fit: cover;
+        border-radius: 2px;
+        display: block;
+    }
+
+    .gb-ce-polaroid-mobile-art {
+        font-family: 'Caveat', 'Dancing Script', cursive;
+        color: #15803d;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.15;
+        text-align: center;
+        margin-top: 3px;
+    }
+
+    .gb-ce-polaroid-mobile-art span {
+        font-size: 11px;
+        display: block;
+        color: #166534;
     }
 }
