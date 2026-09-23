@@ -172,15 +172,29 @@
 .gb-ce-stats-row {
     display: flex;
     align-items: center;
-    gap: 28px;
-    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    gap: 20px;
+    border-top: 1px solid rgba(226, 232, 240, 0.7);
     padding-top: 20px;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
 }
 
 .gb-ce-stat-item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+}
+
+/* Đường kẻ dọc ngăn cách giữa các khối stats như ảnh 2 */
+.gb-ce-stat-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 32px;
+    background-color: #cbd5e1;
+    margin-left: 20px;
 }
 
 .gb-ce-stat-icon {
@@ -235,28 +249,30 @@
 }
 
 /* ==========================================================================
-   SECTION 2: FILTER BAR (DANH MỤC & SẮP XẾP)
+   SECTION 2: FILTER BAR (FULL-WIDTH, KHÔNG BO VIỀN)
    ========================================================================== */
 .gb-ce-filter-section {
-    margin-bottom: 28px;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 30px;
 }
 
-.gb-ce-filter-bar {
+.gb-ce-filter-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    background: #ffffff;
-    padding: 8px 12px;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
 }
 
 .gb-ce-filter-tabs {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -270,29 +286,32 @@
 .gb-ce-tab-btn {
     display: inline-block;
     text-decoration: none !important;
-    border: none;
+    border: 1px solid #e2e8f0;
     outline: none;
-    background: #f1f5f9;
+    background: #ffffff;
     color: #475569;
-    padding: 7px 16px;
-    border-radius: 8px;
+    padding: 7px 18px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.2s ease;
     line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .gb-ce-tab-btn:hover {
-    background: #e2e8f0;
+    background: #f8fafc;
     color: #0f172a;
+    border-color: #cbd5e1;
     text-decoration: none !important;
 }
 
 .gb-ce-tab-btn.active {
     background: #0d7030;
     color: #ffffff;
+    border-color: #0d7030;
     text-decoration: none !important;
 }
 
@@ -1069,53 +1088,68 @@
         margin-bottom: 14px;
     }
 
-    /* 3 stats dàn đều 3 cột ngang theo ảnh 1 */
+    /* 3 stats dàn đều 3 cột ngang phẳng trên nền banner có vạch ngăn cách */
     .gb-ce-stats-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        padding: 10px 8px;
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(4px);
-        border-radius: 12px;
-        border: 1px solid rgba(226, 232, 240, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        padding: 14px 0 0 0;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        border-top: 1px solid rgba(226, 232, 240, 0.7) !important;
         margin-top: 10px;
     }
     .gb-ce-stat-item {
+        flex: 1;
         gap: 6px;
+        display: flex;
+        align-items: center;
+    }
+    .gb-ce-stat-item:not(:last-child)::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 24px;
+        background-color: #cbd5e1;
+        margin-left: auto;
+        margin-right: 4px;
     }
     .gb-ce-stat-icon {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
     }
     .gb-ce-stat-icon svg {
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
     }
     .gb-ce-stat-number {
-        font-size: 15px;
+        font-size: 14px;
     }
     .gb-ce-stat-label {
         font-size: 10px;
-        line-height: 1.2;
+        line-height: 1.15;
     }
     .gb-ce-hero-quote-art {
         display: none; /* Ẩn trên mobile để không che cô gái */
     }
 
-    /* Bộ lọc tabs vuốt ngang */
-    .gb-ce-filter-bar {
-        background: transparent;
-        border: none;
-        padding: 0;
-        margin-bottom: 18px;
+    /* Bộ lọc tabs vuốt ngang full-width không bo viền */
+    .gb-ce-filter-section {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .gb-ce-filter-inner {
+        padding: 8px 14px;
     }
     .gb-ce-filter-tabs {
         width: 100%;
         gap: 6px;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 4px 2px 6px 2px;
+        padding: 2px 0 4px 0;
         -webkit-overflow-scrolling: touch;
     }
     .gb-ce-tab-btn {

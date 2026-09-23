@@ -262,37 +262,37 @@ if (!empty($db_experiences)) {
         </div>
     </section>
 
-    <!-- CONTAINER CHO CÁC SECTION BÊN DƯỚI -->
-    <div class="gb-ce-container">
-
-        <!-- ==========================================================================
-             SECTION 2: BỘ LỌC CHỦ ĐỀ & SẮP XẾP (FILTER BAR)
-             ========================================================================== -->
-        <section class="gb-ce-filter-section">
-            <div class="gb-ce-filter-bar">
-                
-                <!-- Danh mục nút bấm (Filter Tabs) -->
-                <div class="gb-ce-filter-tabs" id="gbCeFilterTabs">
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn active" data-filter="all">Tất cả</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dilam">Đi làm hàng ngày</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dulich">Du lịch</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="thethao">Thể thao</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="giadinh">Gia đình</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="hocsinh">Học sinh - sinh viên</a>
-                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="nguoilon">Người lớn tuổi</a>
-                </div>
-
-                <!-- Dropdown Sắp xếp -->
-                <div class="gb-ce-sort-dropdown-wrap">
-                    <select id="gbCeSortSelect" aria-label="Sắp xếp danh sách câu chuyện">
-                        <option value="newest">Mới nhất ▾</option>
-                        <option value="views">Xem nhiều nhất</option>
-                        <option value="featured">Nổi bật nhất</option>
-                    </select>
-                </div>
-
+    <!-- ==========================================================================
+         SECTION 2: BỘ LỌC CHỦ ĐỀ & SẮP XẾP (FULL-WIDTH, KHÔNG BO VIỀN)
+         ========================================================================== -->
+    <section class="gb-ce-filter-section">
+        <div class="gb-ce-filter-inner">
+            
+            <!-- Danh mục nút bấm (Filter Tabs) -->
+            <div class="gb-ce-filter-tabs" id="gbCeFilterTabs">
+                <a href="javascript:void(0);" class="gb-ce-tab-btn active" data-filter="all">Tất cả</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dilam">Đi làm hàng ngày</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dulich">Du lịch</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="thethao">Thể thao</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="giadinh">Gia đình</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="hocsinh">Học sinh - sinh viên</a>
+                <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="nguoilon">Người lớn tuổi</a>
             </div>
-        </section>
+
+            <!-- Dropdown Sắp xếp -->
+            <div class="gb-ce-sort-dropdown-wrap">
+                <select id="gbCeSortSelect" aria-label="Sắp xếp danh sách câu chuyện">
+                    <option value="newest">Mới nhất ▾</option>
+                    <option value="views">Xem nhiều nhất</option>
+                    <option value="featured">Nổi bật nhất</option>
+                </select>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTAINER CHO CÁC SECTION BÊN DƯỚI (LƯỚI CARD, CALLOUT, BOTTOM BANNER) -->
+    <div class="gb-ce-container">
 
         <!-- ==========================================================================
              SECTION 3: LƯỚI CARD CÂU CHUYỆN NỔI BẬT (6 CỘT - SHORTS STYLE)
