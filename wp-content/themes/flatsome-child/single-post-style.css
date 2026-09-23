@@ -1,0 +1,1393 @@
+/**
+ * GoBike - Single Post Styles (Trang Chi tiết bài viết)
+ * Chuẩn thiết kế 100% theo ảnh mẫu:
+ * - Section 1: Header, Sapo, Author bar, Featured Image, TOC, Post Content, Nút Đọc tiếp/Thu gọn
+ * - Section 2: Tags bài viết
+ * - Section 3: Sản phẩm phù hợp (WooCommerce card)
+ * - Section 4: Bài viết liên quan (Horizontal card)
+ * - Section 5: Sidebar (Search, Bài viết nổi bật, Bài viết mới nhất, Hero banner, Newsletter, Trust Badges)
+ */
+
+/* ==========================================================================
+   1. BỐ CỤC CHUNG TRANG BÀI VIẾT
+   ========================================================================== */
+.gobike-single-post-wrapper {
+    background-color: #f8fafc;
+    padding-top: 25px;
+    padding-bottom: 60px;
+    color: #334155;
+    font-family: inherit;
+}
+
+.gobike-single-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.gobike-single-grid {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.gobike-single-main-col {
+    flex: 1;
+    min-width: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 36px 40px 36px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #edf2f7;
+}
+
+.gobike-single-sidebar-col {
+    width: 360px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   2. SECTION 1: HEADER, SAPO & AUTHOR BAR
+   ========================================================================== */
+.post-header-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.post-cat-badge {
+    display: inline-block;
+    background-color: #044b25;
+    color: #ffffff !important;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: background 0.2s ease;
+}
+
+.post-cat-badge:hover {
+    background-color: #0d7030;
+}
+
+.post-publish-date {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.post-main-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-top: 0;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+}
+
+.post-sapo-excerpt {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #475569;
+    margin-bottom: 22px;
+}
+
+/* Thanh thông tin tác giả (Author Bar) */
+.post-author-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 24px;
+}
+
+.author-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+}
+
+.author-role {
+    font-size: 12.5px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.author-meta-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.meta-metric-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.meta-metric-item svg {
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+.btn-share-post {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-share-post:hover {
+    color: #044b25;
+}
+
+.btn-share-post svg {
+    color: #0d7030;
+}
+
+/* ==========================================================================
+   3. ẢNH ĐẠI DIỆN BÀI VIẾT (FEATURED IMAGE)
+   ========================================================================== */
+.post-featured-media {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.post-featured-media img {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
+.post-featured-media .media-watermark {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    pointer-events: none;
+}
+
+.media-watermark-title {
+    font-family: 'Playfair Display', Georgia, serif, italic;
+    font-style: italic;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    line-height: 1.3;
+}
+
+.media-watermark-brand {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   4. HỘP MỤC LỤC BÀI VIẾT (TABLE OF CONTENTS)
+   ========================================================================== */
+.post-toc-box {
+    background-color: #f0fdf4;
+    border: 1px solid #dcfce7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 24px;
+}
+
+.toc-left-col {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 160px;
+    flex-shrink: 0;
+}
+
+.toc-icon {
+    color: #0d7030;
+    margin-top: 1px;
+}
+
+.toc-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: #044b25;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.toc-right-col {
+    flex: 1;
+}
+
+.toc-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc-counter;
+}
+
+.toc-item {
+    counter-increment: toc-counter;
+    margin-bottom: 8px;
+    line-height: 1.45;
+}
+
+.toc-item:last-child {
+    margin-bottom: 0;
+}
+
+.toc-link {
+    font-size: 13.5px;
+    color: #1e293b;
+    text-decoration: none;
+    display: flex;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.toc-link::before {
+    content: counter(toc-counter) ".";
+    font-weight: 600;
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+.toc-link:hover {
+    color: #0d7030;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. NỘI DUNG BÀI VIẾT & COLLAPSIBLE / READ MORE
+   ========================================================================== */
+.post-content-collapsible-wrapper {
+    position: relative;
+}
+
+.post-content-collapsible-inner {
+    max-height: 820px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-content-collapsible-inner.expanded {
+    max-height: none !important;
+}
+
+/* Gradient mờ dần ở chân bài viết khi chưa mở */
+.post-content-collapsible-inner::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 75%, #ffffff 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.post-content-collapsible-inner.expanded::after {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Typography chi tiết trong nội dung */
+.post-body-content {
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: #334155;
+}
+
+.post-body-content p {
+    margin-bottom: 18px;
+}
+
+.post-body-content h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 32px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+    scroll-margin-top: 100px;
+}
+
+.post-body-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+/* Hình ảnh minh họa + caption căn giữa chữ xám nhỏ nghiêng */
+.post-body-content figure,
+.post-body-content .wp-caption {
+    margin: 20px 0 24px 0;
+    width: 100% !important;
+}
+
+.post-body-content img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.post-body-content figcaption,
+.post-body-content .wp-caption-text {
+    font-size: 12.5px;
+    color: #64748b;
+    font-style: italic;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+/* Khối trích dẫn (Blockquote) chuẩn mẫu */
+.post-body-content blockquote,
+.post-article-quote {
+    background: #f8fafc;
+    border-left: 4px solid #0d7030;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 26px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-style: normal;
+}
+
+.quote-text-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.5;
+}
+
+.quote-mark {
+    font-size: 28px;
+    color: #0d7030;
+    line-height: 1;
+    font-family: Georgia, serif;
+    flex-shrink: 0;
+}
+
+.quote-author {
+    font-size: 13.5px;
+    color: #0d7030;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Nút Đọc tiếp toàn bộ bài viết / Thu gọn */
+.post-readmore-action-wrap {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-toggle-post-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #044b25;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 10px 26px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(4, 75, 37, 0.25);
+    transition: all 0.25s ease;
+}
+
+.btn-toggle-post-content:hover {
+    background-color: #0d7030;
+    box-shadow: 0 6px 18px rgba(13, 112, 48, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-toggle-post-content svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-toggle-post-content.expanded svg {
+    transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   6. SECTION 2: THẺ CỦA BÀI VIẾT (TAGS)
+   ========================================================================== */
+.post-tags-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    margin-bottom: 35px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.tags-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.tags-label svg {
+    color: #0d7030;
+}
+
+.post-tag-pill {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.post-tag-pill:hover {
+    background: #e2e8f0;
+    color: #044b25;
+}
+
+/* ==========================================================================
+   7. SECTION 3: SẢN PHẨM PHÙ HỢP (WOOCOMMERCE GRID)
+   ========================================================================== */
+.post-related-section {
+    margin-bottom: 35px;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.section-title-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.section-title-heading svg {
+    color: #0d7030;
+}
+
+.section-view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d7030;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.section-view-all-link:hover {
+    color: #044b25;
+    text-decoration: underline;
+}
+
+/* Grid 3 sản phẩm */
+.post-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.post-product-card {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.post-product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.prod-badge-wrap {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+}
+
+.prod-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.prod-badge.hot {
+    background-color: #0d7030;
+    color: #ffffff;
+}
+
+.prod-badge.discount {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.prod-thumb-wrap {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.prod-thumb-wrap img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.post-product-card:hover .prod-thumb-wrap img {
+    transform: scale(1.05);
+}
+
+.prod-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin: 0 0 4px 0;
+}
+
+.prod-title a {
+    color: #0f172a;
+    text-decoration: none;
+}
+
+.prod-title a:hover {
+    color: #0d7030;
+}
+
+.prod-cat-type {
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+/* Thông số nhanh xe (km, kg) */
+.prod-quick-specs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.spec-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.spec-chip svg {
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+.prod-card-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.prod-pricing {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-current {
+    font-size: 15px;
+    font-weight: 700;
+    color: #044b25;
+}
+
+.price-current.has-sale {
+    color: #dc2626;
+}
+
+.price-old {
+    font-size: 11.5px;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.btn-add-cart-mini {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #044b25;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(4, 75, 37, 0.25);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.btn-add-cart-mini:hover {
+    background-color: #0d7030;
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   8. SECTION 4: BÀI VIẾT LIÊN QUAN (HORIZONTAL CARDS)
+   ========================================================================== */
+.post-related-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.related-news-card {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.related-news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.rel-thumb-wrap {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.rel-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.related-news-card:hover .rel-thumb-wrap img {
+    transform: scale(1.08);
+}
+
+.rel-info-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.rel-date {
+    font-size: 11.5px;
+    color: #64748b;
+    margin-bottom: 3px;
+}
+
+.rel-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-news-card:hover .rel-title {
+    color: #0d7030;
+}
+
+/* ==========================================================================
+   9. SECTION 5: SIDEBAR (5 WIDGETS CHUẨN MẪU)
+   ========================================================================== */
+.gobike-sidebar-widget {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #edf2f7;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.widget-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.widget-title-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.widget-title-row svg {
+    color: #0d7030;
+    flex-shrink: 0;
+}
+
+/* Widget 1: Search Form */
+.widget-search-form {
+    display: flex;
+    gap: 8px;
+}
+
+.widget-search-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13.5px;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.widget-search-input:focus {
+    border-color: #0d7030;
+}
+
+.widget-search-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #044b25;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.widget-search-btn:hover {
+    background-color: #0d7030;
+}
+
+/* Widget 2 & 3: Post Lists (Popular & Latest) */
+.widget-posts-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.widget-post-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.widget-post-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.widget-post-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.widget-post-item:hover .widget-post-thumb img {
+    transform: scale(1.08);
+}
+
+.widget-post-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.widget-post-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+}
+
+.widget-post-item:hover .widget-post-title {
+    color: #0d7030;
+}
+
+.widget-post-date {
+    font-size: 11.5px;
+    color: #94a3b8;
+}
+
+/* Widget 4: Hero Banner Sidebar */
+.widget-hero-banner {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    padding: 24px 20px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+.widget-hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(4, 75, 37, 0.3) 0%, rgba(4, 75, 37, 0.85) 100%);
+    z-index: 1;
+}
+
+.banner-content-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.banner-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+}
+
+.banner-sub {
+    font-size: 12px;
+    color: #dcfce7;
+    margin: 0 0 14px 0;
+    line-height: 1.4;
+}
+
+.btn-banner-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #044b25;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.btn-banner-action:hover {
+    background: #f0fdf4;
+    color: #0d7030;
+    transform: translateY(-1px);
+}
+
+/* Widget 5: Form Đăng ký nhận tin */
+.widget-newsletter-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #edf2f7;
+    padding: 22px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.newsletter-icon-wrap {
+    margin-bottom: 10px;
+    color: #0d7030;
+}
+
+.newsletter-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin: 0 0 6px 0;
+}
+
+.newsletter-sub {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.45;
+    margin: 0 0 16px 0;
+}
+
+.newsletter-form-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.newsletter-input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #1e293b;
+    outline: none;
+}
+
+.newsletter-input:focus {
+    border-color: #0d7030;
+}
+
+.btn-newsletter-submit {
+    background-color: #044b25;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.btn-newsletter-submit:hover {
+    background-color: #0d7030;
+}
+
+.newsletter-privacy-text {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Widget 6: Trust Badges (3 Cam kết vàng) */
+.widget-trust-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 16px 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.trust-badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.trust-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f0fdf4;
+    color: #0d7030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.trust-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 2px;
+}
+
+.trust-desc {
+    font-size: 9.5px;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+/* ==========================================================================
+   10. MODAL CHIA SẺ BÀI VIẾT (SHARE MODAL)
+   ========================================================================== */
+.gobike-share-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.gobike-share-popup.active {
+    display: flex;
+}
+
+.share-popup-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    animation: popupFadeIn 0.25s ease-out;
+}
+
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.share-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.share-popup-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.btn-close-share-popup {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.btn-close-share-popup:hover {
+    color: #0f172a;
+}
+
+.share-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.btn-share-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1px solid #edf2f7;
+    background: #f8fafc;
+    color: #334155;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-share-social:hover {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #044b25;
+}
+
+.btn-share-social svg {
+    width: 22px;
+    height: 22px;
+}
+
+.share-copy-row {
+    display: flex;
+    gap: 8px;
+}
+
+.share-copy-input {
+    flex: 1;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    color: #64748b;
+    outline: none;
+    background: #f8fafc;
+}
+
+.btn-copy-link {
+    background: #044b25;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-copy-link:hover {
+    background: #0d7030;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .gobike-single-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .gobike-single-sidebar-col {
+        width: 100%;
+    }
+
+    .post-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .post-related-news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .gobike-single-post-wrapper {
+        padding-top: 15px;
+        padding-bottom: 40px;
+    }
+
+    .gobike-single-container {
+        padding: 0 12px;
+    }
+
+    .gobike-single-main-col {
+        padding: 20px 16px 28px 16px;
+        border-radius: 12px;
+    }
+
+    .post-main-title {
+        font-size: 21px;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+
+    .post-sapo-excerpt {
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 16px;
+    }
+
+    .post-author-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .author-meta-right {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .meta-metric-item,
+    .btn-share-post {
+        font-size: 12px;
+    }
+
+    .post-featured-media {
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .post-featured-media .media-watermark {
+        display: none;
+    }
+
+    /* Table of contents mobile */
+    .post-toc-box {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .toc-left-col {
+        min-width: unset;
+    }
+
+    .post-body-content {
+        font-size: 14.5px;
+        line-height: 1.7;
+    }
+
+    .post-body-content h2 {
+        font-size: 18px;
+        margin-top: 24px;
+    }
+
+    .post-article-quote {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 14px 16px;
+    }
+
+    .quote-text-wrap {
+        font-size: 14px;
+    }
+
+    .post-products-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .post-related-news-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .widget-trust-badges {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .trust-badge-item {
+        flex-direction: row;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .trust-icon-box {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+}

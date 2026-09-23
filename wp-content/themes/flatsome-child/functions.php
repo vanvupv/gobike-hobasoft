@@ -56,6 +56,48 @@ function gobike_enqueue_modular_styles()
     if (file_exists($theme_dir . '/news-style.css')) {
         wp_enqueue_style('gobike-news-style', $theme_uri . '/news-style.css', array('flatsome-style'), filemtime($theme_dir . '/news-style.css'));
     }
+    if (file_exists($theme_dir . '/single-post-style.css')) {
+        wp_enqueue_style('gobike-single-post-style', $theme_uri . '/single-post-style.css', array('flatsome-style'), filemtime($theme_dir . '/single-post-style.css'));
+    }
+}
+
+/**
+ * Lấy hoặc tăng số lượt xem bài viết
+ */
+function gobike_get_post_views($post_id)
+{
+    $count_key = 'gobike_post_views_count';
+    $count = get_post_meta($post_id, $count_key, true);
+    if ($count === '' || $count === false) {
+        $count = rand(1200, 15800);
+        update_post_meta($post_id, $count_key, $count);
+    }
+    if ($count >= 1000) {
+        return round($count / 1000, 1) . 'K';
+    }
+    return number_format_i18n($count);
+}
+
+function gobike_set_post_views($post_id)
+{
+    $count_key = 'gobike_post_views_count';
+    $count = get_post_meta($post_id, $count_key, true);
+    if ($count === '' || $count === false) {
+        $count = rand(1200, 15800);
+    } else {
+        $count = intval($count) + 1;
+    }
+    update_post_meta($post_id, $count_key, $count);
+}
+
+/**
+ * Tính thời gian đọc bài viết (ước tính 200 từ / phút)
+ */
+function gobike_estimate_reading_time($post_content)
+{
+    $word_count = str_word_count(strip_tags($post_content));
+    $minutes = ceil($word_count / 200);
+    return max(3, $minutes);
 }
 
 
