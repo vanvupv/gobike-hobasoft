@@ -101,50 +101,64 @@
 .gobike-news-hero .hero-search-form {
     position: relative;
     max-width: 440px;
+    width: 100%;
     display: flex;
-    align-items: center;
-    background: #ffffff;
-    border-radius: 50px;
-    padding: 4px 6px 4px 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    align-items: stretch;
+    background: #064e29;
+    border-radius: 10px;
+    padding: 0 !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    height: 44px;
+    margin: 0;
 }
 
 .gobike-news-hero .hero-search-form input {
+    flex: 1;
+    min-width: 0;
+    height: 100% !important;
     border: none !important;
     outline: none !important;
-    background: transparent !important;
+    background: #ffffff !important;
     box-shadow: none !important;
-    font-size: 14px;
+    border-radius: 10px !important;
+    font-size: 13.5px;
     color: #0f172a;
-    width: 100%;
-    margin-bottom: 0 !important;
-    padding: 8px 0;
-    height: auto;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    line-height: 44px;
 }
 
 .gobike-news-hero .hero-search-form input::placeholder {
     color: #94a3b8;
+    font-size: 13.5px;
 }
 
 .gobike-news-hero .hero-search-form button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #044b25;
-    border: none;
-    color: #ffffff;
+    width: 50px;
+    height: 100% !important;
+    border-radius: 0 10px 10px 0 !important;
+    background: #064e29 !important;
+    border: none !important;
+    color: #ffffff !important;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-    padding: 0;
-    transition: background 0.2s ease, transform 0.15s ease;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: background 0.2s ease;
 }
 
 .gobike-news-hero .hero-search-form button:hover {
-    background: #0d7030;
-    transform: scale(1.05);
+    background: #0d7030 !important;
+}
+
+.gobike-news-hero .hero-search-form button svg {
+    width: 20px;
+    height: 20px;
+    stroke: #ffffff;
 }
 
 /* Typography nghệ thuật góc trên bên phải */
@@ -1224,25 +1238,57 @@
         max-width: 320px;
     }
 
-    .hero-search-form {
-        width: 100%;
-        max-width: 100%;
+    .gobike-news-hero .hero-search-form {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 42px !important;
+        display: flex !important;
+        align-items: stretch !important;
+        background: #064e29 !important;
+        border-radius: 10px !important;
+        padding: 0 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+        overflow: hidden !important;
+        margin: 0 !important;
     }
 
-    .hero-search-form input {
-        height: 44px;
-        font-size: 13px;
-        padding: 0 48px 0 16px;
-        border-radius: 25px;
-        background: #ffffff;
+    .gobike-news-hero .hero-search-form input {
+        flex: 1 !important;
+        min-width: 0 !important;
+        height: 100% !important;
+        font-size: 13px !important;
+        padding: 0 14px !important;
+        border-radius: 10px !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        margin: 0 !important;
+        border: none !important;
+        line-height: 42px !important;
     }
 
-    .hero-search-form button {
-        width: 36px;
-        height: 36px;
-        right: 4px;
-        background: #044b25;
-        border-radius: 50%;
+    .gobike-news-hero .hero-search-form input::placeholder {
+        font-size: 13px !important;
+        color: #94a3b8 !important;
+    }
+
+    .gobike-news-hero .hero-search-form button {
+        width: 48px !important;
+        height: 100% !important;
+        background: #064e29 !important;
+        border-radius: 0 10px 10px 0 !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    .gobike-news-hero .hero-search-form button svg {
+        width: 18px !important;
+        height: 18px !important;
+        stroke: #ffffff !important;
     }
 
     /* 2. KHỐI 8 THẺ DANH MỤC MOBILE: DÀN 2 HÀNG GỌN GÀNG (CHUẨN ẢNH MẪU) */
