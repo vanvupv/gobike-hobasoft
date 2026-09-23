@@ -192,16 +192,16 @@ if (empty($latest_posts)) {
     $latest_posts = $fallback_latest;
 }
 
-// 3. DANH MỤC 8 CHỦ ĐỀ CHUẨN MẪU
+// 3. DANH MỤC 8 CHỦ ĐỀ CHUẨN MẪU (ẢNH 1)
 $news_categories = array(
-    array('slug' => '', 'name' => 'Tất cả', 'icon' => 'grid'),
-    array('slug' => 'huong-dan-su-dung', 'name' => 'Hướng dẫn sử dụng', 'icon' => 'book'),
-    array('slug' => 'kinh-nghiem-chon', 'name' => 'Kinh nghiệm chọn', 'icon' => 'bike'),
-    array('slug' => 'suc-khoe-doi-song', 'name' => 'Sức khỏe và đời sống', 'icon' => 'heart'),
-    array('slug' => 'du-lich-kham-pha', 'name' => 'Du lịch và khám phá', 'icon' => 'mountain'),
-    array('slug' => 'bao-duong-ky-thuat', 'name' => 'Bảo dưỡng & kỹ thuật', 'icon' => 'wrench'),
-    array('slug' => 'xu-huong-cong-nghe', 'name' => 'Xu hướng & Công nghệ', 'icon' => 'cpu'),
-    array('slug' => 'cau-chuyen-gobike', 'name' => 'Câu chuyện GoBike', 'icon' => 'users'),
+    array('slug' => '', 'name_top' => 'Tất cả', 'name_bottom' => '', 'icon' => 'grid'),
+    array('slug' => 'huong-dan-su-dung', 'name_top' => 'Hướng dẫn', 'name_bottom' => 'sử dụng', 'icon' => 'book'),
+    array('slug' => 'kinh-nghiem-di-xe', 'name_top' => 'Kinh nghiệm', 'name_bottom' => 'đi xe', 'icon' => 'bike'),
+    array('slug' => 'suc-khoe-loi-song', 'name_top' => 'Sức khỏe', 'name_bottom' => '& Lối sống', 'icon' => 'heart'),
+    array('slug' => 'du-lich-kham-pha', 'name_top' => 'Du lịch', 'name_bottom' => '& Khám phá', 'icon' => 'mountain'),
+    array('slug' => 'bao-duong-ky-thuat', 'name_top' => 'Bảo dưỡng', 'name_bottom' => '& Kỹ thuật', 'icon' => 'wrench'),
+    array('slug' => 'xu-huong-cong-nghe', 'name_top' => 'Xu hướng', 'name_bottom' => '& Công nghệ', 'icon' => 'cpu'),
+    array('slug' => 'cau-chuyen-gobike', 'name_top' => 'Câu chuyện', 'name_bottom' => 'GoBike', 'icon' => 'users'),
 );
 ?>
 
@@ -252,48 +252,49 @@ $news_categories = array(
         </div>
     </section>
 
-    <!-- 2. THANH DANH MỤC / CHỦ ĐỀ (8 TABS KÈM ICON) -->
+    <!-- 2. KHỐI 8 THẺ DANH MỤC / CHỦ ĐỀ ĐỘC LẬP (CHUẨN 100% ẢNH MẪU 1) -->
     <section class="gobike-news-categories-section">
         <div class="container">
-            <div class="news-categories-bar">
+            <div class="news-categories-grid">
                 <?php foreach ($news_categories as $item): 
                     $is_active = ($current_cat === $item['slug']);
                     $cat_link  = empty($item['slug']) ? get_permalink() : add_query_arg('news_cat', $item['slug'], get_permalink());
                 ?>
-                    <a href="<?php echo esc_url($cat_link); ?>" class="cat-pill <?php echo $is_active ? 'active' : ''; ?>">
-                        <div class="cat-icon">
+                    <a href="<?php echo esc_url($cat_link); ?>" class="news-cat-card <?php echo $is_active ? 'active' : ''; ?>">
+                        <div class="cat-card-icon-box">
                             <?php if ($item['icon'] === 'grid'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
-                                    <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-                                    <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-                                    <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <circle cx="7" cy="7" r="3.2"></circle>
+                                    <circle cx="17" cy="7" r="3.2"></circle>
+                                    <circle cx="17" cy="17" r="3.2"></circle>
+                                    <circle cx="7" cy="17" r="3.2"></circle>
                                 </svg>
                             <?php elseif ($item['icon'] === 'book'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                                    <path d="M9 7h6M9 11h5"></path>
                                 </svg>
                             <?php elseif ($item['icon'] === 'bike'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="5.5" cy="17.5" r="3.5"></circle>
                                     <circle cx="18.5" cy="17.5" r="3.5"></circle>
                                     <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 9l4.5-3 3 5 4-1"></path>
                                 </svg>
                             <?php elseif ($item['icon'] === 'heart'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                 </svg>
                             <?php elseif ($item['icon'] === 'mountain'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
                                 </svg>
                             <?php elseif ($item['icon'] === 'wrench'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                                 </svg>
                             <?php elseif ($item['icon'] === 'cpu'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="4" y="4" width="16" height="16" rx="2"></rect>
                                     <rect x="9" y="9" width="6" height="6"></rect>
                                     <line x1="9" y1="1" x2="9" y2="4"></line>
@@ -306,7 +307,7 @@ $news_categories = array(
                                     <line x1="1" y1="14" x2="4" y2="14"></line>
                                 </svg>
                             <?php elseif ($item['icon'] === 'users'): ?>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -314,7 +315,12 @@ $news_categories = array(
                                 </svg>
                             <?php endif; ?>
                         </div>
-                        <span class="cat-name"><?php echo esc_html($item['name']); ?></span>
+                        <div class="cat-card-text">
+                            <span class="line-1"><?php echo esc_html($item['name_top']); ?></span>
+                            <?php if (!empty($item['name_bottom'])): ?>
+                                <span class="line-2"><?php echo esc_html($item['name_bottom']); ?></span>
+                            <?php endif; ?>
+                        </div>
                     </a>
                 <?php endforeach; ?>
             </div>

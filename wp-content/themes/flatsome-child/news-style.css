@@ -194,80 +194,98 @@
 }
 
 /* ==========================================================================
-   3. THANH DANH MỤC / CHỦ ĐỀ (8 TABS KÈM ICON)
+   3. KHỐI 8 THẺ DANH MỤC / CHỦ ĐỀ ĐỘC LẬP (CHUẨN 100% ẢNH MẪU 1)
    ========================================================================== */
 .gobike-news-categories-section {
     position: relative;
-    margin-top: -36px;
+    margin-top: -42px;
     z-index: 10;
-    padding-bottom: 30px;
+    padding-bottom: 24px;
 }
 
-.news-categories-bar {
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border: 1px solid #edf2f7;
-    padding: 12px 14px;
+.news-categories-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
+    gap: 12px;
 }
 
-.news-categories-bar .cat-pill {
+.news-cat-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 12px 6px;
-    border-radius: 12px;
-    background: transparent;
-    border: 1px solid transparent;
     text-align: center;
-    color: #334155;
-    transition: all 0.2s ease;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 14px;
+    padding: 16px 8px 14px 8px;
+    min-height: 106px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s ease;
     cursor: pointer;
-    min-height: 78px;
+    text-decoration: none !important;
 }
 
-.news-categories-bar .cat-pill .cat-icon {
-    margin-bottom: 6px;
+.news-cat-card:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.news-cat-card .cat-card-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #0d7030;
-    transition: transform 0.2s ease, color 0.2s ease;
+    margin-bottom: 8px;
+    transition: all 0.25s ease;
 }
 
-.news-categories-bar .cat-pill .cat-name {
+.news-cat-card .cat-card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.25;
+}
+
+.news-cat-card .cat-card-text .line-1,
+.news-cat-card .cat-card-text .line-2 {
     font-size: 12.5px;
     font-weight: 600;
-    line-height: 1.25;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    color: #1e293b;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    transition: color 0.2s ease;
 }
 
-.news-categories-bar .cat-pill:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-    color: #0d7030;
+.news-cat-card:hover .cat-card-text .line-1,
+.news-cat-card:hover .cat-card-text .line-2 {
+    color: #044b25;
 }
 
-.news-categories-bar .cat-pill:hover .cat-icon {
-    transform: translateY(-2px);
+/* Thẻ đang được chọn (Active) - Chuẩn ảnh mẫu 1 (Card nền xanh nhạt, Icon nền xanh đậm) */
+.news-cat-card.active {
+    background: #edf7f0;
+    border-color: #d1ead7;
+    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.1);
 }
 
-.news-categories-bar .cat-pill.active {
+.news-cat-card.active .cat-card-icon-box {
     background: #044b25;
     color: #ffffff;
-    border-color: #044b25;
-    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.25);
+    box-shadow: 0 3px 8px rgba(4, 75, 37, 0.25);
 }
 
-.news-categories-bar .cat-pill.active .cat-icon {
-    color: #ffffff;
+.news-cat-card.active .cat-card-text .line-1,
+.news-cat-card.active .cat-card-text .line-2 {
+    color: #044b25;
+    font-weight: 700;
 }
 
 /* ==========================================================================
@@ -1062,7 +1080,7 @@
         font-size: 34px;
     }
 
-    .news-categories-bar {
+    .news-categories-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
     }
@@ -1124,32 +1142,39 @@
         max-width: 100%;
     }
 
-    /* Category bar: Cuộn ngang mượt mà */
+    /* 8 Thẻ danh mục: Cuộn ngang mượt mà trên Mobile */
     .gobike-news-categories-section {
-        margin-top: -24px;
+        margin-top: -28px;
         padding-bottom: 20px;
     }
 
-    .news-categories-bar {
+    .news-categories-grid {
         display: flex;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 10px 12px;
-        gap: 8px;
+        padding: 6px 4px 12px 4px;
+        gap: 10px;
     }
 
-    .news-categories-bar::-webkit-scrollbar {
+    .news-categories-grid::-webkit-scrollbar {
         display: none;
     }
 
-    .news-categories-bar .cat-pill {
-        flex: 0 0 110px;
-        min-height: 70px;
-        padding: 8px 4px;
+    .news-cat-card {
+        flex: 0 0 115px;
+        min-height: 100px;
+        padding: 12px 6px;
     }
 
-    .news-categories-bar .cat-pill .cat-name {
+    .news-cat-card .cat-card-icon-box {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 6px;
+    }
+
+    .news-cat-card .cat-card-text .line-1,
+    .news-cat-card .cat-card-text .line-2 {
         font-size: 11.5px;
     }
 
