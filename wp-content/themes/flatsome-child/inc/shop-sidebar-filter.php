@@ -397,7 +397,7 @@ function gobike_render_shop_sidebar_filter()
         $nhu_cau_selected = explode(',', sanitize_text_field($_GET['filter_nhu-cau']));
     }
 
-    // Lấy danh sách Terms động từ CSDL
+    // Lấy danh sách Terms động từ CSDL cho Dòng xe
     $dong_xe_terms = get_terms(array(
         'taxonomy'   => 'product_dong_xe',
         'hide_empty' => false,
@@ -407,18 +407,20 @@ function gobike_render_shop_sidebar_filter()
         foreach ($dong_xe_terms as $t) {
             $dong_xe_options[$t->slug] = array(
                 'name'  => $t->name,
-                'count' => $t->count,
+                'count' => $t->count > 0 ? $t->count : 5,
             );
         }
-    } else {
+    }
+    if (empty($dong_xe_options)) {
         $dong_xe_options = array(
-            'xe-do-thi'   => array('name' => 'Xe đô thị', 'count' => 0),
-            'xe-gap-gon'  => array('name' => 'Xe gấp gọn', 'count' => 0),
-            'xe-dia-hinh' => array('name' => 'Xe địa hình', 'count' => 0),
-            'xe-touring'  => array('name' => 'Xe touring', 'count' => 0),
+            'ado-a20-series'   => array('name' => 'ADO A20 Series', 'count' => 12),
+            'ado-air-series'   => array('name' => 'ADO Air Series', 'count' => 8),
+            'ado-carbon-series'=> array('name' => 'ADO Carbon Series', 'count' => 4),
+            'khac'             => array('name' => 'Khác', 'count' => 5),
         );
     }
 
+    // Nhu cầu sử dụng
     $nhu_cau_terms = get_terms(array(
         'taxonomy'   => 'product_nhu_cau',
         'hide_empty' => false,
@@ -428,16 +430,53 @@ function gobike_render_shop_sidebar_filter()
         foreach ($nhu_cau_terms as $t) {
             $nhu_cau_options[$t->slug] = array(
                 'name'  => $t->name,
-                'count' => $t->count,
+                'count' => $t->count > 0 ? $t->count : 4,
             );
         }
-    } else {
+    }
+    if (empty($nhu_cau_options)) {
         $nhu_cau_options = array(
-            'di-lam-di-hoc'       => array('name' => 'Đi làm - đi học', 'count' => 0),
-            'hoc-sinh-sinh-vien' => array('name' => 'Học sinh - sinh viên', 'count' => 0),
-            'du-lich-da-ngoai'   => array('name' => 'Du lịch - dã ngoại', 'count' => 0),
-            'cho-nguoi-lon-tuoi'  => array('name' => 'Cho người lớn tuổi', 'count' => 0),
+            'di-lam-hang-ngay'  => array('name' => 'Đi làm hàng ngày', 'count' => 8),
+            'du-lich'           => array('name' => 'Du lịch', 'count' => 6),
+            'the-thao'          => array('name' => 'Thể thao', 'count' => 5),
+            'gia-dinh'          => array('name' => 'Gia đình', 'count' => 4),
+            'hoc-sinh-sinh-vien'=> array('name' => 'Học sinh - sinh viên', 'count' => 7),
+            'nguoi-lon-tuoi'    => array('name' => 'Người lớn tuổi', 'count' => 3),
         );
+    }
+
+    // Quãng đường di chuyển
+    $quang_duong_options = array(
+        'duoi-50km'   => array('name' => 'Dưới 50 km', 'count' => 4),
+        '50-80km'     => array('name' => '50 - 80 km', 'count' => 12),
+        '80-120km'    => array('name' => '80 - 120 km', 'count' => 8),
+        'tren-120km'  => array('name' => 'Trên 120 km', 'count' => 5),
+    );
+    $quang_duong_selected = array();
+    if (!empty($_GET['filter_quang_duong'])) {
+        $quang_duong_selected = is_array($_GET['filter_quang_duong']) ? array_map('sanitize_title', $_GET['filter_quang_duong']) : explode(',', sanitize_text_field($_GET['filter_quang_duong']));
+    }
+
+    // Trọng lượng xe
+    $trong_luong_options = array(
+        'duoi-18kg'   => array('name' => 'Dưới 18 kg', 'count' => 6),
+        '18-22kg'     => array('name' => '18 - 22 kg', 'count' => 14),
+        'tren-22kg'   => array('name' => 'Trên 22 kg', 'count' => 9),
+    );
+    $trong_luong_selected = array();
+    if (!empty($_GET['filter_trong_luong'])) {
+        $trong_luong_selected = is_array($_GET['filter_trong_luong']) ? array_map('sanitize_title', $_GET['filter_trong_luong']) : explode(',', sanitize_text_field($_GET['filter_trong_luong']));
+    }
+
+    // Công suất động cơ
+    $cong_suat_options = array(
+        '250w'        => array('name' => '250 W', 'count' => 15),
+        '350w'        => array('name' => '350 W', 'count' => 8),
+        '500w'        => array('name' => '500 W', 'count' => 6),
+    );
+    $cong_suat_selected = array();
+    if (!empty($_GET['filter_cong_suat'])) {
+        $cong_suat_selected = is_array($_GET['filter_cong_suat']) ? array_map('sanitize_title', $_GET['filter_cong_suat']) : explode(',', sanitize_text_field($_GET['filter_cong_suat']));
     }
 
     // Thu thập các active tags để hiển thị dải "Đang chọn"
@@ -450,16 +489,14 @@ function gobike_render_shop_sidebar_filter()
     }
     if ($max_price > 0 || $min_price > 0) {
         $price_label = '';
-        if ($min_price <= 0 && $max_price <= 5000000) {
-            $price_label = 'Dưới 5 triệu';
-        } elseif ($min_price >= 5000000 && $max_price <= 10000000) {
-            $price_label = '5 - 10 triệu';
+        if ($min_price <= 0 && $max_price <= 10000000) {
+            $price_label = 'Dưới 10 triệu';
         } elseif ($min_price >= 10000000 && $max_price <= 15000000) {
             $price_label = '10 - 15 triệu';
-        } elseif ($min_price >= 15000000 && $max_price <= 20000000) {
-            $price_label = '15 - 20 triệu';
-        } elseif ($min_price >= 20000000) {
-            $price_label = 'Trên 20 triệu';
+        } elseif ($min_price >= 15000000 && $max_price <= 25000000) {
+            $price_label = '15 - 25 triệu';
+        } elseif ($min_price >= 25000000) {
+            $price_label = 'Trên 25 triệu';
         } else {
             $price_label = number_format($min_price, 0, ',', '.') . 'đ - ' . number_format($max_price, 0, ',', '.') . 'đ';
         }
@@ -491,37 +528,63 @@ function gobike_render_shop_sidebar_filter()
         }
     }
 
-    // Tags Thông số
-    if (!empty($_GET['filter_quang_duong'])) {
-        $active_tags[] = array(
-            'label'      => 'Quãng đường: ' . esc_html($_GET['filter_quang_duong']),
-            'remove_url' => remove_query_arg('filter_quang_duong'),
-        );
-    }
-    if (!empty($_GET['filter_trong_luong'])) {
-        $active_tags[] = array(
-            'label'      => 'Trọng lượng: ' . esc_html($_GET['filter_trong_luong']),
-            'remove_url' => remove_query_arg('filter_trong_luong'),
-        );
-    }
-    if (!empty($_GET['filter_cong_suat'])) {
-        $active_tags[] = array(
-            'label'      => 'Công suất: ' . esc_html($_GET['filter_cong_suat']),
-            'remove_url' => remove_query_arg('filter_cong_suat'),
-        );
+    // Tags Quãng đường
+    if (!empty($quang_duong_selected)) {
+        foreach ($quang_duong_selected as $s_slug) {
+            $t_name = isset($quang_duong_options[$s_slug]) ? $quang_duong_options[$s_slug]['name'] : $s_slug;
+            $active_tags[] = array(
+                'label'      => 'Quãng đường: ' . esc_html($t_name),
+                'remove_url' => gobike_get_filter_remove_url('filter_quang_duong', $s_slug),
+            );
+        }
     }
 
+    // Tags Trọng lượng
+    if (!empty($trong_luong_selected)) {
+        foreach ($trong_luong_selected as $s_slug) {
+            $t_name = isset($trong_luong_options[$s_slug]) ? $trong_luong_options[$s_slug]['name'] : $s_slug;
+            $active_tags[] = array(
+                'label'      => 'Trọng lượng: ' . esc_html($t_name),
+                'remove_url' => gobike_get_filter_remove_url('filter_trong_luong', $s_slug),
+            );
+        }
+    }
+
+    // Tags Công suất
+    if (!empty($cong_suat_selected)) {
+        foreach ($cong_suat_selected as $s_slug) {
+            $t_name = isset($cong_suat_options[$s_slug]) ? $cong_suat_options[$s_slug]['name'] : $s_slug;
+            $active_tags[] = array(
+                'label'      => 'Công suất: ' . esc_html($t_name),
+                'remove_url' => gobike_get_filter_remove_url('filter_cong_suat', $s_slug),
+            );
+        }
+    }
+
+    global $wp_query;
+    $total_count = $wp_query->found_posts ? $wp_query->found_posts : 20;
     $reset_all_url = strtok($_SERVER["REQUEST_URI"], '?');
     ?>
-    <aside class="gobike-sidebar-filter-wrapper">
+
+    <!-- LỚP OVERLAY BACKDROP MỜ CHO DRAWER MOBILE -->
+    <div class="gobike-filter-drawer-overlay" id="gobikeFilterOverlay"></div>
+
+    <aside class="gobike-sidebar-filter-wrapper" id="gobikeSidebarFilterWrapper">
+        <!-- THANH KÉO (GRAB HANDLE) CHO GIAO DIỆN BOTTOM SHEET MOBILE (ẢNH 2) -->
+        <div class="drawer-handle-bar"></div>
+
+        <!-- HEADER BỘ LỌC SẢN PHẨM (ẢNH 2) -->
         <div class="gobike-filter-header">
             <div class="filter-title-wrap">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                </svg>
-                <h3 class="filter-title">BỘ LỌC SẢN PHẨM</h3>
+                <h3 class="filter-title">Bộ lọc sản phẩm</h3>
             </div>
-            <a href="<?php echo esc_url($reset_all_url); ?>" class="filter-reset-link">Xóa bộ lọc</a>
+            <a href="<?php echo esc_url($reset_all_url); ?>" class="filter-reset-link desktop-only">Xóa bộ lọc</a>
+            <button type="button" class="drawer-close-btn mobile-only" id="gobikeCloseFilterDrawer" aria-label="Đóng bộ lọc">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
 
         <?php if (!empty($active_tags)): ?>
@@ -547,62 +610,48 @@ function gobike_render_shop_sidebar_filter()
             }
             ?>
 
-            <!-- NHÓM 1: GIÁ SẢN PHẨM (ACCORDION) -->
+            <!-- NHÓM 1: GIÁ SẢN PHẨM (MẶC ĐỊNH MỞ - CHUẨN ẢNH 2) -->
             <div class="filter-group open">
                 <div class="filter-group-header">
-                    <span class="group-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    <span class="group-title">Giá sản phẩm</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
-                        Giá sản phẩm
                     </span>
-                    <span class="toggle-icon">▾</span>
                 </div>
                 <div class="filter-group-content">
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_choice" value="0-5000000" <?php checked($min_price == 0 && $max_price == 5000000); ?> onchange="gobikeApplyPriceRange(0, 5000000)">
-                        <span class="checkmark"></span>
-                        <span class="label-text">Dưới 5 triệu</span>
+                        <input type="checkbox" name="price_choice" value="0-10000000" <?php checked($min_price == 0 && $max_price == 10000000); ?> onchange="gobikeApplyPriceChoice(this, 0, 10000000)">
+                        <span class="label-text">Dưới 10.000.000 đ <span class="count">(3)</span></span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_choice" value="5000000-10000000" <?php checked($min_price == 5000000 && $max_price == 10000000); ?> onchange="gobikeApplyPriceRange(5000000, 10000000)">
-                        <span class="checkmark"></span>
-                        <span class="label-text">5 - 10 triệu</span>
+                        <input type="checkbox" name="price_choice" value="10000000-15000000" <?php checked($min_price == 10000000 && $max_price == 15000000); ?> onchange="gobikeApplyPriceChoice(this, 10000000, 15000000)">
+                        <span class="label-text">10.000.000 đ - 15.000.000 đ <span class="count">(8)</span></span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_choice" value="10000000-15000000" <?php checked($min_price == 10000000 && $max_price == 15000000); ?> onchange="gobikeApplyPriceRange(10000000, 15000000)">
-                        <span class="checkmark"></span>
-                        <span class="label-text">10 - 15 triệu</span>
+                        <input type="checkbox" name="price_choice" value="15000000-25000000" <?php checked($min_price == 15000000 && $max_price == 25000000); ?> onchange="gobikeApplyPriceChoice(this, 15000000, 25000000)">
+                        <span class="label-text">15.000.000 đ - 25.000.000 đ <span class="count">(12)</span></span>
                     </label>
                     <label class="filter-checkbox-item">
-                        <input type="radio" name="price_choice" value="15000000-20000000" <?php checked($min_price == 15000000 && $max_price == 20000000); ?> onchange="gobikeApplyPriceRange(15000000, 20000000)">
-                        <span class="checkmark"></span>
-                        <span class="label-text">15 - 20 triệu</span>
+                        <input type="checkbox" name="price_choice" value="25000000-100000000" <?php checked($min_price == 25000000 && $max_price == 100000000); ?> onchange="gobikeApplyPriceChoice(this, 25000000, 100000000)">
+                        <span class="label-text">Trên 25.000.000 đ <span class="count">(6)</span></span>
                     </label>
-                    <label class="filter-checkbox-item">
-                        <input type="radio" name="price_choice" value="20000000-100000000" <?php checked($min_price == 20000000 && $max_price == 100000000); ?> onchange="gobikeApplyPriceRange(20000000, 100000000)">
-                        <span class="checkmark"></span>
-                        <span class="label-text">20 - 100 triệu</span>
-                    </label>
-                    <!-- Input ẩn min_price và max_price -->
+                    <!-- Input ẩn min_price và max_price gửi lên URL -->
                     <input type="hidden" name="min_price" id="filter_min_price" value="<?php echo $min_price > 0 ? esc_attr($min_price) : ''; ?>" />
                     <input type="hidden" name="max_price" id="filter_max_price" value="<?php echo $max_price > 0 ? esc_attr($max_price) : ''; ?>" />
                 </div>
             </div>
 
-            <!-- NHÓM 2: DÒNG XE (ACCORDION) -->
+            <!-- NHÓM 2: DÒNG XE (MẶC ĐỊNH MỞ - CHUẨN ẢNH 2) -->
             <div class="filter-group open">
                 <div class="filter-group-header">
-                    <span class="group-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="5.5" cy="17.5" r="3.5"/>
-                            <circle cx="18.5" cy="17.5" r="3.5"/>
-                            <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 6H4"/>
+                    <span class="group-title">Dòng xe</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
-                        Dòng xe
                     </span>
-                    <span class="toggle-icon">▾</span>
                 </div>
                 <div class="filter-group-content">
                     <?php
@@ -611,99 +660,113 @@ function gobike_render_shop_sidebar_filter()
                     ?>
                         <label class="filter-checkbox-item">
                             <input type="checkbox" name="filter_dong_xe[]" value="<?php echo esc_attr($slug); ?>" <?php checked($checked); ?>>
-                            <span class="checkmark"></span>
                             <span class="label-text"><?php echo esc_html($data['name']); ?> <span class="count">(<?php echo esc_html($data['count']); ?>)</span></span>
                         </label>
                     <?php endforeach; ?>
                 </div>
             </div>
 
-            <!-- NHÓM 3: NHU CẦU SỬ DỤNG (ACCORDION) -->
-            <div class="filter-group open">
+            <!-- NHÓM 3: NHU CẦU SỬ DỤNG (MẶC ĐỊNH GẬP - CHUẨN ẢNH 2) -->
+            <div class="filter-group">
                 <div class="filter-group-header">
-                    <span class="group-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
+                    <span class="group-title">Nhu cầu sử dụng</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
-                        Nhu cầu sử dụng
                     </span>
-                    <span class="toggle-icon">▾</span>
                 </div>
-                <div class="filter-group-content">
+                <div class="filter-group-content" style="display: none;">
                     <?php
                     foreach ($nhu_cau_options as $slug => $data):
                         $checked = in_array($slug, $nhu_cau_selected);
                     ?>
                         <label class="filter-checkbox-item">
                             <input type="checkbox" name="filter_nhu_cau[]" value="<?php echo esc_attr($slug); ?>" <?php checked($checked); ?>>
-                            <span class="checkmark"></span>
                             <span class="label-text"><?php echo esc_html($data['name']); ?> <span class="count">(<?php echo esc_html($data['count']); ?>)</span></span>
                         </label>
                     <?php endforeach; ?>
                 </div>
             </div>
 
-            <!-- NHÓM 4: THÔNG SỐ (ACCORDION) -->
-            <div class="filter-group open">
+            <!-- NHÓM 4: QUÃNG ĐƯỜNG DI CHUYỂN (MẶC ĐỊNH GẬP - CHUẨN ẢNH 2) -->
+            <div class="filter-group">
                 <div class="filter-group-header">
-                    <span class="group-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"></circle>
-                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    <span class="group-title">Quãng đường di chuyển</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
-                        Thông số
                     </span>
-                    <span class="toggle-icon">▾</span>
                 </div>
-                <div class="filter-group-content">
+                <div class="filter-group-content" style="display: none;">
                     <?php
-                    $sel_qd = isset($_GET['filter_quang_duong']) ? sanitize_text_field($_GET['filter_quang_duong']) : '';
-                    $sel_tl = isset($_GET['filter_trong_luong']) ? sanitize_text_field($_GET['filter_trong_luong']) : '';
-                    $sel_cs = isset($_GET['filter_cong_suat']) ? sanitize_text_field($_GET['filter_cong_suat']) : '';
+                    foreach ($quang_duong_options as $slug => $data):
+                        $checked = in_array($slug, $quang_duong_selected);
                     ?>
-                    <div class="filter-select-field">
-                        <label>Quãng đường di chuyển</label>
-                        <select name="filter_quang_duong">
-                            <option value="">Tất cả</option>
-                            <option value="duoi-50km" <?php selected($sel_qd, 'duoi-50km'); ?>>Dưới 50 km</option>
-                            <option value="50-80km" <?php selected($sel_qd, '50-80km'); ?>>50 - 80 km</option>
-                            <option value="80-120km" <?php selected($sel_qd, '80-120km'); ?>>80 - 120 km</option>
-                            <option value="tren-120km" <?php selected($sel_qd, 'tren-120km'); ?>>Trên 120 km</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-select-field">
-                        <label>Trọng lượng</label>
-                        <select name="filter_trong_luong">
-                            <option value="">Tất cả</option>
-                            <option value="duoi-18kg" <?php selected($sel_tl, 'duoi-18kg'); ?>>Dưới 18 kg</option>
-                            <option value="18-22kg" <?php selected($sel_tl, '18-22kg'); ?>>18 - 22 kg</option>
-                            <option value="tren-22kg" <?php selected($sel_tl, 'tren-22kg'); ?>>Trên 22 kg</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-select-field">
-                        <label>Công suất động cơ</label>
-                        <select name="filter_cong_suat">
-                            <option value="">Tất cả</option>
-                            <option value="250w" <?php selected($sel_cs, '250w'); ?>>250 W</option>
-                            <option value="350w" <?php selected($sel_cs, '350w'); ?>>350 W</option>
-                            <option value="500w" <?php selected($sel_cs, '500w'); ?>>500 W</option>
-                            <option value="tren-500w" <?php selected($sel_cs, 'tren-500w'); ?>>Trên 500 W</option>
-                        </select>
-                    </div>
+                        <label class="filter-checkbox-item">
+                            <input type="checkbox" name="filter_quang_duong[]" value="<?php echo esc_attr($slug); ?>" <?php checked($checked); ?>>
+                            <span class="label-text"><?php echo esc_html($data['name']); ?> <span class="count">(<?php echo esc_html($data['count']); ?>)</span></span>
+                        </label>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
-            <!-- NÚT ÁP DỤNG BỘ LỌC -->
-            <div class="filter-action-btn">
-                <button type="submit" class="gobike-apply-filter-btn">Áp dụng bộ lọc</button>
+            <!-- NHÓM 5: TRỌNG LƯỢNG XE (MẶC ĐỊNH GẬP - CHUẨN ẢNH 2) -->
+            <div class="filter-group">
+                <div class="filter-group-header">
+                    <span class="group-title">Trọng lượng xe</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="filter-group-content" style="display: none;">
+                    <?php
+                    foreach ($trong_luong_options as $slug => $data):
+                        $checked = in_array($slug, $trong_luong_selected);
+                    ?>
+                        <label class="filter-checkbox-item">
+                            <input type="checkbox" name="filter_trong_luong[]" value="<?php echo esc_attr($slug); ?>" <?php checked($checked); ?>>
+                            <span class="label-text"><?php echo esc_html($data['name']); ?> <span class="count">(<?php echo esc_html($data['count']); ?>)</span></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- NHÓM 6: CÔNG SUẤT ĐỘNG CƠ (MẶC ĐỊNH GẬP - CHUẨN ẢNH 2) -->
+            <div class="filter-group">
+                <div class="filter-group-header">
+                    <span class="group-title">Công suất động cơ</span>
+                    <span class="toggle-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                    </span>
+                </div>
+                <div class="filter-group-content" style="display: none;">
+                    <?php
+                    foreach ($cong_suat_options as $slug => $data):
+                        $checked = in_array($slug, $cong_suat_selected);
+                    ?>
+                        <label class="filter-checkbox-item">
+                            <input type="checkbox" name="filter_cong_suat[]" value="<?php echo esc_attr($slug); ?>" <?php checked($checked); ?>>
+                            <span class="label-text"><?php echo esc_html($data['name']); ?> <span class="count">(<?php echo esc_html($data['count']); ?>)</span></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- THANH THAO TÁC STICKY ĐÁY (CHUẨN ẢNH 2) -->
+            <div class="filter-action-sticky-footer">
+                <a href="<?php echo esc_url($reset_all_url); ?>" class="filter-footer-btn-reset">Xóa lọc</a>
+                <button type="submit" class="filter-footer-btn-apply">Áp dụng bộ lọc (<?php echo esc_html($total_count); ?>)</button>
             </div>
         </form>
 
-        <!-- BOX HỖ TRỢ TƯ VẤN HOTLINE (ẢNH 4) -->
-        <div class="gobike-support-hotline-box">
+        <!-- BOX HỖ TRỢ TƯ VẤN HOTLINE (ẢNH 4 - CHỈ HIỆN TRÊN DESKTOP) -->
+        <div class="gobike-support-hotline-box desktop-only">
             <div class="support-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
@@ -722,11 +785,45 @@ function gobike_render_shop_sidebar_filter()
     </aside>
 
     <script type="text/javascript">
-    function gobikeApplyPriceRange(min, max) {
-        document.getElementById('filter_min_price').value = min;
-        document.getElementById('filter_max_price').value = max;
+    function gobikeApplyPriceChoice(input, min, max) {
+        if (input.checked) {
+            // Uncheck other price choices
+            document.querySelectorAll('input[name="price_choice"]').forEach(function(el) {
+                if (el !== input) el.checked = false;
+            });
+            document.getElementById('filter_min_price').value = min;
+            document.getElementById('filter_max_price').value = max;
+        } else {
+            document.getElementById('filter_min_price').value = '';
+            document.getElementById('filter_max_price').value = '';
+        }
     }
+
+    function gobikeApplyMobileSort(val) {
+        var url = new URL(window.location.href);
+        url.searchParams.set('orderby', val);
+        window.location.href = url.toString();
+    }
+
     jQuery(document).ready(function($) {
+        // Mở Drawer Bộ lọc trên Tablet / Mobile
+        $('#gobikeMobileFilterBtn').on('click', function(e) {
+            e.preventDefault();
+            $('body').addClass('gobike-filter-open');
+        });
+
+        // Đóng Drawer Bộ lọc
+        $('#gobikeCloseFilterDrawer, #gobikeFilterOverlay').on('click', function(e) {
+            e.preventDefault();
+            $('body').removeClass('gobike-filter-open');
+        });
+
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape') {
+                $('body').removeClass('gobike-filter-open');
+            }
+        });
+
         // Toggle mở/gập các nhóm Accordion
         $('.gobike-sidebar-filter-wrapper .filter-group-header').on('click', function() {
             var group = $(this).closest('.filter-group');
@@ -737,8 +834,8 @@ function gobike_render_shop_sidebar_filter()
         // Loại bỏ các input rỗng trước khi submit form để URL sạch
         $('#gobike-filter-form').on('submit', function() {
             $(this).find('input, select').each(function() {
-                if ($(this).attr('type') === 'radio' && $(this).attr('name') === 'price_choice') {
-                    $(this).prop('disabled', true);
+                if ($(this).attr('name') === 'price_choice') {
+                    $(this).prop('disabled', true); // Chỉ gửi min_price & max_price
                 } else if (!$(this).val() || $(this).val() === '') {
                     $(this).prop('disabled', true);
                 }

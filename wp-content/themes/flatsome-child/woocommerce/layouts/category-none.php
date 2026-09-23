@@ -47,12 +47,72 @@ do_action( 'woocommerce_archive_description' );
 		<div class="col large-9 medium-8 small-12 gobike-products-main-col">
 			<div class="col-inner">
 				
-				<!-- THANH TOOLBAR KẾT QUẢ & SẮP XẾP CHUẨN ẢNH 2 -->
+				<?php
+				global $wp_query;
+				$total   = $wp_query->found_posts;
+				$current_orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
+				
+				// Xác định tên danh mục hiển thị
+				$cat_heading = 'Sản phẩm';
+				if ( is_product_category() ) {
+					$cat_obj = get_queried_object();
+					if ( $cat_obj && ! empty( $cat_obj->name ) ) {
+						$cat_heading = 'Sản phẩm ' . $cat_obj->name;
+					}
+				}
+				?>
+
+				<!-- 3.1. TIÊU ĐỀ & NÚT XEM TẤT CẢ DÀNH CHO TABLET & MOBILE (ẢNH 1) -->
+				<div class="gobike-shop-mobile-header">
+					<h2 class="mobile-cat-title">
+						<?php echo esc_html( $cat_heading ); ?> 
+						<span class="count">(<?php echo esc_html( $total ); ?>)</span>
+					</h2>
+					<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'shop' ) ) ); ?>" class="mobile-view-all-link">
+						Xem tất cả <span class="arrow">&rsaquo;</span>
+					</a>
+				</div>
+
+				<!-- 3.2. THANH CÔNG CỤ 2 NÚT BỘ LỌC & SẮP XẾP DÀNH CHO TABLET & MOBILE (ẢNH 1) -->
+				<div class="gobike-shop-mobile-toolbar">
+					<!-- Nút 1: Bộ lọc (Mở Bottom Sheet) -->
+					<button type="button" class="mobile-toolbar-btn mobile-filter-btn" id="gobikeMobileFilterBtn" aria-label="Mở bộ lọc">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="4" y1="6" x2="20" y2="6"></line>
+							<circle cx="8" cy="6" r="2"></circle>
+							<line x1="4" y1="12" x2="20" y2="12"></line>
+							<circle cx="16" cy="12" r="2"></circle>
+							<line x1="4" y1="18" x2="20" y2="18"></line>
+							<circle cx="10" cy="18" r="2"></circle>
+						</svg>
+						<span>Bộ lọc</span>
+					</button>
+
+					<!-- Nút 2: Sắp xếp (Native select) -->
+					<div class="mobile-toolbar-btn mobile-sort-btn-wrap">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="7 15 12 20 17 15"></polyline>
+							<polyline points="7 9 12 4 17 9"></polyline>
+						</svg>
+						<span>Sắp xếp</span>
+						<svg class="sort-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="6 9 12 15 18 9"></polyline>
+						</svg>
+
+						<select name="orderby" class="mobile-native-sort-select" onchange="gobikeApplyMobileSort(this.value)">
+							<option value="date" <?php selected($current_orderby, 'date'); ?>>Hàng mới</option>
+							<option value="price" <?php selected($current_orderby, 'price'); ?>>Giá thấp đến cao</option>
+							<option value="price-desc" <?php selected($current_orderby, 'price-desc'); ?>>Giá cao xuống thấp</option>
+							<option value="title-asc" <?php selected($current_orderby, 'title-asc'); ?>>Tên A-Z</option>
+							<option value="title-desc" <?php selected($current_orderby, 'title-desc'); ?>>Tên Z-A</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- 3.3. THANH TOOLBAR DESKTOP KẾT QUẢ & SẮP XẾP -->
 				<div class="gobike-shop-toolbar">
 					<div class="toolbar-left">
 						<?php
-						global $wp_query;
-						$total   = $wp_query->found_posts;
 						$per_page = $wp_query->get('posts_per_page');
 						$paged   = max(1, get_query_var('paged'));
 						$first   = ($paged - 1) * $per_page + 1;

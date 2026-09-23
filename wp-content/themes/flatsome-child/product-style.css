@@ -1815,3 +1815,460 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         margin-right: 10px;
     }
 }
+
+/* ==========================================================================
+   BỘ LỌC SẢN PHẨM GOBIKE - GIAO DIỆN DESKTOP & MOBILE DRAWER (CHUẨN ẢNH 1 & ẢNH 2)
+   ========================================================================== */
+
+/* 1. STYLING CƠ BẢN CHECKBOX CHUẨN XANH LÁ CHECKMARK (ẢNH 2) */
+.gobike-sidebar-filter-wrapper .filter-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin: 0;
+    font-size: 14px;
+    color: #0f172a;
+    user-select: none;
+}
+
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"],
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 19px;
+    height: 19px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"]:checked,
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="radio"]:checked {
+    background-color: #0d7030;
+    border-color: #0d7030;
+}
+
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"]:checked::after,
+.gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="radio"]:checked::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+
+.gobike-sidebar-filter-wrapper .filter-checkbox-item .label-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.gobike-sidebar-filter-wrapper .filter-checkbox-item .count {
+    font-size: 13px;
+    font-weight: 400;
+    color: #64748b;
+}
+
+/* 2. ACCORDION GROUPS TRÊN DESKTOP */
+.gobike-sidebar-filter-wrapper .filter-group {
+    border-bottom: 1px solid #f1f5f9;
+    padding: 14px 0;
+}
+
+.gobike-sidebar-filter-wrapper .filter-group:last-child {
+    border-bottom: none;
+}
+
+.gobike-sidebar-filter-wrapper .filter-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+}
+
+.gobike-sidebar-filter-wrapper .group-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.gobike-sidebar-filter-wrapper .toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f172a;
+}
+
+.gobike-sidebar-filter-wrapper .toggle-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: #0f172a;
+    transition: transform 0.25s ease;
+}
+
+.gobike-sidebar-filter-wrapper .filter-group:not(.open) .toggle-icon svg {
+    transform: rotate(180deg);
+}
+
+.gobike-sidebar-filter-wrapper .filter-group.open .toggle-icon svg {
+    transform: rotate(0deg);
+}
+
+.gobike-sidebar-filter-wrapper .filter-group-content {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Ẩn các phần tử mobile trên Desktop */
+.gobike-shop-mobile-header {
+    display: none;
+}
+.gobike-shop-mobile-toolbar {
+    display: none;
+}
+.gobike-filter-drawer-overlay {
+    display: none;
+}
+.gobike-sidebar-filter-wrapper .drawer-handle-bar {
+    display: none;
+}
+.gobike-sidebar-filter-wrapper .drawer-close-btn {
+    display: none;
+}
+.gobike-sidebar-filter-wrapper .filter-action-sticky-footer .filter-footer-btn-reset {
+    display: none;
+}
+
+.gobike-sidebar-filter-wrapper .filter-action-sticky-footer .filter-footer-btn-apply {
+    width: 100%;
+    height: 44px;
+    background: #044b25;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 14px;
+}
+
+.gobike-sidebar-filter-wrapper .filter-action-sticky-footer .filter-footer-btn-apply:hover {
+    background: #03361a;
+}
+
+/* ==========================================================================
+   3. GIAO DIỆN TABLET & MOBILE (<= 860px) - CHUẨN ẢNH 1 & ẢNH 2
+   ========================================================================== */
+@media screen and (max-width: 860px) {
+    /* Ẩn toolbar desktop */
+    .gobike-shop-toolbar {
+        display: none !important;
+    }
+
+    /* 3.1. Mobile Header (Sản phẩm ADO (29) ... Xem tất cả >) */
+    .gobike-shop-mobile-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding: 0 2px;
+    }
+
+    .gobike-shop-mobile-header .mobile-cat-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+        line-height: 1.25;
+    }
+
+    .gobike-shop-mobile-header .mobile-cat-title .count {
+        font-weight: 500;
+        color: #64748b;
+        font-size: 16px;
+    }
+
+    .gobike-shop-mobile-header .mobile-view-all-link {
+        font-size: 13px;
+        font-weight: 600;
+        color: #0d7030;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .gobike-shop-mobile-header .mobile-view-all-link .arrow {
+        font-size: 15px;
+        margin-top: -1px;
+    }
+
+    /* 3.2. Mobile 2-Button Toolbar (Bộ lọc | Sắp xếp) */
+    .gobike-shop-mobile-toolbar {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-toolbar-btn {
+        flex: 1;
+        height: 42px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #1e293b;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        position: relative;
+        padding: 0 12px;
+        transition: all 0.2s ease;
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-toolbar-btn:active {
+        background: #f1f5f9;
+        transform: scale(0.99);
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-filter-btn svg {
+        color: #0d7030;
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-sort-btn-wrap svg:first-child {
+        color: #475569;
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-sort-btn-wrap .sort-chevron {
+        margin-left: auto;
+        color: #64748b;
+    }
+
+    .gobike-shop-mobile-toolbar .mobile-native-sort-select {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        font-size: 16px;
+        -webkit-appearance: none;
+    }
+
+    /* 3.3. Backdrop Overlay */
+    .gobike-filter-drawer-overlay {
+        display: block !important;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.55);
+        backdrop-filter: blur(2px);
+        z-index: 99998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.gobike-filter-open .gobike-filter-drawer-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.gobike-filter-open {
+        overflow: hidden !important;
+    }
+
+    /* 3.4. Drawer Bottom Sheet */
+    .gobike-sidebar-col {
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper {
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: -110% !important;
+        width: 100% !important;
+        z-index: 99999 !important;
+        max-height: 88vh !important;
+        background: #ffffff !important;
+        border-radius: 20px 20px 0 0 !important;
+        border: none !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25) !important;
+        transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+
+    body.gobike-filter-open .gobike-sidebar-filter-wrapper {
+        bottom: 0 !important;
+    }
+
+    /* Grab handle bar */
+    .gobike-sidebar-filter-wrapper .drawer-handle-bar {
+        display: block !important;
+        width: 44px;
+        height: 4px;
+        background: #cbd5e1;
+        border-radius: 2px;
+        margin: 10px auto 4px auto;
+        flex-shrink: 0;
+    }
+
+    /* Drawer Header */
+    .gobike-sidebar-filter-wrapper .gobike-filter-header {
+        padding: 10px 20px 14px 20px !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+        margin-bottom: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-shrink: 0;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-title {
+        font-size: 19px !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        margin: 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .desktop-only {
+        display: none !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .drawer-close-btn.mobile-only {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        color: #475569;
+        font-size: 22px;
+        cursor: pointer;
+        border-radius: 50%;
+        padding: 0;
+        transition: background 0.2s ease;
+    }
+
+    .gobike-sidebar-filter-wrapper .drawer-close-btn:active {
+        background: #f1f5f9;
+        color: #0f172a;
+    }
+
+    /* Scrollable Form Body */
+    .gobike-sidebar-filter-wrapper .gobike-filter-form {
+        flex: 1 !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 4px 20px 12px 20px !important;
+        margin: 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-group {
+        border-bottom: 1px solid #f1f5f9 !important;
+        padding: 15px 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .group-title {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+    }
+
+    /* Sticky Footer inside Drawer */
+    .gobike-sidebar-filter-wrapper .filter-action-sticky-footer {
+        position: sticky !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: #ffffff !important;
+        padding: 12px 16px 16px 16px !important;
+        border-top: 1px solid #f1f5f9 !important;
+        display: flex !important;
+        gap: 12px !important;
+        z-index: 10 !important;
+        flex-shrink: 0;
+        box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.04) !important;
+        margin: 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-footer-btn-reset {
+        display: flex !important;
+        flex: 1;
+        height: 46px;
+        background: #ffffff;
+        border: 1.5px solid #0d7030;
+        color: #0d7030;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-footer-btn-reset:active {
+        background: #f0fdf4;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-footer-btn-apply {
+        flex: 2;
+        height: 46px;
+        background: #044b25;
+        border: none;
+        color: #ffffff;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 0 !important;
+    }
+
+    .gobike-sidebar-filter-wrapper .filter-footer-btn-apply:active {
+        background: #03361a;
+    }
+
+    /* 3.5. Lưới sản phẩm 2 cột đều trên Mobile */
+    .category-page-row .gobike-products-main-col .products .col.gobike-catalog-card-col {
+        width: 50% !important;
+        max-width: 50% !important;
+        flex: 0 0 50% !important;
+        padding: 0 5px 10px 5px !important;
+    }
+}
