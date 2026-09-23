@@ -458,7 +458,7 @@ $news_categories = array(
                 <!-- 5 Chấm điều khiển Carousel tương tác (Interactive Dots) -->
                 <div class="featured-mobile-dots" id="gobikeFeaturedDots">
                     <?php foreach ($featured_posts as $idx => $f_post): ?>
-                        <button type="button" class="dot <?php echo ($idx === 0) ? 'active' : ''; ?>" data-target-index="<?php echo $idx; ?>" aria-label="Slide <?php echo $idx + 1; ?>"></button>
+                        <span role="button" tabindex="0" class="dot <?php echo ($idx === 0) ? 'active' : ''; ?>" data-target-index="<?php echo $idx; ?>" aria-label="Slide <?php echo $idx + 1; ?>"></span>
                     <?php endforeach; ?>
                 </div>
             </div>

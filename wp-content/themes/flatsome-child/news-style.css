@@ -1462,32 +1462,58 @@
         font-weight: 600;
     }
 
-    /* Carousel dots dưới card nổi bật (Interactive Dots) */
+    /* Carousel dots dưới card nổi bật (Interactive Dots - Chuẩn thiết kế ngang thanh mảnh) */
     .featured-mobile-dots {
         display: flex !important;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        margin-top: 12px;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 7px !important;
+        margin-top: 14px !important;
+        padding: 0 !important;
+        line-height: 1 !important;
     }
 
-    .featured-mobile-dots .dot {
-        border: none;
-        outline: none;
-        padding: 0;
-        cursor: pointer;
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #cbd5e1;
-        transition: all 0.25s ease;
+    .featured-mobile-dots .dot,
+    .featured-mobile-dots span.dot,
+    .featured-mobile-dots button.dot {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        display: inline-block !important;
+        width: 7px !important;
+        height: 7px !important;
+        min-width: 7px !important;
+        max-width: 7px !important;
+        min-height: 7px !important;
+        max-height: 7px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        outline: none !important;
+        border-radius: 50% !important;
+        background: #cbd5e1 !important;
+        background-color: #cbd5e1 !important;
+        box-shadow: none !important;
+        cursor: pointer !important;
+        line-height: 0 !important;
+        font-size: 0 !important;
+        vertical-align: middle !important;
+        box-sizing: border-box !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        flex: 0 0 auto !important;
     }
 
-    .featured-mobile-dots .dot.active {
-        width: 18px;
-        border-radius: 10px;
-        background: #044b25;
+    .featured-mobile-dots .dot.active,
+    .featured-mobile-dots span.dot.active,
+    .featured-mobile-dots button.dot.active {
+        width: 22px !important;
+        min-width: 22px !important;
+        max-width: 22px !important;
+        height: 7px !important;
+        min-height: 7px !important;
+        max-height: 7px !important;
+        border-radius: 10px !important;
+        background: #044b25 !important;
+        background-color: #044b25 !important;
     }
 
     /* 4. BÀI VIẾT MỚI NHẤT MOBILE (DẠNG DANH SÁCH COMPACT + MŨI TÊN XANH LÁ) */
