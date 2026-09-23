@@ -1,0 +1,506 @@
+ôi tổng hợp lại thành một tài liệu duy nhất như sau:
+
+TÀI LIỆU XÂY DỰNG TRANG VIDEO REVIEW GOBIKE
+Flatsome + Custom Post Type video_review
+1. THÔNG TIN DỰ ÁN
+Tên trang
+
+Trang Video Review GoBike
+
+Loại trang
+
+Archive Custom Post Type:
+
+video_review
+
+URL:
+
+domain.com/video-review/
+Mục đích
+
+Xây dựng trang tổng hợp các video review sản phẩm GoBike.
+
+Người dùng có thể:
+
+Xem video trải nghiệm sản phẩm.
+Xem các video liên quan.
+Xem danh sách phát theo chủ đề.
+Xem các sản phẩm xuất hiện trong video.
+Đăng ký đặt lịch trải nghiệm.
+Xem hệ thống cửa hàng.
+2. PHƯƠNG ÁN XÂY DỰNG
+Kiến trúc sử dụng
+WordPress
+
++
+
+Flatsome Child Theme
+
++
+
+Custom Post Type
+
++
+
+ACF Pro
+
++
+
+WooCommerce
+
++
+
+UX Builder
+Phương án triển khai
+
+Không xây toàn bộ bằng UX Builder.
+
+Sử dụng:
+
+Template PHP
++
+Flatsome UX Block
++
+ACF Dynamic Data
+Lý do
+
+Trang Video Review là một hệ thống nội dung động.
+
+Nếu kéo thả toàn bộ bằng UX Builder:
+
+Khó quản lý khi số lượng video tăng.
+Khách hàng thêm video mới phải chỉnh giao diện.
+Khó lọc video theo danh mục.
+Khó mở rộng SEO.
+
+Template giúp:
+
+Thêm video tự động hiển thị.
+Dễ bảo trì.
+Tối ưu query.
+Tái sử dụng layout.
+3. CẤU TRÚC DỮ LIỆU
+3.1 Custom Post Type
+
+Tên:
+
+Video Review
+
+Slug:
+
+video_review
+
+Ví dụ:
+
+Video Review
+
+├── Review Phoenix C200
+├── Test xe đi phố
+├── So sánh Phoenix C200 và C300
+└── Hướng dẫn sử dụng xe
+3.2 Taxonomy
+
+Tên:
+
+Danh mục Video
+
+Slug:
+
+video_category
+
+Dùng để phân loại video:
+
+Video Review
+
+├── Xe đạp trợ lực
+
+├── Review thực tế
+
+├── Hướng dẫn sử dụng
+
+├── So sánh sản phẩm
+
+└── Khách hàng trải nghiệm
+
+3.3 ACF FIELD VIDEO REVIEW
+Field: Video URL
+
+Type:
+
+URL
+
+Name:
+
+video_url
+
+Dữ liệu:
+
+https://youtube.com/xxxxx
+Field: Video Embed
+
+Type:
+
+oEmbed
+
+Name:
+
+video_embed
+
+Mục đích:
+
+Nhúng trực tiếp Youtube.
+
+Field: Video Duration
+
+Type:
+
+Text
+
+Name:
+
+video_duration
+
+Ví dụ:
+
+05:32
+Field: Product trong video
+
+Type:
+
+Relationship
+
+Name:
+
+related_products
+
+Relation:
+
+Video Review
+
+↓
+
+WooCommerce Product
+
+Ví dụ:
+
+Video:
+
+Review Phoenix C200
+
+Sản phẩm:
+
+Phoenix C200
+
+Mũ bảo hiểm
+
+Phụ kiện xe
+4. CẤU TRÚC TRANG VIDEO REVIEW
+
+Trang gồm 6 section:
+
+VIDEO REVIEW PAGE
+
+
+SECTION 1
+Video nổi bật + Danh sách phát
+
+
+SECTION 2
+Video liên quan
+
+
+SECTION 3
+Danh sách phát
+
+
+SECTION 4
+Sản phẩm trong video
+
+
+SECTION 5
+Banner đặt lịch trải nghiệm
+
+
+SECTION 6
+Hệ thống cửa hàng
+
+SECTION 1
+VIDEO NỔI BẬT + DANH SÁCH PHÁT
+Mục đích
+
+Đây là khu vực đầu trang.
+
+Hiển thị:
+
+Video chính.
+Thumbnail.
+Tiêu đề.
+Mô tả.
+Danh sách video cùng chủ đề.
+Layout
+------------------------------------------------
+
+
+Danh mục video
+
+
+------------------------------------------------
+
+
+              VIDEO CHÍNH
+
+
+          Youtube Player
+
+
+       Review Phoenix C200
+
+
+          Mô tả ngắn
+
+
+------------------------------------------------
+
+
+Video tiếp theo
+
+
+[Thumb]
+[Thumb]
+[Thumb]
+
+
+------------------------------------------------
+
+Nguồn dữ liệu
+
+Video lấy từ:
+
+Custom Post Type
+
+video_review
+
+Video chính:
+
+Latest Video
+
+hoặc:
+
+Featured Video
+Cách xây dựng
+
+File:
+
+archive-video_review.php
+
+Component:
+
+template-parts/video/featured-video.php
+SECTION 2
+VIDEO LIÊN QUAN
+Mục đích
+
+Gợi ý các video khác cho người xem.
+
+Ví dụ:
+
+Video hiện tại:
+
+Review Phoenix C200
+
+Video liên quan:
+
+Phoenix C300 Review
+
+Test pin thực tế
+
+So sánh xe trợ lực
+Logic lấy dữ liệu
+
+Query:
+
+video_review
+
+Điều kiện:
+
+Cùng video_category
+
+Loại trừ:
+
+Video hiện tại
+Xây dựng
+
+Dùng:
+
+WP_Query
+
+Không dùng:
+
+Flatsome Blog Element
+
+Vì không tối ưu cho CPT.
+
+SECTION 3
+DANH SÁCH PHÁT
+Mục đích
+
+Tạo nhóm video theo chủ đề.
+
+Ví dụ:
+
+Danh sách phát
+
+
+Xe trợ lực
+
+Review thực tế
+
+Hướng dẫn sử dụng
+
+Khách hàng trải nghiệm
+
+Nguồn dữ liệu
+
+Taxonomy:
+
+video_category
+ACF cho Category
+
+Field:
+
+category_image
+
+category_description
+Hiển thị
+[Ảnh]
+
+Xe trợ lực
+
+
+[Ảnh]
+
+Review thực tế
+
+
+[Ảnh]
+
+Hướng dẫn
+
+SECTION 4
+SẢN PHẨM TRONG VIDEO
+Mục đích
+
+Hiển thị sản phẩm được review trong video.
+
+Luồng dữ liệu
+Video Review
+
+↓
+
+ACF Relationship
+
+↓
+
+WooCommerce Product
+
+Ví dụ
+
+Video:
+
+Review Phoenix C200
+
+Sản phẩm:
+
+Phoenix C200
+
+Phụ kiện xe
+
+Pin mở rộng
+Hiển thị
+Sản phẩm trong video
+
+
+--------------------
+
+[Ảnh sản phẩm]
+
+
+Phoenix C200
+
+
+17.990.000đ
+
+
+[Xem sản phẩm]
+
+
+--------------------
+
+SECTION 5
+HERO BANNER ĐẶT LỊCH
+Mục đích
+
+Tăng chuyển đổi khách hàng.
+
+Nội dung:
+
+Đăng ký trải nghiệm GoBike
+
+Nhận tư vấn miễn phí
+
+[Đặt lịch ngay]
+
+Cách xây dựng
+
+Dùng:
+
+Flatsome UX Block
+
+Tạo:
+
+UX Block
+
+└── Booking Banner
+Lý do
+
+Không code trực tiếp.
+
+Ưu điểm:
+
+Marketing tự thay banner.
+Không ảnh hưởng template.
+Dễ chỉnh sửa.
+SECTION 6
+HỆ THỐNG CỬA HÀNG
+Mục đích
+
+Hiển thị địa điểm mua hàng/trải nghiệm.
+
+Nội dung cửa hàng
+Tên cửa hàng
+
+Địa chỉ
+
+Số điện thoại
+
+Google Map
+
+Hình ảnh
+Phương án dữ liệu
+Phương án 1: ACF Repeater
+
+Áp dụng:
+
+Ít cửa hàng
+
+Field:
+
+store_name
+
+store_address
+
+store_phone
+
+store_map
+
+store_image

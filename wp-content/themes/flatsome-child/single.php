@@ -387,6 +387,70 @@ if ($latest_posts_query->have_posts()) {
                                     <span class="quote-author">— GoBike</span>
                                 </div>
 
+                                <!-- 6. SECTION: SẢN PHẨM PHÙ HỢP (CHUẨN VỊ TRÍ MOCKUP) -->
+                                <section class="post-related-section post-products-section post-products-inline">
+                                    <div class="section-title-row">
+                                        <h3 class="section-title-heading">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+                                            Sản phẩm phù hợp
+                                        </h3>
+                                        <a href="<?php echo esc_url(home_url('/cua-hang/')); ?>" class="section-view-all-link">
+                                            Xem tất cả &rarr;
+                                        </a>
+                                    </div>
+
+                                    <div class="post-products-grid">
+                                        <?php foreach ($related_products as $prod): ?>
+                                            <div class="post-product-card">
+                                                <?php if (!empty($prod['badge'])): ?>
+                                                    <div class="prod-badge-wrap">
+                                                        <span class="prod-badge <?php echo esc_attr($prod['badge_type']); ?>">
+                                                            <?php echo esc_html($prod['badge']); ?>
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+
+                                                <a href="<?php echo esc_url($prod['url']); ?>" class="prod-thumb-wrap">
+                                                    <img src="<?php echo esc_url($prod['thumb']); ?>" alt="<?php echo esc_attr($prod['title']); ?>" loading="lazy">
+                                                </a>
+
+                                                <h4 class="prod-title">
+                                                    <a href="<?php echo esc_url($prod['url']); ?>"><?php echo esc_html($prod['title']); ?></a>
+                                                </h4>
+                                                <div class="prod-cat-type"><?php echo esc_html($prod['cat']); ?></div>
+
+                                                <div class="prod-quick-specs">
+                                                    <span class="spec-chip">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                        <?php echo esc_html($prod['specs_km']); ?>
+                                                    </span>
+                                                    <span class="spec-chip">
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"></path><rect x="6" y="8" width="12" height="12" rx="2"></rect></svg>
+                                                        <?php echo esc_html($prod['specs_kg']); ?>
+                                                    </span>
+                                                </div>
+
+                                                <div class="prod-card-bottom">
+                                                    <div class="prod-pricing">
+                                                        <?php if (!empty($prod['price_html'])): ?>
+                                                            <?php echo $prod['price_html']; ?>
+                                                        <?php else: ?>
+                                                            <span class="price-current <?php echo !empty($prod['price_old']) ? 'has-sale' : ''; ?>"><?php echo esc_html($prod['price_current']); ?></span>
+                                                            <?php if (!empty($prod['price_old'])): ?>
+                                                                <span class="price-old"><?php echo esc_html($prod['price_old']); ?></span>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </div>
+
+                                                    <a href="<?php echo esc_url($prod['add_to_cart_url'] ?: $prod['url']); ?>" class="btn-add-cart-mini" aria-label="Thêm vào giỏ">
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </section>
+
                                 <h2 id="muc-luc-2">2. Mộc Châu – Cao nguyên trong lành</h2>
                                 <p>Không khí mát mẻ, đồi chè xanh mướt và những con dốc vừa thử thách vừa thú vị khiến Mộc Châu trở thành điểm đến lý tưởng cho dân đạp xe trợ lực điện và xe thể thao.</p>
 
@@ -434,70 +498,6 @@ if ($latest_posts_query->have_posts()) {
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-
-                <!-- 6. SECTION 3: SẢN PHẨM PHÙ HỢP (WOOCOMMERCE CARDS) -->
-                <section class="post-related-section post-products-section">
-                    <div class="section-title-row">
-                        <h3 class="section-title-heading">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
-                            Sản phẩm phù hợp
-                        </h3>
-                        <a href="<?php echo esc_url(home_url('/cua-hang/')); ?>" class="section-view-all-link">
-                            Xem tất cả &rarr;
-                        </a>
-                    </div>
-
-                    <div class="post-products-grid">
-                        <?php foreach ($related_products as $prod): ?>
-                            <div class="post-product-card">
-                                <?php if (!empty($prod['badge'])): ?>
-                                    <div class="prod-badge-wrap">
-                                        <span class="prod-badge <?php echo esc_attr($prod['badge_type']); ?>">
-                                            <?php echo esc_html($prod['badge']); ?>
-                                        </span>
-                                    </div>
-                                <?php endif; ?>
-
-                                <a href="<?php echo esc_url($prod['url']); ?>" class="prod-thumb-wrap">
-                                    <img src="<?php echo esc_url($prod['thumb']); ?>" alt="<?php echo esc_attr($prod['title']); ?>" loading="lazy">
-                                </a>
-
-                                <h4 class="prod-title">
-                                    <a href="<?php echo esc_url($prod['url']); ?>"><?php echo esc_html($prod['title']); ?></a>
-                                </h4>
-                                <div class="prod-cat-type"><?php echo esc_html($prod['cat']); ?></div>
-
-                                <div class="prod-quick-specs">
-                                    <span class="spec-chip">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                        <?php echo esc_html($prod['specs_km']); ?>
-                                    </span>
-                                    <span class="spec-chip">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"></path><rect x="6" y="8" width="12" height="12" rx="2"></rect></svg>
-                                        <?php echo esc_html($prod['specs_kg']); ?>
-                                    </span>
-                                </div>
-
-                                <div class="prod-card-bottom">
-                                    <div class="prod-pricing">
-                                        <?php if (!empty($prod['price_html'])): ?>
-                                            <?php echo $prod['price_html']; ?>
-                                        <?php else: ?>
-                                            <span class="price-current <?php echo !empty($prod['price_old']) ? 'has-sale' : ''; ?>"><?php echo esc_html($prod['price_current']); ?></span>
-                                            <?php if (!empty($prod['price_old'])): ?>
-                                                <span class="price-old"><?php echo esc_html($prod['price_old']); ?></span>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <a href="<?php echo esc_url($prod['add_to_cart_url'] ?: $prod['url']); ?>" class="btn-add-cart-mini" aria-label="Thêm vào giỏ">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </section>
 
             </main>
 
@@ -706,6 +706,27 @@ if ($latest_posts_query->have_posts()) {
                         </div>
                     </a>
                 <?php endforeach; ?>
+            </div>
+        </section>
+
+        <!-- 8. SECTION 5: KHỐI NHẬN TIN TỨC & ƯU ĐÃI (MOCKUP ĐÁY BÀI VIẾT) -->
+        <section class="post-bottom-newsletter-bar">
+            <div class="newsletter-bar-inner">
+                <div class="newsletter-bar-left">
+                    <div class="newsletter-bar-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="newsletter-bar-text">
+                        <h4 class="newsletter-bar-title">Nhận tin tức &amp; ưu đãi mới nhất từ GoBike</h4>
+                        <p class="newsletter-bar-sub">Đăng ký để không bỏ lỡ những bài viết hay và ưu đãi đặc biệt.</p>
+                    </div>
+                </div>
+                <form class="newsletter-bar-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận tin từ GoBike!'); this.reset();">
+                    <input type="email" class="newsletter-bar-input" placeholder="Nhập email của bạn" required>
+                    <button type="submit" class="btn-newsletter-bar-submit" aria-label="Đăng ký">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </form>
             </div>
         </section>
 
