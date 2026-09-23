@@ -20,7 +20,7 @@ $paged        = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_
 $featured_args = array(
     'post_type'      => 'post',
     'post_status'    => 'publish',
-    'posts_per_page' => 3,
+    'posts_per_page' => 5,
     'ignore_sticky_posts' => 1,
 );
 if (!empty($current_cat)) {
@@ -51,7 +51,7 @@ if ($featured_query->have_posts()) {
     wp_reset_postdata();
 }
 
-// Fallback dữ liệu mẫu bài viết nổi bật chuẩn 100% thiết kế nếu web chưa có đủ bài
+// Fallback dữ liệu mẫu bài viết nổi bật chuẩn 100% thiết kế (5 slides chuẩn mockup mobile)
 $fallback_featured = array(
     array(
         'id'      => 0,
@@ -59,9 +59,19 @@ $fallback_featured = array(
         'url'     => '#',
         'thumb'   => $bg_cyclist,
         'cat'     => 'Kinh nghiệm',
-        'date'    => '28 Tháng 08 2026',
-        'date_short' => '28/08/2026',
-        'excerpt' => 'Khám phá những cung đường tuyệt đẹp với cảnh quan ngoạn mục dành cho dân mê xê dịch.',
+        'date'    => '15 Tháng 09 2026',
+        'date_short' => '15/09/2026',
+        'excerpt' => 'Khám phá những cung đường tuyệt đẹp, phù hợp cho cả người mới và đam mê xe đạp trợ lực.',
+    ),
+    array(
+        'id'      => 0,
+        'title'   => 'Kinh nghiệm du lịch Mộc Châu bằng xe đạp trợ lực',
+        'url'     => '#',
+        'thumb'   => 'https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80',
+        'cat'     => 'Du lịch',
+        'date'    => '14 Tháng 09 2026',
+        'date_short' => '14/09/2026',
+        'excerpt' => 'Hành trình vượt qua đồi chè và thung lũng Mộc Châu nhẹ nhàng, sảng khoái cùng GoBike.',
     ),
     array(
         'id'      => 0,
@@ -69,23 +79,33 @@ $fallback_featured = array(
         'url'     => '#',
         'thumb'   => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
         'cat'     => 'Hướng dẫn',
-        'date'    => '28 Tháng 08 2026',
-        'date_short' => '28/08/2026',
-        'excerpt' => 'Tiêu chí chọn xe đạp trợ lực tối ưu pin, trọng lượng và độ bền.',
+        'date'    => '12 Tháng 09 2026',
+        'date_short' => '12/09/2026',
+        'excerpt' => 'Tiêu chí chọn xe đạp trợ lực tối ưu dung lượng pin, trọng lượng khung và độ bền.',
     ),
     array(
         'id'      => 0,
         'title'   => 'Đạp xe mỗi ngày: 7 lợi ích bất ngờ cho sức khỏe',
         'url'     => '#',
         'thumb'   => 'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=800&q=80',
-        'cat'     => 'Kiến thức',
-        'date'    => '28 Tháng 08 2026',
-        'date_short' => '28/08/2026',
-        'excerpt' => 'Cải thiện thể lực toàn diện và tinh thần sảng khoái với xe trợ lực.',
+        'cat'     => 'Sức khỏe',
+        'date'    => '10 Tháng 09 2026',
+        'date_short' => '10/09/2026',
+        'excerpt' => 'Cải thiện thể lực toàn diện và tinh thần sảng khoái với xe đạp trợ lực thể thao.',
+    ),
+    array(
+        'id'      => 0,
+        'title'   => 'Cách bảo dưỡng và kéo dài tuổi thọ pin xe đạp trợ lực',
+        'url'     => '#',
+        'thumb'   => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80',
+        'cat'     => 'Bảo dưỡng',
+        'date'    => '05 Tháng 09 2026',
+        'date_short' => '05/09/2026',
+        'excerpt' => 'Bí quyết sạc và bảo quản pin lithium an toàn, bền bỉ qua năm tháng sử dụng.',
     ),
 );
 
-for ($i = 0; $i < 3; $i++) {
+for ($i = 0; $i < 5; $i++) {
     if (!isset($featured_posts[$i])) {
         $featured_posts[$i] = $fallback_featured[$i];
     }
@@ -354,7 +374,8 @@ $news_categories = array(
                 </a>
             </div>
 
-            <div class="featured-grid">
+            <!-- DESKTOP FEATURED GRID (HIỂN THỊ TRÊN DESKTOP > 768px) -->
+            <div class="featured-grid featured-desktop-grid">
                 
                 <!-- BÀI VIẾT LỚN BÊN TRÁI (60%) -->
                 <?php $big_post = $featured_posts[0]; ?>
@@ -377,64 +398,69 @@ $news_categories = array(
 
                 <!-- 2 BÀI VIẾT XẾP CHỒNG BÊN PHẢI (40%) -->
                 <div class="featured-side-stack">
-                    
-                    <!-- Bài nhỏ 1 -->
-                    <?php $side1 = $featured_posts[1]; ?>
+                    <?php for ($s = 1; $s <= 2; $s++): 
+                        if (!isset($featured_posts[$s])) continue;
+                        $side_item = $featured_posts[$s];
+                        $tag_class = ($s === 1) ? 'green-alt' : 'green-subtle';
+                    ?>
                     <div class="side-card">
                         <div class="side-card-info">
                             <div class="meta-row">
-                                <span class="badge-tag green-alt"><?php echo esc_html($side1['cat']); ?></span>
-                                <span class="meta-date"><?php echo esc_html($side1['date_short']); ?></span>
+                                <span class="badge-tag <?php echo $tag_class; ?>"><?php echo esc_html($side_item['cat']); ?></span>
+                                <span class="meta-date"><?php echo esc_html($side_item['date_short']); ?></span>
                             </div>
                             <h4 class="side-card-title">
-                                <a href="<?php echo esc_url($side1['url']); ?>"><?php echo esc_html($side1['title']); ?></a>
+                                <a href="<?php echo esc_url($side_item['url']); ?>"><?php echo esc_html($side_item['title']); ?></a>
                             </h4>
-                            <p class="side-card-excerpt"><?php echo esc_html($side1['excerpt']); ?></p>
-                            <a href="<?php echo esc_url($side1['url']); ?>" class="read-more-link">
+                            <p class="side-card-excerpt"><?php echo esc_html($side_item['excerpt']); ?></p>
+                            <a href="<?php echo esc_url($side_item['url']); ?>" class="read-more-link">
                                 Đọc ngay <span class="arrow">&rarr;</span>
                             </a>
                         </div>
                         <div class="side-card-thumb">
-                            <a href="<?php echo esc_url($side1['url']); ?>">
-                                <img src="<?php echo esc_url($side1['thumb']); ?>" alt="<?php echo esc_attr($side1['title']); ?>" loading="lazy" />
+                            <a href="<?php echo esc_url($side_item['url']); ?>">
+                                <img src="<?php echo esc_url($side_item['thumb']); ?>" alt="<?php echo esc_attr($side_item['title']); ?>" loading="lazy" />
                             </a>
                         </div>
                     </div>
-
-                    <!-- Bài nhỏ 2 -->
-                    <?php $side2 = $featured_posts[2]; ?>
-                    <div class="side-card">
-                        <div class="side-card-info">
-                            <div class="meta-row">
-                                <span class="badge-tag green-subtle"><?php echo esc_html($side2['cat']); ?></span>
-                                <span class="meta-date"><?php echo esc_html($side2['date_short']); ?></span>
-                            </div>
-                            <h4 class="side-card-title">
-                                <a href="<?php echo esc_url($side2['url']); ?>"><?php echo esc_html($side2['title']); ?></a>
-                            </h4>
-                            <p class="side-card-excerpt"><?php echo esc_html($side2['excerpt']); ?></p>
-                            <a href="<?php echo esc_url($side2['url']); ?>" class="read-more-link">
-                                Đọc ngay <span class="arrow">&rarr;</span>
-                            </a>
-                        </div>
-                        <div class="side-card-thumb">
-                            <a href="<?php echo esc_url($side2['url']); ?>">
-                                <img src="<?php echo esc_url($side2['thumb']); ?>" alt="<?php echo esc_attr($side2['title']); ?>" loading="lazy" />
-                            </a>
-                        </div>
-                    </div>
-
+                    <?php endfor; ?>
                 </div>
 
             </div>
 
-            <!-- Mobile Dots Pagination cho Bài viết nổi bật -->
-            <div class="featured-mobile-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <!-- MOBILE FEATURED CAROUSEL (HIỂN THỊ TRÊN MOBILE <= 768px CHUẨN 100% ẢNH MẪU) -->
+            <div class="featured-mobile-carousel">
+                <div class="featured-slider-wrapper">
+                    <div class="featured-slider-track" id="gobikeFeaturedTrack">
+                        <?php foreach ($featured_posts as $idx => $f_post): ?>
+                            <div class="featured-slide <?php echo ($idx === 0) ? 'active' : ''; ?>" data-slide-index="<?php echo $idx; ?>">
+                                <div class="featured-big-card" style="background-image: url('<?php echo esc_url($f_post['thumb']); ?>');">
+                                    <a href="<?php echo esc_url($f_post['url']); ?>" class="card-overlay-link" aria-label="<?php echo esc_attr($f_post['title']); ?>"></a>
+                                    <div class="big-card-content">
+                                        <div class="meta-row">
+                                            <span class="badge-tag"><?php echo esc_html($f_post['cat']); ?></span>
+                                            <span class="meta-date"><?php echo esc_html($f_post['date_short']); ?></span>
+                                        </div>
+                                        <h3 class="big-card-title">
+                                            <a href="<?php echo esc_url($f_post['url']); ?>"><?php echo esc_html($f_post['title']); ?></a>
+                                        </h3>
+                                        <p class="big-card-excerpt"><?php echo esc_html($f_post['excerpt']); ?></p>
+                                        <a href="<?php echo esc_url($f_post['url']); ?>" class="read-more-link">
+                                            Đọc ngay <span class="arrow">&rarr;</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- 5 Chấm điều khiển Carousel tương tác (Interactive Dots) -->
+                <div class="featured-mobile-dots" id="gobikeFeaturedDots">
+                    <?php foreach ($featured_posts as $idx => $f_post): ?>
+                        <button type="button" class="dot <?php echo ($idx === 0) ? 'active' : ''; ?>" data-target-index="<?php echo $idx; ?>" aria-label="Slide <?php echo $idx + 1; ?>"></button>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
         </div>
@@ -506,11 +532,17 @@ $news_categories = array(
                         <?php endforeach; ?>
                     </div>
 
-                    <!-- NÚT XEM THÊM BÀI VIẾT TRÊN MOBILE (CHUẨN MẪU) -->
+                    <!-- NÚT XEM THÊM BÀI VIẾT TRÊN MOBILE (CHUẨN MẪU HOẠT ĐỘNG AJAX) -->
                     <div class="gobike-news-mobile-loadmore">
-                        <button type="button" class="btn-loadmore-pill">
-                            Xem thêm bài viết
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <button type="button" 
+                                class="btn-loadmore-pill" 
+                                id="gobikeNewsLoadMoreBtn"
+                                data-current-paged="<?php echo esc_attr($paged); ?>"
+                                data-category="<?php echo esc_attr($current_cat); ?>"
+                                data-search="<?php echo esc_attr($search_query); ?>"
+                                data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
+                            <span class="btn-text">Xem thêm bài viết</span>
+                            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
@@ -666,6 +698,161 @@ $news_categories = array(
     </section>
 
 </div>
+
+<script type="text/javascript">
+(function($) {
+    $(function() {
+        // ==========================================
+        // 1. MOBILE FEATURED SLIDER / CAROUSEL
+        // ==========================================
+        var $track = $('#gobikeFeaturedTrack');
+        var $slides = $track.find('.featured-slide');
+        var $dots = $('#gobikeFeaturedDots .dot');
+        var totalSlides = $slides.length;
+        var currentSlide = 0;
+        var autoPlayTimer = null;
+
+        function goToSlide(index) {
+            if (totalSlides <= 0) return;
+            if (index < 0) {
+                index = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                index = 0;
+            }
+            currentSlide = index;
+            $track.css('transform', 'translateX(-' + (currentSlide * 100) + '%)');
+            $slides.removeClass('active').eq(currentSlide).addClass('active');
+            $dots.removeClass('active').eq(currentSlide).addClass('active');
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlayTimer = setInterval(function() {
+                goToSlide(currentSlide + 1);
+            }, 4500);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayTimer) {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
+            }
+        }
+
+        // Click trực tiếp vào dots
+        $dots.on('click', function(e) {
+            e.preventDefault();
+            var targetIdx = parseInt($(this).data('target-index'), 10);
+            goToSlide(targetIdx);
+            startAutoPlay();
+        });
+
+        // Hỗ trợ vuốt chạm màn hình (Touch Swipe)
+        var startX = 0;
+        var startY = 0;
+        var isMoving = false;
+
+        $track.on('touchstart', function(e) {
+            var touch = e.originalEvent.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            isMoving = true;
+            stopAutoPlay();
+        });
+
+        $track.on('touchmove', function(e) {
+            if (!isMoving) return;
+            var touch = e.originalEvent.touches[0];
+            var diffX = startX - touch.clientX;
+            var diffY = startY - touch.clientY;
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Đang vuốt ngang, chặn scroll dọc trang để vuốt mượt mà
+                e.preventDefault();
+            }
+        });
+
+        $track.on('touchend', function(e) {
+            if (!isMoving) return;
+            isMoving = false;
+            var touch = e.originalEvent.changedTouches[0];
+            var diffX = startX - touch.clientX;
+            var threshold = 40; // khoảng cách vuốt tối thiểu
+
+            if (diffX > threshold) {
+                // Vuốt sang trái -> Slide kế tiếp
+                goToSlide(currentSlide + 1);
+            } else if (diffX < -threshold) {
+                // Vuốt sang phải -> Slide trước đó
+                goToSlide(currentSlide - 1);
+            }
+            startAutoPlay();
+        });
+
+        // Khởi động slider nếu có hơn 1 slide
+        if ($track.length && totalSlides > 1) {
+            goToSlide(0);
+            startAutoPlay();
+        }
+
+        // ==========================================
+        // 2. NÚT XEM THÊM BÀI VIẾT (AJAX LOAD MORE)
+        // ==========================================
+        var $loadMoreBtn = $('#gobikeNewsLoadMoreBtn');
+        var $postsContainer = $('.latest-posts-list');
+
+        $loadMoreBtn.on('click', function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            if ($btn.hasClass('loading') || $btn.hasClass('all-loaded')) return;
+
+            var currentPaged = parseInt($btn.data('current-paged'), 10) || 1;
+            var nextPaged = currentPaged + 1;
+            var ajaxUrl = $btn.data('ajax-url');
+            var category = $btn.data('category') || '';
+            var search = $btn.data('search') || '';
+
+            $btn.addClass('loading').prop('disabled', true);
+            $btn.find('.btn-text').html('<span class="gobike-spin"></span> Đang tải bài viết...');
+
+            $.ajax({
+                url: ajaxUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'gobike_load_more_news',
+                    paged: nextPaged,
+                    category: category,
+                    search: search
+                },
+                success: function(response) {
+                    if (response && response.success && response.data.html) {
+                        var $newElements = $(response.data.html);
+                        $postsContainer.append($newElements);
+                        $btn.data('current-paged', nextPaged);
+
+                        if (!response.data.has_more) {
+                            $btn.removeClass('loading').addClass('all-loaded').prop('disabled', true);
+                            $btn.find('.btn-text').text('Đã tải hết tất cả bài viết');
+                            $btn.find('.btn-icon').hide();
+                        } else {
+                            $btn.removeClass('loading').prop('disabled', false);
+                            $btn.find('.btn-text').text('Xem thêm bài viết');
+                        }
+                    } else {
+                        $btn.removeClass('loading').addClass('all-loaded').prop('disabled', true);
+                        $btn.find('.btn-text').text('Đã tải hết tất cả bài viết');
+                        $btn.find('.btn-icon').hide();
+                    }
+                },
+                error: function() {
+                    $btn.removeClass('loading').prop('disabled', false);
+                    $btn.find('.btn-text').text('Xem thêm bài viết');
+                }
+            });
+        });
+    });
+})(jQuery);
+</script>
 
 <?php
 get_footer();

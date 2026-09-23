@@ -409,6 +409,14 @@
     gap: 24px;
 }
 
+.featured-desktop-grid {
+    display: grid;
+}
+
+.featured-mobile-carousel {
+    display: none;
+}
+
 /* Bài lớn bên trái */
 .featured-big-card {
     position: relative;
@@ -1376,21 +1384,46 @@
         color: #0d7030;
     }
 
-    .featured-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .featured-side-stack {
+    .featured-desktop-grid {
         display: none !important;
     }
 
-    .featured-big-card {
+    .featured-mobile-carousel {
+        display: block !important;
+        width: 100%;
+        position: relative;
+    }
+
+    .featured-slider-wrapper {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+        position: relative;
+        touch-action: pan-y;
+    }
+
+    .featured-slider-track {
+        display: flex;
+        width: 100%;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: transform;
+    }
+
+    .featured-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .featured-slide .featured-big-card {
+        width: 100%;
         min-height: 270px;
         height: 270px;
         border-radius: 16px;
         padding: 16px 14px;
         background-position: center;
+        margin: 0;
     }
 
     .featured-big-card .meta-row {
@@ -1429,7 +1462,7 @@
         font-weight: 600;
     }
 
-    /* Carousel dots dưới card nổi bật */
+    /* Carousel dots dưới card nổi bật (Interactive Dots) */
     .featured-mobile-dots {
         display: flex !important;
         align-items: center;
@@ -1439,6 +1472,10 @@
     }
 
     .featured-mobile-dots .dot {
+        border: none;
+        outline: none;
+        padding: 0;
+        cursor: pointer;
         display: inline-block;
         width: 6px;
         height: 6px;
@@ -1603,6 +1640,47 @@
     .btn-loadmore-pill:hover {
         background: #f0fdf4;
         color: #0d7030;
+    }
+
+    .btn-loadmore-pill.loading {
+        opacity: 0.85;
+        cursor: wait;
+        pointer-events: none;
+    }
+
+    .btn-loadmore-pill.all-loaded {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+        color: #94a3b8 !important;
+        cursor: default !important;
+        pointer-events: none;
+    }
+
+    .gobike-spin {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border: 2px solid rgba(4, 75, 37, 0.25);
+        border-top-color: #044b25;
+        border-radius: 50%;
+        animation: gobikeSpin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+    }
+
+    @keyframes gobikeSpin {
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .gobike-news-pagination {

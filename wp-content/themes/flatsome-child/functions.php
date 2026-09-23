@@ -22,6 +22,9 @@ if (file_exists(__DIR__ . '/gobike-product-filter.php')) {
 if (file_exists(__DIR__ . '/inc/shop-sidebar-filter.php')) {
     require_once __DIR__ . '/inc/shop-sidebar-filter.php';
 }
+if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
+    require_once __DIR__ . '/inc/news-ajax.php';
+}
 
 // Tự động nạp toàn bộ các shortcode và styles trong thư mục shortcodes/home/
 if (is_dir(__DIR__ . '/shortcodes/home')) {
