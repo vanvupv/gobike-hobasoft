@@ -273,13 +273,13 @@ if (!empty($db_experiences)) {
                 
                 <!-- Danh mục nút bấm (Filter Tabs) -->
                 <div class="gb-ce-filter-tabs" id="gbCeFilterTabs">
-                    <button class="gb-ce-tab-btn active" data-filter="all">Tất cả</button>
-                    <button class="gb-ce-tab-btn" data-filter="dilam">Đi làm hàng ngày</button>
-                    <button class="gb-ce-tab-btn" data-filter="dulich">Du lịch</button>
-                    <button class="gb-ce-tab-btn" data-filter="thethao">Thể thao</button>
-                    <button class="gb-ce-tab-btn" data-filter="giadinh">Gia đình</button>
-                    <button class="gb-ce-tab-btn" data-filter="hocsinh">Học sinh - sinh viên</button>
-                    <button class="gb-ce-tab-btn" data-filter="nguoilon">Người lớn tuổi</button>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn active" data-filter="all">Tất cả</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dilam">Đi làm hàng ngày</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="dulich">Du lịch</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="thethao">Thể thao</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="giadinh">Gia đình</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="hocsinh">Học sinh - sinh viên</a>
+                    <a href="javascript:void(0);" class="gb-ce-tab-btn" data-filter="nguoilon">Người lớn tuổi</a>
                 </div>
 
                 <!-- Dropdown Sắp xếp -->
@@ -367,9 +367,9 @@ if (!empty($db_experiences)) {
 
             <!-- Nút Xem thêm câu chuyện ở giữa đáy -->
             <div class="gb-ce-loadmore-wrap">
-                <button class="gb-ce-loadmore-btn" id="gbCeLoadMoreBtn">
+                <a href="javascript:void(0);" class="gb-ce-loadmore-btn" id="gbCeLoadMoreBtn">
                     <span>Xem thêm câu chuyện</span> &rarr;
-                </button>
+                </a>
             </div>
 
         </section>
@@ -492,7 +492,7 @@ if (!empty($db_experiences)) {
      ========================================================================== -->
 <div class="gb-ce-modal-overlay" id="gbCeVideoModal">
     <div class="gb-ce-modal-content">
-        <button class="gb-ce-modal-close" id="gbCeModalClose" aria-label="Đóng popup">&times;</button>
+        <a href="javascript:void(0);" class="gb-ce-modal-close" id="gbCeModalClose" aria-label="Đóng popup">&times;</a>
         <div class="gb-ce-modal-video-box">
             <iframe id="gbCeIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
