@@ -174,90 +174,96 @@ if (!empty($db_experiences)) {
 ?>
 
 <div class="gb-ce-page-wrapper">
-    <div class="gb-ce-container">
-        
-        <!-- BREADCRUMB -->
-        <nav class="gb-ce-breadcrumb-wrap" aria-label="Breadcrumb">
-            <ol class="gb-ce-breadcrumb">
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a></li>
-                <li class="sep">&rsaquo;</li>
-                <li class="current">Người thật, xe thật</li>
-            </ol>
-        </nav>
 
-        <!-- ==========================================================================
-             SECTION 1: HERO BANNER (CỘNG ĐỒNG GOBIKE)
-             ========================================================================== -->
-        <section class="gb-ce-hero-section">
-            <div class="gb-ce-hero-grid">
-                
-                <!-- Cột trái: Tiêu đề & Chỉ số thống kê -->
-                <div class="gb-ce-hero-content">
-                    <div class="gb-ce-tag-pill">
-                        <span>&lt;&gt;</span> CỘNG ĐỒNG GOBIKE
+    <!-- ==========================================================================
+         SECTION 1: HERO BANNER FULL-WIDTH (CỘNG ĐỒNG GOBIKE)
+         ========================================================================== -->
+    <section class="gb-ce-hero-section">
+        <!-- Ảnh nền Hero toàn cảnh trải rộng 100% -->
+        <div class="gb-ce-hero-bg-wrap">
+            <img class="gb-ce-hero-bg-img" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1920&auto=format&fit=crop&q=85" alt="Cộng đồng GoBike - Người thật, xe thật">
+            <div class="gb-ce-hero-bg-overlay"></div>
+        </div>
+
+        <!-- Inner container căn giữa 1240px để thẳng lề với trang bên dưới -->
+        <div class="gb-ce-hero-inner">
+            
+            <!-- Breadcrumb nằm góc trên bên trái của Hero -->
+            <nav class="gb-ce-breadcrumb-wrap" aria-label="Breadcrumb">
+                <ol class="gb-ce-breadcrumb">
+                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Trang chủ</a></li>
+                    <li class="sep">&rsaquo;</li>
+                    <li class="current">Người thật, xe thật</li>
+                </ol>
+            </nav>
+
+            <!-- Nội dung chính của Hero bên trái -->
+            <div class="gb-ce-hero-content">
+                <div class="gb-ce-tag-pill">
+                    <span>&lt;&gt;</span> CỘNG ĐỒNG GOBIKE
+                </div>
+                <h1 class="gb-ce-hero-title">
+                    Người thật, xe thật
+                    <span class="gb-ce-highlight">Trải nghiệm thật</span>
+                </h1>
+                <p class="gb-ce-hero-desc">
+                    Những câu chuyện đời thường, hành trình thật và cảm xúc chân thật từ cộng đồng GoBike trên khắp Việt Nam.
+                </p>
+
+                <!-- 3 Chỉ số thống kê (Stats Counter) -->
+                <div class="gb-ce-stats-row">
+                    <div class="gb-ce-stat-item">
+                        <div class="gb-ce-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="gb-ce-stat-info">
+                            <span class="gb-ce-stat-number">1.200+</span>
+                            <span class="gb-ce-stat-label">Câu chuyện đã chia sẻ</span>
+                        </div>
                     </div>
-                    <h1 class="gb-ce-hero-title">
-                        Người thật, xe thật
-                        <span class="gb-ce-highlight">Trải nghiệm thật</span>
-                    </h1>
-                    <p class="gb-ce-hero-desc">
-                        Những câu chuyện đời thường, hành trình thật và cảm xúc chân thật từ cộng đồng GoBike trên khắp Việt Nam.
-                    </p>
 
-                    <!-- 3 Chỉ số thống kê (Stats Counter) -->
-                    <div class="gb-ce-stats-row">
-                        <div class="gb-ce-stat-item">
-                            <div class="gb-ce-stat-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </div>
-                            <div class="gb-ce-stat-info">
-                                <span class="gb-ce-stat-number">1.200+</span>
-                                <span class="gb-ce-stat-label">Câu chuyện đã chia sẻ</span>
-                            </div>
+                    <div class="gb-ce-stat-item">
+                        <div class="gb-ce-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
                         </div>
-
-                        <div class="gb-ce-stat-item">
-                            <div class="gb-ce-stat-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                            </div>
-                            <div class="gb-ce-stat-info">
-                                <span class="gb-ce-stat-number">63</span>
-                                <span class="gb-ce-stat-label">Tỉnh thành</span>
-                            </div>
+                        <div class="gb-ce-stat-info">
+                            <span class="gb-ce-stat-number">63</span>
+                            <span class="gb-ce-stat-label">Tỉnh thành</span>
                         </div>
+                    </div>
 
-                        <div class="gb-ce-stat-item">
-                            <div class="gb-ce-stat-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                </svg>
-                            </div>
-                            <div class="gb-ce-stat-info">
-                                <span class="gb-ce-stat-number">Triệu+</span>
-                                <span class="gb-ce-stat-label">Cảm hứng mỗi ngày</span>
-                            </div>
+                    <div class="gb-ce-stat-item">
+                        <div class="gb-ce-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                        <div class="gb-ce-stat-info">
+                            <span class="gb-ce-stat-number">Triệu+</span>
+                            <span class="gb-ce-stat-label">Cảm hứng mỗi ngày</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Cột phải: Ảnh Banner Hero kèm chữ viết tay nghệ thuật -->
-                <div class="gb-ce-hero-image-wrap">
-                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=900&auto=format&fit=crop&q=80" alt="Cộng đồng GoBike - Một hành trình, một câu chuyện">
-                    <div class="gb-ce-hero-quote-art">
-                        Một hành trình, một câu chuyện
-                    </div>
-                </div>
-
             </div>
-        </section>
+
+            <!-- Dòng chữ viết tay nghệ thuật phía bên phải banner -->
+            <div class="gb-ce-hero-quote-art">
+                Một hành trình, một câu chuyện
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTAINER CHO CÁC SECTION BÊN DƯỚI -->
+    <div class="gb-ce-container">
 
         <!-- ==========================================================================
              SECTION 2: BỘ LỌC CHỦ ĐỀ & SẮP XẾP (FILTER BAR)
