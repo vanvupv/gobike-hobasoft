@@ -210,8 +210,8 @@ if (!empty($db_experiences)) {
                     Những câu chuyện đời thường, hành trình thật và cảm xúc chân thật từ cộng đồng GoBike trên khắp Việt Nam.
                 </p>
 
-                <!-- 3 Chỉ số thống kê (Stats Counter) -->
-                <div class="gb-ce-stats-row">
+                <!-- 3 Chỉ số thống kê dành riêng cho Desktop -->
+                <div class="gb-ce-stats-row gb-ce-stats-desktop">
                     <div class="gb-ce-stat-item">
                         <div class="gb-ce-stat-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -259,6 +259,52 @@ if (!empty($db_experiences)) {
                 Một hành trình, một câu chuyện
             </div>
 
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         STATS BAR CHO TABLET & MOBILE (NẰM DƯỚI BANNER TRÊN NỀN TRẮNG RIÊNG BIỆT)
+         ========================================================================== -->
+    <section class="gb-ce-stats-mobile-section">
+        <div class="gb-ce-stats-mobile-inner">
+            <div class="gb-ce-stat-item">
+                <div class="gb-ce-stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="gb-ce-stat-info">
+                    <span class="gb-ce-stat-number">1.200+</span>
+                    <span class="gb-ce-stat-label">Câu chuyện đã chia sẻ</span>
+                </div>
+            </div>
+
+            <div class="gb-ce-stat-item">
+                <div class="gb-ce-stat-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <div class="gb-ce-stat-info">
+                    <span class="gb-ce-stat-number">63</span>
+                    <span class="gb-ce-stat-label">Tỉnh thành</span>
+                </div>
+            </div>
+
+            <div class="gb-ce-stat-item">
+                <div class="gb-ce-stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </div>
+                <div class="gb-ce-stat-info">
+                    <span class="gb-ce-stat-number">Triệu+</span>
+                    <span class="gb-ce-stat-label">Cảm hứng mỗi ngày</span>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -248,6 +248,11 @@
     z-index: 3;
 }
 
+/* Stats Bar độc lập dưới banner: Ẩn mặc định trên Desktop, hiển thị trên Tablet & Mobile */
+.gb-ce-stats-mobile-section {
+    display: none;
+}
+
 /* ==========================================================================
    SECTION 2: FILTER BAR (FULL-WIDTH, KHÔNG BO VIỀN)
    ========================================================================== */
@@ -1088,50 +1093,87 @@
         margin-bottom: 14px;
     }
 
-    /* 3 stats dàn đều 3 cột ngang phẳng trên nền banner có vạch ngăn cách */
-    .gb-ce-stats-row {
+    /* Ẩn stats bên trong banner trên tablet & mobile */
+    .gb-ce-stats-desktop {
+        display: none !important;
+    }
+
+    /* Hiển thị Khối Stats Bar độc lập nằm dưới banner trên nền trắng chuẩn ảnh 2 */
+    .gb-ce-stats-mobile-section {
+        display: block !important;
+        width: 100%;
+        background: #ffffff;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 16px 0;
+        margin-bottom: 16px;
+    }
+
+    .gb-ce-stats-mobile-inner {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 4px;
-        padding: 14px 0 0 0;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        border-radius: 0 !important;
-        border: none !important;
-        border-top: 1px solid rgba(226, 232, 240, 0.7) !important;
-        margin-top: 10px;
     }
-    .gb-ce-stat-item {
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-item {
         flex: 1;
-        gap: 6px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+        padding: 0 4px;
     }
-    .gb-ce-stat-item:not(:last-child)::after {
+
+    /* Đường kẻ dọc ngăn cách giữa các khối stats như ảnh 2 */
+    .gb-ce-stats-mobile-inner .gb-ce-stat-item:not(:last-child)::after {
         content: "";
-        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         width: 1px;
-        height: 24px;
-        background-color: #cbd5e1;
-        margin-left: auto;
-        margin-right: 4px;
-    }
-    .gb-ce-stat-icon {
-        width: 28px;
         height: 28px;
+        background-color: #cbd5e1;
     }
-    .gb-ce-stat-icon svg {
-        width: 14px;
-        height: 14px;
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-icon {
+        width: auto;
+        height: auto;
+        background: transparent;
+        color: #044b25;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
-    .gb-ce-stat-number {
-        font-size: 14px;
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-icon svg {
+        width: 24px;
+        height: 24px;
     }
-    .gb-ce-stat-label {
-        font-size: 10px;
-        line-height: 1.15;
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-info {
+        display: flex;
+        flex-direction: column;
     }
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-number {
+        font-size: 15px;
+        font-weight: 700;
+        color: #044b25;
+        line-height: 1.1;
+    }
+
+    .gb-ce-stats-mobile-inner .gb-ce-stat-label {
+        font-size: 11px;
+        color: #334155;
+        margin-top: 2px;
+        line-height: 1.2;
+    }
+
     .gb-ce-hero-quote-art {
         display: none; /* Ẩn trên mobile để không che cô gái */
     }
