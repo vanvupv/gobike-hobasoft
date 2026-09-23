@@ -368,7 +368,7 @@ if (!empty($db_experiences)) {
             <!-- Nút Xem thêm câu chuyện ở giữa đáy -->
             <div class="gb-ce-loadmore-wrap">
                 <a href="javascript:void(0);" class="gb-ce-loadmore-btn" id="gbCeLoadMoreBtn">
-                    <span>Xem thêm câu chuyện</span> &rarr;
+                    <span>Xem thêm câu chuyện</span> &darr;
                 </a>
             </div>
 
@@ -395,43 +395,63 @@ if (!empty($db_experiences)) {
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Thành viên GoBike 4">
                         </div>
                         <span class="gb-ce-comm-avatar-caption">
-                            Hơn 1.200+ câu chuyện đã được chia sẻ và truyền cảm hứng mỗi ngày sống!
+                            Hãy chia sẻ câu chuyện của bạn và truyền cảm hứng cho cộng đồng!
                         </span>
                     </div>
                 </div>
 
-                <!-- Cột 2: 3 bước tham gia & Nút CTA to -->
+                <!-- Cột 2: 3 bước tham gia & Nút CTA to (Card trắng trên Mobile) -->
                 <div class="gb-ce-comm-steps-col">
+                    <h3 class="gb-ce-comm-steps-title">
+                        Chia sẻ câu chuyện<br>của bạn thật đơn giản
+                    </h3>
+
                     <div class="gb-ce-comm-steps-row">
                         
+                        <!-- Bước 1 -->
                         <div class="gb-ce-comm-step-item">
-                            <div class="gb-ce-comm-step-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M23 7l-7 5 7 5V7z"></path>
-                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                                </svg>
+                            <div class="gb-ce-comm-step-icon-wrap">
+                                <div class="gb-ce-comm-step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M23 7l-7 5 7 5V7z"></path>
+                                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                                    </svg>
+                                </div>
+                                <span class="gb-ce-step-number">1</span>
                             </div>
                             <span class="gb-ce-comm-step-text">Quay video đơn giản</span>
                         </div>
 
+                        <span class="gb-ce-step-arrow">&rarr;</span>
+
+                        <!-- Bước 2 -->
                         <div class="gb-ce-comm-step-item">
-                            <div class="gb-ce-comm-step-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                    <polyline points="17 8 12 3 7 8"></polyline>
-                                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                                </svg>
+                            <div class="gb-ce-comm-step-icon-wrap">
+                                <div class="gb-ce-comm-step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <span class="gb-ce-step-number">2</span>
                             </div>
                             <span class="gb-ce-comm-step-text">Gửi về GoBike</span>
                         </div>
 
+                        <span class="gb-ce-step-arrow">&rarr;</span>
+
+                        <!-- Bước 3 -->
                         <div class="gb-ce-comm-step-item">
-                            <div class="gb-ce-comm-step-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
+                            <div class="gb-ce-comm-step-icon-wrap">
+                                <div class="gb-ce-comm-step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                </div>
+                                <span class="gb-ce-step-number">3</span>
                             </div>
-                            <span class="gb-ce-comm-step-text">Xuất hiện trên website và Fanpage</span>
+                            <span class="gb-ce-comm-step-text">Xuất hiện trên website và fanpage</span>
                         </div>
 
                     </div>
@@ -443,6 +463,9 @@ if (!empty($db_experiences)) {
 
                 <!-- Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật -->
                 <div class="gb-ce-comm-polaroid-col">
+                    <div class="gb-ce-polaroid-heading-mobile">
+                        Cùng GoBike lan tỏa những hành trình thật
+                    </div>
                     <div class="gb-ce-polaroid-stack">
                         <div class="gb-ce-polaroid-item">
                             <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&auto=format&fit=crop&q=80" alt="GoBike Memory 1">
@@ -455,7 +478,7 @@ if (!empty($db_experiences)) {
                         </div>
                     </div>
                     <div class="gb-ce-comm-polaroid-art">
-                        Cùng GoBike lan tỏa những hành trình THẬT 🌿
+                        Cùng sống GoBike lan tỏa những hành trình thật 🌿
                     </div>
                 </div>
 
