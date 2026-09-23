@@ -215,15 +215,24 @@ $news_categories = array(
             <div class="hero-content">
                 <!-- Breadcrumb -->
                 <div class="hero-breadcrumb">
-                    <span class="arrow">&rarr;</span>
-                    <a href="<?php echo esc_url(get_permalink()); ?>">Tin tức & Cẩm nang</a>
+                    <a href="<?php echo esc_url(get_permalink()); ?>">
+                        <span class="breadcrumb-arrow">&larr;</span>
+                        <span class="breadcrumb-text-desktop">Tin tức &amp; Cẩm nang</span>
+                        <span class="breadcrumb-text-mobile">TIN TỨC &amp; CẨM NANG</span>
+                    </a>
                 </div>
 
-                <!-- Tiêu đề lớn H1 -->
-                <h1 class="hero-heading">Cùng GoBike<br>khám phá thế giới<br>bằng một cách khác</h1>
+                <!-- Tiêu đề lớn H1 (Tối ưu Desktop & Mobile) -->
+                <h1 class="hero-heading">
+                    <span class="hero-title-desktop">Cùng GoBike<br>khám phá thế giới<br>bằng một cách khác</span>
+                    <span class="hero-title-mobile">Kiến thức hôm nay<br>Cho hành trình<br>tốt hơn ngày mai</span>
+                </h1>
 
-                <!-- Mô tả phụ -->
-                <p class="hero-subtext">Chia sẻ kiến thức, kinh nghiệm và những câu chuyện truyền cảm hứng từ cộng đồng yêu xe đạp trợ lực.</p>
+                <!-- Mô tả phụ (Tối ưu Desktop & Mobile) -->
+                <p class="hero-subtext">
+                    <span class="hero-sub-desktop">Chia sẻ kiến thức, kinh nghiệm và những câu chuyện truyền cảm hứng từ cộng đồng yêu xe đạp trợ lực.</span>
+                    <span class="hero-sub-mobile">Cập nhật tin tức, kinh nghiệm và xu hướng xe đạp trợ lực từ GoBike.</span>
+                </p>
 
                 <!-- Thanh tìm kiếm bài viết -->
                 <form class="hero-search-form" method="get" action="<?php echo esc_url(get_permalink()); ?>">
@@ -419,6 +428,15 @@ $news_categories = array(
 
             </div>
 
+            <!-- Mobile Dots Pagination cho Bài viết nổi bật -->
+            <div class="featured-mobile-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
         </div>
     </section>
 
@@ -471,16 +489,34 @@ $news_categories = array(
                                         </div>
 
                                         <a href="<?php echo esc_url($post_item['url']); ?>" class="card-read-more">
-                                            Đọc thêm <span class="arrow">&rarr;</span>
+                                            <span class="read-more-text">Đọc thêm</span> <span class="arrow">&rarr;</span>
                                         </a>
                                     </div>
                                 </div>
+
+                                <!-- Mũi tên xanh lá trực quan riêng cho Mobile (Chuẩn Mockup) -->
+                                <a href="<?php echo esc_url($post_item['url']); ?>" class="card-mobile-arrow" aria-label="<?php echo esc_attr($post_item['title']); ?>">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </a>
 
                             </article>
                         <?php endforeach; ?>
                     </div>
 
-                    <!-- PHÂN TRANG PAGINATION CHUẨN GOBIKE -->
+                    <!-- NÚT XEM THÊM BÀI VIẾT TRÊN MOBILE (CHUẨN MẪU) -->
+                    <div class="gobike-news-mobile-loadmore">
+                        <button type="button" class="btn-loadmore-pill">
+                            Xem thêm bài viết
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- PHÂN TRANG PAGINATION CHUẨN GOBIKE (DESKTOP) -->
                     <div class="gobike-news-pagination">
                         <?php
                         if ($latest_query->max_num_pages > 1) {
@@ -609,13 +645,19 @@ $news_categories = array(
         </div>
     </section>
 
-    <!-- 5. BANNER CTA ĐÁY TRANG: "ĐI XA HƠN MỖI NGÀY" (CHUẨN ẢNH MẪU) -->
+    <!-- 5. BANNER CTA ĐÁY TRANG: CHUẨN MẪU DESKTOP VÀ MOBILE -->
     <section class="gobike-news-bottom-cta" style="background-image: url('<?php echo esc_url($bg_cyclist); ?>');">
         <div class="cta-overlay"></div>
         <div class="container cta-container">
             <div class="cta-content">
-                <h2 class="cta-title">Đi xa hơn mỗi ngày</h2>
-                <p class="cta-subtitle">Viết nên câu chuyện mới ở những cung đường mới</p>
+                <h2 class="cta-title">
+                    <span class="cta-title-desktop">Đi xa hơn mỗi ngày</span>
+                    <span class="cta-title-mobile">Mỗi hành trình<br>là một câu chuyện</span>
+                </h2>
+                <p class="cta-subtitle">
+                    <span class="cta-sub-desktop">Viết nên câu chuyện mới ở những cung đường mới</span>
+                    <span class="cta-sub-mobile">Khám phá thêm những trải nghiệm và câu chuyện thú vị cùng GoBike.</span>
+                </p>
                 <a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>" class="cta-button">
                     Khám phá ngay <span class="arrow">&rarr;</span>
                 </a>
