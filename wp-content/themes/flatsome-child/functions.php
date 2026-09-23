@@ -50,6 +50,9 @@ function gobike_enqueue_modular_styles()
     if (file_exists($theme_dir . '/footer-style.css')) {
         wp_enqueue_style('gobike-footer-style', $theme_uri . '/footer-style.css', array('flatsome-style'), filemtime($theme_dir . '/footer-style.css'));
     }
+    if (file_exists($theme_dir . '/news-style.css')) {
+        wp_enqueue_style('gobike-news-style', $theme_uri . '/news-style.css', array('flatsome-style'), filemtime($theme_dir . '/news-style.css'));
+    }
 }
 
 

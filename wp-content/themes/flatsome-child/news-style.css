@@ -1,0 +1,1205 @@
+/**
+ * GOBIKE - STYLES CHO TRANG TIN TỨC & CẨM NANG (NEWS / BLOG ARCHIVE)
+ * Chuẩn 100% Mockup thiết kế - Tối ưu Desktop, Tablet & Mobile
+ */
+
+/* ==========================================================================
+   1. RESET & GENERAL WRAPPER
+   ========================================================================== */
+.gobike-news-page-wrapper {
+    width: 100%;
+    color: #1e293b;
+    background-color: #fafbfc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.gobike-news-page-wrapper a {
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.gobike-news-page-wrapper img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   2. HERO BANNER ĐẦU TRANG
+   ========================================================================== */
+.gobike-news-hero {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 60px 0 80px 0;
+    overflow: hidden;
+}
+
+.gobike-news-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 25, 18, 0.88) 0%, rgba(10, 25, 18, 0.72) 45%, rgba(10, 25, 18, 0.25) 100%);
+    z-index: 1;
+}
+
+.gobike-news-hero .hero-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.gobike-news-hero .hero-content {
+    max-width: 620px;
+}
+
+.gobike-news-hero .hero-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4ade80;
+    margin-bottom: 16px;
+    text-transform: none;
+}
+
+.gobike-news-hero .hero-breadcrumb a {
+    color: #4ade80;
+}
+
+.gobike-news-hero .hero-breadcrumb a:hover {
+    color: #86efac;
+    text-decoration: underline;
+}
+
+.gobike-news-hero .hero-heading {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+}
+
+.gobike-news-hero .hero-subtext {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 28px;
+    max-width: 520px;
+}
+
+.gobike-news-hero .hero-search-form {
+    position: relative;
+    max-width: 440px;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50px;
+    padding: 4px 6px 4px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.gobike-news-hero .hero-search-form input {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 14px;
+    color: #0f172a;
+    width: 100%;
+    margin-bottom: 0 !important;
+    padding: 8px 0;
+    height: auto;
+}
+
+.gobike-news-hero .hero-search-form input::placeholder {
+    color: #94a3b8;
+}
+
+.gobike-news-hero .hero-search-form button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #044b25;
+    border: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.gobike-news-hero .hero-search-form button:hover {
+    background: #0d7030;
+    transform: scale(1.05);
+}
+
+/* Typography nghệ thuật góc trên bên phải */
+.gobike-news-hero .hero-art-quote {
+    color: #ffffff;
+    text-align: right;
+    font-style: italic;
+    opacity: 0.9;
+    max-width: 260px;
+    position: relative;
+    padding-right: 10px;
+}
+
+.gobike-news-hero .hero-art-quote p {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 14.5px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.gobike-news-hero .hero-art-quote .quote-line-1 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.gobike-news-hero .hero-art-quote .quote-line-2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.gobike-news-hero .hero-art-quote .quote-line-3 {
+    font-size: 13.5px;
+    color: #86efac;
+    margin-top: 4px;
+}
+
+.gobike-news-hero .hero-art-quote .quote-line-4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.gobike-news-hero .hero-art-quote .quote-leaf-decor {
+    margin-top: 8px;
+    display: inline-block;
+    color: #4ade80;
+}
+
+/* ==========================================================================
+   3. THANH DANH MỤC / CHỦ ĐỀ (8 TABS KÈM ICON)
+   ========================================================================== */
+.gobike-news-categories-section {
+    position: relative;
+    margin-top: -36px;
+    z-index: 10;
+    padding-bottom: 30px;
+}
+
+.news-categories-bar {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #edf2f7;
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.news-categories-bar .cat-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 6px;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid transparent;
+    text-align: center;
+    color: #334155;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    min-height: 78px;
+}
+
+.news-categories-bar .cat-pill .cat-icon {
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d7030;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.news-categories-bar .cat-pill .cat-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-categories-bar .cat-pill:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0d7030;
+}
+
+.news-categories-bar .cat-pill:hover .cat-icon {
+    transform: translateY(-2px);
+}
+
+.news-categories-bar .cat-pill.active {
+    background: #044b25;
+    color: #ffffff;
+    border-color: #044b25;
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.25);
+}
+
+.news-categories-bar .cat-pill.active .cat-icon {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   4. SECTION HEADER & COMMONS
+   ========================================================================== */
+.section-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.section-header-row.mb-20 {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.section-title .leaf-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-all-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0d7030;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.view-all-link:hover {
+    color: #044b25;
+    text-decoration: underline;
+}
+
+.view-all-link .arrow {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Badges */
+.badge-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #0d7030;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+}
+
+.badge-tag.green-alt {
+    background: #044b25;
+}
+
+.badge-tag.green-subtle {
+    background: #16a34a;
+}
+
+/* Read more link */
+.read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #4ade80;
+}
+
+.read-more-link .arrow {
+    transition: transform 0.2s ease;
+}
+
+.read-more-link:hover {
+    color: #86efac;
+}
+
+.read-more-link:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   5. KHỐI BÀI VIẾT NỔI BẬT (FEATURED NEWS)
+   ========================================================================== */
+.gobike-featured-news-section {
+    padding: 20px 0 45px 0;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+}
+
+/* Bài lớn bên trái */
+.featured-big-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-big-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.5) 45%, rgba(15, 23, 42, 0.95) 100%);
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.featured-big-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
+}
+
+.featured-big-card .card-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.featured-big-card .big-card-content {
+    position: relative;
+    z-index: 3;
+}
+
+.featured-big-card .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.featured-big-card .meta-date {
+    font-size: 13px;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.featured-big-card .big-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.featured-big-card .big-card-title a {
+    color: #ffffff;
+}
+
+.featured-big-card .big-card-title a:hover {
+    color: #86efac;
+}
+
+.featured-big-card .big-card-excerpt {
+    font-size: 14.5px;
+    color: #e2e8f0;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 520px;
+}
+
+/* 2 Bài nhỏ xếp chồng bên phải */
+.featured-side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.side-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+
+.side-card-info {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.side-card-info .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.side-card-info .meta-date {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.side-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.side-card-title a {
+    color: #0f172a;
+}
+
+.side-card-title a:hover {
+    color: #0d7030;
+}
+
+.side-card-excerpt {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.side-card-info .read-more-link {
+    color: #0d7030;
+}
+
+.side-card-info .read-more-link:hover {
+    color: #044b25;
+}
+
+.side-card-thumb {
+    width: 170px;
+    min-width: 170px;
+    position: relative;
+    overflow: hidden;
+    background: #e2e8f0;
+}
+
+.side-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.side-card:hover .side-card-thumb img {
+    transform: scale(1.06);
+}
+
+/* ==========================================================================
+   6. BỐ CỤC CHÍNH 2 CỘT (BÀI MỚI NHẤT + SIDEBAR)
+   ========================================================================== */
+.gobike-main-news-section {
+    padding: 20px 0 60px 0;
+}
+
+.news-layout-row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.news-content-col {
+    padding-right: 25px;
+}
+
+/* Thẻ bài viết dạng ngang (Horizontal Card) */
+.latest-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.latest-post-horizontal-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    display: flex;
+    overflow: hidden;
+    padding: 18px;
+    gap: 22px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.latest-post-horizontal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: #cbd5e1;
+}
+
+.latest-post-horizontal-card .card-thumb-wrap {
+    width: 250px;
+    min-width: 250px;
+    height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f5f9;
+}
+
+.latest-post-horizontal-card .card-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.latest-post-horizontal-card:hover .card-thumb-wrap img {
+    transform: scale(1.06);
+}
+
+.latest-post-horizontal-card .card-body-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.latest-post-horizontal-card .card-meta-top {
+    margin-bottom: 6px;
+}
+
+.latest-post-horizontal-card .card-date {
+    font-size: 12.5px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.latest-post-horizontal-card .card-post-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+
+.latest-post-horizontal-card .card-post-title a {
+    color: #0f172a;
+}
+
+.latest-post-horizontal-card .card-post-title a:hover {
+    color: #0d7030;
+}
+
+.latest-post-horizontal-card .card-post-excerpt {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.55;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.latest-post-horizontal-card .card-footer-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.latest-post-horizontal-card .card-tags-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.latest-post-horizontal-card .tag-pill {
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.latest-post-horizontal-card .card-read-more {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d7030;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.latest-post-horizontal-card .card-read-more:hover {
+    color: #044b25;
+}
+
+.latest-post-horizontal-card .card-read-more .arrow {
+    transition: transform 0.2s ease;
+}
+
+.latest-post-horizontal-card .card-read-more:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Phân trang Pagination */
+.gobike-news-pagination {
+    margin-top: 36px;
+    display: flex;
+    justify-content: center;
+}
+
+.gobike-news-pagination ul.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.gobike-news-pagination .page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.gobike-news-pagination .page-numbers:hover {
+    border-color: #0d7030;
+    color: #0d7030;
+    background: #f0fdf4;
+}
+
+.gobike-news-pagination .page-numbers.current {
+    background: #044b25;
+    color: #ffffff;
+    border-color: #044b25;
+    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25);
+}
+
+.gobike-news-pagination .page-numbers.dots {
+    border: none;
+    background: transparent;
+}
+
+/* ==========================================================================
+   7. SIDEBAR 3 WIDGETS CHUẨN MẪU
+   ========================================================================== */
+.gobike-news-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.sidebar-widget {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* WIDGET 1: BÀI VIẾT ĐƯỢC QUAN TÂM */
+.widget-popular-posts {
+    background: #f4fbf7;
+    border: 1px solid #d1fae5;
+    padding: 22px;
+}
+
+.widget-popular-posts .widget-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #044b25;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.popular-posts-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.popular-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.popular-item .rank-badge {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.popular-item:first-child .rank-badge {
+    background: #044b25;
+    color: #ffffff;
+    border-color: #044b25;
+}
+
+.popular-content {
+    flex: 1;
+}
+
+.popular-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
+}
+
+.popular-title a {
+    color: #1e293b;
+}
+
+.popular-title a:hover {
+    color: #0d7030;
+}
+
+.popular-content .views-count {
+    font-size: 11.5px;
+    color: #64748b;
+    display: block;
+}
+
+/* WIDGET 2: NHẬN TIN TỨC & MẸO HAY (NEWSLETTER) */
+.widget-newsletter {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    padding: 24px;
+    text-align: center;
+}
+
+.widget-newsletter .newsletter-icon-wrap {
+    width: 52px;
+    height: 52px;
+    background: #f0fdf4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px auto;
+}
+
+.widget-newsletter .newsletter-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.widget-newsletter .newsletter-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.widget-newsletter .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.widget-newsletter .newsletter-form input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 13.5px;
+    color: #0f172a;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 0 !important;
+}
+
+.widget-newsletter .newsletter-form input:focus {
+    border-color: #0d7030;
+    box-shadow: 0 0 0 2px rgba(13, 112, 48, 0.15);
+}
+
+.widget-newsletter .newsletter-submit-btn {
+    width: 100%;
+    height: 44px;
+    background: #044b25;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.widget-newsletter .newsletter-submit-btn:hover {
+    background: #0d7030;
+}
+
+/* WIDGET 3: MỖI HÀNH TRÌNH LÀ MỘT CÂU CHUYỆN (COMMUNITY CTA) */
+.widget-story-cta {
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(4, 75, 37, 0.2);
+}
+
+.widget-story-cta .story-title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.widget-story-cta .story-desc {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.widget-story-cta .story-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #044b25;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 25px;
+    margin-bottom: 18px;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.widget-story-cta .story-submit-btn:hover {
+    background: #f0fdf4;
+    transform: translateY(-2px);
+}
+
+.widget-story-cta .story-bottom-image {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 130px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.widget-story-cta .story-bottom-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   8. BANNER CTA ĐÁY TRANG: "ĐI XA HƠN MỖI NGÀY"
+   ========================================================================== */
+.gobike-news-bottom-cta {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.gobike-news-bottom-cta .cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 25, 18, 0.92) 0%, rgba(10, 25, 18, 0.75) 45%, rgba(10, 25, 18, 0.3) 100%);
+    z-index: 1;
+}
+
+.gobike-news-bottom-cta .cta-container {
+    position: relative;
+    z-index: 2;
+}
+
+.gobike-news-bottom-cta .cta-content {
+    max-width: 500px;
+}
+
+.gobike-news-bottom-cta .cta-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.gobike-news-bottom-cta .cta-subtitle {
+    font-size: 15px;
+    color: #e2e8f0;
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+.gobike-news-bottom-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #044b25;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.gobike-news-bottom-cta .cta-button:hover {
+    background: #f0fdf4;
+    color: #0d7030;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE OPTIMIZATIONS (TABLET & MOBILE)
+   ========================================================================== */
+
+/* Tablet & Mobile (<= 1024px) */
+@media screen and (max-width: 1024px) {
+    .gobike-news-hero .hero-heading {
+        font-size: 34px;
+    }
+
+    .news-categories-bar {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-big-card {
+        min-height: 360px;
+    }
+
+    .featured-side-stack {
+        flex-direction: row;
+    }
+
+    .side-card {
+        flex-direction: column;
+    }
+
+    .side-card-thumb {
+        width: 100%;
+        min-width: 100%;
+        height: 160px;
+        order: -1;
+    }
+
+    .news-content-col {
+        padding-right: 15px;
+        margin-bottom: 35px;
+    }
+}
+
+/* Mobile (<= 768px) */
+@media screen and (max-width: 768px) {
+    .gobike-news-hero {
+        min-height: 420px;
+        padding: 40px 0 60px 0;
+    }
+
+    .gobike-news-hero .hero-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+    .gobike-news-hero .hero-heading {
+        font-size: 28px;
+    }
+
+    .gobike-news-hero .hero-subtext {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .gobike-news-hero .hero-art-quote {
+        text-align: left;
+        padding-right: 0;
+        max-width: 100%;
+    }
+
+    /* Category bar: Cuộn ngang mượt mà */
+    .gobike-news-categories-section {
+        margin-top: -24px;
+        padding-bottom: 20px;
+    }
+
+    .news-categories-bar {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .news-categories-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .news-categories-bar .cat-pill {
+        flex: 0 0 110px;
+        min-height: 70px;
+        padding: 8px 4px;
+    }
+
+    .news-categories-bar .cat-pill .cat-name {
+        font-size: 11.5px;
+    }
+
+    /* Featured Posts */
+    .featured-side-stack {
+        flex-direction: column;
+    }
+
+    .featured-big-card {
+        padding: 20px;
+        min-height: 320px;
+    }
+
+    .featured-big-card .big-card-title {
+        font-size: 19px;
+    }
+
+    /* Thẻ bài viết mới nhất co giãn chuẩn mobile */
+    .latest-post-horizontal-card {
+        flex-direction: column;
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .latest-post-horizontal-card .card-thumb-wrap {
+        width: 100%;
+        min-width: 100%;
+        height: 180px;
+    }
+
+    .latest-post-horizontal-card .card-post-title {
+        font-size: 16.5px;
+    }
+
+    .gobike-news-bottom-cta {
+        min-height: 240px;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .gobike-news-bottom-cta .cta-title {
+        font-size: 26px;
+    }
+
+    .gobike-news-bottom-cta .cta-subtitle {
+        font-size: 14px;
+    }
+
+    .gobike-news-bottom-cta .cta-button {
+        padding: 10px 20px;
+        font-size: 13.5px;
+    }
+}
