@@ -240,6 +240,33 @@ jQuery(document).ready(function($) {
         $(this).find('.faq-item:first').addClass('open').find('.faq-answer').show().end().find('.faq-icon').text('−');
     });
 
+    // 4. Thu gọn / Mở rộng nội dung mô tả sản phẩm
+    $(document).on('click', '#btnToggleDescContent', function() {
+        var $wrap = $('#descContentCollapsible');
+        var isExpanded = $wrap.hasClass('expanded');
+
+        if (isExpanded) {
+            $wrap.removeClass('expanded');
+            $(this).find('.toggle-txt').text('Xem thêm');
+            $('html, body').animate({
+                scrollTop: $('#gobikeProductTabsSection').offset().top - 70
+            }, 300);
+        } else {
+            $wrap.addClass('expanded');
+            $(this).find('.toggle-txt').text('Thu gọn');
+        }
+    });
+
+    // Tự động ẩn nút Xem thêm nếu nội dung ngắn
+    function checkDescContentHeight() {
+        var $inner = $('#descContentCollapsible .desc-content-inner');
+        if ($inner.length && $inner[0].scrollHeight <= 500) {
+            $('#descContentCollapsible').addClass('expanded');
+            $('.desc-content-gradient, .desc-content-btn-wrap').hide();
+        }
+    }
+    checkDescContentHeight();
+
     // 4. Modal Popup Video
     function openVideoModal(videoUrl) {
         var embedUrl = videoUrl;

@@ -3151,6 +3151,77 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 /* Tab 1: Mô tả sản phẩm (Tổng quan 4 phần) */
+/* Khối Mô tả có chức năng Thu gọn / Mở rộng */
+.gobike-desc-content-collapsible {
+    position: relative;
+}
+
+.gobike-desc-content-collapsible .desc-content-inner {
+    max-height: 480px;
+    overflow: hidden;
+    position: relative;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gobike-desc-content-collapsible.expanded .desc-content-inner {
+    max-height: none;
+    overflow: visible;
+}
+
+.desc-content-gradient {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 80%, #ffffff 100%);
+    pointer-events: none;
+    z-index: 5;
+    transition: opacity 0.3s ease;
+}
+
+.gobike-desc-content-collapsible.expanded .desc-content-gradient {
+    display: none;
+    opacity: 0;
+}
+
+.desc-content-btn-wrap {
+    text-align: center;
+    margin-top: 14px;
+    position: relative;
+    z-index: 10;
+}
+
+.btn-toggle-desc-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 24px;
+    background: #ffffff;
+    color: #005a36 !important;
+    border: 1.5px solid #005a36 !important;
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: none !important;
+    transition: all 0.25s ease;
+}
+
+.btn-toggle-desc-content:hover {
+    background: #005a36;
+    color: #ffffff !important;
+}
+
+.btn-toggle-desc-content .toggle-icon {
+    transition: transform 0.25s ease;
+}
+
+.gobike-desc-content-collapsible.expanded .btn-toggle-desc-content .toggle-icon {
+    transform: rotate(180deg);
+}
+
 .desc-heading-primary {
     font-size: 22px;
     font-weight: 700;

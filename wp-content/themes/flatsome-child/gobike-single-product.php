@@ -443,97 +443,110 @@ function gobike_render_single_product_tabs($product) {
             <!-- TAB 1: MÔ TẢ SẢN PHẨM (Tổng quan gồm 4 phần: Nội dung, Thông số, Đánh giá, Hỏi đáp) -->
             <div class="gobike-tab-panel active" id="tab-description">
                 <div class="gobike-desc-container">
-                    <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER -->
-                    <div class="row align-top desc-intro-row">
-                        <!-- Cột Trái: Text mô tả + 4 icon tính năng -->
-                        <div class="col large-7 medium-12 small-12">
-                            <h2 class="desc-heading-primary">Khám phá thế giới theo cách của bạn</h2>
-                            <div class="desc-main-text entry-content">
-                                <?php
-                                $content = get_the_content();
-                                if (empty($content)) {
-                                    echo '<p><strong>' . esc_html($product->get_name()) . '</strong> không chỉ là một chiếc xe đạp trợ lực, mà còn là người bạn đồng hành đáng tin cậy trên mọi hành trình. Được thiết kế dành cho những ai yêu thích khám phá và tận hưởng cuộc sống năng động, xe mang đến sự kết hợp hoàn hảo giữa sức mạnh, sự linh hoạt và phong cách hiện đại.</p>';
-                                    echo '<p>Dù là những cung đường dốc cao, đường mòn gập ghềnh hay phố thị hàng ngày, xe đều giúp bạn di chuyển dễ dàng hơn, xa hơn và thú vị hơn.</p>';
-                                } else {
-                                    the_content();
-                                }
-                                ?>
-                            </div>
-
-                            <!-- 4 Ô Tính Năng Nổi Bật -->
-                            <div class="desc-feature-grid">
-                                <div class="feature-box-item">
-                                    <div class="feature-icon">
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER (Có thu gọn & mở rộng) -->
+                    <div class="gobike-desc-content-collapsible" id="descContentCollapsible">
+                        <div class="desc-content-inner">
+                            <div class="row align-top desc-intro-row">
+                                <!-- Cột Trái: Text mô tả + 4 icon tính năng -->
+                                <div class="col large-7 medium-12 small-12">
+                                    <h2 class="desc-heading-primary">Khám phá thế giới theo cách của bạn</h2>
+                                    <div class="desc-main-text entry-content">
+                                        <?php
+                                        $content = get_the_content();
+                                        if (empty($content)) {
+                                            echo '<p><strong>' . esc_html($product->get_name()) . '</strong> không chỉ là một chiếc xe đạp trợ lực, mà còn là người bạn đồng hành đáng tin cậy trên mọi hành trình. Được thiết kế dành cho những ai yêu thích khám phá và tận hưởng cuộc sống năng động, xe mang đến sự kết hợp hoàn hảo giữa sức mạnh, sự linh hoạt và phong cách hiện đại.</p>';
+                                            echo '<p>Dù là những cung đường dốc cao, đường mòn gập ghềnh hay phố thị hàng ngày, xe đều giúp bạn di chuyển dễ dàng hơn, xa hơn và thú vị hơn.</p>';
+                                        } else {
+                                            the_content();
+                                        }
+                                        ?>
                                     </div>
-                                    <div class="feature-text">
-                                        <h4>Chinh phục mọi địa hình</h4>
-                                        <p>Vận hành mạnh mẽ, an tâm trên cả đường phố và đường mòn đồi dốc.</p>
+
+                                    <!-- 4 Ô Tính Năng Nổi Bật -->
+                                    <div class="desc-feature-grid">
+                                        <div class="feature-box-item">
+                                            <div class="feature-icon">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>Chinh phục mọi địa hình</h4>
+                                                <p>Vận hành mạnh mẽ, an tâm trên cả đường phố và đường mòn đồi dốc.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-box-item">
+                                            <div class="feature-icon">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>Trợ lực thông minh</h4>
+                                                <p>Hỗ trợ đạp nhẹ nhàng hơn, tiết kiệm sức lực, đi xa hơn mỗi ngày.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-box-item">
+                                            <div class="feature-icon">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>Thiết kế hiện đại</h4>
+                                                <p>Khung dáng thể thao, mạnh mẽ, phù hợp phong cách sống năng động.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-box-item">
+                                            <div class="feature-icon">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                                            </div>
+                                            <div class="feature-text">
+                                                <h4>Thân thiện môi trường</h4>
+                                                <p>Sử dụng năng lượng sạch, góp phần bảo vệ môi trường xanh bền vững.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="feature-box-item">
-                                    <div class="feature-icon">
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Trợ lực thông minh</h4>
-                                        <p>Hỗ trợ đạp nhẹ nhàng hơn, tiết kiệm sức lực, đi xa hơn mỗi ngày.</p>
-                                    </div>
-                                </div>
+                                <!-- Cột Phải: Hình ảnh Lifestyle & Feature Banners -->
+                                <div class="col large-5 medium-12 small-12">
+                                    <div class="desc-media-stack">
+                                        <div class="lifestyle-hero-banner">
+                                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Đi xa hơn mỗi ngày" loading="lazy" />
+                                            <div class="banner-quote-overlay">
+                                                <span class="quote-handwriting">"Đi xa hơn mỗi ngày"</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="lifestyle-sub-card">
+                                            <div class="sub-card-img">
+                                                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80" alt="Sức mạnh trên mọi cung đường" loading="lazy" />
+                                            </div>
+                                            <div class="sub-card-text">
+                                                <h4>Sức mạnh trên mọi cung đường</h4>
+                                                <p>Vận hành mượt mà nhờ động cơ tân tiến, hỗ trợ lực đạp tối đa khi leo dốc hay di chuyển liên tục.</p>
+                                            </div>
+                                        </div>
 
-                                <div class="feature-box-item">
-                                    <div class="feature-icon">
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Thiết kế hiện đại</h4>
-                                        <p>Khung dáng thể thao, mạnh mẽ, phù hợp phong cách sống năng động.</p>
-                                    </div>
-                                </div>
-
-                                <div class="feature-box-item">
-                                    <div class="feature-icon">
-                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-                                    </div>
-                                    <div class="feature-text">
-                                        <h4>Thân thiện môi trường</h4>
-                                        <p>Sử dụng năng lượng sạch, góp phần bảo vệ môi trường xanh bền vững.</p>
+                                        <div class="lifestyle-sub-card">
+                                            <div class="sub-card-img">
+                                                <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80" alt="Thiết kế tinh tế" loading="lazy" />
+                                            </div>
+                                            <div class="sub-card-text">
+                                                <h4>Thiết kế tinh tế & Trải nghiệm khác biệt</h4>
+                                                <p>Khung sườn nhôm hàng không siêu bền, màu sắc sơn bóng bẩy mang đến phong cách thời thượng.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Cột Phải: Hình ảnh Lifestyle & Feature Banners -->
-                        <div class="col large-5 medium-12 small-12">
-                            <div class="desc-media-stack">
-                                <div class="lifestyle-hero-banner">
-                                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Đi xa hơn mỗi ngày" loading="lazy" />
-                                    <div class="banner-quote-overlay">
-                                        <span class="quote-handwriting">"Đi xa hơn mỗi ngày"</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="lifestyle-sub-card">
-                                    <div class="sub-card-img">
-                                        <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80" alt="Sức mạnh trên mọi cung đường" loading="lazy" />
-                                    </div>
-                                    <div class="sub-card-text">
-                                        <h4>Sức mạnh trên mọi cung đường</h4>
-                                        <p>Vận hành mượt mà nhờ động cơ tân tiến, hỗ trợ lực đạp tối đa khi leo dốc hay di chuyển liên tục.</p>
-                                    </div>
-                                </div>
-
-                                <div class="lifestyle-sub-card">
-                                    <div class="sub-card-img">
-                                        <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80" alt="Thiết kế tinh tế" loading="lazy" />
-                                    </div>
-                                    <div class="sub-card-text">
-                                        <h4>Thiết kế tinh tế & Trải nghiệm khác biệt</h4>
-                                        <p>Khung sườn nhôm hàng không siêu bền, màu sắc sơn bóng bẩy mang đến phong cách thời thượng.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Gradient mờ đáy & Nút Xem thêm / Thu gọn -->
+                        <div class="desc-content-gradient"></div>
+                        <div class="desc-content-btn-wrap">
+                            <button type="button" class="btn-toggle-desc-content" id="btnToggleDescContent">
+                                <span class="toggle-txt">Xem thêm</span>
+                                <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
                         </div>
                     </div>
 
@@ -566,13 +579,7 @@ function gobike_render_single_product_tabs($product) {
                     <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Điểm số 4.9 + 4 Thẻ mẫu kèm ảnh thật) -->
                     <div class="desc-reviews-block">
                         <div class="desc-section-header">
-                            <div class="desc-header-left">
-                                <h3 class="specs-section-title">Đánh giá khách hàng</h3>
-                                <a href="#tab-reviews" class="btn-write-review-outline">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                                    <span>Viết đánh giá</span>
-                                </a>
-                            </div>
+                            <h3 class="specs-section-title">Đánh giá khách hàng</h3>
                             <a href="#tab-reviews" class="link-see-all-green">Xem tất cả đánh giá <i class="fa fa-angle-right"></i></a>
                         </div>
 
