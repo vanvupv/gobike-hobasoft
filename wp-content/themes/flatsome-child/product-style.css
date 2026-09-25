@@ -3083,7 +3083,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-product-tabs-section {
     margin-top: 20px;
     background: #ffffff;
-    border-top: 1px solid #e2e8f0;
+    border-top: none !important;
 }
 
 .gobike-tabs-nav-bar {
@@ -3091,7 +3091,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     top: 70px;
     z-index: 80;
     background: #ffffff;
-    border-bottom: 2px solid #e2e8f0;
+    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
     box-shadow: none !important;
 }
 
@@ -3101,6 +3103,11 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     margin: 0;
     padding: 0;
     gap: 32px;
+    border: none !important;
+}
+
+.gobike-tabs-nav-list .tab-nav-item {
+    border: none !important;
 }
 
 .gobike-tabs-nav-list .tab-nav-item a {
@@ -3122,7 +3129,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-tabs-nav-list .tab-nav-item.active a:after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 3px;
@@ -3131,7 +3138,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-tabs-content-wrap {
-    padding-top: 30px;
+    padding-top: 24px;
     padding-bottom: 40px;
 }
 
@@ -3143,7 +3150,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     display: block;
 }
 
-/* Tab 1: Mô tả sản phẩm */
+/* Tab 1: Mô tả sản phẩm (Tổng quan 4 phần) */
 .desc-heading-primary {
     font-size: 22px;
     font-weight: 700;
@@ -3261,6 +3268,123 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     line-height: 1.4;
 }
 
+/* Các khối phụ trong Tab 1 */
+.desc-specs-block,
+.desc-reviews-block,
+.desc-faq-block {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.desc-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.desc-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-write-review-outline {
+    border: 1.5px solid #00a651;
+    background: #ffffff;
+    color: #00a651 !important;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-write-review-outline:hover {
+    background: #00a651;
+    color: #ffffff !important;
+}
+
+.link-see-all-green {
+    color: #005a36 !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.link-see-all-green:hover {
+    color: #00a651 !important;
+}
+
+/* Lưới 5 Cột Đánh Giá Mẫu (Screenshot 3) */
+.desc-reviews-5col-grid {
+    display: grid;
+    grid-template-columns: 240px repeat(4, 1fr);
+    gap: 14px;
+}
+
+.desc-score-summary-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.desc-score-summary-card .big-score {
+    font-size: 34px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.desc-score-summary-card .big-score span {
+    font-size: 16px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.desc-score-summary-card .score-stars {
+    color: #eab308;
+    font-size: 16px;
+    margin: 4px 0 2px 0;
+}
+
+.desc-score-summary-card .score-total-txt {
+    font-size: 11.5px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.desc-score-summary-card .summary-progress-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.desc-score-summary-card .star-bar-item {
+    font-size: 11px;
+}
+
+.desc-score-summary-card .star-bar-item .bar-lbl {
+    width: 34px;
+}
+
+.desc-score-summary-card .star-bar-item .bar-percent {
+    width: 28px;
+}
+
 /* Tab 2: Thông số kỹ thuật 2 cột */
 .specs-section-title {
     font-size: 20px;
@@ -3354,7 +3478,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     box-shadow: none !important;
 }
 
-/* Tab 4: Đánh giá khách hàng */
+/* Tab 4: Đánh giá khách hàng & WooCommerce Comments */
 .reviews-header-bar {
     display: flex;
     justify-content: space-between;
@@ -3367,26 +3491,6 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     font-weight: 700;
     color: #0f172a;
     margin: 0;
-}
-
-.btn-write-review {
-    background: #00a651;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    box-shadow: none !important;
-    transition: background 0.2s ease;
-}
-
-.btn-write-review:hover {
-    background: #008742;
 }
 
 .reviews-summary-row {
@@ -3469,13 +3573,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     font-weight: 600;
 }
 
-.reviews-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
-}
-
+/* Thẻ Đánh Giá Chung */
 .review-card-item {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -3502,11 +3600,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     display: block;
     font-size: 13px;
     color: #0f172a;
-}
-
-.verified-tag {
-    color: #00a651;
-    font-size: 12px;
+    font-weight: 600;
 }
 
 .author-meta .review-date {
@@ -3539,15 +3633,161 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     object-fit: cover;
 }
 
-.reviews-footer-link {
-    text-align: right;
+/* WooCommerce Reviews Container & Form Styling */
+.gobike-woocommerce-reviews-wrap {
+    margin-top: 20px;
 }
 
-.link-see-all-reviews {
-    color: #00a651;
-    font-weight: 600;
+.gobike-woocommerce-reviews-wrap #reviews,
+#tab-reviews #reviews {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 30px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.gobike-woocommerce-reviews-wrap #comments,
+#tab-reviews #comments {
+    flex: 1 1 55% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+.gobike-woocommerce-reviews-wrap #review_form_wrapper,
+#tab-reviews #review_form_wrapper {
+    flex: 1 1 40% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 0 !important;
+}
+
+.gobike-woocommerce-reviews-wrap #review_form .col-inner {
+    padding: 0;
+}
+
+.gobike-woocommerce-reviews-wrap .review-form-inner {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: none !important;
+}
+
+.gobike-woocommerce-reviews-wrap #reply-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+}
+
+.gobike-woocommerce-reviews-wrap .comment-form-rating label,
+.gobike-woocommerce-reviews-wrap .comment-form-comment label,
+.gobike-woocommerce-reviews-wrap .comment-form-author label,
+.gobike-woocommerce-reviews-wrap .comment-form-email label {
     font-size: 13px;
-    text-decoration: none;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.gobike-woocommerce-reviews-wrap .comment-form select,
+.gobike-woocommerce-reviews-wrap .comment-form input[type="text"],
+.gobike-woocommerce-reviews-wrap .comment-form input[type="email"],
+.gobike-woocommerce-reviews-wrap .comment-form textarea {
+    width: 100% !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    padding: 10px 14px !important;
+    font-size: 13.5px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+}
+
+.gobike-woocommerce-reviews-wrap .comment-form textarea {
+    min-height: 110px;
+}
+
+.gobike-woocommerce-reviews-wrap .comment-form input[type="submit"],
+.gobike-woocommerce-reviews-wrap #submit {
+    background: #00a651 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 24px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    width: auto !important;
+    box-shadow: none !important;
+    transition: background 0.2s ease !important;
+}
+
+.gobike-woocommerce-reviews-wrap .comment-form input[type="submit"]:hover,
+.gobike-woocommerce-reviews-wrap #submit:hover {
+    background: #008742 !important;
+}
+
+/* Comment list styling */
+.gobike-woocommerce-reviews-wrap .commentlist {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 14px;
+    list-style: none;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review .avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 12px;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review .comment-text {
+    overflow: hidden;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review .meta {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review .star-rating {
+    float: right;
+}
+
+.gobike-woocommerce-reviews-wrap .commentlist li.review .description {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    margin-top: 6px;
+}
+
+.gobike-woocommerce-reviews-wrap .woocommerce-noreviews {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13.5px;
 }
 
 /* Tab 5: Hỏi đáp FAQ */
@@ -3558,6 +3798,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     margin-bottom: 18px;
 }
 
+.desc-faq-title-wrap h3,
 .faq-section-title {
     font-size: 20px;
     font-weight: 700;
@@ -3571,21 +3812,30 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     margin: 0;
 }
 
+.desc-faq-actions-wrap,
+.faq-actions-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .btn-ask-question {
-    background: #00a651;
-    color: #ffffff;
-    padding: 8px 16px;
+    background: #005a36 !important;
+    color: #ffffff !important;
+    padding: 8px 18px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
     box-shadow: none !important;
     transition: background 0.2s ease;
 }
 
 .btn-ask-question:hover {
-    background: #008742;
-    color: #ffffff;
+    background: #004529 !important;
+    color: #ffffff !important;
 }
 
 .faq-accordion-grid {
@@ -3643,7 +3893,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .link-see-all-faqs {
-    color: #00a651;
+    color: #005a36;
     font-weight: 600;
     font-size: 13px;
     text-decoration: none;
@@ -4158,8 +4408,15 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
     .desc-feature-grid,
     .specs-table-grid,
-    .faq-accordion-grid {
+    .faq-accordion-grid,
+    .desc-reviews-5col-grid {
         grid-template-columns: 1fr;
+    }
+
+    .desc-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .media-photo-grid {
@@ -4173,6 +4430,17 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     .reviews-summary-row {
         flex-direction: column;
         text-align: center;
+    }
+
+    .gobike-woocommerce-reviews-wrap #reviews,
+    #tab-reviews #reviews {
+        flex-direction: column !important;
+    }
+
+    .gobike-woocommerce-reviews-wrap #comments,
+    .gobike-woocommerce-reviews-wrap #review_form_wrapper {
+        flex: 1 1 100% !important;
+        width: 100% !important;
     }
 
     .summary-score-box {

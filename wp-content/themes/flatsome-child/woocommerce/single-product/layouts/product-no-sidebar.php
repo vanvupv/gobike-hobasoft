@@ -187,26 +187,36 @@ jQuery(document).ready(function($) {
         initGallerySwiper();
     }
 
-    // 2. Chuyển đổi 5 Tabs nội dung
-    $('.gobike-tabs-nav-list .tab-nav-item a').on('click', function(e) {
-        e.preventDefault();
+    // 2. Chuyển đổi 5 Tabs nội dung & Liên kết nội bộ tab
+    $(document).on('click', 'a[href^="#tab-"]', function(e) {
         var targetId = $(this).attr('href');
-        
-        $('.gobike-tabs-nav-list .tab-nav-item').removeClass('active');
-        $(this).parent('.tab-nav-item').addClass('active');
+        if ($(targetId).length && $('.gobike-tabs-nav-list a[href="' + targetId + '"]').length) {
+            e.preventDefault();
+            
+            $('.gobike-tabs-nav-list .tab-nav-item').removeClass('active');
+            $('.gobike-tabs-nav-list a[href="' + targetId + '"]').parent('.tab-nav-item').addClass('active');
 
-        $('.gobike-tab-panel').removeClass('active');
-        $(targetId).addClass('active');
+            $('.gobike-tab-panel').removeClass('active');
+            $(targetId).addClass('active');
 
-        // Cuộn mượt mà đến đầu nội dung tab
-        $('html, body').animate({
-            scrollTop: $('#gobikeProductTabsSection').offset().top - 70
-        }, 300);
+            // Cuộn mượt mà đến đầu nội dung tab
+            $('html, body').animate({
+                scrollTop: $('#gobikeProductTabsSection').offset().top - 70
+            }, 300);
+
+            // Nếu bấm viết đánh giá, focus vào textarea bình luận
+            if ($(this).hasClass('btn-write-review-outline') || $(this).hasClass('btn-write-review')) {
+                setTimeout(function() {
+                    $('#comment').focus();
+                }, 350);
+            }
+        }
     });
 
-    // 3. Đóng mở Accordion FAQ
-    $('.faq-item .faq-question').on('click', function() {
+    // 3. Đóng mở Accordion FAQ (hỗ trợ cả Tab 1 và Tab 5)
+    $(document).on('click', '.faq-item .faq-question', function() {
         var $item = $(this).closest('.faq-item');
+        var $grid = $item.closest('.faq-accordion-grid, .desc-faq-grid');
         var $answer = $item.find('.faq-answer');
         var $icon = $(this).find('.faq-icon');
 
@@ -215,9 +225,9 @@ jQuery(document).ready(function($) {
             $item.removeClass('open');
             $icon.text('+');
         } else {
-            $('.faq-item .faq-answer').slideUp(250);
-            $('.faq-item').removeClass('open');
-            $('.faq-item .faq-icon').text('+');
+            $grid.find('.faq-answer').slideUp(250);
+            $grid.find('.faq-item').removeClass('open');
+            $grid.find('.faq-icon').text('+');
 
             $answer.slideDown(250);
             $item.addClass('open');
@@ -225,8 +235,10 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // Mở sẵn câu hỏi đầu tiên
-    $('.faq-accordion-grid .faq-item:first').addClass('open').find('.faq-answer').show().end().find('.faq-icon').text('−');
+    // Mở sẵn câu hỏi đầu tiên ở các khối FAQ
+    $('.faq-accordion-grid, .desc-faq-grid').each(function() {
+        $(this).find('.faq-item:first').addClass('open').find('.faq-answer').show().end().find('.faq-icon').text('−');
+    });
 
     // 4. Modal Popup Video
     function openVideoModal(videoUrl) {

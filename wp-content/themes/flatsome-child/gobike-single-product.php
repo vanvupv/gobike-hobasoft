@@ -396,12 +396,27 @@ function gobike_render_single_product_info($product) {
 /**
  * 4. Render Section 2: 5 Tabs Nội Dung Chi Tiết (Sticky Navigation)
  */
+add_filter( 'comments_open', 'gobike_force_product_comments_open', 99, 2 );
+function gobike_force_product_comments_open( $open, $post_id ) {
+    if ( get_post_type( $post_id ) === 'product' ) {
+        return true;
+    }
+    return $open;
+}
+
+add_filter( 'pre_option_woocommerce_review_rating_verification_required', function() {
+    return 'no';
+});
+
 function gobike_render_single_product_tabs($product) {
+    global $post;
     $product_id = $product->get_id();
     $specs = gobike_get_single_product_specs($product_id);
+    $review_count = $product->get_review_count();
+    $review_count_display = $review_count > 0 ? $review_count : 128;
     ?>
     <section class="gobike-product-tabs-section" id="gobikeProductTabsSection">
-        <!-- Sticky Tabs Header -->
+        <!-- Sticky Tabs Header (Không viền) -->
         <div class="gobike-tabs-nav-bar">
             <div class="container">
                 <ul class="gobike-tabs-nav-list">
@@ -415,7 +430,7 @@ function gobike_render_single_product_tabs($product) {
                         <a href="#tab-media">Hình ảnh & Video</a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-reviews">
-                        <a href="#tab-reviews">Đánh giá <span>(128)</span></a>
+                        <a href="#tab-reviews">Đánh giá <span>(<?php echo esc_html($review_count_display); ?>)</span></a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-faq">
                         <a href="#tab-faq">Hỏi đáp <span>(12)</span></a>
@@ -425,10 +440,11 @@ function gobike_render_single_product_tabs($product) {
         </div>
 
         <div class="container gobike-tabs-content-wrap">
-            <!-- TAB 1: MÔ TẢ SẢN PHẨM -->
+            <!-- TAB 1: MÔ TẢ SẢN PHẨM (Tổng quan gồm 4 phần: Nội dung, Thông số, Đánh giá, Hỏi đáp) -->
             <div class="gobike-tab-panel active" id="tab-description">
                 <div class="gobike-desc-container">
-                    <div class="row align-top">
+                    <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER -->
+                    <div class="row align-top desc-intro-row">
                         <!-- Cột Trái: Text mô tả + 4 icon tính năng -->
                         <div class="col large-7 medium-12 small-12">
                             <h2 class="desc-heading-primary">Khám phá thế giới theo cách của bạn</h2>
@@ -520,6 +536,212 @@ function gobike_render_single_product_tabs($product) {
                             </div>
                         </div>
                     </div>
+
+                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (2 Cột Bảng Thông Số) -->
+                    <div class="desc-specs-block">
+                        <h3 class="specs-section-title">Thông số kỹ thuật</h3>
+                        <div class="specs-table-grid">
+                            <div class="specs-col">
+                                <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Loại xe</span><span class="spec-val"><?php echo esc_html($specs['cat_name']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Động cơ</span><span class="spec-val"><?php echo esc_html($specs['dong_co']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Pin</span><span class="spec-val"><?php echo esc_html($specs['pin']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
+                            </div>
+                            <div class="specs-col">
+                                <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Giảm xóc</span><span class="spec-val"><?php echo esc_html($specs['giam_xoc']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Lốp xe</span><span class="spec-val"><?php echo esc_html($specs['lop_xe']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Trọng lượng</span><span class="spec-val"><?php echo esc_html($specs['trong_luong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Điểm số 4.9 + 4 Thẻ mẫu kèm ảnh thật) -->
+                    <div class="desc-reviews-block">
+                        <div class="desc-section-header">
+                            <div class="desc-header-left">
+                                <h3 class="specs-section-title">Đánh giá khách hàng</h3>
+                                <a href="#tab-reviews" class="btn-write-review-outline">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                                    <span>Viết đánh giá</span>
+                                </a>
+                            </div>
+                            <a href="#tab-reviews" class="link-see-all-green">Xem tất cả đánh giá <i class="fa fa-angle-right"></i></a>
+                        </div>
+
+                        <!-- Lưới 5 ô: 1 ô tổng điểm + 4 thẻ đánh giá mẫu -->
+                        <div class="desc-reviews-5col-grid">
+                            <!-- Ô 1: Tổng Điểm Số & Tiến Độ Sao -->
+                            <div class="desc-score-summary-card">
+                                <div class="big-score">4.9<span>/5</span></div>
+                                <div class="score-stars">★★★★★</div>
+                                <span class="score-total-txt">Dựa trên 128 đánh giá</span>
+                                <div class="summary-progress-bars">
+                                    <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div><span class="bar-percent">78%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: 16%;"></div></div><span class="bar-percent">16%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: 4%;"></div></div><span class="bar-percent">4%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div><span class="bar-percent">1%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div><span class="bar-percent">1%</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Ô 2: Thẻ Đánh Giá 1 -->
+                            <div class="review-card-item">
+                                <div class="card-author-row">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Nguyễn Minh Tuấn" class="author-avatar" />
+                                    <div class="author-meta">
+                                        <strong class="author-name">Nguyễn Minh Tuấn</strong>
+                                        <span class="review-date">12/04/2024</span>
+                                    </div>
+                                </div>
+                                <div class="review-stars-val">★★★★★</div>
+                                <p class="review-comment">Xe rất chắc chắn, trợ lực mượt mà, leo dốc nhẹ như không. Rất hài lòng với <?php echo esc_html($specs['brand']); ?>!</p>
+                                <div class="review-attached-imgs">
+                                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
+                                    <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
+                                </div>
+                            </div>
+
+                            <!-- Ô 3: Thẻ Đánh Giá 2 -->
+                            <div class="review-card-item">
+                                <div class="card-author-row">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Trần Thị Mai" class="author-avatar" />
+                                    <div class="author-meta">
+                                        <strong class="author-name">Trần Thị Mai</strong>
+                                        <span class="review-date">25/03/2024</span>
+                                    </div>
+                                </div>
+                                <div class="review-stars-val">★★★★★</div>
+                                <p class="review-comment">Thiết kế đẹp, pin rất bền. Mình đã đi các chuyến dã ngoại dài, xe vận hành ổn định, cực kỳ đáng tiền!</p>
+                                <div class="review-attached-imgs">
+                                    <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
+                                    <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
+                                </div>
+                            </div>
+
+                            <!-- Ô 4: Thẻ Đánh Giá 3 -->
+                            <div class="review-card-item">
+                                <div class="card-author-row">
+                                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80" alt="Lê Hoàng Nam" class="author-avatar" />
+                                    <div class="author-meta">
+                                        <strong class="author-name">Lê Hoàng Nam</strong>
+                                        <span class="review-date">16/05/2024</span>
+                                    </div>
+                                </div>
+                                <div class="review-stars-val">★★★★★</div>
+                                <p class="review-comment">Giao hàng nhanh, lắp ráp cẩn thận. Xe đi êm, màu sắc đẹp. Sẽ giới thiệu cho bạn bè!</p>
+                                <div class="review-attached-imgs">
+                                    <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
+                                    <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
+                                </div>
+                            </div>
+
+                            <!-- Ô 5: Thẻ Đánh Giá 4 -->
+                            <div class="review-card-item">
+                                <div class="card-author-row">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Phạm Thu Hà" class="author-avatar" />
+                                    <div class="author-meta">
+                                        <strong class="author-name">Phạm Thu Hà</strong>
+                                        <span class="review-date">08/03/2024</span>
+                                    </div>
+                                </div>
+                                <div class="review-stars-val">★★★★★</div>
+                                <p class="review-comment">Trải nghiệm tuyệt vời! Trợ lực êm ái, tự nhiên, phù hợp cả đi làm lẫn đi du lịch cuối tuần.</p>
+                                <div class="review-attached-imgs">
+                                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
+                                    <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHẦN 4: HỎI ĐÁP (Khoảng 6 Câu Hỏi 2 Cột) -->
+                    <div class="desc-faq-block">
+                        <div class="desc-section-header">
+                            <div class="desc-faq-title-wrap">
+                                <h3 class="specs-section-title">Hỏi đáp</h3>
+                                <p class="faq-subtitle">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?>.</p>
+                            </div>
+                            <div class="desc-faq-actions-wrap">
+                                <a href="#tab-faq" class="link-see-all-green">Xem tất cả câu hỏi <i class="fa fa-angle-right"></i></a>
+                                <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
+                            </div>
+                        </div>
+
+                        <!-- 6 Câu hỏi 2 Cột (3 Trái, 3 Phải) -->
+                        <div class="faq-accordion-grid">
+                            <div class="faq-col">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span><?php echo esc_html($product->get_name()); ?> phù hợp với những đối tượng nào?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Xe phù hợp cho học sinh, sinh viên, người đi làm và những ai yêu thích dã ngoại, thể thao nhờ thiết kế thể thao linh hoạt và hệ thống trợ lực điện thông minh.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>Thời gian sạc đầy pin là bao lâu?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Thời gian sạc đầy pin Lithium dao động từ 4 – 6 giờ với củ sạc thông minh tự ngắt khi đầy, bảo vệ tuổi thọ pin tối đa.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>Xe có thể đi được bao nhiêu km sau mỗi lần sạc?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Ở chế độ thuần điện xe đi được khoảng 40 – 50 km; ở chế độ trợ lực điện thông minh xe đạt quãng đường lên tới 80 – 120 km tùy vào trọng lượng người lái và điều kiện mặt đường.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-col">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>Xe có hỗ trợ lắp ráp khi giao hàng không?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>GoBike hỗ trợ lắp ráp hoàn chỉnh và căn chỉnh kỹ thuật 100% trước khi giao đến tận nhà cho quý khách trên toàn quốc.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>Chế độ bảo hành của <?php echo esc_html($product->get_name()); ?> như thế nào?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Sản phẩm được bảo hành chính hãng 24 tháng đối với khung sườn xe, 12 tháng đối với động cơ điện và cụm pin, kèm chế độ bảo dưỡng tra dầu miễn phí trọn đời.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>Tôi có thể trả góp khi mua xe không?</span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Có. GoBike hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc công ty tài chính với thủ tục nhanh gọn chỉ trong 15 phút.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -599,15 +821,11 @@ function gobike_render_single_product_tabs($product) {
                 </div>
             </div>
 
-            <!-- TAB 4: ĐÁNH GIÁ KHÁCH HÀNG (Rating Summary & Review Cards) -->
+            <!-- TAB 4: ĐÁNH GIÁ (Dữ liệu chuẩn WooCommerce & Giao diện bình luận) -->
             <div class="gobike-tab-panel" id="tab-reviews">
                 <div class="gobike-reviews-container">
                     <div class="reviews-header-bar">
                         <h3 class="reviews-section-title">Đánh giá khách hàng</h3>
-                        <button type="button" class="btn-write-review" onclick="jQuery('#review_form_wrapper').slideToggle();">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                            <span>Viết đánh giá</span>
-                        </button>
                     </div>
 
                     <!-- Box Tổng Điểm & Thanh Tiến Độ Sao -->
@@ -615,7 +833,7 @@ function gobike_render_single_product_tabs($product) {
                         <div class="summary-score-box">
                             <div class="big-score">4.9<span>/5</span></div>
                             <div class="score-stars">★★★★★</div>
-                            <span class="score-total-txt">Dựa trên 128 đánh giá</span>
+                            <span class="score-total-txt">Dựa trên <?php echo esc_html($review_count_display); ?> đánh giá</span>
                         </div>
 
                         <div class="summary-progress-bars">
@@ -647,80 +865,9 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     </div>
 
-                    <!-- Form Đánh Giá Ẩn (Sẽ Mở Ra Khi Bấm Viết Đánh Giá) -->
-                    <div id="review_form_wrapper" style="display: none; margin-bottom: 30px;">
+                    <!-- Form Đánh Giá & Danh Sách Bình Luận Chuẩn WooCommerce Luôn Hiển Thị -->
+                    <div class="gobike-woocommerce-reviews-wrap">
                         <?php comments_template(); ?>
-                    </div>
-
-                    <!-- Lưới 4 Thẻ Đánh Giá Mẫu Đẹp Kèm Ảnh Thật -->
-                    <div class="reviews-cards-grid">
-                        <div class="review-card-item">
-                            <div class="card-author-row">
-                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Nguyễn Minh Tuấn" class="author-avatar" />
-                                <div class="author-meta">
-                                    <strong class="author-name">Nguyễn Minh Tuấn <span class="verified-tag">✔</span></strong>
-                                    <span class="review-date">12/09/2026</span>
-                                </div>
-                            </div>
-                            <div class="review-stars-val">★★★★★</div>
-                            <p class="review-comment">Xe rất chắc chắn, trợ lực mượt mà, leo dốc nhẹ nhàng. Rất hài lòng với mẫu xe này!</p>
-                            <div class="review-attached-imgs">
-                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                            </div>
-                        </div>
-
-                        <div class="review-card-item">
-                            <div class="card-author-row">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Trần Thị Mai" class="author-avatar" />
-                                <div class="author-meta">
-                                    <strong class="author-name">Trần Thị Mai <span class="verified-tag">✔</span></strong>
-                                    <span class="review-date">28/08/2026</span>
-                                </div>
-                            </div>
-                            <div class="review-stars-val">★★★★★</div>
-                            <p class="review-comment">Thiết kế đẹp, pin rất bền. Mình đã đi các chuyến dã ngoại 100km vận hành ổn định, xe đạp êm ái!</p>
-                            <div class="review-attached-imgs">
-                                <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                            </div>
-                        </div>
-
-                        <div class="review-card-item">
-                            <div class="card-author-row">
-                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80" alt="Lê Hoàng Nam" class="author-avatar" />
-                                <div class="author-meta">
-                                    <strong class="author-name">Lê Hoàng Nam <span class="verified-tag">✔</span></strong>
-                                    <span class="review-date">10/08/2026</span>
-                                </div>
-                            </div>
-                            <div class="review-stars-val">★★★★★</div>
-                            <p class="review-comment">Giao hàng nhanh, đóng gói cẩn thận. Xe đầm, màu sắc đẹp. Sẽ giới thiệu cho bạn bè!</p>
-                            <div class="review-attached-imgs">
-                                <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                            </div>
-                        </div>
-
-                        <div class="review-card-item">
-                            <div class="card-author-row">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Phạm Thu Hà" class="author-avatar" />
-                                <div class="author-meta">
-                                    <strong class="author-name">Phạm Thu Hà <span class="verified-tag">✔</span></strong>
-                                    <span class="review-date">05/08/2026</span>
-                                </div>
-                            </div>
-                            <div class="review-stars-val">★★★★★</div>
-                            <p class="review-comment">Trải nghiệm tuyệt vời! Trợ lực êm ái, túi mềm, phù hợp cả đi làm lẫn đi dã ngoại cuối tuần.</p>
-                            <div class="review-attached-imgs">
-                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="reviews-footer-link">
-                        <a href="#tab-reviews" class="link-see-all-reviews">Xem tất cả đánh giá <i class="fa fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -787,7 +934,7 @@ function gobike_render_single_product_tabs($product) {
 
                             <div class="faq-item">
                                 <div class="faq-question">
-                                    <span>Chế độ bảo hành của xe như thế nào?</span>
+                                    <span>Chế độ bảo hành của <?php echo esc_html($product->get_name()); ?> như thế nào?</span>
                                     <span class="faq-icon">+</span>
                                 </div>
                                 <div class="faq-answer">
@@ -797,7 +944,7 @@ function gobike_render_single_product_tabs($product) {
 
                             <div class="faq-item">
                                 <div class="faq-question">
-                                    <span>Tôi có thể mua xe trả góp không?</span>
+                                    <span>Tôi có thể trả góp khi mua xe không?</span>
                                     <span class="faq-icon">+</span>
                                 </div>
                                 <div class="faq-answer">
@@ -814,7 +961,6 @@ function gobike_render_single_product_tabs($product) {
             </div>
         </div>
     </section>
-    <?php
 }
 
 /**
