@@ -961,6 +961,7 @@ function gobike_render_single_product_tabs($product) {
             </div>
         </div>
     </section>
+    <?php
 }
 
 /**
