@@ -149,31 +149,35 @@ jQuery(document).ready(function($) {
             $(this).addClass('active');
         });
 
-        // Khởi tạo Carousel Sản Phẩm Liên Quan
+        // Khởi tạo Carousel Sản Phẩm Liên Quan (6 sản phẩm, điều hướng 2 bên - Ảnh 2)
         var relatedSwiper = new Swiper('.gobike-related-carousel-swiper', {
-            slidesPerView: 5,
-            spaceBetween: 15,
+            slidesPerView: 6,
+            spaceBetween: 12,
             watchOverflow: true,
             navigation: {
-                nextEl: '.rel-next',
-                prevEl: '.rel-prev',
+                nextEl: '.rel-btn-next-side',
+                prevEl: '.rel-btn-prev-side',
             },
             breakpoints: {
                 0: {
                     slidesPerView: 2,
-                    spaceBetween: 10
+                    spaceBetween: 8
                 },
                 550: {
                     slidesPerView: 3,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 10
+                },
+                1024: {
+                    slidesPerView: 5,
                     spaceBetween: 12
                 },
-                850: {
-                    slidesPerView: 4,
-                    spaceBetween: 14
-                },
-                1100: {
-                    slidesPerView: 5,
-                    spaceBetween: 15
+                1200: {
+                    slidesPerView: 6,
+                    spaceBetween: 12
                 }
             }
         });

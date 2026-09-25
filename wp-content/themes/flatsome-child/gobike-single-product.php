@@ -994,75 +994,81 @@ function gobike_render_single_product_related($product) {
     ?>
     <section class="gobike-related-section">
         <div class="container">
-            <!-- Header Tabs Phân Loại Sản Phẩm Liên Quan -->
+            <!-- Header Sản Phẩm Liên Quan (Bỏ tabs phân loại) -->
             <div class="related-header-flex">
-                <div class="related-title-and-tabs">
-                    <h3 class="related-heading">Sản phẩm liên quan</h3>
-                    <div class="related-filter-tabs">
-                        <button type="button" class="tab-filter-btn active" data-filter="all">Cùng thương hiệu</button>
-                        <button type="button" class="tab-filter-btn" data-filter="xe-dia-hinh">Xe địa hình</button>
-                        <button type="button" class="tab-filter-btn" data-filter="xe-gap-gon">Xe gấp gọn</button>
-                        <button type="button" class="tab-filter-btn" data-filter="xe-touring">Xe touring</button>
-                        <button type="button" class="tab-filter-btn" data-filter="ban-chay">Sản phẩm bán chạy</button>
-                    </div>
-                </div>
-                <div class="related-nav-and-link">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="link-view-all-related">Xem tất cả <i class="fa fa-angle-right"></i></a>
-                    <div class="related-slider-nav">
-                        <button type="button" class="rel-btn rel-prev" aria-label="Trước">
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-                        </button>
-                        <button type="button" class="rel-btn rel-next" aria-label="Sau">
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-                        </button>
-                    </div>
-                </div>
+                <h3 class="related-heading">Sản phẩm liên quan</h3>
+                <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="link-view-all-related">Xem tất cả <i class="fa fa-angle-right"></i></a>
             </div>
 
-            <!-- Swiper Carousel Sản Phẩm Liên Quan (5 Cột) -->
-            <div class="swiper-container gobike-related-carousel-swiper">
-                <div class="swiper-wrapper">
-                    <?php if ($related_query->have_posts()): ?>
-                        <?php while ($related_query->have_posts()): $related_query->the_post(); 
-                            $rel_product = wc_get_product(get_the_ID());
-                            if (!$rel_product) continue;
-                        ?>
-                            <div class="swiper-slide rel-product-slide">
-                                <div class="rel-card-box">
-                                    <div class="rel-card-image">
-                                        <a href="<?php the_permalink(); ?>">
-                                            <?php echo $rel_product->get_image('woocommerce_thumbnail'); ?>
-                                        </a>
-                                        <?php if ($rel_product->is_on_sale()): ?>
-                                            <span class="rel-badge-sale">Giảm giá</span>
-                                        <?php endif; ?>
-                                        <button type="button" class="rel-btn-wishlist" title="Yêu thích">♡</button>
-                                    </div>
-                                    <div class="rel-card-info">
-                                        <h4 class="rel-product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                        <div class="rel-price-wrap">
-                                            <span class="rel-price-current"><?php echo wc_price($rel_product->get_price()); ?></span>
-                                            <?php if ($rel_product->get_regular_price() > $rel_product->get_price()): ?>
-                                                <span class="rel-price-old"><?php echo wc_price($rel_product->get_regular_price()); ?></span>
+            <!-- Khung Slide Sản Phẩm Liên Quan (Nút chuyển slide 2 bên) -->
+            <div class="rel-slider-wrapper">
+                <button type="button" class="rel-btn-side rel-btn-prev-side" aria-label="Trước">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+
+                <div class="swiper-container gobike-related-carousel-swiper">
+                    <div class="swiper-wrapper">
+                        <?php if ($related_query->have_posts()): ?>
+                            <?php while ($related_query->have_posts()): $related_query->the_post(); 
+                                $rel_product = wc_get_product(get_the_ID());
+                                if (!$rel_product) continue;
+                                $regular_price = $rel_product->get_regular_price();
+                                $sale_price = $rel_product->get_price();
+                                $discount_badge = '';
+                                if ($rel_product->is_on_sale() && $regular_price > $sale_price && $regular_price > 0) {
+                                    $discount_badge = '-' . round((($regular_price - $sale_price) / $regular_price) * 100) . '%';
+                                }
+                            ?>
+                                <div class="swiper-slide rel-product-slide">
+                                    <div class="rel-card-box">
+                                        <!-- Khung ảnh dùng padding-bottom thay cho width/height cố định -->
+                                        <div class="rel-card-image">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php echo $rel_product->get_image('woocommerce_thumbnail'); ?>
+                                            </a>
+                                            <?php if ($discount_badge): ?>
+                                                <span class="rel-badge-sale"><?php echo esc_html($discount_badge); ?></span>
                                             <?php endif; ?>
+                                            <button type="button" class="rel-btn-wishlist" title="Yêu thích">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                            </button>
                                         </div>
-                                        <div class="rel-card-actions">
-                                            <a href="?add-to-cart=<?php echo get_the_ID(); ?>" class="btn-rel-cart" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>">Thêm vào giỏ</a>
-                                            <a href="<?php the_permalink(); ?>" class="btn-rel-view">Xem chi tiết</a>
+                                        <div class="rel-card-info">
+                                            <h4 class="rel-product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                            <div class="rel-price-wrap">
+                                                <span class="rel-price-current"><?php echo wc_price($sale_price); ?></span>
+                                                <?php if ($regular_price > $sale_price): ?>
+                                                    <span class="rel-price-old"><?php echo wc_price($regular_price); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="rel-card-actions">
+                                                <a href="?add-to-cart=<?php echo get_the_ID(); ?>" class="btn-rel-cart" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>">
+                                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                                                    <span>Thêm vào giỏ</span>
+                                                </a>
+                                                <a href="<?php the_permalink(); ?>" class="btn-rel-view">Xem chi tiết</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endwhile; wp_reset_postdata(); ?>
-                    <?php endif; ?>
+                            <?php endwhile; wp_reset_postdata(); ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
+
+                <button type="button" class="rel-btn-side rel-btn-next-side" aria-label="Sau">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
             </div>
 
-            <!-- Dải 5 Cam Kết Dịch Vụ Chân Trang Chuẩn Mẫu -->
+            <!-- Dải 5 Cam Kết Dịch Vụ Chân Trang Chuẩn Mẫu (Ảnh 3) -->
             <div class="gobike-footer-trust-strip">
                 <div class="footer-trust-item">
                     <div class="trust-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9 12 11 14 15 10"/>
+                        </svg>
                     </div>
                     <div class="trust-text-box">
                         <strong>Sản phẩm chính hãng</strong>
@@ -1072,7 +1078,12 @@ function gobike_render_single_product_related($product) {
 
                 <div class="footer-trust-item">
                     <div class="trust-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"/>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                            <circle cx="5.5" cy="18.5" r="2.5"/>
+                            <circle cx="18.5" cy="18.5" r="2.5"/>
+                        </svg>
                     </div>
                     <div class="trust-text-box">
                         <strong>Giao hàng toàn quốc</strong>
@@ -1082,17 +1093,24 @@ function gobike_render_single_product_related($product) {
 
                 <div class="footer-trust-item">
                     <div class="trust-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            <line x1="6" y1="18" x2="3" y2="21"/>
+                        </svg>
                     </div>
                     <div class="trust-text-box">
                         <strong>Lắp ráp miễn phí</strong>
-                        <span>Tại nhà và tại showroom</span>
+                        <span>Tại nhà trên toàn quốc</span>
                     </div>
                 </div>
 
                 <div class="footer-trust-item">
                     <div class="trust-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2"/>
+                            <line x1="2" y1="10" x2="22" y2="10"/>
+                            <circle cx="6" cy="15" r="1"/>
+                        </svg>
                     </div>
                     <div class="trust-text-box">
                         <strong>Trả góp 0%</strong>
@@ -1102,11 +1120,14 @@ function gobike_render_single_product_related($product) {
 
                 <div class="footer-trust-item">
                     <div class="trust-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                        </svg>
                     </div>
                     <div class="trust-text-box">
                         <strong>Tư vấn 24/7</strong>
-                        <span>0944 988 699</span>
+                        <span>0925 568 566</span>
                     </div>
                 </div>
             </div>

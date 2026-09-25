@@ -3988,115 +3988,137 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     font-size: 20px;
     font-weight: 700;
     color: #0f172a;
-    margin: 0 0 8px 0;
-}
-
-.related-filter-tabs {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-}
-
-.tab-filter-btn {
-    background: #f1f5f9;
-    border: none;
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #475569;
-    cursor: pointer;
-    box-shadow: none !important;
-    transition: all 0.2s ease;
-}
-
-.tab-filter-btn.active,
-.tab-filter-btn:hover {
-    background: #00a651;
-    color: #ffffff;
-}
-
-.related-nav-and-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    margin: 0;
 }
 
 .link-view-all-related {
-    color: #00a651;
-    font-size: 13px;
+    color: #005a36;
+    font-size: 13.5px;
     font-weight: 600;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
 }
 
-.related-slider-nav {
-    display: flex;
-    gap: 6px;
+.link-view-all-related:hover {
+    color: #008744;
 }
 
-.rel-btn {
-    width: 28px;
-    height: 28px;
+/* Khung Carousel Sản Phẩm Liên Quan với nút 2 bên (Ảnh 2) */
+.rel-slider-wrapper {
+    position: relative;
+    padding: 0 4px;
+}
+
+.rel-btn-side {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    border: 1px solid #cbd5e1;
     background: #ffffff;
-    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    color: #334155;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #475569;
-    box-shadow: none !important;
+    cursor: pointer;
+    z-index: 25;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
     transition: all 0.2s ease;
 }
 
-.rel-btn:hover {
-    background: #00a651;
+.rel-btn-prev-side {
+    left: -16px;
+}
+
+.rel-btn-next-side {
+    right: -16px;
+}
+
+.rel-btn-side:hover {
+    background: #005a36;
     color: #ffffff;
-    border-color: #00a651;
+    border-color: #005a36;
 }
 
-/* Card Sản phẩm liên quan */
+.rel-btn-side.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Swiper Container */
 .gobike-related-carousel-swiper {
-    padding: 6px 2px 20px 2px;
+    padding: 6px 2px 14px 2px;
 }
 
+/* Thẻ Sản Phẩm Liên Quan */
 .rel-card-box {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: none !important;
-    transition: border-color 0.2s ease;
+    transition: all 0.25s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .rel-card-box:hover {
-    border-color: #00a651;
-    box-shadow: none !important;
+    border-color: #005a36;
+    box-shadow: 0 4px 12px rgba(0, 90, 54, 0.08) !important;
 }
 
+/* Hình ảnh sản phẩm dùng padding-bottom thay vì width/height cố định */
 .rel-card-image {
     position: relative;
-    padding: 14px;
-    text-align: center;
-    background: #f8fafc;
+    width: 100%;
+    padding-bottom: 78%; /* Tỉ lệ responsive tự co giãn */
+    overflow: hidden;
+    background: #ffffff;
 }
 
-.rel-card-image img {
-    height: 140px;
+.rel-card-image a {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.rel-card-image a img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
     object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.rel-card-box:hover .rel-card-image a img {
+    transform: scale(1.05);
 }
 
 .rel-badge-sale {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 8px;
+    left: 8px;
     background: #dc2626;
     color: #ffffff;
     font-size: 10px;
     font-weight: 700;
     padding: 2px 6px;
     border-radius: 4px;
+    z-index: 5;
     box-shadow: none !important;
 }
 
@@ -4104,30 +4126,40 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.85);
     border: none;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     cursor: pointer;
-    font-size: 14px;
-    color: #64748b;
+    color: #475569;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: none !important;
+    z-index: 5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.2s ease;
 }
 
+.rel-btn-wishlist:hover {
+    color: #dc2626;
+    background: #ffffff;
+}
+
+/* Nội dung thông tin card */
 .rel-card-info {
-    padding: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .rel-product-title {
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     margin: 0 0 6px 0;
     line-height: 1.35;
-    height: 36px;
+    height: 34px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -4140,7 +4172,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rel-product-title a:hover {
-    color: #00a651;
+    color: #005a36;
 }
 
 .rel-price-wrap {
@@ -4148,94 +4180,124 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     align-items: baseline;
     gap: 6px;
     margin-bottom: 10px;
+    margin-top: auto;
 }
 
 .rel-price-current {
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 700;
-    color: #00a651;
+    color: #dc2626;
 }
 
 .rel-price-old {
-    font-size: 11.5px;
+    font-size: 11px;
     color: #94a3b8;
     text-decoration: line-through;
 }
 
+/* Nút hành động */
 .rel-card-actions {
     display: flex;
-    gap: 6px;
+    gap: 5px;
 }
 
 .btn-rel-cart {
-    flex: 1;
+    flex: 1.2;
     background: #ffffff;
-    border: 1px solid #00a651;
-    color: #00a651;
-    border-radius: 6px;
-    padding: 5px 0;
+    border: 1px solid #005a36;
+    color: #005a36;
+    border-radius: 5px;
+    padding: 5px 2px;
     font-size: 11px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     transition: all 0.2s ease;
 }
 
 .btn-rel-cart:hover {
-    background: #00a651;
+    background: #005a36;
     color: #ffffff;
 }
 
 .btn-rel-view {
     flex: 1;
-    background: #f1f5f9;
-    color: #334155;
-    border-radius: 6px;
-    padding: 5px 0;
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 5px 2px;
     font-size: 11px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease;
 }
 
 .btn-rel-view:hover {
-    background: #e2e8f0;
+    background: #f1f5f9;
+    color: #0f172a;
 }
 
-/* Dải 5 Cam kết chân trang */
+/* Dải 5 Cam kết chân trang (Ảnh 3) */
 .gobike-footer-trust-strip {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 30px;
-    padding: 18px;
-    background: #f8fafc;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
+    gap: 0;
+    margin-top: 32px;
+    background: #edf8f2;
+    border: 1px solid #ccebdc;
+    border-radius: 12px;
+    padding: 18px 8px;
 }
 
 .footer-trust-item {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 14px;
+    padding: 0 16px;
+    border-right: 1px solid #ccebdc;
+}
+
+.footer-trust-item:last-child {
+    border-right: none;
 }
 
 .trust-icon-box {
-    color: #00a651;
+    color: #005a36;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trust-icon-box svg {
+    width: 38px;
+    height: 38px;
+    color: #005a36;
 }
 
 .trust-text-box strong {
     display: block;
-    font-size: 12.5px;
-    color: #0f172a;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #005a36;
+    line-height: 1.3;
+    margin-bottom: 2px;
 }
 
 .trust-text-box span {
     display: block;
-    font-size: 11px;
-    color: #64748b;
+    font-size: 11.5px;
+    color: #3b5d4a;
+    line-height: 1.25;
 }
 
 .gobike-mobile-explore-banner,
@@ -4523,7 +4585,14 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     }
 
     .gobike-footer-trust-strip {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .footer-trust-item {
+        border-right: none;
+        padding: 0;
     }
 
     .gobike-mobile-explore-banner {
