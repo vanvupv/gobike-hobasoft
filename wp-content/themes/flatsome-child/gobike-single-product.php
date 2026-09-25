@@ -47,13 +47,15 @@ function gobike_get_single_product_specs($product_id) {
         if ($brand_acf) $brand = $brand_acf;
     }
 
-    // Danh mục chính
+    // Danh mục chính (Lọc bỏ các danh mục tiện ích không liên quan)
     $cats = get_the_terms($product_id, 'product_cat');
     $cat_name = 'Xe đạp trợ lực địa hình';
     $cat_link = home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/');
+    $ignore_slugs = array('uncategorized', 'kiem-tra-don-hang', 'tra-cuu', 'don-hang', 'chua-phan-loai');
+    
     if (!empty($cats) && !is_wp_error($cats)) {
         foreach ($cats as $c) {
-            if ($c->slug !== 'uncategorized') {
+            if (!in_array($c->slug, $ignore_slugs)) {
                 $cat_name = $c->name;
                 $cat_link = get_term_link($c);
                 break;
@@ -82,6 +84,7 @@ function gobike_get_single_product_specs($product_id) {
 
 /**
  * 2. Render Cột Gallery ảnh (Swiper) + Dải 6 Thông số nhanh
+ * Hiển thị thuần túy hình ảnh sản phẩm (không phủ text) chuẩn 100% Ảnh 2
  */
 function gobike_render_single_product_gallery($product) {
     $product_id = $product->get_id();
@@ -91,17 +94,34 @@ function gobike_render_single_product_gallery($product) {
     if ($product->get_image_id()) {
         $image_ids[] = $product->get_image_id();
     }
-    // Gallery ảnh
+    // Gallery ảnh WooCommerce
     $gallery_ids = $product->get_gallery_image_ids();
     if (!empty($gallery_ids)) {
         $image_ids = array_merge($image_ids, $gallery_ids);
     }
-    $image_ids = array_unique($image_ids);
 
-    // Dữ liệu mẫu nếu thiếu ảnh
-    $default_imgs = array(
-        'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-    );
+    // Ảnh biến thể (nếu là variable product)
+    if ($product->is_type('variable')) {
+        $variations = $product->get_available_variations();
+        if (!empty($variations)) {
+            foreach ($variations as $var) {
+                if (!empty($var['image_id'])) {
+                    $image_ids[] = $var['image_id'];
+                }
+            }
+        }
+    }
+
+    // Ảnh ACF chi tiết nếu có
+    $acf_gallery = get_field('gallery_san_pham', $product_id);
+    if (!empty($acf_gallery) && is_array($acf_gallery)) {
+        foreach ($acf_gallery as $item) {
+            $id = is_array($item) ? ($item['ID'] ?? 0) : $item;
+            if ($id) $image_ids[] = $id;
+        }
+    }
+
+    $image_ids = array_values(array_unique(array_filter($image_ids)));
 
     $specs = gobike_get_single_product_specs($product_id);
     $video_url = get_field('video_url', $product_id) ?: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
@@ -119,26 +139,21 @@ function gobike_render_single_product_gallery($product) {
                             ?>
                                 <div class="swiper-slide thumb-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                     <img src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy" />
+                                    <?php if ($index === 1 && !empty($video_url)): ?>
+                                        <div class="thumb-play-overlay">▶</div>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <div class="swiper-slide thumb-item active">
-                                <img src="<?php echo esc_url($default_imgs[0]); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" />
+                                <img src="<?php echo esc_url(wc_placeholder_img_src()); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" />
                             </div>
                         <?php endif; ?>
-                        
-                        <!-- Nút thumbnail Video nếu có -->
-                        <div class="swiper-slide thumb-item thumb-video-btn" data-video="<?php echo esc_url($video_url); ?>">
-                            <div class="thumb-video-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                            <span>Video</span>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Khung Slide chính bên phải -->
+            <!-- Khung Slide chính bên phải (Thuần ảnh sản phẩm, không chèn text) -->
             <div class="gobike-gallery-main-col">
                 <div class="swiper-container gobike-gallery-main-swiper">
                     <div class="swiper-wrapper">
@@ -155,26 +170,20 @@ function gobike_render_single_product_gallery($product) {
                         <?php else: ?>
                             <div class="swiper-slide main-slide-item">
                                 <div class="slide-img-box">
-                                    <img src="<?php echo esc_url($default_imgs[0]); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" />
+                                    <img src="<?php echo esc_url(wc_placeholder_img_src()); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" />
                                 </div>
                             </div>
                         <?php endif; ?>
                     </div>
 
-                    <!-- Overlay Text Nghệ Thuật Trên Ảnh -->
-                    <div class="gobike-gallery-art-overlay">
-                        <span class="art-brand-title"><?php echo esc_html($product->get_name()); ?></span>
-                        <span class="art-slogan">Bứt phá giới hạn • Trải nghiệm tự do</span>
-                    </div>
-
-                    <!-- Cụm Nút Tác Vụ Nổi Góc Dưới Ảnh -->
+                    <!-- Cụm Nút Nổi Góc Dưới Ảnh: Xem video & Xem 360° -->
                     <div class="gobike-gallery-floating-actions">
                         <button type="button" class="btn-float-action btn-open-video" data-video="<?php echo esc_url($video_url); ?>">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                             <span>Xem video</span>
                         </button>
                         <button type="button" class="btn-float-action btn-open-360">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
                             <span>Xem 360°</span>
                         </button>
                     </div>
@@ -191,17 +200,17 @@ function gobike_render_single_product_gallery($product) {
         <div class="gobike-quick-spec-badges">
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html(explode('–', $specs['quang_duong'])[0]); ?></strong>
-                    <span class="badge-label">Quãng đường thuần điện</span>
+                    <span class="badge-label">Quãng đường trợ lực</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html(explode('–', $specs['dong_co'])[0]); ?></strong>
@@ -211,17 +220,17 @@ function gobike_render_single_product_gallery($product) {
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html(explode('(', $specs['pin'])[0]); ?></strong>
-                    <span class="badge-label">Pin lithium cao cấp</span>
+                    <span class="badge-label">Pin Lithium</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html(explode('–', $specs['lop_xe'])[0]); ?></strong>
@@ -231,21 +240,21 @@ function gobike_render_single_product_gallery($product) {
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html($specs['trong_luong']); ?></strong>
-                    <span class="badge-label">Trọng lượng xe</span>
+                    <span class="badge-label">Trọng lượng</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <div class="badge-info">
                     <strong class="badge-val"><?php echo esc_html(explode('(', $specs['bao_hanh'])[0]); ?></strong>
-                    <span class="badge-label">Bảo hành khung sườn</span>
+                    <span class="badge-label">Phanh dầu thủy lực</span>
                 </div>
             </div>
         </div>
@@ -255,6 +264,7 @@ function gobike_render_single_product_gallery($product) {
 
 /**
  * 3. Render Cột Thông Tin Sản Phẩm & Mua Hàng (Right Column)
+ * Chuẩn 100% theo bản thiết kế Ảnh 2
  */
 function gobike_render_single_product_info($product) {
     $product_id = $product->get_id();
@@ -271,11 +281,11 @@ function gobike_render_single_product_info($product) {
     }
     ?>
     <div class="gobike-single-info-container">
-        <!-- Hàng 1: Brand Logo + Cat Badge + Wishlist + Share -->
+        <!-- Hàng 1: Brand Tag + Cat Badge + Wishlist + Share -->
         <div class="info-top-row">
             <div class="top-left-badges">
                 <span class="brand-tag-badge">
-                    <span class="brand-logo-icon">▲</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#b91c1c"><polygon points="12 2 2 22 22 22 12 2"/></svg>
                     <strong><?php echo esc_html($specs['brand']); ?></strong>
                 </span>
                 <a href="<?php echo esc_url($specs['cat_link']); ?>" class="cat-tag-badge">
@@ -312,7 +322,7 @@ function gobike_render_single_product_info($product) {
             </div>
         </div>
 
-        <!-- Hàng 4: Giá bán to nổi bật & Giảm giá -->
+        <!-- Hàng 4: Giá bán to màu xanh sạch sẽ, không đóng khung viền đứt -->
         <div class="gobike-price-block">
             <?php if (!empty($current_price)): ?>
                 <span class="price-current"><?php echo wc_price($current_price); ?></span>
@@ -377,28 +387,6 @@ function gobike_render_single_product_info($product) {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <span>Tư vấn 24/7</span>
-            </div>
-        </div>
-
-        <!-- Box Tư Vấn & Ưu Đãi Dành Riêng Cho Mobile -->
-        <div class="gobike-mobile-expert-box">
-            <div class="expert-avatar-group">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Chuyên gia GoBike" />
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Chuyên gia GoBike" />
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Chuyên gia GoBike" />
-            </div>
-            <div class="expert-text-wrap">
-                <strong>Cần tư vấn chọn xe phù hợp?</strong>
-                <span>Chuyên gia GoBike luôn sẵn sàng hỗ trợ bạn!</span>
-            </div>
-            <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-expert-chat">Chat ngay</a>
-        </div>
-
-        <div class="gobike-mobile-promo-box">
-            <div class="promo-gift-icon">🎁</div>
-            <div class="promo-content">
-                <strong>Ưu đãi hôm nay</strong>
-                <span>Tặng bộ phụ kiện cao cấp trị giá <strong>1.500.000đ</strong> khi đặt xe trong tháng</span>
             </div>
         </div>
     </div>
@@ -916,15 +904,6 @@ function gobike_render_single_product_related($product) {
                 </div>
             </div>
 
-            <!-- Khám Phá Thêm Banner Cho Mobile -->
-            <div class="gobike-mobile-explore-banner">
-                <div class="explore-content">
-                    <h4>Khám phá thêm</h4>
-                    <p>nhiều mẫu xe phù hợp với bạn!</p>
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="btn-explore-catalog">Xem danh mục xe</a>
-                </div>
-            </div>
-
             <!-- Dải 5 Cam Kết Dịch Vụ Chân Trang Chuẩn Mẫu -->
             <div class="gobike-footer-trust-strip">
                 <div class="footer-trust-item">
@@ -977,32 +956,7 @@ function gobike_render_single_product_related($product) {
                     </div>
                 </div>
             </div>
-
-            <!-- Khối Hỗ Trợ 4 Nút Nổi Bật Dành Cho Mobile (Ảnh 3) -->
-            <div class="gobike-mobile-contact-support-box">
-                <div class="support-contact-header">
-                    <h4>Khách tư vấn thêm?</h4>
-                    <p>Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn!</p>
-                </div>
-                <div class="support-contact-buttons-grid">
-                    <a href="tel:0944988699" class="btn-support-action btn-call"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg> Gọi ngay</a>
-                    <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-support-action btn-zalo"><span class="zalo-badge">Zalo</span> Zalo</a>
-                    <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-support-action btn-chatzalo">💬 Chat Zalo</a>
-                    <a href="https://m.me/gobike" target="_blank" rel="nofollow" class="btn-support-action btn-messenger">💬 Messenger</a>
-                </div>
-            </div>
         </div>
     </section>
     <?php
-}
-
-/**
- * 6. Xử lý nút [Mua ngay] tự động redirect sang trang Checkout
- */
-add_filter('woocommerce_add_to_cart_redirect', 'gobike_single_product_buy_now_redirect');
-function gobike_single_product_buy_now_redirect($url) {
-    if (isset($_REQUEST['gobike_is_buy_now']) && $_REQUEST['gobike_is_buy_now'] == '1') {
-        return wc_get_checkout_url();
-    }
-    return $url;
 }

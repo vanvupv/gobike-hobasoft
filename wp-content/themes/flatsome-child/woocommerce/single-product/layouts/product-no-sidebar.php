@@ -266,31 +266,107 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // 5. Thêm Nút [Mua Ngay] Tự Động Vào Form Giỏ Hàng
+    // 5. Tối ưu Swatches Màu Sắc & Nút Mua Ngay
+    function enhanceSwatches() {
+        $('.ux-swatches').each(function() {
+            var $swatches = $(this);
+            $swatches.find('.ux-swatch').each(function() {
+                var $swatch = $(this);
+                var val = ($swatch.data('value') || $swatch.attr('title') || $swatch.text() || '').toString().toLowerCase();
+
+                if (!$swatch.find('.ux-swatch__color').length) {
+                    var colorHex = '#64748b'; // Mặc định xám
+                    if (val.indexOf('den') !== -1 || val.indexOf('đen') !== -1) {
+                        colorHex = '#183b32';
+                        if (val.indexOf('reu') !== -1 || val.indexOf('rêu') !== -1) colorHex = '#14382c';
+                    } else if (val.indexOf('xam') !== -1 || val.indexOf('xám') !== -1 || val.indexOf('titan') !== -1) {
+                        colorHex = '#64748b';
+                    } else if (val.indexOf('trang') !== -1 || val.indexOf('trắng') !== -1 || val.indexOf('ngoc') !== -1 || val.indexOf('ngọc') !== -1) {
+                        colorHex = '#ffffff';
+                    } else if (val.indexOf('do') !== -1 || val.indexOf('đỏ') !== -1) {
+                        colorHex = '#b91c1c';
+                    } else if (val.indexOf('duong') !== -1 || val.indexOf('dương') !== -1 || val.indexOf('bien') !== -1 || val.indexOf('biển') !== -1) {
+                        colorHex = '#1d4ed8';
+                    } else if (val.indexOf('reu') !== -1 || val.indexOf('rêu') !== -1 || val.indexOf('la') !== -1) {
+                        colorHex = '#005a36';
+                    } else if (val.indexOf('cam') !== -1) {
+                        colorHex = '#ea580c';
+                    } else if (val.indexOf('vang') !== -1 || val.indexOf('vàng') !== -1) {
+                        colorHex = '#eab308';
+                    }
+
+                    var $colorDot = $('<span class="ux-swatch__color" style="background-color:' + colorHex + '"></span>');
+                    $swatch.prepend($colorDot);
+                }
+            });
+        });
+    }
+
     function enhanceAddToCartForm() {
         var $form = $('form.cart');
         if (!$form.length) return;
 
-        // Nếu chưa có nút Mua ngay trong form, bổ sung nút Mua ngay
-        if (!$form.find('.btn-gobike-buy-now').length) {
-            var $submitBtn = $form.find('button[type="submit"].single_add_to_cart_button');
-            if ($submitBtn.length) {
-                // Đổi text nút thêm giỏ cho sắc nét
-                $submitBtn.addClass('btn-gobike-add-cart').html('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-2px;"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Thêm vào giỏ hàng');
-                
-                var $buyNowBtn = $('<button type="button" class="button alt btn-gobike-buy-now"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Mua ngay</button>');
-                $submitBtn.after($buyNowBtn);
+        // Xóa triệt để promotion-info nếu bị chèn bởi hook cũ
+        $('.promotion-info').remove();
 
-                $buyNowBtn.on('click', function(e) {
-                    e.preventDefault();
-                    if (!$form.find('input[name="gobike_is_buy_now"]').length) {
-                        $form.append('<input type="hidden" name="gobike_is_buy_now" value="1" />');
-                    }
-                    $submitBtn.trigger('click');
-                });
-            }
+        // Đảm bảo nút [Thêm vào giỏ hàng] có đầy đủ SVG icon
+        var $submitBtn = $form.find('button[type="submit"].single_add_to_cart_button');
+        if ($submitBtn.length && !$submitBtn.find('svg').length) {
+            $submitBtn.addClass('btn-gobike-add-cart').html('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-2px;"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> <span>Thêm vào giỏ hàng</span>');
         }
+
+        // Bổ sung nút Mua Ngay nếu template chưa có
+        if (!$form.find('.btn-gobike-buy-now').length && $submitBtn.length) {
+            var $buyNowBtn = $('<button type="button" class="button alt btn-gobike-buy-now"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span>Mua ngay</span></button>');
+            $submitBtn.after($buyNowBtn);
+        }
+
+        enhanceSwatches();
     }
+
+    // Xử lý Click Nút [Mua Ngay]
+    $(document).on('click', '.btn-gobike-buy-now', function(e) {
+        e.preventDefault();
+        var $form = $(this).closest('form.cart');
+        if (!$form.length) $form = $('form.cart');
+        var $submitBtn = $form.find('button[type="submit"].single_add_to_cart_button');
+
+        if ($submitBtn.hasClass('disabled') || $submitBtn.is(':disabled')) {
+            $submitBtn.trigger('click');
+            return false;
+        }
+
+        if (!$form.find('input[name="gobike_is_buy_now"]').length) {
+            $form.append('<input type="hidden" name="gobike_is_buy_now" value="1" />');
+        }
+        if (!$form.find('input[name="is_buy_now"]').length) {
+            $form.append('<input type="hidden" name="is_buy_now" value="1" />');
+        }
+        $submitBtn.trigger('click');
+    });
+
+    // Xử lý Tăng Giảm Số Lượng mượt mà (Đồng bộ nút [-] và [+])
+    $(document).on('click', '.gobike-qty-stock-row .quantity .button.minus, .gobike-add-to-cart-wrapper .quantity .button.minus', function(e) {
+        e.preventDefault();
+        var $qty = $(this).closest('.quantity').find('input.qty');
+        var current = parseFloat($qty.val()) || 1;
+        var min = parseFloat($qty.attr('min')) || 1;
+        var step = parseFloat($qty.attr('step')) || 1;
+        if (current > min) {
+            $qty.val(current - step).trigger('change');
+        }
+    });
+
+    $(document).on('click', '.gobike-qty-stock-row .quantity .button.plus, .gobike-add-to-cart-wrapper .quantity .button.plus', function(e) {
+        e.preventDefault();
+        var $qty = $(this).closest('.quantity').find('input.qty');
+        var current = parseFloat($qty.val()) || 1;
+        var max = parseFloat($qty.attr('max'));
+        var step = parseFloat($qty.attr('step')) || 1;
+        if (!max || current < max) {
+            $qty.val(current + step).trigger('change');
+        }
+    });
 
     enhanceAddToCartForm();
     $(document).ajaxComplete(enhanceAddToCartForm);

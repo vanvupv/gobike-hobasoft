@@ -621,74 +621,17 @@ function gobike_format_variation_color_name($term)
     return $term;
 }
 
-// Add text before add to cart button
-add_action('woocommerce_before_single_variation', 'xt_before_single_variation');
-function xt_before_single_variation()
-{
-    global $post;
-    $promotion_product = get_field('promotion_product');
-    $hotsale_product = get_field('hotsale_product');
-    $shipping = get_post_meta($post->ID, 'shipping', true);
-    $select_shop_selected_option = get_field('select_shop');
-    $rows = get_field('product_linked');
-    if (get_field('installment') == 1) {
-        echo '<span class="installment">Trả góp 0%</span>';
-    }
-    if ($rows) {
-        echo '<div class="linked-product">';
-        foreach ($rows as $row) {
-            $link_linked_product = $row['link_linked_product'];
-            $name_linked_product = $row['name_linked_product'];
-            $price_linked_product = number_format($row['price_linked_product'], 0, ',', '.');
-            echo '<a class="item-linked-product" href="' . $link_linked_product . '">';
-            echo '<span>' . $name_linked_product . '</span>';
-            echo '<strong>' . $price_linked_product . ' ₫</strong>';
-            echo '</a>';
-        }
-        echo '</div>'; // linked-product
-    }
+// Gỡ bỏ khối promotion-info và quickbuy cũ để tránh xô lệch giao diện chuẩn
+// (Đã tích hợp trực tiếp vào template single.php và variation-add-to-cart-button.php chuẩn)
+// add_action('woocommerce_before_single_variation', 'xt_before_single_variation');
+// add_action('woocommerce_before_add_to_cart_form', 'xt_before_add_to_cart_form');
+// add_action('woocommerce_after_add_to_cart_button', 'quickbuy_after_addtocart_button');
 
-    echo '<div class="promotion-info">';
-    if ($hotsale_product) {
-        echo '<div class="hotsale-product">' . $hotsale_product . '</div>';
-    }
-    if ($promotion_product) {
-        echo '<div class="promotion-product"><div class="promotion-icon"><i class="icon-gift"></i> Khuyến mãi</div><div>' . $promotion_product . '</div></div>';
-    }
-    echo '</div>'; // End promotion-info
-}
-
-// Add text before add to cart form
-add_action('woocommerce_before_add_to_cart_form', 'xt_before_add_to_cart_form');
-function xt_before_add_to_cart_form()
-{
-    global $post;
-    $promotion_product = get_field('promotion_product');
-    $hotsale_product = get_field('hotsale_product');
-    $shipping = get_post_meta($post->ID, 'shipping', true);
-    $select_shop_selected_option = get_field('select_shop');
-    $rows = get_field('product_linked');
-    if (get_field('installment') == 1) {
-        echo '<span class="installment">Trả góp 0%</span>';
-    }
-}
-
-
-/* Add quick buy button go to checkout after click */
-add_action('woocommerce_after_add_to_cart_button', 'quickbuy_after_addtocart_button');
-function quickbuy_after_addtocart_button()
-{
-    global $product;
-    ?>
-    <button type="button" class="button buy_now_button"><?php _e('Mua ngay', 'ntx'); ?></button>
-    <input type="hidden" name="is_buy_now" class="is_buy_now" value="0" autocomplete="off" />
-    <?php
-}
 add_filter('woocommerce_add_to_cart_redirect', 'redirect_to_checkout');
 function redirect_to_checkout($redirect_url)
 {
-    if (isset($_REQUEST['is_buy_now']) && $_REQUEST['is_buy_now']) {
-        $redirect_url = wc_get_cart_url();
+    if ((isset($_REQUEST['is_buy_now']) && $_REQUEST['is_buy_now']) || (isset($_REQUEST['gobike_is_buy_now']) && $_REQUEST['gobike_is_buy_now'])) {
+        $redirect_url = wc_get_checkout_url();
     }
     return $redirect_url;
 }
