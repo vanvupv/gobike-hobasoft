@@ -36,7 +36,6 @@ if ( $max_value && $min_value === $max_value ) {
 	}
 	?>
 	<div class="<?php echo implode( ' ', $wrapper_classes ); ?>">
-		<span>Số lượng</span>
 		<?php echo $qty_start; ?>
 		<?php do_action( 'woocommerce_before_quantity_input_field' ); ?>
 		<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $label ); ?></label>

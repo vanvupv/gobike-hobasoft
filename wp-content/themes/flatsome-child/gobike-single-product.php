@@ -196,65 +196,65 @@ function gobike_render_single_product_gallery($product) {
             </div>
         </div>
 
-        <!-- Dải 6 Thông Số Nhanh Dưới Gallery (Quick Spec Badges) -->
+        <!-- Dải 4 Thông Số Nhanh Dưới Gallery (Quick Spec Badges) -->
+        <?php
+        // Xử lý giá trị gọn gàng, có đầy đủ đơn vị
+        $qd_raw = $specs['quang_duong'];
+        $qd_display = trim(explode('(', $qd_raw)[0]);
+        if (!str_contains($qd_display, 'km')) {
+            $qd_display .= ' km';
+        }
+
+        $dc_raw = $specs['dong_co'];
+        $dc_display = trim(explode('–', $dc_raw)[0]);
+        if (!str_contains($dc_display, 'W') && !str_contains($dc_display, 'w')) {
+            $dc_display .= ' 250W';
+        }
+
+        $pin_raw = $specs['pin'];
+        $pin_display = trim(explode('(', $pin_raw)[0]);
+
+        $lop_raw = $specs['lop_xe'];
+        $lop_display = trim(explode('–', $lop_raw)[0]);
+        ?>
         <div class="gobike-quick-spec-badges">
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html(explode('–', $specs['quang_duong'])[0]); ?></strong>
+                    <strong class="badge-val"><?php echo esc_html($qd_display); ?></strong>
                     <span class="badge-label">Quãng đường trợ lực</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
                 <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html(explode('–', $specs['dong_co'])[0]); ?></strong>
+                    <strong class="badge-val"><?php echo esc_html($dc_display); ?></strong>
                     <span class="badge-label">Động cơ mạnh mẽ</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
                 </div>
                 <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html(explode('(', $specs['pin'])[0]); ?></strong>
-                    <span class="badge-label">Pin Lithium</span>
+                    <strong class="badge-val"><?php echo esc_html($pin_display); ?></strong>
+                    <span class="badge-label">Pin Lithium cao cấp</span>
                 </div>
             </div>
 
             <div class="spec-badge-item">
                 <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
                 <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html(explode('–', $specs['lop_xe'])[0]); ?></strong>
+                    <strong class="badge-val"><?php echo esc_html($lop_display); ?></strong>
                     <span class="badge-label">Lốp xe đa địa hình</span>
-                </div>
-            </div>
-
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html($specs['trong_luong']); ?></strong>
-                    <span class="badge-label">Trọng lượng</span>
-                </div>
-            </div>
-
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html(explode('(', $specs['bao_hanh'])[0]); ?></strong>
-                    <span class="badge-label">Phanh dầu thủy lực</span>
                 </div>
             </div>
         </div>

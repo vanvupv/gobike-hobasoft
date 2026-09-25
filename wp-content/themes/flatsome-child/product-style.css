@@ -529,14 +529,15 @@ form.variations_form {
 }
 
 .ux-swatch:after,
-.ux-swatch:before {
+.ux-swatch:before,
+.ux-swatch::after,
+.ux-swatch::before {
     display: none !important;
+    content: none !important;
 }
 
-/* Vòng tròn màu chuẩn 32px */
-.ux-swatch .ux-swatch__color,
-.ux-swatch::before {
-    content: '' !important;
+/* Vòng tròn màu chuẩn 32px - Duy nhất 1 vòng tròn */
+.ux-swatch .ux-swatch__color {
     display: block !important;
     width: 32px !important;
     height: 32px !important;
@@ -552,52 +553,39 @@ form.variations_form {
 }
 
 /* Tự động map màu sắc theo tên hoặc slug nếu plugin không sinh style */
-.ux-swatch[data-value*="den"]::before,
-.ux-swatch[data-name*="đen"]::before,
 .ux-swatch[data-value*="den"] .ux-swatch__color,
 .ux-swatch[data-name*="đen"] .ux-swatch__color {
     background-color: #183b32 !important;
 }
 
-.ux-swatch[data-value*="xam"]::before,
-.ux-swatch[data-name*="xám"]::before,
 .ux-swatch[data-value*="xam"] .ux-swatch__color,
 .ux-swatch[data-name*="xám"] .ux-swatch__color {
     background-color: #64748b !important;
 }
 
-.ux-swatch[data-value*="trang"]::before,
-.ux-swatch[data-name*="trắng"]::before,
 .ux-swatch[data-value*="trang"] .ux-swatch__color,
 .ux-swatch[data-name*="trắng"] .ux-swatch__color {
     background-color: #ffffff !important;
     border-color: #94a3b8 !important;
 }
 
-.ux-swatch[data-value*="do"]::before,
-.ux-swatch[data-name*="đỏ"]::before,
 .ux-swatch[data-value*="do"] .ux-swatch__color,
 .ux-swatch[data-name*="đỏ"] .ux-swatch__color {
     background-color: #b91c1c !important;
 }
 
-.ux-swatch[data-value*="duong"]::before,
-.ux-swatch[data-name*="dương"]::before,
 .ux-swatch[data-value*="duong"] .ux-swatch__color,
 .ux-swatch[data-name*="dương"] .ux-swatch__color {
     background-color: #1d4ed8 !important;
 }
 
-.ux-swatch[data-value*="reu"]::before,
-.ux-swatch[data-name*="rêu"]::before,
 .ux-swatch[data-value*="reu"] .ux-swatch__color,
 .ux-swatch[data-name*="rêu"] .ux-swatch__color {
     background-color: #005a36 !important;
 }
 
 /* Hiệu ứng viền active khi chọn biến thể */
-.ux-swatch.selected .ux-swatch__color,
-.ux-swatch.selected::before {
+.ux-swatch.selected .ux-swatch__color {
     border-color: #005a36 !important;
     outline: 2.5px solid #005a36 !important;
     outline-offset: 2.5px !important;
@@ -2580,42 +2568,62 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     box-shadow: none !important;
 }
 
-/* Dải 6 thông số nhanh dưới Gallery (chuẩn Ảnh 2) */
+/* Dải 4 thông số nhanh dưới Gallery (chuẩn 4 khối) */
 .gobike-quick-spec-badges {
     margin-top: 14px;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 12px !important;
     background: #ffffff;
-    padding: 12px 6px;
+    padding: 14px 10px;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
     box-shadow: none !important;
 }
 
 .spec-badge-item {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
 }
 
 .spec-badge-item .badge-icon {
     color: #005a36;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spec-badge-item .badge-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.spec-badge-item .badge-info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 3px !important;
+    width: 100% !important;
 }
 
 .spec-badge-item .badge-val {
-    font-size: 12px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.25;
+    display: block !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
 }
 
 .spec-badge-item .badge-label {
-    font-size: 10.5px;
-    color: #64748b;
-    line-height: 1.2;
+    display: block !important;
+    font-size: 11.5px !important;
+    color: #64748b !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
 }
 
 /* 4.3. Cột Phải: Thông Tin Sản Phẩm & Mua Hàng */
@@ -2834,6 +2842,24 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     padding: 0 !important;
     box-shadow: none !important;
     box-sizing: border-box !important;
+}
+
+/* Ẩn hoàn toàn chữ "Số lượng" thừa lặp lại bên trong ô input */
+.gobike-qty-stock-row .quantity > span,
+.gobike-add-to-cart-wrapper .quantity > span,
+.quantity.buttons_added > span:first-child,
+.gobike-qty-stock-row .quantity label,
+.gobike-add-to-cart-wrapper .quantity label,
+.gobike-qty-stock-row .quantity .screen-reader-text,
+.gobike-add-to-cart-wrapper .quantity .screen-reader-text {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 .gobike-qty-stock-row .quantity .button.minus,

@@ -274,6 +274,11 @@ jQuery(document).ready(function($) {
                 var $swatch = $(this);
                 var val = ($swatch.data('value') || $swatch.attr('title') || $swatch.text() || '').toString().toLowerCase();
 
+                // Nếu có nhiều hơn 1 chấm màu, xóa các chấm thừa
+                if ($swatch.find('.ux-swatch__color').length > 1) {
+                    $swatch.find('.ux-swatch__color').slice(1).remove();
+                }
+
                 if (!$swatch.find('.ux-swatch__color').length) {
                     var colorHex = '#64748b'; // Mặc định xám
                     if (val.indexOf('den') !== -1 || val.indexOf('đen') !== -1) {
@@ -308,6 +313,10 @@ jQuery(document).ready(function($) {
 
         // Xóa triệt để promotion-info nếu bị chèn bởi hook cũ
         $('.promotion-info').remove();
+
+        // Xóa chữ "Số lượng" dư thừa lặp lại bên trong ô quantity nếu có
+        $form.find('.quantity > span').remove();
+        $('.gobike-qty-stock-row .quantity > span').remove();
 
         // Đảm bảo nút [Thêm vào giỏ hàng] có đầy đủ SVG icon
         var $submitBtn = $form.find('button[type="submit"].single_add_to_cart_button');
