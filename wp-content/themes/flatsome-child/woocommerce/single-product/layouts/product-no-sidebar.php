@@ -1,389 +1,304 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * Product Layout: No Sidebar (Customized for GoBike)
+ * Chuẩn hóa 100% theo bản thiết kế Ảnh 1 (Desktop) và Ảnh 3 (Mobile)
+ * 
+ * Section 1: Swiper Gallery + Quick Specs + Product Info (50% - 50%)
+ * Section 2: 5 Tabs Sticky (Mô tả, Thông số, Media, Đánh giá, Hỏi đáp)
+ * Section 3: Sản phẩm liên quan (Tabs phân loại + Swiper Carousel 5 cột) + Cam kết
+ * 
+ * @package Flatsome-Child
+ */
+
+if (!defined('ABSPATH')) {
     exit;
 }
+
 global $product, $post;
-		$review_ratings_enabled = wc_review_ratings_enabled();
-		if ( ! $review_ratings_enabled ) {
-			return;
-		}
-		$rating_count = $product->get_rating_count();
-		$review_count = $product->get_review_count();
-		$average      = $product->get_average_rating();
-		$id = $product->get_id();
- 		$upsells = $product->get_upsells();
+
+if (empty($product) || !is_a($product, 'WC_Product')) {
+    $product = wc_get_product(get_the_ID());
+}
+
+if (!$product) {
+    return;
+}
 ?>
-<div class="product-container">
-	<div class="product-main">
-		<div class="row pdb-0">
-			<div class="col medium-12 header-title">
-				<h1><?php the_title(); ?></h1>
-				<div class="meta-title">
-					<?php echo flatsome_get_rating_html( $average, $rating_count ); ?>
-					<?php if ( get_theme_mod( 'product_info_review_count' ) && get_theme_mod( 'product_info_review_count_style' ) != 'tooltip' ) : ?>
-					<?php if ( comments_open() ) : ?>
-					<a href="#reviews" class="woocommerce-review-link" rel="nofollow"><?php printf( _n( '%s Đánh Giá', '%s Đánh Giá', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?></a>
-					<?php endif ?>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-		<div class="row content-row mb-0">
-			<div class="product-gallery large-4 col">
-				<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
-			</div>
-			<div class="product-info summary col-fit col entry-summary large-5">
-				<?php do_action( 'woocommerce_single_product_summary' ); ?>
-				<script type="text/javascript">
-					jQuery(document).ready(function () {
-						jQuery(document).ready(function(event) {
-							var m = jQuery('.price.product-page-price ').html();
-							jQuery('.single_variation_wrap').change(function(){
-								jQuery('.woocommerce-variation-price').hide();
-								var p = jQuery('.single_variation_wrap').find('.price').html();
-								jQuery('.price.product-page-price').html(p);
-							});
-							jQuery('body').on('click','.reset_variations',function(event) {
-								jQuery('.price.product-page-price').html(m);
-							});
-						});
-					});
-				</script>
-			</div>
-			<div class="col large-3 col-support-single">
-				<?php echo gobike_render_single_product_support_box(); ?>
-			</div>
-		</div>
-	</div>
-	
-  <div class="product-footer">
-  	<div class="container">
-		<div class="row row-small content-product-page">
-			<div class="col large-9 medium-8 small-12 product-footer-left">
-    		<?php
-//     			do_action( 'woocommerce_after_single_product_summary' );
-    		?>
-				<div class="product-page-sections">
-					<div class="product-section-header">
-						<span class="product-section-title active">THÔNG TIN SẢN PHẨM</span>
-					</div>
-					<div class="product-section">
-						<div class="entry-content">
-							<?php the_content() ;?>
-						</div>
-						<div class="product-footer-showmore" style="display: none;"><a title="Đọc thêm" href="javascript:void(0);" class="button_readmore">Xem thêm <i class="fa fa-angle-down"></i></a></div>
-					</div>
-					<div class="product-reviews">
-					<?php
-					$product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
-					if ( ! empty( $product_tabs ) ) : ?>
-						<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-						<div class="row">
-							<div class="large-12 col pb-0 mb-0">
-								<div class="panel entry-content">
-									<?php
-									if ( isset( $product_tab['callback'] ) ) {
-										call_user_func( $product_tab['callback'], $key, $product_tab );
-									}
-									?>
-								</div>
-							</div>
-						</div>
-						<?php endforeach; ?>
-					<?php endif; ?>
-					
-					</div>
-					
-				</div>
-			</div>
-			<div class="col large-3 medium-4 small-12 content-product-footer-right">
-				<div class="product-footer-right">
-					<?php $thong_so_ky_thuat = get_field( 'thong_so_ky_thuat' ); 
-						if ( $thong_so_ky_thuat )  {
-					?>
-						<h3 class="spec-title">Thông số kỹ thuật</h3>
-						<div class="table spec-table-wrapper">
-							<?php the_field( 'thong_so_ky_thuat' ); ?>
-							<a id="more-specific" class="btn-more-specific" href="javascript:void(0);" style="display: none;">Xem cấu hình chi tiết</a>
-						</div>
-					<?php } ?>
-				</div>
-			</div>
-		</div>
 
-		<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			// 1. Xử lý "Xem thêm" Thông tin sản phẩm (chỉ hiện khi nội dung vượt quá chiều cao quy định)
-			var $productSection = $(".product-page-sections .product-section");
-			var $entryContent = $productSection.find(".entry-content");
-			var $showMoreWrap = $productSection.find(".product-footer-showmore");
-			var $btnReadMore = $showMoreWrap.find(".button_readmore");
-			var limitHeight = 500; // Ngưỡng chiều cao (px) để kích hoạt thu gọn / xem thêm
-
-			function updateProductReadmore() {
-				if (!$productSection.length || !$entryContent.length) return;
-				if ($productSection.hasClass("active")) return; // Giữ nguyên trạng thái nếu người dùng đang mở rộng
-
-				var actualHeight = $entryContent[0] ? $entryContent[0].scrollHeight : 0;
-
-				if (actualHeight > limitHeight + 35) {
-					$productSection.addClass("has-readmore");
-					$showMoreWrap.show();
-					$btnReadMore.html('Xem thêm <i class="fa fa-angle-down"></i>');
-				} else {
-					$productSection.removeClass("has-readmore active");
-					$showMoreWrap.hide();
-				}
-			}
-
-			// Kiểm tra khi DOM ready
-			updateProductReadmore();
-
-			// Lắng nghe khi toàn bộ ảnh trong nội dung tải xong
-			$entryContent.find("img").on("load", function() {
-				updateProductReadmore();
-			});
-
-			// Lắng nghe window load
-			$(window).on("load", function() {
-				updateProductReadmore();
-			});
-
-			// Tự động cập nhật nếu layout/hình ảnh thay đổi kích thước
-			if (window.ResizeObserver && $entryContent[0]) {
-				var ro = new ResizeObserver(function() {
-					updateProductReadmore();
-				});
-				ro.observe($entryContent[0]);
-			}
-
-			// Xử lý sự kiện click nút Xem thêm / Thu gọn
-			$btnReadMore.on("click", function(e){
-				e.preventDefault();
-				if ($productSection.hasClass("active")) {
-					$productSection.removeClass("active").addClass("has-readmore");
-					$(this).html('Xem thêm <i class="fa fa-angle-down"></i>');
-					$("html, body").animate({
-						scrollTop: $productSection.offset().top - 80
-					}, 300);
-				} else {
-					$productSection.addClass("active").removeClass("has-readmore");
-					$(this).html('Thu gọn <i class="fa fa-angle-up"></i>');
-				}
-			});
-
-			// 2. Xử lý "Xem cấu hình chi tiết" Thông số kỹ thuật (chỉ hiện khi số hàng > 10)
-			var $specWrapper = $(".spec-table-wrapper");
-			if ($specWrapper.length) {
-				var $btnSpec = $("#more-specific");
-				var maxVisibleRows = 10;
-
-				function updateSpecTable() {
-					var rowCount = $specWrapper.find("table tr").length;
-					if (rowCount <= maxVisibleRows) {
-						$btnSpec.hide();
-						$specWrapper.addClass("no-more");
-					} else {
-						$btnSpec.show();
-						$specWrapper.removeClass("no-more");
-					}
-				}
-
-				updateSpecTable();
-				$(window).on("load", updateSpecTable);
-
-				$btnSpec.on("click", function(e){
-					e.preventDefault();
-					$specWrapper.toggleClass("expanded");
-					if ($specWrapper.hasClass("expanded")) {
-						$(this).text("Thu gọn cấu hình");
-					} else {
-						$(this).text("Xem cấu hình chi tiết");
-						$("html, body").animate({
-							scrollTop: $specWrapper.offset().top - 80
-						}, 300);
-					}
-				});
-			}
-		});
-		</script>
+<div class="gobike-single-product-page" id="product-<?php the_ID(); ?>" <?php wc_product_class('gobike-product-scope', $product); ?>>
+    
+    <!-- 1. BREADCRUMB ĐIỀU HƯỚNG PHÂN CẤP -->
+    <div class="gobike-product-breadcrumb-wrap">
+        <div class="container">
+            <?php
+            woocommerce_breadcrumb(array(
+                'delimiter'   => ' <span class="bc-sep">/</span> ',
+                'wrap_before' => '<nav class="gobike-breadcrumb" aria-label="Breadcrumb">',
+                'wrap_after'  => '</nav>',
+                'before'      => '<span class="bc-item">',
+                'after'       => '</span>',
+                'home'        => _x('Trang chủ', 'breadcrumb', 'woocommerce'),
+            ));
+            ?>
+        </div>
     </div>
-  </div>
-  
-  <?php
-  // Khối Video Trải Nghiệm Thực Tế cho sản phẩm (ACF hoặc CPT Video Review liên kết)
-  if ( function_exists( 'gobike_render_single_product_videos' ) && isset( $product ) ) {
-      echo gobike_render_single_product_videos( $product->get_id() );
-  }
-  ?>
 
-  <div class="container">
-	<div class="gobike-related-wrapper">
+    <!-- THÔNG BÁO WOOCOMMERCE (NẾU CÓ) -->
+    <div class="container">
+        <?php wc_print_notices(); ?>
+    </div>
 
-		<div class="gobike-related-header">
-			<div class="gobike-related-title-box">
-				<?php if ( ! empty( $upsells ) ) : ?>
-					<button type="button" class="gobike-related-tab-btn active" data-target="#RelatedSwiperBox">SẢN PHẨM CÙNG LOẠI</button>
-					<button type="button" class="gobike-related-tab-btn" data-target="#UpsellSwiperBox">PHỤ KIỆN MUA CÙNG</button>
-				<?php else : ?>
-					<span class="gobike-related-title">SẢN PHẨM CÙNG LOẠI</span>
-				<?php endif; ?>
-			</div>
-			<div class="gobike-related-nav">
-				<button type="button" class="gobike-nav-btn gobike-btn-prev" aria-label="Trước">
-					<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-				</button>
-				<button type="button" class="gobike-nav-btn gobike-btn-next" aria-label="Sau">
-					<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-				</button>
-			</div>
-		</div>
+    <!-- 2. SECTION 1: GALLERY & THÔNG TIN MUA HÀNG (50% - 50%) -->
+    <section class="gobike-product-hero-section">
+        <div class="container">
+            <div class="row row-main-product align-top">
+                <!-- Cột Trái (50%): Gallery Slider + Quick Specs -->
+                <div class="col large-6 medium-12 small-12 col-gallery-side">
+                    <?php 
+                    if (function_exists('gobike_render_single_product_gallery')) {
+                        gobike_render_single_product_gallery($product);
+                    }
+                    ?>
+                </div>
 
-		<?php if ( ! empty( $upsells ) ) : ?>
-		<div id="UpsellSwiperBox" class="gobike-swiper-box" style="display:none;">
-			<div class="swiper-container gobike-related-swiper gobike-upsell-swiper">
-				<div class="swiper-wrapper">
-					<?php
-					foreach ( $upsells as $upsell_id ) :
-						$post_object = get_post( $upsell_id );
-						if ( ! $post_object ) continue;
-						setup_postdata( $GLOBALS['post'] =& $post_object );
-					?>
-						<div class="swiper-slide">
-							<?php wc_get_template_part( 'content', 'product' ); ?>
-						</div>
-					<?php endforeach; wp_reset_postdata(); ?>
-				</div>
-			</div>
-		</div>
-		<?php endif; ?>
+                <!-- Cột Phải (50%): Thông tin chi tiết + Nút Mua ngay -->
+                <div class="col large-6 medium-12 small-12 col-info-side">
+                    <?php 
+                    if (function_exists('gobike_render_single_product_info')) {
+                        gobike_render_single_product_info($product);
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<div id="RelatedSwiperBox" class="gobike-swiper-box">
-			<?php
-			global $product;
-			$related_ids = array();
-			if ( $product ) {
-				$related_ids = wc_get_related_products( $product->get_id(), 15, $product->get_upsell_ids() );
-				if ( count( $related_ids ) < 5 ) {
-					$cats = $product->get_category_ids();
-					if ( ! empty( $cats ) ) {
-						$more_ids = wc_get_products( array(
-							'category' => $cats,
-							'exclude'  => array( $product->get_id() ),
-							'limit'    => 15,
-							'return'   => 'ids',
-						) );
-						$related_ids = array_unique( array_merge( $related_ids, $more_ids ) );
-					}
-				}
-			}
-			if ( ! empty( $related_ids ) ) :
-			?>
-			<div class="swiper-container gobike-related-swiper gobike-main-related-swiper">
-				<div class="swiper-wrapper">
-					<?php
-					foreach ( $related_ids as $rel_id ) :
-						$post_object = get_post( $rel_id );
-						if ( ! $post_object ) continue;
-						setup_postdata( $GLOBALS['post'] =& $post_object );
-					?>
-						<div class="swiper-slide">
-							<?php wc_get_template_part( 'content', 'product' ); ?>
-						</div>
-					<?php endforeach; wp_reset_postdata(); ?>
-				</div>
-			</div>
-			<?php endif; ?>
-		</div>
+    <!-- 3. SECTION 2: 5 TABS NỘI DUNG CHI TIẾT (STICKY TABS) -->
+    <?php 
+    if (function_exists('gobike_render_single_product_tabs')) {
+        gobike_render_single_product_tabs($product);
+    }
+    ?>
 
-		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-		<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			function initSwipers() {
-				if (typeof Swiper === 'undefined') return;
+    <!-- 4. SECTION 3: SẢN PHẨM LIÊN QUAN & CAM KẾT CHÂN TRANG -->
+    <?php 
+    if (function_exists('gobike_render_single_product_related')) {
+        gobike_render_single_product_related($product);
+    }
+    ?>
 
-				var swiperRelated = new Swiper('.gobike-main-related-swiper', {
-					slidesPerView: 5,
-					spaceBetween: 15,
-					watchOverflow: true,
-					navigation: {
-						nextEl: '.gobike-btn-next',
-						prevEl: '.gobike-btn-prev',
-					},
-					breakpoints: {
-						0: {
-							slidesPerView: 2,
-							spaceBetween: 10
-						},
-						550: {
-							slidesPerView: 3,
-							spaceBetween: 12
-						},
-						850: {
-							slidesPerView: 4,
-							spaceBetween: 14
-						},
-						1050: {
-							slidesPerView: 5,
-							spaceBetween: 15
-						}
-					}
-				});
+    <!-- POPUP MODAL XEM VIDEO YOUTUBE -->
+    <div class="gobike-video-modal-overlay" id="gobikeVideoModal" style="display: none;">
+        <div class="video-modal-box">
+            <button type="button" class="btn-close-modal" id="btnCloseVideoModal" aria-label="Đóng">&times;</button>
+            <div class="video-iframe-container">
+                <iframe id="gobikeModalIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
-				if ($('.gobike-upsell-swiper').length) {
-					var swiperUpsell = new Swiper('.gobike-upsell-swiper', {
-						slidesPerView: 5,
-						spaceBetween: 15,
-						watchOverflow: true,
-						navigation: {
-							nextEl: '.gobike-btn-next',
-							prevEl: '.gobike-btn-prev',
-						},
-						breakpoints: {
-							0: {
-								slidesPerView: 2,
-								spaceBetween: 10
-							},
-							550: {
-								slidesPerView: 3,
-								spaceBetween: 12
-							},
-							850: {
-								slidesPerView: 4,
-								spaceBetween: 14
-							},
-							1050: {
-								slidesPerView: 5,
-								spaceBetween: 15
-							}
-						}
-					});
-				}
-
-				$('.gobike-related-tab-btn').on('click', function(e) {
-					e.preventDefault();
-					var target = $(this).data('target');
-					$('.gobike-related-tab-btn').removeClass('active');
-					$(this).addClass('active');
-					$('.gobike-swiper-box').hide();
-					$(target).show();
-					if (target === '#RelatedSwiperBox' && swiperRelated) {
-						swiperRelated.update();
-					} else if (target === '#UpsellSwiperBox' && typeof swiperUpsell !== 'undefined') {
-						swiperUpsell.update();
-					}
-				});
-			}
-
-			if (typeof Swiper === 'undefined') {
-				$.getScript('https://unpkg.com/swiper/swiper-bundle.min.js', function() {
-					initSwipers();
-				});
-			} else {
-				initSwipers();
-			}
-		});
-		</script>
-	</div>
-  </div>
 </div>
+
+<!-- JAVASCRIPT ĐIỀU KHIỂN SINGLE PRODUCT (SWIPER, TABS, FAQ, BUY NOW) -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    // 1. Khởi tạo Swiper Gallery (Main Slider + Thumbs)
+    function initGallerySwiper() {
+        if (typeof Swiper === 'undefined') return;
+
+        var thumbsSwiper = new Swiper('.gobike-gallery-thumbs-swiper', {
+            direction: 'vertical',
+            slidesPerView: 5,
+            spaceBetween: 10,
+            watchSlidesProgress: true,
+            breakpoints: {
+                0: {
+                    direction: 'horizontal',
+                    slidesPerView: 4,
+                    spaceBetween: 8
+                },
+                768: {
+                    direction: 'vertical',
+                    slidesPerView: 5,
+                    spaceBetween: 10
+                }
+            }
+        });
+
+        var mainSwiper = new Swiper('.gobike-gallery-main-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: false,
+            navigation: {
+                nextEl: '.gobike-gal-next',
+                prevEl: '.gobike-gal-prev',
+            },
+            pagination: {
+                el: '.gobike-gal-pagination',
+                clickable: true,
+            },
+            thumbs: {
+                swiper: thumbsSwiper,
+            }
+        });
+
+        // Click vào thumb cập nhật class active
+        $('.gobike-gallery-thumbs-swiper .thumb-item').on('click', function() {
+            $('.gobike-gallery-thumbs-swiper .thumb-item').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Khởi tạo Carousel Sản Phẩm Liên Quan
+        var relatedSwiper = new Swiper('.gobike-related-carousel-swiper', {
+            slidesPerView: 5,
+            spaceBetween: 15,
+            watchOverflow: true,
+            navigation: {
+                nextEl: '.rel-next',
+                prevEl: '.rel-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                },
+                550: {
+                    slidesPerView: 3,
+                    spaceBetween: 12
+                },
+                850: {
+                    slidesPerView: 4,
+                    spaceBetween: 14
+                },
+                1100: {
+                    slidesPerView: 5,
+                    spaceBetween: 15
+                }
+            }
+        });
+    }
+
+    if (typeof Swiper === 'undefined') {
+        $.getScript('https://unpkg.com/swiper/swiper-bundle.min.js', function() {
+            initGallerySwiper();
+        });
+    } else {
+        initGallerySwiper();
+    }
+
+    // 2. Chuyển đổi 5 Tabs nội dung
+    $('.gobike-tabs-nav-list .tab-nav-item a').on('click', function(e) {
+        e.preventDefault();
+        var targetId = $(this).attr('href');
+        
+        $('.gobike-tabs-nav-list .tab-nav-item').removeClass('active');
+        $(this).parent('.tab-nav-item').addClass('active');
+
+        $('.gobike-tab-panel').removeClass('active');
+        $(targetId).addClass('active');
+
+        // Cuộn mượt mà đến đầu nội dung tab
+        $('html, body').animate({
+            scrollTop: $('#gobikeProductTabsSection').offset().top - 70
+        }, 300);
+    });
+
+    // 3. Đóng mở Accordion FAQ
+    $('.faq-item .faq-question').on('click', function() {
+        var $item = $(this).closest('.faq-item');
+        var $answer = $item.find('.faq-answer');
+        var $icon = $(this).find('.faq-icon');
+
+        if ($item.hasClass('open')) {
+            $answer.slideUp(250);
+            $item.removeClass('open');
+            $icon.text('+');
+        } else {
+            $('.faq-item .faq-answer').slideUp(250);
+            $('.faq-item').removeClass('open');
+            $('.faq-item .faq-icon').text('+');
+
+            $answer.slideDown(250);
+            $item.addClass('open');
+            $icon.text('−');
+        }
+    });
+
+    // Mở sẵn câu hỏi đầu tiên
+    $('.faq-accordion-grid .faq-item:first').addClass('open').find('.faq-answer').show().end().find('.faq-icon').text('−');
+
+    // 4. Modal Popup Video
+    function openVideoModal(videoUrl) {
+        var embedUrl = videoUrl;
+        if (videoUrl.indexOf('youtube.com/watch?v=') !== -1) {
+            var vId = videoUrl.split('v=')[1];
+            var ampersandPos = vId.indexOf('&');
+            if (ampersandPos !== -1) {
+                vId = vId.substring(0, ampersandPos);
+            }
+            embedUrl = 'https://www.youtube.com/embed/' + vId + '?autoplay=1';
+        } else if (videoUrl.indexOf('youtu.be/') !== -1) {
+            var vId = videoUrl.split('youtu.be/')[1];
+            embedUrl = 'https://www.youtube.com/embed/' + vId + '?autoplay=1';
+        }
+        $('#gobikeModalIframe').attr('src', embedUrl);
+        $('#gobikeVideoModal').fadeIn(250);
+    }
+
+    function closeVideoModal() {
+        $('#gobikeVideoModal').fadeOut(200, function() {
+            $('#gobikeModalIframe').attr('src', '');
+        });
+    }
+
+    $('.btn-open-video, .thumb-video-btn').on('click', function(e) {
+        e.preventDefault();
+        var vUrl = $(this).data('video');
+        if (vUrl) {
+            openVideoModal(vUrl);
+        }
+    });
+
+    $('#btnCloseVideoModal, #gobikeVideoModal').on('click', function(e) {
+        if (e.target === this) {
+            closeVideoModal();
+        }
+    });
+
+    // 5. Thêm Nút [Mua Ngay] Tự Động Vào Form Giỏ Hàng
+    function enhanceAddToCartForm() {
+        var $form = $('form.cart');
+        if (!$form.length) return;
+
+        // Nếu chưa có nút Mua ngay trong form, bổ sung nút Mua ngay
+        if (!$form.find('.btn-gobike-buy-now').length) {
+            var $submitBtn = $form.find('button[type="submit"].single_add_to_cart_button');
+            if ($submitBtn.length) {
+                // Đổi text nút thêm giỏ cho sắc nét
+                $submitBtn.addClass('btn-gobike-add-cart').html('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-2px;"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Thêm vào giỏ hàng');
+                
+                var $buyNowBtn = $('<button type="button" class="button alt btn-gobike-buy-now"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-2px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Mua ngay</button>');
+                $submitBtn.after($buyNowBtn);
+
+                $buyNowBtn.on('click', function(e) {
+                    e.preventDefault();
+                    if (!$form.find('input[name="gobike_is_buy_now"]').length) {
+                        $form.append('<input type="hidden" name="gobike_is_buy_now" value="1" />');
+                    }
+                    $submitBtn.trigger('click');
+                });
+            }
+        }
+    }
+
+    enhanceAddToCartForm();
+    $(document).ajaxComplete(enhanceAddToCartForm);
+
+    // 6. Tabs Lọc Sản Phẩm Liên Quan
+    $('.related-filter-tabs .tab-filter-btn').on('click', function() {
+        $('.related-filter-tabs .tab-filter-btn').removeClass('active');
+        $(this).addClass('active');
+    });
+});
+</script>

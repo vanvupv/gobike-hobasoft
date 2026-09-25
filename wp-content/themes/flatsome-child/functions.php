@@ -19,6 +19,9 @@ function wptangtoc_remove_x_pingback($headers)
 if (file_exists(__DIR__ . '/gobike-product-filter.php')) {
     require_once __DIR__ . '/gobike-product-filter.php';
 }
+if (file_exists(__DIR__ . '/gobike-single-product.php')) {
+    require_once __DIR__ . '/gobike-single-product.php';
+}
 if (file_exists(__DIR__ . '/inc/shop-sidebar-filter.php')) {
     require_once __DIR__ . '/inc/shop-sidebar-filter.php';
 }
