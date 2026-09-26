@@ -181,27 +181,27 @@ $related_videos = array_slice($videos, 0, 6);
                     <nav class="gb-vr-category-nav">
                         <a class="gb-vr-cat-item active" data-cat-slug="all">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                            <span>Tất cả video</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">Tất cả video</span></span>
                         </a>
                         <a class="gb-vr-cat-item" data-cat-slug="trai-nghiem-thuc-te">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
-                            <span>Trải nghiệm thực tế</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">Trải nghiệm thực tế</span></span>
                         </a>
                         <a class="gb-vr-cat-item" data-cat-slug="huong-dan-su-dung">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                            <span>Hướng dẫn sử dụng</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">Hướng dẫn sử dụng</span></span>
                         </a>
                         <a class="gb-vr-cat-item" data-cat-slug="so-sanh-xe">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                            <span>So sánh xe</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">So sánh xe</span></span>
                         </a>
                         <a class="gb-vr-cat-item" data-cat-slug="kinh-nghiem-meo-hay">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-                            <span>Kinh nghiệm – Mẹo hay</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">Kinh nghiệm – Mẹo hay</span></span>
                         </a>
                         <a class="gb-vr-cat-item" data-cat-slug="cau-chuyen-khach-hang">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                            <span>Câu chuyện khách hàng</span>
+                            <span class="gb-vr-cat-text-wrap"><span class="gb-vr-cat-text">Câu chuyện khách hàng</span></span>
                         </a>
                     </nav>
                 </aside>

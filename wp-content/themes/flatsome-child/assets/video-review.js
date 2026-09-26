@@ -160,5 +160,26 @@
                 }
             });
         }
+        // Hiệu ứng chữ chạy đến cuối khi hover vào danh mục
+        var catItems = page.querySelectorAll('.gb-vr-cat-item');
+        catItems.forEach(function(item) {
+            var wrap = item.querySelector('.gb-vr-cat-text-wrap');
+            var text = item.querySelector('.gb-vr-cat-text');
+            if (!wrap || !text) return;
+
+            item.addEventListener('mouseenter', function() {
+                var overflow = text.scrollWidth - wrap.clientWidth;
+                if (overflow > 1) {
+                    var duration = Math.max(0.6, overflow * 0.025);
+                    text.style.transition = 'transform ' + duration + 's linear';
+                    text.style.transform = 'translateX(-' + (overflow + 4) + 'px)';
+                }
+            });
+
+            item.addEventListener('mouseleave', function() {
+                text.style.transition = 'transform 0.3s ease-out';
+                text.style.transform = 'translateX(0)';
+            });
+        });
     });
 })();

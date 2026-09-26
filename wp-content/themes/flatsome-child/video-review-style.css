@@ -148,12 +148,12 @@
 
 .gb-vr-hero-grid {
     display: grid;
-    grid-template-columns: 210px 1fr 340px;
+    grid-template-columns: 220px 1fr 340px;
     gap: 24px;
-    align-items: start;
+    align-items: stretch;
 }
 
-/* --- Cột trái: Sidebar Menu Danh mục (phẳng, chỉ có đường border dọc bên phải ngăn cách) --- */
+/* --- Cột trái: Sidebar Menu Danh mục (đường border dọc kéo dài bằng chiều dài khối grid) --- */
 .gb-vr-sidebar {
     background: transparent;
     border: none;
@@ -161,6 +161,7 @@
     border-radius: 0;
     padding: 0 20px 0 0;
     box-shadow: none;
+    height: 100%;
 }
 
 .gb-vr-sidebar .gb-vr-sidebar-title {
@@ -191,6 +192,8 @@
     text-decoration: none;
     transition: all 0.2s ease;
     cursor: pointer;
+    white-space: nowrap !important;
+    overflow: hidden !important;
 }
 
 .gb-vr-category-nav .gb-vr-cat-item svg {
@@ -198,6 +201,21 @@
     height: 17px;
     flex-shrink: 0;
     stroke-width: 2;
+}
+
+.gb-vr-cat-text-wrap {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap !important;
+    display: block;
+}
+
+.gb-vr-cat-text {
+    display: inline-block;
+    white-space: nowrap !important;
+    will-change: transform;
+    transition: transform 0.3s ease-out;
 }
 
 .gb-vr-category-nav .gb-vr-cat-item:hover {
@@ -314,15 +332,15 @@
     margin: 0 0 12px 0;
 }
 
-/* Meta & Action bar */
+/* Meta & Action bar (Bỏ đường line ở phần tiêu đề - Ảnh 2) */
 .gb-vr-player-actions-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #f1f5f9;
+    padding-top: 2px;
+    border-top: none;
 }
 
 .gb-vr-player-meta {
