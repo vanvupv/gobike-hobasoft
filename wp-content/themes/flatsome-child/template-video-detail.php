@@ -329,7 +329,7 @@ $comments_sample = array(
                         <div class="gb-vd-channel-box">
                             <div class="gb-vd-channel-left">
                                 <div class="gb-vd-channel-avatar">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                                 </div>
                                 <div>
                                     <h4 class="gb-vd-channel-name">GoBike Việt Nam</h4>

@@ -340,22 +340,22 @@ a:hover .gb-vd-zoom-wrap img,
     align-items: center;
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 14px 18px;
+    border-radius: 14px;
+    padding: 16px 22px;
     margin-bottom: 28px;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 16px;
 }
 
 .gb-vd-channel-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
 .gb-vd-channel-avatar {
-    width: 44px;
-    height: 44px;
+    width: 52px;
+    height: 52px;
     background: #0d7030;
     border-radius: 50%;
     display: flex;
@@ -365,17 +365,24 @@ a:hover .gb-vd-zoom-wrap img,
     flex-shrink: 0;
 }
 
+.gb-vd-channel-avatar svg {
+    width: 28px;
+    height: 28px;
+}
+
 .gb-vd-channel-name {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
     color: #0f172a;
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
+    line-height: 1.25;
 }
 
 .gb-vd-channel-sub {
-    font-size: 12px;
+    font-size: 13.5px;
     color: #64748b;
     margin: 0;
+    line-height: 1.35;
 }
 
 .gb-vd-channel-right {
