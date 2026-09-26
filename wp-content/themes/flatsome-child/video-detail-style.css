@@ -381,7 +381,7 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-channel-right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 7px;
 }
 
