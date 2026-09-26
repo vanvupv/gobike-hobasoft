@@ -4016,19 +4016,44 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    color: #334155;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    line-height: 38px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     cursor: pointer;
     z-index: 25;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     transition: all 0.2s ease;
+    text-transform: none !important;
+}
+
+.rel-btn-side i {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    line-height: 1 !important;
+    display: block !important;
+    transition: color 0.2s ease;
+}
+
+.rel-btn-side svg {
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    stroke: #1e293b !important;
+    fill: none !important;
+    pointer-events: none;
+    transition: stroke 0.2s ease;
 }
 
 .rel-btn-prev-side {
@@ -4040,9 +4065,17 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rel-btn-side:hover {
-    background: #005a36;
-    color: #ffffff;
-    border-color: #005a36;
+    background: #005a36 !important;
+    border-color: #005a36 !important;
+    color: #ffffff !important;
+}
+
+.rel-btn-side:hover i {
+    color: #ffffff !important;
+}
+
+.rel-btn-side:hover svg {
+    stroke: #ffffff !important;
 }
 
 .rel-btn-side.swiper-button-disabled {
@@ -4126,24 +4159,56 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 50% !important;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    line-height: 28px !important;
     cursor: pointer;
-    color: #475569;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: #64748b !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     z-index: 5;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
     transition: all 0.2s ease;
+    text-transform: none !important;
+}
+
+.rel-btn-wishlist i {
+    font-size: 13px !important;
+    color: #64748b !important;
+    line-height: 1 !important;
+    display: block !important;
+    transition: all 0.2s ease;
+}
+
+.rel-btn-wishlist svg {
+    width: 14px !important;
+    height: 14px !important;
+    stroke: #64748b !important;
+    fill: none !important;
+    display: block !important;
 }
 
 .rel-btn-wishlist:hover {
-    color: #dc2626;
-    background: #ffffff;
+    color: #dc2626 !important;
+    border-color: #fca5a5 !important;
+    background: #ffffff !important;
+}
+
+.rel-btn-wishlist:hover i {
+    color: #dc2626 !important;
+}
+
+.rel-btn-wishlist:hover svg {
+    stroke: #dc2626 !important;
+    fill: #fee2e2 !important;
 }
 
 /* Nội dung thông tin card */
@@ -4195,20 +4260,23 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     text-decoration: line-through;
 }
 
-/* Nút hành động */
+/* Nút hành động: để 1 dòng, có ellipsis nếu thiếu chỗ */
 .rel-card-actions {
     display: flex;
-    gap: 5px;
+    gap: 6px;
+    align-items: center;
+    width: 100%;
 }
 
 .btn-rel-cart {
-    flex: 1.2;
+    flex: 1.25;
+    min-width: 0; /* Quan trọng để flex child kích hoạt text-overflow */
     background: #ffffff;
     border: 1px solid #005a36;
     color: #005a36;
-    border-radius: 5px;
-    padding: 5px 2px;
-    font-size: 11px;
+    border-radius: 6px;
+    padding: 6px 4px;
+    font-size: 11.5px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
@@ -4216,7 +4284,25 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     align-items: center;
     justify-content: center;
     gap: 4px;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     transition: all 0.2s ease;
+}
+
+.btn-rel-cart svg {
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+}
+
+.btn-rel-cart span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block;
+    max-width: 100%;
 }
 
 .btn-rel-cart:hover {
@@ -4226,24 +4312,29 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .btn-rel-view {
     flex: 1;
+    min-width: 0;
     background: #ffffff;
     color: #475569;
     border: 1px solid #e2e8f0;
-    border-radius: 5px;
-    padding: 5px 2px;
-    font-size: 11px;
+    border-radius: 6px;
+    padding: 6px 4px;
+    font-size: 11.5px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     transition: all 0.2s ease;
 }
 
 .btn-rel-view:hover {
     background: #f1f5f9;
     color: #0f172a;
+    border-color: #cbd5e1;
 }
 
 /* Dải 5 Cam kết chân trang (Ảnh 3) */

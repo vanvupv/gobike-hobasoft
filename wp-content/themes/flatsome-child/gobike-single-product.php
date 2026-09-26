@@ -1003,7 +1003,7 @@ function gobike_render_single_product_related($product) {
             <!-- Khung Slide Sản Phẩm Liên Quan (Nút chuyển slide 2 bên) -->
             <div class="rel-slider-wrapper">
                 <button type="button" class="rel-btn-side rel-btn-prev-side" aria-label="Trước">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    <i class="fa fa-angle-left"></i>
                 </button>
 
                 <div class="swiper-container gobike-related-carousel-swiper">
@@ -1030,7 +1030,7 @@ function gobike_render_single_product_related($product) {
                                                 <span class="rel-badge-sale"><?php echo esc_html($discount_badge); ?></span>
                                             <?php endif; ?>
                                             <button type="button" class="rel-btn-wishlist" title="Yêu thích">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                                <i class="fa fa-heart-o"></i>
                                             </button>
                                         </div>
                                         <div class="rel-card-info">
@@ -1057,7 +1057,7 @@ function gobike_render_single_product_related($product) {
                 </div>
 
                 <button type="button" class="rel-btn-side rel-btn-next-side" aria-label="Sau">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    <i class="fa fa-angle-right"></i>
                 </button>
             </div>
 

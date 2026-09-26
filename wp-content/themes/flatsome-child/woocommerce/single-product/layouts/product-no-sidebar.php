@@ -149,10 +149,10 @@ jQuery(document).ready(function($) {
             $(this).addClass('active');
         });
 
-        // Khởi tạo Carousel Sản Phẩm Liên Quan (6 sản phẩm, điều hướng 2 bên - Ảnh 2)
+        // Khởi tạo Carousel Sản Phẩm Liên Quan (5 sản phẩm, điều hướng 2 bên - Chuẩn Ảnh 2)
         var relatedSwiper = new Swiper('.gobike-related-carousel-swiper', {
-            slidesPerView: 6,
-            spaceBetween: 12,
+            slidesPerView: 5,
+            spaceBetween: 14,
             watchOverflow: true,
             navigation: {
                 nextEl: '.rel-btn-next-side',
@@ -169,15 +169,11 @@ jQuery(document).ready(function($) {
                 },
                 768: {
                     slidesPerView: 4,
-                    spaceBetween: 10
+                    spaceBetween: 12
                 },
                 1024: {
                     slidesPerView: 5,
-                    spaceBetween: 12
-                },
-                1200: {
-                    slidesPerView: 6,
-                    spaceBetween: 12
+                    spaceBetween: 14
                 }
             }
         });
