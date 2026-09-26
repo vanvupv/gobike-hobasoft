@@ -662,7 +662,13 @@ $comments_sample = array(
                         <div class="gb-vd-faq-contact-card">
                             <div class="gb-vd-faq-contact-left">
                                 <div class="gb-vd-faq-icon-headphone">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 12a8 8 0 0 1 16 0"></path>
+                                        <rect x="2" y="11" width="4" height="7" rx="2"></rect>
+                                        <rect x="18" y="11" width="4" height="7" rx="2"></rect>
+                                        <path d="M4 18v1a4 4 0 0 0 4 4h2"></path>
+                                        <circle cx="11" cy="23" r="1" fill="#0d7030"></circle>
+                                    </svg>
                                 </div>
                                 <div>
                                     <h4 class="gb-vd-faq-contact-title">Vẫn còn thắc mắc?</h4>
@@ -670,12 +676,12 @@ $comments_sample = array(
                                 </div>
                             </div>
                             <div class="gb-vd-faq-contact-right">
-                                <a href="tel:0944988699" class="gb-vd-btn-phone">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <a href="tel:0944988699" class="gb-vd-btn-phone gb-vd-faq-btn">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                     <span>0944 988 699</span>
                                 </a>
-                                <a href="https://zalo.me/0944988699" target="_blank" class="gb-vd-btn-zalo">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.18-1.32C8.61 21.49 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                <a href="https://zalo.me/0944988699" target="_blank" class="gb-vd-btn-zalo gb-vd-faq-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.18-1.32C8.61 21.49 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
                                     <span>Nhắn Zalo</span>
                                 </a>
                             </div>
