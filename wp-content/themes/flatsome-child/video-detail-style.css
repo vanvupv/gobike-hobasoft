@@ -380,53 +380,65 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-channel-right {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
 }
 
 .gb-vd-channel-label {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
     color: #64748b;
-    margin-right: 4px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.gb-vd-channel-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .gb-vd-btn-phone {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: #0d7030;
     color: #ffffff !important;
-    font-size: 13px;
+    font-size: 14.5px;
     font-weight: 700;
-    padding: 7px 14px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 8px;
     text-decoration: none;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 1px 3px rgba(13, 112, 48, 0.2);
 }
 
 .gb-vd-btn-phone:hover {
     background: #085623;
+    transform: translateY(-1px);
 }
 
 .gb-vd-btn-zalo {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: #ffffff;
     color: #0284c7 !important;
     border: 1px solid #bae6fd;
-    font-size: 13px;
+    font-size: 14.5px;
     font-weight: 700;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 9px 18px;
+    border-radius: 8px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 1px 3px rgba(2, 132, 199, 0.1);
 }
 
 .gb-vd-btn-zalo:hover {
     background: #f0f9ff;
     border-color: #0284c7;
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
@@ -815,27 +827,34 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-booking-title {
-    font-size: 16px;
+    font-size: 16.5px;
     font-weight: 700;
-    color: #0f172a;
-    line-height: 1.3;
-    margin: 0 0 10px 0;
+    color: #0f172a !important;
+    line-height: 1.35;
+    margin: 0 0 12px 0;
 }
 
 .gb-vd-booking-title span.highlight {
-    background: #22c55e;
-    color: #ffffff;
-    padding: 1px 6px;
-    border-radius: 4px;
+    background: transparent !important;
+    color: #0f172a !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
 }
 
 .gb-vd-booking-img-wrap {
     width: 100%;
-    height: 110px;
+    height: 155px;
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     background: #ffffff;
+}
+
+.gb-vd-booking-img-wrap .gb-vd-zoom-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .gb-vd-booking-img-wrap img {
@@ -1345,10 +1364,24 @@ a:hover .gb-vd-zoom-wrap img,
     .gb-vd-channel-box {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
     }
     .gb-vd-channel-right {
         width: 100%;
-        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .gb-vd-channel-btns {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+    .gb-vd-btn-phone,
+    .gb-vd-btn-zalo {
+        flex: 1;
+        justify-content: center;
+        padding: 9px 10px;
+        font-size: 13.5px;
     }
     .gb-vd-faq-contact-card {
         flex-direction: column;

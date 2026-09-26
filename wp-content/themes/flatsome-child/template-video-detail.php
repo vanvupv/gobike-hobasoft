@@ -338,14 +338,16 @@ $comments_sample = array(
                             </div>
                             <div class="gb-vd-channel-right">
                                 <span class="gb-vd-channel-label">Liên hệ tư vấn</span>
-                                <a href="tel:0944988699" class="gb-vd-btn-phone">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                    <span>0944 988 699</span>
-                                </a>
-                                <a href="https://zalo.me/0944988699" target="_blank" class="gb-vd-btn-zalo">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.18-1.32C8.61 21.49 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                                    <span>Nhắn Zalo</span>
-                                </a>
+                                <div class="gb-vd-channel-btns">
+                                    <a href="tel:0944988699" class="gb-vd-btn-phone">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                        <span>0944 988 699</span>
+                                    </a>
+                                    <a href="https://zalo.me/0944988699" target="_blank" class="gb-vd-btn-zalo">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.18-1.32C8.61 21.49 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                        <span>Nhắn Zalo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -442,7 +444,7 @@ $comments_sample = array(
 
                         <!-- 2.7 Banner "Đặt lịch lái thử tại showroom GoBike" -->
                         <div class="gb-vd-booking-card" id="dat-lich">
-                            <h3 class="gb-vd-booking-title">Đặt <span class="highlight">lịch</span> lái thử tại showroom GoBike</h3>
+                            <h3 class="gb-vd-booking-title">Đặt lịch lái thử tại showroom GoBike</h3>
                             
                             <div class="gb-vd-booking-img-wrap">
                                 <div class="gb-vd-zoom-wrap">
