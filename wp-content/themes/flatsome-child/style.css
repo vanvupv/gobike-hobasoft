@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.16.26
+Version: 3.16.27
 */
 
 /*****************************************************************************
@@ -14,12 +14,13 @@ Version: 3.16.26
  * - footer-style.css  : Toàn bộ CSS Chân trang, Menu điều hướng đáy Mobile (App-style)
  *****************************************************************************/
 
-@import url('header-style.css?v=3.16.26');
-@import url('product-style.css?v=3.16.26');
-@import url('footer-style.css?v=3.16.26');
-@import url('video-review-style.css?v=3.16.26');
-@import url('video-detail-style.css?v=3.16.26');
-@import url('customer-experience-style.css?v=3.16.26');
+@import url('header-style.css?v=3.16.27');
+@import url('product-style.css?v=3.16.27');
+@import url('footer-style.css?v=3.16.27');
+@import url('video-review-style.css?v=3.16.27');
+@import url('video-detail-style.css?v=3.16.27');
+@import url('customer-experience-style.css?v=3.16.27');
+@import url('single-post-style.css?v=3.16.27');
 
 /*****************************************************************************
  * GLOBAL & GENERAL RESETS / UTILITIES

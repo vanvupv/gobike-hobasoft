@@ -1310,7 +1310,31 @@ body.single-post #main,
     }
 }
 
+/* ẨN TOÀN BỘ SIDEBAR TRÊN GIAO DIỆN MOBILE & TABLET THEO YÊU CẦU */
+@media screen and (max-width: 849px) {
+    .gobike-single-sidebar-col {
+        display: none !important;
+    }
+
+    .gobike-single-grid {
+        gap: 0 !important;
+    }
+
+    .gobike-single-main-col {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
 @media screen and (max-width: 768px) {
+    .gobike-single-sidebar-col {
+        display: none !important;
+    }
+
+    .gobike-single-grid {
+        gap: 0 !important;
+    }
+
     .gobike-single-post-wrapper {
         padding-top: 15px;
         padding-bottom: 40px;
@@ -1321,6 +1345,8 @@ body.single-post #main,
     }
 
     .gobike-single-main-col {
+        width: 100% !important;
+        max-width: 100% !important;
         padding: 20px 16px 28px 16px;
         border-radius: 12px;
     }
