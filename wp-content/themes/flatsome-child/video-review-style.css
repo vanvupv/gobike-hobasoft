@@ -891,8 +891,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     margin-bottom: 14px;
-    padding-top: 10px;
-    border-top: 1px solid #f1f5f9;
 }
 
 .gb-vr-spec-item {
