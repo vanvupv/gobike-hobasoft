@@ -1565,8 +1565,32 @@ a:hover .gb-vd-zoom-wrap img,
     .gb-vd-prod-specs-grid {
         display: none !important;
     }
+    /* Khối Video liên quan trên Mobile: dạng slide 1.5 */
     .gb-vd-related-grid {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 12px !important;
+        margin-right: -15px !important;
+        padding-right: 15px !important;
+        scrollbar-width: none !important;
+    }
+    .gb-vd-related-grid::-webkit-scrollbar {
+        display: none !important;
+    }
+    .gb-vd-related-grid > .gb-vd-rel-card {
+        flex: 0 0 calc((100% - 12px) / 1.48) !important;
+        min-width: calc((100% - 12px) / 1.48) !important;
+        max-width: calc((100% - 12px) / 1.48) !important;
+        scroll-snap-align: start !important;
+        box-sizing: border-box !important;
+    }
+    .gb-vd-rel-title {
+        font-size: 13.5px !important;
+        line-height: 1.4 !important;
     }
     .gb-vd-channel-box {
         flex-direction: column;
