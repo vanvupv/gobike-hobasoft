@@ -3348,6 +3348,91 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     border-top: 1px solid #f1f5f9;
 }
 
+/* ==========================================================================
+   GOBIKE BLOCK HEADER - CHUẨN TOÀN TRANG (ẢNH 2)
+   ========================================================================== */
+.gobike-block-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+    gap: 16px !important;
+    width: 100% !important;
+}
+
+.gobike-block-header .header-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+.gobike-block-header .block-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.3px !important;
+    line-height: 1.25 !important;
+    border: none !important;
+}
+
+.gobike-block-header .block-title a {
+    color: #0f172a !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+.gobike-block-header .block-title a:hover {
+    color: #149d29 !important;
+}
+
+.gobike-block-header .block-slogan {
+    font-size: 13.5px !important;
+    color: #64748b !important;
+    font-weight: 400 !important;
+    margin-left: 4px !important;
+}
+
+.gobike-block-header .header-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+}
+
+.gobike-block-header .header-right .view-all-link {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #149d29 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+.gobike-block-header .header-right .view-all-link .arr {
+    display: inline-block !important;
+    transition: transform 0.2s ease !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    color: #149d29 !important;
+}
+
+.gobike-block-header .header-right .view-all-link:hover {
+    color: #005a36 !important;
+    transform: translateX(2px) !important;
+}
+
+.gobike-block-header .header-right .view-all-link:hover .arr {
+    transform: translateX(3px) !important;
+}
+
 .desc-section-header {
     display: flex;
     justify-content: space-between;
@@ -4628,10 +4713,19 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         grid-template-columns: 1fr;
     }
 
-    .desc-section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+    .desc-section-header,
+    .gobike-block-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px !important;
+    }
+
+    .gobike-block-header .block-title {
+        font-size: 16.5px !important;
+    }
+
+    .gobike-block-header .header-right {
+        margin-left: auto;
     }
 
     .media-photo-grid {

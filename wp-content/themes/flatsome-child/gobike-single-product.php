@@ -552,7 +552,11 @@ function gobike_render_single_product_tabs($product) {
 
                     <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (2 Cột Bảng Thông Số) -->
                     <div class="desc-specs-block">
-                        <h3 class="specs-section-title">Thông số kỹ thuật</h3>
+                        <div class="gobike-block-header">
+                            <div class="header-left">
+                                <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
+                            </div>
+                        </div>
                         <div class="specs-table-grid">
                             <div class="specs-col">
                                 <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
@@ -578,9 +582,15 @@ function gobike_render_single_product_tabs($product) {
 
                     <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Điểm số 4.9 + 4 Thẻ mẫu kèm ảnh thật) -->
                     <div class="desc-reviews-block">
-                        <div class="desc-section-header">
-                            <h3 class="specs-section-title">Đánh giá khách hàng</h3>
-                            <a href="#tab-reviews" class="link-see-all-green">Xem tất cả đánh giá <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+                        <div class="gobike-block-header">
+                            <div class="header-left">
+                                <h2 class="block-title">ĐÁNH GIÁ KHÁCH HÀNG</h2>
+                            </div>
+                            <div class="header-right">
+                                <a href="#tab-reviews" class="view-all-link">
+                                    Xem tất cả đánh giá <span class="arr">➔</span>
+                                </a>
+                            </div>
                         </div>
 
                         <!-- Lưới 5 ô: 1 ô tổng điểm + 4 thẻ đánh giá mẫu -->
@@ -671,13 +681,15 @@ function gobike_render_single_product_tabs($product) {
 
                     <!-- PHẦN 4: HỎI ĐÁP (Khoảng 6 Câu Hỏi 2 Cột) -->
                     <div class="desc-faq-block">
-                        <div class="desc-section-header">
-                            <div class="desc-faq-title-wrap">
-                                <h3 class="specs-section-title">Hỏi đáp</h3>
-                                <p class="faq-subtitle">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?>.</p>
+                        <div class="gobike-block-header">
+                            <div class="header-left">
+                                <h2 class="block-title">HỎI ĐÁP</h2>
+                                <span class="block-slogan">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?></span>
                             </div>
-                            <div class="desc-faq-actions-wrap">
-                                <a href="#tab-faq" class="link-see-all-green">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+                            <div class="header-right">
+                                <a href="#tab-faq" class="view-all-link">
+                                    Xem tất cả câu hỏi <span class="arr">➔</span>
+                                </a>
                                 <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                             </div>
                         </div>
@@ -755,7 +767,11 @@ function gobike_render_single_product_tabs($product) {
             <!-- TAB 2: THÔNG SỐ KỸ THUẬT (2 Cột Chuẩn Thiết Kế) -->
             <div class="gobike-tab-panel" id="tab-specifications">
                 <div class="gobike-specs-container">
-                    <h3 class="specs-section-title">Thông số kỹ thuật</h3>
+                    <div class="gobike-block-header">
+                        <div class="header-left">
+                            <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
+                        </div>
+                    </div>
                     <div class="specs-table-grid">
                         <!-- Cột Trái -->
                         <div class="specs-col">
@@ -786,8 +802,10 @@ function gobike_render_single_product_tabs($product) {
             <!-- TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT -->
             <div class="gobike-tab-panel" id="tab-media">
                 <div class="gobike-media-container">
-                    <div class="media-header-flex">
-                        <h3 class="media-section-title">Hình ảnh chi tiết bộ phận</h3>
+                    <div class="gobike-block-header">
+                        <div class="header-left">
+                            <h2 class="block-title">HÌNH ẢNH CHI TIẾT BỘ PHẬN</h2>
+                        </div>
                     </div>
 
                     <!-- Lưới 6 Ảnh Chi Tiết Cận Cảnh -->
@@ -831,8 +849,10 @@ function gobike_render_single_product_tabs($product) {
             <!-- TAB 4: ĐÁNH GIÁ (Dữ liệu chuẩn WooCommerce & Giao diện bình luận) -->
             <div class="gobike-tab-panel" id="tab-reviews">
                 <div class="gobike-reviews-container">
-                    <div class="reviews-header-bar">
-                        <h3 class="reviews-section-title">Đánh giá khách hàng</h3>
+                    <div class="gobike-block-header">
+                        <div class="header-left">
+                            <h2 class="block-title">ĐÁNH GIÁ KHÁCH HÀNG</h2>
+                        </div>
                     </div>
 
                     <!-- Box Tổng Điểm & Thanh Tiến Độ Sao -->
@@ -882,12 +902,12 @@ function gobike_render_single_product_tabs($product) {
             <!-- TAB 5: HỎI ĐÁP (FAQ ACCORDION) -->
             <div class="gobike-tab-panel" id="tab-faq">
                 <div class="gobike-faq-container">
-                    <div class="faq-header-bar">
-                        <div class="faq-title-wrap">
-                            <h3 class="faq-section-title">Hỏi đáp</h3>
-                            <p class="faq-subtitle">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?></p>
+                    <div class="gobike-block-header">
+                        <div class="header-left">
+                            <h2 class="block-title">HỎI ĐÁP</h2>
+                            <span class="block-slogan">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?></span>
                         </div>
-                        <div class="faq-actions-wrap">
+                        <div class="header-right">
                             <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                         </div>
                     </div>
@@ -994,10 +1014,16 @@ function gobike_render_single_product_related($product) {
     ?>
     <section class="gobike-related-section">
         <div class="container">
-            <!-- Header Sản Phẩm Liên Quan (Bỏ tabs phân loại) -->
-            <div class="related-header-flex">
-                <h3 class="related-heading">Sản phẩm liên quan</h3>
-                <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="link-view-all-related">Xem tất cả <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+            <!-- Header Sản Phẩm Liên Quan (Chuẩn gobike-block-header - Ảnh 2) -->
+            <div class="gobike-block-header">
+                <div class="header-left">
+                    <h2 class="block-title">SẢN PHẨM LIÊN QUAN</h2>
+                </div>
+                <div class="header-right">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="view-all-link">
+                        Xem tất cả <span class="arr">➔</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Khung Slide Sản Phẩm Liên Quan (Nút chuyển slide 2 bên) -->
