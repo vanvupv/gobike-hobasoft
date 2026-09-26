@@ -258,9 +258,9 @@
    ========================================================================== */
 .gb-ce-filter-section {
     width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    margin-bottom: 30px;
+    background: transparent !important;
+    border-bottom: none !important;
+    margin-bottom: 24px;
 }
 
 .gb-ce-filter-inner {
@@ -1194,8 +1194,9 @@
 
     /* Bộ lọc tabs vuốt ngang full-width không bo viền */
     .gb-ce-filter-section {
-        margin-bottom: 20px;
-        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 16px;
+        background: transparent !important;
+        border-bottom: none !important;
     }
     .gb-ce-filter-inner {
         padding: 8px 14px;
