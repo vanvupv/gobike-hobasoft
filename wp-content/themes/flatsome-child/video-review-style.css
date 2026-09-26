@@ -360,52 +360,74 @@
 .gb-vr-player-btns {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .gb-vr-btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    gap: 8px;
     background: #ffffff;
-    border: 1px solid var(--gb-vr-border);
-    border-radius: 8px;
-    padding: 7px 14px;
-    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 10px 20px;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--gb-vr-gray);
+    color: #1e293b;
     text-decoration: none;
     cursor: pointer;
+    line-height: 1.25;
     transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.gb-vr-btn-secondary svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    color: #334155;
+    stroke: currentColor;
+    transition: color 0.2s ease;
 }
 
 .gb-vr-btn-secondary:hover {
     background: #f8fafc;
-    border-color: #cbd5e1;
-    color: var(--gb-vr-dark);
+    border-color: #94a3b8;
+    color: #0f172a;
 }
 
 .gb-vr-btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    gap: 8px;
     background: var(--gb-vr-primary);
     border: 1px solid var(--gb-vr-primary);
-    border-radius: 8px;
-    padding: 7px 16px;
-    font-size: 13px;
+    border-radius: 9px;
+    padding: 10px 24px;
+    font-size: 14px;
     font-weight: 700;
     color: #ffffff !important;
     text-decoration: none;
     cursor: pointer;
+    line-height: 1.25;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 6px rgba(13, 112, 48, 0.25);
+    box-shadow: 0 3px 8px rgba(13, 112, 48, 0.28);
+}
+
+.gb-vr-btn-primary svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    stroke: #ffffff;
 }
 
 .gb-vr-btn-primary:hover {
     background: var(--gb-vr-primary-hover);
     border-color: var(--gb-vr-primary-hover);
-    box-shadow: 0 4px 10px rgba(13, 112, 48, 0.35);
+    box-shadow: 0 5px 14px rgba(13, 112, 48, 0.38);
+    transform: translateY(-1px);
 }
 
 /* --- Cột phải: Video Tiếp Theo (phẳng, không bo viền khối) --- */
