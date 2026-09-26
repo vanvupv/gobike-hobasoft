@@ -1550,15 +1550,22 @@
         display: none !important;
     }
 
-    /* Kích thước mỗi card chuẩn tỉ lệ 2.5 (gap 8px) */
+    /* Khối Video liên quan & Người thật - việc thật trên mobile: dạng slide 1.5 (gap 8px) */
     .gb-vr-related-grid > .gb-vr-video-card,
     .gb-vr-experience-grid > .gb-vr-exp-card {
-        flex: 0 0 calc((100% - 16px) / 2.3) !important;
-        min-width: calc((100% - 16px) / 2.3) !important;
-        max-width: calc((100% - 16px) / 2.3) !important;
+        flex: 0 0 calc((100% - 16px) / 1.45) !important;
+        min-width: calc((100% - 16px) / 1.45) !important;
+        max-width: calc((100% - 16px) / 1.45) !important;
         scroll-snap-align: start !important;
         box-sizing: border-box !important;
     }
+
+    .gb-vr-video-card .gb-vr-card-title,
+    .gb-vr-exp-card .gb-vr-exp-title {
+        font-size: 13.5px !important;
+        line-height: 1.4 !important;
+    }
+
 
     /* Khối Sản phẩm nổi bật trong video trên mobile: dạng slide 1.5 (gap 8px) */
     .gb-vr-products-grid > .gb-vr-product-card {
