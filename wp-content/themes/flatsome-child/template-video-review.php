@@ -586,37 +586,45 @@ $related_videos = array_slice($videos, 0, 6);
             <!-- 5.1 Hero Banner Đặt Lịch Lái Thử (Chuẩn Ảnh Mẫu) -->
             <div class="gb-vr-booking-banner">
                 <div class="gb-vr-booking-left">
-                    <div class="gb-vr-booking-icon-wrap">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h5"></path><path d="M17.5 17.5 16 16.25V14"></path><circle cx="16" cy="16" r="6"></circle></svg>
+                    <div class="gb-vr-booking-header">
+                        <div class="gb-vr-booking-icon-wrap">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h5"></path><path d="M17.5 17.5 16 16.25V14"></path><circle cx="16" cy="16" r="6"></circle></svg>
+                        </div>
+                        <div class="gb-vr-booking-title-wrap">
+                            <h3>
+                                <span class="gb-vr-bk-title-desktop">Đặt lịch lái thử tại showroom GoBike</span>
+                                <span class="gb-vr-bk-title-mobile">Đặt lịch lái thử</span>
+                            </h3>
+                            <p>
+                                <span class="gb-vr-bk-sub-desktop">Trải nghiệm thực tế – Cảm nhận khác biệt</span>
+                                <span class="gb-vr-bk-sub-mobile">Trải nghiệm thực tế trước khi quyết định</span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="gb-vr-booking-info">
-                        <h3>Đặt lịch lái thử tại showroom GoBike</h3>
-                        <p>Trải nghiệm thực tế – Cảm nhận khác biệt</p>
-                        <div class="gb-vr-booking-checklist">
-                            <div class="gb-vr-check-item">
-                                <span class="gb-vr-check-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </span>
-                                <span>Trải nghiệm miễn phí</span>
-                            </div>
-                            <div class="gb-vr-check-item">
-                                <span class="gb-vr-check-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </span>
-                                <span>Nhiều mẫu xe để lựa chọn</span>
-                            </div>
-                            <div class="gb-vr-check-item">
-                                <span class="gb-vr-check-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </span>
-                                <span>Được tư vấn 1-1</span>
-                            </div>
-                            <div class="gb-vr-check-item">
-                                <span class="gb-vr-check-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                </span>
-                                <span>Hỗ trợ đặt lịch nhanh chóng</span>
-                            </div>
+                    <div class="gb-vr-booking-checklist">
+                        <div class="gb-vr-check-item">
+                            <span class="gb-vr-check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span>Trải nghiệm miễn phí</span>
+                        </div>
+                        <div class="gb-vr-check-item">
+                            <span class="gb-vr-check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span>Nhiều mẫu xe để lựa chọn</span>
+                        </div>
+                        <div class="gb-vr-check-item">
+                            <span class="gb-vr-check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span>Được tư vấn 1-1</span>
+                        </div>
+                        <div class="gb-vr-check-item">
+                            <span class="gb-vr-check-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                            <span>Hỗ trợ đặt lịch nhanh chóng</span>
                         </div>
                     </div>
                 </div>
