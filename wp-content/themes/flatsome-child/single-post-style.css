@@ -866,45 +866,75 @@ body.single-post #main,
     flex-shrink: 0;
 }
 
-/* Widget 1: Search Form */
+/* Widget 1: Search Form (Chuẩn theo mẫu Ảnh 2) */
 .widget-search-form {
-    display: flex;
-    gap: 8px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #ffffff !important;
+    border: 1px solid #dce4ec !important;
+    border-radius: 8px !important;
+    padding: 3px 3px 3px 14px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
+.widget-search-form:focus-within {
+    border-color: #005a36 !important;
+    box-shadow: 0 0 0 2px rgba(0, 90, 54, 0.1) !important;
+}
+
+.widget-search-form input[type="text"],
 .widget-search-input {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 13.5px;
-    color: #1e293b;
-    outline: none;
-    transition: border-color 0.2s ease;
+    flex: 1 !important;
+    min-width: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 4px 8px 4px 0 !important;
+    height: 38px !important;
+    line-height: 38px !important;
+    font-size: 13.5px !important;
+    color: #1e293b !important;
 }
 
-.widget-search-input:focus {
-    border-color: #0d7030;
+.widget-search-input::placeholder {
+    color: #64748b !important;
+    font-size: 13.5px !important;
 }
 
 .widget-search-btn {
-    width: 40px;
-    height: 40px;
-    background-color: #044b25;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.2s ease;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    background-color: #005a36 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease !important;
 }
 
 .widget-search-btn:hover {
-    background-color: #0d7030;
+    background-color: #085623 !important;
+}
+
+.widget-search-btn svg {
+    width: 17px !important;
+    height: 17px !important;
+    stroke: #ffffff !important;
+    stroke-width: 2.5 !important;
 }
 
 /* Widget 2 & 3: Post Lists (Popular & Latest) */
@@ -1067,42 +1097,66 @@ body.single-post #main,
     margin: 0 0 16px 0;
 }
 
+.widget-newsletter-card .newsletter-form {
+    margin: 0 !important;
+}
+
 .newsletter-form-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 10px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 0 10px 0 !important;
+    width: 100% !important;
 }
 
+.widget-newsletter-card .newsletter-form-row input[type="email"],
+.widget-newsletter-card .newsletter-input,
 .newsletter-input {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 13px;
-    color: #1e293b;
-    outline: none;
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 42px !important;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    border: 1px solid #dce4ec !important;
+    border-radius: 8px !important;
+    font-size: 13.5px !important;
+    color: #1e293b !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
+.widget-newsletter-card .newsletter-form-row input[type="email"]:focus,
 .newsletter-input:focus {
-    border-color: #0d7030;
+    border-color: #005a36 !important;
+    box-shadow: 0 0 0 2px rgba(0, 90, 54, 0.1) !important;
 }
 
+.widget-newsletter-card .btn-newsletter-submit,
 .btn-newsletter-submit {
-    background-color: #044b25;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 16px;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.2s ease;
+    height: 42px !important;
+    background-color: #005a36 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    padding: 0 18px !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease !important;
 }
 
+.widget-newsletter-card .btn-newsletter-submit:hover,
 .btn-newsletter-submit:hover {
-    background-color: #0d7030;
+    background-color: #085623 !important;
 }
 
 .newsletter-privacy-text {

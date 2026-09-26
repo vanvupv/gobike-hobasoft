@@ -510,7 +510,7 @@ if ($latest_posts_query->have_posts()) {
                         <h3 class="widget-title-heading">Tìm kiếm bài viết</h3>
                     </div>
                     <form class="widget-search-form" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                        <input type="text" name="s" class="widget-search-input" placeholder="Nhập từ khóa..." required autocomplete="off">
+                        <input type="text" name="s" class="widget-search-input" placeholder="Bạn đang tìm xe đạp trợ lực điện nào?" required autocomplete="off">
                         <button type="submit" class="widget-search-btn" aria-label="Tìm kiếm">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                         </button>
