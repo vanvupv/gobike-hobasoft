@@ -481,7 +481,7 @@ $related_videos = array_slice($videos, 0, 6);
                                     </div>
                                 </div>
                                 <div class="gb-vr-spec-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="12" rx="2"></rect><line x1="22" y1="11" x2="22" y2="15"></line></svg>
+                                    <svg viewBox="0 0 640 512" fill="currentColor"><path fill="currentColor" d="M528 128c8.8 0 16 7.2 16 16l0 224c0 8.8-7.2 16-16 16l-416 0c-8.8 0-16-7.2-16-16l0-224c0-8.8 7.2-16 16-16l416 0zM112 64c-44.2 0-80 35.8-80 80l0 224c0 44.2 35.8 80 80 80l416 0c44.2 0 80-35.8 80-80l0-48c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l0-48c0-44.2-35.8-80-80-80L112 64zm56 112c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24l144 0c13.3 0 24-10.7 24-24l0-112c0-13.3-10.7-24-24-24l-144 0z"/></svg>
                                     <div class="gb-vr-spec-text">
                                         <span class="gb-vr-spec-label">Pin lithium</span>
                                         <span class="gb-vr-spec-val"><?php echo esc_html($spec['pin']); ?></span>
@@ -530,7 +530,7 @@ $related_videos = array_slice($videos, 0, 6);
                                     </div>
                                 </div>
                                 <div class="gb-vr-spec-item">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="12" rx="2"></rect><line x1="22" y1="11" x2="22" y2="15"></line></svg>
+                                    <svg viewBox="0 0 640 512" fill="currentColor"><path fill="currentColor" d="M528 128c8.8 0 16 7.2 16 16l0 224c0 8.8-7.2 16-16 16l-416 0c-8.8 0-16-7.2-16-16l0-224c0-8.8 7.2-16 16-16l416 0zM112 64c-44.2 0-80 35.8-80 80l0 224c0 44.2 35.8 80 80 80l416 0c44.2 0 80-35.8 80-80l0-48c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l0-48c0-44.2-35.8-80-80-80L112 64zm56 112c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24l144 0c13.3 0 24-10.7 24-24l0-112c0-13.3-10.7-24-24-24l-144 0z"/></svg>
                                     <div class="gb-vr-spec-text">
                                         <span class="gb-vr-spec-label">Pin lithium</span>
                                         <span class="gb-vr-spec-val"><?php echo esc_html($fp['pin']); ?></span>
