@@ -580,7 +580,7 @@ function gobike_render_single_product_tabs($product) {
                     <div class="desc-reviews-block">
                         <div class="desc-section-header">
                             <h3 class="specs-section-title">Đánh giá khách hàng</h3>
-                            <a href="#tab-reviews" class="link-see-all-green">Xem tất cả đánh giá <i class="fa fa-angle-right"></i></a>
+                            <a href="#tab-reviews" class="link-see-all-green">Xem tất cả đánh giá <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
                         </div>
 
                         <!-- Lưới 5 ô: 1 ô tổng điểm + 4 thẻ đánh giá mẫu -->
@@ -677,7 +677,7 @@ function gobike_render_single_product_tabs($product) {
                                 <p class="faq-subtitle">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?>.</p>
                             </div>
                             <div class="desc-faq-actions-wrap">
-                                <a href="#tab-faq" class="link-see-all-green">Xem tất cả câu hỏi <i class="fa fa-angle-right"></i></a>
+                                <a href="#tab-faq" class="link-see-all-green">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
                                 <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                             </div>
                         </div>
@@ -962,7 +962,7 @@ function gobike_render_single_product_tabs($product) {
                     </div>
 
                     <div class="faq-footer-link">
-                        <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <i class="fa fa-angle-right"></i></a>
+                        <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -997,13 +997,13 @@ function gobike_render_single_product_related($product) {
             <!-- Header Sản Phẩm Liên Quan (Bỏ tabs phân loại) -->
             <div class="related-header-flex">
                 <h3 class="related-heading">Sản phẩm liên quan</h3>
-                <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="link-view-all-related">Xem tất cả <i class="fa fa-angle-right"></i></a>
+                <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="link-view-all-related">Xem tất cả <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
             </div>
 
             <!-- Khung Slide Sản Phẩm Liên Quan (Nút chuyển slide 2 bên) -->
             <div class="rel-slider-wrapper">
                 <button type="button" class="rel-btn-side rel-btn-prev-side" aria-label="Trước">
-                    <i class="fa fa-angle-left"></i>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
                 </button>
 
                 <div class="swiper-container gobike-related-carousel-swiper">
@@ -1030,7 +1030,7 @@ function gobike_render_single_product_related($product) {
                                                 <span class="rel-badge-sale"><?php echo esc_html($discount_badge); ?></span>
                                             <?php endif; ?>
                                             <button type="button" class="rel-btn-wishlist" title="Yêu thích">
-                                                <i class="fa fa-heart-o"></i>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                                             </button>
                                         </div>
                                         <div class="rel-card-info">
@@ -1057,7 +1057,7 @@ function gobike_render_single_product_related($product) {
                 </div>
 
                 <button type="button" class="rel-btn-side rel-btn-next-side" aria-label="Sau">
-                    <i class="fa fa-angle-right"></i>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
             </div>
 

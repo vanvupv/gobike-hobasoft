@@ -4037,15 +4037,6 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     text-transform: none !important;
 }
 
-.rel-btn-side i {
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    color: #1e293b !important;
-    line-height: 1 !important;
-    display: block !important;
-    transition: color 0.2s ease;
-}
-
 .rel-btn-side svg {
     display: block !important;
     width: 18px !important;
@@ -4067,10 +4058,6 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .rel-btn-side:hover {
     background: #005a36 !important;
     border-color: #005a36 !important;
-    color: #ffffff !important;
-}
-
-.rel-btn-side:hover i {
     color: #ffffff !important;
 }
 
@@ -4180,14 +4167,6 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     text-transform: none !important;
 }
 
-.rel-btn-wishlist i {
-    font-size: 13px !important;
-    color: #64748b !important;
-    line-height: 1 !important;
-    display: block !important;
-    transition: all 0.2s ease;
-}
-
 .rel-btn-wishlist svg {
     width: 14px !important;
     height: 14px !important;
@@ -4202,13 +4181,25 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     background: #ffffff !important;
 }
 
-.rel-btn-wishlist:hover i {
-    color: #dc2626 !important;
-}
-
 .rel-btn-wishlist:hover svg {
     stroke: #dc2626 !important;
     fill: #fee2e2 !important;
+}
+
+.link-see-all-green svg,
+.link-view-all-related svg,
+.link-see-all-faqs svg {
+    display: inline-block;
+    vertical-align: -2px;
+    margin-left: 3px;
+    stroke: currentColor;
+    transition: transform 0.2s ease;
+}
+
+.link-see-all-green:hover svg,
+.link-view-all-related:hover svg,
+.link-see-all-faqs:hover svg {
+    transform: translateX(3px);
 }
 
 /* Nội dung thông tin card */
