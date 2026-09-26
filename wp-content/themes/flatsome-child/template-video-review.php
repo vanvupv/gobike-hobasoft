@@ -710,7 +710,7 @@ $related_videos = array_slice($videos, 0, 6);
                     <h2 class="gb-vr-sec-title">Hệ thống showroom GoBike</h2>
                     <p class="gb-vr-sec-subtitle">Trải nghiệm trực tiếp sản phẩm tại các showroom trên toàn quốc.</p>
                 </div>
-                <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-vr-view-all">Xem tất cả showroom &rarr;</a>
+                <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-vr-view-all">Xem tất cả showroom <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
             </div>
 
             <div class="gb-vr-showroom-grid">
@@ -800,9 +800,10 @@ $related_videos = array_slice($videos, 0, 6);
 
                 <!-- Card thứ 5: Bản đồ toàn quốc -->
                 <div class="gb-vr-showroom-map-card">
-                    <img class="gb-vr-map-bg" src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg" alt="Bản đồ showroom GoBike" loading="lazy">
+                    <img class="gb-vr-map-bg" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/map-showroom-bg.svg'); ?>" alt="Bản đồ showroom GoBike" loading="lazy">
                     <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-vr-map-overlay-btn">
-                        <span>Xem bản đồ toàn quốc &rarr;</span>
+                        <span>Xem bản đồ toàn quốc</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                 </div>
             </div>

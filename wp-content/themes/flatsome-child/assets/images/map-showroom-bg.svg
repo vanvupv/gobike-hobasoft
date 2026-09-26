@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Map pin filter for subtle shadow -->
+    <filter id="pin-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Base map background -->
+  <rect width="400" height="200" fill="#f8f9fa"/>
+
+  <!-- Urban land blocks -->
+  <path d="M0 0 L150 0 L140 60 L0 50 Z" fill="#f1f3f4"/>
+  <path d="M160 0 L280 0 L270 70 L150 70 Z" fill="#f1f3f4"/>
+  <path d="M0 60 L130 70 L110 150 L0 140 Z" fill="#f1f3f4"/>
+  <path d="M120 80 L260 80 L240 160 L100 150 Z" fill="#f1f3f4"/>
+  <path d="M0 150 L90 160 L70 200 L0 200 Z" fill="#f1f3f4"/>
+  <path d="M110 160 L240 170 L230 200 L90 200 Z" fill="#f1f3f4"/>
+
+  <!-- Green park spaces -->
+  <path d="M20 15 Q60 5 90 25 Q110 45 80 55 Q40 60 20 15 Z" fill="#e6f4ea" opacity="0.8"/>
+  <path d="M160 20 Q200 10 230 30 Q220 60 170 50 Z" fill="#e6f4ea" opacity="0.7"/>
+  <path d="M140 100 Q190 90 210 120 Q180 150 130 140 Z" fill="#e6f4ea" opacity="0.6"/>
+
+  <!-- Secondary streets -->
+  <g stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-10 40 L160 45 L260 30"/>
+    <path d="M-10 120 L130 110 L250 125"/>
+    <path d="M60 -10 L50 210"/>
+    <path d="M140 -10 L120 210"/>
+    <path d="M210 -10 L190 210"/>
+    <path d="M40 70 L180 160"/>
+    <path d="M-10 170 L250 180"/>
+  </g>
+  <g stroke="#e2e8f0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M-10 40 L160 45 L260 30"/>
+    <path d="M-10 120 L130 110 L250 125"/>
+    <path d="M60 -10 L50 210"/>
+    <path d="M140 -10 L120 210"/>
+    <path d="M210 -10 L190 210"/>
+    <path d="M40 70 L180 160"/>
+    <path d="M-10 170 L250 180"/>
+  </g>
+
+  <!-- Main boulevard -->
+  <path d="M-10 90 Q120 75 220 95 Q300 110 410 70" stroke="#ffffff" stroke-width="12" fill="none"/>
+  <path d="M-10 90 Q120 75 220 95 Q300 110 410 70" stroke="#f1c40f" stroke-width="2" stroke-dasharray="8 6" fill="none" opacity="0.5"/>
+
+  <!-- Blue curving river on the right side -->
+  <path d="M310 -10 Q280 60 255 110 Q240 150 270 210 L410 210 L410 -10 Z" fill="#cfe2ff"/>
+  <path d="M310 -10 Q280 60 255 110 Q240 150 270 210" stroke="#9ec5fe" stroke-width="3" fill="none"/>
+
+  <!-- Bridge over river -->
+  <rect x="250" y="90" width="28" height="12" rx="2" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" transform="rotate(-15 264 96)"/>
+
+  <!-- 3 Red Location Pins (Exact matching Image 3) -->
+  <!-- Pin 1: Top Center-Left (x: 155, y: 35) -->
+  <g transform="translate(150, 25)" filter="url(#pin-shadow)">
+    <path d="M12 0 C5.37 0 0 5.37 0 12 C0 19.5 10.5 29 12 30 C13.5 29 24 19.5 24 12 C24 5.37 18.63 0 12 0 Z" fill="#e53935"/>
+    <circle cx="12" cy="11" r="5" fill="#ffffff"/>
+  </g>
+
+  <!-- Pin 2: Top Center-Right near river (x: 215, y: 55) -->
+  <g transform="translate(210, 50)" filter="url(#pin-shadow)">
+    <path d="M12 0 C5.37 0 0 5.37 0 12 C0 19.5 10.5 29 12 30 C13.5 29 24 19.5 24 12 C24 5.37 18.63 0 12 0 Z" fill="#e53935"/>
+    <circle cx="12" cy="11" r="5" fill="#ffffff"/>
+  </g>
+
+  <!-- Pin 3: Bottom Left (x: 65, y: 105) -->
+  <g transform="translate(60, 100)" filter="url(#pin-shadow)">
+    <path d="M12 0 C5.37 0 0 5.37 0 12 C0 19.5 10.5 29 12 30 C13.5 29 24 19.5 24 12 C24 5.37 18.63 0 12 0 Z" fill="#e53935"/>
+    <circle cx="12" cy="11" r="5" fill="#ffffff"/>
+  </g>
+</svg>

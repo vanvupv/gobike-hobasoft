@@ -1210,7 +1210,6 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
-    gap: 10px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1226,8 +1225,8 @@
 }
 
 .gb-vr-sr-icon {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     color: var(--gb-vr-primary);
     flex-shrink: 0;
     margin-top: 2px;
@@ -1265,8 +1264,8 @@
 }
 
 .gb-vr-sr-item svg {
-    width: 14px;
-    height: 14px;
+    width: 15px;
+    height: 15px;
     color: var(--gb-vr-primary);
     flex-shrink: 0;
 }
@@ -1296,17 +1295,18 @@
 
 .gb-vr-showroom-map-card .gb-vr-map-overlay-btn {
     position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    transform: none;
     background: var(--gb-vr-primary);
     color: #ffffff !important;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    padding: 8px 18px;
+    padding: 7px 14px;
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.4);
+    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.35);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
@@ -1317,7 +1317,7 @@
 
 .gb-vr-showroom-map-card .gb-vr-map-overlay-btn:hover {
     background: var(--gb-vr-primary-hover);
-    transform: translateX(-50%) translateY(-2px);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -1621,9 +1621,12 @@
     }
 
     .gb-vr-showroom-map-card .gb-vr-map-overlay-btn {
-        font-size: 11.5px !important;
+        font-size: 11px !important;
         padding: 6px 12px !important;
-        bottom: 12px !important;
+        bottom: 10px !important;
+        right: 10px !important;
+        left: auto !important;
+        transform: none !important;
     }
 
     /* --- 5. BANNER ĐẶT LỊCH LÁI THỬ TRÊN MOBILE --- */
