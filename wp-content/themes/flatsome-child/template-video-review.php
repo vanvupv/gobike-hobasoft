@@ -410,14 +410,14 @@ $related_videos = array_slice($videos, 0, 6);
                         <div class="gb-vr-playlist-thumb">
                             <img src="<?php echo esc_url($pl['thumb']); ?>" alt="<?php echo esc_attr($pl['title']); ?>" loading="lazy">
                             <span class="gb-vr-playlist-count-badge">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 15V9a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2zM3 13h2v-2H3v2zm18 0h-2v-2h2v2z"></path></svg>
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1zm0 5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4zm3.5 2.5 3 2-3 2v-4z"></path></svg>
                                 <?php echo esc_html($pl['count']); ?>
                             </span>
                         </div>
                         <div class="gb-vr-playlist-body">
                             <h3 class="gb-vr-playlist-title"><?php echo esc_html($pl['title']); ?></h3>
                             <p class="gb-vr-playlist-desc"><?php echo esc_html($pl['desc']); ?></p>
-                            <a href="<?php echo esc_url(home_url('/video-review/?cat=' . $pl['slug'])); ?>" class="gb-vr-playlist-btn">Xem danh sách &rarr;</a>
+                            <a href="<?php echo esc_url(home_url('/video-review/?cat=' . $pl['slug'])); ?>" class="gb-vr-playlist-btn">Xem danh sách <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                         </div>
                     </div>
                 <?php endforeach; ?>
