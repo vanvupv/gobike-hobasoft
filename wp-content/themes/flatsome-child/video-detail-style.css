@@ -457,12 +457,12 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-product-card {
     display: grid;
-    grid-template-columns: 190px 1fr 140px;
-    gap: 18px;
+    grid-template-columns: 190px 1fr auto;
+    gap: 16px 22px;
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 20px;
     align-items: center;
 }
 
@@ -470,12 +470,12 @@ a:hover .gb-vd-zoom-wrap img,
     width: 100%;
     height: 135px;
     background: #f8fafc;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px;
+    padding: 8px;
 }
 
 .gb-vd-product-thumb img {
@@ -491,67 +491,101 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-prod-name {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
 }
 
 .gb-vd-prod-desc {
-    font-size: 12.5px;
+    font-size: 13px;
     color: #64748b;
     margin: 0 0 4px 0;
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
 .gb-vd-prod-pricing {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 6px;
 }
 
 .gb-vd-price-current {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: #dc2626;
 }
 
 .gb-vd-price-old {
-    font-size: 13px;
+    font-size: 13.5px;
     color: #94a3b8;
     text-decoration: line-through;
 }
 
 .gb-vd-price-disc {
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 700;
     color: #ffffff;
-    background: #dc2626;
-    padding: 2px 6px;
-    border-radius: 4px;
+    background: #ef4444;
+    padding: 2px 7px;
+    border-radius: 5px;
 }
 
-/* 4 Thông số kỹ thuật của sản phẩm */
+/* 4 Thông số kỹ thuật của sản phẩm - Nằm ở dưới toàn bộ */
 .gb-vd-prod-specs-grid {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
 }
 
 .gb-vd-prod-spec-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11.5px;
-    color: #475569;
+    gap: 10px;
 }
 
-.gb-vd-prod-spec-item svg {
-    width: 14px;
-    height: 14px;
-    color: #0d7030;
+.gb-vd-spec-icon {
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d7030;
+}
+
+.gb-vd-spec-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: #0d7030;
+    flex-shrink: 0;
+}
+
+.gb-vd-spec-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.gb-vd-spec-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.gb-vd-spec-val {
+    font-size: 13.5px;
+    color: #0f172a;
+    line-height: 1.3;
+}
+
+.gb-vd-spec-val strong {
+    font-weight: 700;
+    color: #0f172a;
 }
 
 /* Cột nút xem & đặt lái thử */
@@ -564,37 +598,46 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-btn-prod-detail {
     background: #0d7030;
     color: #ffffff !important;
-    font-size: 12.5px;
+    font-size: 13.5px;
     font-weight: 700;
-    padding: 9px 12px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 8px;
     text-align: center;
     text-decoration: none;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
 .gb-vd-btn-prod-detail:hover {
     background: #085623;
+    transform: translateY(-1px);
 }
 
 .gb-vd-btn-prod-testdrive {
     background: #ffffff;
-    color: #334155 !important;
-    font-size: 12.5px;
+    color: #0f172a !important;
+    font-size: 13.5px;
     font-weight: 600;
-    padding: 8px 12px;
+    padding: 9px 18px;
     border: 1px solid #cbd5e1;
-    border-radius: 6px;
+    border-radius: 8px;
     text-align: center;
     text-decoration: none;
     transition: all 0.2s ease;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gb-vd-btn-prod-testdrive:hover {
     background: #f8fafc;
-    border-color: #94a3b8;
+    border-color: #0d7030;
+    color: #0d7030 !important;
 }
 
 /* ==========================================================================
@@ -1325,6 +1368,11 @@ a:hover .gb-vd-zoom-wrap img,
         grid-column: span 2;
         flex-direction: row;
     }
+    .gb-vd-prod-specs-grid {
+        grid-column: span 2;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
     .gb-vd-related-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1351,12 +1399,17 @@ a:hover .gb-vd-zoom-wrap img,
     .gb-vd-product-card {
         grid-template-columns: 1fr;
     }
+    .gb-vd-product-thumb {
+        height: 160px;
+    }
     .gb-vd-prod-actions {
         grid-column: span 1;
         flex-direction: column;
     }
     .gb-vd-prod-specs-grid {
-        grid-template-columns: 1fr;
+        grid-column: span 1;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 8px;
     }
     .gb-vd-related-grid {
         grid-template-columns: 1fr;

@@ -359,7 +359,7 @@ $comments_sample = array(
                                 <!-- Khung ảnh xe đạp có hiệu ứng hover zoom ảnh -->
                                 <div class="gb-vd-product-thumb">
                                     <div class="gb-vd-zoom-wrap">
-                                        <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg" alt="Phoenix C200">
+                                        <img src="https://gobike.demoweb360.top/wp-content/uploads/2026/08/xe-dap-tro-luc-dien-phoenix-a9-pro.png" alt="Phoenix C200">
                                     </div>
                                 </div>
 
@@ -373,32 +373,75 @@ $comments_sample = array(
                                         <span class="gb-vd-price-old">20.490.000đ</span>
                                         <span class="gb-vd-price-disc">-12%</span>
                                     </div>
-
-                                    <!-- 4 thông số kỹ thuật dạng icon + text -->
-                                    <div class="gb-vd-prod-specs-grid">
-                                        <div class="gb-vd-prod-spec-item">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                            <span>Quãng đường lên tới <strong>100km</strong></span>
-                                        </div>
-                                        <div class="gb-vd-prod-spec-item">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                                            <span>Động cơ mạnh mẽ <strong>250W</strong></span>
-                                        </div>
-                                        <div class="gb-vd-prod-spec-item">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="12" rx="2"></rect><line x1="22" y1="11" x2="22" y2="15"></line></svg>
-                                            <span>Pin lithium <strong>48V - 15Ah</strong></span>
-                                        </div>
-                                        <div class="gb-vd-prod-spec-item">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
-                                            <span>Trọng lượng chỉ <strong>24kg</strong></span>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <!-- Cột nút hành động -->
                                 <div class="gb-vd-prod-actions">
                                     <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-vd-btn-prod-detail">Xem chi tiết &rarr;</a>
                                     <a href="#dat-lich" class="gb-vd-btn-prod-testdrive">Đặt lịch lái thử</a>
+                                </div>
+
+                                <!-- 4 thông số kỹ thuật nằm ở dưới gồm Icon, Tiêu đề và Nội dung -->
+                                <div class="gb-vd-prod-specs-grid">
+                                    <div class="gb-vd-prod-spec-item">
+                                        <div class="gb-vd-spec-icon">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="9.5"></circle>
+                                                <path d="M10 8l-2 2a3 3 0 0 0 0 4.24l1.76 1.76a3 3 0 0 0 4.24 0l2-2"></path>
+                                                <path d="M7 6l2 2"></path>
+                                                <path d="M16 15l2 2"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="gb-vd-spec-content">
+                                            <span class="gb-vd-spec-label">Quãng đường</span>
+                                            <span class="gb-vd-spec-val">lên tới <strong>100km</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="gb-vd-prod-spec-item">
+                                        <div class="gb-vd-spec-icon">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="4.5"></circle>
+                                                <path d="M10 3h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path>
+                                                <path d="M10 17h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"></path>
+                                                <path d="M3 10h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"></path>
+                                                <path d="M17 10h2a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"></path>
+                                                <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
+                                            </svg>
+                                        </div>
+                                        <div class="gb-vd-spec-content">
+                                            <span class="gb-vd-spec-label">Động cơ mạnh mẽ</span>
+                                            <span class="gb-vd-spec-val"><strong>250W</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="gb-vd-prod-spec-item">
+                                        <div class="gb-vd-spec-icon">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="6" y="5" width="12" height="16" rx="2.5"></rect>
+                                                <line x1="10" y1="2" x2="14" y2="2" stroke-width="2.5" stroke-linecap="round"></line>
+                                                <path d="M12.5 9l-2 3.5h3l-2 4"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="gb-vd-spec-content">
+                                            <span class="gb-vd-spec-label">Pin lithium</span>
+                                            <span class="gb-vd-spec-val"><strong>48V - 15Ah</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="gb-vd-prod-spec-item">
+                                        <div class="gb-vd-spec-icon">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="5.5" r="3"></circle>
+                                                <path d="M6.5 20.5h11a1.5 1.5 0 0 0 1.5-1.3l-1.2-9.5A2 2 0 0 0 15.8 8H8.2a2 2 0 0 0-2 1.7l-1.2 9.5a1.5 1.5 0 0 0 1.5 1.3z"></path>
+                                                <circle cx="12" cy="14.5" r="1.5" fill="currentColor"></circle>
+                                            </svg>
+                                        </div>
+                                        <div class="gb-vd-spec-content">
+                                            <span class="gb-vd-spec-label">Trọng lượng</span>
+                                            <span class="gb-vd-spec-val">chỉ <strong>24kg</strong></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
