@@ -176,18 +176,6 @@ function gobike_render_single_product_gallery($product) {
                         <?php endif; ?>
                     </div>
 
-                    <!-- Cụm Nút Nổi Góc Dưới Ảnh: Xem video & Xem 360° -->
-                    <div class="gobike-gallery-floating-actions">
-                        <button type="button" class="btn-float-action btn-open-video" data-video="<?php echo esc_url($video_url); ?>">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                            <span>Xem video</span>
-                        </button>
-                        <button type="button" class="btn-float-action btn-open-360">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                            <span>Xem 360°</span>
-                        </button>
-                    </div>
-
                     <!-- Điều hướng Swiper -->
                     <div class="swiper-button-prev gobike-gal-prev"></div>
                     <div class="swiper-button-next gobike-gal-next"></div>

@@ -27,22 +27,6 @@ if (!$product) {
 
 <div class="gobike-single-product-page" id="product-<?php the_ID(); ?>" <?php wc_product_class('gobike-product-scope', $product); ?>>
     
-    <!-- 1. BREADCRUMB ĐIỀU HƯỚNG PHÂN CẤP -->
-    <div class="gobike-product-breadcrumb-wrap">
-        <div class="container">
-            <?php
-            woocommerce_breadcrumb(array(
-                'delimiter'   => ' <span class="bc-sep">/</span> ',
-                'wrap_before' => '<nav class="gobike-breadcrumb" aria-label="Breadcrumb">',
-                'wrap_after'  => '</nav>',
-                'before'      => '<span class="bc-item">',
-                'after'       => '</span>',
-                'home'        => _x('Trang chủ', 'breadcrumb', 'woocommerce'),
-            ));
-            ?>
-        </div>
-    </div>
-
     <!-- THÔNG BÁO WOOCOMMERCE (NẾU CÓ) -->
     <div class="container">
         <?php wc_print_notices(); ?>

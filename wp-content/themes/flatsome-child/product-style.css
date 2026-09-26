@@ -2354,10 +2354,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-product-breadcrumb-wrap {
-    background: #ffffff;
-    padding: 12px 0;
-    border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 20px;
+    display: none !important;
 }
 
 .gobike-breadcrumb {
@@ -2508,14 +2505,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     display: none !important;
 }
 
-/* Nút tác vụ nổi góc dưới ảnh (Xem video & Xem 360°) */
+/* Nút tác vụ nổi góc dưới ảnh (Xem video & Xem 360°) - Ẩn theo yêu cầu */
 .gobike-gallery-floating-actions {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    z-index: 10;
-    display: flex;
-    gap: 8px;
+    display: none !important;
 }
 
 .btn-float-action {
