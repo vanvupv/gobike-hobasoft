@@ -1600,39 +1600,27 @@
         font-size: 14.5px !important;
     }
 
-    /* --- 4. HỆ THỐNG SHOWROOM GOBIKE TRÊN MOBILE: DẠNG SLIDE 2.5 (GAP 8PX) --- */
-    .gb-vr-showroom-grid > .gb-vr-showroom-card,
-    .gb-vr-showroom-grid > .gb-vr-showroom-map-card {
-        flex: 0 0 calc((100% - 16px) / 2.3) !important;
-        min-width: calc((100% - 16px) / 2.3) !important;
-        max-width: calc((100% - 16px) / 2.3) !important;
+    /* --- 4. HỆ THỐNG SHOWROOM GOBIKE TRÊN MOBILE: DẠNG SLIDE 1.5 (GAP 8PX) --- */
+    .gb-vr-showroom-grid > .gb-vr-showroom-card {
+        flex: 0 0 calc((100% - 16px) / 1.45) !important;
+        min-width: calc((100% - 16px) / 1.45) !important;
+        max-width: calc((100% - 16px) / 1.45) !important;
         scroll-snap-align: start !important;
         box-sizing: border-box !important;
-    }
-
-    .gb-vr-showroom-card {
-        padding: 12px 10px !important;
+        padding: 14px 14px !important;
     }
 
     .gb-vr-sr-name {
-        font-size: 13.5px !important;
+        font-size: 14px !important;
     }
 
     .gb-vr-sr-addr {
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
 
+    /* Ẩn khối Xem bản đồ toàn quốc ở cuối slide trên Mobile */
     .gb-vr-showroom-map-card {
-        min-height: 180px !important;
-    }
-
-    .gb-vr-showroom-map-card .gb-vr-map-overlay-btn {
-        font-size: 11px !important;
-        padding: 6px 12px !important;
-        bottom: 10px !important;
-        right: 10px !important;
-        left: auto !important;
-        transform: none !important;
+        display: none !important;
     }
 
     /* --- 5. BANNER ĐẶT LỊCH LÁI THỬ TRÊN MOBILE --- */
