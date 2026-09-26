@@ -353,15 +353,20 @@ $related_videos = array_slice($videos, 0, 6);
         </section>
 
         <!-- ===================================================================
-             SECTION 3: DANH SÁCH PHÁT NỔI BẬT (ẢNH 2 - PHẦN DƯỚI - 5 CỘT)
+             SECTION 3: DANH SÁCH PHÁT NỔI BẬT / VIDEO THEO CHỦ ĐỀ
              =================================================================== -->
         <section class="gb-vr-playlist-section">
             <div class="gb-vr-section-header">
                 <div class="gb-vr-header-left">
-                    <h2 class="gb-vr-sec-title">Danh sách phát nổi bật</h2>
+                    <h2 class="gb-vr-sec-title">
+                        <span class="gb-vr-title-desktop">Danh sách phát nổi bật</span>
+                        <span class="gb-vr-title-mobile">Video theo chủ đề</span>
+                    </h2>
                     <p class="gb-vr-sec-subtitle">Khám phá các chủ đề video được nhiều người quan tâm nhất về xe đạp điện GoBike.</p>
                 </div>
-                <a href="<?php echo esc_url(home_url('/video-review/')); ?>" class="gb-vr-view-all">Xem tất cả &rarr;</a>
+                <a href="<?php echo esc_url(home_url('/video-review/')); ?>" class="gb-vr-view-all">
+                    Xem tất cả <span class="gb-vr-view-all-arrow">&rarr;</span><span class="gb-vr-view-all-chevron">&gt;</span>
+                </a>
             </div>
 
             <div class="gb-vr-playlist-grid">
@@ -370,56 +375,77 @@ $related_videos = array_slice($videos, 0, 6);
                     array(
                         'title' => 'Trải nghiệm thực tế',
                         'desc'  => 'Những hành trình thật, cảm xúc thật cùng xe đạp điện GoBike',
-                        'count' => '12 video',
-                        'thumb' => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
+                        'count' => '86 video',
+                        'thumb' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><polygon points="10 11 15 14 10 17 10 11" fill="currentColor"></polygon></svg>',
                         'slug'  => 'trai-nghiem-thuc-te',
                     ),
                     array(
                         'title' => 'Hướng dẫn sử dụng',
                         'desc'  => 'Hướng dẫn chi tiết từ A-Z giúp bạn sử dụng xe hiệu quả và an toàn',
-                        'count' => '8 video',
-                        'thumb' => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
+                        'count' => '42 video',
+                        'thumb' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&auto=format&fit=crop&q=80',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>',
                         'slug'  => 'huong-dan-su-dung',
                     ),
                     array(
                         'title' => 'So sánh xe',
                         'desc'  => 'So sánh chi tiết các dòng xe GoBike để chọn lựa phù hợp nhất',
-                        'count' => '10 video',
-                        'thumb' => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
+                        'count' => '28 video',
+                        'thumb' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&auto=format&fit=crop&q=80',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg>',
                         'slug'  => 'so-sanh-xe',
                     ),
                     array(
-                        'title' => 'Kinh nghiệm – Mẹo hay',
-                        'desc'  => 'Mẹo vặt, kinh nghiệm hữu ích cho người yêu xe đạp điện',
-                        'count' => '7 video',
+                        'title' => 'Bảo dưỡng & sửa chữa',
+                        'desc'  => 'Kinh nghiệm bảo dưỡng định kỳ và chăm sóc pin lithium đúng cách',
+                        'count' => '35 video',
                         'thumb' => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-                        'slug'  => 'kinh-nghiem-meo-hay',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>',
+                        'slug'  => 'bao-duong-sua-chua',
                     ),
                     array(
-                        'title' => 'Câu chuyện khách hàng',
-                        'desc'  => 'Chia sẻ thật từ những khách hàng đã trải nghiệm GoBike',
-                        'count' => '6 video',
-                        'thumb' => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-                        'slug'  => 'cau-chuyen-khach-hang',
+                        'title' => 'Phụ kiện',
+                        'desc'  => 'Phụ kiện thông minh nâng tầm trải nghiệm lái xe an toàn, tiện lợi',
+                        'count' => '27 video',
+                        'thumb' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=600&auto=format&fit=crop&q=80',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>',
+                        'slug'  => 'phu-kien',
+                    ),
+                    array(
+                        'title' => 'Cung đường đẹp',
+                        'desc'  => 'Khám phá những cung đường đẹp và địa điểm phượt xe đạp điện lý tưởng',
+                        'count' => '24 video',
+                        'thumb' => 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=80',
+                        'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 20 7-10 6 8 3-4 4 6H2Z"></path></svg>',
+                        'slug'  => 'cung-duong-dep',
                     ),
                 );
 
                 foreach ($playlists as $pl):
                 ?>
-                    <div class="gb-vr-playlist-card">
+                    <a href="<?php echo esc_url(home_url('/video-review/?cat=' . $pl['slug'])); ?>" class="gb-vr-playlist-card">
                         <div class="gb-vr-playlist-thumb">
                             <img src="<?php echo esc_url($pl['thumb']); ?>" alt="<?php echo esc_attr($pl['title']); ?>" loading="lazy">
+                            <div class="gb-vr-playlist-thumb-overlay"></div>
                             <span class="gb-vr-playlist-count-badge">
                                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1zm0 5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4zm3.5 2.5 3 2-3 2v-4z"></path></svg>
                                 <?php echo esc_html($pl['count']); ?>
                             </span>
                         </div>
+                        <div class="gb-vr-playlist-mobile-content">
+                            <div class="gb-vr-pl-center-icon">
+                                <?php echo $pl['icon']; ?>
+                            </div>
+                            <h3 class="gb-vr-playlist-title"><?php echo esc_html($pl['title']); ?></h3>
+                            <span class="gb-vr-pl-center-count"><?php echo esc_html($pl['count']); ?></span>
+                        </div>
                         <div class="gb-vr-playlist-body">
                             <h3 class="gb-vr-playlist-title"><?php echo esc_html($pl['title']); ?></h3>
                             <p class="gb-vr-playlist-desc"><?php echo esc_html($pl['desc']); ?></p>
-                            <a href="<?php echo esc_url(home_url('/video-review/?cat=' . $pl['slug'])); ?>" class="gb-vr-playlist-btn">Xem danh sách <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                            <span class="gb-vr-playlist-btn">Xem danh sách <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </section>

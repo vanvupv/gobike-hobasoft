@@ -709,8 +709,32 @@
 
 .gb-vr-playlist-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.gb-vr-title-desktop {
+    display: inline;
+}
+
+.gb-vr-title-mobile {
+    display: none;
+}
+
+.gb-vr-view-all-arrow {
+    display: inline;
+}
+
+.gb-vr-view-all-chevron {
+    display: none;
+}
+
+.gb-vr-playlist-mobile-content {
+    display: none;
+}
+
+.gb-vr-playlist-thumb-overlay {
+    display: none;
 }
 
 .gb-vr-playlist-card {
@@ -721,6 +745,7 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
+    text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -1524,9 +1549,8 @@
     }
 
     /* --- 3. DẠNG SLIDE 2.5 CHO TẤT CẢ CÁC SECTION TRÊN MOBILE --- */
-    /* Quy tắc slide 2.5 chuẩn: Vuốt ngang mượt mà, gap giữa các khối là 8px */
+    /* Quy tắc slide cuộn ngang cho các khối: Video liên quan, Sản phẩm, Trải nghiệm thật, Showroom */
     .gb-vr-related-grid,
-    .gb-vr-playlist-grid,
     .gb-vr-products-grid,
     .gb-vr-experience-grid,
     .gb-vr-showroom-grid {
@@ -1543,7 +1567,6 @@
     }
 
     .gb-vr-related-grid::-webkit-scrollbar,
-    .gb-vr-playlist-grid::-webkit-scrollbar,
     .gb-vr-products-grid::-webkit-scrollbar,
     .gb-vr-experience-grid::-webkit-scrollbar,
     .gb-vr-showroom-grid::-webkit-scrollbar {
@@ -1566,21 +1589,159 @@
         line-height: 1.4 !important;
     }
 
+    /* --- SECTION 3: VIDEO THEO CHỦ ĐỀ TRÊN MOBILE (ẢNH 1 - LƯỚI 3 CỘT X 2 HÀNG) --- */
+    .gb-vr-title-desktop {
+        display: none !important;
+    }
+
+    .gb-vr-title-mobile {
+        display: inline !important;
+    }
+
+    .gb-vr-view-all-arrow {
+        display: none !important;
+    }
+
+    .gb-vr-view-all-chevron {
+        display: inline !important;
+        font-weight: 700 !important;
+        margin-left: 2px !important;
+    }
+
+    .gb-vr-playlist-section .gb-vr-sec-subtitle {
+        display: none !important;
+    }
+
+    .gb-vr-playlist-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        overflow-x: visible !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .gb-vr-playlist-card {
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        aspect-ratio: 1.25 !important;
+        min-height: 94px !important;
+        padding: 8px 4px !important;
+        border: none !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        background: #0f172a !important;
+        transform: none !important;
+    }
+
+    .gb-vr-playlist-card:hover {
+        transform: none !important;
+    }
+
+    .gb-vr-playlist-thumb {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding-top: 0 !important;
+        z-index: 1 !important;
+    }
+
+    .gb-vr-playlist-thumb img {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        transform: scale(1.05) !important;
+        filter: brightness(0.85) !important;
+    }
+
+    .gb-vr-playlist-thumb-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.78) 100%) !important;
+        z-index: 2 !important;
+        display: block !important;
+    }
+
+    .gb-vr-playlist-count-badge,
+    .gb-vr-playlist-body {
+        display: none !important;
+    }
+
+    .gb-vr-playlist-mobile-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        z-index: 3 !important;
+        width: 100% !important;
+        padding: 0 4px !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-vr-pl-center-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 5px !important;
+    }
+
+    .gb-vr-pl-center-icon svg {
+        width: 26px !important;
+        height: 26px !important;
+        stroke: #ffffff !important;
+        color: #ffffff !important;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6)) !important;
+        display: block !important;
+    }
+
+    .gb-vr-playlist-mobile-content .gb-vr-playlist-title {
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        color: #ffffff !important;
+        font-size: 11.5px !important;
+        font-weight: 700 !important;
+        line-height: 1.25 !important;
+        margin: 0 0 3px 0 !important;
+        text-align: center !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+        word-break: break-word !important;
+    }
+
+    .gb-vr-pl-center-count {
+        display: block !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 10.5px !important;
+        font-weight: 500 !important;
+        line-height: 1 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+    }
 
     /* Khối Sản phẩm nổi bật trong video trên mobile: dạng slide 1.5 (gap 8px) */
     .gb-vr-products-grid > .gb-vr-product-card {
         flex: 0 0 calc((100% - 16px) / 1.45) !important;
         min-width: calc((100% - 16px) / 1.45) !important;
         max-width: calc((100% - 16px) / 1.45) !important;
-        scroll-snap-align: start !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Danh sách phát nổi bật (Playlist) trên mobile: slide 2.5, gap 8px */
-    .gb-vr-playlist-grid > .gb-vr-playlist-card {
-        flex: 0 0 calc((100% - 16px) / 2.3) !important;
-        min-width: calc((100% - 16px) / 2.3) !important;
-        max-width: calc((100% - 16px) / 2.3) !important;
         scroll-snap-align: start !important;
         box-sizing: border-box !important;
     }
