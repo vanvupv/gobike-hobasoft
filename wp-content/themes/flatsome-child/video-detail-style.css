@@ -1410,55 +1410,8 @@ a:hover .gb-vd-zoom-wrap img,
         grid-template-columns: 1fr;
         gap: 24px;
     }
-    .gb-vd-product-card {
-        grid-template-columns: 160px 1fr;
-        grid-template-rows: auto auto auto;
-        row-gap: 14px;
-    }
-    .gb-vd-product-thumb {
-        grid-column: 1;
-        grid-row: 1 / span 3;
-        min-height: unset;
-    }
-    .gb-vd-prod-info {
-        grid-column: 2;
-        grid-row: 1;
-    }
-    .gb-vd-prod-actions {
-        grid-column: 2;
-        grid-row: 2;
-        flex-direction: row;
-        gap: 10px;
-    }
-    .gb-vd-prod-specs-grid {
-        grid-column: 2;
-        grid-row: 3;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 10px;
-    }
-    .gb-vd-related-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .gb-vd-bottom-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
 
-@media screen and (max-width: 600px) {
-    .gb-vd-main-title {
-        font-size: 18px;
-    }
-    .gb-vd-action-buttons {
-        gap: 8px;
-    }
-    .gb-vd-btn-buy-now,
-    .gb-vd-btn-action {
-        flex: 1;
-        justify-content: center;
-        padding: 8px 10px;
-        font-size: 12.5px;
-    }
+    /* Khối Sản phẩm trong video: chuẩn giao diện Mobile (Ảnh 2) */
     .gb-vd-product-card {
         display: grid !important;
         grid-template-columns: 120px 1fr !important;
@@ -1565,7 +1518,8 @@ a:hover .gb-vd-zoom-wrap img,
     .gb-vd-prod-specs-grid {
         display: none !important;
     }
-    /* Khối Video liên quan trên Mobile: dạng slide 1.5 */
+
+    /* Khối Video liên quan trên Mobile/Tablet: dạng slide 1.5 */
     .gb-vd-related-grid {
         display: flex !important;
         flex-flow: row nowrap !important;
@@ -1591,6 +1545,27 @@ a:hover .gb-vd-zoom-wrap img,
     .gb-vd-rel-title {
         font-size: 13.5px !important;
         line-height: 1.4 !important;
+    }
+
+    .gb-vd-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gb-vd-main-title {
+        font-size: 18px;
+    }
+    .gb-vd-action-buttons {
+        gap: 8px;
+    }
+    .gb-vd-btn-buy-now,
+    .gb-vd-btn-action {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12.5px;
     }
     .gb-vd-channel-box {
         flex-direction: column;
