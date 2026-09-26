@@ -1501,21 +1501,22 @@
     .gb-ce-polaroid-mobile-section {
         display: block !important;
         margin-top: 18px;
-        margin-bottom: 24px;
+        margin-bottom: 28px;
+        width: 100%;
     }
 
     .gb-ce-polaroid-mobile-card {
         background: #edf7f1;
         border: 1px solid #c8f0d6;
-        border-radius: 18px;
-        padding: 16px 14px 14px 16px;
+        border-radius: 20px;
+        padding: 24px 22px 20px 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
-        box-shadow: 0 2px 10px rgba(13, 112, 48, 0.04);
-        max-width: 480px;
-        margin: 0 auto;
+        gap: 16px;
+        box-shadow: 0 4px 14px rgba(13, 112, 48, 0.05);
+        width: 100%;
+        max-width: 100%;
         overflow: hidden;
     }
 
@@ -1525,10 +1526,10 @@
     }
 
     .gb-ce-polaroid-mobile-title {
-        font-size: 15.5px;
+        font-size: clamp(18px, 4.8vw, 24px);
         font-weight: 700;
         color: #064e3b;
-        line-height: 1.35;
+        line-height: 1.32;
         margin: 0;
         max-width: none;
         word-break: normal;
@@ -1549,16 +1550,16 @@
         gap: 0;
         position: relative;
         padding-top: 6px;
-        padding-bottom: 2px;
+        padding-bottom: 4px;
     }
 
     .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item {
         background: #ffffff;
-        padding: 3.5px 3.5px 12px 3.5px;
-        border-radius: 3px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14);
+        padding: 4px 4px 14px 4px;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
         flex-shrink: 0;
-        margin: 0 -7px;
+        margin: 0 -9px;
         transform-origin: bottom center;
         transition: transform 0.2s ease;
     }
@@ -1569,12 +1570,12 @@
     }
 
     .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(2) {
-        transform: rotate(-2deg) translateY(-4px);
+        transform: rotate(-2deg) translateY(-5px);
         z-index: 2;
     }
 
     .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item:nth-child(3) {
-        transform: rotate(5deg) translateY(-2px);
+        transform: rotate(5deg) translateY(-3px);
         z-index: 3;
     }
 
@@ -1584,12 +1585,10 @@
     }
 
     .gb-ce-polaroid-mobile-stack .gb-ce-polaroid-item img {
-        width: 48px !important;
-        height: 58px !important;
-        min-width: 48px !important;
-        min-height: 58px !important;
-        max-width: 48px !important;
-        max-height: 58px !important;
+        width: clamp(52px, 13vw, 76px) !important;
+        height: clamp(64px, 16vw, 92px) !important;
+        min-width: 50px !important;
+        min-height: 62px !important;
         object-fit: cover !important;
         border-radius: 2px !important;
         display: block !important;
@@ -1598,15 +1597,15 @@
     .gb-ce-polaroid-mobile-art {
         font-family: 'Caveat', 'Dancing Script', cursive;
         color: #065f46;
-        font-size: 15px;
+        font-size: clamp(15px, 3.6vw, 18px);
         font-weight: 700;
         line-height: 1.2;
         text-align: center;
-        margin-top: 4px;
+        margin-top: 6px;
     }
 
     .gb-ce-polaroid-mobile-art span {
-        font-size: 12px;
+        font-size: clamp(12px, 2.8vw, 14px);
         display: block;
         color: #047857;
     }
