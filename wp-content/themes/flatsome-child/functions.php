@@ -62,6 +62,15 @@ function gobike_enqueue_modular_styles()
     if (file_exists($theme_dir . '/single-post-style.css')) {
         wp_enqueue_style('gobike-single-post-style', $theme_uri . '/single-post-style.css', array('flatsome-style'), filemtime($theme_dir . '/single-post-style.css'));
     }
+    if (file_exists($theme_dir . '/video-review-style.css')) {
+        wp_enqueue_style('gobike-video-review-style', $theme_uri . '/video-review-style.css', array('flatsome-style'), filemtime($theme_dir . '/video-review-style.css'));
+    }
+    if (file_exists($theme_dir . '/video-detail-style.css')) {
+        wp_enqueue_style('gobike-video-detail-style', $theme_uri . '/video-detail-style.css', array('flatsome-style'), filemtime($theme_dir . '/video-detail-style.css'));
+    }
+    if (file_exists($theme_dir . '/customer-experience-style.css')) {
+        wp_enqueue_style('gobike-customer-experience-style', $theme_uri . '/customer-experience-style.css', array('flatsome-style'), filemtime($theme_dir . '/customer-experience-style.css'));
+    }
 }
 
 /**
