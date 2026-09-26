@@ -614,46 +614,49 @@
    SECTION 4: COMMUNITY CALLOUT BANNER (KHỐI LAN TỎA HÀNH TRÌNH THẬT)
    ========================================================================== */
 .gb-ce-community-section {
-    margin-bottom: 36px;
+    margin-bottom: 48px;
 }
 
 .gb-ce-comm-box {
     background: #eaf8ef;
-    border-radius: 20px;
-    padding: 32px 36px;
+    border-radius: 24px;
+    padding: 38px 42px;
     border: 1px solid #d1fae5;
     display: grid;
-    grid-template-columns: 1.1fr 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1.15fr 1.25fr 1.1fr;
+    gap: 36px;
     align-items: center;
     box-shadow: 0 4px 16px rgba(13, 112, 48, 0.04);
 }
 
-/* Cột 1: Quote & Social Proof */
+/* Cột 1: Quote & Social Proof (Tiêu đề to, nổi bật theo ảnh mẫu 3) */
 .gb-ce-comm-quote-col {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(13, 112, 48, 0.16);
+    padding-right: 32px;
 }
 
 .gb-ce-comm-quote-text {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
     color: #064e3b;
-    line-height: 1.5;
-    margin: 0 0 6px 0;
+    line-height: 1.35;
+    margin: 0 0 10px 0;
 }
 
 .gb-ce-comm-quote-author {
-    font-size: 13px;
+    font-size: 14.5px;
     color: #047857;
     font-weight: 600;
-    margin: 0 0 16px 0;
+    margin: 0 0 20px 0;
 }
 
 .gb-ce-comm-avatars-wrap {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .gb-ce-comm-avatar-group {
@@ -662,11 +665,11 @@
 }
 
 .gb-ce-comm-avatar-group img {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     border: 2px solid #ffffff;
-    margin-left: -8px;
+    margin-left: -10px;
     object-fit: cover;
 }
 
@@ -675,13 +678,14 @@
 }
 
 .gb-ce-comm-avatar-caption {
-    font-size: 11px;
+    font-size: 13px;
     color: #065f46;
-    line-height: 1.35;
+    line-height: 1.4;
+    font-weight: 500;
     max-width: 220px;
 }
 
-/* Cột 2: 3 bước tham gia & Nút CTA */
+/* Cột 2: 3 bước tham gia & Nút CTA (Icon to rõ nét theo ảnh mẫu 3) */
 .gb-ce-comm-steps-col {
     display: flex;
     flex-direction: column;
@@ -697,8 +701,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 36px;
+    margin-bottom: 24px;
 }
 
 .gb-ce-comm-step-item {
@@ -706,7 +710,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 90px;
+    max-width: 110px;
 }
 
 .gb-ce-comm-step-icon-wrap {
@@ -714,78 +718,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .gb-ce-comm-step-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #ffffff;
+    width: 52px;
+    height: 52px;
+    background: transparent;
     color: #0d7030;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: none;
+    border: none;
 }
 
 .gb-ce-comm-step-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 40px;
+    height: 40px;
+    stroke-width: 1.8;
 }
 
 .gb-ce-step-number {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #0d7030;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4px;
+    display: none !important;
 }
 
 .gb-ce-step-arrow {
-    color: #94a3b8;
-    font-size: 16px;
-    margin-top: 10px;
+    display: none !important;
 }
 
 .gb-ce-comm-step-text {
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 600;
-    color: #064e3b;
-    line-height: 1.3;
+    color: #1e293b;
+    line-height: 1.35;
 }
 
 .gb-ce-comm-cta-btn {
-    background: #0d7030;
+    background: #085623;
     color: #ffffff;
-    padding: 10px 22px;
-    border-radius: 24px;
-    font-size: 13px;
+    padding: 13px 32px;
+    border-radius: 30px;
+    font-size: 15px;
     font-weight: 700;
     text-decoration: none;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 10px !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.25);
+    box-shadow: 0 4px 14px rgba(8, 86, 35, 0.28);
     transition: all 0.25s ease;
 }
 
 .gb-ce-comm-cta-btn:hover {
-    background: #085623;
+    background: #044b25;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(13, 112, 48, 0.35);
+    box-shadow: 0 6px 18px rgba(8, 86, 35, 0.38);
     color: #ffffff;
 }
 
-/* Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật */
+/* Cột 3: Ảnh Polaroid collage & Chữ ký nghệ thuật (Ảnh to rõ theo ảnh mẫu 3) */
 .gb-ce-comm-polaroid-col {
     display: flex;
     flex-direction: column;
@@ -795,48 +788,51 @@
 
 .gb-ce-polaroid-stack {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    gap: 6px;
-    margin-bottom: 8px;
+    gap: 0;
+    margin-bottom: 12px;
 }
 
 .gb-ce-polaroid-item {
     background: #ffffff;
-    padding: 4px 4px 10px 4px;
+    padding: 6px 6px 20px 6px;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-    transform-origin: center;
-    transition: transform 0.25s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform-origin: bottom center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    margin: 0 -12px;
 }
 
 .gb-ce-polaroid-item:nth-child(1) {
-    transform: rotate(-10deg);
+    transform: rotate(-10deg) translateY(4px);
+    z-index: 1;
 }
 
 .gb-ce-polaroid-item:nth-child(2) {
-    transform: rotate(-2deg) translateY(-4px);
+    transform: rotate(-3deg) translateY(-8px);
     z-index: 2;
 }
 
 .gb-ce-polaroid-item:nth-child(3) {
-    transform: rotate(6deg);
+    transform: rotate(5deg) translateY(-4px);
     z-index: 3;
 }
 
 .gb-ce-polaroid-item:nth-child(4) {
-    transform: rotate(14deg);
+    transform: rotate(12deg) translateY(6px);
     z-index: 2;
 }
 
 .gb-ce-polaroid-item:hover {
-    transform: scale(1.08) rotate(0deg);
-    z-index: 5;
+    transform: scale(1.08) rotate(0deg) translateY(-10px);
+    z-index: 10;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
 }
 
 .gb-ce-polaroid-item img {
-    width: 60px;
-    height: 72px;
+    width: 96px;
+    height: 118px;
     object-fit: cover;
     display: block;
     border-radius: 2px;
@@ -845,34 +841,39 @@
 .gb-ce-comm-polaroid-art {
     font-family: 'Caveat', 'Dancing Script', cursive;
     color: #064e3b;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     text-align: center;
-    margin: 4px 0 0 0;
+    margin: 6px 0 0 0;
     line-height: 1.25;
 }
 
 .gb-ce-comm-polaroid-art span {
-    font-size: 14px;
-    display: block;
+    font-size: 17px;
+    display: inline-block;
     color: #047857;
+    margin-top: 2px;
 }
 
 /* ==========================================================================
-   SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
+   SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ? - FULL WIDTH)
+   Toàn màn hình Edge-to-edge, bỏ toàn bộ bo viền theo ảnh mẫu 2
    ========================================================================== */
 .gb-ce-bottom-cta-section {
-    margin-bottom: 30px;
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0 !important;
 }
 
 .gb-ce-bottom-banner {
     position: relative;
-    border-radius: 20px;
+    border-radius: 0 !important;
     overflow: hidden;
-    min-height: 180px;
+    min-height: 200px;
     background: #0f172a;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .gb-ce-bottom-banner-bg {
@@ -883,40 +884,44 @@
     object-fit: cover;
     object-position: center;
     opacity: 1;
+    border-radius: 0 !important;
 }
 
 .gb-ce-bottom-banner-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.6) 45%, rgba(15, 23, 42, 0.15) 100%);
+    border-radius: 0 !important;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.55) 45%, rgba(15, 23, 42, 0.15) 100%);
 }
 
 .gb-ce-bottom-banner-inner {
     position: relative;
     z-index: 2;
-    padding: 36px 46px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 46px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 24px;
+    gap: 32px;
 }
 
 .gb-ce-bottom-banner-text {
-    max-width: 650px;
+    max-width: 680px;
 }
 
 .gb-ce-bottom-banner-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
     color: #ffffff;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     line-height: 1.25;
 }
 
 .gb-ce-bottom-banner-desc {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.95);
     margin: 0;
     line-height: 1.5;
 }
@@ -924,9 +929,9 @@
 .gb-ce-bottom-share-btn {
     background: #ffffff;
     color: #044b25;
-    padding: 11px 26px;
-    border-radius: 24px;
-    font-size: 13.5px;
+    padding: 13px 30px;
+    border-radius: 30px;
+    font-size: 14.5px;
     font-weight: 700;
     text-decoration: none;
     display: inline-flex !important;
@@ -1305,17 +1310,17 @@
         border-radius: 0 !important;
     }
     .gb-ce-comm-quote-text {
-        font-size: 17px;
+        font-size: 20px;
         font-weight: 700;
         color: #064e3b;
-        line-height: 1.45;
+        line-height: 1.4;
         margin-bottom: 6px;
     }
     .gb-ce-comm-quote-author {
-        font-size: 13px;
+        font-size: 13.5px;
         color: #047857;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }
     .gb-ce-comm-avatars-wrap {
         display: flex;
@@ -1323,7 +1328,7 @@
         gap: 12px;
     }
     .gb-ce-comm-avatar-caption {
-        font-size: 11.5px;
+        font-size: 12px;
         color: #065f46;
         line-height: 1.35;
     }
@@ -1332,14 +1337,14 @@
     .gb-ce-comm-steps-col {
         background: #f0fdf4;
         border-radius: 16px;
-        padding: 22px 16px;
+        padding: 24px 16px;
         border: 1px solid #d1fae5;
         box-shadow: 0 4px 16px rgba(13, 112, 48, 0.05);
         width: 100%;
     }
     .gb-ce-comm-steps-title {
         display: block;
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 700;
         color: #064e3b;
         line-height: 1.35;
@@ -1350,13 +1355,13 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: 4px;
-        margin-bottom: 20px;
+        gap: 6px;
+        margin-bottom: 22px;
         width: 100%;
     }
     .gb-ce-comm-step-item {
         flex: 1;
-        max-width: 90px;
+        max-width: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1367,45 +1372,32 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
     }
     .gb-ce-comm-step-icon {
         width: 48px;
         height: 48px;
-        border-radius: 50%;
-        background: #ffffff;
+        background: transparent;
         color: #044b25;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: none;
+        box-shadow: none;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     .gb-ce-comm-step-icon svg {
-        width: 22px;
-        height: 22px;
+        width: 34px;
+        height: 34px;
+        stroke-width: 1.8;
     }
     .gb-ce-step-number {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #044b25;
-        color: #ffffff;
-        font-size: 11px;
-        font-weight: 700;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: -10px;
-        z-index: 2;
+        display: none !important;
     }
     .gb-ce-step-arrow {
-        color: #a7f3d0;
-        font-size: 18px;
-        margin-top: 14px;
+        display: none !important;
     }
     .gb-ce-comm-step-text {
-        font-size: 11.5px;
+        font-size: 12.5px;
         font-weight: 600;
         color: #064e3b;
         line-height: 1.3;
@@ -1418,7 +1410,7 @@
         background: #044b25;
         color: #ffffff;
         padding: 13px 20px;
-        font-size: 14px;
+        font-size: 14.5px;
         font-weight: 700;
         border-radius: 28px;
     }
@@ -1429,20 +1421,23 @@
     }
 
     /* ==========================================================================
-       SECTION 5: BOTTOM CTA BANNER TRÊN MOBILE (NẰM TRÊN KHỐI POLAROID)
+       SECTION 5: BOTTOM CTA BANNER TRÊN MOBILE (FULL WIDTH, BỎ BO VIỀN THEO ẢNH 2)
        ========================================================================== */
     .gb-ce-bottom-cta-section {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+        border-radius: 0 !important;
+        width: 100%;
     }
     .gb-ce-bottom-banner {
-        border-radius: 16px;
-        min-height: 280px;
+        border-radius: 0 !important;
+        min-height: 250px;
         position: relative;
         overflow: hidden;
         display: flex;
         align-items: flex-end;
     }
     .gb-ce-bottom-banner-bg {
+        border-radius: 0 !important;
         position: absolute;
         inset: 0;
         width: 100%;
@@ -1452,10 +1447,11 @@
         opacity: 1;
     }
     .gb-ce-bottom-banner-overlay {
+        border-radius: 0 !important;
         background: linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.38) 50%, rgba(15, 23, 42, 0.1) 100%);
     }
     .gb-ce-bottom-banner-inner {
-        padding: 22px 18px;
+        padding: 26px 20px;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
@@ -1464,26 +1460,26 @@
         width: 100%;
     }
     .gb-ce-bottom-banner-title {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 700;
         color: #ffffff;
         line-height: 1.25;
         margin-bottom: 6px;
     }
     .gb-ce-bottom-banner-desc {
-        font-size: 13px;
+        font-size: 13.5px;
         color: rgba(255, 255, 255, 0.95);
         line-height: 1.45;
-        max-width: 250px;
+        max-width: 280px;
         margin-bottom: 4px;
     }
     .gb-ce-bottom-share-btn {
         background: #ffffff;
         color: #044b25;
-        padding: 10px 22px;
+        padding: 11px 26px;
         font-size: 13.5px;
         font-weight: 700;
-        border-radius: 24px;
+        border-radius: 26px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 

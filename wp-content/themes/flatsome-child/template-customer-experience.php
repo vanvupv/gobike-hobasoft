@@ -530,29 +530,33 @@ if (!empty($db_experiences)) {
             </div>
         </section>
 
-        <!-- ==========================================================================
-             SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
-             Nằm ngay trên khối Polaroid mobile theo chuẩn thiết kế
-             ========================================================================== -->
-        <section class="gb-ce-bottom-cta-section" id="gb-ce-share">
-            <div class="gb-ce-bottom-banner">
-                <img class="gb-ce-bottom-banner-bg" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/cyclist-mountain-road.jpg'); ?>" alt="Bạn cũng có câu chuyện để kể GoBike">
-                <div class="gb-ce-bottom-banner-overlay"></div>
-                
-                <div class="gb-ce-bottom-banner-inner">
-                    <div class="gb-ce-bottom-banner-text">
-                        <h2 class="gb-ce-bottom-banner-title">Bạn cũng có câu chuyện để kể?</h2>
-                        <p class="gb-ce-bottom-banner-desc">
-                            Dù là hành trình nhỏ hay chuyến đi lớn, mọi câu chuyện đều đáng được lắng nghe.
-                        </p>
-                    </div>
-                    <a href="https://zalo.me" target="_blank" rel="noopener" class="gb-ce-bottom-share-btn">
-                        <span>Chia sẻ ngay</span> &rarr;
-                    </a>
-                </div>
-            </div>
-        </section>
+    </div>
 
+    <!-- ==========================================================================
+         SECTION 5: BOTTOM CTA BANNER (BẠN CŨNG CÓ CÂU CHUYỆN ĐỂ KỂ?)
+         Toàn màn hình Full-Width chuẩn theo thiết kế Ảnh 2, bỏ toàn bộ bo viền
+         ========================================================================== -->
+    <section class="gb-ce-bottom-cta-section" id="gb-ce-share">
+        <div class="gb-ce-bottom-banner">
+            <img class="gb-ce-bottom-banner-bg" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/images/cyclist-mountain-road.jpg'); ?>" alt="Bạn cũng có câu chuyện để kể GoBike">
+            <div class="gb-ce-bottom-banner-overlay"></div>
+            
+            <div class="gb-ce-bottom-banner-inner">
+                <div class="gb-ce-bottom-banner-text">
+                    <h2 class="gb-ce-bottom-banner-title">Bạn cũng có câu chuyện để kể?</h2>
+                    <p class="gb-ce-bottom-banner-desc">
+                        Dù là hành trình nhỏ hay chuyến đi lớn, mọi câu chuyện đều đáng được lắng nghe.
+                    </p>
+                </div>
+                <a href="https://zalo.me" target="_blank" rel="noopener" class="gb-ce-bottom-share-btn">
+                    <span>Chia sẻ ngay</span> &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTAINER CHO KHỐI POLAROID DÀNH CHO MOBILE -->
+    <div class="gb-ce-container">
         <!-- ==========================================================================
              SECTION 6: POLAROID CARD MOBILE (CÙNG GOBIKE LAN TỎA NHỮNG HÀNH TRÌNH THẬT)
              Hiển thị độc quyền ở cuối giao diện Mobile/Tablet chuẩn theo thiết kế mẫu
@@ -585,8 +589,8 @@ if (!empty($db_experiences)) {
                 </div>
             </div>
         </section>
-
     </div>
+
 </div>
 
 <!-- ==========================================================================
