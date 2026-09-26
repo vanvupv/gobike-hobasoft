@@ -561,7 +561,7 @@ $related_videos = array_slice($videos, 0, 6);
             <div class="gb-vr-booking-banner">
                 <div class="gb-vr-booking-left">
                     <div class="gb-vr-booking-icon-wrap">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h5"></path><path d="M17.5 17.5 16 16.25V14"></path><circle cx="16" cy="16" r="6"></circle></svg>
                     </div>
                     <div class="gb-vr-booking-info">
                         <h3>Đặt lịch lái thử tại showroom GoBike</h3>
@@ -601,8 +601,9 @@ $related_videos = array_slice($videos, 0, 6);
 
                 <div class="gb-vr-booking-right">
                     <a href="<?php echo esc_url(home_url('/dat-lich-lai-thu/')); ?>" class="gb-vr-btn-booking">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        <span>Đặt lịch ngay &rarr;</span>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h5"></path><path d="M17.5 17.5 16 16.25V14"></path><circle cx="16" cy="16" r="6"></circle></svg>
+                        <span>Đặt lịch ngay</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                     <div class="gb-vr-booking-hotline">
                         Hoặc gọi ngay <strong>0944 988 699</strong>
