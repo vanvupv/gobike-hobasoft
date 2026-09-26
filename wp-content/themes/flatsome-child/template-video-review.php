@@ -498,7 +498,7 @@ $related_videos = array_slice($videos, 0, 6);
                                 <span class="gb-vr-discount-badge"><?php echo esc_html($discount_badge); ?></span>
                             </div>
 
-                            <a href="<?php the_permalink(); ?>" class="gb-vr-btn-view-product">Xem chi tiết &rarr;</a>
+                            <a href="<?php the_permalink(); ?>" class="gb-vr-btn-view-product">Xem chi tiết <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                         </div>
                 <?php
                         $prod_idx++;
@@ -544,7 +544,7 @@ $related_videos = array_slice($videos, 0, 6);
                                 <span class="gb-vr-discount-badge"><?php echo esc_html($fp['disc']); ?></span>
                             </div>
 
-                            <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-vr-btn-view-product">Xem chi tiết &rarr;</a>
+                            <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-vr-btn-view-product">Xem chi tiết <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                         </div>
                 <?php
                     endforeach;
