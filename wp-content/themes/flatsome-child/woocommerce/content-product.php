@@ -24,7 +24,6 @@ $out_of_stock = ! $product->is_in_stock();
 
 // Extra post classes.
 $classes   = array();
-$classes[] = 'product-small';
 $classes[] = 'col';
 $classes[] = 'has-hover';
 $classes[] = 'gobike-catalog-card-col';
