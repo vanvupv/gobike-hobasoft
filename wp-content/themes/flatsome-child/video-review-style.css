@@ -39,7 +39,7 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 20px;
-    padding-bottom: 6px;
+    padding-bottom: 0px;
 }
 
 .gb-vr-section-header .gb-vr-header-left {
@@ -50,7 +50,7 @@
     font-size: 20px;
     font-weight: 700;
     color: var(--gb-vr-dark);
-    margin: 0 0 4px 0;
+    margin: 0px;
     line-height: 1.3;
 }
 
@@ -141,8 +141,8 @@
    SECTION 1: HERO VIDEO PLAYER + SIDEBAR MENU + VIDEO TIẾP THEO
    ========================================================================== */
 .gb-vr-hero-section {
-    margin-bottom: 32px;
-    padding-bottom: 32px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
     border-bottom: 1px solid var(--gb-vr-border);
 }
 
@@ -652,7 +652,7 @@
    SECTION 2: VIDEO LIÊN QUAN (6 CỘT)
    ========================================================================== */
 .gb-vr-related-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .gb-vr-related-grid {
@@ -704,7 +704,7 @@
    SECTION 3: DANH SÁCH PHÁT NỔI BẬT (5 CỘT)
    ========================================================================== */
 .gb-vr-playlist-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .gb-vr-playlist-grid {
@@ -849,7 +849,7 @@
    SECTION 4: SẢN PHẨM NỔI BẬT TRONG VIDEO (4 CỘT)
    ========================================================================== */
 .gb-vr-products-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .gb-vr-products-grid {
@@ -1007,7 +1007,7 @@
    SECTION 5: HERO BANNER ĐẶT LỊCH + NGƯỜI THẬT - VIỆC THẬT (CPT MỚI)
    ========================================================================== */
 .gb-vr-booking-experience-section {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 /* --- Khối Banner Đặt Lịch Lái Thử (Chuẩn Mẫu Ảnh 2) --- */
@@ -1020,7 +1020,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(13, 112, 48, 0.04);
@@ -1237,7 +1237,7 @@
    SECTION 6: HỆ THỐNG SHOWROOM GOBIKE (4 CARD + 1 MAP)
    ========================================================================== */
 .gb-vr-showroom-section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .gb-vr-showroom-grid {

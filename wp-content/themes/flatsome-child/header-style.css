@@ -868,3 +868,408 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
         width: 120%;
     }
 }
+
+/* ==========================================================================
+   MEGA MENU DANH MỤC SẢN PHẨM - GOBIKE (CHUẨN THEO ẢNH MẪU 2)
+   - Icon to (32px), sắc nét, đậm màu xanh GoBike (#005a36)
+   - Tiêu đề & Chữ liên kết MÀU ĐEN THUẦN (#000000), font to rõ ràng
+   - Không bị rớt dòng
+   ========================================================================== */
+.gb-mega-menu-wrapper {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    padding: 24px 28px 28px 28px !important;
+    box-sizing: border-box !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.gb-mega-menu-container {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+}
+
+/* Hàng 1: 6 cột danh mục chính */
+.gb-mm-row-top {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 16px 22px !important;
+}
+
+.gb-mm-col {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+}
+
+.gb-mm-col-header {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    margin-bottom: 12px !important;
+}
+
+/* Icon TO HƠN, xanh GoBike đậm */
+.gb-mm-icon-wrap {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #005a36 !important;
+    flex-shrink: 0 !important;
+    margin-top: 1px !important;
+}
+
+.gb-mm-icon-wrap svg {
+    width: 32px !important;
+    height: 32px !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+.gb-mm-col-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.gb-mm-title {
+    margin: 0 0 3px 0 !important;
+    padding: 0 !important;
+    line-height: 1.25 !important;
+}
+
+.gb-mm-title a {
+    color: #000000 !important;
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+    display: block !important;
+    letter-spacing: -0.25px !important;
+    line-height: 1.25 !important;
+}
+
+.gb-mm-title a:hover {
+    color: #005a36 !important;
+}
+
+.gb-mm-subtitle {
+    display: block !important;
+    font-size: 12px !important;
+    color: #4b5563 !important;
+    line-height: 1.35 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.15px !important;
+}
+
+.gb-mm-links {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+}
+
+.gb-mm-links li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.gb-mm-links li a {
+    color: #000000 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 1.45 !important;
+    padding: 2px 0 !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: -0.2px !important;
+}
+
+.gb-mm-links li a:hover {
+    color: #005a36 !important;
+    transform: translateX(3px) !important;
+}
+
+.gb-mm-chevron {
+    color: #374151 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    margin-right: 6px !important;
+    display: inline-block !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+    flex-shrink: 0 !important;
+}
+
+.gb-mm-links li a:hover .gb-mm-chevron {
+    color: #005a36 !important;
+}
+
+/* Hàng 2: 4 cột tiện ích + Banner */
+.gb-mm-row-bottom {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 16px 22px !important;
+    align-items: start !important;
+    border-top: 1px solid #f1f5f9 !important;
+    padding-top: 24px !important;
+}
+
+.gb-mm-brands {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 10px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+}
+
+.gb-mm-brands li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.gb-mm-brands li a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    color: #000000 !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    letter-spacing: 0.1px !important;
+    transition: color 0.2s ease !important;
+}
+
+.gb-mm-brands li a:hover {
+    color: #005a36 !important;
+}
+
+.gb-mm-brand-badge {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    flex-shrink: 0 !important;
+}
+
+.badge-phoenix { background-color: #dc2626 !important; }
+.badge-shengmilo { background-color: #16a34a !important; }
+.badge-burchda { background-color: #2563eb !important; }
+.badge-truongvuong { background-color: #ea580c !important; }
+.badge-rapidx { background-color: #9333ea !important; }
+.badge-shallway { background-color: #0284c7 !important; }
+
+.gb-mm-link-all {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    color: #005a36 !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    margin-top: 4px !important;
+    transition: gap 0.2s ease !important;
+}
+
+.gb-mm-link-all:hover {
+    gap: 8px !important;
+    text-decoration: underline !important;
+}
+
+/* Banner */
+.gb-mm-banner-col {
+    grid-column: span 2 !important;
+}
+
+.gb-mm-banner {
+    position: relative !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    min-height: 220px !important;
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 22px 24px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    box-sizing: border-box !important;
+}
+
+.gb-mm-banner-bg {
+    position: absolute !important;
+    right: -10px !important;
+    bottom: -10px !important;
+    width: 260px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    opacity: 0.92 !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+.gb-mm-banner-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(90deg, rgba(6, 78, 59, 0.96) 0%, rgba(6, 78, 59, 0.88) 55%, rgba(6, 78, 59, 0.25) 100%) !important;
+    z-index: 2 !important;
+}
+
+.gb-mm-banner-content {
+    position: relative !important;
+    z-index: 3 !important;
+    max-width: 64% !important;
+    color: #ffffff !important;
+}
+
+.gb-mm-banner-tag {
+    display: inline-block !important;
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.8px !important;
+    color: #a7f3d0 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 5px !important;
+}
+
+.gb-mm-banner-heading {
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    color: #ffffff !important;
+    margin: 0 0 6px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2px !important;
+}
+
+.gb-mm-banner-sub {
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin: 0 0 12px 0 !important;
+}
+
+.gb-mm-banner-features {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 14px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.gb-mm-banner-features li {
+    font-size: 11.5px !important;
+    color: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.gb-mm-check-icon {
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    background: #10b981 !important;
+    color: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 9px !important;
+    font-weight: bold !important;
+    flex-shrink: 0 !important;
+}
+
+.gb-mm-banner-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    background: #ffffff !important;
+    color: #064e3b !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    padding: 7px 18px !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.25s ease !important;
+}
+
+.gb-mm-banner-btn:hover {
+    background: #f0fdf4 !important;
+    color: #047857 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.gb-mm-banner-badge {
+    position: absolute !important;
+    right: 18px !important;
+    top: 18px !important;
+    z-index: 3 !important;
+    text-align: right !important;
+    color: #ffffff !important;
+}
+
+.gb-mm-badge-script {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    font-weight: 600 !important;
+    color: #ecfdf5 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.gb-mm-badge-script span {
+    font-size: 11px !important;
+    opacity: 0.9 !important;
+}
+
+.gb-mm-badge-sub {
+    font-size: 10px !important;
+    font-style: italic !important;
+    color: #a7f3d0 !important;
+    margin-top: 2px !important;
+}
+
+@media (max-width: 1200px) {
+    .gb-mm-row-top {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 20px 24px !important;
+    }
+    .gb-mm-row-bottom {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+    .gb-mm-banner-col {
+        grid-column: span 3 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .gb-mm-row-top,
+    .gb-mm-row-bottom {
+        grid-template-columns: 1fr !important;
+    }
+    .gb-mm-banner-col {
+        grid-column: span 1 !important;
+    }
+}
