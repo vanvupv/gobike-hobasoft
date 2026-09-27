@@ -3985,8 +3985,30 @@ function gobike_custom_styles_output()
         /* ==========================================================================
                                                                GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
                                                                ========================================================================== */
-        .gobike-catalog-card-col {
-            margin-bottom: 20px !important;
+        /* Xử lý lưới sản phẩm & bọc class cha chuẩn theo yêu cầu */
+        .archive .products.row-small,
+        .gobike-products-main-col .products.row-small {
+            margin-left: -4px !important;
+            margin-right: -4px !important;
+            row-gap: 10px !important;
+            column-gap: 0 !important;
+        }
+
+        .archive .products.row-small > .col,
+        .gobike-products-main-col .products.row-small > .col {
+            padding: 0 4px 0px !important;
+            margin-bottom: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .archive .products.row-small > .col > .col-inner,
+        .gobike-products-main-col .products.row-small > .col > .col-inner {
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex: 1 1 auto !important;
+            width: 100% !important;
         }
 
         .gobike-product-card-v2 {
@@ -3997,6 +4019,7 @@ function gobike_custom_styles_output()
             display: flex;
             flex-direction: column;
             height: 100%;
+            flex: 1 1 auto;
             transition: all 0.25s ease-in-out;
             overflow: hidden;
         }

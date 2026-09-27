@@ -1356,8 +1356,70 @@ div.review_vote {
     left: 10px;
 }
 
-.archive .products.row {
-    row-gap: 10px;
+/* Lưới sản phẩm danh mục: Bỏ column-gap, thêm class cha bọc, padding 0 4px 0px, đồng bộ chiều cao khối */
+.archive .products.row,
+.category-page-row .products.row {
+    row-gap: 10px !important;
+    column-gap: 0 !important;
+}
+
+.archive .products.row-small,
+.gobike-products-main-col .products.row-small,
+.category-page-row .products.row-small {
+    margin-left: -4px !important;
+    margin-right: -4px !important;
+    row-gap: 10px !important;
+    column-gap: 0 !important;
+}
+
+.archive .products.row-small > .col,
+.gobike-products-main-col .products.row-small > .col,
+.category-page-row .products.row-small > .col {
+    padding: 0 4px 0px !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.archive .products.row-small > .col > .col-inner,
+.gobike-products-main-col .products.row-small > .col > .col-inner,
+.category-page-row .products.row-small > .col > .col-inner {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+}
+
+.archive .products.row .gobike-product-card-v2,
+.gobike-products-main-col .products.row .gobike-product-card-v2,
+.category-page-row .products.row .gobike-product-card-v2 {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+}
+
+.archive .products.row .gobike-product-card-v2 .card-info-wrap,
+.gobike-products-main-col .products.row .gobike-product-card-v2 .card-info-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+}
+
+.archive .products.row .gobike-product-card-v2 .card-product-title,
+.gobike-products-main-col .products.row .gobike-product-card-v2 .card-product-title {
+    min-height: 38px;
+}
+
+.archive .products.row .gobike-product-card-v2 .card-product-subtitle,
+.gobike-products-main-col .products.row .gobike-product-card-v2 .card-product-subtitle {
+    min-height: 32px;
+}
+
+.archive .products.row .gobike-product-card-v2 .card-actions-row,
+.gobike-products-main-col .products.row .gobike-product-card-v2 .card-actions-row {
+    margin-top: auto !important;
 }
 
 .filter-sidebar .sidebar-wrapper {
@@ -2309,7 +2371,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         width: 50% !important;
         max-width: 50% !important;
         flex: 0 0 50% !important;
-        padding: 0 5px 10px 5px !important;
+        padding: 0 4px 10px 4px !important;
     }
 }
 
