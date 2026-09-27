@@ -9,17 +9,17 @@ defined( 'ABSPATH' ) || exit;
 do_action( 'woocommerce_archive_description' );
 ?>
 
+<?php
+// 1. HERO BANNER THƯƠNG HIỆU / DANH MỤC (FULL WIDTH TRÀN MÀN HÌNH)
+if ( function_exists( 'gobike_render_shop_brand_banner' ) ) {
+	gobike_render_shop_brand_banner();
+}
+?>
+
 <div class="gobike-shop-page-container container">
 	<?php
 	do_action('flatsome_products_before');
 	do_action( 'woocommerce_before_main_content' );
-	?>
-
-	<!-- 1. HERO BANNER THƯƠNG HIỆU / DANH MỤC (ẢNH 4) -->
-	<?php
-	if ( function_exists( 'gobike_render_shop_brand_banner' ) ) {
-		gobike_render_shop_brand_banner();
-	}
 	?>
 
 	<!-- 2. DẢI 4 CAM KẾT VÀNG (ẢNH 4) -->

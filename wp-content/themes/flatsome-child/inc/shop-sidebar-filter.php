@@ -937,8 +937,9 @@ function gobike_render_shop_brand_banner()
         }
     }
     ?>
-    <div class="gobike-shop-hero-banner">
-        <div class="hero-banner-inner">
+    <div class="gobike-shop-hero-banner" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+        <div class="hero-banner-overlay"></div>
+        <div class="hero-banner-inner container">
             <div class="hero-text-col">
                 <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
                 <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
@@ -952,9 +953,6 @@ function gobike_render_shop_brand_banner()
                         Nhận tư vấn nhanh
                     </a>
                 </div>
-            </div>
-            <div class="hero-image-col">
-                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" class="hero-featured-bike" />
             </div>
         </div>
     </div>
