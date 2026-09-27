@@ -4244,17 +4244,16 @@ function gobike_custom_styles_output()
             box-sizing: border-box;
             background-color: #f0fdf4;
             background-repeat: no-repeat;
-            background-position: right 8% center;
+            background-position: right 6% center;
             background-size: contain;
+            background-blend-mode: multiply;
             border-top: 1px solid #dcfce7;
             border-bottom: 1px solid #dcfce7;
             border-radius: 0 !important;
             margin-top: 0;
             margin-bottom: 24px;
-            padding: 50px 0;
+            padding: 40px 0;
             overflow: hidden;
-            display: flex;
-            align-items: center;
         }
 
         .gobike-shop-hero-banner .hero-banner-overlay {
@@ -4263,7 +4262,7 @@ function gobike_custom_styles_output()
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, #f0fdf4 0%, rgba(240, 253, 244, 0.95) 45%, rgba(240, 253, 244, 0.35) 75%, rgba(240, 253, 244, 0) 100%);
+            background: linear-gradient(90deg, rgba(240, 253, 244, 0.98) 0%, rgba(240, 253, 244, 0.9) 45%, rgba(240, 253, 244, 0.2) 75%, transparent 100%);
             pointer-events: none;
             z-index: 1;
         }
@@ -4271,18 +4270,11 @@ function gobike_custom_styles_output()
         .gobike-shop-hero-banner .hero-banner-inner {
             position: relative;
             z-index: 2;
-            width: 100%;
-            max-width: 1220px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
         }
 
         .gobike-shop-hero-banner .hero-text-col {
-            max-width: 620px;
-            width: 100%;
-            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
         }
 
         .gobike-shop-hero-banner .hero-title {
@@ -5145,15 +5137,8 @@ function gobike_custom_styles_output()
                 background-size: 360px auto !important;
             }
 
-            .gobike-shop-hero-banner .hero-banner-inner {
-                flex-direction: column;
-                text-align: left;
-            }
-
-            .gobike-shop-hero-banner .hero-text-col {
-                flex: 0 0 100% !important;
-                max-width: 100% !important;
-                width: 100% !important;
+            .gobike-shop-hero-banner .hero-title {
+                font-size: 26px !important;
             }
 
             .gobike-shop-trust-badges-bar {

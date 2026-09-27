@@ -940,18 +940,22 @@ function gobike_render_shop_brand_banner()
     <div class="gobike-shop-hero-banner" style="background-image: url('<?php echo esc_url($image_url); ?>');">
         <div class="hero-banner-overlay"></div>
         <div class="hero-banner-inner container">
-            <div class="hero-text-col">
-                <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
-                <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
-                <p class="hero-intro"><?php echo esc_html($intro); ?></p>
-                <div class="hero-buttons">
-                    <a href="#products-grid" class="hero-btn-primary">Xem tất cả sản phẩm ➔</a>
-                    <a href="tel:0944988699" class="hero-btn-outline">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                        Nhận tư vấn nhanh
-                    </a>
+            <div class="row align-middle">
+                <div class="col large-7 medium-8 small-12">
+                    <div class="col-inner hero-text-col">
+                        <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
+                        <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
+                        <p class="hero-intro"><?php echo esc_html($intro); ?></p>
+                        <div class="hero-buttons">
+                            <a href="#products-grid" class="hero-btn-primary">Xem tất cả sản phẩm ➔</a>
+                            <a href="tel:0944988699" class="hero-btn-outline">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                Nhận tư vấn nhanh
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
