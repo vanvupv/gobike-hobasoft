@@ -4279,7 +4279,7 @@ function gobike_custom_styles_output()
 
         .gobike-shop-hero-banner .hero-title {
             font-size: 32px !important;
-            font-weight: 800 !important;
+            font-weight: 700 !important;
             color: #0f172a !important;
             margin-bottom: 8px !important;
             text-transform: uppercase;
@@ -5069,7 +5069,7 @@ function gobike_custom_styles_output()
 
         .gobike-showrooms-section .card-contact .hotline-number {
             font-size: 22px;
-            font-weight: 800;
+            font-weight: 700;
             color: #15803d;
             text-decoration: none;
             display: block;
