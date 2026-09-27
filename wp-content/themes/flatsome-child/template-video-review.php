@@ -13,7 +13,7 @@ wp_enqueue_script(
     'gobike-video-review-js',
     get_stylesheet_directory_uri() . '/assets/video-review.js',
     array('jquery'),
-    '1.0.0',
+    file_exists(get_stylesheet_directory() . '/assets/video-review.js') ? filemtime(get_stylesheet_directory() . '/assets/video-review.js') : '1.0.1',
     true
 );
 
@@ -67,6 +67,7 @@ if ($video_query->have_posts()) {
             'date'      => get_the_date('d/m/Y'),
             'prod_url'  => $prod_url,
             'cat_slugs' => trim($cat_slugs),
+            'permalink' => get_permalink($pid),
         );
     }
     wp_reset_postdata();
@@ -139,6 +140,7 @@ if (count($videos) < 6) {
     while (count($videos) < 6) {
         $sample = $fallback_samples[count($videos) % count($fallback_samples)];
         $sample['id'] = 9999 + count($videos);
+        $sample['permalink'] = !empty($videos[0]['permalink']) ? $videos[0]['permalink'] : home_url('/video-review/');
         $videos[] = $sample;
     }
 }
@@ -327,14 +329,16 @@ $related_videos = array_slice($videos, 0, 6);
             </div>
 
             <div class="gb-vr-related-grid">
-                <?php foreach ($related_videos as $v): ?>
-                    <div class="gb-vr-video-card gb-vr-clickable-video"
-                         data-video-url="<?php echo esc_attr($v['url']); ?>"
-                         data-title="<?php echo esc_attr($v['title']); ?>"
-                         data-date="<?php echo esc_attr($v['date']); ?>"
-                         data-views="<?php echo esc_attr($v['views']); ?>"
-                         data-prod-url="<?php echo esc_attr($v['prod_url']); ?>"
-                         data-cat-slug="<?php echo esc_attr($v['cat_slugs']); ?>">
+                <?php foreach ($related_videos as $v): 
+                    $v_link = !empty($v['permalink']) ? $v['permalink'] : get_permalink($v['id']);
+                    if (!$v_link) {
+                        $v_link = home_url('/video-review/');
+                    }
+                ?>
+                    <a href="<?php echo esc_url($v_link); ?>"
+                       class="gb-vr-video-card"
+                       title="<?php echo esc_attr($v['title']); ?>"
+                       data-cat-slug="<?php echo esc_attr($v['cat_slugs']); ?>">
                         <div class="gb-vr-video-thumb-wrap">
                             <img src="<?php echo esc_url($v['thumb']); ?>" alt="<?php echo esc_attr($v['title']); ?>" loading="lazy">
                             <span class="gb-vr-duration-badge"><?php echo esc_html($v['duration']); ?></span>
@@ -347,7 +351,7 @@ $related_videos = array_slice($videos, 0, 6);
                             <div class="gb-vr-card-channel">GoBike</div>
                             <div class="gb-vr-card-meta"><?php echo esc_html($v['views']); ?></div>
                         </div>
-                    </div>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </section>

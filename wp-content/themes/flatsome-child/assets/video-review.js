@@ -46,9 +46,9 @@
             });
         }
 
-        // Click vào item ở "Video tiếp theo" hoặc "Video liên quan"
-        var videoItems = page.querySelectorAll('.gb-vr-clickable-video');
-        videoItems.forEach(function(item) {
+        // Click vào item ở "Video tiếp theo" (phát live trên hero player)
+        var upNextItems = page.querySelectorAll('.gb-vr-up-next-item.gb-vr-clickable-video');
+        upNextItems.forEach(function(item) {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
                 var videoUrl = item.getAttribute('data-video-url');
@@ -88,9 +88,7 @@
                 // Active class
                 var currentActives = page.querySelectorAll('.gb-vr-up-next-item.active');
                 currentActives.forEach(function(el) { el.classList.remove('active'); });
-                if (item.classList.contains('gb-vr-up-next-item')) {
-                    item.classList.add('active');
-                }
+                item.classList.add('active');
 
                 // Cuộn mượt lên vị trí Player nếu đang ở dưới
                 var playerSection = page.querySelector('.gb-vr-hero-section');
@@ -100,22 +98,29 @@
             });
         });
 
-        // Click Sidebar Danh mục Lọc Video
-        var catItems = page.querySelectorAll('.gb-vr-cat-item');
+        // Click Sidebar & Pills Danh mục Lọc Video (lọc cả Video tiếp theo & Video liên quan)
+        var catItems = page.querySelectorAll('.gb-vr-cat-item, .gb-vr-pill-item');
+        var allVideosToFilter = page.querySelectorAll('.gb-vr-up-next-item, .gb-vr-related-section .gb-vr-video-card');
         catItems.forEach(function(cat) {
             cat.addEventListener('click', function(e) {
                 e.preventDefault();
-                catItems.forEach(function(c) { c.classList.remove('active'); });
-                cat.classList.add('active');
-
                 var catSlug = cat.getAttribute('data-cat-slug');
-                // Lọc video theo slug nếu có
+
+                catItems.forEach(function(c) {
+                    if (c.getAttribute('data-cat-slug') === catSlug) {
+                        c.classList.add('active');
+                    } else {
+                        c.classList.remove('active');
+                    }
+                });
+
+                // Lọc video theo slug
                 if (!catSlug || catSlug === 'all') {
-                    videoItems.forEach(function(v) { v.style.display = ''; });
+                    allVideosToFilter.forEach(function(v) { v.style.display = ''; });
                 } else {
-                    videoItems.forEach(function(v) {
-                        var itemCat = v.getAttribute('data-cat-slug');
-                        if (!itemCat || itemCat.indexOf(catSlug) !== -1) {
+                    allVideosToFilter.forEach(function(v) {
+                        var itemCat = v.getAttribute('data-cat-slug') || '';
+                        if (itemCat.indexOf(catSlug) !== -1) {
                             v.style.display = '';
                         } else {
                             v.style.display = 'none';

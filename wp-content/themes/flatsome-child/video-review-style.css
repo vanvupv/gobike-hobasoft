@@ -142,7 +142,7 @@
    ========================================================================== */
 .gb-vr-hero-section {
     margin-bottom: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
     border-bottom: 1px solid var(--gb-vr-border);
 }
 
@@ -238,7 +238,7 @@
     background: transparent;
     border: none;
     border-radius: 0;
-    padding: 0;
+    padding-bottom: 20px;
     box-shadow: none;
 }
 
