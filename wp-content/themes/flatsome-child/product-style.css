@@ -8,31 +8,7 @@
 /* ==========================================================================
    1. LƯỚI SẢN PHẨM & CARD SẢN PHẨM (PRODUCT GRID & CARD)
    ========================================================================== */
-.product.product-small {
-    margin: 0px !important;
-    max-width: calc((100% - 40px) / 5);
-    margin-bottom: 10px;
-    padding: 10px;
-    background: #ffffff;
-    position: relative;
-    border-radius: 10px;
-    -webkit-box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
-    box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
-    transition: .3s;
-}
 
-.product.product-small:not(:nth-of-type(5n)) {
-    margin-right: 10px;
-}
-
-.product.product-small:hover {
-    -webkit-box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);
-    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
-    z-index: 1;
-    background-color: #fff;
-}
 
 .product-small .box-image {
     padding: 15px;
@@ -1696,7 +1672,6 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     .single-product .shop-page-title .medium-flex-wrap {
         flex-flow: column;
     }
-    .product.product-small:nth-of-type(5n),
     .product.product-small:nth-of-type(3n),
     .tab-product-related .product.product-small:nth-of-type(3n) {
         margin-right: 10px;
@@ -1832,9 +1807,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         display: none;
     }
     
-    .product.product-small {
-        max-width: calc((100% - 10px) / 2);
-    }
+
     .product.product-small:nth-of-type(3n) {
         margin-right: 10px;
     }
