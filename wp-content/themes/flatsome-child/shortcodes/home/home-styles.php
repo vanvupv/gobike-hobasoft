@@ -4354,7 +4354,7 @@ function gobike_custom_styles_output()
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 18px 24px;
+            padding: 22px 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -4366,9 +4366,9 @@ function gobike_custom_styles_output()
         .gobike-shop-trust-badges-bar .trust-item {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
             flex: 1;
-            padding-right: 18px;
+            padding-right: 20px;
             border-right: 1px solid #edf2f7;
         }
 
@@ -4378,9 +4378,9 @@ function gobike_custom_styles_output()
         }
 
         .gobike-shop-trust-badges-bar .trust-icon {
-            width: 50px;
-            height: 50px;
-            min-width: 50px;
+            width: 62px;
+            height: 62px;
+            min-width: 62px;
             border-radius: 50%;
             background: #e8f7ee;
             color: #149d29;
@@ -4396,25 +4396,25 @@ function gobike_custom_styles_output()
         }
 
         .gobike-shop-trust-badges-bar .trust-icon svg {
-            width: 26px !important;
-            height: 26px !important;
+            width: 32px !important;
+            height: 32px !important;
             stroke-width: 2.2;
         }
 
         .gobike-shop-trust-badges-bar .trust-text strong {
             display: block;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 17px !important;
+            font-weight: 700 !important;
             color: #0f172a;
             line-height: 1.35;
         }
 
         .gobike-shop-trust-badges-bar .trust-text span {
             display: block;
-            font-size: 13px;
+            font-size: 14.5px !important;
             color: #64748b;
-            line-height: 1.35;
-            margin-top: 2px;
+            line-height: 1.4;
+            margin-top: 3px;
         }
 
         .gobike-sidebar-filter-wrapper {
@@ -5144,33 +5144,33 @@ function gobike_custom_styles_output()
             .gobike-shop-trust-badges-bar {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 16px 12px;
-                padding: 16px 14px;
+                gap: 16px 14px;
+                padding: 18px 16px;
             }
 
             .gobike-shop-trust-badges-bar .trust-item {
                 border-right: none;
                 padding-right: 0;
-                gap: 10px;
+                gap: 12px;
             }
 
             .gobike-shop-trust-badges-bar .trust-icon {
-                width: 44px;
-                height: 44px;
-                min-width: 44px;
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
             }
 
             .gobike-shop-trust-badges-bar .trust-icon svg {
-                width: 22px !important;
-                height: 22px !important;
+                width: 28px !important;
+                height: 28px !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-text strong {
-                font-size: 13.5px;
+                font-size: 15.5px !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-text span {
-                font-size: 11.5px;
+                font-size: 13px !important;
             }
 
             .gobike-shop-layout-2col .gobike-sidebar-col,

@@ -1584,6 +1584,110 @@ div.review_vote {
     }
 }
 
+/* ==========================================================================
+   GOBIKE - DẢI 4 CAM KẾT VÀNG (ICON TO & CHỮ RÕ NÉT)
+   ========================================================================== */
+.gobike-shop-trust-badges-bar {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+    box-shadow: none;
+}
+
+.gobike-shop-trust-badges-bar .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    padding-right: 20px;
+    border-right: 1px solid #edf2f7;
+}
+
+.gobike-shop-trust-badges-bar .trust-item:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.gobike-shop-trust-badges-bar .trust-icon {
+    width: 62px;
+    height: 62px;
+    min-width: 62px;
+    border-radius: 50%;
+    background: #e8f7ee;
+    color: #149d29;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.gobike-shop-trust-badges-bar .trust-item:hover .trust-icon {
+    transform: scale(1.08);
+}
+
+.gobike-shop-trust-badges-bar .trust-icon svg {
+    width: 32px !important;
+    height: 32px !important;
+    stroke-width: 2.2;
+}
+
+.gobike-shop-trust-badges-bar .trust-text strong {
+    display: block;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+.gobike-shop-trust-badges-bar .trust-text span {
+    display: block;
+    font-size: 14.5px !important;
+    color: #64748b;
+    line-height: 1.4;
+    margin-top: 3px;
+}
+
+@media (max-width: 849px) {
+    .gobike-shop-trust-badges-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 14px;
+        padding: 18px 16px;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-item {
+        border-right: none;
+        padding-right: 0;
+        gap: 12px;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-icon {
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-icon svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-text strong {
+        font-size: 15.5px !important;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-text span {
+        font-size: 13px !important;
+    }
+}
+
 .filter-sidebar .sidebar-wrapper {
     display: flex;
     flex-flow: wrap;
