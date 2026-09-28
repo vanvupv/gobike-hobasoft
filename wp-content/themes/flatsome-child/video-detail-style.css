@@ -9,13 +9,7 @@
 /* ==========================================================================
    BIẾN MÀU & CONTAINER
    ========================================================================== */
-.gobike-video-detail-page {
-    background-color: #ffffff;
-    color: var(--gb-vr-dark, #0f172a);
-    padding: 20px 0 60px 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-}
+
 
 /* ==========================================================================
    HIỆU ỨNG HOVER PHÓNG TO ẢNH THUẦN CSS (ZOOM ON HOVER)

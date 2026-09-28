@@ -230,7 +230,7 @@ $comments_sample = array(
 );
 ?>
 
-<div id="content" role="main" class="content-area gobike-video-detail-page">
+<div id="content" role="main" class="content-area">
     <div class="row">
         <div class="col large-12">
             <div class="col-inner">
