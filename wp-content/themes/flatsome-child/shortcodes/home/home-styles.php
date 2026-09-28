@@ -4615,50 +4615,74 @@ function gobike_custom_styles_output()
 
         .gobike-support-hotline-box {
             margin-top: 20px;
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 10px;
-            padding: 16px;
-            text-align: center;
+            padding: 16px 14px;
+            text-align: left;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .gobike-support-hotline-box .support-top-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
         }
 
         .gobike-support-hotline-box .support-icon {
-            color: #149d29;
-            margin-bottom: 6px;
+            color: #046a38;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .gobike-support-hotline-box .support-icon svg {
+            width: 34px !important;
+            height: 34px !important;
+        }
+
+        .gobike-support-hotline-box .support-text-col {
+            flex: 1;
         }
 
         .gobike-support-hotline-box .support-title {
-            font-size: 14px !important;
+            font-size: 15px !important;
             font-weight: 700 !important;
-            color: #0f172a !important;
-            margin: 0 0 4px 0 !important;
+            color: #064e3b !important;
+            margin: 0 0 3px 0 !important;
+            line-height: 1.3 !important;
         }
 
         .gobike-support-hotline-box .support-desc {
             font-size: 12px;
             color: #64748b;
-            margin: 0 0 12px 0;
-            line-height: 1.4;
+            margin: 0;
+            line-height: 1.35;
         }
 
         .gobike-support-hotline-box .support-phone-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            background: #149d29;
+            gap: 8px;
+            background: #046a38;
             color: #ffffff !important;
-            padding: 8px 16px;
+            padding: 9px 16px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             text-decoration: none;
             width: 100%;
-            transition: background 0.2s;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
         }
 
         .gobike-support-hotline-box .support-phone-btn:hover {
-            background: #149d29;
+            background: #03522b;
+            color: #ffffff !important;
         }
 
         /* Ẩn triệt để form ordering và radio sắp xếp thừa ngoài thanh toolbar */

@@ -765,16 +765,21 @@ function gobike_render_shop_sidebar_filter()
             </div>
         </form>
 
-        <!-- BOX HỖ TRỢ TƯ VẤN HOTLINE (ẢNH 4 - CHỈ HIỆN TRÊN DESKTOP) -->
+        <!-- BOX HỖ TRỢ TƯ VẤN HOTLINE (ẢNH 2 - CHỈ HIỆN TRÊN DESKTOP) -->
         <div class="gobike-support-hotline-box desktop-only">
-            <div class="support-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                </svg>
+            <div class="support-top-row">
+                <div class="support-icon">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path>
+                        <path d="M3 17a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"></path>
+                        <path d="M21 16v2a4 4 0 0 1-4 4h-3"></path>
+                    </svg>
+                </div>
+                <div class="support-text-col">
+                    <h4 class="support-title">Cần tư vấn chọn xe?</h4>
+                    <p class="support-desc">Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn</p>
+                </div>
             </div>
-            <h4 class="support-title">Cần tư vấn chọn xe?</h4>
-            <p class="support-desc">Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn</p>
             <a href="tel:0944988699" class="support-phone-btn">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.12.45 2.33.69 3.48.69a1 1 0 011 1v3.5a1 1 0 01-1 1A17.91 17.91 0 012 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.15.24 2.36.69 3.48a1 1 0 01-.21 1.11l-2.2 2.2z"/>
