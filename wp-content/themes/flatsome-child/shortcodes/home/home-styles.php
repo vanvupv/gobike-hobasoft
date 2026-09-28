@@ -994,9 +994,9 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 36px !important;
-                height: 36px !important;
-                flex: 0 0 36px !important;
+                width: 38px !important;
+                height: 38px !important;
+                flex: 0 0 38px !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
@@ -1008,7 +1008,17 @@ function gobike_custom_styles_output()
                 width: 32px !important;
                 height: 32px !important;
                 display: block !important;
+                fill: none !important;
+                stroke: currentColor !important;
+                stroke-width: 2 !important;
+                stroke-linecap: round !important;
+                stroke-linejoin: round !important;
                 transition: transform 0.25s ease, color 0.25s ease !important;
+            }
+
+            .banner-home .service-thumb-item .thumb-icon-wrap svg * {
+                fill: none !important;
+                stroke: currentColor !important;
             }
 
             .banner-home .service-thumb-item .thumb-text-wrap {

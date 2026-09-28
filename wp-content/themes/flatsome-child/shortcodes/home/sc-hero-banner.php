@@ -21,31 +21,31 @@ function gobike_render_home_hero_banner($atts = array())
         $rows = get_field('slider_top');
     }
 
-    // 4 cam kết/dịch vụ chuẩn theo mẫu thiết kế (Icon SVG 32px mạnh mẽ, văn bản 2 dòng)
+    // 4 cam kết/dịch vụ chuẩn theo mẫu thiết kế (Bộ icon SVG thông dụng, chuẩn UI hiện đại)
     $service_items = array(
         array(
             'line1' => 'XE ĐẠP THỂ THAO',
             'line2' => 'MỚI',
             'title' => 'XE ĐẠP THỂ THAO MỚI',
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3.5"/><circle cx="19" cy="17" r="3.5"/><circle cx="5" cy="17" r="1.2" fill="currentColor"/><circle cx="19" cy="17" r="1.2" fill="currentColor"/><path d="M5 17h6l-2-8h6.5l3.5 8"/><path d="M5 17l4-8"/><path d="M11 17l4.5-8"/><path d="M7 9h4"/><path d="M14.5 6.5h2.5a1.5 1.5 0 0 1 1.5 1.5"/></svg>'
+            'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4zm-3 11.5L9 9l3-3 3 4.5 3.5 1"/></svg>'
         ),
         array(
             'line1' => 'PHỤ KIỆN XE ĐẠP',
             'line2' => 'CHÍNH HÃNG',
             'title' => 'PHỤ KIỆN XE ĐẠP CHÍNH HÃNG',
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.3 2.1c.7-.1 1.4-.1 2.1 0 .6.1 1.1.5 1.3 1.1l.4 1.2c.5.2 1 .5 1.5.8l1.2-.5c.6-.2 1.2 0 1.7.4.5.5.9 1 1.3 1.6.3.5.3 1.1 0 1.6l-.6 1.1c.3.5.5 1 .7 1.5l1.2.4c.6.2 1 .7 1.1 1.3.1.7.1 1.4 0 2.1-.1.6-.5 1.1-1.1 1.3l-1.2.4c-.2.5-.5 1-.8 1.5l.5 1.2c.2.6 0 1.2-.4 1.7-.5.5-1 .9-1.6 1.3-.5.3-1.1.3-1.6 0l-1.1-.6c-.5.3-1 .5-1.5.7l-.4 1.2c-.2.6-.7 1-1.3 1.1-.7.1-1.4.1-2.1 0-.6-.1-1.1-.5-1.3-1.1l-.4-1.2c-.5-.2-1-.5-1.5-.8l-1.2.5c-.6.2-1.2 0-1.7-.4-.5-.5-.9-1-1.3-1.6-.3-.5-.3-1.1 0-1.6l.6-1.1c-.3-.5-.5-1-.7-1.5l-1.2-.4c-.6-.2-1-.7-1.1-1.3-.1-.7-.1-1.4 0-2.1.1-.6.5-1.1 1.1-1.3l1.2-.4c.2-.5.5-1 .8-1.5l-.5-1.2c-.2-.6 0-1.2.4-1.7.5-.5 1-.9 1.6-1.3.5-.3 1.1-.3 1.6 0l1.1.6c.5-.3 1-.5 1.5-.7l.4-1.2c.2-.6.7-1 1.3-1.1zm1.7 6.4a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>'
+            'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
         ),
         array(
             'line1' => 'XE ĐẠP TRẺ EM',
             'line2' => 'AN TOÀN',
             'title' => 'XE ĐẠP TRẺ EM AN TOÀN',
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16.5" cy="15.5" r="4"/><circle cx="5.5" cy="17" r="3"/><circle cx="16.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="5.5" cy="17" r="1" fill="currentColor"/><path d="M5.5 17l5-6.5h4l2 5"/><path d="M9.5 10.5V8.5h3.5"/><path d="M14.5 10.5V6m-3 0h5"/><path d="M16.5 13.5v4"/></svg>'
+            'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M12 18V7l3-3h3M8 18l3-8"/></svg>'
         ),
         array(
             'line1' => 'DỊCH VỤ BẢO DƯỠNG',
             'line2' => 'MIỄN PHÍ',
             'title' => 'DỊCH VỤ BẢO DƯỠNG MIỄN PHÍ',
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.5 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/><path d="M1.3 19l9.1-9.1c-.9-2.3-.4-5 1.5-6.9 2-2 5-2.4 7.4-1.3L15 6l3 3 4.4-4.3c1.1 2.4.7 5.4-1.3 7.4-1.9 1.9-4.6 2.4-6.9 1.5L5.1 22.7c-.4.4-1 .4-1.4 0L1.4 20.4c-.5-.4-.5-1.1-.1-1.4z"/></svg>'
+            'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
         )
     );
 
