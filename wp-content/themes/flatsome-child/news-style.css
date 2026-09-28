@@ -8,6 +8,9 @@
    ========================================================================== */
 .gobike-news-page-wrapper {
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
     color: #1e293b;
     background-color: #fafbfc;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -309,6 +312,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     margin-bottom: 22px;
 }
 
@@ -327,12 +331,14 @@
     letter-spacing: -0.3px;
     border: none !important;
     text-align: left !important;
+    min-width: 0;
 }
 
 .gobike-news-section-title .leaf-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .view-all-link {
@@ -342,6 +348,8 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
 }
 
 .view-all-link:hover {
@@ -1032,6 +1040,8 @@
 .gobike-news-bottom-cta {
     position: relative;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     min-height: 280px;
     background-size: cover;
     background-position: center center;
@@ -1370,18 +1380,47 @@
     }
 
     .gobike-news-header-row {
-        margin-bottom: 12px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
     }
 
     .gobike-news-section-title {
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        min-width: 0 !important;
+    }
+
+    .gobike-news-section-title .leaf-icon {
+        flex-shrink: 0 !important;
+    }
+
+    .gobike-news-section-title .leaf-icon svg {
+        width: 19px !important;
+        height: 19px !important;
     }
 
     .view-all-link {
-        font-size: 12px;
-        font-weight: 600;
-        color: #044b25;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: #044b25 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 3px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    .view-all-link .arrow {
+        font-size: 16px !important;
+        line-height: 1 !important;
     }
 
     .featured-desktop-grid {
@@ -1715,12 +1754,16 @@
 
     /* 5. BANNER CTA ĐÁY TRANG MOBILE (CARD GỌN GÀNG SANG TRỌNG) */
     .gobike-news-bottom-cta {
-        margin: 15px 12px 30px 12px;
-        border-radius: 16px;
-        min-height: 190px;
-        padding: 22px 18px;
-        text-align: left;
-        background-position: right center;
+        width: auto !important;
+        max-width: calc(100% - 24px) !important;
+        margin: 15px 12px 30px 12px !important;
+        border-radius: 16px !important;
+        min-height: 190px !important;
+        padding: 22px 18px !important;
+        text-align: left !important;
+        background-position: right center !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
     }
 
     .gobike-news-bottom-cta .cta-overlay {
@@ -1728,13 +1771,18 @@
     }
 
     .gobike-news-bottom-cta .cta-container {
-        padding: 0;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .gobike-news-bottom-cta .cta-content {
         text-align: left;
         align-items: flex-start;
-        max-width: 250px;
+        max-width: 260px;
+        box-sizing: border-box !important;
     }
 
     .gobike-news-bottom-cta .cta-title {
