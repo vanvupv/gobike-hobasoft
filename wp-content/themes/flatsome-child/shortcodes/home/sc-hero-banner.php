@@ -21,23 +21,23 @@ function gobike_render_home_hero_banner($atts = array())
         $rows = get_field('slider_top');
     }
 
-    // 4 cam kết/dịch vụ chuẩn theo mẫu thiết kế (Chỉ giữ tiêu đề, bỏ mô tả)
+    // 4 cam kết/dịch vụ chuẩn theo mẫu thiết kế (Icon SVG hiện đại, tinh gọn)
     $service_items = array(
         array(
             'title' => 'XE ĐẠP THỂ THAO',
-            'svg'   => '<svg width="28" height="28" viewBox="0 0 640 512" fill="#0d6e2e"><path d="M400 96a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm-122.3 84.1c-10.7-18.4-30.8-29.8-52.2-29.8h-48.4c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h40.4l37.2 64H176.6c-13.4-56.1-64.2-96-123.6-96-69.5 0-126 56.5-126 126s56.5 126 126 126c59.4 0 110.2-39.9 123.6-96h111.9l46.7 80.8c-10.9 20.3-17.2 43.4-17.2 68.2 0 79.5 64.5 144 144 144s144-64.5 144-144c0-77.9-61.9-141.5-139.2-143.8l-40.4-69.8 45.4-37.4 34.2 34.2c6.2 6.2 14.7 9.8 23.6 9.8h48c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16h-38.6l-47.5-47.5c-15-15-37.8-19.7-57.5-11.8l-87.3 35.1-23.7-40.9zM128 352a64 64 0 1 1 -128 0 64 64 0 1 1 128 0zm384 64a64 64 0 1 1 0-128 64 64 0 1 1 0 128z"/></svg>'
+            'svg'   => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5h7l-3-8.5h6l3 8.5"/><path d="M5.5 17.5l4-8.5"/><path d="M12.5 17.5L15.5 9"/><path d="M7.5 9h3.5"/><path d="M14.5 6.5h2a1.5 1.5 0 0 1 1.5 1.5"/></svg>'
         ),
         array(
             'title' => 'PHỤ KIỆN XE ĐẠP',
-            'svg'   => '<svg width="26" height="26" viewBox="0 0 512 512" fill="#0d6e2e"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.7-8.2-111.4 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L86.5 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.8 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L65 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.7 8.2 111.4 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.8-26.7 43.6-58.9 54.7-94.6 1.6-5.5-.6-11.3-5.5-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg>'
+            'svg'   => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
         ),
         array(
             'title' => 'XE ĐẠP TRẺ EM',
-            'svg'   => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5L9 8h2.5"/><path d="M18.5 17.5L15 8h-3.5"/><path d="M12 17.5V11"/><circle cx="12" cy="5.5" r="1.5" fill="#0d6e2e"/></svg>'
+            'svg'   => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="15.5" r="4.5"/><circle cx="5.5" cy="17" r="3"/><path d="M5.5 17l5-6.5h3.5l2 5"/><path d="M10 10.5V8.5h3"/><path d="M14 10.5V6.5m-2.5 0h5"/><path d="M16 13.5v4"/></svg>'
         ),
         array(
             'title' => 'DỊCH VỤ BẢO DƯỠNG',
-            'svg'   => '<svg width="26" height="26" viewBox="0 0 24 24" fill="#0d6e2e"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.5 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/><path d="M1.3 19l9.1-9.1c-.9-2.3-.4-5 1.5-6.9 2-2 5-2.4 7.4-1.3L15 6l3 3 4.4-4.3c1.1 2.4.7 5.4-1.3 7.4-1.9 1.9-4.6 2.4-6.9 1.5L5.1 22.7c-.4.4-1 .4-1.4 0L1.4 20.4c-.5-.4-.5-1.1-.1-1.4z"/></svg>'
+            'svg'   => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
         )
     );
 
@@ -53,27 +53,17 @@ function gobike_render_home_hero_banner($atts = array())
         }
     }
 
-    // Đảm bảo số lượng slide luôn khớp đủ với số lượng tab (ít nhất 4 slide)
+    // Ảnh mặc định chỉ dùng khi người dùng chưa cấu hình bất kỳ slide nào trong ACF
     $default_banner_images = array(
         content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
         content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp'),
         content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp'),
-        content_url('/uploads/2026/08/0ecfa5aa-9eb2-4477-92eb-44f613a12080.webp'),
     );
 
     if (empty($slides)) {
-        foreach ($service_items as $idx => $s_item) {
+        foreach ($default_banner_images as $idx => $def_url) {
             $slides[] = array(
-                'image_slide' => array('url' => $default_banner_images[$idx % count($default_banner_images)]),
-                'link_url'    => home_url('/san-pham/'),
-                'title_slide' => $s_item['title'],
-            );
-        }
-    } else {
-        while (count($slides) < count($service_items)) {
-            $idx = count($slides);
-            $slides[] = array(
-                'image_slide' => array('url' => isset($default_banner_images[$idx]) ? $default_banner_images[$idx] : $default_banner_images[0]),
+                'image_slide' => array('url' => $def_url),
                 'link_url'    => home_url('/san-pham/'),
                 'title_slide' => isset($service_items[$idx]['title']) ? $service_items[$idx]['title'] : 'GoBike',
             );
@@ -125,7 +115,6 @@ function gobike_render_home_hero_banner($atts = array())
                             <div class="swiper-wrapper">
                                 <?php 
                                 $fallback_images = array(
-                                    content_url('/uploads/2026/08/0ecfa5aa-9eb2-4477-92eb-44f613a12080.webp'),
                                     content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
                                     content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp'),
                                     content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp'),
@@ -279,10 +268,12 @@ function gobike_render_home_hero_banner($atts = array())
                 },
             });
 
+            var totalSlides = <?php echo count($slides); ?>;
             var thumbItems = heroSection.querySelectorAll('.mySwiper .service-thumb-item');
             function syncActiveThumb(realIdx) {
+                var activeThumbIdx = (thumbItems.length > 0) ? (realIdx % thumbItems.length) : 0;
                 thumbItems.forEach(function(el, i) {
-                    if (i === realIdx) {
+                    if (i === activeThumbIdx) {
                         el.classList.add('swiper-slide-thumb-active');
                     } else {
                         el.classList.remove('swiper-slide-thumb-active');
@@ -295,10 +286,11 @@ function gobike_render_home_hero_banner($atts = array())
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (bannerSwiper) {
+                        var targetSlide = totalSlides > 0 ? (idx % totalSlides) : 0;
                         if (typeof bannerSwiper.slideToLoop === 'function') {
-                            bannerSwiper.slideToLoop(idx);
+                            bannerSwiper.slideToLoop(targetSlide);
                         } else {
-                            bannerSwiper.slideTo(idx);
+                            bannerSwiper.slideTo(targetSlide);
                         }
                         syncActiveThumb(idx);
                     }
@@ -306,7 +298,7 @@ function gobike_render_home_hero_banner($atts = array())
             });
 
             bannerSwiper.on('slideChange', function() {
-                var realIdx = (typeof bannerSwiper.realIndex !== 'undefined') ? bannerSwiper.realIndex : (bannerSwiper.activeIndex % thumbItems.length);
+                var realIdx = (typeof bannerSwiper.realIndex !== 'undefined') ? bannerSwiper.realIndex : (bannerSwiper.activeIndex % (totalSlides || 1));
                 syncActiveThumb(realIdx);
             });
         }
