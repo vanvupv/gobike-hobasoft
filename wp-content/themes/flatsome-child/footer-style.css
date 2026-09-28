@@ -362,6 +362,7 @@ footer#footer,
         color: #64748b;
         cursor: pointer;
         padding: 0;
+        margin: 0 !important;
         transition: background 0.2s, color 0.2s;
     }
 
