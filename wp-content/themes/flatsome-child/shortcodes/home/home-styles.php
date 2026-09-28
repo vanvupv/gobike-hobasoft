@@ -869,19 +869,6 @@ function gobike_custom_styles_output()
 
         /* --- 6.1. Desktop (>= 850px) --- */
         @media screen and (min-width: 850px) {
-            .banner-home .row.gobike-hero-row {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-                align-items: stretch !important;
-                gap: 12px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-                width: 100% !important;
-                max-width: 1230px !important;
-            }
 
             /* CỘT 1: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM */
             .banner-home .box_left.gobike-hero-box-left {
@@ -1248,13 +1235,6 @@ function gobike_custom_styles_output()
                 padding-left: 0 !important;
                 padding-right: 0 !important;
                 margin: 0 !important;
-            }
-
-            .banner-home .row.gobike-hero-row {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
             }
 
             .banner-home .box_center,
