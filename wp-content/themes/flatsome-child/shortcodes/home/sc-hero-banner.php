@@ -9,6 +9,137 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/**
+ * 1. Đăng ký nhóm trường ACF cho Banner Trang Chủ (Hero Banner: Cột Trái & Showroom)
+ */
+add_action('acf/init', 'gobike_register_hero_banner_acf_fields');
+function gobike_register_hero_banner_acf_fields()
+{
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    $front_page_id = get_option('page_on_front');
+
+    $location = array(
+        array(
+            array(
+                'param' => 'page_type',
+                'operator' => '==',
+                'value' => 'front_page',
+            ),
+        ),
+    );
+
+    if (!empty($front_page_id)) {
+        $location[] = array(
+            array(
+                'param' => 'page',
+                'operator' => '==',
+                'value' => strval($front_page_id),
+            ),
+        );
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_gobike_hero_banners',
+        'title' => '[Trang chủ] Banner Hero Section (Cột Trái & Showroom)',
+        'fields' => array(
+            // --- TAB 1: BANNER DỌC CỘT TRÁI ---
+            array(
+                'key' => 'field_banner_left_tab',
+                'label' => 'Banner Dọc Cột Trái',
+                'type' => 'tab',
+                'placement' => 'top',
+                'endpoint' => 0,
+            ),
+            array(
+                'key' => 'field_banner_left_image',
+                'label' => 'Ảnh Banner Dọc Bên Trái',
+                'name' => 'banner_left_image',
+                'type' => 'image',
+                'instructions' => 'Tải lên ảnh banner dọc bên trái (.banner-home .box_left.gobike-hero-box-left). Kích thước chuẩn: ~240x520px hoặc tỉ lệ dọc tương đương. Nếu để trống hệ thống sẽ dùng ảnh mặc định.',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_banner_left_link',
+                'label' => 'Link liên kết Banner Trái',
+                'name' => 'banner_left_link',
+                'type' => 'text',
+                'instructions' => 'Đường dẫn khi nhấp vào banner (mặc định: /san-pham/)',
+                'required' => 0,
+                'default_value' => '/san-pham/',
+                'placeholder' => '/san-pham/',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_banner_left_title',
+                'label' => 'Tiêu đề / Thẻ Alt (SEO)',
+                'name' => 'banner_left_title',
+                'type' => 'text',
+                'instructions' => 'Tiêu đề tooltip và thẻ alt cho banner dọc bên trái.',
+                'required' => 0,
+                'default_value' => 'GoBike - Chất lượng thật để bền vạn năm',
+                'placeholder' => 'GoBike - Chất lượng thật để bền vạn năm',
+                'wrapper' => array('width' => '100'),
+            ),
+
+            // --- TAB 2: BANNER SHOWROOM CỘT PHẢI ---
+            array(
+                'key' => 'field_banner_showroom_tab',
+                'label' => 'Banner Showroom Cột Phải',
+                'type' => 'tab',
+                'placement' => 'top',
+                'endpoint' => 0,
+            ),
+            array(
+                'key' => 'field_banner_showroom_image',
+                'label' => 'Ảnh Banner Showroom',
+                'name' => 'banner_showroom_image',
+                'type' => 'image',
+                'instructions' => 'Tải lên ảnh banner Showroom ở cột bên phải (.gobike-showroom-banner-box). Nếu để trống sẽ dùng ảnh mặc định.',
+                'required' => 0,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_banner_showroom_link',
+                'label' => 'Link liên kết Showroom',
+                'name' => 'banner_showroom_link',
+                'type' => 'text',
+                'instructions' => 'Đường dẫn khi nhấp vào banner Showroom (mặc định: /lien-he/)',
+                'required' => 0,
+                'default_value' => '/lien-he/',
+                'placeholder' => '/lien-he/',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_banner_showroom_title',
+                'label' => 'Tiêu đề / Thẻ Alt Showroom',
+                'name' => 'banner_showroom_title',
+                'type' => 'text',
+                'instructions' => 'Tiêu đề chú thích và thẻ alt cho banner Showroom.',
+                'required' => 0,
+                'default_value' => 'Trải nghiệm thực tế tại Hệ thống Showroom GOBIKE',
+                'placeholder' => 'Trải nghiệm thực tế tại Hệ thống Showroom GOBIKE',
+                'wrapper' => array('width' => '100'),
+            ),
+        ),
+        'location' => $location,
+        'menu_order' => 1,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+    ));
+}
+
 function gobike_render_home_hero_banner($atts = array())
 {
     $atts = shortcode_atts(array(
@@ -89,17 +220,98 @@ function gobike_render_home_hero_banner($atts = array())
 
     $theme_uri = get_stylesheet_directory_uri();
     $theme_dir = get_stylesheet_directory();
+
+    // 1. CỘT TRÁI: BANNER DỌC (Lấy từ ACF 'banner_left_image', fallback các tên phụ và file ảnh gốc)
+    $left_banner_img_val = function_exists('get_field') ? get_field('banner_left_image', $front_page_id) : false;
+    if (empty($left_banner_img_val) && function_exists('get_field')) {
+        $left_banner_img_val = get_field('banner_left_image');
+    }
+    if (empty($left_banner_img_val) && function_exists('get_field')) {
+        $left_banner_img_val = get_field('banner_left', $front_page_id) ?: get_field('left_banner', $front_page_id) ?: get_field('left_banner_image', $front_page_id);
+    }
+
+    $left_banner_url = '';
+    if (!empty($left_banner_img_val)) {
+        if (is_array($left_banner_img_val)) {
+            if (!empty($left_banner_img_val['url'])) {
+                $left_banner_url = $left_banner_img_val['url'];
+            } elseif (!empty($left_banner_img_val['ID'])) {
+                $left_banner_url = wp_get_attachment_image_url($left_banner_img_val['ID'], 'full');
+            }
+        } elseif (is_numeric($left_banner_img_val)) {
+            $left_banner_url = wp_get_attachment_image_url($left_banner_img_val, 'full');
+        } elseif (is_string($left_banner_img_val)) {
+            $left_banner_url = $left_banner_img_val;
+        }
+    }
+
     $left_banner_file = $theme_dir . '/assets/images/banner-left-vert.png';
     $v_left = file_exists($left_banner_file) ? filemtime($left_banner_file) : time();
-    $left_banner_img = file_exists($left_banner_file)
+    $left_banner_fallback = file_exists($left_banner_file)
         ? $theme_uri . '/assets/images/banner-left-vert.png?v=' . $v_left
         : content_url('/uploads/2026/09/banner-left-vert.png?v=' . $v_left);
 
+    $left_banner_img = !empty($left_banner_url) ? $left_banner_url : $left_banner_fallback;
+
+    $left_banner_link = function_exists('get_field') ? get_field('banner_left_link', $front_page_id) : '';
+    if (empty($left_banner_link) && function_exists('get_field')) {
+        $left_banner_link = get_field('banner_left_link');
+    }
+    if (empty($left_banner_link)) {
+        $left_banner_link = home_url('/san-pham/');
+    }
+
+    $left_banner_title = function_exists('get_field') ? get_field('banner_left_title', $front_page_id) : '';
+    if (empty($left_banner_title) && function_exists('get_field')) {
+        $left_banner_title = get_field('banner_left_title');
+    }
+    if (empty($left_banner_title)) {
+        $left_banner_title = 'GoBike - Chất lượng thật để bền vạn năm';
+    }
+
+    // 2. CỘT PHẢI: BANNER SHOWROOM (Lấy từ ACF 'banner_showroom_image', fallback sang file ảnh gốc)
+    $showroom_img_val = function_exists('get_field') ? get_field('banner_showroom_image', $front_page_id) : false;
+    if (empty($showroom_img_val) && function_exists('get_field')) {
+        $showroom_img_val = get_field('banner_showroom_image');
+    }
+    $showroom_url = '';
+    if (!empty($showroom_img_val)) {
+        if (is_array($showroom_img_val)) {
+            if (!empty($showroom_img_val['url'])) {
+                $showroom_url = $showroom_img_val['url'];
+            } elseif (!empty($showroom_img_val['ID'])) {
+                $showroom_url = wp_get_attachment_image_url($showroom_img_val['ID'], 'full');
+            }
+        } elseif (is_numeric($showroom_img_val)) {
+            $showroom_url = wp_get_attachment_image_url($showroom_img_val, 'full');
+        } elseif (is_string($showroom_img_val)) {
+            $showroom_url = $showroom_img_val;
+        }
+    }
+
     $showroom_file = $theme_dir . '/assets/images/banner-showroom.png';
     $v_show = file_exists($showroom_file) ? filemtime($showroom_file) : time();
-    $showroom_img = file_exists($showroom_file)
+    $showroom_fallback = file_exists($showroom_file)
         ? $theme_uri . '/assets/images/banner-showroom.png?v=' . $v_show
         : content_url('/uploads/2026/09/banner-showroom.png?v=' . $v_show);
+
+    $showroom_img = !empty($showroom_url) ? $showroom_url : $showroom_fallback;
+
+    $showroom_link = function_exists('get_field') ? get_field('banner_showroom_link', $front_page_id) : '';
+    if (empty($showroom_link) && function_exists('get_field')) {
+        $showroom_link = get_field('banner_showroom_link');
+    }
+    if (empty($showroom_link)) {
+        $showroom_link = home_url('/lien-he/');
+    }
+
+    $showroom_title = function_exists('get_field') ? get_field('banner_showroom_title', $front_page_id) : '';
+    if (empty($showroom_title) && function_exists('get_field')) {
+        $showroom_title = get_field('banner_showroom_title');
+    }
+    if (empty($showroom_title)) {
+        $showroom_title = 'Trải nghiệm thực tế tại Hệ thống Showroom GOBIKE';
+    }
 
     ob_start();
     ?>
@@ -109,8 +321,8 @@ function gobike_render_home_hero_banner($atts = array())
                 <!-- 1. CỘT TRÁI: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM -->
                 <div class="col hide-for-medium box_left gobike-hero-box-left">
                     <div class="gobike-vert-banner-card">
-                        <a href="<?php echo esc_url(home_url('/san-pham/')); ?>" title="GoBike - Chất lượng thật để bền vạn năm">
-                            <img src="<?php echo esc_url($left_banner_img); ?>" alt="GoBike - Chất lượng thật để bền vạn năm" />
+                        <a href="<?php echo esc_url($left_banner_link); ?>" title="<?php echo esc_attr($left_banner_title); ?>">
+                            <img src="<?php echo esc_url($left_banner_img); ?>" alt="<?php echo esc_attr($left_banner_title); ?>" />
                         </a>
                     </div>
                 </div>
@@ -225,8 +437,8 @@ function gobike_render_home_hero_banner($atts = array())
 
                         <!-- Phần dưới: Banner Showroom GOBIKE -->
                         <div class="gobike-showroom-banner-box">
-                            <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" title="Trải nghiệm thực tế tại Hệ thống Showroom GOBIKE">
-                                <img src="<?php echo esc_url($showroom_img); ?>" alt="Hệ thống Showroom GOBIKE" />
+                            <a href="<?php echo esc_url($showroom_link); ?>" title="<?php echo esc_attr($showroom_title); ?>">
+                                <img src="<?php echo esc_url($showroom_img); ?>" alt="<?php echo esc_attr($showroom_title); ?>" />
                             </a>
                         </div>
                     </div>
