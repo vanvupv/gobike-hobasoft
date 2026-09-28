@@ -969,13 +969,13 @@ function gobike_custom_styles_output()
                 flex: 0 0 25% !important;
                 height: 70px !important;
                 max-height: 70px !important;
-                padding: 10px 14px !important;
+                padding: 6px 8px !important;
                 cursor: pointer !important;
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: center !important;
                 align-items: center !important;
-                gap: 12px !important;
+                gap: 8px !important;
                 text-align: left !important;
                 border-right: 1px solid #f1f5f9 !important;
                 border-bottom: none !important;
@@ -994,9 +994,9 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 32px !important;
-                height: 32px !important;
-                flex-shrink: 0 !important;
+                width: 36px !important;
+                height: 36px !important;
+                flex: 0 0 36px !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
@@ -1005,36 +1005,37 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap svg {
-                width: 24px !important;
-                height: 24px !important;
+                width: 32px !important;
+                height: 32px !important;
                 display: block !important;
-                stroke: currentColor !important;
-                transition: stroke 0.25s ease !important;
+                transition: transform 0.25s ease, color 0.25s ease !important;
             }
 
             .banner-home .service-thumb-item .thumb-text-wrap {
                 display: flex !important;
-                align-items: center !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
                 justify-content: center !important;
                 min-width: 0 !important;
-                line-height: 1.2 !important;
+                line-height: 1.15 !important;
+                max-height: 48px !important;
+                overflow: hidden !important;
             }
 
-            .banner-home .service-thumb-item .thumb-title {
-                font-size: 13px !important;
+            .banner-home .service-thumb-item .thumb-title,
+            .banner-home .service-thumb-item .thumb-desc {
+                font-size: 16px !important;
                 font-weight: 700 !important;
-                color: #0f172a !important;
+                color: #0b1a30 !important;
                 text-transform: uppercase !important;
+                line-height: 1.15 !important;
+                letter-spacing: -0.2px !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
                 display: block !important;
                 margin: 0 !important;
                 transition: color 0.25s ease !important;
-            }
-
-            .banner-home .service-thumb-item .thumb-desc {
-                display: none !important;
             }
 
             /* BỎ MÀU NỀN TRÊN TAB ACTIVE & HOVER (Duy trì nền trắng sạch sẽ) */
@@ -1046,18 +1047,15 @@ function gobike_custom_styles_output()
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-icon-wrap,
             .banner-home .service-thumb-item:hover .thumb-icon-wrap {
-                color: #16a34a !important;
-                transform: scale(1.08) !important;
+                color: #149d29 !important;
+                transform: scale(1.06) !important;
             }
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title,
-            .banner-home .service-thumb-item:hover .thumb-title {
-                color: #0d6e2e !important;
-            }
-
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc,
+            .banner-home .service-thumb-item:hover .thumb-title,
             .banner-home .service-thumb-item:hover .thumb-desc {
-                color: #149d29 !important;
+                color: #0d6e2e !important;
             }
 
             /* CỘT 3: TIN TỨC MỚI NHẤT & SHOWROOM */
