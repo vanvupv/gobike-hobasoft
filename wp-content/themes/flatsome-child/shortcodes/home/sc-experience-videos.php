@@ -16,6 +16,84 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!function_exists('gobike_extract_youtube_info')) {
+    function gobike_extract_youtube_info($url)
+    {
+        $info = array(
+            'id' => '',
+            'embed_url' => '',
+            'thumbnail' => '',
+        );
+
+        if (empty($url)) {
+            return $info;
+        }
+
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?\/\s]{11})/i';
+        if (preg_match($pattern, $url, $matches)) {
+            $id = $matches[1];
+            $info['id'] = $id;
+            $info['embed_url'] = 'https://www.youtube.com/embed/' . $id . '?autoplay=1&rel=0';
+            $info['thumbnail'] = 'https://img.youtube.com/vi/' . $id . '/hqdefault.jpg';
+        }
+
+        return $info;
+    }
+}
+
+if (!function_exists('gobike_get_video_review_thumbnail')) {
+    function gobike_get_video_review_thumbnail($post_id, $size = 'large', $fallback_index = 0)
+    {
+        $fallback_pool = array(
+            'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp',
+            'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=600&auto=format&fit=crop&q=80',
+        );
+
+        if (!$post_id) {
+            return $fallback_pool[$fallback_index % count($fallback_pool)];
+        }
+
+        $thumb = '';
+
+        if (function_exists('get_field')) {
+            $acf_thumb = get_field('video_thumbnail', $post_id);
+            if (!empty($acf_thumb)) {
+                if (is_array($acf_thumb) && !empty($acf_thumb['url'])) {
+                    $thumb = $acf_thumb['url'];
+                } elseif (is_numeric($acf_thumb)) {
+                    $thumb = wp_get_attachment_image_url($acf_thumb, $size) ?: '';
+                } elseif (is_string($acf_thumb) && (strpos($acf_thumb, 'http://') === 0 || strpos($acf_thumb, 'https://') === 0 || strpos($acf_thumb, '//') === 0)) {
+                    $thumb = $acf_thumb;
+                }
+            }
+        }
+
+        if (empty($thumb) && has_post_thumbnail($post_id)) {
+            $thumb = get_the_post_thumbnail_url($post_id, $size) ?: '';
+        }
+
+        if (empty($thumb)) {
+            $v_url = function_exists('get_field') ? get_field('video_url', $post_id) : get_post_meta($post_id, 'video_url', true);
+            if (!empty($v_url)) {
+                $yt = gobike_extract_youtube_info($v_url);
+                if (!empty($yt['thumbnail'])) {
+                    $thumb = $yt['thumbnail'];
+                }
+            }
+        }
+
+        if (empty($thumb)) {
+            $thumb = $fallback_pool[$fallback_index % count($fallback_pool)];
+        }
+
+        return $thumb;
+    }
+}
+
 /* ============================================================================
  * 1. HÀM RENDER SHORTCODE [gobike_experience_videos]
  * ============================================================================
@@ -89,25 +167,27 @@ function gobike_render_experience_videos_shortcode($atts)
         ),
     );
 
-    // Tự động tìm sản phẩm thực tế trong WooCommerce nếu chưa có bài CPT
-    if (!$v_query->have_posts() && function_exists('wc_get_products')) {
+    // Tự động tìm sản phẩm thực tế trong WooCommerce
+    $real_products = array();
+    if (function_exists('wc_get_products')) {
         $real_products = wc_get_products(array(
-            'limit'   => 4,
+            'limit'   => 8,
             'status'  => 'publish',
             'orderby' => 'date',
             'order'   => 'DESC',
         ));
-        if (!empty($real_products)) {
-            foreach ($real_products as $idx => $rp) {
-                if (isset($demo_shorts[$idx])) {
-                    $demo_shorts[$idx]['prod_id']    = $rp->get_id();
-                    $demo_shorts[$idx]['prod_name']  = $rp->get_name();
-                    $demo_shorts[$idx]['prod_price'] = $rp->get_price_html() ?: '<span class="amount">Liên hệ</span>';
-                    $demo_shorts[$idx]['prod_url']   = $rp->get_permalink();
-                    $demo_shorts[$idx]['prod_thumb'] = wp_get_attachment_image_url($rp->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($rp->get_id(), 'thumbnail') ?: $demo_shorts[$idx]['prod_thumb']);
-                    $demo_shorts[$idx]['prod_cat']   = strip_tags(wc_get_product_category_list($rp->get_id(), ', ', '', ''));
-                    $demo_shorts[$idx]['is_variable']= $rp->is_type('variable');
-                }
+    }
+
+    if (!$v_query->have_posts() && !empty($real_products)) {
+        foreach ($real_products as $idx => $rp) {
+            if (isset($demo_shorts[$idx])) {
+                $demo_shorts[$idx]['prod_id']    = $rp->get_id();
+                $demo_shorts[$idx]['prod_name']  = $rp->get_name();
+                $demo_shorts[$idx]['prod_price'] = $rp->get_price_html() ?: '<span class="amount">Liên hệ</span>';
+                $demo_shorts[$idx]['prod_url']   = $rp->get_permalink();
+                $demo_shorts[$idx]['prod_thumb'] = wp_get_attachment_image_url($rp->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($rp->get_id(), 'thumbnail') ?: $demo_shorts[$idx]['prod_thumb']);
+                $demo_shorts[$idx]['prod_cat']   = strip_tags(wc_get_product_category_list($rp->get_id(), ', ', '', ''));
+                $demo_shorts[$idx]['is_variable']= $rp->is_type('variable');
             }
         }
     }
@@ -134,33 +214,41 @@ function gobike_render_experience_videos_shortcode($atts)
         <div class="gev-grid">
             <?php
             if ($v_query->have_posts()) {
+                $card_idx = 0;
                 while ($v_query->have_posts()) {
                     $v_query->the_post();
                     $vid_id       = get_the_ID();
                     $video_url    = get_field('video_url', $vid_id);
-                    $yt_info      = function_exists('gobike_extract_youtube_info') ? gobike_extract_youtube_info($video_url) : array('id' => '', 'embed_url' => '', 'thumbnail' => '');
-                    $thumb        = get_field('video_thumbnail', $vid_id) ?: $yt_info['thumbnail'];
+                    $yt_info      = gobike_extract_youtube_info($video_url);
+                    $thumb        = gobike_get_video_review_thumbnail($vid_id, 'large', $card_idx);
                     $overlay_txt  = get_field('video_title_overlay', $vid_id) ?: get_the_title();
                     $views_txt    = get_field('video_views', $vid_id) ?: (get_field('video_views_text', $vid_id) ?: '100K lượt xem');
-                    $embed_src    = 'https://www.youtube.com/embed/' . $yt_info['id'] . '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+                    $yt_id        = !empty($yt_info['id']) ? $yt_info['id'] : 'dQw4w9WgXcQ';
+                    $embed_src    = 'https://www.youtube.com/embed/' . $yt_id . '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
 
                     // Lấy sản phẩm WooCommerce liên kết
                     $rel_prod_id  = get_field('related_product', $vid_id);
                     $product_obj  = $rel_prod_id ? wc_get_product($rel_prod_id) : null;
+                    if (!$product_obj && !empty($real_products)) {
+                        $product_obj = $real_products[$card_idx % count($real_products)];
+                    }
 
                     if ($product_obj) {
                         $p_id    = $product_obj->get_id();
                         $p_name  = $product_obj->get_name();
-                        $p_thumb = wp_get_attachment_image_url($product_obj->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($p_id, 'thumbnail') ?: wc_placeholder_img_src());
+                        $p_thumb = wp_get_attachment_image_url($product_obj->get_image_id(), 'thumbnail') ?: (get_the_post_thumbnail_url($p_id, 'thumbnail') ?: '');
+                        if (empty($p_thumb)) {
+                            $p_thumb = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';
+                        }
                         $p_price = $product_obj->get_price_html() ?: '<span class="amount">Liên hệ</span>';
                         $p_url   = $product_obj->get_permalink();
-                        $p_cats  = wc_get_product_category_list($p_id, ', ', '', '');
+                        $p_cats  = strip_tags(wc_get_product_category_list($p_id, ', ', '', '')) ?: 'Xe đạp trợ lực điện';
                         $p_cart  = $product_obj->add_to_cart_url();
                         $p_is_var= $product_obj->is_type('variable');
                     } else {
                         $p_id    = 0;
                         $p_name  = 'XE ĐẠP GOBIKE';
-                        $p_thumb = $thumb;
+                        $p_thumb = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';
                         $p_price = '18.990.000đ';
                         $p_url   = home_url('/cua-hang/');
                         $p_cats  = 'Xe đạp trợ lực điện';
@@ -180,7 +268,7 @@ function gobike_render_experience_videos_shortcode($atts)
                              data-prod-price="<?php echo esc_attr(strip_tags($p_price)); ?>"
                              data-prod-thumb="<?php echo esc_attr($p_thumb); ?>">
                             
-                            <img src="<?php echo esc_url($thumb); ?>" alt="" class="gev-shorts-img">
+                            <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($overlay_txt); ?>" class="gev-shorts-img" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
 
                             <!-- Icon Play Hover -->
                             <div class="gev-play-center">
@@ -210,7 +298,7 @@ function gobike_render_experience_videos_shortcode($atts)
                         <!-- PHẦN DƯỚI: MINI CARD SẢN PHẨM -->
                         <div class="gev-product-box">
                             <a href="<?php echo esc_url($p_url); ?>" class="gev-prod-img-link">
-                                <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_name); ?>">
+                                <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_name); ?>" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
                             </a>
                             <div class="gev-prod-info">
                                 <h4 class="gev-prod-name">
@@ -243,6 +331,7 @@ function gobike_render_experience_videos_shortcode($atts)
                         </div>
                     </div>
                     <?php
+                    $card_idx++;
                 }
                 wp_reset_postdata();
             } else {
@@ -263,7 +352,7 @@ function gobike_render_experience_videos_shortcode($atts)
                              data-prod-price="<?php echo esc_attr(strip_tags($ds['prod_price'])); ?>"
                              data-prod-thumb="<?php echo esc_attr($ds['prod_thumb']); ?>">
                             
-                            <img src="<?php echo esc_url($ds['thumb']); ?>" alt="" class="gev-shorts-img">
+                            <img src="<?php echo esc_url($ds['thumb']); ?>" alt="<?php echo esc_attr($ds['video_title']); ?>" class="gev-shorts-img" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
                             
                             <!-- Icon Play Hover -->
                             <div class="gev-play-center">
@@ -293,7 +382,7 @@ function gobike_render_experience_videos_shortcode($atts)
                         <!-- PHẦN DƯỚI: MINI CARD SẢN PHẨM -->
                         <div class="gev-product-box">
                             <a href="<?php echo esc_url($ds['prod_url']); ?>" class="gev-prod-img-link">
-                                <img src="<?php echo esc_url($ds['prod_thumb']); ?>" alt="<?php echo esc_attr($ds['prod_name']); ?>">
+                                <img src="<?php echo esc_url($ds['prod_thumb']); ?>" alt="<?php echo esc_attr($ds['prod_name']); ?>" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
                             </a>
                             <div class="gev-prod-info">
                                 <h4 class="gev-prod-name">
