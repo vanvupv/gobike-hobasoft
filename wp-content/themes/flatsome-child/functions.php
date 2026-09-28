@@ -283,10 +283,20 @@ function gobike_mobile_bottom_nav_bar()
 
         <div class="gb-cd-body">
             <!-- Cột trái: 11 Danh mục chính -->
-            <aside class="gb-cd-sidebar">
+            <aside class="gb-cd-sidebar" id="gbCdSidebar">
+                <!-- Thanh công cụ thu gọn - mở rộng văn bản (chỉ hiển thị icon) -->
+                <div class="gb-cd-sidebar-toggle-bar">
+                    <button type="button" class="gb-cd-sidebar-toggle-btn" id="gbCdSidebarToggle" aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng menu">
+                        <svg class="gb-cd-toggle-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <span class="gb-cd-toggle-label">Thu gọn</span>
+                    </button>
+                </div>
+
                 <ul class="gb-cd-nav-list">
-                    <!-- 1. Xe đạp trợ lực điện (Kèm nút thu gọn - mở rộng danh mục con) -->
-                    <li class="gb-cd-nav-item active gb-cd-has-sub" id="gbCdNavEbike" data-target="gbCdPaneEbike">
+                    <!-- 1. Xe đạp trợ lực điện (Kèm nút thu gọn - mở rộng) -->
+                    <li class="gb-cd-nav-item active gb-cd-has-sub" id="gbCdNavEbike" data-target="gbCdPaneEbike" title="Xe đạp trợ lực điện">
                         <span class="gb-cd-nav-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="5.5" cy="17.5" r="3.5"/>
@@ -297,80 +307,77 @@ function gobike_mobile_bottom_nav_bar()
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe đạp trợ lực điện</span>
-                        <span class="gb-cd-sub-toggle" id="gbCdEbikeToggle" aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng">
+                        <span class="gb-cd-sub-toggle" id="gbCdEbikeToggle" aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng menu">
                             <svg class="gb-cd-toggle-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"></polyline>
+                                <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </span>
                     </li>
 
-                    <!-- Danh mục con thu gọn - mở rộng -->
-                    <div class="gb-cd-sub-menu-wrapper" id="gbCdEbikeSubMenu">
-                        <!-- 2. Xe đạp gấp gọn -->
-                        <li class="gb-cd-nav-item gb-cd-sub-item" data-target="gbCdPaneFolding">
-                            <span class="gb-cd-nav-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="5" cy="17" r="3"/>
-                                    <circle cx="19" cy="17" r="3"/>
-                                    <path d="M12 17v-4l-3-3h-4"/>
-                                    <path d="M12 13l4-4h3"/>
-                                    <path d="M12 9V5l-2-1"/>
-                                    <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
-                                </svg>
-                            </span>
-                            <span class="gb-cd-nav-text">Xe đạp gấp gọn</span>
-                        </li>
+                    <!-- 2. Xe đạp gấp gọn -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneFolding" title="Xe đạp gấp gọn">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5" cy="17" r="3"/>
+                                <circle cx="19" cy="17" r="3"/>
+                                <path d="M12 17v-4l-3-3h-4"/>
+                                <path d="M12 13l4-4h3"/>
+                                <path d="M12 9V5l-2-1"/>
+                                <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe đạp gấp gọn</span>
+                    </li>
 
-                        <!-- 3. Xe địa hình -->
-                        <li class="gb-cd-nav-item gb-cd-sub-item" data-target="gbCdPaneMountain">
-                            <span class="gb-cd-nav-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
-                                    <path d="M4 18l4-4 3 3"/>
-                                </svg>
-                            </span>
-                            <span class="gb-cd-nav-text">Xe địa hình</span>
-                        </li>
+                    <!-- 3. Xe địa hình -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneMountain" title="Xe địa hình">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
+                                <path d="M4 18l4-4 3 3"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe địa hình</span>
+                    </li>
 
-                        <!-- 4. Xe đi làm -->
-                        <li class="gb-cd-nav-item gb-cd-sub-item" data-target="gbCdPaneCommute">
-                            <span class="gb-cd-nav-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-                                    <line x1="9" y1="22" x2="9" y2="22.01"/>
-                                    <line x1="15" y1="22" x2="15" y2="22.01"/>
-                                    <line x1="8" y1="6" x2="10" y2="6"/>
-                                    <line x1="14" y1="6" x2="16" y2="6"/>
-                                    <line x1="8" y1="10" x2="10" y2="10"/>
-                                    <line x1="14" y1="10" x2="16" y2="10"/>
-                                    <line x1="8" y1="14" x2="10" y2="14"/>
-                                    <line x1="14" y1="14" x2="16" y2="14"/>
-                                </svg>
-                            </span>
-                            <span class="gb-cd-nav-text">Xe đi làm</span>
-                        </li>
+                    <!-- 4. Xe đi làm -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneCommute" title="Xe đi làm">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                                <line x1="9" y1="22" x2="9" y2="22.01"/>
+                                <line x1="15" y1="22" x2="15" y2="22.01"/>
+                                <line x1="8" y1="6" x2="10" y2="6"/>
+                                <line x1="14" y1="6" x2="16" y2="6"/>
+                                <line x1="8" y1="10" x2="10" y2="10"/>
+                                <line x1="14" y1="10" x2="16" y2="10"/>
+                                <line x1="8" y1="14" x2="10" y2="14"/>
+                                <line x1="14" y1="14" x2="16" y2="14"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe đi làm</span>
+                    </li>
 
-                        <!-- 5. Xe cho học sinh - sinh viên -->
-                        <li class="gb-cd-nav-item gb-cd-sub-item" data-target="gbCdPaneStudent">
-                            <span class="gb-cd-nav-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                                </svg>
-                            </span>
-                            <span class="gb-cd-nav-text">Xe cho học sinh - sinh viên</span>
-                        </li>
+                    <!-- 5. Xe cho học sinh - sinh viên -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneStudent" title="Xe cho học sinh - sinh viên">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe cho học sinh - sinh viên</span>
+                    </li>
 
-                        <!-- 6. Xe cho người lớn tuổi -->
-                        <li class="gb-cd-nav-item gb-cd-sub-item" data-target="gbCdPaneElder">
-                            <span class="gb-cd-nav-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                                </svg>
-                            </span>
-                            <span class="gb-cd-nav-text">Xe cho người lớn tuổi</span>
-                        </li>
-                    </div>
+                    <!-- 6. Xe cho người lớn tuổi -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneElder" title="Xe cho người lớn tuổi">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe cho người lớn tuổi</span>
+                    </li>
 
                     <!-- 7. Phụ kiện -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneAccessories">
@@ -795,21 +802,25 @@ function gobike_mobile_bottom_nav_bar()
         if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
         if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
-        // Thu gọn / Mở rộng danh mục con Xe đạp trợ lực điện
+        // Thu gọn / Mở rộng văn bản trong Menu danh mục (chỉ hiển thị icon)
+        var sidebarToggle = document.getElementById('gbCdSidebarToggle');
         var ebikeToggle = document.getElementById('gbCdEbikeToggle');
-        var ebikeSubMenu = document.getElementById('gbCdEbikeSubMenu');
-        var ebikeNav = document.getElementById('gbCdNavEbike');
+        var toggleLabel = document.querySelector('.gb-cd-toggle-label');
 
-        if (ebikeToggle && ebikeSubMenu) {
-            ebikeToggle.addEventListener('click', function(e) {
+        function toggleMenuTextCollapse(e) {
+            if (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                var isCollapsed = ebikeSubMenu.classList.toggle('collapsed');
-                if (ebikeNav) {
-                    ebikeNav.classList.toggle('is-collapsed', isCollapsed);
-                }
-            });
+            }
+            if (!drawer) return;
+            var isCollapsed = drawer.classList.toggle('sidebar-collapsed');
+            if (toggleLabel) {
+                toggleLabel.textContent = isCollapsed ? 'Mở rộng' : 'Thu gọn';
+            }
         }
+
+        if (sidebarToggle) sidebarToggle.addEventListener('click', toggleMenuTextCollapse);
+        if (ebikeToggle) ebikeToggle.addEventListener('click', toggleMenuTextCollapse);
 
         // Chuyển tab danh mục bên trong Drawer
         var navItems = document.querySelectorAll('.gb-cd-nav-item');

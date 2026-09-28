@@ -403,10 +403,56 @@ footer#footer,
         scrollbar-width: none !important;
         padding-bottom: 75px !important;
         box-sizing: border-box !important;
+        transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     .gb-cd-sidebar::-webkit-scrollbar {
         display: none;
+    }
+
+    /* Thanh nút Thu gọn - Mở rộng đầu Sidebar */
+    .gb-cd-sidebar-toggle-bar {
+        padding: 8px 8px !important;
+        border-bottom: 1px solid #edf2f7 !important;
+        background: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-cd-sidebar-toggle-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        padding: 4px 8px !important;
+        background: #f1f5f9 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 6px !important;
+        color: #475569 !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-cd-sidebar-toggle-btn:hover,
+    .gb-cd-sidebar-toggle-btn:active {
+        background: #e2e8f0 !important;
+        color: #044b25 !important;
+    }
+
+    .gb-cd-toggle-arrow-icon {
+        transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        flex-shrink: 0 !important;
+    }
+
+    .gb-cd-toggle-label {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        line-height: 1 !important;
     }
 
     .gb-cd-nav-list {
@@ -453,9 +499,10 @@ footer#footer,
     .gb-cd-nav-text {
         flex: 1;
         word-break: break-word;
+        transition: opacity 0.2s ease;
     }
 
-    /* Nút thu gọn - mở rộng danh mục con Xe đạp trợ lực */
+    /* Nút thu gọn nhanh trên hàng Xe đạp trợ lực */
     .gb-cd-nav-item.gb-cd-has-sub {
         position: relative !important;
         display: flex !important;
@@ -464,8 +511,8 @@ footer#footer,
     }
 
     .gb-cd-sub-toggle {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -475,6 +522,9 @@ footer#footer,
         flex-shrink: 0;
         cursor: pointer;
         transition: background 0.2s, color 0.2s;
+        border: none;
+        background: transparent;
+        padding: 0;
     }
 
     .gb-cd-sub-toggle:active {
@@ -483,51 +533,6 @@ footer#footer,
 
     .gb-cd-nav-item.active .gb-cd-sub-toggle {
         color: #044b25;
-    }
-
-    .gb-cd-toggle-icon {
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: rotate(180deg); /* Mặc định mở rộng, icon quay lên */
-    }
-
-    .gb-cd-nav-item.is-collapsed .gb-cd-toggle-icon {
-        transform: rotate(0deg); /* Khi thu gọn, icon quay xuống */
-    }
-
-    .gb-cd-sub-menu-wrapper {
-        max-height: 500px;
-        overflow: hidden;
-        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
-        opacity: 1;
-        background: #f1f5f9;
-    }
-
-    .gb-cd-sub-menu-wrapper.collapsed {
-        max-height: 0 !important;
-        opacity: 0 !important;
-    }
-
-    .gb-cd-sub-item {
-        padding: 10px 8px 10px 14px !important;
-        font-size: 12px !important;
-        border-left: 3.5px solid transparent !important;
-        background: transparent !important;
-    }
-
-    .gb-cd-sub-item .gb-cd-nav-icon {
-        width: 22px;
-        height: 22px;
-    }
-
-    .gb-cd-sub-item .gb-cd-nav-icon svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .gb-cd-sub-item.active {
-        background: #eaf7ed !important;
-        color: #044b25 !important;
-        border-left-color: #044b25 !important;
     }
 
     /* Trạng thái Active */
@@ -550,6 +555,54 @@ footer#footer,
         background: #fef2f2 !important;
         border-left-color: #ef4444 !important;
         color: #b91c1c !important;
+    }
+
+    /* ========================================================
+       CHẾ ĐỘ THU GỌN: ẨN VĂN BẢN - CHỈ HIỂN THỊ ICON
+       ======================================================== */
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-sidebar {
+        width: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-sidebar-toggle-bar {
+        justify-content: center !important;
+        padding: 8px 4px !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-sidebar-toggle-btn {
+        width: 32px !important;
+        height: 32px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-toggle-label {
+        display: none !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-toggle-arrow-icon {
+        transform: rotate(180deg) !important; /* Xoay mũi tên trỏ sang phải (Mở rộng) */
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-nav-text {
+        display: none !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-sub-toggle {
+        display: none !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-nav-item {
+        padding: 13px 0 !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        border-left-width: 3.5px !important;
+    }
+
+    .gobike-category-drawer.sidebar-collapsed .gb-cd-nav-icon {
+        margin: 0 auto !important;
     }
 
     /* Cột phải: Content area */
