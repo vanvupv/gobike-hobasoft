@@ -191,6 +191,15 @@ function gobike_mobile_bottom_nav_bar()
     $phone_num = '0988888888'; // Thay bằng số điện thoại Hotline của bạn
     $messenger = 'https://m.me/gobiketrulucdien'; // Thay bằng link Fanpage Messenger của bạn
     $zalo_link = 'https://zalo.me/0988888888'; // Thay bằng link hoặc số Zalo của bạn
+    $upload_dir = wp_upload_dir();
+    $upload_base = $upload_dir['baseurl'];
+    $img_banner = $upload_base . '/2026/08/Banner-sp-GoBike-ADO.webp';
+    $img_phoenix = $upload_base . '/2026/08/Xe-dap-the-thao-tro-luc-dien-Phoenix-999.webp';
+    $img_shengmilo = $upload_base . '/2026/08/Xe-Dap-Tro-Luc-Dien-ADO-A20-Carbon.webp';
+    $img_burchda = $upload_base . '/2026/08/Xe-dap-tro-luc-dien-Burchda-RX70.webp';
+    $img_rapidx = $upload_base . '/2026/08/Xe-dap-tro-luc-dien-Phoenix-A9-Pro.webp';
+    $img_shallway = $upload_base . '/2026/08/Xe-dap-tro-luc-dien-LIMIT-E-Bike-City-Girl-E002.webp';
+    $img_truongvuong = $upload_base . '/2026/08/Xe-dap-tro-luc-dien-gap-ADO-A20-Air-001.webp';
     ?>
     <nav class="gobike-bottom-bar-nav" aria-label="Thanh điều hướng nhanh dưới đáy">
         <ul class="wrap-fixed-footer">
@@ -204,9 +213,9 @@ function gobike_mobile_bottom_nav_bar()
                 </a>
             </li>
 
-            <!-- 2. Sản phẩm -->
-            <li class="item-products">
-                <a href="<?php echo esc_url($shop_url); ?>">
+            <!-- 2. Sản phẩm (Kèm Popup danh mục chuyên biệt) -->
+            <li class="item-products" id="gobikeBottomItemProducts">
+                <a href="<?php echo esc_url($shop_url); ?>" id="gobikeBtnToggleProducts">
                     <svg class="nav-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" />
                     </svg>
@@ -254,6 +263,553 @@ function gobike_mobile_bottom_nav_bar()
             </li>
         </ul>
     </nav>
+
+    <!-- DRAWER / POPUP DANH MỤC SẢN PHẨM TRÊN MOBILE -->
+    <div class="gobike-category-drawer" id="gobikeCategoryDrawer" aria-hidden="true">
+        <div class="gb-cd-header">
+            <div class="gb-cd-header-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" />
+                </svg>
+                <span>Danh mục sản phẩm</span>
+            </div>
+            <button type="button" class="gb-cd-close-btn" id="gbCdCloseBtn" aria-label="Đóng danh mục">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="gb-cd-body">
+            <!-- Cột trái: 11 Danh mục chính -->
+            <aside class="gb-cd-sidebar">
+                <ul class="gb-cd-nav-list">
+                    <!-- 1. Xe đạp trợ lực điện -->
+                    <li class="gb-cd-nav-item active" data-target="gbCdPaneEbike">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5.5" cy="17.5" r="3.5"/>
+                                <circle cx="18.5" cy="17.5" r="3.5"/>
+                                <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h4"/>
+                                <path d="M13 14l-2 3.5"/>
+                                <polygon points="12 2 9 7 12 7 10 11 15 6 12 6 12 2" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe đạp trợ lực điện</span>
+                    </li>
+
+                    <!-- 2. Xe đạp gấp gọn -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneFolding">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5" cy="17" r="3"/>
+                                <circle cx="19" cy="17" r="3"/>
+                                <path d="M12 17v-4l-3-3h-4"/>
+                                <path d="M12 13l4-4h3"/>
+                                <path d="M12 9V5l-2-1"/>
+                                <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe đạp gấp gọn</span>
+                    </li>
+
+                    <!-- 3. Xe địa hình -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneMountain">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
+                                <path d="M4 18l4-4 3 3"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe địa hình</span>
+                    </li>
+
+                    <!-- 4. Xe đi làm -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneCommute">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                                <line x1="9" y1="22" x2="9" y2="22.01"/>
+                                <line x1="15" y1="22" x2="15" y2="22.01"/>
+                                <line x1="8" y1="6" x2="10" y2="6"/>
+                                <line x1="14" y1="6" x2="16" y2="6"/>
+                                <line x1="8" y1="10" x2="10" y2="10"/>
+                                <line x1="14" y1="10" x2="16" y2="10"/>
+                                <line x1="8" y1="14" x2="10" y2="14"/>
+                                <line x1="14" y1="14" x2="16" y2="14"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe đi làm</span>
+                    </li>
+
+                    <!-- 5. Xe cho học sinh - sinh viên -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneStudent">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe cho học sinh - sinh viên</span>
+                    </li>
+
+                    <!-- 6. Xe cho người lớn tuổi -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneElder">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Xe cho người lớn tuổi</span>
+                    </li>
+
+                    <!-- 7. Phụ kiện -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneAccessories">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 13c0-4.97 4.03-9 9-9s9 4.03 9 9c0 1.5-.5 3-2 3H5c-1.5 0-2-1.5-2-3z"/>
+                                <path d="M8 8c1 2 2 3 4 3s3-1 4-3"/>
+                                <line x1="12" y1="4" x2="12" y2="11"/>
+                                <path d="M7 16l2 5h6l2-5"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Phụ kiện</span>
+                    </li>
+
+                    <!-- 8. Pin & sạc -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneBattery">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="16" height="12" rx="2" ry="2"/>
+                                <line x1="22" y1="11" x2="22" y2="15"/>
+                                <polygon points="11 9 7 14 10 14 9 17 13 12 10 12 11 9" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Pin & sạc</span>
+                    </li>
+
+                    <!-- 9. Bảo dưỡng - sửa chữa -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneService">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Bảo dưỡng - sửa chữa</span>
+                    </li>
+
+                    <!-- 10. Thương hiệu -->
+                    <li class="gb-cd-nav-item" data-target="gbCdPaneBrands">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Thương hiệu</span>
+                    </li>
+
+                    <!-- 11. Khuyến mãi -->
+                    <li class="gb-cd-nav-item gb-cd-item-sale" data-target="gbCdPaneSale">
+                        <span class="gb-cd-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z" fill="#fee2e2" stroke="#ef4444"/>
+                                <line x1="9" y1="15" x2="15" y2="9" stroke="#ef4444"/>
+                                <circle cx="9.5" cy="9.5" r=".5" fill="#ef4444"/>
+                                <circle cx="14.5" cy="14.5" r=".5" fill="#ef4444"/>
+                            </svg>
+                        </span>
+                        <span class="gb-cd-nav-text">Khuyến mãi</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Cột phải: Nội dung tương ứng với danh mục được chọn -->
+            <main class="gb-cd-content">
+
+                <!-- PANE 1: XE ĐẠP TRỢ LỰC ĐIỆN (ACTIVE MẶC ĐỊNH THEO ẢNH MẪU) -->
+                <div class="gb-cd-pane active" id="gbCdPaneEbike">
+                    <!-- Banner lớn đầu khối -->
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_banner); ?>" alt="Xe đạp trợ lực điện" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <span class="gb-cd-banner-script">Sống xanh mỗi ngày</span>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe đạp<br>trợ lực điện</h3>
+                            <p>Di chuyển thông minh<br>Cuộc sống xanh hơn</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Lưới 6 thương hiệu / nhóm sản phẩm theo đúng ảnh mẫu -->
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_phoenix); ?>" alt="PHOENIX" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">PHOENIX</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_shengmilo); ?>" alt="SHENGMILO" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">SHENGMILO</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_burchda); ?>" alt="BURCHDA" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">BURCHDA</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_rapidx); ?>" alt="RAPIDX" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">RAPIDX</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_shallway); ?>" alt="SHALLWAY" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">SHALLWAY</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img">
+                                <img src="<?php echo esc_url($img_truongvuong); ?>" alt="TRƯỜNG VƯƠNG" loading="lazy">
+                            </div>
+                            <div class="gb-cd-brand-footer">
+                                <span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span>
+                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 2: XE ĐẠP GẤP GỌN -->
+                <div class="gb-cd-pane" id="gbCdPaneFolding">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_truongvuong); ?>" alt="Xe đạp gấp gọn" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe đạp<br>gấp gọn</h3>
+                            <p>Nhỏ gọn, linh hoạt<br>Bỏ vừa cốp ô tô</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=ado')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="ADO Air 20" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">ADO Air 20</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix G2" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix G2</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 3: XE ĐỊA HÌNH -->
+                <div class="gb-cd-pane" id="gbCdPaneMountain">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_burchda); ?>" alt="Xe địa hình" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe địa hình<br>Lốp béo</h3>
+                            <p>Mạnh mẽ, đầm chắc<br>Chinh phục mọi địa hình</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Burchda RX70" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Burchda RX70</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RapidX All-Terrain" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RapidX Sport</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 4: XE ĐI LÀM -->
+                <div class="gb-cd-pane" id="gbCdPaneCommute">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_shengmilo); ?>" alt="Xe đi làm" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe đi làm<br>Công sở</h3>
+                            <p>Thanh lịch, hiện đại<br>Không toát mồ hôi</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="Shengmilo Urban" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shengmilo Urban</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway City" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway City</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 5: XE CHO HỌC SINH - SINH VIÊN -->
+                <div class="gb-cd-pane" id="gbCdPaneStudent">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_phoenix); ?>" alt="Xe học sinh sinh viên" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe học sinh<br>Sinh viên</h3>
+                            <p>Năng động, an toàn<br>Không cần bằng lái</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix 599" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix 599</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="Trường Vương Mini" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Trường Vương</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 6: XE CHO NGƯỜI LỚN TUỔI -->
+                <div class="gb-cd-pane" id="gbCdPaneElder">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_shallway); ?>" alt="Xe cho người lớn tuổi" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Xe người<br>lớn tuổi</h3>
+                            <p>Khung võng thấp<br>Lên xuống an toàn, êm</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway Comfort" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway Classic</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 7: PHỤ KIỆN -->
+                <div class="gb-cd-pane" id="gbCdPaneAccessories">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/phu-kien/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_banner); ?>" alt="Phụ kiện xe đạp" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Phụ kiện<br>xe đạp</h3>
+                            <p>Mũ, khóa, đèn, túi<br>Chính hãng 100%</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=mu-bao-hiem')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Mũ bảo hiểm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=khoa-xe')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Khóa chống trộm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=den-xe')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đèn pha LED</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=tui-xe')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Túi treo xe</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 8: PIN & SẠC -->
+                <div class="gb-cd-pane" id="gbCdPaneBattery">
+                    <a href="<?php echo esc_url(home_url('/san-pham/?s=pin')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_burchda); ?>" alt="Pin & Sạc" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Pin & Bộ sạc<br>Lithium</h3>
+                            <p>Chống chai, bền bỉ<br>An toàn chống cháy nổ</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-36v')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 36V Lithium</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-48v')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 48V Cao cấp</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=sac')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Sạc nhanh thông minh</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 9: BẢO DƯỠNG - SỬA CHỮA -->
+                <div class="gb-cd-pane" id="gbCdPaneService">
+                    <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_banner); ?>" alt="Bảo dưỡng sửa chữa" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3>Bảo dưỡng<br>& Sửa chữa</h3>
+                            <p>Kỹ thuật viên chuyên nghiệp<br>Phụ tùng chính hãng</p>
+                            <span class="gb-cd-banner-btn">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/dat-lich-lai-thu/')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đặt lịch bảo dưỡng</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Cứu hộ tận nơi</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 10: THƯƠNG HIỆU -->
+                <div class="gb-cd-pane" id="gbCdPaneBrands">
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="PHOENIX" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">PHOENIX</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="SHENGMILO" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHENGMILO</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="BURCHDA" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">BURCHDA</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RAPIDX" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RAPIDX</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="SHALLWAY" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHALLWAY</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="TRƯỜNG VƯƠNG" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANE 11: KHUYẾN MÃI -->
+                <div class="gb-cd-pane" id="gbCdPaneSale">
+                    <a href="<?php echo esc_url(home_url('/san-pham/')); ?>" class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_banner); ?>" alt="Khuyến mãi" class="gb-cd-banner-img">
+                        <div class="gb-cd-banner-overlay" style="background: linear-gradient(90deg, #fef2f2 0%, #fee2e2 50%, rgba(254, 226, 226, 0.45) 75%, transparent 100%);"></div>
+                        <div class="gb-cd-banner-text">
+                            <h3 style="color:#b91c1c !important;">Khuyến Mãi<br>Hot Nhất</h3>
+                            <p>Ưu đãi tới 30%<br>Tặng full phụ kiện</p>
+                            <span class="gb-cd-banner-btn" style="background:#dc2626;">&rarr;</span>
+                        </div>
+                    </a>
+                    <div class="gb-cd-brands-grid">
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Giảm giá sốc" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Flash Sale</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                        <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Mua 1 tặng 1" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Quà tặng kèm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                        </a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- NỀN MỜ PHÍA SAU DRAWER -->
+    <div class="gobike-category-drawer-backdrop" id="gobikeCategoryBackdrop"></div>
+
+    <!-- SCRIPT ĐIỀU KHIỂN DRAWER & TABS -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btnToggle = document.getElementById('gobikeBtnToggleProducts');
+        var itemProducts = document.getElementById('gobikeBottomItemProducts');
+        var drawer = document.getElementById('gobikeCategoryDrawer');
+        var backdrop = document.getElementById('gobikeCategoryBackdrop');
+        var closeBtn = document.getElementById('gbCdCloseBtn');
+
+        function openDrawer() {
+            if (!drawer) return;
+            drawer.classList.add('active');
+            if (backdrop) backdrop.classList.add('active');
+            if (itemProducts) itemProducts.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            if (!drawer) return;
+            drawer.classList.remove('active');
+            if (backdrop) backdrop.classList.remove('active');
+            if (itemProducts) itemProducts.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (btnToggle) {
+            btnToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (drawer && drawer.classList.contains('active')) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            });
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+        if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+        // Chuyển tab danh mục bên trong Drawer
+        var navItems = document.querySelectorAll('.gb-cd-nav-item');
+        var panes = document.querySelectorAll('.gb-cd-pane');
+
+        navItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var targetId = this.getAttribute('data-target');
+                if (!targetId) return;
+
+                navItems.forEach(function(n) { n.classList.remove('active'); });
+                this.classList.add('active');
+
+                panes.forEach(function(p) {
+                    if (p.id === targetId) {
+                        p.classList.add('active');
+                    } else {
+                        p.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+    </script>
     <?php
 }
 add_action('wp_footer', 'gobike_mobile_bottom_nav_bar', 50);

@@ -264,3 +264,409 @@ footer#footer,
         z-index: 1 !important;
     }
 }
+
+/* ==========================================================================
+   MOBILE CATEGORY DRAWER (POPUP DANH MỤC SẢN PHẨM TỪ BOTTOM BAR)
+   ========================================================================== */
+@media screen and (min-width: 850px) {
+    .gobike-category-drawer,
+    .gobike-category-drawer-backdrop {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 849px) {
+    /* Backdrop mờ nền khi bật Drawer */
+    .gobike-category-drawer-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        z-index: 99996;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .gobike-category-drawer-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Khung Drawer chính trượt lên từ dưới, nằm ngay trên thanh Bottom Bar */
+    .gobike-category-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 54px;
+        background: #ffffff;
+        z-index: 99998;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    .gobike-category-drawer.active {
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    /* Thanh Header trên cùng của Drawer */
+    .gb-cd-header {
+        height: 48px;
+        min-height: 48px;
+        background: #ffffff;
+        border-bottom: 1px solid #f1f5f9;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 2;
+        box-sizing: border-box;
+    }
+
+    .gb-cd-header-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #044b25;
+    }
+
+    .gb-cd-header-title svg {
+        color: #044b25;
+    }
+
+    .gb-cd-close-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #f1f5f9;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #64748b;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .gb-cd-close-btn:hover,
+    .gb-cd-close-btn:active {
+        background: #e2e8f0;
+        color: #0f172a;
+    }
+
+    /* Phần thân chia 2 cột: Trái (Sidebar) - Phải (Nội dung) */
+    .gb-cd-body {
+        display: flex;
+        flex: 1;
+        height: calc(100% - 48px);
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    /* Cột trái: Danh mục */
+    .gb-cd-sidebar {
+        width: 36%;
+        min-width: 125px;
+        max-width: 148px;
+        background: #f8fafc;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border-right: 1px solid #f1f5f9;
+        scrollbar-width: none;
+    }
+
+    .gb-cd-sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gb-cd-nav-list {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .gb-cd-nav-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 11px 9px !important;
+        font-size: 11.5px !important;
+        font-weight: 500 !important;
+        color: #334155 !important;
+        line-height: 1.25 !important;
+        cursor: pointer !important;
+        text-decoration: none !important;
+        border-left: 3.5px solid transparent !important;
+        transition: all 0.2s ease !important;
+        user-select: none !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-cd-nav-icon {
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #475569;
+        transition: color 0.2s ease;
+    }
+
+    .gb-cd-nav-icon svg {
+        width: 19px;
+        height: 19px;
+        display: block;
+    }
+
+    .gb-cd-nav-text {
+        flex: 1;
+        word-break: break-word;
+    }
+
+    /* Trạng thái Active */
+    .gb-cd-nav-item.active {
+        background: #eaf7ed !important;
+        color: #044b25 !important;
+        font-weight: 700 !important;
+        border-left-color: #044b25 !important;
+    }
+
+    .gb-cd-nav-item.active .gb-cd-nav-icon {
+        color: #044b25 !important;
+    }
+
+    .gb-cd-item-sale .gb-cd-nav-icon {
+        color: #ef4444 !important;
+    }
+
+    .gb-cd-item-sale.active {
+        background: #fef2f2 !important;
+        border-left-color: #ef4444 !important;
+        color: #b91c1c !important;
+    }
+
+    /* Cột phải: Content area */
+    .gb-cd-content {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 8px 30px 8px;
+        background: #ffffff;
+        box-sizing: border-box;
+    }
+
+    .gb-cd-pane {
+        display: none;
+    }
+
+    .gb-cd-pane.active {
+        display: block;
+        animation: gbCdFadeIn 0.22s ease-out;
+    }
+
+    @keyframes gbCdFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Banner lớn đầu cột phải */
+    .gb-cd-banner {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 125px;
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none !important;
+        margin-bottom: 10px;
+        background: #044b25;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .gb-cd-banner-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 65%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gb-cd-banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #f0fdf4 0%, #eaf7ed 48%, rgba(234, 247, 237, 0.45) 75%, transparent 100%);
+    }
+
+    .gb-cd-banner-script {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        z-index: 2;
+        font-family: 'Caveat', cursive, sans-serif;
+        font-size: 11.5px;
+        font-weight: 700;
+        color: #044b25;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.2px;
+    }
+
+    .gb-cd-banner-text {
+        position: relative;
+        z-index: 2;
+        padding: 10px 8px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        max-width: 60%;
+    }
+
+    .gb-cd-banner-text h3 {
+        font-size: 15px !important;
+        font-weight: 800 !important;
+        color: #044b25 !important;
+        margin: 0 0 2px 0 !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.3px !important;
+    }
+
+    .gb-cd-banner-text p {
+        font-size: 9.5px !important;
+        color: #334155 !important;
+        line-height: 1.25 !important;
+        margin: 0 !important;
+        font-weight: 500 !important;
+    }
+
+    .gb-cd-banner-btn {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #044b25;
+        color: #ffffff !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        line-height: 1;
+        box-shadow: 0 2px 4px rgba(4, 75, 37, 0.3);
+        margin-top: 4px;
+    }
+
+    /* Lưới Card 2 cột */
+    .gb-cd-brands-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+    }
+
+    .gb-cd-brand-card {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 8px 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none !important;
+        min-height: 122px;
+        border: 1px solid #f1f5f9;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    .gb-cd-brand-card:active {
+        transform: scale(0.97);
+        border-color: #cbd5e1;
+    }
+
+    .gb-cd-brand-img {
+        width: 100%;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: 4px;
+    }
+
+    .gb-cd-brand-img img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.2s ease;
+    }
+
+    .gb-cd-brand-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 2px;
+        margin-top: auto;
+    }
+
+    .gb-cd-brand-name {
+        font-size: 10px;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
+    }
+
+    .gb-cd-brand-arrow {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #64748b;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+
+    /* Đổi màu active trên bottom bar cho nút Sản phẩm khi Drawer mở */
+    .gobike-bottom-bar-nav .wrap-fixed-footer>li.item-products.active>a {
+        color: #044b25 !important;
+    }
+    .gobike-bottom-bar-nav .wrap-fixed-footer>li.item-products.active>a span {
+        color: #044b25 !important;
+        font-weight: 700 !important;
+    }
+}
