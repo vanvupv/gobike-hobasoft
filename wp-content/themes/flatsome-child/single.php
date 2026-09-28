@@ -395,7 +395,7 @@ if ($latest_posts_query->have_posts()) {
                                             Sản phẩm phù hợp
                                         </h3>
                                         <a href="<?php echo esc_url(home_url('/cua-hang/')); ?>" class="section-view-all-link">
-                                            Xem tất cả &rarr;
+                                            Xem tất cả <span class="arrow">&rarr;</span>
                                         </a>
                                     </div>
 
@@ -690,7 +690,7 @@ if ($latest_posts_query->have_posts()) {
                     Bài viết liên quan
                 </h3>
                 <a href="<?php echo esc_url(home_url('/tin-tuc-cam-nang/')); ?>" class="section-view-all-link">
-                    Xem tất cả &rarr;
+                    Xem tất cả <span class="arrow">&rarr;</span>
                 </a>
             </div>
 
