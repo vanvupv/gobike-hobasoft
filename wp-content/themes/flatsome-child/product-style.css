@@ -1586,26 +1586,46 @@ div.review_vote {
 }
 
 @media (max-width: 849px) {
+    .gobike-shop-hero-banner {
+        padding: 0 !important;
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        width: 100% !important;
+        aspect-ratio: 2170 / 725 !important;
+        min-height: 140px !important;
+    }
+
     .gobike-shop-hero-banner.has-custom-img {
-        padding: 36px 0 !important;
-        background-position: right -15px center !important;
-        background-size: 360px auto !important;
+        padding: 30px 16px !important;
+        background-position: center center !important;
+        background-size: cover !important;
     }
 
     .gobike-shop-hero-banner .hero-title {
-        font-size: 26px !important;
+        font-size: 24px !important;
     }
 }
 
 @media (max-width: 600px) {
+    .gobike-shop-hero-banner {
+        padding: 0 !important;
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        width: 100% !important;
+        aspect-ratio: 16 / 7 !important;
+        min-height: 120px !important;
+    }
+
     .gobike-shop-hero-banner.has-custom-img {
-        padding: 30px 0 35px !important;
-        background-position: center bottom !important;
-        background-size: 240px auto !important;
+        padding: 24px 14px !important;
+        background-position: center center !important;
+        background-size: cover !important;
     }
 
     .gobike-shop-hero-banner.has-custom-img .hero-banner-overlay {
-        background: linear-gradient(180deg, #f0fdf4 0%, rgba(240, 253, 244, 0.95) 55%, rgba(240, 253, 244, 0.85) 100%) !important;
+        background: linear-gradient(180deg, rgba(240, 253, 244, 0.92) 0%, rgba(240, 253, 244, 0.88) 100%) !important;
     }
 
     .gobike-shop-hero-banner .hero-title {
@@ -1701,35 +1721,70 @@ div.review_vote {
 
 @media (max-width: 849px) {
     .gobike-shop-trust-badges-bar {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px 14px;
-        padding: 18px 16px;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
+        padding: 14px 16px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    .gobike-shop-trust-badges-bar::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
     }
 
     .gobike-shop-trust-badges-bar .trust-item {
-        border-right: none;
-        padding-right: 0;
-        gap: 12px;
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        border-right: 1px solid #edf2f7 !important;
+        padding-right: 16px !important;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-item:last-child {
+        border-right: none !important;
+        padding-right: 0 !important;
     }
 
     .gobike-shop-trust-badges-bar .trust-icon {
-        width: 52px;
-        height: 52px;
-        min-width: 52px;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
     }
 
     .gobike-shop-trust-badges-bar .trust-icon svg {
-        width: 28px !important;
-        height: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
     }
 
     .gobike-shop-trust-badges-bar .trust-text strong {
-        font-size: 15.5px !important;
+        font-size: 14.5px !important;
+        white-space: nowrap !important;
     }
 
     .gobike-shop-trust-badges-bar .trust-text span {
-        font-size: 13px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 849px) {
+    .gobike-shop-trust-badges-bar {
+        justify-content: space-between !important;
+    }
+
+    .gobike-shop-trust-badges-bar .trust-item {
+        flex: 1 1 0% !important;
+        padding-right: 12px !important;
     }
 }
 

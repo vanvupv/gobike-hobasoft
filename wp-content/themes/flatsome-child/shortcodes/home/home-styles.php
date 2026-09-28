@@ -19,8 +19,8 @@ function gobike_custom_styles_output()
     ?>
     <style id="gobike-custom-css">
         /* ==========================================================================
-                                                                                                                                   CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
-                                                                                                                                   ========================================================================== */
+                                                                                                                                       CHUẨN HÓA TOÀN TRANG: BỎ HẾT BOX-SHADOW & ĐỔ BÓNG
+                                                                                                                                       ========================================================================== */
         *,
         *::before,
         *::after {
@@ -29,8 +29,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                   1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
-                                                                                                                                   ========================================================================== */
+                                                                                                                                       1. THIẾT LẬP CHUNG & TIỆN ÍCH (General & Utilities)
+                                                                                                                                       ========================================================================== */
         .m-0 {
             margin: 0px !important;
         }
@@ -41,11 +41,7 @@ function gobike_custom_styles_output()
         }
 
         .vp-row-custom .col,
-        .row.vp-row-custom .col,
-        body.home .section .section-content > .row:first-of-type > .col,
-        body.home section .section-content > .row:first-of-type > .col,
-        body.home .section > .row:first-of-type > .col,
-        body.home section > .row:first-of-type > .col {
+        .row.vp-row-custom .col {
             padding-bottom: 0px !important;
         }
 
@@ -120,12 +116,12 @@ function gobike_custom_styles_output()
         }
 
         /* .medium-logo-center .flex-left {
-                                                                                                                                            flex: none;
-                                                                                                                                        } */
+                                                                                                                                                flex: none;
+                                                                                                                                            } */
 
         /* ==========================================================================
-                                                                                                                                           2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               2. QUẢNG CÁO CỐ ĐỊNH 2 BÊN MÀN HÌNH (.qc-left, .qc-right)
+                                                                                                                                               ========================================================================== */
         .qc-left,
         .qc-right {
             position: fixed;
@@ -159,8 +155,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               3. HEADER & THANH ĐIỀU HƯỚNG (Sticky Header, Search Form, Vertical Menu)
+                                                                                                                                               ========================================================================== */
         /* Giữ nền trắng tinh từ đầu, khử độ trễ chuyển động chống nhấp nháy */
         #header,
         .header-wrapper,
@@ -472,10 +468,10 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-               4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
-               - Giao diện form đăng ký nhận tin dạng viên thuốc (Pill shape)
-               - Nút bấm gradient xanh lá cây GoBike
-               ========================================================================== */
+                   4. CHÂN TRANG & FORM BẢN TIN (Footer Newsletter & Form)
+                   - Giao diện form đăng ký nhận tin dạng viên thuốc (Pill shape)
+                   - Nút bấm gradient xanh lá cây GoBike
+                   ========================================================================== */
         .footer-wrapper .wpcf7 {
             display: flex;
             justify-content: center;
@@ -604,10 +600,10 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-           KHỐI ICON CHIA SẺ MẠNG XÃ HỘI CHÂN TRANG MOBILE (.vp-footer-mobile .vp-social-share-links)
-           - Dùng Flexbox có flex-wrap: wrap tự động rơi dòng khi không đủ chiều rộng
-           - Căn phải (flex-end) theo yêu cầu, màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
-           ========================================================================== */
+               KHỐI ICON CHIA SẺ MẠNG XÃ HỘI CHÂN TRANG MOBILE (.vp-footer-mobile .vp-social-share-links)
+               - Dùng Flexbox có flex-wrap: wrap tự động rơi dòng khi không đủ chiều rộng
+               - Căn phải (flex-end) theo yêu cầu, màu xám xanh chuẩn ảnh, hover đổi xanh lá GoBike
+               ========================================================================== */
         .vp-footer-mobile .vp-social-share-links,
         .vp-social-share-links {
             display: flex !important;
@@ -654,8 +650,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               5. MENU ĐIỀU HƯỚNG CHÂN TRANG MOBILE (Mobile Bottom Bar & FAB Call)
+                                                                                                                                               ========================================================================== */
         @media screen and (min-width: 850px) {
 
             .footer-menu-mobile,
@@ -823,8 +819,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               6. TRANG CHỦ: BANNER SLIDER & TIN TỨC (.banner-home)
+                                                                                                                                               ========================================================================== */
         .banner-home {
             background: #fff;
             margin-top: 0px !important;
@@ -1384,10 +1380,10 @@ function gobike_custom_styles_output()
 
 
         /* ==========================================================================
-                                                                                                                                           8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
-                                                                                                                                           - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
-                                                                                                                                           - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               8. TRANG CHỦ: KHỐI SẢN PHẨM THEO DANH MỤC (CHUẨN ẢNH 2)
+                                                                                                                                               - Desktop: 8 sản phẩm (4 cột x 2 hàng) + 1 Cột Banner dọc bên phải
+                                                                                                                                               - Tablet & Mobile: Slider trượt 2 sản phẩm / lượt + Banner ở cuối
+                                                                                                                                               ========================================================================== */
         .gobike-category-block-wrapper {
             /* max-width: 1230px; */
             margin-left: auto !important;
@@ -1900,7 +1896,7 @@ function gobike_custom_styles_output()
         }
 
         /* --- RESPONSIVE TABLET & MOBILE (<= 1024px) ---
-                                                                                                                                           Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
+                                                                                                                                               Hiển thị Slide 2 sản phẩm 1 lượt + Banner chuyển xuống ở cuối */
         @media screen and (max-width: 1024px) {
             .gobike-cat-main-content {
                 flex-direction: column !important;
@@ -2061,8 +2057,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               9. KHỐI SHORTCODE TRANG CHỦ MỞ RỘNG (Flash Sale, Brand Tabs, Video)
+                                                                                                                                               ========================================================================== */
         /* Flash Sale */
         .gobike-home-flashsale-block {
             max-width: 1230px;
@@ -2324,8 +2320,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                           10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
-                                                                           ========================================================================== */
+                                                                               10. BỘ LỌC SẢN PHẨM HUSKY / WOOF HÀNG NGANG (.woof_redraw_zone)
+                                                                               ========================================================================== */
         .woof_redraw_zone {
             display: flex !important;
             align-items: center !important;
@@ -2459,8 +2455,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               11. TRANG CHI TIẾT SẢN PHẨM (Single Product Page Elements)
+                                                                                                                                               ========================================================================== */
         /* --- 11.1. Cặp Banner Tiện Ích (Zoom từ tâm) --- */
         @keyframes gobikeZoomFromCenter {
             0% {
@@ -3517,7 +3513,7 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE) */
+                                                                                                                                               KHỐI TIN TỨC TRANG CHỦ (TABS PILL STYLE & TIN TỨC 2 CỘT GOBIKE) */
         #row-1141733086 h2,
         .pv-row-custom h2 {
             font-size: 20px !important;
@@ -3930,8 +3926,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                               DANH MỤC XE (ROW: .vp-category-list / #row-1732247694)
-                                                               ========================================================================== */
+                                                                   DANH MỤC XE (ROW: .vp-category-list / #row-1732247694)
+                                                                   ========================================================================== */
 
         .vp-category-list>.col>.col-inner,
         #row-1732247694>.col>.col-inner {
@@ -3985,8 +3981,8 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                               GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
-                                                               ========================================================================== */
+                                                                   GOBIKE - THẺ SẢN PHẨM V2 (CHUẨN ẢNH 2: 3 THÔNG SỐ, BADGE ĐỎ & 2 NÚT BẤM)
+                                                                   ========================================================================== */
         /* Xử lý lưới sản phẩm & bọc class cha chuẩn theo yêu cầu */
         .archive .products.row-small,
         .gobike-products-main-col .products.row-small {
@@ -3996,16 +3992,16 @@ function gobike_custom_styles_output()
             column-gap: 0 !important;
         }
 
-        .archive .products.row-small > .col,
-        .gobike-products-main-col .products.row-small > .col {
+        .archive .products.row-small>.col,
+        .gobike-products-main-col .products.row-small>.col {
             padding: 0 4px 0px !important;
             margin-bottom: 0 !important;
             display: flex !important;
             flex-direction: column !important;
         }
 
-        .archive .products.row-small > .col > .col-inner,
-        .gobike-products-main-col .products.row-small > .col > .col-inner {
+        .archive .products.row-small>.col>.col-inner,
+        .gobike-products-main-col .products.row-small>.col>.col-inner {
             height: 100% !important;
             display: flex !important;
             flex-direction: column !important;
@@ -4227,16 +4223,16 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-                                                                                                                                           BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
-                                                                                                                                           ========================================================================== */
+                                                                                                                                               BỐ CỤC 2 CỘT TRANG SẢN PHẨM & BỘ LỌC SIDEBAR (CHUẨN ẢNH 4)
+                                                                                                                                               ========================================================================== */
         .gobike-shop-page-container {
             padding-top: 15px;
             padding-bottom: 40px;
         }
 
         /* ==========================================================================
-           HERO BANNER (CONTAINED IN GRID & BACKGROUND IMAGE BANNER)
-           ========================================================================== */
+               HERO BANNER (CONTAINED IN GRID & BACKGROUND IMAGE BANNER)
+               ========================================================================== */
         .gobike-shop-hero-banner {
             position: relative;
             width: 100%;
@@ -4896,10 +4892,10 @@ function gobike_custom_styles_output()
 
         @media (min-width: 850px) {
             /* .gobike-products-main-col .products.row .col {
-                                                                                                                                                width: 25% !important;
-                                                                                                                                                max-width: 25% !important;
-                                                                                                                                                flex: 0 0 25% !important;
-                                                                                                                                            } */
+                                                                                                                                                    width: 25% !important;
+                                                                                                                                                    max-width: 25% !important;
+                                                                                                                                                    flex: 0 0 25% !important;
+                                                                                                                                                } */
         }
 
         /* Bỏ khối gobike-shop-bottom-cards theo yêu cầu */
@@ -5239,46 +5235,92 @@ function gobike_custom_styles_output()
                 max-width: 100px !important;
             }
 
+            /* Banner sản phẩm trên tablet & mobile: phủ đầy khối 100% */
             .gobike-shop-hero-banner {
-                padding: 36px 0 !important;
-                background-position: right -15px center !important;
-                background-size: 360px auto !important;
+                padding: 0 !important;
+                background-position: center center !important;
+                background-size: cover !important;
+                background-repeat: no-repeat !important;
+                width: 100% !important;
+                aspect-ratio: 2170 / 725 !important;
+                min-height: 140px !important;
+            }
+
+            .gobike-shop-hero-banner.has-custom-img {
+                padding: 30px 16px !important;
+                background-position: center center !important;
+                background-size: cover !important;
             }
 
             .gobike-shop-hero-banner .hero-title {
-                font-size: 26px !important;
+                font-size: 24px !important;
             }
 
+            /* Dải 4 cam kết vàng: 1 hàng thay vì 2 cột */
             .gobike-shop-trust-badges-bar {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 16px 14px;
-                padding: 18px 16px;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                gap: 16px !important;
+                padding: 14px 16px !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+            }
+
+            .gobike-shop-trust-badges-bar::-webkit-scrollbar {
+                display: none !important;
+                width: 0 !important;
+                height: 0 !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-item {
-                border-right: none;
-                padding-right: 0;
-                gap: 12px;
+                flex: 0 0 auto !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 10px !important;
+                border-right: 1px solid #edf2f7 !important;
+                padding-right: 16px !important;
+            }
+
+            .gobike-shop-trust-badges-bar .trust-item:last-child {
+                border-right: none !important;
+                padding-right: 0 !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-icon {
-                width: 52px;
-                height: 52px;
-                min-width: 52px;
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-icon svg {
-                width: 28px !important;
-                height: 28px !important;
+                width: 24px !important;
+                height: 24px !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-text strong {
-                font-size: 15.5px !important;
+                font-size: 14.5px !important;
+                white-space: nowrap !important;
             }
 
             .gobike-shop-trust-badges-bar .trust-text span {
-                font-size: 13px !important;
+                font-size: 12px !important;
+                white-space: nowrap !important;
+            }
+
+            @media screen and (min-width: 601px) and (max-width: 849px) {
+                .gobike-shop-trust-badges-bar {
+                    justify-content: space-between !important;
+                }
+                .gobike-shop-trust-badges-bar .trust-item {
+                    flex: 1 1 0% !important;
+                    padding-right: 12px !important;
+                }
             }
 
             .gobike-shop-layout-2col .gobike-sidebar-col,
@@ -5312,8 +5354,8 @@ function gobike_custom_styles_output()
         @media (max-width: 849px) {
 
             /* ==========================================================================
-                                                                                               HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
-                                                                                               ========================================================================== */
+                                                                                                   HEADER SEARCH FORM - PHONG CÁCH GOBIKE (CHUẨN GIAO DIỆN THEO MẪU)
+                                                                                                   ========================================================================== */
             .header-nav li.header-search-form:before,
             .header-nav li.header-search-form:after {
                 display: none !important;
@@ -5508,8 +5550,8 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                                                                   9. HỆ THỐNG CỬA HÀNG (STORE LOCATOR / SHOWROOM TABS)
-                                                                   ========================================================================== */
+                                                                       9. HỆ THỐNG CỬA HÀNG (STORE LOCATOR / SHOWROOM TABS)
+                                                                       ========================================================================== */
             .gobike-store-locator-wrapper {
                 padding: 30px 25px !important;
                 border-radius: 8px !important;
@@ -5787,10 +5829,10 @@ function gobike_custom_styles_output()
 
 
             /* ==========================================================================
-                                               SLIDER DANH MỤC XE FLATSOME (.vp-slide-cat-custom)
-                                               - Desktop (>= 1025px): Hủy absolute của Flickity, ép Flexbox 5 cột dàn đều 1 hàng
-                                               - Tablet & Mobile (<= 1024px): Giữ nguyên Flickity Slider vuốt trượt
-                                               ========================================================================== */
+                                                   SLIDER DANH MỤC XE FLATSOME (.vp-slide-cat-custom)
+                                                   - Desktop (>= 1025px): Hủy absolute của Flickity, ép Flexbox 5 cột dàn đều 1 hàng
+                                                   - Tablet & Mobile (<= 1024px): Giữ nguyên Flickity Slider vuốt trượt
+                                                   ========================================================================== */
             .vp-slide-cat-custom {
                 max-width: 1230px !important;
                 margin: 15px auto 25px auto !important;
@@ -6003,10 +6045,10 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                               KHỐI ICON BOX TÙY BIẾN (.vp-icon-box-custom)
-                               - Chỉ kiểm soát đúng vị trí (flex layout) và khoảng cách (gap, margin, padding)
-                               - Hình ảnh và văn bản chỉnh 100% bằng Flatsome UX Builder
-                               ========================================================================== */
+                                   KHỐI ICON BOX TÙY BIẾN (.vp-icon-box-custom)
+                                   - Chỉ kiểm soát đúng vị trí (flex layout) và khoảng cách (gap, margin, padding)
+                                   - Hình ảnh và văn bản chỉnh 100% bằng Flatsome UX Builder
+                                   ========================================================================== */
             .vp-icon-box-custom {
                 display: flex !important;
                 justify-content: center !important;
@@ -6053,11 +6095,11 @@ function gobike_custom_styles_output()
 
 
             /* ==========================================================================
-                   KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left)
-                   - Tắt flex-flow: row wrap mặc định của Flatsome (chuyển sang row nowrap)
-                   - Bố cục nằm ngang căn trái không bị rớt dòng chữ xuống dưới icon
-                   - Tiêu đề tối đa 2 dòng, mô tả tối đa 2 dòng (chuẩn Ảnh 2)
-                   ========================================================================== */
+                       KHỐI ICON BOX CĂN TRÁI (.vp-icon-box-custom.icon-box-left)
+                       - Tắt flex-flow: row wrap mặc định của Flatsome (chuyển sang row nowrap)
+                       - Bố cục nằm ngang căn trái không bị rớt dòng chữ xuống dưới icon
+                       - Tiêu đề tối đa 2 dòng, mô tả tối đa 2 dòng (chuẩn Ảnh 2)
+                       ========================================================================== */
             .vp-icon-box-custom.icon-box-left {
                 display: flex !important;
                 flex-direction: row !important;
@@ -6145,10 +6187,10 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (.vp-banner-sub-features)
-               - Mobile (<= 549px): Bố cục dọc (column), icon ở trên, chữ rơi xuống dưới và căn giữa
-               - Tablet & Desktop (>= 550px): Bố cục ngang (row), icon bên trái, chữ bên phải
-               ========================================================================== */
+                   KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (.vp-banner-sub-features)
+                   - Mobile (<= 549px): Bố cục dọc (column), icon ở trên, chữ rơi xuống dưới và căn giữa
+                   - Tablet & Desktop (>= 550px): Bố cục ngang (row), icon bên trái, chữ bên phải
+                   ========================================================================== */
 
             /* Đảm bảo col-inner và card kéo giãn bằng nhau 100% chiều cao */
             .vp-banner-sub-features .col-inner {
@@ -6237,6 +6279,7 @@ function gobike_custom_styles_output()
                     padding: 10px 14px !important;
                     gap: 10px !important;
                 }
+
                 .vp-banner-sub-features .vp-icon-box-custom .icon-box-img {
                     width: 38px !important;
                     min-width: 38px !important;
@@ -6244,10 +6287,12 @@ function gobike_custom_styles_output()
                     height: 38px !important;
                     margin: 0 !important;
                 }
+
                 .vp-banner-sub-features .vp-icon-box-custom .icon-box-text {
                     text-align: left !important;
                     flex: 1 1 auto !important;
                 }
+
                 .vp-banner-sub-features .vp-icon-box-custom .icon-box-text h3 {
                     font-size: 13.5px !important;
                     text-align: left !important;
@@ -6258,10 +6303,10 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                   KHỐI LIÊN HỆ GOBIKE CHÂN TRANG MOBILE (.vp-footer-mobile .vp-lien-he-custom)
-                   - Thêm viền bo góc và nền trắng cho từng ô showroom con (Hà Nội, Phú Thọ, Bắc Ninh)
-                   - Canh đều 3 cột trên 1 hàng (nowrap) không bị rớt dòng
-                   ========================================================================== */
+                       KHỐI LIÊN HỆ GOBIKE CHÂN TRANG MOBILE (.vp-footer-mobile .vp-lien-he-custom)
+                       - Thêm viền bo góc và nền trắng cho từng ô showroom con (Hà Nội, Phú Thọ, Bắc Ninh)
+                       - Canh đều 3 cột trên 1 hàng (nowrap) không bị rớt dòng
+                       ========================================================================== */
             .vp-footer-mobile .vp-lien-he-custom .row-collapse,
             .vp-lien-he-custom .row-collapse {
                 display: flex !important;
@@ -6323,10 +6368,10 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                               KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (#section_1895392805)
-                               - Bo góc tròn 2 đầu và đè lên banner phía trên (margin-top âm) để lộ 2 góc xanh
-                               - Thêm đường vạch kẻ dọc ngăn cách giữa các cột chuẩn Ảnh 2
-                               ========================================================================== */
+                                   KHỐI TIỆN ÍCH DƯỚI BANNER TRÊN MOBILE (#section_1895392805)
+                                   - Bo góc tròn 2 đầu và đè lên banner phía trên (margin-top âm) để lộ 2 góc xanh
+                                   - Thêm đường vạch kẻ dọc ngăn cách giữa các cột chuẩn Ảnh 2
+                                   ========================================================================== */
             #section_1895392805,
             .vp-banner-sub-features {
                 background: #ffffff !important;
@@ -6341,10 +6386,10 @@ function gobike_custom_styles_output()
             }
 
             /* ==========================================================================
-                       NÚT "KHÁM PHÁ NGAY" TRÊN MOBILE (.gobike-btn-explore)
-                       - Định hình kích thước hoàn toàn bằng padding (không dùng height/min-height)
-                       - Bo tròn dạng viên thuốc và gradient xanh lá GoBike
-                       ========================================================================== */
+                           NÚT "KHÁM PHÁ NGAY" TRÊN MOBILE (.gobike-btn-explore)
+                           - Định hình kích thước hoàn toàn bằng padding (không dùng height/min-height)
+                           - Bo tròn dạng viên thuốc và gradient xanh lá GoBike
+                           ========================================================================== */
             .gobike-btn-explore-wrap {
                 width: 100%;
                 display: flex !important;

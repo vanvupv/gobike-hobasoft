@@ -536,7 +536,8 @@ function gobike_render_single_product_support_box()
 
         <?php if (!empty($phone)): ?>
             <div class="single-support-phone-wrap">
-                <a href="tel:<?php echo esc_attr($phone_clean); ?>" class="single-support-phone"><?php echo esc_html($phone); ?></a>
+                <a href="tel:<?php echo esc_attr($phone_clean); ?>"
+                    class="single-support-phone"><?php echo esc_html($phone); ?></a>
             </div>
         <?php endif; ?>
 
@@ -550,7 +551,8 @@ function gobike_render_single_product_support_box()
 
         <?php if (!empty($chat_link) && !empty($chat_btn_text)): ?>
             <div class="single-support-btn-wrap">
-                <a href="<?php echo esc_url($chat_link); ?>" target="_blank" rel="nofollow noopener" class="single-support-chat-btn">
+                <a href="<?php echo esc_url($chat_link); ?>" target="_blank" rel="nofollow noopener"
+                    class="single-support-chat-btn">
                     <?php echo esc_html($chat_btn_text); ?>
                 </a>
             </div>
@@ -844,7 +846,7 @@ function gobike_topbar_ticker_shortcode()
 add_shortcode('gobike_topbar_ticker', 'gobike_topbar_ticker_shortcode');
 
 // Cập nhật Placeholder tìm kiếm Header chuẩn theo mẫu thiết kế
-add_filter('theme_mod_search_placeholder', function() {
+add_filter('theme_mod_search_placeholder', function () {
     return 'Bạn đang tìm xe đạp trợ lực điện nào?';
 });
 add_filter('get_product_search_form', function ($html) {
@@ -853,14 +855,14 @@ add_filter('get_product_search_form', function ($html) {
     }
     return $html;
 }, 99);
-add_action('wp_footer', function() {
+add_action('wp_footer', function () {
     ?>
     <script type="text/javascript">
-    (function($) {
-        $(function() {
-            $('.header-search-form input.search-field, .searchform input.search-field').attr('placeholder', 'Bạn đang tìm xe đạp trợ lực điện nào?');
-        });
-    })(jQuery);
+        (function ($) {
+            $(function () {
+                $('.header-search-form input.search-field, .searchform input.search-field').attr('placeholder', 'Bạn đang tìm xe đạp trợ lực điện nào?');
+            });
+        })(jQuery);
     </script>
     <?php
 }, 99);
@@ -872,7 +874,7 @@ require_once get_stylesheet_directory() . '/inc/cpt-experience.php';
  * Tự động Flush Rewrite Rules cho Custom Post Type video_review
  * Giúp nhận diện ngay lập tức đường dẫn chi tiết /video-review/ten-bai-viet/ mà không bị lỗi 404
  */
-add_action('init', function() {
+add_action('init', function () {
     if (!get_option('gobike_video_review_perm_flushed_v1')) {
         flush_rewrite_rules(false);
         update_option('gobike_video_review_perm_flushed_v1', 1);
@@ -916,3 +918,4 @@ function gobike_auto_add_vp_row_custom_to_home_sections($content)
         return $section_open . $new_body . $section_close;
     }, $content);
 }
+
