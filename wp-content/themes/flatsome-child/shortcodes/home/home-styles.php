@@ -4233,30 +4233,72 @@ function gobike_custom_styles_output()
         }
 
         /* ==========================================================================
-           HERO BANNER FULL WIDTH & ẢNH NỀN GOBIKE (CHUẨN FULL WIDTH + OVERLAY)
+           HERO BANNER (CONTAINED IN GRID & BACKGROUND IMAGE BANNER)
            ========================================================================== */
         .gobike-shop-hero-banner {
             position: relative;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-            max-width: 100vw;
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
             box-sizing: border-box;
             background-color: #f0fdf4;
             background-repeat: no-repeat;
-            background-position: right 6% center;
-            background-size: contain;
-            background-blend-mode: multiply;
-            border-top: 1px solid #dcfce7;
-            border-bottom: 1px solid #dcfce7;
-            border-radius: 0 !important;
-            margin-top: 0;
+            background-position: center center;
+            background-size: cover;
+            border-radius: 12px;
+            margin-top: 10px;
             margin-bottom: 24px;
-            padding: 40px 0;
             overflow: hidden;
+            aspect-ratio: 2170 / 725;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
 
-        .gobike-shop-hero-banner .hero-banner-overlay {
+        .gobike-shop-hero-banner.is-graphic-banner {
+            padding: 0 !important;
+        }
+
+        @supports not (aspect-ratio: 2170 / 725) {
+            .gobike-shop-hero-banner.is-graphic-banner {
+                min-height: 360px;
+            }
+        }
+
+        .gobike-shop-hero-banner .hero-hotspot-btn {
+            position: absolute;
+            display: block;
+            z-index: 10;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gobike-shop-hero-banner .hero-hotspot-btn.btn-view-products {
+            left: 4.1%;
+            top: 71%;
+            width: 15.8%;
+            height: 15.5%;
+        }
+
+        .gobike-shop-hero-banner .hero-hotspot-btn.btn-quick-consult {
+            left: 20.8%;
+            top: 71%;
+            width: 15.8%;
+            height: 15.5%;
+        }
+
+        .gobike-shop-hero-banner .hero-hotspot-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 75, 40, 0.3);
+        }
+
+        .gobike-shop-hero-banner.has-custom-img {
+            aspect-ratio: auto;
+            min-height: 280px;
+            padding: 40px 0;
+        }
+
+        .gobike-shop-hero-banner.has-custom-img .hero-banner-overlay {
             position: absolute;
             top: 0;
             left: 0;

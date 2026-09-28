@@ -923,7 +923,9 @@ function gobike_render_shop_brand_banner()
     $title     = 'XE ĐẠP TRỢ LỰC ĐIỆN';
     $desc      = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
     $intro     = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
-    $image_url = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-the-thao-tro-luc-dien-Phoenix-999.webp';
+    $default_banner = get_stylesheet_directory_uri() . '/assets/images/banner-san-pham-ado.webp';
+    $image_url = $default_banner;
+    $has_custom_cat_img = false;
     
     if (is_product_category()) {
         $cat = get_queried_object();
@@ -937,33 +939,46 @@ function gobike_render_shop_brand_banner()
                 $cat_img = wp_get_attachment_url($thumbnail_id);
                 if ($cat_img) {
                     $image_url = $cat_img;
+                    $has_custom_cat_img = true;
                 }
             }
         }
     }
     ?>
-    <div class="gobike-shop-hero-banner" style="background-image: url('<?php echo esc_url($image_url); ?>');">
-        <div class="hero-banner-overlay"></div>
-        <div class="hero-banner-inner container">
-            <div class="row align-middle">
-                <div class="col large-7 medium-8 small-12">
-                    <div class="col-inner hero-text-col">
-                        <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
-                        <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
-                        <p class="hero-intro"><?php echo esc_html($intro); ?></p>
-                        <div class="hero-buttons">
-                            <a href="#products-grid" class="hero-btn-primary">Xem tất cả sản phẩm ➔</a>
-                            <a href="tel:0944988699" class="hero-btn-outline">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                </svg>
-                                Nhận tư vấn nhanh
-                            </a>
+    <div class="gobike-shop-hero-banner <?php echo $has_custom_cat_img ? 'has-custom-img' : 'is-graphic-banner'; ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+        <?php if ($has_custom_cat_img) : ?>
+            <div class="hero-banner-overlay"></div>
+            <div class="hero-banner-inner container">
+                <div class="row align-middle">
+                    <div class="col large-7 medium-8 small-12">
+                        <div class="col-inner hero-text-col">
+                            <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
+                            <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
+                            <p class="hero-intro"><?php echo esc_html($intro); ?></p>
+                            <div class="hero-buttons">
+                                <a href="#products-grid" class="hero-btn-primary">Xem tất cả sản phẩm ➔</a>
+                                <a href="tel:0944988699" class="hero-btn-outline">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    Nhận tư vấn nhanh
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php else : ?>
+            <!-- Hotspot interactive links for pre-rendered graphic buttons -->
+            <a href="#products-grid" class="hero-hotspot-btn btn-view-products" title="Xem tất cả sản phẩm" aria-label="Xem tất cả sản phẩm"></a>
+            <a href="tel:0944988699" class="hero-hotspot-btn btn-quick-consult" title="Nhận tư vấn nhanh" aria-label="Nhận tư vấn nhanh"></a>
+            <!-- Accessible SEO heading for search engines -->
+            <div class="screen-reader-text">
+                <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
+                <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
+                <p class="hero-intro"><?php echo esc_html($intro); ?></p>
+            </div>
+        <?php endif; ?>
     </div>
     <?php
 }
