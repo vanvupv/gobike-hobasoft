@@ -24,13 +24,6 @@
 /* ==========================================================================
    WRAPPER TỔNG THỂ TRANG VIDEO REVIEW
    ========================================================================== */
-.gobike-video-review-page {
-    background-color: #ffffff;
-    color: var(--gb-vr-dark);
-    padding: 24px 0 60px 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-}
 
 
 /* Common Section Header */
@@ -1383,9 +1376,6 @@
 }
 
 @media screen and (max-width: 849px) {
-    .gobike-video-review-page {
-        padding: 16px 0 40px 0 !important;
-    }
 
 
     /* --- 1. HEADER MOBILE & PILLS SLIDER --- */
