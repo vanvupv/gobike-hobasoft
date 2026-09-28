@@ -6367,6 +6367,15 @@ function gobike_custom_styles_output()
             .gobike-btn-explore:hover svg {
                 transform: translateX(4px) !important;
             }
+
+            /* Khắc phục lỗi tràn ngang màn hình cho khối Chọn xe theo nhu cầu trên Tablet & Mobile */
+            #section_405922503,
+            #section_405922503 .section-content,
+            .gobike-user-needs-unified {
+                max-width: 100% !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
     </style>
     <?php
 }

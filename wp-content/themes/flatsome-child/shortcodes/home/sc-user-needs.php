@@ -258,7 +258,9 @@ function gobike_render_user_needs_shortcode($atts)
         <style>
             .gobike-user-needs-unified {
                 width: 100%;
+                max-width: 100%;
                 box-sizing: border-box;
+                overflow: hidden !important;
             }
 
             .gobike-needs-header {
@@ -294,6 +296,8 @@ function gobike_render_user_needs_shortcode($atts)
             .gobike-needs-swiper {
                 position: relative;
                 width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
 
             .gobike-need-unified-card {
@@ -420,7 +424,10 @@ function gobike_render_user_needs_shortcode($atts)
 
                 .gobike-needs-swiper {
                     padding-bottom: 26px !important;
-                    overflow: visible !important;
+                    overflow: hidden !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    box-sizing: border-box !important;
                 }
 
                 .gobike-need-unified-card {
@@ -553,6 +560,7 @@ function gobike_render_user_needs_shortcode($atts)
                             spaceBetween: 8,
                             speed: 400,
                             grabCursor: true,
+                            watchOverflow: true,
                             pagination: {
                                 el: $el.find('.gobike-needs-dots')[0] || '.gobike-needs-dots',
                                 clickable: true,
@@ -560,11 +568,11 @@ function gobike_render_user_needs_shortcode($atts)
                             breakpoints: {
                                 550: {
                                     slidesPerView: 3.2,
-                                    spaceBetween: 8,
+                                    spaceBetween: 10,
                                 },
                                 768: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 8,
+                                    slidesPerView: 4.2,
+                                    spaceBetween: 10,
                                 }
                             }
                         });
