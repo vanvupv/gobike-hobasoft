@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.16.69
+Version: 3.16.70
 */
 
 /*****************************************************************************
@@ -18,7 +18,7 @@ Version: 3.16.69
 
 @import url('header-style.css?v=3.16.57');
 @import url('product-style.css?v=3.16.57');
-@import url('footer-style.css?v=3.16.67');
+@import url('footer-style.css?v=3.16.70');
 @import url('news-style.css?v=3.16.68');
 @import url('video-review-style.css?v=3.16.62');
 @import url('video-detail-style.css?v=3.16.64');
