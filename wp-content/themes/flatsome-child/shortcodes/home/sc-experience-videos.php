@@ -487,6 +487,7 @@ function gobike_render_experience_shorts_modal_footer()
         grid-template-columns: repeat(4, 1fr) !important;
         gap: 8px !important;
         align-items: stretch !important;
+        padding-bottom: 0 !important;
     }
 
     /* CARD KHUNG VIỀN - CHIỀU CAO BẰNG NHAU, BỎ MARGIN & HOVER NHẤC NỔI */
@@ -938,7 +939,7 @@ function gobike_render_experience_shorts_modal_footer()
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
             gap: 12px !important;
-            padding-bottom: 12px !important;
+            padding-bottom: 0 !important;
             padding-left: 2px !important;
             padding-right: 16px !important;
             scrollbar-width: none !important;

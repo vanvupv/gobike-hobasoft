@@ -2267,8 +2267,10 @@ function gobike_custom_styles_output()
         }
 
         /* Video Shorts Trải Nghiệm Thật - Cân bằng chiều cao thẻ trên Mobile & Tablet */
-        .gobike-experience-videos-wrap .gev-grid {
+        .gobike-experience-videos-wrap .gev-grid,
+        .gev-grid {
             align-items: stretch !important;
+            padding-bottom: 0 !important;
         }
 
         .gobike-experience-videos-wrap .gev-card {
