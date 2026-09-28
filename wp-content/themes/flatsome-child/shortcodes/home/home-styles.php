@@ -6127,13 +6127,6 @@ function gobike_custom_styles_output()
                - Mobile (<= 549px): Bố cục dọc (column), icon ở trên, chữ rơi xuống dưới và căn giữa
                - Tablet & Desktop (>= 550px): Bố cục ngang (row), icon bên trái, chữ bên phải
                ========================================================================== */
-            .vp-banner-sub-features .row,
-            .vp-banner-sub-features .vp-row-custom {
-                display: flex !important;
-                flex-flow: row wrap !important;
-                align-items: stretch !important;
-                gap: 6px !important;
-            }
 
             /* Đảm bảo col-inner và card kéo giãn bằng nhau 100% chiều cao */
             .vp-banner-sub-features .col-inner {
@@ -6214,10 +6207,6 @@ function gobike_custom_styles_output()
 
             /* Tablet & màn hình lớn hơn (>= 550px): Bố cục ngang, icon bên trái, chữ bên phải */
             @media screen and (min-width: 550px) {
-                .vp-banner-sub-features .row,
-                .vp-banner-sub-features .vp-row-custom {
-                    gap: 12px !important;
-                }
                 .vp-banner-sub-features .vp-icon-box-custom {
                     flex-direction: row !important;
                     align-items: center !important;
