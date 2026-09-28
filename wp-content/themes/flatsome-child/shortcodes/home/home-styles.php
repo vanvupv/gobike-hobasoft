@@ -969,13 +969,13 @@ function gobike_custom_styles_output()
                 flex: 0 0 25% !important;
                 height: 70px !important;
                 max-height: 70px !important;
-                padding: 6px 8px !important;
+                padding: 6px 4px !important;
                 cursor: pointer !important;
                 display: flex !important;
                 flex-direction: row !important;
                 justify-content: center !important;
                 align-items: center !important;
-                gap: 8px !important;
+                gap: 6px !important;
                 text-align: left !important;
                 border-right: 1px solid #f1f5f9 !important;
                 border-bottom: none !important;
@@ -994,9 +994,9 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 38px !important;
-                height: 38px !important;
-                flex: 0 0 38px !important;
+                width: 32px !important;
+                height: 32px !important;
+                flex: 0 0 32px !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
@@ -1005,8 +1005,8 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap svg {
-                width: 32px !important;
-                height: 32px !important;
+                width: 28px !important;
+                height: 28px !important;
                 display: block !important;
                 fill: none !important;
                 stroke: currentColor !important;
@@ -1027,6 +1027,7 @@ function gobike_custom_styles_output()
                 align-items: flex-start !important;
                 justify-content: center !important;
                 min-width: 0 !important;
+                flex: 1 1 auto !important;
                 line-height: 1.15 !important;
                 max-height: 48px !important;
                 overflow: hidden !important;
@@ -1034,12 +1035,12 @@ function gobike_custom_styles_output()
 
             .banner-home .service-thumb-item .thumb-title,
             .banner-home .service-thumb-item .thumb-desc {
-                font-size: 16px !important;
+                font-size: clamp(13px, 1.02vw, 15px) !important;
                 font-weight: 700 !important;
                 color: #0b1a30 !important;
                 text-transform: uppercase !important;
                 line-height: 1.15 !important;
-                letter-spacing: -0.2px !important;
+                letter-spacing: -0.4px !important;
                 white-space: nowrap !important;
                 overflow: hidden !important;
                 text-overflow: ellipsis !important;
