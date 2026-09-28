@@ -1281,6 +1281,7 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     align-items: stretch;
+    padding: 0 !important;
 }
 
 .gb-vr-showroom-card {
@@ -1763,13 +1764,22 @@
         scroll-snap-type: x mandatory !important;
         -webkit-overflow-scrolling: touch !important;
         gap: 8px !important;
-        padding-bottom: 10px !important;
         margin-right: 0 !important;
         padding-right: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
         scrollbar-width: none !important;
+    }
+
+    .gb-vr-related-grid,
+    .gb-vr-products-grid,
+    .gb-vr-experience-grid {
+        padding-bottom: 10px !important;
+    }
+
+    .gb-vr-showroom-grid {
+        padding: 0 !important;
     }
 
     .gb-vr-related-grid::-webkit-scrollbar,
