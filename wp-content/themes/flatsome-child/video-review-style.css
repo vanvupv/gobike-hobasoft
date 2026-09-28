@@ -24,6 +24,11 @@
 /* ==========================================================================
    WRAPPER TỔNG THỂ TRANG VIDEO REVIEW
    ========================================================================== */
+.gobike-video-review-page {
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 
 
 /* Common Section Header */
@@ -141,9 +146,18 @@
 
 .gb-vr-hero-grid {
     display: grid;
-    grid-template-columns: 220px 1fr 340px;
-    gap: 24px;
+    grid-template-columns: 210px minmax(0, 1fr) minmax(260px, 320px);
+    gap: 20px;
     align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.gb-vr-hero-grid > * {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* --- Cột trái: Sidebar Menu Danh mục (đường border dọc kéo dài bằng chiều dài khối grid) --- */
@@ -332,8 +346,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-    padding-top: 2px;
+    padding-top: 6px;
     border-top: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .gb-vr-player-meta {
@@ -342,30 +358,34 @@
     gap: 16px;
     font-size: 13px;
     color: var(--gb-vr-gray);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .gb-vr-player-meta span {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    white-space: nowrap;
 }
 
 .gb-vr-player-btns {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .gb-vr-btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     background: #ffffff;
     border: 1px solid #cbd5e1;
     border-radius: 9px;
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 9px 16px;
+    font-size: 13.5px;
     font-weight: 600;
     color: #1e293b;
     text-decoration: none;
@@ -373,11 +393,18 @@
     line-height: 1.25;
     transition: all 0.2s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    white-space: nowrap !important;
+    flex-shrink: 0;
+}
+
+.gb-vr-btn-secondary span {
+    white-space: nowrap !important;
+    display: inline-block;
 }
 
 .gb-vr-btn-secondary svg {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     color: #334155;
     stroke: currentColor;
@@ -394,12 +421,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 7px;
     background: var(--gb-vr-primary);
     border: 1px solid var(--gb-vr-primary);
     border-radius: 9px;
-    padding: 10px 24px;
-    font-size: 14px;
+    padding: 9px 18px;
+    font-size: 13.5px;
     font-weight: 700;
     color: #ffffff !important;
     text-decoration: none;
@@ -407,11 +434,18 @@
     line-height: 1.25;
     transition: all 0.2s ease;
     box-shadow: 0 3px 8px rgba(4, 75, 37, 0.28);
+    white-space: nowrap !important;
+    flex-shrink: 0;
+}
+
+.gb-vr-btn-primary span {
+    white-space: nowrap !important;
+    display: inline-block;
 }
 
 .gb-vr-btn-primary svg {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     stroke: #ffffff;
 }
@@ -430,6 +464,10 @@
     border-radius: 0;
     padding: 0;
     box-shadow: none;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .gb-vr-up-next-header {
@@ -538,9 +576,11 @@
     flex-direction: column;
     align-items: stretch !important;
     width: 100% !important;
+    max-width: 100% !important;
     gap: 12px;
     max-height: 520px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 4px;
     box-sizing: border-box;
 }
@@ -556,6 +596,7 @@
 .gb-vr-up-next-item {
     display: flex !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
     align-self: stretch !important;
     align-items: center;
@@ -565,6 +606,8 @@
     padding: 6px;
     border-radius: 8px;
     transition: background 0.2s ease;
+    overflow: hidden !important;
+    min-width: 0 !important;
 }
 
 .gb-vr-up-next-item:hover {
@@ -1357,6 +1400,70 @@
 }
 
 /* ==========================================================================
+   LAPTOP / SMALL DESKTOP RESPONSIVE (850px - 1100px)
+   ========================================================================== */
+@media screen and (min-width: 850px) and (max-width: 1100px) {
+    .gb-vr-hero-grid {
+        grid-template-columns: 180px minmax(0, 1fr) 260px;
+        gap: 14px;
+    }
+
+    .gb-vr-sidebar {
+        padding-right: 10px;
+    }
+
+    .gb-vr-category-nav .gb-vr-cat-item {
+        padding: 8px 8px;
+        font-size: 12.5px;
+        gap: 6px;
+    }
+
+    .gb-vr-player-btns {
+        gap: 6px;
+    }
+
+    .gb-vr-btn-secondary {
+        padding: 8px 10px;
+        font-size: 12px;
+        gap: 5px;
+    }
+
+    .gb-vr-btn-primary {
+        padding: 8px 12px;
+        font-size: 12px;
+        gap: 5px;
+    }
+
+    .gb-vr-up-next-header {
+        padding: 0 4px 4px 4px;
+        margin-bottom: 10px;
+    }
+
+    .gb-vr-up-next-header h3 {
+        font-size: 14.5px;
+    }
+
+    .gb-vr-autoplay-toggle {
+        font-size: 11px !important;
+        gap: 5px !important;
+    }
+
+    .gb-vr-switch {
+        width: 32px !important;
+        height: 18px !important;
+    }
+
+    .gb-vr-slider:before {
+        height: 12px !important;
+        width: 12px !important;
+    }
+
+    .gb-vr-switch input:checked + .gb-vr-slider:before {
+        transform: translateX(14px) !important;
+    }
+}
+
+/* ==========================================================================
    MOBILE & TABLET RESPONSIVE (<= 849px) - DẠNG SLIDE 2.5
    - Header Mobile: Tiêu đề + Subtitle + Pills slider cuộn ngang
    - Hero video nổi bật có badge NỔI BẬT và thông tin overlay
@@ -1404,10 +1511,12 @@
         gap: 8px !important;
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
-        padding-bottom: 4px !important;
-        scrollbar-width: none;
-        margin-right: -16px !important;
-        padding-right: 16px !important;
+        padding: 0 0 6px 0 !important;
+        scrollbar-width: none !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .gb-vr-mobile-pills::-webkit-scrollbar {
@@ -1572,8 +1681,59 @@
     }
 
     .gb-vr-player-actions-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
         padding-top: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .gb-vr-player-meta {
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
+        font-size: 12.5px !important;
+    }
+
+    .gb-vr-player-btns {
+        display: flex !important;
+        align-items: center !important;
         justify-content: space-between !important;
+        gap: 8px !important;
+        width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+
+    .gb-vr-btn-secondary {
+        flex: 1 1 auto !important;
+        padding: 8px 10px !important;
+        font-size: 12.5px !important;
+        border-radius: 8px !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        gap: 6px !important;
+    }
+
+    .gb-vr-btn-secondary svg {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .gb-vr-btn-primary {
+        flex: 1.4 1 auto !important;
+        padding: 8px 12px !important;
+        font-size: 12.5px !important;
+        border-radius: 8px !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        gap: 6px !important;
+    }
+
+    .gb-vr-btn-primary svg {
+        width: 15px !important;
+        height: 15px !important;
     }
 
     /* Cột Video tiếp theo trên Mobile */
@@ -1604,8 +1764,11 @@
         -webkit-overflow-scrolling: touch !important;
         gap: 8px !important;
         padding-bottom: 10px !important;
-        margin-right: -16px !important;
-        padding-right: 16px !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
         scrollbar-width: none !important;
     }
 
