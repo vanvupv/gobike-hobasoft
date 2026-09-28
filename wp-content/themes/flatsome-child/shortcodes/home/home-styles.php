@@ -6135,18 +6135,6 @@ function gobike_custom_styles_output()
                 gap: 6px !important;
             }
 
-            .vp-banner-sub-features .row > .col.medium-4,
-            .vp-banner-sub-features .row > .col.small-4,
-            .vp-banner-sub-features .vp-row-custom > .col.medium-4,
-            .vp-banner-sub-features .vp-row-custom > .col.small-4 {
-                flex: 1 1 0 !important;
-                min-width: 0 !important;
-                max-width: none !important;
-                padding: 0 !important;
-                display: flex !important;
-                flex-direction: column !important;
-            }
-
             /* Đảm bảo col-inner và card kéo giãn bằng nhau 100% chiều cao */
             .vp-banner-sub-features .col-inner {
                 height: 100% !important;
