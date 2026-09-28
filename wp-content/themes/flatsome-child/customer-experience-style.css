@@ -11,15 +11,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
 
 /* ==========================================================================
-   WRAPPER CHÍNH CỦA TRANG
+   CONTAINER & LAYOUT
    ========================================================================== */
-.gb-ce-page-wrapper {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    color: #1e293b;
-    background-color: #f8fafc;
-    padding-bottom: 60px;
-    line-height: 1.5;
-}
 
 .gb-ce-container {
     max-width: 1240px;

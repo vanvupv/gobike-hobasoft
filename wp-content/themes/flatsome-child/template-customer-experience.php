@@ -173,8 +173,6 @@ if (!empty($db_experiences)) {
 }
 ?>
 
-<div class="gb-ce-page-wrapper">
-
     <!-- ==========================================================================
          SECTION 1: HERO BANNER FULL-WIDTH (CỘNG ĐỒNG GOBIKE)
          ========================================================================== -->
@@ -590,8 +588,6 @@ if (!empty($db_experiences)) {
             </div>
         </section>
     </div>
-
-</div>
 
 <!-- ==========================================================================
      VIDEO MODAL POPUP (XEM VIDEO YOUTUBE)
