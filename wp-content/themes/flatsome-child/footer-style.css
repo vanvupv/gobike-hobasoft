@@ -410,49 +410,61 @@ footer#footer,
         display: none;
     }
 
-    /* Thanh nút Thu gọn - Mở rộng đầu Sidebar */
+    /* Thanh nút Thu gọn - Mở rộng đầu Sidebar: Làm to lên, full width, bỏ hết margin */
     .gb-cd-sidebar-toggle-bar {
-        padding: 8px 8px !important;
+        padding: 10px 10px !important;
+        margin: 0 !important;
         border-bottom: 1px solid #edf2f7 !important;
-        background: #ffffff !important;
+        background: #f8fafc !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-end !important;
+        justify-content: center !important;
         box-sizing: border-box !important;
+        width: 100% !important;
     }
 
     .gb-cd-sidebar-toggle-btn {
-        display: inline-flex !important;
+        display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 4px !important;
-        padding: 4px 8px !important;
-        background: #f1f5f9 !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 6px !important;
-        color: #475569 !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
+        gap: 8px !important;
+        width: 100% !important;
+        height: 38px !important;
+        min-height: 38px !important;
+        margin: 0 !important;
+        padding: 0 12px !important;
+        background: #eaf7ed !important;
+        border: 1px solid #c7ecd1 !important;
+        border-radius: 8px !important;
+        color: #044b25 !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
         cursor: pointer !important;
         transition: all 0.2s ease !important;
         box-sizing: border-box !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
     }
 
     .gb-cd-sidebar-toggle-btn:hover,
     .gb-cd-sidebar-toggle-btn:active {
-        background: #e2e8f0 !important;
-        color: #044b25 !important;
+        background: #d8f3dc !important;
+        color: #03381b !important;
     }
 
     .gb-cd-toggle-arrow-icon {
+        width: 16px !important;
+        height: 16px !important;
+        stroke-width: 2.8 !important;
         transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
         flex-shrink: 0 !important;
+        stroke: currentColor !important;
     }
 
     .gb-cd-toggle-label {
-        font-size: 11px !important;
-        font-weight: 600 !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
         line-height: 1 !important;
+        color: inherit !important;
     }
 
     .gb-cd-nav-list {
@@ -568,13 +580,16 @@ footer#footer,
 
     .gobike-category-drawer.sidebar-collapsed .gb-cd-sidebar-toggle-bar {
         justify-content: center !important;
-        padding: 8px 4px !important;
+        padding: 10px 4px !important;
+        margin: 0 !important;
     }
 
     .gobike-category-drawer.sidebar-collapsed .gb-cd-sidebar-toggle-btn {
-        width: 32px !important;
-        height: 32px !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-height: 38px !important;
         padding: 0 !important;
+        margin: 0 auto !important;
         border-radius: 50% !important;
     }
 
