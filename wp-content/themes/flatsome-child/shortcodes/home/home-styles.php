@@ -41,7 +41,11 @@ function gobike_custom_styles_output()
         }
 
         .vp-row-custom .col,
-        .row.vp-row-custom .col {
+        .row.vp-row-custom .col,
+        body.home .section .section-content > .row:first-of-type > .col,
+        body.home section .section-content > .row:first-of-type > .col,
+        body.home .section > .row:first-of-type > .col,
+        body.home section > .row:first-of-type > .col {
             padding-bottom: 0px !important;
         }
 
@@ -6492,13 +6496,32 @@ function gobike_showroom_tabs_script()
                 $panels.eq(index).addClass('active');
             });
 
+            // Tự động thêm class vp-row-custom vào row đầu tiên của mỗi section ở trang chủ
+            function addVpRowCustomToHomeSections() {
+                if (!$('body').hasClass('home')) return;
+                $('section, .section').each(function () {
+                    var $firstRow = $(this).find('.row').first();
+                    if ($firstRow.length && !$firstRow.hasClass('vp-row-custom')) {
+                        $firstRow.addClass('vp-row-custom');
+                    }
+                });
+            }
+
             $(document).ready(function () {
+                addVpRowCustomToHomeSections();
                 initGobikeShowroom();
-                setTimeout(initGobikeShowroom, 150);
-                setTimeout(initGobikeShowroom, 500);
+                setTimeout(function () {
+                    addVpRowCustomToHomeSections();
+                    initGobikeShowroom();
+                }, 150);
+                setTimeout(function () {
+                    addVpRowCustomToHomeSections();
+                    initGobikeShowroom();
+                }, 500);
             });
 
             $(window).on('load', function () {
+                addVpRowCustomToHomeSections();
                 initGobikeShowroom();
             });
         })(jQuery);

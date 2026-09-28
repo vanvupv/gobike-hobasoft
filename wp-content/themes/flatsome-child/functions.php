@@ -878,3 +878,41 @@ add_action('init', function() {
         update_option('gobike_video_review_perm_flushed_v1', 1);
     }
 }, 999);
+
+/**
+ * Tự động thêm class 'vp-row-custom' vào thẻ row đầu tiên của mỗi section ở Trang chủ (Server-side)
+ */
+add_filter('the_content', 'gobike_auto_add_vp_row_custom_to_home_sections', 99);
+function gobike_auto_add_vp_row_custom_to_home_sections($content)
+{
+    if ((!is_front_page() && !is_home()) || empty($content) || !is_string($content)) {
+        return $content;
+    }
+
+    // Pattern nhận diện các khối section: <section class="section ..."> hoặc <div class="section ...">
+    $pattern = '/(<(?:section|div)[^>]*class=["\'][^"\']*\bsection\b[^"\']*["\'][^>]*>)(.*?)(<\/(?:section|div)>)/is';
+
+    return preg_replace_callback($pattern, function ($matches) {
+        $section_open = $matches[1];
+        $section_body = $matches[2];
+        $section_close = $matches[3];
+
+        $replaced = false;
+        // Tìm thẻ div class="row..." đầu tiên trong section
+        $row_pattern = '/(<div[^>]*class=["\'])([^"\']*\brow\b[^"\']*)(["\'][^>]*>)/i';
+
+        $new_body = preg_replace_callback($row_pattern, function ($row_m) use (&$replaced) {
+            if ($replaced) {
+                return $row_m[0];
+            }
+            $classes = $row_m[2];
+            if (strpos($classes, 'vp-row-custom') === false) {
+                $classes = trim($classes) . ' vp-row-custom';
+            }
+            $replaced = true;
+            return $row_m[1] . $classes . $row_m[3];
+        }, $section_body);
+
+        return $section_open . $new_body . $section_close;
+    }, $content);
+}
