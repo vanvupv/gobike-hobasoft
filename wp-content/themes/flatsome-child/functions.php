@@ -268,13 +268,13 @@ function gobike_mobile_bottom_nav_bar()
     <div class="gobike-category-drawer" id="gobikeCategoryDrawer" aria-hidden="true">
         <div class="gb-cd-header">
             <div class="gb-cd-header-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z" />
                 </svg>
                 <span>Danh mục sản phẩm</span>
             </div>
             <button type="button" class="gb-cd-close-btn" id="gbCdCloseBtn" aria-label="Đóng danh mục">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -449,7 +449,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">PHOENIX</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
 
@@ -459,7 +459,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">SHENGMILO</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
 
@@ -469,7 +469,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">BURCHDA</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
 
@@ -479,7 +479,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">RAPIDX</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
 
@@ -489,7 +489,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">SHALLWAY</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
 
@@ -499,7 +499,7 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span>
-                                <span class="gb-cd-brand-arrow">&rsaquo;</span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
                             </div>
                         </a>
                     </div>
@@ -519,11 +519,11 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=ado')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="ADO Air 20" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">ADO Air 20</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">ADO Air 20</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix G2" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix G2</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix G2</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -542,11 +542,11 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Burchda RX70" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Burchda RX70</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Burchda RX70</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RapidX All-Terrain" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RapidX Sport</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RapidX Sport</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -565,11 +565,11 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="Shengmilo Urban" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shengmilo Urban</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shengmilo Urban</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway City" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway City</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway City</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -588,11 +588,11 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix 599" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix 599</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix 599</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="Trường Vương Mini" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Trường Vương</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Trường Vương</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -611,7 +611,7 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway Comfort" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway Classic</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway Classic</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -629,16 +629,16 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=mu-bao-hiem')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Mũ bảo hiểm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Mũ bảo hiểm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=khoa-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Khóa chống trộm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Khóa chống trộm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=den-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đèn pha LED</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đèn pha LED</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=tui-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Túi treo xe</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Túi treo xe</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -656,13 +656,13 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-36v')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 36V Lithium</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 36V Lithium</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-48v')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 48V Cao cấp</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 48V Cao cấp</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=sac')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Sạc nhanh thông minh</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Sạc nhanh thông minh</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -680,10 +680,10 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/dat-lich-lai-thu/')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đặt lịch bảo dưỡng</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đặt lịch bảo dưỡng</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Cứu hộ tận nơi</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Cứu hộ tận nơi</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -693,27 +693,27 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="PHOENIX" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">PHOENIX</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">PHOENIX</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="SHENGMILO" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHENGMILO</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHENGMILO</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="BURCHDA" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">BURCHDA</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">BURCHDA</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RAPIDX" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RAPIDX</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RAPIDX</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="SHALLWAY" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHALLWAY</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHALLWAY</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="TRƯỜNG VƯƠNG" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -732,11 +732,11 @@ function gobike_mobile_bottom_nav_bar()
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Giảm giá sốc" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Flash Sale</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Flash Sale</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
                             <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Mua 1 tặng 1" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Quà tặng kèm</span><span class="gb-cd-brand-arrow">&rsaquo;</span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Quà tặng kèm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
                         </a>
                     </div>
                 </div>
