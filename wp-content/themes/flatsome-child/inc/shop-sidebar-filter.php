@@ -1075,9 +1075,19 @@ function gobike_render_shop_bottom_features()
                     <span class="showroom-badge">CS1</span>
                 </div>
                 <div class="showroom-info">
-                    <h5>📍 Hà Nội</h5>
+                    <h5>
+                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Hà Nội
+                    </h5>
                     <p class="showroom-address">71 Trần Đăng Ninh, Phường Hà Đông, Hà Nội</p>
-                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                    <span class="open-time">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>8:00 - 21:00 hàng ngày
+                    </span>
                 </div>
             </div>
             <div class="showroom-card has-thumb">
@@ -1086,9 +1096,19 @@ function gobike_render_shop_bottom_features()
                     <span class="showroom-badge">CS2</span>
                 </div>
                 <div class="showroom-info">
-                    <h5>📍 Phú Thọ</h5>
+                    <h5>
+                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Phú Thọ
+                    </h5>
                     <p class="showroom-address">47 Mã Lao, Phường Việt Trì, Phú Thọ</p>
-                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                    <span class="open-time">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>8:00 - 21:00 hàng ngày
+                    </span>
                 </div>
             </div>
             <div class="showroom-card has-thumb">
@@ -1097,21 +1117,37 @@ function gobike_render_shop_bottom_features()
                     <span class="showroom-badge">CS3</span>
                 </div>
                 <div class="showroom-info">
-                    <h5>📍 Bắc Ninh</h5>
+                    <h5>
+                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Bắc Ninh
+                    </h5>
                     <p class="showroom-address">567 Nguyễn Trãi, Phường Khắc Niệm, Bắc Ninh</p>
-                    <span class="open-time">🕒 8:00 - 21:00 hàng ngày</span>
+                    <span class="open-time">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>8:00 - 21:00 hàng ngày
+                    </span>
                 </div>
             </div>
             <div class="showroom-card card-contact">
                 <div class="contact-card-top">
                     <div class="contact-card-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#044b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 13a9 9 0 0 1 18 0"></path>
+                            <rect x="2" y="11" width="3.5" height="7" rx="1.75" fill="#044b2a"></rect>
+                            <rect x="18.5" y="11" width="3.5" height="7" rx="1.75" fill="#044b2a"></rect>
+                            <path d="M20 18v1.5a3 3 0 0 1-3 3h-2.5"></path>
+                            <circle cx="13" cy="22.5" r="1.5" fill="#044b2a"></circle>
                         </svg>
                     </div>
-                    <span class="hotline-label">Hotline tư vấn</span>
-                    <a href="tel:0944988699" class="hotline-number">0944 988 699</a>
-                    <span class="hotline-time">8:00 - 22:00 (Tất cả các ngày)</span>
+                    <div class="contact-card-info">
+                        <span class="hotline-label">Hotline tư vấn</span>
+                        <a href="tel:0944988699" class="hotline-number">0944 988 699</a>
+                        <span class="hotline-time">8:00 - 22:00 (Tất cả các ngày)</span>
+                    </div>
                 </div>
                 <a href="<?php echo home_url('/he-thong-cua-hang/'); ?>" class="map-link-btn">Tìm đường đến cửa hàng ➔</a>
             </div>

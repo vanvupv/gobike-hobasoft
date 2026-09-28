@@ -5087,7 +5087,13 @@ function gobike_custom_styles_output()
             margin: 0 0 6px 0 !important;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+        }
+
+        .gobike-showrooms-section .showroom-pin-icon {
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .gobike-showrooms-section .showroom-card .showroom-address {
@@ -5101,69 +5107,103 @@ function gobike_custom_styles_output()
         .gobike-showrooms-section .showroom-card .open-time {
             font-size: 12px;
             color: #94a3b8;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 3px;
         }
 
         .gobike-showrooms-section .showroom-card.card-contact {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
-            padding: 22px 20px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
+        .gobike-showrooms-section .contact-card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
         .gobike-showrooms-section .contact-card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #dcfce7;
-            color: #15803d;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 14px;
+            flex-shrink: 0;
+            color: #044b2a;
+        }
+
+        .gobike-showrooms-section .contact-card-icon svg {
+            width: 46px;
+            height: 46px;
+            display: block;
+        }
+
+        .gobike-showrooms-section .contact-card-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
         }
 
         .gobike-showrooms-section .card-contact .hotline-label {
-            font-size: 13px;
-            color: #15803d;
+            font-size: 13.5px;
+            color: #0f172a;
             font-weight: 600;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+            line-height: 1.3;
         }
 
         .gobike-showrooms-section .card-contact .hotline-number {
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 700;
-            color: #15803d;
+            color: #0f172a !important;
             text-decoration: none;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             line-height: 1.2;
+            letter-spacing: -0.3px;
+        }
+
+        .gobike-showrooms-section .card-contact .hotline-number:hover {
+            color: #044b2a !important;
         }
 
         .gobike-showrooms-section .card-contact .hotline-time {
             font-size: 12px;
-            color: #4b5563;
+            color: #64748b;
             display: block;
-            margin-bottom: 14px;
+            line-height: 1.3;
         }
 
         .gobike-showrooms-section .card-contact .map-link-btn {
-            font-size: 13px;
-            font-weight: 700;
-            color: #15803d;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #ffffff !important;
+            background: #044b2a;
             text-decoration: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 4px;
-            transition: color 0.2s ease, transform 0.2s ease;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(4, 75, 42, 0.15);
         }
 
         .gobike-showrooms-section .card-contact .map-link-btn:hover {
-            color: #166534;
-            transform: translateX(3px);
+            background: #03381f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(4, 75, 42, 0.3);
+            color: #ffffff !important;
             text-decoration: none;
         }
 
