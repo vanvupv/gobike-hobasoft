@@ -9,8 +9,8 @@
    BIẾN MÀU & CHUẨN GIAO DIỆN
    ========================================================================== */
 :root {
-    --gb-vr-primary: #0d7030;
-    --gb-vr-primary-hover: #085623;
+    --gb-vr-primary: #044b25;
+    --gb-vr-primary-hover: #03381b;
     --gb-vr-primary-light: #e8f5e9;
     --gb-vr-dark: #0f172a;
     --gb-vr-gray: #475569;
@@ -121,7 +121,7 @@
     transform: translate(-50%, -50%) scale(0.85);
     width: 44px;
     height: 44px;
-    background: rgba(13, 112, 48, 0.9);
+    background: rgba(4, 75, 37, 0.9);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -304,7 +304,7 @@
 .gb-vr-player-box .gb-vr-player-cover .gb-vr-big-play-btn {
     width: 68px;
     height: 68px;
-    background: rgba(13, 112, 48, 0.9);
+    background: rgba(4, 75, 37, 0.9);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -413,7 +413,7 @@
     cursor: pointer;
     line-height: 1.25;
     transition: all 0.2s ease;
-    box-shadow: 0 3px 8px rgba(13, 112, 48, 0.28);
+    box-shadow: 0 3px 8px rgba(4, 75, 37, 0.28);
 }
 
 .gb-vr-btn-primary svg {
@@ -426,7 +426,7 @@
 .gb-vr-btn-primary:hover {
     background: var(--gb-vr-primary-hover);
     border-color: var(--gb-vr-primary-hover);
-    box-shadow: 0 5px 14px rgba(13, 112, 48, 0.38);
+    box-shadow: 0 5px 14px rgba(4, 75, 37, 0.38);
     transform: translateY(-1px);
 }
 
@@ -1023,7 +1023,7 @@
     margin-bottom: 30px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 1px 6px rgba(13, 112, 48, 0.04);
+    box-shadow: 0 1px 6px rgba(4, 75, 37, 0.04);
 }
 
 .gb-vr-booking-left {
@@ -1058,7 +1058,7 @@
 .gb-vr-booking-icon-wrap {
     width: 52px;
     height: 52px;
-    background: #0d7030;
+    background: #044b25;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1102,7 +1102,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff;
     display: inline-flex;
     align-items: center;
@@ -1153,14 +1153,14 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 700;
     padding: 10px 22px;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(13, 112, 48, 0.2);
+    box-shadow: 0 2px 6px rgba(4, 75, 37, 0.2);
     transition: all 0.2s ease;
     white-space: nowrap;
 }
@@ -1349,7 +1349,7 @@
     font-weight: 700;
     padding: 7px 14px;
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.35);
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.35);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
@@ -1440,7 +1440,7 @@
     }
 
     .gb-vr-pill-item.active {
-        background: #0f4c2c !important;
+        background: #044b25 !important;
         color: #ffffff !important;
     }
 
@@ -1500,7 +1500,7 @@
         position: absolute !important;
         top: 12px !important;
         left: 12px !important;
-        background: #0d7030 !important;
+        background: #044b25 !important;
         color: #ffffff !important;
         font-size: 10.5px !important;
         font-weight: 700 !important;
@@ -1555,7 +1555,7 @@
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        color: #0d7030 !important;
+        color: #044b25 !important;
         box-shadow: none !important;
         flex-shrink: 0 !important;
     }

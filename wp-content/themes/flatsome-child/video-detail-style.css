@@ -64,11 +64,11 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-breadcrumb a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-breadcrumb .current {
-    color: #0d7030;
+    color: #044b25;
     font-weight: 600;
 }
 
@@ -127,7 +127,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-player-brand-logo svg {
-    color: #0d7030;
+    color: #044b25;
     width: 20px;
     height: 20px;
 }
@@ -135,7 +135,7 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-player-brand-logo span.brand-name {
     font-size: 14px;
     font-weight: 700;
-    color: #0d7030;
+    color: #044b25;
     line-height: 1;
 }
 
@@ -155,7 +155,7 @@ a:hover .gb-vd-zoom-wrap img,
     transform: translate(-50%, -50%);
     width: 72px;
     height: 72px;
-    background: rgba(13, 112, 48, 0.92);
+    background: rgba(4, 75, 37, 0.92);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -168,7 +168,7 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-player-cover:hover .gb-vd-big-play-btn {
     transform: translate(-50%, -50%) scale(1.1);
-    background: #0d7030;
+    background: #044b25;
 }
 
 /* Thanh điều khiển video giả lập (Mock Control Bar ở đáy player) */
@@ -197,7 +197,7 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-progress-fill-mock {
     width: 25%;
     height: 100%;
-    background: #10b981;
+    background: #044b25;
     border-radius: 2px;
 }
 
@@ -272,7 +272,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-tag:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 /* HÀNG NÚT TƯƠNG TÁC (ACTION BUTTONS) */
@@ -290,7 +290,7 @@ a:hover .gb-vd-zoom-wrap img,
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     font-size: 14px;
     font-weight: 700;
@@ -298,11 +298,11 @@ a:hover .gb-vd-zoom-wrap img,
     border-radius: 8px;
     text-decoration: none;
     transition: background 0.2s ease, transform 0.2s ease;
-    box-shadow: 0 2px 6px rgba(13, 112, 48, 0.25);
+    box-shadow: 0 2px 6px rgba(4, 75, 37, 0.25);
 }
 
 .gb-vd-btn-buy-now:hover {
-    background: #085623;
+    background: #03381b;
     transform: translateY(-1px);
 }
 
@@ -356,7 +356,7 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-channel-avatar {
     width: 52px;
     height: 52px;
-    background: #0d7030;
+    background: #044b25;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -410,7 +410,7 @@ a:hover .gb-vd-zoom-wrap img,
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     font-size: 14.5px;
     font-weight: 700;
@@ -418,11 +418,11 @@ a:hover .gb-vd-zoom-wrap img,
     border-radius: 8px;
     text-decoration: none;
     transition: background 0.2s ease, transform 0.15s ease;
-    box-shadow: 0 1px 3px rgba(13, 112, 48, 0.2);
+    box-shadow: 0 1px 3px rgba(4, 75, 37, 0.2);
 }
 
 .gb-vd-btn-phone:hover {
-    background: #085623;
+    background: #03381b;
     transform: translateY(-1px);
 }
 
@@ -577,13 +577,13 @@ a:hover .gb-vd-zoom-wrap img,
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-spec-icon svg {
     width: 26px;
     height: 26px;
-    stroke: #0d7030;
+    stroke: #044b25;
     flex-shrink: 0;
 }
 
@@ -624,7 +624,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-btn-prod-detail {
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     font-size: 13.5px;
     font-weight: 700;
@@ -641,7 +641,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-btn-prod-detail:hover {
-    background: #085623;
+    background: #03381b;
     transform: translateY(-1px);
 }
 
@@ -664,8 +664,8 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-btn-prod-testdrive:hover {
     background: #f8fafc;
-    border-color: #0d7030;
-    color: #0d7030 !important;
+    border-color: #044b25;
+    color: #044b25 !important;
 }
 
 .gb-vd-btn-prod-cart {
@@ -779,7 +779,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-switch input:checked + .gb-vd-slider {
-    background-color: #0d7030 !important;
+    background-color: #044b25 !important;
 }
 
 .gb-vd-switch input:checked + .gb-vd-slider::before {
@@ -957,14 +957,14 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-booking-check-item svg {
     width: 15px;
     height: 15px;
-    color: #16a34a;
+    color: #044b25;
     flex-shrink: 0;
 }
 
 .gb-vd-btn-booking-cta {
     display: block;
     width: 100%;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     text-align: center;
     font-size: 13.5px;
@@ -976,7 +976,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-btn-booking-cta:hover {
-    background: #085623;
+    background: #03381b;
 }
 
 /* ==========================================================================
@@ -1004,7 +1004,7 @@ a:hover .gb-vd-zoom-wrap img,
 .gb-vd-link-all {
     font-size: 13px;
     font-weight: 700;
-    color: #0d7030;
+    color: #044b25;
     text-decoration: none;
     display: inline-flex !important;
     align-items: center !important;
@@ -1015,7 +1015,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-link-all:hover {
-    color: #085623;
+    color: #03381b;
     transform: translateX(3px);
 }
 
@@ -1063,7 +1063,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-rel-card:hover .gb-vd-rel-title {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-rel-meta {
@@ -1136,8 +1136,8 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-comment-input:focus {
     background: #ffffff;
-    border-color: #0d7030;
-    box-shadow: 0 0 0 3px rgba(13, 112, 48, 0.1);
+    border-color: #044b25;
+    box-shadow: 0 0 0 3px rgba(4, 75, 37, 0.1);
 }
 
 .gb-vd-btn-send-comment {
@@ -1154,7 +1154,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-btn-send-comment:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 /* Danh sách các bình luận mẫu */
@@ -1231,7 +1231,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-cmt-action-btn:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-cmt-action-btn svg {
@@ -1245,13 +1245,13 @@ a:hover .gb-vd-zoom-wrap img,
     margin-top: 20px;
     font-size: 13.5px;
     font-weight: 700;
-    color: #0d7030;
+    color: #044b25;
     text-decoration: none;
     cursor: pointer;
 }
 
 .gb-vd-more-comments-btn:hover {
-    color: #085623;
+    color: #03381b;
 }
 
 /* --- CỘT PHẢI: CÂU HỎI THƯỜNG GẶP (FAQ ACCORDION HOẠT ĐỘNG THẬT) --- */
@@ -1275,8 +1275,8 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-faq-item[open] {
-    border-color: #0d7030;
-    box-shadow: 0 2px 8px rgba(13, 112, 48, 0.08);
+    border-color: #044b25;
+    box-shadow: 0 2px 8px rgba(4, 75, 37, 0.08);
 }
 
 .gb-vd-faq-summary {
@@ -1298,7 +1298,7 @@ a:hover .gb-vd-zoom-wrap img,
 }
 
 .gb-vd-faq-summary:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-faq-question-text {
@@ -1317,7 +1317,7 @@ a:hover .gb-vd-zoom-wrap img,
 
 .gb-vd-faq-item[open] .gb-vd-faq-plus {
     transform: rotate(45deg);
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-vd-faq-answer {
@@ -1506,7 +1506,7 @@ a:hover .gb-vd-zoom-wrap img,
         justify-content: center !important;
         gap: 8px !important;
         width: 100% !important;
-        background: #085623 !important;
+        background: #03381b !important;
         color: #ffffff !important;
         font-size: 13.5px !important;
         font-weight: 700 !important;

@@ -81,7 +81,7 @@ function gobike_lead_column_data($column, $post_id)
     switch ($column) {
         case 'lead_phone':
             $phone = get_post_meta($post_id, '_lead_phone', true);
-            echo $phone ? '<strong style="color:#149d29;"><a href="tel:' . esc_attr($phone) . '">' . esc_html($phone) . '</a></strong>' : '—';
+            echo $phone ? '<strong style="color:#044b25;"><a href="tel:' . esc_attr($phone) . '">' . esc_html($phone) . '</a></strong>' : '—';
             break;
         case 'lead_demand':
             $val = get_post_meta($post_id, '_lead_demand', true);
@@ -139,7 +139,7 @@ function gobike_lead_meta_box_callback($post)
         </tr>
         <tr>
             <th><strong>Số điện thoại / Zalo:</strong></th>
-            <td><a href="tel:<?php echo esc_attr($phone); ?>" style="font-size: 16px; font-weight: bold; color: #149d29;"><?php echo esc_html($phone); ?></a></td>
+            <td><a href="tel:<?php echo esc_attr($phone); ?>" style="font-size: 16px; font-weight: bold; color: #044b25;"><?php echo esc_html($phone); ?></a></td>
         </tr>
         <tr>
             <th><strong>Nhu cầu sử dụng:</strong></th>
@@ -238,24 +238,24 @@ function gobike_ajax_submit_lead_60s()
     $subject = '[GoBike] Khách hàng yêu cầu tư vấn xe 60s - ' . $name . ' (' . $phone . ')';
 
     $body  = '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">';
-    $body .= '  <div style="background: #149d29; color: #ffffff; padding: 20px; text-align: center;">';
+    $body .= '  <div style="background: #044b25; color: #ffffff; padding: 20px; text-align: center;">';
     $body .= '    <h2 style="margin: 0; font-size: 20px;">YÊU CẦU TƯ VẤN CHỌN XE 60 GIÂY</h2>';
     $body .= '    <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 14px;">Hệ thống GoBike tiếp nhận yêu cầu mới</p>';
     $body .= '  </div>';
     $body .= '  <div style="padding: 24px;">';
-    $body .= '    <h3 style="color: #149d29; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Thông tin khách hàng</h3>';
+    $body .= '    <h3 style="color: #044b25; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Thông tin khách hàng</h3>';
     $body .= '    <p><strong>Họ và tên:</strong> ' . esc_html($name) . '</p>';
-    $body .= '    <p><strong>Số điện thoại / Zalo:</strong> <a href="tel:' . esc_attr($phone) . '" style="color: #149d29; font-weight: bold; font-size: 16px;">' . esc_html($phone) . '</a></p>';
+    $body .= '    <p><strong>Số điện thoại / Zalo:</strong> <a href="tel:' . esc_attr($phone) . '" style="color: #044b25; font-weight: bold; font-size: 16px;">' . esc_html($phone) . '</a></p>';
     $body .= '    <p><strong>Khu vực / Showroom:</strong> ' . esc_html($location ?: 'Chưa chọn') . '</p>';
-    $body .= '    <h3 style="color: #149d29; margin-top: 24px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Nhu cầu chọn xe</h3>';
+    $body .= '    <h3 style="color: #044b25; margin-top: 24px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Nhu cầu chọn xe</h3>';
     $body .= '    <p><strong>Nhu cầu sử dụng:</strong> <span style="background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:4px;font-weight:bold;">' . esc_html($demand ?: 'Chưa rõ') . '</span></p>';
     $body .= '    <p><strong>Ngân sách dự kiến:</strong> ' . esc_html($budget ?: 'Chưa chọn') . '</p>';
     $body .= '    <p><strong>Dòng xe quan tâm:</strong> ' . esc_html($type ?: 'Tất cả') . '</p>';
     $body .= '    <p><strong>Quãng đường / ngày:</strong> ' . esc_html($range ?: 'Tất cả') . '</p>';
     $body .= '    <p><strong>Thương hiệu quan tâm:</strong> ' . esc_html($brand ?: 'Tất cả') . '</p>';
     if (!empty($note)) {
-        $body .= '    <h3 style="color: #149d29; margin-top: 24px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Ghi chú của khách</h3>';
-        $body .= '    <p style="background: #f8fafc; padding: 12px; border-radius: 6px; border-left: 4px solid #149d29;">' . nl2br(esc_html($note)) . '</p>';
+        $body .= '    <h3 style="color: #044b25; margin-top: 24px; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px;">Ghi chú của khách</h3>';
+        $body .= '    <p style="background: #f8fafc; padding: 12px; border-radius: 6px; border-left: 4px solid #044b25;">' . nl2br(esc_html($note)) . '</p>';
     }
     $body .= '    <p style="margin-top: 24px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 12px;">Thời gian gửi: ' . current_time('d/m/Y H:i:s') . '</p>';
     $body .= '  </div>';
@@ -659,8 +659,8 @@ function gobike_render_quick_finder_modal_footer()
 
                 <!-- CAM KẾT BẢO MẬT -->
                 <div class="gqf-form-security">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#0d6e2e" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#0d6e2e" stroke="#0d6e2e"></path>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#044b25" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#044b25" stroke="#044b25"></path>
                         <polyline points="9 12 11 14 15 10" stroke="#ffffff" stroke-width="2.5"></polyline>
                     </svg>
                     <span>Bảo mật thông tin • Tư vấn nhanh • Miễn phí</span>
@@ -697,7 +697,7 @@ function gobike_render_quick_finder_modal_footer()
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     }
     .gqf-container {
-        background: linear-gradient(135deg, #149d29 0%, #0c6a1b 100%);
+        background: linear-gradient(135deg, #044b25 0%, #03381b 100%);
         border-radius: 16px;
         padding: 16px 20px 14px 20px;
         color: #ffffff;
@@ -979,8 +979,8 @@ function gobike_render_quick_finder_modal_footer()
         border-color: rgba(255, 255, 255, 0.4) !important;
     }
     .gqf-select option {
-        background: #0d6e2e !important;
-        background-color: #0d6e2e !important;
+        background: #044b25 !important;
+        background-color: #044b25 !important;
         color: #ffffff !important;
         padding: 6px 10px !important;
         font-size: 13px !important;
@@ -1193,7 +1193,7 @@ function gobike_render_quick_finder_modal_footer()
         transition: border-color 0.2s !important;
     }
     .gqf-input:focus {
-        border-color: #149d29 !important;
+        border-color: #044b25 !important;
         box-shadow: none !important;
         outline: none !important;
     }
@@ -1269,7 +1269,7 @@ function gobike_render_quick_finder_modal_footer()
     }
     .gqf-chip.active {
         background: #dcfce7 !important;
-        border-color: #149d29 !important;
+        border-color: #044b25 !important;
         color: #0f172a !important;
         font-weight: 600 !important;
         box-shadow: none !important;
@@ -1282,7 +1282,7 @@ function gobike_render_quick_finder_modal_footer()
         justify-content: center !important;
         gap: 6px !important;
         font-size: 12px !important;
-        color: #0d6e2e !important;
+        color: #044b25 !important;
         font-weight: 500 !important;
         margin-top: 4px !important;
         margin-bottom: 2px !important;
@@ -1298,7 +1298,7 @@ function gobike_render_quick_finder_modal_footer()
     .gqf-form-message.success {
         background: #ecfdf5;
         border: 1px solid #a7f3d0;
-        color: #149d29;
+        color: #044b25;
     }
     .gqf-form-message.error {
         background: #fef2f2;
@@ -1316,8 +1316,8 @@ function gobike_render_quick_finder_modal_footer()
     }
     .gqf-btn-cancel {
         background: #ffffff !important;
-        border: 1.5px solid #149d29 !important;
-        color: #0d6e2e !important;
+        border: 1.5px solid #044b25 !important;
+        color: #044b25 !important;
         font-size: 14px !important;
         font-weight: 700 !important;
         height: 44px !important;
@@ -1335,12 +1335,12 @@ function gobike_render_quick_finder_modal_footer()
     }
     .gqf-btn-cancel:hover {
         background: #f0fdf4 !important;
-        color: #0a5222 !important;
-        border-color: #0d6e2e !important;
+        color: #044b25 !important;
+        border-color: #044b25 !important;
     }
     .gqf-btn-submit {
-        background: #149d29 !important;
-        border: 1.5px solid #149d29 !important;
+        background: #044b25 !important;
+        border: 1.5px solid #044b25 !important;
         color: #ffffff !important;
         font-size: 14px !important;
         font-weight: 700 !important;
@@ -1359,8 +1359,8 @@ function gobike_render_quick_finder_modal_footer()
         transition: all 0.2s !important;
     }
     .gqf-btn-submit:hover {
-        background: #0d6e2e !important;
-        border-color: #0d6e2e !important;
+        background: #044b25 !important;
+        border-color: #044b25 !important;
         color: #ffffff !important;
     }
     .gqf-btn-submit:disabled {

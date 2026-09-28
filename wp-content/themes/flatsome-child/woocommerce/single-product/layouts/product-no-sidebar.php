@@ -316,7 +316,7 @@ jQuery(document).ready(function($) {
                     } else if (val.indexOf('duong') !== -1 || val.indexOf('dương') !== -1 || val.indexOf('bien') !== -1 || val.indexOf('biển') !== -1) {
                         colorHex = '#1d4ed8';
                     } else if (val.indexOf('reu') !== -1 || val.indexOf('rêu') !== -1 || val.indexOf('la') !== -1) {
-                        colorHex = '#005a36';
+                        colorHex = '#044b25';
                     } else if (val.indexOf('cam') !== -1) {
                         colorHex = '#ea580c';
                     } else if (val.indexOf('vang') !== -1 || val.indexOf('vàng') !== -1) {

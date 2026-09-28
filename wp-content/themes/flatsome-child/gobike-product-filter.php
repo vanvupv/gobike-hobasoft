@@ -233,7 +233,7 @@ function gobike_filter_enqueue_styles()
         .woof_redraw_zone::before {
             content: "Tìm theo:";
             font-weight: 700;
-            color: #149d29;
+            color: #044b25;
             font-size: 14px;
             margin-right: 4px;
             white-space: nowrap;
@@ -280,8 +280,8 @@ function gobike_filter_enqueue_styles()
         .woof_redraw_zone .gobike-dropdown-btn:hover,
         .woof_redraw_zone .woof_container:hover>.gobike-dropdown-btn,
         .woof_redraw_zone .woof_container.active>.gobike-dropdown-btn {
-            border-color: #149d29 !important;
-            color: #149d29 !important;
+            border-color: #044b25 !important;
+            color: #044b25 !important;
             box-shadow: none !important;
         }
 
@@ -300,7 +300,7 @@ function gobike_filter_enqueue_styles()
 
         .woof_redraw_zone .woof_container.active>.gobike-dropdown-btn::after {
             transform: rotate(180deg);
-            border-top-color: #149d29;
+            border-top-color: #044b25;
         }
 
         /* Popup danh sách lựa chọn bên dưới */
@@ -361,7 +361,7 @@ function gobike_filter_enqueue_styles()
         }
 
         .woof_redraw_zone .woof_list li:hover label {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         /* Ẩn hoàn toàn nút Reset màu xanh ở đuôi dòng 'Tìm theo:', chỉ giữ lại duy nhất nút 'Bỏ hết ✕' màu đỏ ở dải Badges */
@@ -417,10 +417,10 @@ function gobike_filter_enqueue_styles()
         }
 
         .gobike-custom-sorting-toolbar .sort-item:hover {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
-        /* Nút tròn Radio tùy biến viền xám -> viền xanh chấm xanh chủ đạo #149d29 ở tâm */
+        /* Nút tròn Radio tùy biến viền xám -> viền xanh chấm xanh chủ đạo #044b25 ở tâm */
         .gobike-custom-sorting-toolbar .sort-item input[type="radio"] {
             appearance: none !important;
             -webkit-appearance: none !important;
@@ -443,11 +443,11 @@ function gobike_filter_enqueue_styles()
         }
 
         .gobike-custom-sorting-toolbar .sort-item:hover input[type="radio"] {
-            border-color: #149d29 !important;
+            border-color: #044b25 !important;
         }
 
         .gobike-custom-sorting-toolbar .sort-item input[type="radio"]:checked {
-            border-color: #149d29 !important;
+            border-color: #044b25 !important;
             background-color: #fff !important;
         }
 
@@ -456,7 +456,7 @@ function gobike_filter_enqueue_styles()
             width: 8px !important;
             height: 8px !important;
             border-radius: 50% !important;
-            background-color: #149d29 !important;
+            background-color: #044b25 !important;
             display: block !important;
         }
 
@@ -486,10 +486,10 @@ function gobike_filter_enqueue_styles()
             list-style: none !important;
         }
 
-        /* Nút Bỏ hết (Clear all) - Nút màu chủ đạo (#149d29) có dấu ✕ */
+        /* Nút Bỏ hết (Clear all) - Nút màu chủ đạo (#044b25) có dấu ✕ */
         .woof_products_top_panel .woof_reset_button_2,
         .woof_products_top_panel a.woof_clear_all {
-            background-color: #149d29 !important;
+            background-color: #044b25 !important;
             border: none !important;
             color: #fff !important;
             padding: 6px 14px !important;
@@ -509,7 +509,7 @@ function gobike_filter_enqueue_styles()
         .woof_products_top_panel a.woof_clear_all:hover {
             opacity: 0.95 !important;
             transform: translateY(-1px) !important;
-            background-color: #0f7a20 !important;
+            background-color: #044b25 !important;
             color: #fff !important;
         }
 
@@ -578,7 +578,7 @@ function gobike_filter_enqueue_styles()
 
         /* San hô đỏ */
         .woof_products_top_panel li:nth-child(6n+3) a {
-            background-color: #28a745 !important;
+            background-color: #044b25 !important;
         }
 
         /* Xanh lá */

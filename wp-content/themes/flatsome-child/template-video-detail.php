@@ -670,12 +670,12 @@ $comments_sample = array(
                         <div class="gb-vd-faq-contact-card">
                             <div class="gb-vd-faq-contact-left">
                                 <div class="gb-vd-faq-icon-headphone">
-                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M4 12a8 8 0 0 1 16 0"></path>
                                         <rect x="2" y="11" width="4" height="7" rx="2"></rect>
                                         <rect x="18" y="11" width="4" height="7" rx="2"></rect>
                                         <path d="M4 18v1a4 4 0 0 0 4 4h2"></path>
-                                        <circle cx="11" cy="23" r="1" fill="#0d7030"></circle>
+                                        <circle cx="11" cy="23" r="1" fill="#044b25"></circle>
                                     </svg>
                                 </div>
                                 <div>

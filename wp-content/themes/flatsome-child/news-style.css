@@ -104,7 +104,7 @@
     width: 100%;
     display: flex;
     align-items: stretch;
-    background: #064e29;
+    background: #044b25;
     border-radius: 10px;
     padding: 0 !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -138,7 +138,7 @@
     width: 50px;
     height: 100% !important;
     border-radius: 0 10px 10px 0 !important;
-    background: #064e29 !important;
+    background: #044b25 !important;
     border: none !important;
     color: #ffffff !important;
     display: flex;
@@ -152,7 +152,7 @@
 }
 
 .gobike-news-hero .hero-search-form button:hover {
-    background: #0d7030 !important;
+    background: #044b25 !important;
 }
 
 .gobike-news-hero .hero-search-form button svg {
@@ -254,7 +254,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0d7030;
+    color: #044b25;
     margin-bottom: 8px;
     transition: all 0.25s ease;
 }
@@ -287,7 +287,7 @@
 .news-cat-card.active {
     background: #edf7f0;
     border-color: #d1ead7;
-    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.1);
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.1);
 }
 
 .news-cat-card.active .cat-card-icon-box {
@@ -338,7 +338,7 @@
 .view-all-link {
     font-size: 14px;
     font-weight: 600;
-    color: #0d7030;
+    color: #044b25;
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -358,7 +358,7 @@
 .badge-tag {
     display: inline-block;
     padding: 3px 10px;
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff;
     font-size: 12px;
     font-weight: 700;
@@ -371,7 +371,7 @@
 }
 
 .badge-tag.green-subtle {
-    background: #16a34a;
+    background: #044b25;
 }
 
 /* Read more link */
@@ -557,7 +557,7 @@
 }
 
 .side-card-title a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .side-card-excerpt {
@@ -572,7 +572,7 @@
 }
 
 .side-card-info .read-more-link {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .side-card-info .read-more-link:hover {
@@ -690,7 +690,7 @@
 }
 
 .latest-post-horizontal-card .card-post-title a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .latest-post-horizontal-card .card-post-excerpt {
@@ -729,7 +729,7 @@
 .latest-post-horizontal-card .card-read-more {
     font-size: 13px;
     font-weight: 700;
-    color: #0d7030;
+    color: #044b25;
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -780,8 +780,8 @@
 }
 
 .gobike-news-pagination .page-numbers:hover {
-    border-color: #0d7030;
-    color: #0d7030;
+    border-color: #044b25;
+    color: #044b25;
     background: #f0fdf4;
 }
 
@@ -880,7 +880,7 @@
 }
 
 .popular-title a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .popular-content .views-count {
@@ -944,8 +944,8 @@
 }
 
 .widget-newsletter .newsletter-form input:focus {
-    border-color: #0d7030;
-    box-shadow: 0 0 0 2px rgba(13, 112, 48, 0.15);
+    border-color: #044b25;
+    box-shadow: 0 0 0 2px rgba(4, 75, 37, 0.15);
 }
 
 .widget-newsletter .newsletter-submit-btn {
@@ -966,7 +966,7 @@
 }
 
 .widget-newsletter .newsletter-submit-btn:hover {
-    background: #0d7030;
+    background: #044b25;
 }
 
 /* WIDGET 3: MỖI HÀNH TRÌNH LÀ MỘT CÂU CHUYỆN (COMMUNITY CTA) */
@@ -1089,7 +1089,7 @@
 
 .gobike-news-bottom-cta .cta-button:hover {
     background: #f0fdf4;
-    color: #0d7030;
+    color: #044b25;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
@@ -1252,7 +1252,7 @@
         height: 42px !important;
         display: flex !important;
         align-items: stretch !important;
-        background: #064e29 !important;
+        background: #044b25 !important;
         border-radius: 10px !important;
         padding: 0 !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
@@ -1282,7 +1282,7 @@
     .gobike-news-hero .hero-search-form button {
         width: 48px !important;
         height: 100% !important;
-        background: #064e29 !important;
+        background: #044b25 !important;
         border-radius: 0 10px 10px 0 !important;
         border: none !important;
         padding: 0 !important;
@@ -1381,7 +1381,7 @@
     .view-all-link {
         font-size: 12px;
         font-weight: 600;
-        color: #0d7030;
+        color: #044b25;
     }
 
     .featured-desktop-grid {
@@ -1627,7 +1627,7 @@
         width: 24px;
         height: 24px;
         flex-shrink: 0;
-        color: #0d7030;
+        color: #044b25;
         text-decoration: none;
     }
 
@@ -1653,7 +1653,7 @@
         gap: 6px;
         background: #ffffff;
         color: #044b25;
-        border: 1.5px solid #0d7030;
+        border: 1.5px solid #044b25;
         border-radius: 25px;
         padding: 8px 22px;
         font-size: 13px;
@@ -1665,7 +1665,7 @@
 
     .btn-loadmore-pill:hover {
         background: #f0fdf4;
-        color: #0d7030;
+        color: #044b25;
     }
 
     .btn-loadmore-pill.loading {

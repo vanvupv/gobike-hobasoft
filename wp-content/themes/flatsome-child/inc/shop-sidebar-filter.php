@@ -1135,12 +1135,12 @@ function gobike_render_shop_bottom_features()
             <div class="showroom-card card-contact">
                 <div class="contact-card-top">
                     <div class="contact-card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#044b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 13a9 9 0 0 1 18 0"></path>
-                            <rect x="2" y="11" width="3.5" height="7" rx="1.75" fill="#044b2a"></rect>
-                            <rect x="18.5" y="11" width="3.5" height="7" rx="1.75" fill="#044b2a"></rect>
+                            <rect x="2" y="11" width="3.5" height="7" rx="1.75" fill="#044b25"></rect>
+                            <rect x="18.5" y="11" width="3.5" height="7" rx="1.75" fill="#044b25"></rect>
                             <path d="M20 18v1.5a3 3 0 0 1-3 3h-2.5"></path>
-                            <circle cx="13" cy="22.5" r="1.5" fill="#044b2a"></circle>
+                            <circle cx="13" cy="22.5" r="1.5" fill="#044b25"></circle>
                         </svg>
                     </div>
                     <div class="contact-card-info">

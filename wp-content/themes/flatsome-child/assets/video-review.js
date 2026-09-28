@@ -142,8 +142,8 @@
                     saveBtn.style.color = '';
                 } else {
                     saveBtn.setAttribute('data-saved', '1');
-                    saveBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#0d7030" stroke="#0d7030" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> Đã lưu';
-                    saveBtn.style.color = '#0d7030';
+                    saveBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#044b25" stroke="#044b25" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> Đã lưu';
+                    saveBtn.style.color = '#044b25';
                 }
             });
         }
@@ -157,7 +157,7 @@
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(currentUrl).then(function() {
                         var originalText = shareBtn.innerHTML;
-                        shareBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Đã sao chép link';
+                        shareBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Đã sao chép link';
                         setTimeout(function() {
                             shareBtn.innerHTML = originalText;
                         }, 2500);

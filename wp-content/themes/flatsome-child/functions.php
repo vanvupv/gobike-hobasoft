@@ -919,3 +919,10 @@ function gobike_auto_add_vp_row_custom_to_home_sections($content)
     }, $content);
 }
 
+/**
+ * Ép màu chủ đạo Flatsome thành #044b25
+ */
+add_filter('theme_mod_color_primary', function () {
+    return '#044b25';
+});
+

@@ -52,7 +52,7 @@
 }
 
 .gb-ce-breadcrumb a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-ce-breadcrumb .sep {
@@ -138,7 +138,7 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: #0d7030;
+    color: #044b25;
     background: #e8f7ee;
     padding: 4px 10px;
     border-radius: 20px;
@@ -156,7 +156,7 @@
 }
 
 .gb-ce-hero-title .gb-ce-highlight {
-    color: #0d7030;
+    color: #044b25;
     display: block;
 }
 
@@ -202,7 +202,7 @@
     height: 38px;
     border-radius: 50%;
     background: #e8f7ee;
-    color: #0d7030;
+    color: #044b25;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -314,9 +314,9 @@
 }
 
 .gb-ce-tab-btn.active {
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff;
-    border-color: #0d7030;
+    border-color: #044b25;
     text-decoration: none !important;
 }
 
@@ -334,7 +334,7 @@
 }
 
 .gb-ce-sort-dropdown-wrap select:focus {
-    border-color: #0d7030;
+    border-color: #044b25;
 }
 
 /* ==========================================================================
@@ -358,7 +358,7 @@
 }
 
 .gb-ce-sec-icon-leaf {
-    color: #0d7030;
+    color: #044b25;
     display: flex;
     align-items: center;
 }
@@ -379,7 +379,7 @@
 .gb-ce-link-all {
     font-size: 13px;
     font-weight: 700;
-    color: #0d7030;
+    color: #044b25;
     text-decoration: none;
     display: inline-flex !important;
     align-items: center !important;
@@ -390,7 +390,7 @@
 }
 
 .gb-ce-link-all:hover {
-    color: #085623;
+    color: #03381b;
     transform: translateX(3px);
 }
 
@@ -512,7 +512,7 @@
 
 .gb-ce-card:hover .gb-ce-card-play-btn {
     transform: translate(-50%, -50%) scale(1.12);
-    background: rgba(13, 112, 48, 0.85);
+    background: rgba(4, 75, 37, 0.85);
     border-color: #ffffff;
 }
 
@@ -558,7 +558,7 @@
 }
 
 .gb-ce-card:hover .gb-ce-card-title {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .gb-ce-card-location {
@@ -604,10 +604,10 @@
 
 .gb-ce-loadmore-btn:hover {
     background: #f8fafc;
-    border-color: #0d7030;
-    color: #0d7030;
+    border-color: #044b25;
+    color: #044b25;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(13, 112, 48, 0.12);
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.12);
 }
 
 /* ==========================================================================
@@ -626,7 +626,7 @@
     grid-template-columns: 1.15fr 1.25fr 1.1fr;
     gap: 36px;
     align-items: center;
-    box-shadow: 0 4px 16px rgba(13, 112, 48, 0.04);
+    box-shadow: 0 4px 16px rgba(4, 75, 37, 0.04);
 }
 
 /* Cột 1: Quote & Social Proof (Tiêu đề to, nổi bật theo ảnh mẫu 3) */
@@ -634,7 +634,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-right: 1px solid rgba(13, 112, 48, 0.16);
+    border-right: 1px solid rgba(4, 75, 37, 0.16);
     padding-right: 32px;
 }
 
@@ -648,7 +648,7 @@
 
 .gb-ce-comm-quote-author {
     font-size: 14.5px;
-    color: #047857;
+    color: #044b25;
     font-weight: 600;
     margin: 0 0 20px 0;
 }
@@ -687,7 +687,7 @@
 
 .gb-ce-comm-avatar-caption {
     font-size: 13px;
-    color: #065f46;
+    color: #044b25;
     line-height: 1.4;
     font-weight: 500;
     max-width: 220px;
@@ -733,7 +733,7 @@
     width: 52px;
     height: 52px;
     background: transparent;
-    color: #0d7030;
+    color: #044b25;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -763,7 +763,7 @@
 }
 
 .gb-ce-comm-cta-btn {
-    background: #085623;
+    background: #03381b;
     color: #ffffff;
     padding: 13px 32px;
     border-radius: 30px;
@@ -775,14 +775,14 @@
     gap: 10px !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    box-shadow: 0 4px 14px rgba(8, 86, 35, 0.28);
+    box-shadow: 0 4px 14px rgba(3, 56, 27, 0.28);
     transition: all 0.25s ease;
 }
 
 .gb-ce-comm-cta-btn:hover {
     background: #044b25;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(8, 86, 35, 0.38);
+    box-shadow: 0 6px 18px rgba(3, 56, 27, 0.38);
     color: #ffffff;
 }
 
@@ -859,7 +859,7 @@
 .gb-ce-comm-polaroid-art span {
     font-size: 17px;
     display: inline-block;
-    color: #047857;
+    color: #044b25;
     margin-top: 2px;
 }
 
@@ -1028,7 +1028,7 @@
 }
 
 .gb-ce-modal-close:hover {
-    background: #0d7030;
+    background: #044b25;
     color: #ffffff !important;
     text-decoration: none !important;
 }
@@ -1232,9 +1232,9 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
     .gb-ce-tab-btn.active {
-        background: #0d7030;
+        background: #044b25;
         color: #ffffff;
-        border-color: #0d7030;
+        border-color: #044b25;
     }
     .gb-ce-sort-dropdown-wrap {
         display: none; /* Ẩn dropdown sắp xếp trên mobile */
@@ -1283,8 +1283,8 @@
         padding: 9px 20px;
         font-size: 13px;
         border-radius: 20px;
-        border-color: #0d7030;
-        color: #0d7030;
+        border-color: #044b25;
+        color: #044b25;
     }
 
     /* Section 4: Community Callout trên Mobile theo ảnh 3 */
@@ -1326,7 +1326,7 @@
     }
     .gb-ce-comm-quote-author {
         font-size: 13.5px;
-        color: #047857;
+        color: #044b25;
         font-weight: 600;
         margin-bottom: 14px;
     }
@@ -1337,7 +1337,7 @@
     }
     .gb-ce-comm-avatar-caption {
         font-size: 12px;
-        color: #065f46;
+        color: #044b25;
         line-height: 1.35;
     }
 
@@ -1347,7 +1347,7 @@
         border-radius: 16px;
         padding: 24px 16px;
         border: 1px solid #d1fae5;
-        box-shadow: 0 4px 16px rgba(13, 112, 48, 0.05);
+        box-shadow: 0 4px 16px rgba(4, 75, 37, 0.05);
         width: 100%;
     }
     .gb-ce-comm-steps-title {
@@ -1514,7 +1514,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 16px;
-        box-shadow: 0 4px 14px rgba(13, 112, 48, 0.05);
+        box-shadow: 0 4px 14px rgba(4, 75, 37, 0.05);
         width: 100%;
         max-width: 100%;
         overflow: hidden;
@@ -1596,7 +1596,7 @@
 
     .gb-ce-polaroid-mobile-art {
         font-family: 'Caveat', 'Dancing Script', cursive;
-        color: #065f46;
+        color: #044b25;
         font-size: clamp(15px, 3.6vw, 18px);
         font-weight: 700;
         line-height: 1.2;
@@ -1607,6 +1607,6 @@
     .gb-ce-polaroid-mobile-art span {
         font-size: clamp(12px, 2.8vw, 14px);
         display: block;
-        color: #047857;
+        color: #044b25;
     }
 }

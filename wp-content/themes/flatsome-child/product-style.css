@@ -557,13 +557,13 @@ form.variations_form {
 
 .ux-swatch[data-value*="reu"] .ux-swatch__color,
 .ux-swatch[data-name*="rêu"] .ux-swatch__color {
-    background-color: #005a36 !important;
+    background-color: #044b25 !important;
 }
 
 /* Hiệu ứng viền active khi chọn biến thể */
 .ux-swatch.selected .ux-swatch__color {
-    border-color: #005a36 !important;
-    outline: 2.5px solid #005a36 !important;
+    border-color: #044b25 !important;
+    outline: 2.5px solid #044b25 !important;
     outline-offset: 2.5px !important;
     transform: scale(1.06) !important;
 }
@@ -685,7 +685,7 @@ button.buy_now_button:hover {
 }
 
 .product-info .shipping .shipping-content ul li .fa-shipping-fast {
-    color: #00a214;
+    color: #044b25;
 }
 
 .product-info .shipping .shipping-content ul li i {
@@ -1481,7 +1481,7 @@ div.review_vote {
 
 .gobike-shop-hero-banner .hero-hotspot-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 75, 40, 0.3);
+    box-shadow: 0 6px 16px rgba(4, 75, 37, 0.3);
 }
 
 /* Custom Category Background Image Mode */
@@ -1525,7 +1525,7 @@ div.review_vote {
 .gobike-shop-hero-banner .hero-slogan {
     font-size: 15px;
     font-weight: 600;
-    color: #149d29;
+    color: #044b25;
     margin-bottom: 10px;
     line-height: 1.4;
 }
@@ -1548,7 +1548,7 @@ div.review_vote {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #149d29;
+    background: #044b25;
     color: #ffffff !important;
     padding: 10px 22px;
     border-radius: 8px;
@@ -1556,13 +1556,13 @@ div.review_vote {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(20, 157, 41, 0.25);
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.25);
 }
 
 .gobike-shop-hero-banner .hero-btn-primary:hover {
-    background: #0d6e2e;
+    background: #044b25;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(20, 157, 41, 0.35);
+    box-shadow: 0 6px 16px rgba(4, 75, 37, 0.35);
 }
 
 .gobike-shop-hero-banner .hero-btn-outline {
@@ -1570,8 +1570,8 @@ div.review_vote {
     align-items: center;
     gap: 6px;
     background: #ffffff;
-    border: 1.5px solid #149d29;
-    color: #149d29 !important;
+    border: 1.5px solid #044b25;
+    color: #044b25 !important;
     padding: 9px 20px;
     border-radius: 8px;
     font-size: 13.5px;
@@ -1581,7 +1581,7 @@ div.review_vote {
 }
 
 .gobike-shop-hero-banner .hero-btn-outline:hover {
-    background: #149d29;
+    background: #044b25;
     color: #ffffff !important;
 }
 
@@ -1685,7 +1685,7 @@ div.review_vote {
     min-width: 62px;
     border-radius: 50%;
     background: #e8f7ee;
-    color: #149d29;
+    color: #044b25;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1809,7 +1809,7 @@ div.review_vote {
 }
 
 .gobike-support-hotline-box .support-icon {
-    color: #046a38;
+    color: #044b25;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -1846,7 +1846,7 @@ div.review_vote {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #046a38;
+    background: #044b25;
     color: #ffffff !important;
     padding: 9px 16px;
     border-radius: 6px;
@@ -1859,7 +1859,7 @@ div.review_vote {
 }
 
 .gobike-support-hotline-box .support-phone-btn:hover {
-    background: #03522b;
+    background: #03381b;
     color: #ffffff !important;
 }
 
@@ -2396,8 +2396,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"]:checked,
 .gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="radio"]:checked {
-    background-color: #0d7030;
-    border-color: #0d7030;
+    background-color: #044b25;
+    border-color: #044b25;
 }
 
 .gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"]:checked::after,
@@ -2553,7 +2553,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     .gobike-shop-mobile-header .mobile-view-all-link {
         font-size: 13px;
         font-weight: 600;
-        color: #0d7030;
+        color: #044b25;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -2599,7 +2599,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     }
 
     .gobike-shop-mobile-toolbar .mobile-filter-btn svg {
-        color: #0d7030;
+        color: #044b25;
     }
 
     .gobike-shop-mobile-toolbar .mobile-sort-btn-wrap svg:first-child {
@@ -2774,8 +2774,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         flex: 1;
         height: 46px;
         background: #ffffff;
-        border: 1.5px solid #0d7030;
-        color: #0d7030;
+        border: 1.5px solid #044b25;
+        color: #044b25;
         border-radius: 10px;
         font-weight: 700;
         font-size: 15px;
@@ -2844,7 +2844,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-breadcrumb a:hover {
-    color: #00a651;
+    color: #044b25;
 }
 
 .gobike-breadcrumb .bc-sep {
@@ -2853,7 +2853,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-breadcrumb .bc-item:last-child {
-    color: #00a651;
+    color: #044b25;
     font-weight: 600;
 }
 
@@ -2913,8 +2913,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-gallery-thumbs-swiper .thumb-item.active,
 .gobike-gallery-thumbs-swiper .thumb-item:hover {
-    border-color: #00a651;
-    box-shadow: 0 0 0 2px rgba(0, 166, 81, 0.2);
+    border-color: #044b25;
+    box-shadow: 0 0 0 2px rgba(4, 75, 37, 0.2);
 }
 
 .thumb-video-btn {
@@ -3003,9 +3003,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-float-action:hover {
-    background: #005a36;
+    background: #044b25;
     color: #ffffff;
-    border-color: #005a36;
+    border-color: #044b25;
     box-shadow: none !important;
 }
 
@@ -3029,8 +3029,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-gal-prev:hover,
 .gobike-gal-next:hover {
-    background: #005a36;
-    border-color: #005a36;
+    background: #044b25;
+    border-color: #044b25;
     color: #ffffff !important;
     box-shadow: none !important;
 }
@@ -3057,7 +3057,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .spec-badge-item .badge-icon {
-    color: #005a36;
+    color: #044b25;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3124,7 +3124,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .cat-tag-badge {
     background: #ecfdf5;
-    color: #005a36;
+    color: #044b25;
     font-size: 11.5px;
     font-weight: 600;
     padding: 3px 10px;
@@ -3134,7 +3134,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .cat-tag-badge:hover {
     background: #d1fae5;
-    color: #004529;
+    color: #03381b;
 }
 
 .top-right-actions {
@@ -3158,7 +3158,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-top-action:hover {
-    color: #005a36;
+    color: #044b25;
 }
 
 .gobike-product-title {
@@ -3202,7 +3202,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rating-count-link:hover {
-    color: #005a36;
+    color: #044b25;
 }
 
 .divider-dot {
@@ -3235,7 +3235,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-price-block .price-current {
     font-size: 28px;
     font-weight: 700;
-    color: #005a36;
+    color: #044b25;
     letter-spacing: -0.5px;
 }
 
@@ -3403,14 +3403,14 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     align-items: center !important;
     gap: 6px !important;
     margin-left: 10px !important;
-    color: #005a36 !important;
+    color: #044b25 !important;
     font-size: 13.5px !important;
     font-weight: 600 !important;
 }
 
 .gobike-stock-badge svg {
-    color: #005a36 !important;
-    stroke: #005a36 !important;
+    color: #044b25 !important;
+    stroke: #044b25 !important;
 }
 
 /* 2. HÀNG HAI NÚT HÀNH ĐỘNG NẰM SONG SONG CÙNG 1 HÀNG NGANG (CHUẨN ẢNH 2) */
@@ -3433,8 +3433,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     height: 46px !important;
     min-height: 46px !important;
     background: #ffffff !important;
-    border: 1.5px solid #005a36 !important;
-    color: #005a36 !important;
+    border: 1.5px solid #044b25 !important;
+    color: #044b25 !important;
     border-radius: 6px !important;
     font-weight: 700 !important;
     font-size: 14px !important;
@@ -3455,16 +3455,16 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-action-btns-row .btn-gobike-add-cart svg,
 .gobike-add-to-cart-wrapper .btn-gobike-add-cart svg,
 .gobike-add-to-cart-wrapper button.single_add_to_cart_button svg {
-    stroke: #005a36 !important;
-    color: #005a36 !important;
+    stroke: #044b25 !important;
+    color: #044b25 !important;
 }
 
 .gobike-action-btns-row .btn-gobike-add-cart:hover,
 .gobike-add-to-cart-wrapper .btn-gobike-add-cart:hover,
 .gobike-add-to-cart-wrapper button.single_add_to_cart_button:hover {
     background: #f0fdf4 !important;
-    border-color: #004529 !important;
-    color: #004529 !important;
+    border-color: #03381b !important;
+    color: #03381b !important;
     box-shadow: none !important;
 }
 
@@ -3477,8 +3477,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     max-width: 50% !important;
     height: 46px !important;
     min-height: 46px !important;
-    background: #005a36 !important;
-    border: 1.5px solid #005a36 !important;
+    background: #044b25 !important;
+    border: 1.5px solid #044b25 !important;
     color: #ffffff !important;
     border-radius: 6px !important;
     font-weight: 700 !important;
@@ -3507,8 +3507,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-action-btns-row .btn-gobike-buy-now:hover,
 .gobike-add-to-cart-wrapper .btn-gobike-buy-now:hover,
 .gobike-add-to-cart-wrapper button.buy_now_button:hover {
-    background: #004529 !important;
-    border-color: #004529 !important;
+    background: #03381b !important;
+    border-color: #03381b !important;
     color: #ffffff !important;
     box-shadow: none !important;
 }
@@ -3538,7 +3538,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-single-trust-badges .trust-icon {
-    color: #005a36;
+    color: #044b25;
 }
 
 .gobike-mobile-expert-box,
@@ -3589,7 +3589,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-tabs-nav-list .tab-nav-item.active a {
-    color: #00a651;
+    color: #044b25;
     font-weight: 700;
 }
 
@@ -3600,7 +3600,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     left: 0;
     width: 100%;
     height: 3px;
-    background: #00a651;
+    background: #044b25;
     border-radius: 2px 2px 0 0;
 }
 
@@ -3666,8 +3666,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     gap: 8px;
     padding: 8px 24px;
     background: #ffffff;
-    color: #005a36 !important;
-    border: 1.5px solid #005a36 !important;
+    color: #044b25 !important;
+    border: 1.5px solid #044b25 !important;
     border-radius: 20px;
     font-size: 13.5px;
     font-weight: 600;
@@ -3677,7 +3677,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-toggle-desc-content:hover {
-    background: #005a36;
+    background: #044b25;
     color: #ffffff !important;
 }
 
@@ -3719,7 +3719,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .feature-box-item .feature-icon {
-    color: #00a651;
+    color: #044b25;
     flex-shrink: 0;
 }
 
@@ -3853,7 +3853,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-block-header .block-title a:hover {
-    color: #149d29 !important;
+    color: #044b25 !important;
 }
 
 .gobike-block-header .block-slogan {
@@ -3874,7 +3874,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-block-header .header-right .view-all-link {
     font-size: 14px !important;
     font-weight: 700 !important;
-    color: #149d29 !important;
+    color: #044b25 !important;
     text-decoration: none !important;
     white-space: nowrap !important;
     display: inline-flex !important;
@@ -3888,11 +3888,11 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     transition: transform 0.2s ease !important;
     font-size: 15px !important;
     line-height: 1 !important;
-    color: #149d29 !important;
+    color: #044b25 !important;
 }
 
 .gobike-block-header .header-right .view-all-link:hover {
-    color: #005a36 !important;
+    color: #044b25 !important;
     transform: translateX(2px) !important;
 }
 
@@ -3914,9 +3914,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-write-review-outline {
-    border: 1.5px solid #00a651;
+    border: 1.5px solid #044b25;
     background: #ffffff;
-    color: #00a651 !important;
+    color: #044b25 !important;
     border-radius: 6px;
     padding: 6px 14px;
     font-size: 13px;
@@ -3929,12 +3929,12 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-write-review-outline:hover {
-    background: #00a651;
+    background: #044b25;
     color: #ffffff !important;
 }
 
 .link-see-all-green {
-    color: #005a36 !important;
+    color: #044b25 !important;
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
@@ -3944,7 +3944,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .link-see-all-green:hover {
-    color: #00a651 !important;
+    color: #044b25 !important;
 }
 
 /* Lưới 5 Cột Đánh Giá Mẫu (Screenshot 3) */
@@ -4186,7 +4186,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .star-bar-item .bar-fill {
     height: 100%;
-    background: #00a651;
+    background: #044b25;
     border-radius: 4px;
 }
 
@@ -4339,7 +4339,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-woocommerce-reviews-wrap .comment-form input[type="submit"],
 .gobike-woocommerce-reviews-wrap #submit {
-    background: #00a651 !important;
+    background: #044b25 !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 6px !important;
@@ -4354,7 +4354,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-woocommerce-reviews-wrap .comment-form input[type="submit"]:hover,
 .gobike-woocommerce-reviews-wrap #submit:hover {
-    background: #008742 !important;
+    background: #044b25 !important;
 }
 
 /* Comment list styling */
@@ -4443,7 +4443,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-ask-question {
-    background: #005a36 !important;
+    background: #044b25 !important;
     color: #ffffff !important;
     padding: 8px 18px;
     border-radius: 6px;
@@ -4457,7 +4457,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-ask-question:hover {
-    background: #004529 !important;
+    background: #03381b !important;
     color: #ffffff !important;
 }
 
@@ -4516,7 +4516,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .link-see-all-faqs {
-    color: #005a36;
+    color: #044b25;
     font-weight: 600;
     font-size: 13px;
     text-decoration: none;
@@ -4544,7 +4544,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .link-view-all-related {
-    color: #005a36;
+    color: #044b25;
     font-size: 13.5px;
     font-weight: 600;
     text-decoration: none;
@@ -4555,7 +4555,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .link-view-all-related:hover {
-    color: #008744;
+    color: #044b25;
 }
 
 /* Khung Carousel Sản Phẩm Liên Quan với nút 2 bên (Ảnh 2) */
@@ -4608,8 +4608,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rel-btn-side:hover {
-    background: #005a36 !important;
-    border-color: #005a36 !important;
+    background: #044b25 !important;
+    border-color: #044b25 !important;
     color: #ffffff !important;
 }
 
@@ -4642,8 +4642,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rel-card-box:hover {
-    border-color: #005a36;
-    box-shadow: 0 4px 12px rgba(0, 90, 54, 0.08) !important;
+    border-color: #044b25;
+    box-shadow: 0 4px 12px rgba(4, 75, 37, 0.08) !important;
 }
 
 /* Hình ảnh sản phẩm dùng padding-bottom thay vì width/height cố định */
@@ -4780,7 +4780,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .rel-product-title a:hover {
-    color: #005a36;
+    color: #044b25;
 }
 
 .rel-price-wrap {
@@ -4815,8 +4815,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     flex: 1.25;
     min-width: 0; /* Quan trọng để flex child kích hoạt text-overflow */
     background: #ffffff;
-    border: 1px solid #005a36;
-    color: #005a36;
+    border: 1px solid #044b25;
+    color: #044b25;
     border-radius: 6px;
     padding: 6px 4px;
     font-size: 11.5px;
@@ -4849,7 +4849,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .btn-rel-cart:hover {
-    background: #005a36;
+    background: #044b25;
     color: #ffffff;
 }
 
@@ -4905,7 +4905,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .trust-icon-box {
-    color: #005a36;
+    color: #044b25;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -4915,14 +4915,14 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .trust-icon-box svg {
     width: 38px;
     height: 38px;
-    color: #005a36;
+    color: #044b25;
 }
 
 .trust-text-box strong {
     display: block;
     font-size: 13.5px;
     font-weight: 700;
-    color: #005a36;
+    color: #044b25;
     line-height: 1.3;
     margin-bottom: 2px;
 }
@@ -5112,11 +5112,11 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     .expert-text-wrap span {
         display: block;
         font-size: 11px;
-        color: #15803d;
+        color: #044b25;
     }
 
     .btn-expert-chat {
-        background: #00a651;
+        background: #044b25;
         color: #ffffff;
         font-size: 12px;
         font-weight: 700;
@@ -5332,7 +5332,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     }
 
     .btn-support-action.btn-call {
-        color: #00a651;
+        color: #044b25;
         border-color: #bbf7d0;
         background: #f0fdf4;
     }
@@ -5495,7 +5495,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: #044b2a;
+    color: #044b25;
 }
 
 .gobike-showrooms-section .contact-card-icon svg {
@@ -5531,7 +5531,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-showrooms-section .card-contact .hotline-number:hover {
-    color: #044b2a !important;
+    color: #044b25 !important;
 }
 
 .gobike-showrooms-section .card-contact .hotline-time {
@@ -5545,7 +5545,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     font-size: 13.5px;
     font-weight: 600;
     color: #ffffff !important;
-    background: #044b2a;
+    background: #044b25;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -5556,13 +5556,13 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     width: 100%;
     box-sizing: border-box;
     transition: all 0.25s ease;
-    box-shadow: 0 2px 6px rgba(4, 75, 42, 0.15);
+    box-shadow: 0 2px 6px rgba(4, 75, 37, 0.15);
 }
 
 .gobike-showrooms-section .card-contact .map-link-btn:hover {
     background: #03381f;
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(4, 75, 42, 0.3);
+    box-shadow: 0 4px 14px rgba(4, 75, 37, 0.3);
     color: #ffffff !important;
     text-decoration: none;
 }

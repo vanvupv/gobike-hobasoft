@@ -258,7 +258,7 @@ function gobike_custom_styles_output()
             height: 28px !important;
             min-height: 28px !important;
             max-height: 28px !important;
-            color: #0d6e2e !important;
+            color: #044b25 !important;
             position: relative !important;
         }
 
@@ -269,7 +269,7 @@ function gobike_custom_styles_output()
             height: 24px !important;
             min-height: 24px !important;
             max-height: 24px !important;
-            stroke: #0d6e2e !important;
+            stroke: #044b25 !important;
             stroke-width: 2 !important;
             stroke-linecap: round !important;
             stroke-linejoin: round !important;
@@ -298,7 +298,7 @@ function gobike_custom_styles_output()
         .gobike-header-item .gobike-hi-title {
             font-size: 14.5px !important;
             font-weight: 700 !important;
-            color: #0d6e2e !important;
+            color: #044b25 !important;
             letter-spacing: 0.2px !important;
             white-space: nowrap !important;
             line-height: 1.2 !important;
@@ -306,7 +306,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-header-item:hover .gobike-hi-title {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         .gobike-header-item .gobike-hi-desc {
@@ -318,10 +318,10 @@ function gobike_custom_styles_output()
             margin-top: 2px !important;
         }
 
-        /* Responsive Header trên Mobile & Tablet (<= 849px): Nền màu #149d29, icon và logo trắng, logo cạnh Menu */
+        /* Responsive Header trên Mobile & Tablet (<= 849px): Nền màu #044b25, icon và logo trắng, logo cạnh Menu */
         @media screen and (max-width: 849px) {
 
-            /* Nền màu Header trên Mobile & Tablet là #149d29 (chuẩn Ảnh 1) */
+            /* Nền màu Header trên Mobile & Tablet là #044b25 (chuẩn Ảnh 1) */
             #header,
             .header,
             .header-wrapper,
@@ -330,8 +330,8 @@ function gobike_custom_styles_output()
             .header-main,
             .header-bottom,
             .header-bg-color {
-                background-color: #149d29 !important;
-                background: #149d29 !important;
+                background-color: #044b25 !important;
+                background: #044b25 !important;
                 border-bottom: none !important;
                 box-shadow: none !important;
             }
@@ -560,7 +560,7 @@ function gobike_custom_styles_output()
             outline: none !important;
             border-radius: 12px !important;
             /* Khớp góc phải cùng viền */
-            background: linear-gradient(180deg, #0d7030 0%, #064e20 100%) !important;
+            background: linear-gradient(180deg, #044b25 0%, #03381b 100%) !important;
             color: #ffffff !important;
             font-size: 13px !important;
             font-weight: 700 !important;
@@ -582,8 +582,8 @@ function gobike_custom_styles_output()
         .gobike-newsletter-pill input[type="submit"]:hover,
         .newsletter-input-group .newsletter-submit:hover,
         .newsletter-input-group input[type="submit"]:hover {
-            background: linear-gradient(180deg, #0f7e36 0%, #085623 100%) !important;
-            box-shadow: 0 4px 10px rgba(13, 112, 48, 0.35) !important;
+            background: linear-gradient(180deg, #044b25 0%, #03381b 100%) !important;
+            box-shadow: 0 4px 10px rgba(4, 75, 37, 0.35) !important;
         }
 
         .gobike-newsletter-pill .wpcf7-spinner,
@@ -646,7 +646,7 @@ function gobike_custom_styles_output()
         .vp-social-share-links .social-item:hover,
         .vp-social-share-links .social-item:active {
             transform: translateY(-2px) !important;
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         /* ==========================================================================
@@ -746,7 +746,7 @@ function gobike_custom_styles_output()
             .footer-menu-mobile ul#menu-footer-menu-mobile li.current-menu-item a.nav-top-link,
             .footer-menu-mobile ul#menu-footer-menu-mobile li.active a.nav-top-link,
             .gobike-bottom-bar-nav .wrap-fixed-footer>li.active a {
-                color: #149D29 !important;
+                color: #044b25 !important;
             }
 
             .gobike-bottom-bar-nav .wrap-fixed-footer>li.item-phone-fab {
@@ -885,7 +885,7 @@ function gobike_custom_styles_output()
                 max-height: 430px !important;
                 border-radius: 12px !important;
                 overflow: hidden !important;
-                background: #0d6e2e !important;
+                background: #044b25 !important;
                 box-shadow: none !important;
             }
 
@@ -1000,7 +1000,7 @@ function gobike_custom_styles_output()
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 transition: transform 0.25s ease, color 0.25s ease !important;
             }
 
@@ -1058,7 +1058,7 @@ function gobike_custom_styles_output()
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-icon-wrap,
             .banner-home .service-thumb-item:hover .thumb-icon-wrap {
-                color: #149d29 !important;
+                color: #044b25 !important;
                 transform: scale(1.06) !important;
             }
 
@@ -1066,7 +1066,7 @@ function gobike_custom_styles_output()
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc,
             .banner-home .service-thumb-item:hover .thumb-title,
             .banner-home .service-thumb-item:hover .thumb-desc {
-                color: #0d6e2e !important;
+                color: #044b25 !important;
             }
 
             /* CỘT 3: TIN TỨC MỚI NHẤT & SHOWROOM */
@@ -1107,7 +1107,7 @@ function gobike_custom_styles_output()
                 font-size: 14px !important;
                 font-weight: 700 !important;
                 text-transform: uppercase !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 margin: 0 !important;
                 line-height: 1.2 !important;
             }
@@ -1115,7 +1115,7 @@ function gobike_custom_styles_output()
             .banner-home .news-header-more {
                 font-size: 12px !important;
                 font-weight: 600 !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 text-decoration: none !important;
                 display: inline-flex !important;
                 align-items: center !important;
@@ -1126,7 +1126,7 @@ function gobike_custom_styles_output()
 
             .banner-home .news-header-more:hover {
                 text-decoration: underline !important;
-                color: #149d29 !important;
+                color: #044b25 !important;
             }
 
             .banner-home .gobike-news-list {
@@ -1198,7 +1198,7 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .news-item-title a:hover {
-                color: #0d6e2e !important;
+                color: #044b25 !important;
             }
 
             .banner-home .news-item-date {
@@ -1359,7 +1359,7 @@ function gobike_custom_styles_output()
             .banner-home .banner-home-pagination .swiper-pagination-bullet-active {
                 width: 22px !important;
                 opacity: 1 !important;
-                background: #149d29 !important;
+                background: #044b25 !important;
             }
         }
 
@@ -1405,7 +1405,7 @@ function gobike_custom_styles_output()
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #149d29;
+            border-bottom: 2px solid #044b25;
             padding-bottom: 8px;
             margin-bottom: 16px;
             gap: 15px;
@@ -1422,7 +1422,7 @@ function gobike_custom_styles_output()
             width: 28px;
             height: 28px;
             border-radius: 6px;
-            background: #149d29;
+            background: #044b25;
             color: #fff;
             display: inline-flex;
             align-items: center;
@@ -1440,13 +1440,13 @@ function gobike_custom_styles_output()
         }
 
         .gobike-category-block-wrapper .block-title a {
-            color: #149d29;
+            color: #044b25;
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         .gobike-category-block-wrapper .block-title a:hover {
-            color: #149d29;
+            color: #044b25;
         }
 
         .gobike-category-block-wrapper .block-slogan {
@@ -1459,7 +1459,7 @@ function gobike_custom_styles_output()
         .gobike-category-block-wrapper .header-right .view-all-link {
             font-size: 13.5px;
             font-weight: 700;
-            color: #149d29;
+            color: #044b25;
             text-decoration: none;
             white-space: nowrap;
             display: inline-flex;
@@ -1469,7 +1469,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-category-block-wrapper .header-right .view-all-link:hover {
-            color: #149d29;
+            color: #044b25;
             transform: translateX(3px);
         }
 
@@ -1535,7 +1535,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-pcard:hover {
-            border-color: #149d29;
+            border-color: #044b25;
             box-shadow: none !important;
             transform: translateY(-2px);
         }
@@ -1621,7 +1621,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-pcard-title a:hover {
-            color: #149d29;
+            color: #044b25;
         }
 
         /* 3 Thông số có icon (GPS km, kg, W) - 3 cột bằng nhau, cắt chữ dài thành dấu chấm */
@@ -1653,7 +1653,7 @@ function gobike_custom_styles_output()
             flex-shrink: 0;
             width: 16px;
             height: 16px;
-            color: #149d29;
+            color: #044b25;
         }
 
         .gobike-pcard-specs .spec-badge span {
@@ -1738,8 +1738,8 @@ function gobike_custom_styles_output()
             display: block;
             width: 100%;
             text-align: center;
-            border: 1px solid #149d29;
-            color: #149d29;
+            border: 1px solid #044b25;
+            color: #044b25;
             background: #ffffff;
             padding: 6px 8px;
             border-radius: 4px;
@@ -1753,7 +1753,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-pcard-btn:hover {
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
             box-shadow: none !important;
         }
@@ -1802,7 +1802,7 @@ function gobike_custom_styles_output()
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 80% 20%, rgba(20, 157, 41, 0.25) 0%, transparent 60%);
+            background: radial-gradient(circle at 80% 20%, rgba(4, 75, 37, 0.25) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -1849,7 +1849,7 @@ function gobike_custom_styles_output()
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: #149d29;
+            background: #044b25;
             color: #fff;
             display: inline-flex;
             align-items: center;
@@ -1865,7 +1865,7 @@ function gobike_custom_styles_output()
             justify-content: center;
             gap: 6px;
             background: #ffffff;
-            color: #149d29 !important;
+            color: #044b25 !important;
             font-size: 12.5px;
             font-weight: 700;
             padding: 8px 18px;
@@ -1960,7 +1960,7 @@ function gobike_custom_styles_output()
 
             .gobike-cat-pagination .swiper-pagination-bullet-active {
                 width: 22px !important;
-                background: #149d29 !important;
+                background: #044b25 !important;
                 border-radius: 4px !important;
                 opacity: 1 !important;
             }
@@ -2176,15 +2176,15 @@ function gobike_custom_styles_output()
         }
 
         .brand-tab-btn:hover {
-            border-color: #149d29;
-            color: #149d29;
+            border-color: #044b25;
+            color: #044b25;
             background: #f0fbf2;
         }
 
         .brand-tab-btn.active {
-            background: #149d29;
+            background: #044b25;
             color: #fff;
-            border-color: #149d29;
+            border-color: #044b25;
             box-shadow: none !important;
         }
 
@@ -2555,8 +2555,8 @@ function gobike_custom_styles_output()
             white-space: nowrap !important;
             box-sizing: border-box !important;
             cursor: pointer !important;
-            background-color: var(--primary-color, #149D29) !important;
-            border: 1px solid var(--primary-color, #149D29) !important;
+            background-color: var(--primary-color, #044b25) !important;
+            border: 1px solid var(--primary-color, #044b25) !important;
             color: #fff !important;
         }
 
@@ -3365,7 +3365,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-related-wrapper .product-small .title-wrapper a:hover {
-            color: var(--primary-color, #149D29) !important;
+            color: var(--primary-color, #044b25) !important;
         }
 
         .gobike-related-wrapper .product-small .price-wrapper {
@@ -3390,7 +3390,7 @@ function gobike_custom_styles_output()
 
         .gobike-related-wrapper .product-small .price ins span.amount,
         .gobike-related-wrapper .product-small .price>span.amount {
-            color: var(--primary-color, #149D29) !important;
+            color: var(--primary-color, #044b25) !important;
             font-weight: 700 !important;
             font-size: 15px !important;
         }
@@ -3586,8 +3586,8 @@ function gobike_custom_styles_output()
         /* Hover vào tab */
         #row-1141733086 .tabbed-content>ul.nav>li.tab:not(.active)>a:hover,
         .pv-row-custom .tabbed-content>ul.nav>li.tab:not(.active)>a:hover {
-            border-color: #149d29 !important;
-            color: #149d29 !important;
+            border-color: #044b25 !important;
+            color: #044b25 !important;
             background-color: #f0fdf4 !important;
         }
 
@@ -3596,10 +3596,10 @@ function gobike_custom_styles_output()
         #row-1141733086 .tabbed-content>ul.nav>li.tab>a[aria-selected="true"],
         .pv-row-custom .tabbed-content>ul.nav>li.tab.active>a,
         .pv-row-custom .tabbed-content>ul.nav>li.tab>a[aria-selected="true"] {
-            background: #149d29 !important;
-            background-color: #149d29 !important;
+            background: #044b25 !important;
+            background-color: #044b25 !important;
             color: #ffffff !important;
-            border-color: #149d29 !important;
+            border-color: #044b25 !important;
             font-weight: 600 !important;
             box-shadow: none !important;
         }
@@ -3703,7 +3703,7 @@ function gobike_custom_styles_output()
 
         .vp-blog-hot-custom .post-title a:hover,
         .pv-row-custom .tab-panels .col.large-6:first-child .post-title a:hover {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         /* Khối thứ 2: Mỗi bài viết con là 1 card nhỏ riêng biệt có viền và bo góc */
@@ -3786,7 +3786,7 @@ function gobike_custom_styles_output()
 
         .vp-blog-custom .post-title a:hover,
         .pv-row-custom .tab-panels .col.large-6:last-child .post-title a:hover {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         /* Nút 'Đọc thêm' / 'Đọc bài viết' màu xanh kèm mũi tên chuẩn thiết kế */
@@ -3795,7 +3795,7 @@ function gobike_custom_styles_output()
             display: inline-flex !important;
             align-items: center !important;
             gap: 4px !important;
-            color: #149d29 !important;
+            color: #044b25 !important;
             font-size: 13px !important;
             font-weight: 700 !important;
             text-decoration: none !important;
@@ -3945,7 +3945,7 @@ function gobike_custom_styles_output()
 
         .vp-category-list>.col>.col-inner:hover,
         #row-1732247694>.col>.col-inner:hover {
-            border-color: #149d29 !important;
+            border-color: #044b25 !important;
         }
 
         .vp-category-list .icon-box,
@@ -3977,7 +3977,7 @@ function gobike_custom_styles_output()
 
         .vp-category-list>.col>.col-inner:hover .icon-box-text h3,
         #row-1732247694>.col>.col-inner:hover .icon-box-text h3 {
-            color: #149d29 !important;
+            color: #044b25 !important;
         }
 
         /* ==========================================================================
@@ -4100,7 +4100,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-product-card-v2 .card-product-title a:hover {
-            color: #149d29;
+            color: #044b25;
         }
 
         .gobike-product-card-v2 .card-product-subtitle {
@@ -4160,7 +4160,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-product-card-v2 .spec-icon {
-            color: #149d29;
+            color: #044b25;
             flex-shrink: 0;
         }
 
@@ -4184,7 +4184,7 @@ function gobike_custom_styles_output()
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
             border-radius: 8px;
             font-size: 13px;
@@ -4194,7 +4194,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-product-card-v2 .btn-detail-action:hover {
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
             box-shadow: none !important;
         }
@@ -4206,15 +4206,15 @@ function gobike_custom_styles_output()
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1.5px solid #149d29;
+            border: 1.5px solid #044b25;
             background: #ffffff;
-            color: #149d29 !important;
+            color: #044b25 !important;
             border-radius: 8px;
             transition: all 0.2s ease;
         }
 
         .gobike-product-card-v2 .btn-cart-action:hover {
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
         }
 
@@ -4287,7 +4287,7 @@ function gobike_custom_styles_output()
 
         .gobike-shop-hero-banner .hero-hotspot-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 75, 40, 0.3);
+            box-shadow: 0 6px 16px rgba(4, 75, 37, 0.3);
         }
 
         .gobike-shop-hero-banner.has-custom-img {
@@ -4330,7 +4330,7 @@ function gobike_custom_styles_output()
         .gobike-shop-hero-banner .hero-slogan {
             font-size: 15px;
             font-weight: 600;
-            color: #149d29;
+            color: #044b25;
             margin-bottom: 10px;
             line-height: 1.4;
         }
@@ -4353,7 +4353,7 @@ function gobike_custom_styles_output()
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
             padding: 10px 22px;
             border-radius: 8px;
@@ -4361,13 +4361,13 @@ function gobike_custom_styles_output()
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(20, 157, 41, 0.25);
+            box-shadow: 0 4px 12px rgba(4, 75, 37, 0.25);
         }
 
         .gobike-shop-hero-banner .hero-btn-primary:hover {
-            background: #0d6e2e;
+            background: #044b25;
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(20, 157, 41, 0.35);
+            box-shadow: 0 6px 16px rgba(4, 75, 37, 0.35);
         }
 
         .gobike-shop-hero-banner .hero-btn-outline {
@@ -4375,8 +4375,8 @@ function gobike_custom_styles_output()
             align-items: center;
             gap: 6px;
             background: #ffffff;
-            border: 1.5px solid #149d29;
-            color: #149d29 !important;
+            border: 1.5px solid #044b25;
+            color: #044b25 !important;
             padding: 9px 20px;
             border-radius: 8px;
             font-size: 13.5px;
@@ -4386,7 +4386,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-shop-hero-banner .hero-btn-outline:hover {
-            background: #149d29;
+            background: #044b25;
             color: #ffffff !important;
         }
 
@@ -4423,7 +4423,7 @@ function gobike_custom_styles_output()
             min-width: 62px;
             border-radius: 50%;
             background: #e8f7ee;
-            color: #149d29;
+            color: #044b25;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -4478,7 +4478,7 @@ function gobike_custom_styles_output()
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #149d29;
+            color: #044b25;
         }
 
         .gobike-sidebar-filter-wrapper .filter-title {
@@ -4602,7 +4602,7 @@ function gobike_custom_styles_output()
 
         .gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="checkbox"],
         .gobike-sidebar-filter-wrapper .filter-checkbox-item input[type="radio"] {
-            accent-color: #149d29;
+            accent-color: #044b25;
             width: 15px;
             height: 15px;
             margin: 0;
@@ -4638,7 +4638,7 @@ function gobike_custom_styles_output()
         .gobike-sidebar-filter-wrapper .gobike-apply-filter-btn {
             width: 100%;
             height: 40px;
-            background: #149d29;
+            background: #044b25;
             color: #ffffff;
             border: none;
             border-radius: 8px;
@@ -4650,7 +4650,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-sidebar-filter-wrapper .gobike-apply-filter-btn:hover {
-            background: #149d29;
+            background: #044b25;
         }
 
         .gobike-support-hotline-box {
@@ -4671,7 +4671,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-support-hotline-box .support-icon {
-            color: #046a38;
+            color: #044b25;
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -4708,7 +4708,7 @@ function gobike_custom_styles_output()
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background: #046a38;
+            background: #044b25;
             color: #ffffff !important;
             padding: 9px 16px;
             border-radius: 6px;
@@ -4721,7 +4721,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-support-hotline-box .support-phone-btn:hover {
-            background: #03522b;
+            background: #03381b;
             color: #ffffff !important;
         }
 
@@ -4821,7 +4821,7 @@ function gobike_custom_styles_output()
 
         .gobike-shop-toolbar select.orderby:hover,
         .gobike-shop-toolbar select.orderby:focus {
-            border-color: #149d29 !important;
+            border-color: #044b25 !important;
         }
 
         .gobike-shop-toolbar .sort-select-arrow {
@@ -4858,12 +4858,12 @@ function gobike_custom_styles_output()
 
         .gobike-shop-toolbar .btn-view-mode.active,
         .gobike-shop-toolbar .btn-view-mode.btn-view-grid.active {
-            background: #149d29;
+            background: #044b25;
             color: #ffffff;
         }
 
         .gobike-shop-toolbar .btn-view-mode:hover:not(.active) {
-            color: #149d29;
+            color: #044b25;
             background: #f8fafc;
         }
 
@@ -4950,7 +4950,7 @@ function gobike_custom_styles_output()
             min-width: 56px;
             border-radius: 50%;
             background: #e8f7ee;
-            color: #149d29;
+            color: #044b25;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -5133,7 +5133,7 @@ function gobike_custom_styles_output()
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            color: #044b2a;
+            color: #044b25;
         }
 
         .gobike-showrooms-section .contact-card-icon svg {
@@ -5169,7 +5169,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-showrooms-section .card-contact .hotline-number:hover {
-            color: #044b2a !important;
+            color: #044b25 !important;
         }
 
         .gobike-showrooms-section .card-contact .hotline-time {
@@ -5183,7 +5183,7 @@ function gobike_custom_styles_output()
             font-size: 13.5px;
             font-weight: 600;
             color: #ffffff !important;
-            background: #044b2a;
+            background: #044b25;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -5194,13 +5194,13 @@ function gobike_custom_styles_output()
             width: 100%;
             box-sizing: border-box;
             transition: all 0.25s ease;
-            box-shadow: 0 2px 6px rgba(4, 75, 42, 0.15);
+            box-shadow: 0 2px 6px rgba(4, 75, 37, 0.15);
         }
 
         .gobike-showrooms-section .card-contact .map-link-btn:hover {
             background: #03381f;
             transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(4, 75, 42, 0.3);
+            box-shadow: 0 4px 14px rgba(4, 75, 37, 0.3);
             color: #ffffff !important;
             text-decoration: none;
         }
@@ -5395,7 +5395,7 @@ function gobike_custom_styles_output()
 
             .header-search-form form.searchform:focus-within,
             .header form.searchform:focus-within {
-                border-color: #149d29 !important;
+                border-color: #044b25 !important;
                 box-shadow: none !important;
             }
 
@@ -5460,8 +5460,8 @@ function gobike_custom_styles_output()
             .header form.searchform .ux-search-submit,
             .header form.searchform .button.submit-button,
             .searchform .button.submit-button {
-                background: #0d6e2e !important;
-                background-color: #0d6e2e !important;
+                background: #044b25 !important;
+                background-color: #044b25 !important;
                 border: none !important;
                 border-radius: 6px !important;
                 width: 38px !important;
@@ -5486,8 +5486,8 @@ function gobike_custom_styles_output()
             .header form.searchform .ux-search-submit:hover,
             .header form.searchform .button.submit-button:hover,
             .searchform .button.submit-button:hover {
-                background: #149d29 !important;
-                background-color: #149d29 !important;
+                background: #044b25 !important;
+                background-color: #044b25 !important;
                 color: #ffffff !important;
                 transform: none !important;
                 box-shadow: none !important;
@@ -5563,7 +5563,7 @@ function gobike_custom_styles_output()
             .section_list_showroom h3 {
                 font-size: 22px !important;
                 font-weight: 700 !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 margin-top: 0 !important;
                 margin-bottom: 22px !important;
                 text-transform: none !important;
@@ -5638,7 +5638,7 @@ function gobike_custom_styles_output()
             .tab_list_showroom .nav-vertical>li.tab.active,
             .tab_list_showroom ul.nav li.tab.active {
                 background: #ffffff !important;
-                border-left: 3px solid #0d6e2e !important;
+                border-left: 3px solid #044b25 !important;
                 /* Chỉ thị xanh tinh tế ở mép trái */
                 padding-left: 15px !important;
                 box-shadow: none !important;
@@ -5658,7 +5658,7 @@ function gobike_custom_styles_output()
             .tab_list_showroom .ch_title {
                 font-size: 14.5px !important;
                 font-weight: 700 !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 line-height: 1.45 !important;
                 margin-bottom: 8px !important;
                 text-decoration: none !important;
@@ -5734,7 +5734,7 @@ function gobike_custom_styles_output()
             }
 
             .tab_list_showroom .link_chiduong:hover {
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 text-decoration: underline !important;
             }
 
@@ -5859,8 +5859,8 @@ function gobike_custom_styles_output()
             }
 
             .vp-slide-cat-custom .col-inner:hover {
-                border-color: #149d29 !important;
-                box-shadow: 0 4px 14px rgba(20, 157, 41, 0.12) !important;
+                border-color: #044b25 !important;
+                box-shadow: 0 4px 14px rgba(4, 75, 37, 0.12) !important;
             }
 
             .vp-slide-cat-custom .icon-box,
@@ -5935,7 +5935,7 @@ function gobike_custom_styles_output()
             }
 
             .vp-slide-cat-custom .col-inner:hover .icon-box-text h3 {
-                color: #149d29 !important;
+                color: #044b25 !important;
             }
 
             .vp-slide-cat-custom .icon-box-text p {
@@ -6407,7 +6407,7 @@ function gobike_custom_styles_output()
                 width: 100% !important;
                 max-width: 380px !important;
                 padding: 11px 24px !important;
-                background: linear-gradient(180deg, #0d7030 0%, #064e20 100%) !important;
+                background: linear-gradient(180deg, #044b25 0%, #03381b 100%) !important;
                 color: #ffffff !important;
                 font-size: 13.5px !important;
                 font-weight: 700 !important;
@@ -6427,7 +6427,7 @@ function gobike_custom_styles_output()
 
             .gobike-btn-explore:hover,
             .gobike-btn-explore:active {
-                background: linear-gradient(180deg, #0f7e36 0%, #095925 100%) !important;
+                background: linear-gradient(180deg, #044b25 0%, #044b25 100%) !important;
                 color: #ffffff !important;
             }
 

@@ -95,7 +95,7 @@ body.single-post #main,
 }
 
 .post-cat-badge:hover {
-    background-color: #0d7030;
+    background-color: #044b25;
 }
 
 .post-publish-date {
@@ -180,7 +180,7 @@ body.single-post #main,
 }
 
 .meta-metric-item svg {
-    color: #0d7030;
+    color: #044b25;
     flex-shrink: 0;
 }
 
@@ -203,7 +203,7 @@ body.single-post #main,
 }
 
 .btn-share-post svg {
-    color: #0d7030;
+    color: #044b25;
 }
 
 /* ==========================================================================
@@ -275,7 +275,7 @@ body.single-post #main,
 }
 
 .toc-icon {
-    color: #0d7030;
+    color: #044b25;
     margin-top: 1px;
 }
 
@@ -320,12 +320,12 @@ body.single-post #main,
 .toc-link::before {
     content: counter(toc-counter) ".";
     font-weight: 600;
-    color: #0d7030;
+    color: #044b25;
     flex-shrink: 0;
 }
 
 .toc-link:hover {
-    color: #0d7030;
+    color: #044b25;
     text-decoration: underline;
 }
 
@@ -424,7 +424,7 @@ body.single-post #main,
 .post-body-content blockquote,
 .post-article-quote {
     background: #f8fafc;
-    border-left: 4px solid #0d7030;
+    border-left: 4px solid #044b25;
     border-radius: 0 12px 12px 0;
     padding: 16px 20px;
     margin: 26px 0;
@@ -448,7 +448,7 @@ body.single-post #main,
 
 .quote-mark {
     font-size: 28px;
-    color: #0d7030;
+    color: #044b25;
     line-height: 1;
     font-family: Georgia, serif;
     flex-shrink: 0;
@@ -456,7 +456,7 @@ body.single-post #main,
 
 .quote-author {
     font-size: 13.5px;
-    color: #0d7030;
+    color: #044b25;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -488,8 +488,8 @@ body.single-post #main,
 }
 
 .btn-toggle-post-content:hover {
-    background-color: #0d7030;
-    box-shadow: 0 6px 18px rgba(13, 112, 48, 0.35);
+    background-color: #044b25;
+    box-shadow: 0 6px 18px rgba(4, 75, 37, 0.35);
     transform: translateY(-1px);
 }
 
@@ -524,7 +524,7 @@ body.single-post #main,
 }
 
 .tags-label svg {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .post-tag-pill {
@@ -569,7 +569,7 @@ body.single-post #main,
 }
 
 .section-title-heading svg {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .section-view-all-link {
@@ -578,7 +578,7 @@ body.single-post #main,
     gap: 4px;
     font-size: 13px;
     font-weight: 600;
-    color: #0d7030;
+    color: #044b25;
     text-decoration: none;
     transition: all 0.2s ease;
 }
@@ -629,7 +629,7 @@ body.single-post #main,
 }
 
 .prod-badge.hot {
-    background-color: #0d7030;
+    background-color: #044b25;
     color: #ffffff;
 }
 
@@ -674,7 +674,7 @@ body.single-post #main,
 }
 
 .prod-title a:hover {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .prod-cat-type {
@@ -700,7 +700,7 @@ body.single-post #main,
 }
 
 .spec-chip svg {
-    color: #0d7030;
+    color: #044b25;
     flex-shrink: 0;
 }
 
@@ -750,7 +750,7 @@ body.single-post #main,
 }
 
 .btn-add-cart-mini:hover {
-    background-color: #0d7030;
+    background-color: #044b25;
     transform: scale(1.08);
 }
 
@@ -832,7 +832,7 @@ body.single-post #main,
 }
 
 .related-news-card:hover .rel-title {
-    color: #0d7030;
+    color: #044b25;
 }
 
 /* ==========================================================================
@@ -862,7 +862,7 @@ body.single-post #main,
 }
 
 .widget-title-row svg {
-    color: #0d7030;
+    color: #044b25;
     flex-shrink: 0;
 }
 
@@ -881,8 +881,8 @@ body.single-post #main,
 }
 
 .widget-search-form:focus-within {
-    border-color: #005a36 !important;
-    box-shadow: 0 0 0 2px rgba(0, 90, 54, 0.1) !important;
+    border-color: #044b25 !important;
+    box-shadow: 0 0 0 2px rgba(4, 75, 37, 0.1) !important;
 }
 
 .widget-search-form input[type="text"],
@@ -911,7 +911,7 @@ body.single-post #main,
     height: 38px !important;
     min-width: 38px !important;
     min-height: 38px !important;
-    background-color: #005a36 !important;
+    background-color: #044b25 !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 6px !important;
@@ -927,7 +927,7 @@ body.single-post #main,
 }
 
 .widget-search-btn:hover {
-    background-color: #085623 !important;
+    background-color: #03381b !important;
 }
 
 .widget-search-btn svg {
@@ -993,7 +993,7 @@ body.single-post #main,
 }
 
 .widget-post-item:hover .widget-post-title {
-    color: #0d7030;
+    color: #044b25;
 }
 
 .widget-post-date {
@@ -1063,7 +1063,7 @@ body.single-post #main,
 
 .btn-banner-action:hover {
     background: #f0fdf4;
-    color: #0d7030;
+    color: #044b25;
     transform: translateY(-1px);
 }
 
@@ -1079,7 +1079,7 @@ body.single-post #main,
 
 .newsletter-icon-wrap {
     margin-bottom: 10px;
-    color: #0d7030;
+    color: #044b25;
 }
 
 .newsletter-title {
@@ -1129,14 +1129,14 @@ body.single-post #main,
 
 .widget-newsletter-card .newsletter-form-row input[type="email"]:focus,
 .newsletter-input:focus {
-    border-color: #005a36 !important;
-    box-shadow: 0 0 0 2px rgba(0, 90, 54, 0.1) !important;
+    border-color: #044b25 !important;
+    box-shadow: 0 0 0 2px rgba(4, 75, 37, 0.1) !important;
 }
 
 .widget-newsletter-card .btn-newsletter-submit,
 .btn-newsletter-submit {
     height: 42px !important;
-    background-color: #005a36 !important;
+    background-color: #044b25 !important;
     color: #ffffff !important;
     border: none !important;
     border-radius: 8px !important;
@@ -1156,7 +1156,7 @@ body.single-post #main,
 
 .widget-newsletter-card .btn-newsletter-submit:hover,
 .btn-newsletter-submit:hover {
-    background-color: #085623 !important;
+    background-color: #03381b !important;
 }
 
 .newsletter-privacy-text {
@@ -1190,7 +1190,7 @@ body.single-post #main,
     height: 36px;
     border-radius: 50%;
     background: #f0fdf4;
-    color: #0d7030;
+    color: #044b25;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1338,7 +1338,7 @@ body.single-post #main,
 }
 
 .btn-copy-link:hover {
-    background: #0d7030;
+    background: #044b25;
 }
 
 /* ==========================================================================
@@ -1543,7 +1543,7 @@ body.single-post #main,
 }
 
 .newsletter-bar-icon svg {
-    stroke: #0d7030;
+    stroke: #044b25;
 }
 
 .newsletter-bar-title {
@@ -1585,8 +1585,8 @@ body.single-post #main,
 
 .newsletter-bar-input:focus {
     background: #ffffff;
-    border-color: #0d7030;
-    box-shadow: 0 0 0 3px rgba(13, 112, 48, 0.12);
+    border-color: #044b25;
+    box-shadow: 0 0 0 3px rgba(4, 75, 37, 0.12);
 }
 
 .btn-newsletter-bar-submit {
@@ -1605,7 +1605,7 @@ body.single-post #main,
 }
 
 .btn-newsletter-bar-submit:hover {
-    background: #0d7030;
+    background: #044b25;
     transform: translateY(-1px);
 }
 

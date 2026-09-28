@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.16.56
+Version: 3.16.57
 */
 
 /*****************************************************************************
@@ -14,17 +14,25 @@ Version: 3.16.56
  * - footer-style.css  : Toàn bộ CSS Chân trang, Menu điều hướng đáy Mobile (App-style)
  *****************************************************************************/
 
-@import url('header-style.css?v=3.16.33');
-@import url('product-style.css?v=3.16.44');
-@import url('footer-style.css?v=3.16.33');
-@import url('video-review-style.css?v=3.16.33');
-@import url('video-detail-style.css?v=3.16.33');
-@import url('customer-experience-style.css?v=3.16.33');
-@import url('single-post-style.css?v=3.16.33');
+@import url('header-style.css?v=3.16.57');
+@import url('product-style.css?v=3.16.57');
+@import url('footer-style.css?v=3.16.57');
+@import url('video-review-style.css?v=3.16.57');
+@import url('video-detail-style.css?v=3.16.57');
+@import url('customer-experience-style.css?v=3.16.57');
+@import url('single-post-style.css?v=3.16.57');
 
 /*****************************************************************************
- * GLOBAL & GENERAL RESETS / UTILITIES
+ * GLOBAL BRAND COLORS & GENERAL RESETS / UTILITIES
  *****************************************************************************/
+:root {
+    --primary-color: #044b25 !important;
+    --gobike-primary: #044b25 !important;
+    --gobike-primary-hover: #03381b !important;
+    --gb-vr-primary: #044b25 !important;
+    --gb-vr-primary-hover: #03381b !important;
+}
+
 html body {
     font-size: 14px;
 }

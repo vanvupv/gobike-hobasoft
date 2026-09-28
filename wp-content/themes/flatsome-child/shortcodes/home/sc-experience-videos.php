@@ -470,14 +470,14 @@ function gobike_render_experience_shorts_modal_footer()
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        color: #149d29;
+        color: #044b25;
         font-size: 14.5px;
         font-weight: 700;
         text-decoration: none;
         transition: transform 0.2s, color 0.2s;
     }
     .gev-view-all:hover {
-        color: #149d29;
+        color: #044b25;
         transform: translateX(3px);
     }
 
@@ -745,7 +745,7 @@ function gobike_render_experience_shorts_modal_footer()
         line-height: 1.25 !important;
     }
     .gev-prod-name a:hover {
-        color: #149d29 !important;
+        color: #044b25 !important;
     }
     /* DANH MỤC 14PX */
     .gev-prod-cat {
@@ -800,7 +800,7 @@ function gobike_render_experience_shorts_modal_footer()
         border-radius: 50% !important;
         background: #ecfdf5 !important;
         border: 1px solid #a7f3d0 !important;
-        color: #149d29 !important;
+        color: #044b25 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -814,9 +814,9 @@ function gobike_render_experience_shorts_modal_footer()
         box-shadow: none !important;
     }
     .gev-prod-cart-btn:hover {
-        background: #149d29 !important;
+        background: #044b25 !important;
         color: #ffffff !important;
-        border-color: #149d29 !important;
+        border-color: #044b25 !important;
         transform: none !important;
     }
     .gev-prod-cart-btn .gev-cart-icon-loading,
@@ -837,8 +837,8 @@ function gobike_render_experience_shorts_modal_footer()
         animation: gevSpin 0.7s linear infinite !important;
     }
     .gev-prod-cart-btn.added {
-        background: #149d29 !important;
-        border-color: #149d29 !important;
+        background: #044b25 !important;
+        border-color: #044b25 !important;
         color: #ffffff !important;
     }
     .gev-prod-cart-btn.added .gev-cart-icon-default {
@@ -873,7 +873,7 @@ function gobike_render_experience_shorts_modal_footer()
         position: fixed;
         bottom: 24px;
         right: 24px;
-        background: #149d29;
+        background: #044b25;
         color: #ffffff;
         padding: 12px 18px;
         border-radius: 10px;
@@ -918,11 +918,11 @@ function gobike_render_experience_shorts_modal_footer()
         }
         .gev-main-title {
             font-size: 18px !important;
-            color: #0d6e2e !important;
+            color: #044b25 !important;
             margin: 0 !important;
         }
         .gev-view-all {
-            color: #0d6e2e !important;
+            color: #044b25 !important;
             font-size: 13px !important;
             font-weight: 600 !important;
             display: inline-flex !important;

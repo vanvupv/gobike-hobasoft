@@ -714,7 +714,7 @@ if ($latest_posts_query->have_posts()) {
             <div class="newsletter-bar-inner">
                 <div class="newsletter-bar-left">
                     <div class="newsletter-bar-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0d7030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </div>
                     <div class="newsletter-bar-text">
                         <h4 class="newsletter-bar-title">Nhận tin tức &amp; ưu đãi mới nhất từ GoBike</h4>

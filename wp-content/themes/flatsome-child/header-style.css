@@ -6,10 +6,10 @@
  */
 
 /* ==========================================================================
-   1. TOPBAR GOBIKE (#149D29) - HIỆU ỨNG CHỮ CHẠY VÔ TẬN (MARQUEE)
+   1. TOPBAR GOBIKE (#044b25) - HIỆU ỨNG CHỮ CHẠY VÔ TẬN (MARQUEE)
    ========================================================================== */
 .header #top-bar {
-    background-color: #149D29 !important; /* Xanh lá GoBike */
+    background-color: #044b25 !important; /* Xanh lá GoBike */
     background-image: none !important;
     min-height: 34px !important;
     height: 34px !important;
@@ -138,7 +138,7 @@
 .header .header-bottom-nav > li.active > a,
 .header .header-bottom-nav > li.current-menu-item > a,
 .header .header-bottom-nav > li > a:hover {
-    color: #0d6e2e !important;
+    color: #044b25 !important;
 }
 
 /* ==========================================================================
@@ -384,7 +384,7 @@
 .header .gobike-hi-title {
     font-size: 13.5px !important;
     font-weight: 700 !important;
-    color: #0d6e2e !important;
+    color: #044b25 !important;
     white-space: nowrap !important;
 }
 
@@ -480,7 +480,7 @@
 }
 
 .header .searchform .button.submit-button {
-    background-color: #149d29 !important;
+    background-color: #044b25 !important;
     color: #000;
     border-radius: 0 10px 10px 0;
     border: 0;
@@ -871,7 +871,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 
 /* ==========================================================================
    MEGA MENU DANH MỤC SẢN PHẨM - GOBIKE (CHUẨN THEO ẢNH MẪU 2)
-   - Icon to (32px), sắc nét, đậm màu xanh GoBike (#005a36)
+   - Icon to (32px), sắc nét, đậm màu xanh GoBike (#044b25)
    - Tiêu đề & Chữ liên kết MÀU ĐEN THUẦN (#000000), font to rõ ràng
    - Không bị rớt dòng
    ========================================================================== */
@@ -920,7 +920,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    color: #005a36 !important;
+    color: #044b25 !important;
     flex-shrink: 0 !important;
     margin-top: 1px !important;
 }
@@ -955,7 +955,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 }
 
 .gb-mm-title a:hover {
-    color: #005a36 !important;
+    color: #044b25 !important;
 }
 
 .gb-mm-subtitle {
@@ -999,7 +999,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 }
 
 .gb-mm-links li a:hover {
-    color: #005a36 !important;
+    color: #044b25 !important;
     transform: translateX(3px) !important;
 }
 
@@ -1014,7 +1014,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 }
 
 .gb-mm-links li a:hover .gb-mm-chevron {
-    color: #005a36 !important;
+    color: #044b25 !important;
 }
 
 /* Hàng 2: 4 cột tiện ích + Banner */
@@ -1055,7 +1055,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 }
 
 .gb-mm-brands li a:hover {
-    color: #005a36 !important;
+    color: #044b25 !important;
 }
 
 .gb-mm-brand-badge {
@@ -1072,7 +1072,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 }
 
 .badge-phoenix { background-color: #dc2626 !important; }
-.badge-shengmilo { background-color: #16a34a !important; }
+.badge-shengmilo { background-color: #044b25 !important; }
 .badge-burchda { background-color: #2563eb !important; }
 .badge-truongvuong { background-color: #ea580c !important; }
 .badge-rapidx { background-color: #9333ea !important; }
@@ -1082,7 +1082,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
     display: inline-flex !important;
     align-items: center !important;
     gap: 4px !important;
-    color: #005a36 !important;
+    color: #044b25 !important;
     font-size: 13px !important;
     font-weight: 700 !important;
     text-decoration: none !important;
@@ -1105,7 +1105,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
     border-radius: 14px !important;
     overflow: hidden !important;
     min-height: 220px !important;
-    background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%) !important;
+    background: linear-gradient(135deg, #064e3b 0%, #044b25 50%, #044b25 100%) !important;
     display: flex !important;
     align-items: center !important;
     padding: 22px 24px !important;
@@ -1190,7 +1190,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
     width: 15px !important;
     height: 15px !important;
     border-radius: 50% !important;
-    background: #10b981 !important;
+    background: #044b25 !important;
     color: #ffffff !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1217,7 +1217,7 @@ ul.nav-menu-mobile > li > ul.sub-menu::-webkit-scrollbar-track,
 
 .gb-mm-banner-btn:hover {
     background: #f0fdf4 !important;
-    color: #047857 !important;
+    color: #044b25 !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }

@@ -134,22 +134,22 @@ function gobike_get_need_icon_svg($title)
     $t = mb_strtolower($title, 'UTF-8');
     // 1. Đi làm / công sở
     if (strpos($t, 'làm') !== false || strpos($t, 'công sở') !== false) {
-        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>';
+        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>';
     }
     // 2. Học sinh / sinh viên / đi học
     if (strpos($t, 'học') !== false || strpos($t, 'sinh viên') !== false) {
-        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>';
+        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>';
     }
     // 3. Thể thao / leo núi / khám phá
     if (strpos($t, 'thể thao') !== false || strpos($t, 'khám phá') !== false || strpos($t, 'địa hình') !== false) {
-        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>';
+        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>';
     }
     // 4. Gia đình / người lớn tuổi / du lịch
     if (strpos($t, 'gia đình') !== false || strpos($t, 'người lớn') !== false || strpos($t, 'du lịch') !== false || strpos($t, 'dã ngoại') !== false) {
-        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
+        return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>';
     }
     // Fallback: icon xe đạp
-    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d6e2e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5L9 8h2.5"/><path d="M18.5 17.5L15 8h-3.5"/><path d="M12 17.5V11"/><circle cx="12" cy="5.5" r="1.5" fill="#0d6e2e"/></svg>';
+    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#044b25" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5L9 8h2.5"/><path d="M18.5 17.5L15 8h-3.5"/><path d="M12 17.5V11"/><circle cx="12" cy="5.5" r="1.5" fill="#044b25"/></svg>';
 }
 
 /**
@@ -275,7 +275,7 @@ function gobike_render_user_needs_shortcode($atts)
             .needs-main-title {
                 font-size: 17px !important;
                 font-weight: 700 !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 margin: 0 !important;
                 text-transform: uppercase !important;
                 letter-spacing: 0.2px !important;
@@ -284,7 +284,7 @@ function gobike_render_user_needs_shortcode($atts)
             .needs-viewall-link {
                 font-size: 13.5px !important;
                 font-weight: 600 !important;
-                color: #0d6e2e !important;
+                color: #044b25 !important;
                 display: inline-flex !important;
                 align-items: center !important;
                 gap: 4px !important;
@@ -339,7 +339,7 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 .gobike-need-unified-card:hover {
-                    border-color: #149d29 !important;
+                    border-color: #044b25 !important;
                 }
 
                 .need-media-wrap {
@@ -393,7 +393,7 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 .gobike-need-unified-card:hover .need-title {
-                    color: #149d29 !important;
+                    color: #044b25 !important;
                 }
 
                 .need-desc {
@@ -534,7 +534,7 @@ function gobike_render_user_needs_shortcode($atts)
                 }
 
                 .gobike-needs-dots .swiper-pagination-bullet-active {
-                    background: #0d6e2e !important;
+                    background: #044b25 !important;
                     width: 18px !important;
                     border-radius: 5px !important;
                 }

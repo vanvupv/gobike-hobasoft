@@ -182,7 +182,7 @@ footer#footer,
     /* Đổi màu xanh lá khi bấm chọn */
     .footer-menu-mobile ul#menu-footer-menu-mobile li.current-menu-item a.nav-top-link,
     .footer-menu-mobile ul#menu-footer-menu-mobile li.active a.nav-top-link {
-        color: #149D29 !important;
+        color: #044b25 !important;
     }
 
     /* ========================================================
@@ -247,7 +247,7 @@ footer#footer,
 
     .footer-menu-mobile ul#menu-footer-menu-mobile li.open-menu-mobile ul.sub-menu li a:hover {
         background: #eaf7ed !important;
-        color: #149D29 !important;
+        color: #044b25 !important;
     }
 
     /* Mũi tên nhỏ tam giác chỉ xuống nút Danh mục */
