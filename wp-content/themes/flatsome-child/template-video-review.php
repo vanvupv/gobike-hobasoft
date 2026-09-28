@@ -152,7 +152,7 @@ $related_videos = array_slice($videos, 0, 6);
 ?>
 
 <div id="content" role="main" class="content-area gobike-video-review-page">
-    <div class="row">
+    <div class="row vp-row-custom">
         <div class="col large-12">
             <div class="col-inner">
 

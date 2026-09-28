@@ -1230,7 +1230,7 @@
    SECTION 6: HỆ THỐNG SHOWROOM GOBIKE (4 CARD + 1 MAP)
    ========================================================================== */
 .gb-vr-showroom-section {
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .gb-vr-showroom-grid {
@@ -1934,9 +1934,12 @@
     .gb-vr-related-section,
     .gb-vr-playlist-section,
     .gb-vr-products-section,
-    .gb-vr-booking-experience-section,
-    .gb-vr-showroom-section {
+    .gb-vr-booking-experience-section {
         margin-bottom: 12px !important;
+    }
+
+    .gb-vr-showroom-section {
+        margin-bottom: 0px !important;
     }
 
     .gb-vr-section-header {
