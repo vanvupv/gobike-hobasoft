@@ -873,11 +873,10 @@ function gobike_custom_styles_output()
             /* CỘT 1: BANNER DỌC CHẤT LƯỢNG THẬT BỀN VẠN NĂM */
             .banner-home .box_left.gobike-hero-box-left {
                 display: block !important;
-                width: 135px !important;
-                max-width: 135px !important;
-                min-width: 135px !important;
-                flex: 0 0 135px !important;
-                padding: 0 !important;
+                width: 200px !important;
+                max-width: 200px !important;
+                min-width: 200px !important;
+                flex: 0 0 200px !important;
                 margin: 0 !important;
             }
 
@@ -1057,7 +1056,6 @@ function gobike_custom_styles_output()
                 max-width: 315px !important;
                 min-width: 315px !important;
                 flex: 0 0 315px !important;
-                padding: 0 !important;
                 margin: 0 !important;
             }
 
