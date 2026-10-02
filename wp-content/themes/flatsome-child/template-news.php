@@ -212,17 +212,58 @@ if (empty($latest_posts)) {
     $latest_posts = $fallback_latest;
 }
 
-// 3. DANH MỤC 8 CHỦ ĐỀ CHUẨN MẪU (ẢNH 1)
-$news_categories = array(
-    array('slug' => '', 'name_top' => 'Tất cả', 'name_bottom' => '', 'icon' => 'grid'),
-    array('slug' => 'huong-dan-su-dung', 'name_top' => 'Hướng dẫn', 'name_bottom' => 'sử dụng', 'icon' => 'book'),
-    array('slug' => 'kinh-nghiem-di-xe', 'name_top' => 'Kinh nghiệm', 'name_bottom' => 'đi xe', 'icon' => 'bike'),
-    array('slug' => 'suc-khoe-loi-song', 'name_top' => 'Sức khỏe', 'name_bottom' => '& Lối sống', 'icon' => 'heart'),
-    array('slug' => 'du-lich-kham-pha', 'name_top' => 'Du lịch', 'name_bottom' => '& Khám phá', 'icon' => 'mountain'),
-    array('slug' => 'bao-duong-ky-thuat', 'name_top' => 'Bảo dưỡng', 'name_bottom' => '& Kỹ thuật', 'icon' => 'wrench'),
-    array('slug' => 'xu-huong-cong-nghe', 'name_top' => 'Xu hướng', 'name_bottom' => '& Công nghệ', 'icon' => 'cpu'),
-    array('slug' => 'cau-chuyen-gobike', 'name_top' => 'Câu chuyện', 'name_bottom' => 'GoBike', 'icon' => 'users'),
+// 3. DANH MỤC ĐỘNG — Lấy toàn bộ category từ WordPress + ACF fields
+// ACF fields cần tạo trên taxonomy "category":
+//   - cat_icon      (Select): grid, book, bike, heart, mountain, wrench, cpu, users, star, tag
+//   - cat_name_line2 (Text):  Dòng phụ tùy chọn (VD: "sử dụng", "& Lối sống")
+
+// Fallback icon theo slug nếu chưa cài ACF hoặc chưa set field
+$slug_icon_map = array(
+    'huong-dan-su-dung'  => 'book',
+    'kinh-nghiem-di-xe'  => 'bike',
+    'suc-khoe-loi-song'  => 'heart',
+    'du-lich-kham-pha'   => 'mountain',
+    'bao-duong-ky-thuat' => 'wrench',
+    'xu-huong-cong-nghe' => 'cpu',
+    'cau-chuyen-gobike'  => 'users',
 );
+
+// Nút "Tất cả" luôn đứng đầu
+$news_categories = array(
+    array(
+        'slug'        => '',
+        'name_top'    => 'Tất cả',
+        'name_bottom' => '',
+        'icon'        => 'grid',
+    ),
+);
+
+// Lấy toàn bộ category có bài viết (hide_empty = true)
+$wp_categories = get_categories(array(
+    'taxonomy'   => 'category',
+    'hide_empty' => true,
+    'orderby'    => 'menu_order',
+    'order'      => 'ASC',
+));
+
+foreach ($wp_categories as $cat) {
+    // Lấy ACF field nếu có (function_exists để không lỗi khi tắt ACF)
+    $acf_icon  = function_exists('get_field') ? get_field('cat_icon',       'term_' . $cat->term_id) : '';
+    $acf_line2 = function_exists('get_field') ? get_field('cat_name_line2', 'term_' . $cat->term_id) : '';
+
+    // Fallback icon theo slug nếu ACF chưa set
+    if (empty($acf_icon)) {
+        $acf_icon = isset($slug_icon_map[$cat->slug]) ? $slug_icon_map[$cat->slug] : 'tag';
+    }
+
+    $news_categories[] = array(
+        'slug'        => $cat->slug,
+        'name_top'    => $cat->name,
+        'name_bottom' => $acf_line2 ?: '',
+        'icon'        => $acf_icon,
+    );
+}
+
 ?>
 
 <div class="gobike-news-page-wrapper">
@@ -342,7 +383,17 @@ $news_categories = array(
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
+                            <?php elseif ($item['icon'] === 'star'): ?>
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                            <?php else: /* fallback: tag icon */ ?>
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                </svg>
                             <?php endif; ?>
+
                         </div>
                         <div class="cat-card-text">
                             <span class="line-1"><?php echo esc_html($item['name_top']); ?></span>
