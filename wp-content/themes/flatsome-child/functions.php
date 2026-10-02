@@ -1652,3 +1652,19 @@ add_filter('theme_mod_color_primary', function () {
     return '#044b25';
 });
 
+/**
+ * Chống lỗi Fatal PHP 8: DivisionByZeroError trong Flatsome flatsome_presentage_bubble()
+ * Khi sản phẩm được đánh dấu Sale nhưng không có giá Regular hoặc giá bằng 0,
+ * Flatsome chia cho 0 gây crash chết trang (WSOD) khiến trang sản phẩm bị đứt gãy và mất footer.
+ */
+add_filter('theme_mod_sale_bubble_percentage', function ($val) {
+    global $product;
+    if ($product && is_a($product, 'WC_Product')) {
+        $reg = (float) $product->get_regular_price();
+        if ($reg <= 0) {
+            return false;
+        }
+    }
+    return $val;
+});
+
