@@ -43,7 +43,10 @@ if ($video_query->have_posts()) {
             }
         }
         if (!$v_thumb) {
-            $v_thumb = 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg';
+            $v_thumb = get_template_directory_uri() . '/assets/images/video-placeholder.jpg';
+        }
+        if (!$v_thumb) {
+            $v_thumb = wc_placeholder_img_src('large');
         }
 
         $prod_id = get_field('related_product', $pid);
@@ -73,82 +76,11 @@ if ($video_query->have_posts()) {
     wp_reset_postdata();
 }
 
-// Fallback dữ liệu mẫu đẹp mắt nếu CPT chưa có đủ bài viết
-if (count($videos) < 6) {
-    $fallback_samples = array(
-        array(
-            'title'    => 'Trải nghiệm thực tế Phoenix C200: Đạp nhẹ hơn, đi xa hơn',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '08:15',
-            'views'    => '12.5K lượt xem • 3 ngày trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '12/09/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'trai-nghiem-thuc-te',
-        ),
-        array(
-            'title'    => 'So sánh Phoenix C200 và Phoenix S1 – Nên chọn màu nào?',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '12:04',
-            'views'    => '24K lượt xem • 7 ngày trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '05/09/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'so-sanh-xe',
-        ),
-        array(
-            'title'    => 'Hướng dẫn lắp đặt xe đạp trợ lực tại nhà',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '06:42',
-            'views'    => '8.5K lượt xem • 10 ngày trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '01/09/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'huong-dan-su-dung',
-        ),
-        array(
-            'title'    => 'Leo dốc cùng ADO A20 – Không còn là nỗi lo',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '07:21',
-            'views'    => '15K lượt xem • 2 tuần trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '25/08/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'trai-nghiem-thuc-te',
-        ),
-        array(
-            'title'    => '5 lưu ý quan trọng khi mua xe đạp trợ lực điện',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '09:18',
-            'views'    => '18K lượt xem • 2 tuần trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '20/08/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'kinh-nghiem-meo-hay',
-        ),
-        array(
-            'title'    => 'Đánh giá chi tiết Phoenix C200: Hiệu năng vượt mong đợi',
-            'url'      => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            'duration' => '10:24',
-            'views'    => '28K lượt xem • 2 tuần trước',
-            'thumb'    => 'https://gobike.demoweb360.top/wp-content/uploads/2026/08/sua-pin-lithium-ha-noi-o-dau-uy-tin-va-an-toan-cho-nguoi-dung-2491-1.jpg',
-            'date'     => '15/08/2025',
-            'prod_url' => home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/'),
-            'cat_slugs'=> 'trai-nghiem-thuc-te',
-        ),
-    );
-    while (count($videos) < 6) {
-        $sample = $fallback_samples[count($videos) % count($fallback_samples)];
-        $sample['id'] = 9999 + count($videos);
-        $sample['permalink'] = !empty($videos[0]['permalink']) ? $videos[0]['permalink'] : home_url('/video-review/');
-        $videos[] = $sample;
-    }
-}
-
-// Video chính (Hero)
-$hero_video = $videos[0];
-$up_next_videos = array_slice($videos, 1, 5);
-$related_videos = array_slice($videos, 0, 6);
+// Dữ liệu thật 100% — không dùng fallback mẫu
+// Nếu chưa có video nào → hiển thị thông báo trống
+$hero_video     = !empty($videos) ? $videos[0] : null;
+$up_next_videos = count($videos) > 1 ? array_slice($videos, 1, 5) : array();
+$related_videos = count($videos) > 0 ? array_slice($videos, 0, 6) : array();
 ?>
 
 <div id="content" role="main" class="content-area gobike-video-review-page">
@@ -174,6 +106,13 @@ $related_videos = array_slice($videos, 0, 6);
         <!-- ===================================================================
              SECTION 1: HERO VIDEO PLAYER + SIDEBAR MENU + VIDEO TIẾP THEO (ẢNH 1)
              =================================================================== -->
+        <?php if (!$hero_video): ?>
+        <div class="gb-vr-empty-state" style="text-align:center;padding:60px 20px;color:#64748b;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5" style="margin-bottom:16px;"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
+            <h2 style="font-size:20px;color:#334155;margin-bottom:8px;">Chưa có video nào</h2>
+            <p>Vui lòng thêm video review trong trang quản trị WordPress.</p>
+        </div>
+        <?php else: ?>
         <section class="gb-vr-hero-section">
             <div class="gb-vr-hero-grid">
 
@@ -316,6 +255,7 @@ $related_videos = array_slice($videos, 0, 6);
 
             </div>
         </section>
+        <?php endif; /* end $hero_video check */ ?>
 
         <!-- ===================================================================
              SECTION 2: VIDEO LIÊN QUAN (ẢNH 2 - PHẦN TRÊN - 6 CỘT)
