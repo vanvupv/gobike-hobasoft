@@ -29,6 +29,63 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
     require_once __DIR__ . '/inc/news-ajax.php';
 }
 
+// Đăng ký ACF Options Page để get_field('...', 'option') hoạt động
+add_action('acf/init', 'gobike_register_acf_options_page');
+function gobike_register_acf_options_page() {
+    if (!function_exists('acf_add_options_page')) return;
+    acf_add_options_page(array(
+        'page_title' => 'GoBike – Cài đặt chung',
+        'menu_title' => 'GoBike Settings',
+        'menu_slug'  => 'gobike-shop-settings',
+        'capability' => 'manage_options',
+        'icon_url'   => 'dashicons-admin-settings',
+        'position'   => 60,
+        'redirect'   => false,
+    ));
+}
+
+/**
+ * Lấy 3 thông số kỹ thuật nhanh cho product card (Quãng đường, Trọng lượng, Công suất)
+ * Đọc từ ACF trước, sau đó fallback sang attribute hoặc title parsing.
+ */
+function gobike_extract_product_specs($product) {
+    if (!$product) return array('range' => '', 'weight' => '', 'power' => '');
+    $pid = $product->get_id();
+
+    // 1. Đọc từ ACF fields
+    $range  = function_exists('get_field') ? get_field('quang_duong', $pid)    : '';
+    $weight = function_exists('get_field') ? get_field('trong_luong', $pid)    : '';
+    $power  = function_exists('get_field') ? get_field('dong_co', $pid)        : '';
+
+    // 2. Fallback: đọc từ WooCommerce attributes nếu ACF trống
+    if (empty($range)) {
+        $attr = $product->get_attribute('pa_quang-duong');
+        if (!$attr) $attr = $product->get_attribute('quang_duong');
+        $range = $attr ?: '';
+    }
+    if (empty($weight)) {
+        $attr = $product->get_attribute('pa_trong-luong');
+        if (!$attr) $attr = $product->get_attribute('trong_luong');
+        $weight = $attr ?: '';
+    }
+    if (empty($power)) {
+        $attr = $product->get_attribute('pa_dong-co');
+        if (!$attr) $attr = $product->get_attribute('dong_co');
+        // Cố trích công suất từ tên sản phẩm nếu vẫn trống
+        if (!$attr) {
+            preg_match('/\b(\d{2,4})\s*[Ww]\b/', $product->get_name(), $m);
+            $attr = !empty($m[0]) ? $m[0] : '';
+        }
+        $power = $attr ?: '';
+    }
+
+    return array(
+        'range'  => $range,
+        'weight' => $weight,
+        'power'  => $power,
+    );
+}
+
 // Tự động nạp toàn bộ các shortcode và styles trong thư mục shortcodes/home/
 if (is_dir(__DIR__ . '/shortcodes/home')) {
     foreach (glob(__DIR__ . '/shortcodes/home/*.php') as $shortcode_file) {
