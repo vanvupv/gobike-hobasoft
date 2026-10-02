@@ -216,6 +216,7 @@
 .gobike-news-categories-section {
     position: relative;
     margin-top: -42px;
+    margin-bottom: 30px;
     z-index: 10;
     padding-bottom: 24px;
 }
@@ -408,7 +409,8 @@
    5. KHỐI BÀI VIẾT NỔI BẬT (FEATURED NEWS)
    ========================================================================== */
 .gobike-featured-news-section {
-    padding: 20px 0 45px 0;
+    padding: 0;
+    margin-bottom: 30px;
 }
 
 .featured-grid {
@@ -610,7 +612,8 @@
    6. BỐ CỤC CHÍNH 2 CỘT (BÀI MỚI NHẤT + SIDEBAR)
    ========================================================================== */
 .gobike-main-news-section {
-    padding: 20px 0 60px 0;
+    padding: 0;
+    margin-bottom: 30px;
 }
 
 .news-layout-row {
@@ -1048,7 +1051,8 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 0;
 }
 
 .gobike-news-bottom-cta .cta-overlay {
