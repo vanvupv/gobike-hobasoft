@@ -33,26 +33,56 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
 // Dùng WordPress Settings API thay thế - xem gobike_settings_page bên dưới
 
 /**
- * FIX: Footer không hiển thị trên trang Shop/Archive/Single Product WooCommerce
+ * FIX (ROOT CAUSE): Footer DISABLED trên trang Shop và Single Product
  *
- * Nguyên nhân: flatsome_page_footer() ở nhánh else (is_page()=FALSE) dùng
- * footer_block theme mod. Nếu block đó rỗng sau migrate domain → chỉ có
- * copyright bar. Filter theme_mod không đủ mạnh vì có thể bị cached.
+ * NGUYÊN NHÂN ĐÃ XÁC ĐỊNH:
+ * - Trang "Sản Phẩm" (WooCommerce Shop Page) có _footer = 'disabled'
+ *   trong Flatsome Page Options (WP Admin → Pages → Sản Phẩm → Edit).
+ * - Flatsome xử lý shop page như is_page()=TRUE và đọc meta _footer
+ *   → footer bị tắt hoàn toàn.
+ * - Trang single product: dùng footer_block theme mod → block rỗng
+ *   sau migrate → chỉ có copyright bar.
  *
- * Fix mạnh hơn: Hook trực tiếp vào flatsome_footer (priority 5 - TRƯỚC
- * flatsome_page_footer priority 10). Xóa flatsome_page_footer và tự render
- * toàn bộ footer template.
+ * FIX 1: Filter get_post_metadata để override _footer = '' cho shop page
+ * FIX 2: Hook vào flatsome_footer (priority 5) để force render full footer
+ *         trên tất cả WooCommerce pages (backup cho FIX 1)
  */
+
+// FIX 1: Override _footer meta cho WooCommerce Shop Page
+add_filter('get_post_metadata', 'gobike_fix_shop_page_footer_meta', 10, 4);
+function gobike_fix_shop_page_footer_meta($value, $post_id, $meta_key, $single) {
+    if ($meta_key !== '_footer') return $value;
+    if (!function_exists('wc_get_page_id')) return $value;
+
+    // Kiểm tra nếu đây là trang shop của WooCommerce
+    $shop_page_id = (int) wc_get_page_id('shop');
+    if ($shop_page_id > 0 && $post_id === $shop_page_id) {
+        // Trả về '' = Normal footer (override giá trị 'disabled' trong DB)
+        return $single ? '' : array('');
+    }
+    return $value;
+}
+
+// FIX 2: Force full footer template trên tất cả WooCommerce pages
 add_action('flatsome_footer', 'gobike_force_full_footer_on_woo', 5);
 function gobike_force_full_footer_on_woo() {
-    // Chỉ áp dụng cho WooCommerce pages
-    if ( ! function_exists('is_woocommerce') ) return;
-    if ( ! ( is_shop() || is_product_category() || is_product_tag() || is_singular('product') ) ) return;
+    if (!function_exists('is_woocommerce')) return;
 
-    // Xóa flatsome_page_footer để nó không chạy sau (priority 10)
+    $is_woo_page = is_shop()
+        || is_product_category()
+        || is_product_tag()
+        || is_singular('product');
+
+    // Fallback: kiểm tra thủ công nếu is_shop() bị sai do config
+    if (!$is_woo_page && function_exists('wc_get_page_id')) {
+        $shop_id = (int) wc_get_page_id('shop');
+        $is_woo_page = ($shop_id > 0 && $shop_id === (int) get_queried_object_id());
+    }
+
+    if (!$is_woo_page) return;
+
+    // Xóa flatsome_page_footer (sẽ kiểm tra _footer meta) và tự render
     remove_action('flatsome_footer', 'flatsome_page_footer', 10);
-
-    // Render footer đầy đủ trực tiếp (sidebar-footer-1 + sidebar-footer-2 + copyright)
     get_template_part('template-parts/footer/footer');
 }
 
@@ -71,7 +101,6 @@ function gobike_force_full_footer_on_shop($value) {
     }
     return $value;
 }
-
 
 
 /**
