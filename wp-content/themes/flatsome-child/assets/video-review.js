@@ -101,17 +101,59 @@
         // Click Sidebar & Pills Danh mục Lọc Video (lọc cả Video tiếp theo & Video liên quan)
         var catItems = page.querySelectorAll('.gb-vr-cat-item, .gb-vr-pill-item');
         var allVideosToFilter = page.querySelectorAll('.gb-vr-up-next-item, .gb-vr-related-section .gb-vr-video-card');
+
+        // Hàm load video đầu tiên đang hiển thị vào main player
+        function loadFirstVisibleVideoIntoPlayer() {
+            var upNextItems = page.querySelectorAll('.gb-vr-up-next-item.gb-vr-clickable-video');
+            var firstVisible = null;
+            for (var i = 0; i < upNextItems.length; i++) {
+                if (upNextItems[i].style.display !== 'none') {
+                    firstVisible = upNextItems[i];
+                    break;
+                }
+            }
+            if (!firstVisible) return;
+
+            var videoUrl = firstVisible.getAttribute('data-video-url');
+            var title    = firstVisible.getAttribute('data-title');
+            var date     = firstVisible.getAttribute('data-date');
+            var views    = firstVisible.getAttribute('data-views');
+            var prodUrl  = firstVisible.getAttribute('data-prod-url');
+            var thumb    = firstVisible.querySelector('img');
+
+            // Cập nhật cover (thumbnail) — không autoplay ngay khi đổi tab
+            var cover = page.querySelector('.gb-vr-player-cover');
+            if (cover) {
+                if (thumb) cover.style.backgroundImage = 'url(' + thumb.src + ')';
+                cover.setAttribute('data-video-url', videoUrl || '');
+            }
+            // Nếu đang phát iframe → cập nhật src luôn
+            var iframe = mainPlayerBox ? mainPlayerBox.querySelector('iframe') : null;
+            if (iframe && videoUrl) {
+                iframe.src = getYoutubeEmbedUrl(videoUrl);
+            }
+
+            if (title && mainPlayerTitle) mainPlayerTitle.textContent = title;
+            if (date && mainPlayerDate) mainPlayerDate.textContent = date;
+            if (views && mainPlayerViews) mainPlayerViews.textContent = views;
+            if (mainPlayerProdBtn) {
+                mainPlayerProdBtn.href = prodUrl || '#';
+                mainPlayerProdBtn.style.display = prodUrl ? 'inline-flex' : 'none';
+            }
+
+            // Đánh dấu active
+            page.querySelectorAll('.gb-vr-up-next-item.active').forEach(function(el) { el.classList.remove('active'); });
+            firstVisible.classList.add('active');
+        }
+
         catItems.forEach(function(cat) {
             cat.addEventListener('click', function(e) {
                 e.preventDefault();
                 var catSlug = cat.getAttribute('data-cat-slug');
 
+                // Cập nhật active tab
                 catItems.forEach(function(c) {
-                    if (c.getAttribute('data-cat-slug') === catSlug) {
-                        c.classList.add('active');
-                    } else {
-                        c.classList.remove('active');
-                    }
+                    c.classList.toggle('active', c.getAttribute('data-cat-slug') === catSlug);
                 });
 
                 // Lọc video theo slug
@@ -120,15 +162,24 @@
                 } else {
                     allVideosToFilter.forEach(function(v) {
                         var itemCat = v.getAttribute('data-cat-slug') || '';
-                        if (itemCat.indexOf(catSlug) !== -1) {
-                            v.style.display = '';
-                        } else {
-                            v.style.display = 'none';
-                        }
+                        v.style.display = (itemCat.indexOf(catSlug) !== -1) ? '' : 'none';
                     });
                 }
+
+                // Load video đầu tiên của danh mục vào player
+                loadFirstVisibleVideoIntoPlayer();
             });
         });
+
+        // On load: nếu active tab không phải "all" → reset về all để tránh tất cả video bị ẩn
+        var defaultActive = page.querySelector('.gb-vr-cat-item.active, .gb-vr-pill-item.active');
+        if (defaultActive && defaultActive.getAttribute('data-cat-slug') !== 'all') {
+            catItems.forEach(function(c) {
+                c.classList.toggle('active', c.getAttribute('data-cat-slug') === 'all');
+            });
+            allVideosToFilter.forEach(function(v) { v.style.display = ''; });
+        }
+
 
         // Nút Lưu video
         var saveBtn = page.querySelector('.gb-vr-btn-save');
