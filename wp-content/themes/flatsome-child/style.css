@@ -6,24 +6,23 @@ Template: flatsome
 Version: 3.16.72
 */
 
-/*****************************************************************************
- * GOBIKE - MODULAR CSS ARCHITECTURE
- * Các file chuyên biệt được tách riêng để dễ bảo trì và tối ưu hiệu năng:
- * - header-style.css  : Toàn bộ CSS Topbar, Header, Logo, Menu, Search, Mobile Header
- * - product-style.css : Toàn bộ CSS Sản phẩm, Danh mục, Chi tiết, Swatch, Cart, Bộ lọc
- * - footer-style.css  : Toàn bộ CSS Chân trang, Menu điều hướng đáy Mobile (App-style)
- * - news-style.css    : Toàn bộ CSS Trang Tin Tức & Cẩm Nang
- * - single-post-style.css : Toàn bộ CSS Trang Chi Tiết Bài Viết (Single Post)
- *****************************************************************************/
-
-@import url('header-style.css?v=3.16.57');
-@import url('product-style.css?v=3.16.57');
-@import url('footer-style.css?v=3.16.72');
-@import url('news-style.css?v=3.16.68');
-@import url('video-review-style.css?v=3.16.62');
-@import url('video-detail-style.css?v=3.16.64');
-@import url('customer-experience-style.css?v=3.16.63');
-@import url('single-post-style.css?v=3.16.69');
+/**
+ * ==========================================================================
+ * GOBIKE CHILD THEME
+ * CSS loading được quản lý hoàn toàn bởi functions.php (conditional loading)
+ * Không dùng @import ở đây để tránh load thừa và xung đột.
+ * 
+ * Các file CSS tương ứng:
+ * - header-style.css              : Header, Nav, Mobile Header (global)
+ * - footer-style.css              : Footer, Bottom Nav Bar (global)
+ * - product-style.css             : Shop, Archive, Single Product (woocommerce)
+ * - news-style.css                : Trang Tin Tức (template-news.php)
+ * - single-post-style.css         : Chi tiết bài viết (singular post)
+ * - video-review-style.css        : Trang Video Review (template-video-review.php)
+ * - video-detail-style.css        : Chi tiết Video (template-video-detail.php / CPT)
+ * - customer-experience-style.css : Trang Trải nghiệm (template-customer-experience.php)
+ * ==========================================================================
+ */
 
 /*****************************************************************************
  * GLOBAL BRAND COLORS & GENERAL RESETS / UTILITIES

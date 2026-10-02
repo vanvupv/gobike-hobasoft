@@ -12,3 +12,6 @@ if (have_posts()) {
 }
 
 require_once get_stylesheet_directory() . '/template-video-detail.php';
+
+
+

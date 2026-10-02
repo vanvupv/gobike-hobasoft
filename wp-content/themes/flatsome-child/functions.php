@@ -47,28 +47,47 @@ function gobike_enqueue_modular_styles()
     $theme_dir = get_stylesheet_directory();
     $theme_uri = get_stylesheet_directory_uri();
 
+    // -----------------------------------------------------------------------
+    // GLOBAL: Header & Footer — nạp trên tất cả các trang
+    // -----------------------------------------------------------------------
     if (file_exists($theme_dir . '/header-style.css')) {
         wp_enqueue_style('gobike-header-style', $theme_uri . '/header-style.css', array('flatsome-style'), filemtime($theme_dir . '/header-style.css'));
-    }
-    if (file_exists($theme_dir . '/product-style.css')) {
-        wp_enqueue_style('gobike-product-style', $theme_uri . '/product-style.css', array('flatsome-style'), filemtime($theme_dir . '/product-style.css'));
     }
     if (file_exists($theme_dir . '/footer-style.css')) {
         wp_enqueue_style('gobike-footer-style', $theme_uri . '/footer-style.css', array('flatsome-style'), filemtime($theme_dir . '/footer-style.css'));
     }
-    if (file_exists($theme_dir . '/news-style.css')) {
+
+    // -----------------------------------------------------------------------
+    // CONDITIONAL: Chỉ nạp CSS đúng trang cần — không đè lên nhau
+    // -----------------------------------------------------------------------
+
+    // Trang sản phẩm: Shop, Archive danh mục, chi tiết sản phẩm
+    if ((is_shop() || is_product_category() || is_product_tag() || is_singular('product')) && file_exists($theme_dir . '/product-style.css')) {
+        wp_enqueue_style('gobike-product-style', $theme_uri . '/product-style.css', array('flatsome-style'), filemtime($theme_dir . '/product-style.css'));
+    }
+
+    // Trang tin tức (template-news.php)
+    if (is_page_template('template-news.php') && file_exists($theme_dir . '/news-style.css')) {
         wp_enqueue_style('gobike-news-style', $theme_uri . '/news-style.css', array('flatsome-style'), filemtime($theme_dir . '/news-style.css'));
     }
-    if (file_exists($theme_dir . '/single-post-style.css')) {
+
+    // Trang chi tiết bài viết (single post)
+    if (is_singular('post') && file_exists($theme_dir . '/single-post-style.css')) {
         wp_enqueue_style('gobike-single-post-style', $theme_uri . '/single-post-style.css', array('flatsome-style'), filemtime($theme_dir . '/single-post-style.css'));
     }
-    if (file_exists($theme_dir . '/video-review-style.css')) {
+
+    // Trang video review (template-video-review.php)
+    if (is_page_template('template-video-review.php') && file_exists($theme_dir . '/video-review-style.css')) {
         wp_enqueue_style('gobike-video-review-style', $theme_uri . '/video-review-style.css', array('flatsome-style'), filemtime($theme_dir . '/video-review-style.css'));
     }
-    if (file_exists($theme_dir . '/video-detail-style.css')) {
+
+    // Trang chi tiết video (template-video-detail.php & single video_review CPT)
+    if ((is_page_template('template-video-detail.php') || is_singular('video_review')) && file_exists($theme_dir . '/video-detail-style.css')) {
         wp_enqueue_style('gobike-video-detail-style', $theme_uri . '/video-detail-style.css', array('flatsome-style'), filemtime($theme_dir . '/video-detail-style.css'));
     }
-    if (file_exists($theme_dir . '/customer-experience-style.css')) {
+
+    // Trang trải nghiệm khách hàng (template-customer-experience.php)
+    if (is_page_template('template-customer-experience.php') && file_exists($theme_dir . '/customer-experience-style.css')) {
         wp_enqueue_style('gobike-customer-experience-style', $theme_uri . '/customer-experience-style.css', array('flatsome-style'), filemtime($theme_dir . '/customer-experience-style.css'));
     }
 }
