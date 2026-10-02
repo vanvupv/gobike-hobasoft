@@ -1,0 +1,483 @@
+[
+  {
+    "key": "group_gobike_options_shop",
+    "title": "GoBike – Cài đặt Trang Shop",
+    "fields": [
+      {
+        "key": "field_shop_banner_image_1",
+        "label": "Banner Shop 1 – Ảnh",
+        "name": "shop_banner_image_1",
+        "type": "image",
+        "instructions": "Ảnh banner trên trang sản phẩm (bên trái)",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_shop_banner_link_1",
+        "label": "Banner Shop 1 – Link",
+        "name": "shop_banner_link_1",
+        "type": "url",
+        "instructions": "URL khi click vào banner 1",
+        "required": 0,
+        "default_value": "#"
+      },
+      {
+        "key": "field_shop_banner_image_2",
+        "label": "Banner Shop 2 – Ảnh",
+        "name": "shop_banner_image_2",
+        "type": "image",
+        "instructions": "Ảnh banner trên trang sản phẩm (bên phải)",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_shop_banner_link_2",
+        "label": "Banner Shop 2 – Link",
+        "name": "shop_banner_link_2",
+        "type": "url",
+        "instructions": "URL khi click vào banner 2",
+        "required": 0,
+        "default_value": "#"
+      },
+      {
+        "key": "field_shop_bottom_title",
+        "label": "Tiêu đề SEO cuối trang Shop",
+        "name": "shop_bottom_title",
+        "type": "text",
+        "instructions": "Tiêu đề h3 hiển thị phía dưới lưới sản phẩm",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_shop_bottom_content",
+        "label": "Nội dung SEO cuối trang Shop",
+        "name": "shop_bottom_content",
+        "type": "wysiwyg",
+        "instructions": "Nội dung SEO hiển thị phía dưới lưới sản phẩm",
+        "required": 0,
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1
+      }
+    ],
+    "location": [
+      [{ "param": "options_page", "operator": "==", "value": "gobike-shop-settings" }]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  },
+
+  {
+    "key": "group_gobike_options_support",
+    "title": "GoBike – Hộp Hỗ Trợ Khách Hàng (Single Product)",
+    "fields": [
+      {
+        "key": "field_shop_single_support_title",
+        "label": "Tiêu đề hộp hỗ trợ",
+        "name": "shop_single_support_title",
+        "type": "text",
+        "required": 0,
+        "default_value": "Cần tư vấn chọn xe?"
+      },
+      {
+        "key": "field_shop_single_support_image",
+        "label": "Ảnh nhân viên hỗ trợ",
+        "name": "shop_single_support_image",
+        "type": "image",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "thumbnail",
+        "library": "all"
+      },
+      {
+        "key": "field_shop_single_support_phone",
+        "label": "Số điện thoại hỗ trợ",
+        "name": "shop_single_support_phone",
+        "type": "text",
+        "required": 0,
+        "default_value": "0944 988 699"
+      },
+      {
+        "key": "field_shop_single_support_call_text",
+        "label": "Text nút gọi điện",
+        "name": "shop_single_support_call_text",
+        "type": "text",
+        "required": 0,
+        "default_value": "Gọi ngay tư vấn miễn phí"
+      },
+      {
+        "key": "field_shop_single_support_chat_text",
+        "label": "Text giới thiệu chat",
+        "name": "shop_single_support_chat_text",
+        "type": "text",
+        "required": 0,
+        "default_value": "Hoặc nhắn tin qua Zalo"
+      },
+      {
+        "key": "field_shop_single_support_chat_btn_text",
+        "label": "Text nút chat",
+        "name": "shop_single_support_chat_btn_text",
+        "type": "text",
+        "required": 0,
+        "default_value": "Nhắn Zalo ngay"
+      },
+      {
+        "key": "field_shop_single_support_chat_link",
+        "label": "Link chat (Zalo/Messenger)",
+        "name": "shop_single_support_chat_link",
+        "type": "url",
+        "required": 0,
+        "default_value": "https://zalo.me/0944988699"
+      }
+    ],
+    "location": [
+      [{ "param": "options_page", "operator": "==", "value": "gobike-shop-settings" }]
+    ],
+    "menu_order": 20,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  },
+
+  {
+    "key": "group_gobike_options_topbar",
+    "title": "GoBike – Topbar Thông Báo",
+    "fields": [
+      {
+        "key": "field_topbar_item_1",
+        "label": "Topbar item 1",
+        "name": "topbar_item_1",
+        "type": "text",
+        "instructions": "VD: 🚚 Giao nhanh – Miễn phí cho đơn 300k",
+        "required": 0,
+        "default_value": "🚚 Giao nhanh – Miễn phí cho đơn 300k"
+      },
+      {
+        "key": "field_topbar_item_2",
+        "label": "Topbar item 2",
+        "name": "topbar_item_2",
+        "type": "text",
+        "instructions": "VD: 🛡️ Bảo hành 12 tháng chính hãng",
+        "required": 0,
+        "default_value": "🛡️ Bảo hành 12 tháng chính hãng"
+      },
+      {
+        "key": "field_topbar_item_3",
+        "label": "Topbar item 3",
+        "name": "topbar_item_3",
+        "type": "text",
+        "instructions": "VD: 💳 Trả góp 0% – Xuất VAT đầy đủ",
+        "required": 0,
+        "default_value": "💳 Trả góp 0% – Xuất VAT đầy đủ"
+      }
+    ],
+    "location": [
+      [{ "param": "options_page", "operator": "==", "value": "gobike-shop-settings" }]
+    ],
+    "menu_order": 5,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  },
+
+  {
+    "key": "group_gobike_video_review_cpt",
+    "title": "GoBike – Video Review (Thông tin video)",
+    "fields": [
+      {
+        "key": "field_video_url",
+        "label": "URL YouTube",
+        "name": "video_url",
+        "type": "url",
+        "instructions": "Link YouTube đầy đủ. VD: https://www.youtube.com/watch?v=xxxxx",
+        "required": 1,
+        "default_value": ""
+      },
+      {
+        "key": "field_video_duration",
+        "label": "Thời lượng video",
+        "name": "video_duration",
+        "type": "text",
+        "instructions": "VD: 08:15",
+        "required": 0,
+        "default_value": "00:00"
+      },
+      {
+        "key": "field_video_views_text",
+        "label": "Lượt xem (text hiển thị)",
+        "name": "video_views_text",
+        "type": "text",
+        "instructions": "VD: 12.5K lượt xem • 3 ngày trước",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_video_views",
+        "label": "Số lượt xem (số thuần để sort)",
+        "name": "video_views",
+        "type": "number",
+        "required": 0,
+        "default_value": 0
+      },
+      {
+        "key": "field_video_thumbnail",
+        "label": "Thumbnail video (tùy chọn)",
+        "name": "video_thumbnail",
+        "type": "image",
+        "instructions": "Để trống sẽ dùng Featured Image của bài viết",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_related_product_vr",
+        "label": "Sản phẩm liên quan",
+        "name": "related_product",
+        "type": "post_object",
+        "instructions": "Chọn sản phẩm WooCommerce xuất hiện trong video",
+        "required": 0,
+        "post_type": ["product"],
+        "taxonomy": [],
+        "allow_null": 1,
+        "multiple": 0,
+        "return_format": "id",
+        "ui": 1
+      },
+      {
+        "key": "field_customer_name",
+        "label": "Tên khách hàng",
+        "name": "customer_name",
+        "type": "text",
+        "instructions": "Dùng cho video câu chuyện khách hàng",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_customer_city",
+        "label": "Thành phố khách hàng",
+        "name": "customer_city",
+        "type": "text",
+        "instructions": "VD: Hà Nội",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_video_badge_tag",
+        "label": "Badge/Tag hiển thị",
+        "name": "video_badge_tag",
+        "type": "text",
+        "instructions": "VD: Hot, Mới, Trending",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_video_desc",
+        "label": "Mô tả ngắn video",
+        "name": "video_desc",
+        "type": "textarea",
+        "instructions": "Mô tả 1-2 dòng trong card video",
+        "required": 0,
+        "rows": 3,
+        "new_lines": "br"
+      },
+      {
+        "key": "field_is_featured",
+        "label": "Video nổi bật?",
+        "name": "is_featured",
+        "type": "true_false",
+        "instructions": "Ưu tiên hiển thị trong shortcode",
+        "required": 0,
+        "default_value": 0,
+        "ui": 1,
+        "ui_on_text": "Có",
+        "ui_off_text": "Không"
+      }
+    ],
+    "location": [
+      [{ "param": "post_type", "operator": "==", "value": "video_review" }]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  },
+
+  {
+    "key": "group_gobike_product_specs",
+    "title": "GoBike – Thông số kỹ thuật sản phẩm",
+    "fields": [
+      {
+        "key": "field_slogan_san_pham",
+        "label": "Slogan sản phẩm",
+        "name": "slogan_san_pham",
+        "type": "text",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_thuong_hieu",
+        "label": "Thương hiệu",
+        "name": "thuong_hieu",
+        "type": "text",
+        "instructions": "VD: Phoenix, ADO, Samebike",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_dong_co",
+        "label": "Động cơ",
+        "name": "dong_co",
+        "type": "text",
+        "instructions": "VD: 250W Brushless Hub Motor",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_dung_luong_pin",
+        "label": "Dung lượng pin",
+        "name": "dung_luong_pin",
+        "type": "text",
+        "instructions": "VD: 36V 10Ah Lithium",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_quang_duong",
+        "label": "Quãng đường / lần sạc",
+        "name": "quang_duong",
+        "type": "text",
+        "instructions": "VD: 60-80km",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_toc_do_toi_da",
+        "label": "Tốc độ tối đa",
+        "name": "toc_do_toi_da",
+        "type": "text",
+        "instructions": "VD: 25km/h",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_trong_luong",
+        "label": "Trọng lượng xe",
+        "name": "trong_luong",
+        "type": "text",
+        "instructions": "VD: 22kg",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_tai_trong_toi_da",
+        "label": "Tải trọng tối đa",
+        "name": "tai_trong_toi_da",
+        "type": "text",
+        "instructions": "VD: 120kg",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_kich_thuoc_lop",
+        "label": "Kích thước lốp",
+        "name": "kich_thuoc_lop",
+        "type": "text",
+        "instructions": "VD: 20 x 2.35 inch",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_kich_thuoc_xe",
+        "label": "Kích thước xe",
+        "name": "kich_thuoc_xe",
+        "type": "text",
+        "instructions": "VD: 175 x 100 x 118cm",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_chat_lieu_khung",
+        "label": "Chất liệu khung",
+        "name": "chat_lieu_khung",
+        "type": "text",
+        "instructions": "VD: Hợp kim nhôm 6061",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_he_thong_phanh",
+        "label": "Hệ thống phanh",
+        "name": "he_thong_phanh",
+        "type": "text",
+        "instructions": "VD: Phanh đĩa cơ học 160mm",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_giam_xoc",
+        "label": "Giảm xóc",
+        "name": "giam_xoc",
+        "type": "text",
+        "instructions": "VD: Giảm xóc trước / Không có",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_thoi_gian_bao_hanh",
+        "label": "Thời gian bảo hành",
+        "name": "thoi_gian_bao_hanh",
+        "type": "text",
+        "instructions": "VD: 12 tháng",
+        "required": 0,
+        "default_value": ""
+      },
+      {
+        "key": "field_gallery_san_pham",
+        "label": "Gallery ảnh sản phẩm bổ sung",
+        "name": "gallery_san_pham",
+        "type": "gallery",
+        "instructions": "Ảnh bổ sung ngoài WooCommerce gallery mặc định",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all",
+        "min": 0,
+        "max": 20
+      },
+      {
+        "key": "field_video_url_product",
+        "label": "URL Video YouTube sản phẩm",
+        "name": "video_url",
+        "type": "url",
+        "instructions": "Link YouTube review sản phẩm này",
+        "required": 0,
+        "default_value": ""
+      }
+    ],
+    "location": [
+      [{ "param": "post_type", "operator": "==", "value": "product" }]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  }
+]
