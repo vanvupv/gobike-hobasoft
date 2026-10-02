@@ -33,16 +33,30 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
 // Dùng WordPress Settings API thay thế - xem gobike_settings_page bên dưới
 
 /**
- * FIX: Footer không hiển thị trên trang Shop/Archive WooCommerce
+ * FIX: Footer không hiển thị trên trang Shop/Archive/Single Product WooCommerce
  *
- * Nguyên nhân: flatsome_page_footer() dùng get_theme_mod('footer_block')
- * cho các trang KHÔNG phải is_page() (archive, shop, category...).
- * Nếu footer_block = block ID nhưng block trống sau migrate domain
- * → chỉ render copyright bar, các sections footer bị mất.
+ * Nguyên nhân: flatsome_page_footer() ở nhánh else (is_page()=FALSE) dùng
+ * footer_block theme mod. Nếu block đó rỗng sau migrate domain → chỉ có
+ * copyright bar. Filter theme_mod không đủ mạnh vì có thể bị cached.
  *
- * Fix: Ép footer_block = '' trên WooCommerce pages → Flatsome dùng
- * template footer đầy đủ (giống các trang thông thường).
+ * Fix mạnh hơn: Hook trực tiếp vào flatsome_footer (priority 5 - TRƯỚC
+ * flatsome_page_footer priority 10). Xóa flatsome_page_footer và tự render
+ * toàn bộ footer template.
  */
+add_action('flatsome_footer', 'gobike_force_full_footer_on_woo', 5);
+function gobike_force_full_footer_on_woo() {
+    // Chỉ áp dụng cho WooCommerce pages
+    if ( ! function_exists('is_woocommerce') ) return;
+    if ( ! ( is_shop() || is_product_category() || is_product_tag() || is_singular('product') ) ) return;
+
+    // Xóa flatsome_page_footer để nó không chạy sau (priority 10)
+    remove_action('flatsome_footer', 'flatsome_page_footer', 10);
+
+    // Render footer đầy đủ trực tiếp (sidebar-footer-1 + sidebar-footer-2 + copyright)
+    get_template_part('template-parts/footer/footer');
+}
+
+// Giữ lại filter cũ làm fallback phòng timing issues
 add_filter('theme_mod_footer_block', 'gobike_force_full_footer_on_shop');
 function gobike_force_full_footer_on_shop($value) {
     if (
@@ -57,6 +71,7 @@ function gobike_force_full_footer_on_shop($value) {
     }
     return $value;
 }
+
 
 
 /**
