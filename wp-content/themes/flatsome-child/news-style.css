@@ -774,7 +774,9 @@
     padding: 0;
 }
 
-.gobike-news-pagination .page-numbers {
+/* Style cho các item phân trang — dùng a + span để tránh match ul.page-numbers */
+.gobike-news-pagination a.page-numbers,
+.gobike-news-pagination span.page-numbers {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -788,44 +790,40 @@
     border: 1px solid #e2e8f0;
     transition: all 0.2s ease;
     text-decoration: none;
-    outline: none !important;      /* Chặn Flatsome's a:focus-visible: outline 2px solid */
-    outline-offset: 0 !important;  /* Chặn outline-offset: 2px của Flatsome */
-    -webkit-tap-highlight-color: transparent; /* Chặn highlight trên mobile */
+    outline: none !important;
+    outline-offset: 0 !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Reset toàn bộ focus states — chặn browser native ring + Flatsome's outline */
-.gobike-news-pagination .page-numbers:focus,
-.gobike-news-pagination .page-numbers:focus-visible,
-.gobike-news-pagination .page-numbers:focus-within {
+/* Reset focus states */
+.gobike-news-pagination a.page-numbers:focus,
+.gobike-news-pagination a.page-numbers:focus-visible {
     outline: none !important;
     outline-offset: 0 !important;
     box-shadow: none !important;
 }
 
-.gobike-news-pagination .page-numbers:hover {
+.gobike-news-pagination a.page-numbers:hover {
     border-color: #044b25;
     color: #044b25;
     background: #f0fdf4;
 }
 
-.gobike-news-pagination .page-numbers.current {
+.gobike-news-pagination span.page-numbers.current,
+.gobike-news-pagination a.page-numbers.current {
     background: #044b25;
     color: #ffffff;
     border-color: #044b25;
-    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25) !important; /* !important để không bị override bởi :focus box-shadow: none */
+    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25);
 }
 
-/* Khi current đang được focus (sau khi click) — giữ nguyên style, không thêm ring */
-.gobike-news-pagination .page-numbers.current:focus,
-.gobike-news-pagination .page-numbers.current:focus-visible {
-    outline: none !important;
-    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25) !important;
-}
-
-.gobike-news-pagination .page-numbers.dots {
+.gobike-news-pagination a.page-numbers.dots,
+.gobike-news-pagination span.page-numbers.dots {
     border: none;
     background: transparent;
+    box-shadow: none;
 }
+
 
 /* ==========================================================================
    7. SIDEBAR 3 WIDGETS CHUẨN MẪU
