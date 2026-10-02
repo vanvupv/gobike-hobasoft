@@ -190,16 +190,16 @@ do_action( 'woocommerce_archive_description' );
 
 	</div> <!-- /gobike-shop-layout-2col -->
 
-	<!-- 4. KHỐI 3 BANNER TÍNH NĂNG + VÌ SAO CHỌN GOBIKE + SHOWROOM (ẢNH 4) -->
+	<!-- 4. KHỐI NỘI DUNG SEO CUỐI TRANG (không duplicate với footer) -->
 	<?php
-	if ( function_exists( 'gobike_render_shop_bottom_features' ) ) {
-		gobike_render_shop_bottom_features();
-	}
-
-	// Nội dung SEO cuối trang
+	// Nội dung SEO cuối trang (đọc từ SCF, nếu rỗng thì không hiển thị)
 	if ( function_exists( 'gobike_render_shop_bottom_content' ) ) {
 		echo gobike_render_shop_bottom_content();
 	}
+
+	// LƯU Ý: gobike_render_shop_bottom_features() (Vì sao chọn GoBike + Showroom)
+	// đã được render bởi sidebar-footer-1 widget trong footer → KHÔNG gọi ở đây
+	// để tránh duplicate nội dung.
 
 	do_action( 'flatsome_products_after' );
 	do_action( 'woocommerce_after_main_content' );
