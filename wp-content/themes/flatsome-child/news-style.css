@@ -788,12 +788,18 @@
     border: 1px solid #e2e8f0;
     transition: all 0.2s ease;
     text-decoration: none;
-    outline: none; /* Reset Flatsome's a:focus-visible outline (2px solid) gây double border */
+    outline: none !important;      /* Chặn Flatsome's a:focus-visible: outline 2px solid */
+    outline-offset: 0 !important;  /* Chặn outline-offset: 2px của Flatsome */
+    -webkit-tap-highlight-color: transparent; /* Chặn highlight trên mobile */
 }
 
+/* Reset toàn bộ focus states — chặn browser native ring + Flatsome's outline */
 .gobike-news-pagination .page-numbers:focus,
-.gobike-news-pagination .page-numbers:focus-visible {
-    outline: none;
+.gobike-news-pagination .page-numbers:focus-visible,
+.gobike-news-pagination .page-numbers:focus-within {
+    outline: none !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
 }
 
 .gobike-news-pagination .page-numbers:hover {
@@ -806,7 +812,14 @@
     background: #044b25;
     color: #ffffff;
     border-color: #044b25;
-    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25);
+    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25) !important; /* !important để không bị override bởi :focus box-shadow: none */
+}
+
+/* Khi current đang được focus (sau khi click) — giữ nguyên style, không thêm ring */
+.gobike-news-pagination .page-numbers.current:focus,
+.gobike-news-pagination .page-numbers.current:focus-visible {
+    outline: none !important;
+    box-shadow: 0 4px 10px rgba(4, 75, 37, 0.25) !important;
 }
 
 .gobike-news-pagination .page-numbers.dots {
