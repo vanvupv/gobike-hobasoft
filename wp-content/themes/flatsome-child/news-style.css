@@ -788,6 +788,12 @@
     border: 1px solid #e2e8f0;
     transition: all 0.2s ease;
     text-decoration: none;
+    outline: none; /* Reset Flatsome's a:focus-visible outline (2px solid) gây double border */
+}
+
+.gobike-news-pagination .page-numbers:focus,
+.gobike-news-pagination .page-numbers:focus-visible {
+    outline: none;
 }
 
 .gobike-news-pagination .page-numbers:hover {
