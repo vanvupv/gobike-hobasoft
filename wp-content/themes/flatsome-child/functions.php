@@ -33,6 +33,33 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
 // Dùng WordPress Settings API thay thế - xem gobike_settings_page bên dưới
 
 /**
+ * FIX: Footer không hiển thị trên trang Shop/Archive WooCommerce
+ *
+ * Nguyên nhân: flatsome_page_footer() dùng get_theme_mod('footer_block')
+ * cho các trang KHÔNG phải is_page() (archive, shop, category...).
+ * Nếu footer_block = block ID nhưng block trống sau migrate domain
+ * → chỉ render copyright bar, các sections footer bị mất.
+ *
+ * Fix: Ép footer_block = '' trên WooCommerce pages → Flatsome dùng
+ * template footer đầy đủ (giống các trang thông thường).
+ */
+add_filter('theme_mod_footer_block', 'gobike_force_full_footer_on_shop');
+function gobike_force_full_footer_on_shop($value) {
+    if (
+        function_exists('is_shop') && (
+            is_shop() ||
+            is_product_category() ||
+            is_product_tag() ||
+            is_singular('product')
+        )
+    ) {
+        return ''; // Bỏ qua footer_block → dùng template footer đầy đủ
+    }
+    return $value;
+}
+
+
+/**
  * Lấy 3 thông số kỹ thuật nhanh cho product card (Quãng đường, Trọng lượng, Công suất)
  * Đọc từ ACF trước, sau đó fallback sang attribute hoặc title parsing.
  */
