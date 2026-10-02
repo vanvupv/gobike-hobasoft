@@ -53,8 +53,16 @@ function gobike_render_home_flash_sale($atts)
                 if (!is_a($product, 'WC_Product')) {
                     $product = wc_get_product(get_the_ID());
                 }
-                $permalink = get_permalink();
-                $image_url = get_the_post_thumbnail_url(get_the_ID(), 'medium') ?: wc_placeholder_img_src();
+                $permalink    = get_permalink();
+                // Lấy ảnh theo WooCommerce native (đáng tin cậy hơn get_the_post_thumbnail_url)
+                $image_id  = $product->get_image_id();
+                $image_url = $image_id
+                    ? wp_get_attachment_image_url($image_id, 'woocommerce_thumbnail')
+                    : wc_placeholder_img_src('woocommerce_thumbnail');
+                // Fallback cuối: placeholder SVG nếu vẫn rỗng
+                if (empty($image_url)) {
+                    $image_url = wc_placeholder_img_src();
+                }
                 $regular_price = (float) $product->get_regular_price();
                 $sale_price = (float) $product->get_sale_price();
                 $percentage = ($product->is_on_sale() && $regular_price > $sale_price && $sale_price > 0) ? round((($regular_price - $sale_price) / $regular_price) * 100) : 0;

@@ -2129,6 +2129,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-flashsale-item .item-thumb img {
+            width: 100%;
             max-width: 100%;
             height: 160px;
             object-fit: contain;
