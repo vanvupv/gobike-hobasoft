@@ -29,20 +29,8 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
     require_once __DIR__ . '/inc/news-ajax.php';
 }
 
-// Đăng ký ACF Options Page để get_field('...', 'option') hoạt động
-add_action('acf/init', 'gobike_register_acf_options_page');
-function gobike_register_acf_options_page() {
-    if (!function_exists('acf_add_options_page')) return;
-    acf_add_options_page(array(
-        'page_title' => 'GoBike – Cài đặt chung',
-        'menu_title' => 'GoBike Settings',
-        'menu_slug'  => 'gobike-shop-settings',
-        'capability' => 'manage_options',
-        'icon_url'   => 'dashicons-admin-settings',
-        'position'   => 60,
-        'redirect'   => false,
-    ));
-}
+// SCF (Secure Custom Fields) không hỗ trợ options page
+// Dùng WordPress Settings API thay thế - xem gobike_settings_page bên dưới
 
 /**
  * Lấy 3 thông số kỹ thuật nhanh cho product card (Quãng đường, Trọng lượng, Công suất)
