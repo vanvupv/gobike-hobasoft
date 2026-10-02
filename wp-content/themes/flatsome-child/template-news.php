@@ -602,6 +602,7 @@ foreach ($wp_categories as $cat) {
                     <!-- PHÂN TRANG PAGINATION CHUẨN GOBIKE (DESKTOP) -->
                     <div class="gobike-news-pagination">
                         <?php
+                        // Chỉ hiển thị phân trang khi có nhiều hơn 1 trang
                         if ($latest_query->max_num_pages > 1) {
                             echo paginate_links(array(
                                 'total'        => $latest_query->max_num_pages,
@@ -610,22 +611,10 @@ foreach ($wp_categories as $cat) {
                                 'next_text'    => '&rsaquo;',
                                 'type'         => 'list',
                             ));
-                        } else {
-                            // Mockup phân trang trực quan theo thiết kế
-                            ?>
-                            <ul class="page-numbers">
-                                <li><span class="prev page-numbers">&lsaquo;</span></li>
-                                <li><span aria-current="page" class="page-numbers current">1</span></li>
-                                <li><a class="page-numbers" href="#">2</a></li>
-                                <li><a class="page-numbers" href="#">3</a></li>
-                                <li><span class="page-numbers dots">&hellip;</span></li>
-                                <li><a class="page-numbers" href="#">9</a></li>
-                                <li><a class="next page-numbers" href="#">&rsaquo;</a></li>
-                            </ul>
-                            <?php
                         }
                         ?>
                     </div>
+
 
                 </div>
 
