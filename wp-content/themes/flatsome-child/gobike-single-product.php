@@ -18,24 +18,26 @@ function gobike_get_single_product_specs($product_id) {
     $product = wc_get_product($product_id);
     if (!$product) return array();
 
+    $gf = function_exists('get_field');
+
     // Lấy thông số từ thuộc tính WooCommerce hoặc ACF
     $pin = $product->get_attribute('pa_pin');
-    if (!$pin) $pin = get_field('dung_luong_pin', $product_id) ?: '48V 15Ah (Lithium)';
+    if (!$pin) $pin = ($gf ? get_field('dung_luong_pin', $product_id) : '') ?: '48V 15Ah (Lithium)';
 
     $dong_co = $product->get_attribute('pa_dong-co');
-    if (!$dong_co) $dong_co = get_field('dong_co', $product_id) ?: '250W – Trợ lực thông minh';
+    if (!$dong_co) $dong_co = ($gf ? get_field('dong_co', $product_id) : '') ?: '250W – Trợ lực thông minh';
 
     $quang_duong = $product->get_attribute('pa_quang-duong');
-    if (!$quang_duong) $quang_duong = get_field('quang_duong', $product_id) ?: '80 – 120 km (tùy điều kiện)';
+    if (!$quang_duong) $quang_duong = ($gf ? get_field('quang_duong', $product_id) : '') ?: '80 – 120 km (tùy điều kiện)';
 
     $toc_do = $product->get_attribute('pa_toc-do');
-    if (!$toc_do) $toc_do = get_field('toc_do_toi_da', $product_id) ?: '25 km/h (trợ lực)';
+    if (!$toc_do) $toc_do = ($gf ? get_field('toc_do_toi_da', $product_id) : '') ?: '25 km/h (trợ lực)';
 
     $lop_xe = $product->get_attribute('pa_kich-thuoc-lop');
-    if (!$lop_xe) $lop_xe = get_field('kich_thuoc_lop', $product_id) ?: '27.5 inch – chống trượt';
+    if (!$lop_xe) $lop_xe = ($gf ? get_field('kich_thuoc_lop', $product_id) : '') ?: '27.5 inch – chống trượt';
 
-    $trong_luong = $product->get_weight() ? $product->get_weight() . ' kg' : (get_field('trong_luong', $product_id) ?: '27 kg');
-    $bao_hanh = get_field('thoi_gian_bao_hanh', $product_id) ?: '24 tháng (Khung), 12 tháng (Động cơ, pin)';
+    $trong_luong = $product->get_weight() ? $product->get_weight() . ' kg' : (($gf ? get_field('trong_luong', $product_id) : '') ?: '27 kg');
+    $bao_hanh = ($gf ? get_field('thoi_gian_bao_hanh', $product_id) : '') ?: '24 tháng (Khung), 12 tháng (Động cơ, pin)';
 
     // Thương hiệu
     $brand_terms = get_the_terms($product_id, 'pa_thuong-hieu');
@@ -43,7 +45,7 @@ function gobike_get_single_product_specs($product_id) {
     if (!empty($brand_terms) && !is_wp_error($brand_terms)) {
         $brand = $brand_terms[0]->name;
     } else {
-        $brand_acf = get_field('thuong_hieu', $product_id);
+        $brand_acf = $gf ? get_field('thuong_hieu', $product_id) : '';
         if ($brand_acf) $brand = $brand_acf;
     }
 
@@ -63,6 +65,9 @@ function gobike_get_single_product_specs($product_id) {
         }
     }
 
+    $extra_specs = ($gf && function_exists('have_rows') && have_rows('thong_so_bo_sung', $product_id)) ? get_field('thong_so_bo_sung', $product_id) : array();
+    if (!is_array($extra_specs)) $extra_specs = array();
+
     return array(
         'brand'          => $brand,
         'cat_name'       => $cat_name,
@@ -74,11 +79,12 @@ function gobike_get_single_product_specs($product_id) {
         'lop_xe'         => $lop_xe,
         'trong_luong'    => $trong_luong,
         'bao_hanh'       => $bao_hanh,
-        'khung_xe'       => get_field('chat_lieu_khung', $product_id) ?: 'Hợp kim nhôm 6061',
-        'phanh'          => get_field('he_thong_phanh', $product_id) ?: 'Phanh dầu thủy lực',
-        'giam_xoc'       => get_field('giam_xoc', $product_id) ?: 'Phuộc trước khóa hành trình',
-        'tai_trong'      => get_field('tai_trong_toi_da', $product_id) ?: '120 kg',
-        'kich_thuoc'     => get_field('kich_thuoc_xe', $product_id) ?: '1780 x 680 x 1050 mm',
+        'khung_xe'       => ($gf ? get_field('chat_lieu_khung', $product_id) : '') ?: 'Hợp kim nhôm 6061',
+        'phanh'          => ($gf ? get_field('he_thong_phanh', $product_id) : '') ?: 'Phanh dầu thủy lực',
+        'giam_xoc'       => ($gf ? get_field('giam_xoc', $product_id) : '') ?: 'Phuộc trước khóa hành trình',
+        'tai_trong'      => ($gf ? get_field('tai_trong_toi_da', $product_id) : '') ?: '120 kg',
+        'kich_thuoc'     => ($gf ? get_field('kich_thuoc_xe', $product_id) : '') ?: '1780 x 680 x 1050 mm',
+        'extra_specs'    => $extra_specs,
     );
 }
 
@@ -396,12 +402,216 @@ add_filter( 'pre_option_woocommerce_review_rating_verification_required', functi
     return 'no';
 });
 
+function gobike_get_feature_icon_svg($type) {
+    switch ($type) {
+        case 'assist':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>';
+        case 'design':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+        case 'eco':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>';
+        case 'battery':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/><polygon points="9 11 11 11 10 13 12 13" fill="currentColor"/></svg>';
+        case 'motor':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
+        case 'brake':
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="3" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21"/><line x1="3" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21" y2="12"/></svg>';
+        case 'terrain':
+        default:
+            return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>';
+    }
+}
+
+function gobike_get_youtube_embed_url($url) {
+    if (empty($url)) return '';
+    if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/', $url, $matches)) {
+        return 'https://www.youtube.com/embed/' . $matches[1];
+    }
+    return $url;
+}
+
 function gobike_render_single_product_tabs($product) {
     global $post;
     $product_id = $product->get_id();
+    $gf = function_exists('get_field');
+
     $specs = gobike_get_single_product_specs($product_id);
     $review_count = $product->get_review_count();
     $review_count_display = $review_count > 0 ? $review_count : 128;
+
+    // --- TAB 1: Dữ liệu Mô tả & Banners ---
+    $desc_subtitle = $gf ? get_field('sp_desc_subtitle', $product_id) : '';
+    if (empty($desc_subtitle)) $desc_subtitle = 'Khám phá thế giới theo cách của bạn';
+
+    $sp_features = $gf ? get_field('sp_features', $product_id) : array();
+    if (empty($sp_features) || !is_array($sp_features)) {
+        $sp_features = array(
+            array('icon_type' => 'terrain', 'title' => 'Chinh phục mọi địa hình', 'desc' => 'Vận hành mạnh mẽ, an tâm trên cả đường phố và đường mòn đồi dốc.'),
+            array('icon_type' => 'assist',  'title' => 'Trợ lực thông minh',     'desc' => 'Hỗ trợ đạp nhẹ nhàng hơn, tiết kiệm sức lực, đi xa hơn mỗi ngày.'),
+            array('icon_type' => 'design',  'title' => 'Thiết kế hiện đại',      'desc' => 'Khung dáng thể thao, mạnh mẽ, phù hợp phong cách sống năng động.'),
+            array('icon_type' => 'eco',     'title' => 'Thân thiện môi trường',  'desc' => 'Sử dụng năng lượng sạch, góp phần bảo vệ môi trường xanh bền vững.'),
+        );
+    }
+
+    $hero_img = $gf ? get_field('sp_lifestyle_hero_img', $product_id) : '';
+    if (empty($hero_img)) {
+        $hero_img = has_post_thumbnail($product_id) ? get_the_post_thumbnail_url($product_id, 'large') : 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80';
+    }
+    $hero_quote = $gf ? get_field('sp_lifestyle_hero_quote', $product_id) : '';
+    if (empty($hero_quote)) $hero_quote = '"Đi xa hơn mỗi ngày"';
+
+    $lifestyle_cards = $gf ? get_field('sp_lifestyle_cards', $product_id) : array();
+    if (empty($lifestyle_cards) || !is_array($lifestyle_cards)) {
+        $lifestyle_cards = array(
+            array(
+                'image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80',
+                'title' => 'Sức mạnh trên mọi cung đường',
+                'desc'  => 'Vận hành mượt mà nhờ động cơ tân tiến, hỗ trợ lực đạp tối đa khi leo dốc hay di chuyển liên tục.'
+            ),
+            array(
+                'image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80',
+                'title' => 'Thiết kế tinh tế & Trải nghiệm khác biệt',
+                'desc'  => 'Khung sườn nhôm hàng không siêu bền, màu sắc sơn bóng bẩy mang đến phong cách thời thượng.'
+            ),
+        );
+    }
+
+    // --- TAB 3: Dữ liệu Hình ảnh & Video ---
+    $media_title = $gf ? get_field('sp_media_photos_title', $product_id) : '';
+    if (empty($media_title)) $media_title = 'HÌNH ẢNH CHI TIẾT BỘ PHẬN';
+
+    $detail_photos = $gf ? get_field('sp_detail_photos', $product_id) : array();
+    if (empty($detail_photos) || !is_array($detail_photos)) {
+        // Fallback sang gallery ảnh của WooCommerce
+        $gallery_ids = $product->get_gallery_image_ids();
+        if (!empty($gallery_ids)) {
+            $detail_photos = array();
+            $captions = array('Khung sườn xe', 'Động cơ trợ lực', 'Giảm xóc trước', 'Cụm Pin Lithium', 'Hệ thống phanh', 'Bộ truyền động');
+            $idx = 0;
+            foreach ($gallery_ids as $gid) {
+                $detail_photos[] = array(
+                    'image'   => wp_get_attachment_image_url($gid, 'medium_large'),
+                    'caption' => isset($captions[$idx]) ? $captions[$idx] : ('Chi tiết ' . $product->get_name()),
+                );
+                $idx++;
+                if ($idx >= 6) break;
+            }
+        }
+    }
+    if (empty($detail_photos)) {
+        $detail_photos = array(
+            array('image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80', 'caption' => 'Khung hợp kim nhôm'),
+            array('image' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=400&q=80', 'caption' => 'Động cơ mạnh mẽ'),
+            array('image' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=400&q=80', 'caption' => 'Phuộc trước giảm xóc'),
+            array('image' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80', 'caption' => 'Pin Lithium tháo rời'),
+            array('image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80', 'caption' => 'Phanh dầu thủy lực'),
+            array('image' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=400&q=80', 'caption' => 'Bộ truyền động Shimano'),
+        );
+    }
+
+    $video_title = $gf ? get_field('sp_video_title', $product_id) : '';
+    if (empty($video_title)) $video_title = 'Video trải nghiệm thực tế xe';
+
+    $video_url = $gf ? get_field('sp_video_url', $product_id) : '';
+    if (empty($video_url)) {
+        // Tìm từ video_review CPT liên kết
+        $cpt_v = get_posts(array(
+            'post_type'      => 'video_review',
+            'posts_per_page' => 1,
+            'meta_key'       => 'related_product',
+            'meta_value'     => $product_id,
+        ));
+        if (!empty($cpt_v) && $gf) {
+            $video_url = get_field('video_url', $cpt_v[0]->ID);
+        }
+    }
+    $video_embed_url = gobike_get_youtube_embed_url($video_url);
+
+    // --- TAB 4: Dữ liệu Đánh giá ---
+    $rating_score = $gf ? get_field('sp_rating_score', $product_id) : '';
+    if (empty($rating_score)) {
+        $avg = $product->get_average_rating();
+        $rating_score = $avg ? number_format((float)$avg, 1) : '4.9';
+    }
+
+    $total_text = $gf ? get_field('sp_rating_total_text', $product_id) : '';
+    if (empty($total_text)) $total_text = 'Dựa trên ' . $review_count_display . ' đánh giá';
+
+    $s5 = $gf ? (int) get_field('sp_star_5', $product_id) : 85;
+    $s4 = $gf ? (int) get_field('sp_star_4', $product_id) : 10;
+    $s3 = $gf ? (int) get_field('sp_star_3', $product_id) : 3;
+    $s2 = $gf ? (int) get_field('sp_star_2', $product_id) : 1;
+    $s1 = $gf ? (int) get_field('sp_star_1', $product_id) : 1;
+    if ($s5 <= 0 && $s4 <= 0 && $s3 <= 0 && $s2 <= 0 && $s1 <= 0) {
+        $s5 = 85; $s4 = 10; $s3 = 3; $s2 = 1; $s1 = 1;
+    }
+
+    $featured_reviews = $gf ? get_field('sp_featured_reviews', $product_id) : array();
+    if (empty($featured_reviews) || !is_array($featured_reviews)) {
+        $featured_reviews = array(
+            array(
+                'name'    => 'Nguyễn Minh Tuấn',
+                'avatar'  => 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80',
+                'date'    => '12/04/2024',
+                'stars'   => '5',
+                'comment' => 'Xe rất chắc chắn, trợ lực mượt mà, leo dốc nhẹ như không. Rất hài lòng với ' . $specs['brand'] . '!',
+                'photo_1' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80',
+                'photo_2' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80',
+            ),
+            array(
+                'name'    => 'Trần Thị Mai',
+                'avatar'  => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80',
+                'date'    => '25/03/2024',
+                'stars'   => '5',
+                'comment' => 'Thiết kế đẹp, pin rất bền. Mình đã đi các chuyến dã ngoại dài, xe vận hành ổn định, cực kỳ đáng tiền!',
+                'photo_1' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=150&q=80',
+                'photo_2' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=150&q=80',
+            ),
+            array(
+                'name'    => 'Lê Hoàng Nam',
+                'avatar'  => 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80',
+                'date'    => '16/05/2024',
+                'stars'   => '5',
+                'comment' => 'Giao hàng nhanh, lắp ráp cẩn thận. Xe đi êm, màu sắc đẹp. Sẽ giới thiệu cho bạn bè!',
+                'photo_1' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=150&q=80',
+                'photo_2' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=150&q=80',
+            ),
+            array(
+                'name'    => 'Phạm Thu Hà',
+                'avatar'  => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80',
+                'date'    => '08/03/2024',
+                'stars'   => '5',
+                'comment' => 'Trải nghiệm tuyệt vời! Trợ lực êm ái, tự nhiên, phù hợp cả đi làm lẫn đi du lịch cuối tuần.',
+                'photo_1' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80',
+                'photo_2' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80',
+            ),
+        );
+    }
+
+    // --- TAB 5: Dữ liệu Hỏi đáp ---
+    $faq_slogan = $gf ? get_field('sp_faq_slogan', $product_id) : '';
+    if (empty($faq_slogan)) $faq_slogan = 'Những câu hỏi thường gặp về ' . $product->get_name();
+
+    $faq_zalo = $gf ? get_field('sp_faq_zalo_link', $product_id) : '';
+    if (empty($faq_zalo)) $faq_zalo = 'https://zalo.me/0944988699';
+
+    $faqs = $gf ? get_field('sp_faqs', $product_id) : array();
+    if (empty($faqs) || !is_array($faqs)) {
+        $faqs = array(
+            array('question' => $product->get_name() . ' phù hợp với những đối tượng nào?', 'answer' => 'Xe phù hợp cho học sinh, sinh viên, người đi làm và những ai yêu thích dã ngoại, thể thao nhờ thiết kế thể thao linh hoạt và hệ thống trợ lực điện thông minh.'),
+            array('question' => 'Thời gian sạc đầy pin là bao lâu?', 'answer' => 'Thời gian sạc đầy pin Lithium dao động từ 4 – 6 giờ với củ sạc thông minh tự ngắt khi đầy, bảo vệ tuổi thọ pin tối đa.'),
+            array('question' => 'Xe có thể đi được bao nhiêu km sau mỗi lần sạc?', 'answer' => 'Ở chế độ thuần điện xe đi được khoảng 40 – 50 km; ở chế độ trợ lực điện thông minh xe đạt quãng đường lên tới 80 – 120 km tùy vào trọng lượng người lái và điều kiện mặt đường.'),
+            array('question' => 'Xe có hỗ trợ lắp ráp khi giao hàng không?', 'answer' => 'GoBike hỗ trợ lắp ráp hoàn chỉnh và căn chỉnh kỹ thuật 100% trước khi giao đến tận nhà cho quý khách trên toàn quốc.'),
+            array('question' => 'Chế độ bảo hành của ' . $product->get_name() . ' như thế nào?', 'answer' => 'Sản phẩm được bảo hành chính hãng 24 tháng đối với khung sườn xe, 12 tháng đối với động cơ điện và cụm pin, kèm chế độ bảo dưỡng tra dầu miễn phí trọn đời.'),
+            array('question' => 'Tôi có thể trả góp khi mua xe không?', 'answer' => 'Có. GoBike hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc công ty tài chính với thủ tục nhanh gọn chỉ trong 15 phút.'),
+        );
+    }
+    $faq_count = count($faqs);
+
+    // Chia mảng FAQ thành 2 cột đều nhau
+    $half = ceil(count($faqs) / 2);
+    $faqs_left = array_slice($faqs, 0, $half);
+    $faqs_right = array_slice($faqs, $half);
     ?>
     <section class="gobike-product-tabs-section" id="gobikeProductTabsSection">
         <!-- Sticky Tabs Header (Không viền) -->
@@ -421,23 +631,23 @@ function gobike_render_single_product_tabs($product) {
                         <a href="#tab-reviews">Đánh giá <span>(<?php echo esc_html($review_count_display); ?>)</span></a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-faq">
-                        <a href="#tab-faq">Hỏi đáp <span>(12)</span></a>
+                        <a href="#tab-faq">Hỏi đáp <span>(<?php echo esc_html($faq_count); ?>)</span></a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="container gobike-tabs-content-wrap">
-            <!-- TAB 1: MÔ TẢ SẢN PHẨM (Tổng quan gồm 4 phần: Nội dung, Thông số, Đánh giá, Hỏi đáp) -->
+            <!-- TAB 1: MÔ TẢ SẢN PHẨM -->
             <div class="gobike-tab-panel active" id="tab-description">
                 <div class="gobike-desc-container">
-                    <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER (Có thu gọn & mở rộng) -->
+                    <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER -->
                     <div class="gobike-desc-content-collapsible" id="descContentCollapsible">
                         <div class="desc-content-inner">
                             <div class="row align-top desc-intro-row">
-                                <!-- Cột Trái: Text mô tả + 4 icon tính năng -->
+                                <!-- Cột Trái: Text mô tả + Icon tính năng nổi bật -->
                                 <div class="col large-7 medium-12 small-12">
-                                    <h2 class="desc-heading-primary">Khám phá thế giới theo cách của bạn</h2>
+                                    <h2 class="desc-heading-primary"><?php echo esc_html($desc_subtitle); ?></h2>
                                     <div class="desc-main-text entry-content">
                                         <?php
                                         $content = get_the_content();
@@ -450,79 +660,53 @@ function gobike_render_single_product_tabs($product) {
                                         ?>
                                     </div>
 
-                                    <!-- 4 Ô Tính Năng Nổi Bật -->
-                                    <div class="desc-feature-grid">
-                                        <div class="feature-box-item">
-                                            <div class="feature-icon">
-                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                                            </div>
-                                            <div class="feature-text">
-                                                <h4>Chinh phục mọi địa hình</h4>
-                                                <p>Vận hành mạnh mẽ, an tâm trên cả đường phố và đường mòn đồi dốc.</p>
-                                            </div>
+                                    <!-- Lưới Tính Năng Nổi Bật (Dynamic ACF) -->
+                                    <?php if (!empty($sp_features)): ?>
+                                        <div class="desc-feature-grid">
+                                            <?php foreach ($sp_features as $feat): ?>
+                                                <div class="feature-box-item">
+                                                    <div class="feature-icon">
+                                                        <?php echo gobike_get_feature_icon_svg($feat['icon_type'] ?? 'terrain'); ?>
+                                                    </div>
+                                                    <div class="feature-text">
+                                                        <h4><?php echo esc_html($feat['title'] ?? ''); ?></h4>
+                                                        <p><?php echo esc_html($feat['desc'] ?? ''); ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
                                         </div>
-
-                                        <div class="feature-box-item">
-                                            <div class="feature-icon">
-                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                                            </div>
-                                            <div class="feature-text">
-                                                <h4>Trợ lực thông minh</h4>
-                                                <p>Hỗ trợ đạp nhẹ nhàng hơn, tiết kiệm sức lực, đi xa hơn mỗi ngày.</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="feature-box-item">
-                                            <div class="feature-icon">
-                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                            </div>
-                                            <div class="feature-text">
-                                                <h4>Thiết kế hiện đại</h4>
-                                                <p>Khung dáng thể thao, mạnh mẽ, phù hợp phong cách sống năng động.</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="feature-box-item">
-                                            <div class="feature-icon">
-                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-                                            </div>
-                                            <div class="feature-text">
-                                                <h4>Thân thiện môi trường</h4>
-                                                <p>Sử dụng năng lượng sạch, góp phần bảo vệ môi trường xanh bền vững.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endif; ?>
                                 </div>
 
-                                <!-- Cột Phải: Hình ảnh Lifestyle & Feature Banners -->
+                                <!-- Cột Phải: Hình ảnh Lifestyle & Banners -->
                                 <div class="col large-5 medium-12 small-12">
                                     <div class="desc-media-stack">
-                                        <div class="lifestyle-hero-banner">
-                                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Đi xa hơn mỗi ngày" loading="lazy" />
-                                            <div class="banner-quote-overlay">
-                                                <span class="quote-handwriting">"Đi xa hơn mỗi ngày"</span>
+                                        <?php if (!empty($hero_img)): ?>
+                                            <div class="lifestyle-hero-banner">
+                                                <img src="<?php echo esc_url($hero_img); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy" />
+                                                <?php if (!empty($hero_quote)): ?>
+                                                    <div class="banner-quote-overlay">
+                                                        <span class="quote-handwriting"><?php echo esc_html($hero_quote); ?></span>
+                                                    </div>
+                                                <?php endif; ?>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="lifestyle-sub-card">
-                                            <div class="sub-card-img">
-                                                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80" alt="Sức mạnh trên mọi cung đường" loading="lazy" />
-                                            </div>
-                                            <div class="sub-card-text">
-                                                <h4>Sức mạnh trên mọi cung đường</h4>
-                                                <p>Vận hành mượt mà nhờ động cơ tân tiến, hỗ trợ lực đạp tối đa khi leo dốc hay di chuyển liên tục.</p>
-                                            </div>
-                                        </div>
+                                        <?php endif; ?>
 
-                                        <div class="lifestyle-sub-card">
-                                            <div class="sub-card-img">
-                                                <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80" alt="Thiết kế tinh tế" loading="lazy" />
-                                            </div>
-                                            <div class="sub-card-text">
-                                                <h4>Thiết kế tinh tế & Trải nghiệm khác biệt</h4>
-                                                <p>Khung sườn nhôm hàng không siêu bền, màu sắc sơn bóng bẩy mang đến phong cách thời thượng.</p>
-                                            </div>
-                                        </div>
+                                        <?php if (!empty($lifestyle_cards)): ?>
+                                            <?php foreach ($lifestyle_cards as $card): ?>
+                                                <div class="lifestyle-sub-card">
+                                                    <?php if (!empty($card['image'])): ?>
+                                                        <div class="sub-card-img">
+                                                            <img src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['title'] ?? ''); ?>" loading="lazy" />
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <div class="sub-card-text">
+                                                        <h4><?php echo esc_html($card['title'] ?? ''); ?></h4>
+                                                        <p><?php echo esc_html($card['desc'] ?? ''); ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -538,7 +722,7 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     </div>
 
-                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (2 Cột Bảng Thông Số) -->
+                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1) -->
                     <div class="desc-specs-block">
                         <div class="gobike-block-header">
                             <div class="header-left">
@@ -564,11 +748,16 @@ function gobike_render_single_product_tabs($product) {
                                 <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
                                 <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
                                 <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
+                                <?php if (!empty($specs['extra_specs'])): ?>
+                                    <?php foreach ($specs['extra_specs'] as $es): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
 
-                    <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Điểm số 4.9 + 4 Thẻ mẫu kèm ảnh thật) -->
+                    <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Tóm tắt tại Tab 1) -->
                     <div class="desc-reviews-block">
                         <div class="gobike-block-header">
                             <div class="header-left">
@@ -581,187 +770,116 @@ function gobike_render_single_product_tabs($product) {
                             </div>
                         </div>
 
-                        <!-- Lưới 5 ô: 1 ô tổng điểm + 4 thẻ đánh giá mẫu -->
+                        <!-- Lưới 5 ô: 1 ô tổng điểm + các thẻ đánh giá nổi bật -->
                         <div class="desc-reviews-5col-grid">
-                            <!-- Ô 1: Tổng Điểm Số & Tiến Độ Sao -->
                             <div class="desc-score-summary-card">
-                                <div class="big-score">4.9<span>/5</span></div>
+                                <div class="big-score"><?php echo esc_html($rating_score); ?><span>/5</span></div>
                                 <div class="score-stars">★★★★★</div>
-                                <span class="score-total-txt">Dựa trên 128 đánh giá</span>
+                                <span class="score-total-txt"><?php echo esc_html($total_text); ?></span>
                                 <div class="summary-progress-bars">
-                                    <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div><span class="bar-percent">78%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: 16%;"></div></div><span class="bar-percent">16%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: 4%;"></div></div><span class="bar-percent">4%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div><span class="bar-percent">1%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div><span class="bar-percent">1%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s5); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s5); ?>%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s4); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s4); ?>%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s3); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s3); ?>%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s2); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s2); ?>%</span></div>
+                                    <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s1); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s1); ?>%</span></div>
                                 </div>
                             </div>
 
-                            <!-- Ô 2: Thẻ Đánh Giá 1 -->
-                            <div class="review-card-item">
-                                <div class="card-author-row">
-                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Nguyễn Minh Tuấn" class="author-avatar" />
-                                    <div class="author-meta">
-                                        <strong class="author-name">Nguyễn Minh Tuấn</strong>
-                                        <span class="review-date">12/04/2024</span>
+                            <?php if (!empty($featured_reviews)): ?>
+                                <?php foreach ($featured_reviews as $rev): ?>
+                                    <div class="review-card-item">
+                                        <div class="card-author-row">
+                                            <?php if (!empty($rev['avatar'])): ?>
+                                                <img src="<?php echo esc_url($rev['avatar']); ?>" alt="<?php echo esc_attr($rev['name'] ?? ''); ?>" class="author-avatar" />
+                                            <?php else: ?>
+                                                <div class="author-avatar-placeholder"><?php echo esc_html(mb_substr($rev['name'] ?? 'K', 0, 1)); ?></div>
+                                            <?php endif; ?>
+                                            <div class="author-meta">
+                                                <strong class="author-name"><?php echo esc_html($rev['name'] ?? 'Khách hàng'); ?></strong>
+                                                <?php if (!empty($rev['date'])): ?>
+                                                    <span class="review-date"><?php echo esc_html($rev['date']); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="review-stars-val">
+                                            <?php
+                                            $st = intval($rev['stars'] ?? 5);
+                                            echo str_repeat('★', max(1, min(5, $st)));
+                                            ?>
+                                        </div>
+                                        <p class="review-comment"><?php echo esc_html($rev['comment'] ?? ''); ?></p>
+                                        <?php if (!empty($rev['photo_1']) || !empty($rev['photo_2'])): ?>
+                                            <div class="review-attached-imgs">
+                                                <?php if (!empty($rev['photo_1'])): ?>
+                                                    <img src="<?php echo esc_url($rev['photo_1']); ?>" alt="Review photo 1" />
+                                                <?php endif; ?>
+                                                <?php if (!empty($rev['photo_2'])): ?>
+                                                    <img src="<?php echo esc_url($rev['photo_2']); ?>" alt="Review photo 2" />
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
-                                </div>
-                                <div class="review-stars-val">★★★★★</div>
-                                <p class="review-comment">Xe rất chắc chắn, trợ lực mượt mà, leo dốc nhẹ như không. Rất hài lòng với <?php echo esc_html($specs['brand']); ?>!</p>
-                                <div class="review-attached-imgs">
-                                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                    <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                                </div>
-                            </div>
-
-                            <!-- Ô 3: Thẻ Đánh Giá 2 -->
-                            <div class="review-card-item">
-                                <div class="card-author-row">
-                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Trần Thị Mai" class="author-avatar" />
-                                    <div class="author-meta">
-                                        <strong class="author-name">Trần Thị Mai</strong>
-                                        <span class="review-date">25/03/2024</span>
-                                    </div>
-                                </div>
-                                <div class="review-stars-val">★★★★★</div>
-                                <p class="review-comment">Thiết kế đẹp, pin rất bền. Mình đã đi các chuyến dã ngoại dài, xe vận hành ổn định, cực kỳ đáng tiền!</p>
-                                <div class="review-attached-imgs">
-                                    <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                    <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                                </div>
-                            </div>
-
-                            <!-- Ô 4: Thẻ Đánh Giá 3 -->
-                            <div class="review-card-item">
-                                <div class="card-author-row">
-                                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80" alt="Lê Hoàng Nam" class="author-avatar" />
-                                    <div class="author-meta">
-                                        <strong class="author-name">Lê Hoàng Nam</strong>
-                                        <span class="review-date">16/05/2024</span>
-                                    </div>
-                                </div>
-                                <div class="review-stars-val">★★★★★</div>
-                                <p class="review-comment">Giao hàng nhanh, lắp ráp cẩn thận. Xe đi êm, màu sắc đẹp. Sẽ giới thiệu cho bạn bè!</p>
-                                <div class="review-attached-imgs">
-                                    <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                    <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                                </div>
-                            </div>
-
-                            <!-- Ô 5: Thẻ Đánh Giá 4 -->
-                            <div class="review-card-item">
-                                <div class="card-author-row">
-                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Phạm Thu Hà" class="author-avatar" />
-                                    <div class="author-meta">
-                                        <strong class="author-name">Phạm Thu Hà</strong>
-                                        <span class="review-date">08/03/2024</span>
-                                    </div>
-                                </div>
-                                <div class="review-stars-val">★★★★★</div>
-                                <p class="review-comment">Trải nghiệm tuyệt vời! Trợ lực êm ái, tự nhiên, phù hợp cả đi làm lẫn đi du lịch cuối tuần.</p>
-                                <div class="review-attached-imgs">
-                                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80" alt="Review photo 1" />
-                                    <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80" alt="Review photo 2" />
-                                </div>
-                            </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
 
-                    <!-- PHẦN 4: HỎI ĐÁP (Khoảng 6 Câu Hỏi 2 Cột) -->
+                    <!-- PHẦN 4: HỎI ĐÁP (Tóm tắt tại Tab 1) -->
                     <div class="desc-faq-block">
                         <div class="gobike-block-header">
                             <div class="header-left">
                                 <h2 class="block-title">HỎI ĐÁP</h2>
-                                <span class="block-slogan">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?></span>
+                                <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
                             </div>
                             <div class="header-right">
                                 <a href="#tab-faq" class="view-all-link">
                                     Xem tất cả câu hỏi <span class="arr">➔</span>
                                 </a>
-                                <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
+                                <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                             </div>
                         </div>
 
-                        <!-- 6 Câu hỏi 2 Cột (3 Trái, 3 Phải) -->
                         <div class="faq-accordion-grid">
                             <div class="faq-col">
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span><?php echo esc_html($product->get_name()); ?> phù hợp với những đối tượng nào?</span>
-                                        <span class="faq-icon">+</span>
+                                <?php foreach ($faqs_left as $item): ?>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                            <span class="faq-icon">+</span>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                        </div>
                                     </div>
-                                    <div class="faq-answer">
-                                        <p>Xe phù hợp cho học sinh, sinh viên, người đi làm và những ai yêu thích dã ngoại, thể thao nhờ thiết kế thể thao linh hoạt và hệ thống trợ lực điện thông minh.</p>
-                                    </div>
-                                </div>
-
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span>Thời gian sạc đầy pin là bao lâu?</span>
-                                        <span class="faq-icon">+</span>
-                                    </div>
-                                    <div class="faq-answer">
-                                        <p>Thời gian sạc đầy pin Lithium dao động từ 4 – 6 giờ với củ sạc thông minh tự ngắt khi đầy, bảo vệ tuổi thọ pin tối đa.</p>
-                                    </div>
-                                </div>
-
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span>Xe có thể đi được bao nhiêu km sau mỗi lần sạc?</span>
-                                        <span class="faq-icon">+</span>
-                                    </div>
-                                    <div class="faq-answer">
-                                        <p>Ở chế độ thuần điện xe đi được khoảng 40 – 50 km; ở chế độ trợ lực điện thông minh xe đạt quãng đường lên tới 80 – 120 km tùy vào trọng lượng người lái và điều kiện mặt đường.</p>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
-
                             <div class="faq-col">
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span>Xe có hỗ trợ lắp ráp khi giao hàng không?</span>
-                                        <span class="faq-icon">+</span>
+                                <?php foreach ($faqs_right as $item): ?>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                            <span class="faq-icon">+</span>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                        </div>
                                     </div>
-                                    <div class="faq-answer">
-                                        <p>GoBike hỗ trợ lắp ráp hoàn chỉnh và căn chỉnh kỹ thuật 100% trước khi giao đến tận nhà cho quý khách trên toàn quốc.</p>
-                                    </div>
-                                </div>
-
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span>Chế độ bảo hành của <?php echo esc_html($product->get_name()); ?> như thế nào?</span>
-                                        <span class="faq-icon">+</span>
-                                    </div>
-                                    <div class="faq-answer">
-                                        <p>Sản phẩm được bảo hành chính hãng 24 tháng đối với khung sườn xe, 12 tháng đối với động cơ điện và cụm pin, kèm chế độ bảo dưỡng tra dầu miễn phí trọn đời.</p>
-                                    </div>
-                                </div>
-
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span>Tôi có thể trả góp khi mua xe không?</span>
-                                        <span class="faq-icon">+</span>
-                                    </div>
-                                    <div class="faq-answer">
-                                        <p>Có. GoBike hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc công ty tài chính với thủ tục nhanh gọn chỉ trong 15 phút.</p>
-                                    </div>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 2: THÔNG SỐ KỸ THUẬT (2 Cột Chuẩn Thiết Kế) -->
+            <!-- TAB 2: THÔNG SỐ KỸ THUẬT (Dedicated Full Panel) -->
             <div class="gobike-tab-panel" id="tab-specifications">
                 <div class="gobike-specs-container">
                     <div class="gobike-block-header">
                         <div class="header-left">
-                            <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
+                            <h2 class="block-title">THÔNG SỐ KỸ THUẬT CHI TIẾT</h2>
                         </div>
                     </div>
                     <div class="specs-table-grid">
-                        <!-- Cột Trái -->
                         <div class="specs-col">
                             <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
                             <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
@@ -771,8 +889,6 @@ function gobike_render_single_product_tabs($product) {
                             <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
                             <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
                         </div>
-
-                        <!-- Cột Phải -->
                         <div class="specs-col">
                             <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
                             <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
@@ -782,59 +898,50 @@ function gobike_render_single_product_tabs($product) {
                             <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
                             <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
                             <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
+                            <?php if (!empty($specs['extra_specs'])): ?>
+                                <?php foreach ($specs['extra_specs'] as $es): ?>
+                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT -->
+            <!-- TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT (Dedicated Full Panel) -->
             <div class="gobike-tab-panel" id="tab-media">
                 <div class="gobike-media-container">
                     <div class="gobike-block-header">
                         <div class="header-left">
-                            <h2 class="block-title">HÌNH ẢNH CHI TIẾT BỘ PHẬN</h2>
+                            <h2 class="block-title"><?php echo esc_html($media_title); ?></h2>
                         </div>
                     </div>
 
-                    <!-- Lưới 6 Ảnh Chi Tiết Cận Cảnh -->
-                    <div class="media-photo-grid">
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80" alt="Khung hợp kim nhôm" loading="lazy" />
-                            <span class="photo-caption">Khung hợp kim nhôm</span>
+                    <?php if (!empty($detail_photos)): ?>
+                        <div class="media-photo-grid">
+                            <?php foreach ($detail_photos as $dp): ?>
+                                <div class="photo-card-item">
+                                    <img src="<?php echo esc_url($dp['image'] ?? ''); ?>" alt="<?php echo esc_attr($dp['caption'] ?? ''); ?>" loading="lazy" />
+                                    <?php if (!empty($dp['caption'])): ?>
+                                        <span class="photo-caption"><?php echo esc_html($dp['caption']); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=400&q=80" alt="Động cơ mạnh mẽ" loading="lazy" />
-                            <span class="photo-caption">Động cơ mạnh mẽ 250W</span>
-                        </div>
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=400&q=80" alt="Phuộc trước giảm xóc" loading="lazy" />
-                            <span class="photo-caption">Phuộc trước giảm xóc</span>
-                        </div>
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80" alt="Pin Lithium" loading="lazy" />
-                            <span class="photo-caption">Pin Lithium 48V 15Ah</span>
-                        </div>
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80" alt="Phanh đĩa thủy lực" loading="lazy" />
-                            <span class="photo-caption">Phanh dầu thủy lực</span>
-                        </div>
-                        <div class="photo-card-item">
-                            <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=400&q=80" alt="Bộ truyền động Shimano" loading="lazy" />
-                            <span class="photo-caption">Bộ truyền động Shimano</span>
-                        </div>
-                    </div>
+                    <?php endif; ?>
 
-                    <!-- Khối Video Review Thực Tế -->
-                    <div class="media-video-embed-box">
-                        <h4 class="video-embed-title">Video trải nghiệm thực tế xe</h4>
-                        <div class="video-responsive-wrap">
-                            <iframe width="100%" height="480" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Review Xe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <?php if (!empty($video_embed_url)): ?>
+                        <div class="media-video-embed-box">
+                            <h4 class="video-embed-title"><?php echo esc_html($video_title); ?></h4>
+                            <div class="video-responsive-wrap">
+                                <iframe width="100%" height="480" src="<?php echo esc_url($video_embed_url); ?>" title="<?php echo esc_attr($video_title); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
-            <!-- TAB 4: ĐÁNH GIÁ (Dữ liệu chuẩn WooCommerce & Giao diện bình luận) -->
+            <!-- TAB 4: ĐÁNH GIÁ (Dedicated Full Panel) -->
             <div class="gobike-tab-panel" id="tab-reviews">
                 <div class="gobike-reviews-container">
                     <div class="gobike-block-header">
@@ -846,131 +953,71 @@ function gobike_render_single_product_tabs($product) {
                     <!-- Box Tổng Điểm & Thanh Tiến Độ Sao -->
                     <div class="reviews-summary-row">
                         <div class="summary-score-box">
-                            <div class="big-score">4.9<span>/5</span></div>
+                            <div class="big-score"><?php echo esc_html($rating_score); ?><span>/5</span></div>
                             <div class="score-stars">★★★★★</div>
-                            <span class="score-total-txt">Dựa trên <?php echo esc_html($review_count_display); ?> đánh giá</span>
+                            <span class="score-total-txt"><?php echo esc_html($total_text); ?></span>
                         </div>
 
                         <div class="summary-progress-bars">
-                            <div class="star-bar-item">
-                                <span class="bar-lbl">5 sao</span>
-                                <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
-                                <span class="bar-percent">85%</span>
-                            </div>
-                            <div class="star-bar-item">
-                                <span class="bar-lbl">4 sao</span>
-                                <div class="bar-track"><div class="bar-fill" style="width: 10%;"></div></div>
-                                <span class="bar-percent">10%</span>
-                            </div>
-                            <div class="star-bar-item">
-                                <span class="bar-lbl">3 sao</span>
-                                <div class="bar-track"><div class="bar-fill" style="width: 3%;"></div></div>
-                                <span class="bar-percent">3%</span>
-                            </div>
-                            <div class="star-bar-item">
-                                <span class="bar-lbl">2 sao</span>
-                                <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
-                                <span class="bar-percent">1%</span>
-                            </div>
-                            <div class="star-bar-item">
-                                <span class="bar-lbl">1 sao</span>
-                                <div class="bar-track"><div class="bar-fill" style="width: 1%;"></div></div>
-                                <span class="bar-percent">1%</span>
-                            </div>
+                            <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s5); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s5); ?>%</span></div>
+                            <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s4); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s4); ?>%</span></div>
+                            <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s3); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s3); ?>%</span></div>
+                            <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s2); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s2); ?>%</span></div>
+                            <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s1); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s1); ?>%</span></div>
                         </div>
                     </div>
 
-                    <!-- Form Đánh Giá & Danh Sách Bình Luận Chuẩn WooCommerce Luôn Hiển Thị -->
+                    <!-- Form Đánh Giá & Danh Sách Bình Luận Chuẩn WooCommerce -->
                     <div class="gobike-woocommerce-reviews-wrap">
                         <?php comments_template(); ?>
                     </div>
                 </div>
             </div>
 
-            <!-- TAB 5: HỎI ĐÁP (FAQ ACCORDION) -->
+            <!-- TAB 5: HỎI ĐÁP (Dedicated Full Panel) -->
             <div class="gobike-tab-panel" id="tab-faq">
                 <div class="gobike-faq-container">
                     <div class="gobike-block-header">
                         <div class="header-left">
                             <h2 class="block-title">HỎI ĐÁP</h2>
-                            <span class="block-slogan">Những câu hỏi thường gặp về <?php echo esc_html($product->get_name()); ?></span>
+                            <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
                         </div>
                         <div class="header-right">
-                            <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
+                            <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                         </div>
                     </div>
 
-                    <!-- Accordion Lưới 2 Cột -->
                     <div class="faq-accordion-grid">
-                        <!-- Cột Trái -->
                         <div class="faq-col">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span><?php echo esc_html($product->get_name()); ?> phù hợp với những đối tượng nào?</span>
-                                    <span class="faq-icon">+</span>
+                            <?php foreach ($faqs_left as $item): ?>
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                    </div>
                                 </div>
-                                <div class="faq-answer">
-                                    <p>Xe phù hợp cho học sinh, sinh viên, người đi làm và những ai yêu thích dã ngoại, thể thao nhờ thiết kế thể thao linh hoạt và hệ thống trợ lực điện thông minh.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>Thời gian sạc đầy pin là bao lâu?</span>
-                                    <span class="faq-icon">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Thời gian sạc đầy pin Lithium dao động từ 4 – 6 giờ với củ sạc thông minh tự ngắt khi đầy, bảo vệ tuổi thọ pin tối đa.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>Xe có thể đi được bao nhiêu km sau mỗi lần sạc?</span>
-                                    <span class="faq-icon">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Ở chế độ thuần điện xe đi được khoảng 40 – 50 km; ở chế độ trợ lực điện thông minh xe đạt quãng đường lên tới 80 – 120 km tùy vào trọng lượng người lái và điều kiện mặt đường.</p>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
-
-                        <!-- Cột Phải -->
                         <div class="faq-col">
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>Xe có hỗ trợ lắp ráp khi giao hàng không?</span>
-                                    <span class="faq-icon">+</span>
+                            <?php foreach ($faqs_right as $item): ?>
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                        <span class="faq-icon">+</span>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                    </div>
                                 </div>
-                                <div class="faq-answer">
-                                    <p>GoBike hỗ trợ lắp ráp hoàn chỉnh và căn chỉnh kỹ thuật 100% trước khi giao đến tận nhà cho quý khách trên toàn quốc.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>Chế độ bảo hành của <?php echo esc_html($product->get_name()); ?> như thế nào?</span>
-                                    <span class="faq-icon">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Sản phẩm được bảo hành chính hãng 24 tháng đối với khung sườn xe, 12 tháng đối với động cơ điện và cụm pin, kèm chế độ bảo dưỡng tra dầu miễn phí trọn đời.</p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    <span>Tôi có thể trả góp khi mua xe không?</span>
-                                    <span class="faq-icon">+</span>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>Có. GoBike hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc công ty tài chính với thủ tục nhanh gọn chỉ trong 15 phút.</p>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
 
                     <div class="faq-footer-link">
-                        <a href="https://zalo.me/0944988699" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+                        <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
                     </div>
                 </div>
             </div>

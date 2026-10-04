@@ -29,6 +29,14 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
     require_once __DIR__ . '/inc/news-ajax.php';
 }
 
+// Tự động load các cấu hình ACF / SCF Field Groups
+$gobike_acf_files = glob(__DIR__ . '/inc/acf/*.php');
+if (!empty($gobike_acf_files)) {
+    foreach ($gobike_acf_files as $file) {
+        require_once $file;
+    }
+}
+
 // SCF (Secure Custom Fields) không hỗ trợ options page
 // Dùng WordPress Settings API thay thế - xem gobike_settings_page bên dưới
 
