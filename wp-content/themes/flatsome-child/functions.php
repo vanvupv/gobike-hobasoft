@@ -48,56 +48,15 @@ if (file_exists(__DIR__ . '/inc/news-ajax.php')) {
  *         trên tất cả WooCommerce pages (backup cho FIX 1)
  */
 
-// FIX 1: Override _footer meta cho WooCommerce Shop Page
+// FIX: Override _footer meta cho WooCommerce Shop Page (đảm bảo không bị 'disabled')
 add_filter('get_post_metadata', 'gobike_fix_shop_page_footer_meta', 10, 4);
 function gobike_fix_shop_page_footer_meta($value, $post_id, $meta_key, $single) {
     if ($meta_key !== '_footer') return $value;
     if (!function_exists('wc_get_page_id')) return $value;
 
-    // Kiểm tra nếu đây là trang shop của WooCommerce
     $shop_page_id = (int) wc_get_page_id('shop');
     if ($shop_page_id > 0 && $post_id === $shop_page_id) {
-        // Trả về '' = Normal footer (override giá trị 'disabled' trong DB)
-        return $single ? '' : array('');
-    }
-    return $value;
-}
-
-// FIX 2: Force full footer template trên tất cả WooCommerce pages
-add_action('flatsome_footer', 'gobike_force_full_footer_on_woo', 5);
-function gobike_force_full_footer_on_woo() {
-    if (!function_exists('is_woocommerce')) return;
-
-    $is_woo_page = is_shop()
-        || is_product_category()
-        || is_product_tag()
-        || is_singular('product');
-
-    // Fallback: kiểm tra thủ công nếu is_shop() bị sai do config
-    if (!$is_woo_page && function_exists('wc_get_page_id')) {
-        $shop_id = (int) wc_get_page_id('shop');
-        $is_woo_page = ($shop_id > 0 && $shop_id === (int) get_queried_object_id());
-    }
-
-    if (!$is_woo_page) return;
-
-    // Xóa flatsome_page_footer (sẽ kiểm tra _footer meta) và tự render
-    remove_action('flatsome_footer', 'flatsome_page_footer', 10);
-    get_template_part('template-parts/footer/footer');
-}
-
-// Giữ lại filter cũ làm fallback phòng timing issues
-add_filter('theme_mod_footer_block', 'gobike_force_full_footer_on_shop');
-function gobike_force_full_footer_on_shop($value) {
-    if (
-        function_exists('is_shop') && (
-            is_shop() ||
-            is_product_category() ||
-            is_product_tag() ||
-            is_singular('product')
-        )
-    ) {
-        return ''; // Bỏ qua footer_block → dùng template footer đầy đủ
+        return $single ? 'normal' : array('normal');
     }
     return $value;
 }
