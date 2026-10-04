@@ -443,6 +443,30 @@ function gobike_render_single_product_tabs($product) {
         $review_count = (int) $product->get_review_count();
     }
 
+    // Thống kê đánh giá động phục vụ hiển thị
+    $avg_rating = (float) $product->get_average_rating();
+    $rating_score = $avg_rating > 0 ? number_format($avg_rating, 1) : '5.0';
+    $total_text = 'Dựa trên ' . $review_count . ' đánh giá';
+
+    $rating_counts = $product->get_rating_counts();
+    $total_voted = array_sum($rating_counts);
+    if ($total_voted > 0) {
+        $s5 = round((($rating_counts[5] ?? 0) / $total_voted) * 100);
+        $s4 = round((($rating_counts[4] ?? 0) / $total_voted) * 100);
+        $s3 = round((($rating_counts[3] ?? 0) / $total_voted) * 100);
+        $s2 = round((($rating_counts[2] ?? 0) / $total_voted) * 100);
+        $s1 = round((($rating_counts[1] ?? 0) / $total_voted) * 100);
+    } else {
+        $s5 = 0; $s4 = 0; $s3 = 0; $s2 = 0; $s1 = 0;
+    }
+
+    // Danh sách đánh giá thực tế đã duyệt
+    $latest_reviews = get_comments(array(
+        'post_id' => $product_id,
+        'status'  => 'approve',
+        'number'  => 4,
+    ));
+
     // --- TAB 1: Dữ liệu Mô tả & Banners ---
     $desc_subtitle = $gf ? get_field('sp_desc_subtitle', $product_id) : '';
     if (empty($desc_subtitle)) $desc_subtitle = 'Khám phá thế giới theo cách của bạn';
@@ -703,70 +727,109 @@ function gobike_render_single_product_tabs($product) {
 
                     <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Tóm tắt tại Tab 1) -->
                     <div class="desc-reviews-block">
-                        <div class="gobike-block-header">
+                        <div class="gobike-block-header align-center">
                             <div class="header-left">
                                 <h2 class="block-title">ĐÁNH GIÁ KHÁCH HÀNG</h2>
-                            </div>
-                            <div class="header-right">
-                                <a href="#tab-reviews" class="view-all-link">
-                                    Xem tất cả đánh giá <span class="arr">➔</span>
+                                <a href="#tab-reviews" class="btn-write-review-outline btn-write-review">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                    </svg>
+                                    Viết đánh giá
                                 </a>
                             </div>
+                            <?php if ($review_count > 0): ?>
+                                <div class="header-right">
+                                    <a href="#tab-reviews" class="view-all-link">
+                                        Xem tất cả đánh giá <span class="arr">➔</span>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
-                        <!-- Lưới 5 ô: 1 ô tổng điểm + các thẻ đánh giá nổi bật -->
-                        <div class="desc-reviews-5col-grid">
-                            <div class="desc-score-summary-card">
-                                <div class="big-score"><?php echo esc_html($rating_score); ?><span>/5</span></div>
-                                <div class="score-stars">★★★★★</div>
-                                <span class="score-total-txt"><?php echo esc_html($total_text); ?></span>
-                                <div class="summary-progress-bars">
-                                    <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s5); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s5); ?>%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s4); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s4); ?>%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s3); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s3); ?>%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s2); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s2); ?>%</span></div>
-                                    <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s1); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s1); ?>%</span></div>
+                        <?php if ($review_count > 0 && !empty($latest_reviews)): ?>
+                            <!-- Khi CÓ đánh giá: Lưới 5 ô (1 ô tổng điểm + các thẻ đánh giá thực tế) -->
+                            <div class="desc-reviews-5col-grid">
+                                <div class="desc-score-summary-card">
+                                    <div class="big-score"><?php echo esc_html($rating_score); ?><span>/5</span></div>
+                                    <div class="score-stars">
+                                        <?php
+                                        $full_stars = round($avg_rating);
+                                        echo str_repeat('★', max(1, min(5, $full_stars)));
+                                        ?>
+                                    </div>
+                                    <span class="score-total-txt"><?php echo esc_html($total_text); ?></span>
+                                    <div class="summary-progress-bars">
+                                        <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s5); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s5); ?>%</span></div>
+                                        <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s4); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s4); ?>%</span></div>
+                                        <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s3); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s3); ?>%</span></div>
+                                        <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s2); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s2); ?>%</span></div>
+                                        <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s1); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s1); ?>%</span></div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <?php if (!empty($featured_reviews)): ?>
-                                <?php foreach ($featured_reviews as $rev): ?>
+                                <?php foreach ($latest_reviews as $rev): 
+                                    $st = intval(get_comment_meta($rev->comment_ID, 'rating', true) ?: 5);
+                                    $avatar = get_avatar_url($rev->comment_author_email, array('size' => 80));
+                                    $ywar_photos = get_comment_meta($rev->comment_ID, 'ywar_attachments', true);
+                                    if (!is_array($ywar_photos)) $ywar_photos = array();
+                                ?>
                                     <div class="review-card-item">
                                         <div class="card-author-row">
-                                            <?php if (!empty($rev['avatar'])): ?>
-                                                <img src="<?php echo esc_url($rev['avatar']); ?>" alt="<?php echo esc_attr($rev['name'] ?? ''); ?>" class="author-avatar" />
+                                            <?php if (!empty($avatar)): ?>
+                                                <img src="<?php echo esc_url($avatar); ?>" alt="<?php echo esc_attr($rev->comment_author); ?>" class="author-avatar" />
                                             <?php else: ?>
-                                                <div class="author-avatar-placeholder"><?php echo esc_html(mb_substr($rev['name'] ?? 'K', 0, 1)); ?></div>
+                                                <div class="author-avatar-placeholder"><?php echo esc_html(mb_substr($rev->comment_author, 0, 1)); ?></div>
                                             <?php endif; ?>
                                             <div class="author-meta">
-                                                <strong class="author-name"><?php echo esc_html($rev['name'] ?? 'Khách hàng'); ?></strong>
-                                                <?php if (!empty($rev['date'])): ?>
-                                                    <span class="review-date"><?php echo esc_html($rev['date']); ?></span>
-                                                <?php endif; ?>
+                                                <strong class="author-name"><?php echo esc_html($rev->comment_author); ?></strong>
+                                                <span class="review-date"><?php echo esc_html(get_comment_date('d/m/Y', $rev)); ?></span>
                                             </div>
                                         </div>
                                         <div class="review-stars-val">
-                                            <?php
-                                            $st = intval($rev['stars'] ?? 5);
-                                            echo str_repeat('★', max(1, min(5, $st)));
-                                            ?>
+                                            <?php echo str_repeat('★', max(1, min(5, $st))); ?>
                                         </div>
-                                        <p class="review-comment"><?php echo esc_html($rev['comment'] ?? ''); ?></p>
-                                        <?php if (!empty($rev['photo_1']) || !empty($rev['photo_2'])): ?>
+                                        <p class="review-comment"><?php echo esc_html(wp_trim_words($rev->comment_content, 35)); ?></p>
+                                        <?php if (!empty($ywar_photos)): ?>
                                             <div class="review-attached-imgs">
-                                                <?php if (!empty($rev['photo_1'])): ?>
-                                                    <img src="<?php echo esc_url($rev['photo_1']); ?>" alt="Review photo 1" />
-                                                <?php endif; ?>
-                                                <?php if (!empty($rev['photo_2'])): ?>
-                                                    <img src="<?php echo esc_url($rev['photo_2']); ?>" alt="Review photo 2" />
-                                                <?php endif; ?>
+                                                <?php foreach (array_slice($ywar_photos, 0, 2) as $att_id): 
+                                                    $img_u = wp_get_attachment_image_url($att_id, 'medium');
+                                                    if ($img_u):
+                                                ?>
+                                                    <img src="<?php echo esc_url($img_u); ?>" alt="Review photo" />
+                                                <?php endif; endforeach; ?>
                                             </div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
+                            </div>
+                        <?php else: ?>
+                            <!-- Khi CHƯA có đánh giá: Hiển thị thông báo thân thiện + Nút đánh giá ngay -->
+                            <div class="desc-reviews-empty-card">
+                                <div class="empty-card-inner">
+                                    <div class="empty-icon-circle">
+                                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="empty-text-wrap">
+                                        <h4 class="empty-title">Chưa có đánh giá nào cho sản phẩm này</h4>
+                                        <p class="empty-desc">Hãy là người đầu tiên trải nghiệm và chia sẻ cảm nhận thực tế về <strong><?php echo esc_html($product->get_name()); ?></strong> để nhận ưu đãi hấp dẫn từ GoBike!</p>
+                                    </div>
+                                    <div class="empty-action-wrap">
+                                        <a href="#tab-reviews" class="btn-write-review-now btn-write-review">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                            </svg>
+                                            Viết đánh giá ngay
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
+
 
                     <!-- PHẦN 4: HỎI ĐÁP (Tóm tắt tại Tab 1) -->
                     <div class="desc-faq-block">

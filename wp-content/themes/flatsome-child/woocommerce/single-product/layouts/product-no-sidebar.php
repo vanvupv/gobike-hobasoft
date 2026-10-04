@@ -188,10 +188,19 @@ jQuery(document).ready(function($) {
                 scrollTop: $('#gobikeProductTabsSection').offset().top - 70
             }, 300);
 
-            // Nếu bấm viết đánh giá, focus vào textarea bình luận
-            if ($(this).hasClass('btn-write-review-outline') || $(this).hasClass('btn-write-review')) {
+            // Nếu bấm viết đánh giá, mở form và focus vào textarea bình luận
+            if ($(this).hasClass('btn-write-review-outline') || $(this).hasClass('btn-write-review') || $(this).hasClass('btn-write-review-now')) {
                 setTimeout(function() {
-                    $('#comment').focus();
+                    $('#review_form_wrapper').addClass('open');
+                    $('.send-review a, .send-review').trigger('click');
+                    if ($('#comment').length) {
+                        $('#comment').focus();
+                    }
+                    if ($('#review_form_wrapper').length) {
+                        $('html, body').animate({
+                            scrollTop: $('#review_form_wrapper').offset().top - 120
+                        }, 300);
+                    }
                 }, 350);
             }
         }
