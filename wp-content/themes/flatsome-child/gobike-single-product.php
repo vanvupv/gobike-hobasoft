@@ -435,9 +435,13 @@ function gobike_render_single_product_tabs($product) {
     $product_id = $product->get_id();
     $gf = function_exists('get_field');
 
-    $specs = gobike_get_single_product_specs($product_id);
-    $review_count = $product->get_review_count();
-    $review_count_display = $review_count > 0 ? $review_count : 128;
+    // Đánh giá: Lấy trực tiếp từ YITH Advanced Reviews hoặc WooCommerce chuẩn
+    $review_count = 0;
+    if (function_exists('YITH_YWAR')) {
+        $review_count = (int) YITH_YWAR()->get_reviews_count($product_id);
+    } else {
+        $review_count = (int) $product->get_review_count();
+    }
 
     // --- TAB 1: Dữ liệu Mô tả & Banners ---
     $desc_subtitle = $gf ? get_field('sp_desc_subtitle', $product_id) : '';
@@ -527,66 +531,6 @@ function gobike_render_single_product_tabs($product) {
     }
     $video_embed_url = gobike_get_youtube_embed_url($video_url);
 
-    // --- TAB 4: Dữ liệu Đánh giá ---
-    $rating_score = $gf ? get_field('sp_rating_score', $product_id) : '';
-    if (empty($rating_score)) {
-        $avg = $product->get_average_rating();
-        $rating_score = $avg ? number_format((float)$avg, 1) : '4.9';
-    }
-
-    $total_text = $gf ? get_field('sp_rating_total_text', $product_id) : '';
-    if (empty($total_text)) $total_text = 'Dựa trên ' . $review_count_display . ' đánh giá';
-
-    $s5 = $gf ? (int) get_field('sp_star_5', $product_id) : 85;
-    $s4 = $gf ? (int) get_field('sp_star_4', $product_id) : 10;
-    $s3 = $gf ? (int) get_field('sp_star_3', $product_id) : 3;
-    $s2 = $gf ? (int) get_field('sp_star_2', $product_id) : 1;
-    $s1 = $gf ? (int) get_field('sp_star_1', $product_id) : 1;
-    if ($s5 <= 0 && $s4 <= 0 && $s3 <= 0 && $s2 <= 0 && $s1 <= 0) {
-        $s5 = 85; $s4 = 10; $s3 = 3; $s2 = 1; $s1 = 1;
-    }
-
-    $featured_reviews = $gf ? get_field('sp_featured_reviews', $product_id) : array();
-    if (empty($featured_reviews) || !is_array($featured_reviews)) {
-        $featured_reviews = array(
-            array(
-                'name'    => 'Nguyễn Minh Tuấn',
-                'avatar'  => 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80',
-                'date'    => '12/04/2024',
-                'stars'   => '5',
-                'comment' => 'Xe rất chắc chắn, trợ lực mượt mà, leo dốc nhẹ như không. Rất hài lòng với ' . $specs['brand'] . '!',
-                'photo_1' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80',
-                'photo_2' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80',
-            ),
-            array(
-                'name'    => 'Trần Thị Mai',
-                'avatar'  => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80',
-                'date'    => '25/03/2024',
-                'stars'   => '5',
-                'comment' => 'Thiết kế đẹp, pin rất bền. Mình đã đi các chuyến dã ngoại dài, xe vận hành ổn định, cực kỳ đáng tiền!',
-                'photo_1' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=150&q=80',
-                'photo_2' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=150&q=80',
-            ),
-            array(
-                'name'    => 'Lê Hoàng Nam',
-                'avatar'  => 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80',
-                'date'    => '16/05/2024',
-                'stars'   => '5',
-                'comment' => 'Giao hàng nhanh, lắp ráp cẩn thận. Xe đi êm, màu sắc đẹp. Sẽ giới thiệu cho bạn bè!',
-                'photo_1' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=150&q=80',
-                'photo_2' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=150&q=80',
-            ),
-            array(
-                'name'    => 'Phạm Thu Hà',
-                'avatar'  => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80',
-                'date'    => '08/03/2024',
-                'stars'   => '5',
-                'comment' => 'Trải nghiệm tuyệt vời! Trợ lực êm ái, tự nhiên, phù hợp cả đi làm lẫn đi du lịch cuối tuần.',
-                'photo_1' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=150&q=80',
-                'photo_2' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=150&q=80',
-            ),
-        );
-    }
 
     // --- TAB 5: Dữ liệu Hỏi đáp ---
     $faq_slogan = $gf ? get_field('sp_faq_slogan', $product_id) : '';
@@ -628,7 +572,7 @@ function gobike_render_single_product_tabs($product) {
                         <a href="#tab-media">Hình ảnh & Video</a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-reviews">
-                        <a href="#tab-reviews">Đánh giá <span>(<?php echo esc_html($review_count_display); ?>)</span></a>
+                        <a href="#tab-reviews">Đánh giá <span>(<?php echo esc_html($review_count); ?>)</span></a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-faq">
                         <a href="#tab-faq">Hỏi đáp <span>(<?php echo esc_html($faq_count); ?>)</span></a>
@@ -941,33 +885,10 @@ function gobike_render_single_product_tabs($product) {
                 </div>
             </div>
 
-            <!-- TAB 4: ĐÁNH GIÁ (Dedicated Full Panel) -->
+            <!-- TAB 4: ĐÁNH GIÁ (Dữ liệu động 100% từ WooCommerce & YITH Advanced Reviews) -->
             <div class="gobike-tab-panel" id="tab-reviews">
                 <div class="gobike-reviews-container">
-                    <div class="gobike-block-header">
-                        <div class="header-left">
-                            <h2 class="block-title">ĐÁNH GIÁ KHÁCH HÀNG</h2>
-                        </div>
-                    </div>
-
-                    <!-- Box Tổng Điểm & Thanh Tiến Độ Sao -->
-                    <div class="reviews-summary-row">
-                        <div class="summary-score-box">
-                            <div class="big-score"><?php echo esc_html($rating_score); ?><span>/5</span></div>
-                            <div class="score-stars">★★★★★</div>
-                            <span class="score-total-txt"><?php echo esc_html($total_text); ?></span>
-                        </div>
-
-                        <div class="summary-progress-bars">
-                            <div class="star-bar-item"><span class="bar-lbl">5 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s5); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s5); ?>%</span></div>
-                            <div class="star-bar-item"><span class="bar-lbl">4 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s4); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s4); ?>%</span></div>
-                            <div class="star-bar-item"><span class="bar-lbl">3 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s3); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s3); ?>%</span></div>
-                            <div class="star-bar-item"><span class="bar-lbl">2 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s2); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s2); ?>%</span></div>
-                            <div class="star-bar-item"><span class="bar-lbl">1 sao</span><div class="bar-track"><div class="bar-fill" style="width: <?php echo esc_attr($s1); ?>%;"></div></div><span class="bar-percent"><?php echo esc_html($s1); ?>%</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Form Đánh Giá & Danh Sách Bình Luận Chuẩn WooCommerce -->
+                    <!-- Form Đánh Giá & Danh Sách Bình Luận Động Chuẩn WooCommerce & YITH -->
                     <div class="gobike-woocommerce-reviews-wrap">
                         <?php comments_template(); ?>
                     </div>
