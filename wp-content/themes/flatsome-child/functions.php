@@ -58,9 +58,12 @@ if (!empty($gobike_acf_files)) {
 
 // FIX: Override _footer meta cho WooCommerce Shop Page (đảm bảo không bị 'disabled')
 add_filter('get_post_metadata', 'gobike_fix_shop_page_footer_meta', 10, 4);
-function gobike_fix_shop_page_footer_meta($value, $post_id, $meta_key, $single) {
-    if ($meta_key !== '_footer') return $value;
-    if (!function_exists('wc_get_page_id')) return $value;
+function gobike_fix_shop_page_footer_meta($value, $post_id, $meta_key, $single)
+{
+    if ($meta_key !== '_footer')
+        return $value;
+    if (!function_exists('wc_get_page_id'))
+        return $value;
 
     $shop_page_id = (int) wc_get_page_id('shop');
     if ($shop_page_id > 0 && $post_id === $shop_page_id) {
@@ -74,29 +77,34 @@ function gobike_fix_shop_page_footer_meta($value, $post_id, $meta_key, $single) 
  * Lấy 3 thông số kỹ thuật nhanh cho product card (Quãng đường, Trọng lượng, Công suất)
  * Đọc từ ACF trước, sau đó fallback sang attribute hoặc title parsing.
  */
-function gobike_extract_product_specs($product) {
-    if (!$product) return array('range' => '', 'weight' => '', 'power' => '');
+function gobike_extract_product_specs($product)
+{
+    if (!$product)
+        return array('range' => '', 'weight' => '', 'power' => '');
     $pid = $product->get_id();
 
     // 1. Đọc từ ACF fields
-    $range  = function_exists('get_field') ? get_field('quang_duong', $pid)    : '';
-    $weight = function_exists('get_field') ? get_field('trong_luong', $pid)    : '';
-    $power  = function_exists('get_field') ? get_field('dong_co', $pid)        : '';
+    $range = function_exists('get_field') ? get_field('quang_duong', $pid) : '';
+    $weight = function_exists('get_field') ? get_field('trong_luong', $pid) : '';
+    $power = function_exists('get_field') ? get_field('dong_co', $pid) : '';
 
     // 2. Fallback: đọc từ WooCommerce attributes nếu ACF trống
     if (empty($range)) {
         $attr = $product->get_attribute('pa_quang-duong');
-        if (!$attr) $attr = $product->get_attribute('quang_duong');
+        if (!$attr)
+            $attr = $product->get_attribute('quang_duong');
         $range = $attr ?: '';
     }
     if (empty($weight)) {
         $attr = $product->get_attribute('pa_trong-luong');
-        if (!$attr) $attr = $product->get_attribute('trong_luong');
+        if (!$attr)
+            $attr = $product->get_attribute('trong_luong');
         $weight = $attr ?: '';
     }
     if (empty($power)) {
         $attr = $product->get_attribute('pa_dong-co');
-        if (!$attr) $attr = $product->get_attribute('dong_co');
+        if (!$attr)
+            $attr = $product->get_attribute('dong_co');
         // Cố trích công suất từ tên sản phẩm nếu vẫn trống
         if (!$attr) {
             preg_match('/\b(\d{2,4})\s*[Ww]\b/', $product->get_name(), $m);
@@ -106,9 +114,9 @@ function gobike_extract_product_specs($product) {
     }
 
     return array(
-        'range'  => $range,
+        'range' => $range,
         'weight' => $weight,
-        'power'  => $power,
+        'power' => $power,
     );
 }
 
@@ -376,7 +384,8 @@ function gobike_mobile_bottom_nav_bar()
                 <span>Danh mục sản phẩm</span>
             </div>
             <button type="button" class="gb-cd-close-btn" id="gbCdCloseBtn" aria-label="Đóng danh mục" style="margin: 0px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -388,8 +397,10 @@ function gobike_mobile_bottom_nav_bar()
             <aside class="gb-cd-sidebar" id="gbCdSidebar">
                 <!-- Thanh công cụ thu gọn - mở rộng văn bản (chỉ hiển thị icon) -->
                 <div class="gb-cd-sidebar-toggle-bar">
-                    <button type="button" class="gb-cd-sidebar-toggle-btn" id="gbCdSidebarToggle" aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng menu">
-                        <svg class="gb-cd-toggle-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <button type="button" class="gb-cd-sidebar-toggle-btn" id="gbCdSidebarToggle"
+                        aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng menu">
+                        <svg class="gb-cd-toggle-arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                         <span class="gb-cd-toggle-label">Thu gọn</span>
@@ -398,19 +409,23 @@ function gobike_mobile_bottom_nav_bar()
 
                 <ul class="gb-cd-nav-list">
                     <!-- 1. Xe đạp trợ lực điện (Kèm nút thu gọn - mở rộng) -->
-                    <li class="gb-cd-nav-item active gb-cd-has-sub" id="gbCdNavEbike" data-target="gbCdPaneEbike" title="Xe đạp trợ lực điện">
+                    <li class="gb-cd-nav-item active gb-cd-has-sub" id="gbCdNavEbike" data-target="gbCdPaneEbike"
+                        title="Xe đạp trợ lực điện">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="5.5" cy="17.5" r="3.5"/>
-                                <circle cx="18.5" cy="17.5" r="3.5"/>
-                                <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h4"/>
-                                <path d="M13 14l-2 3.5"/>
-                                <polygon points="12 2 9 7 12 7 10 11 15 6 12 6 12 2" fill="currentColor" stroke="none"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5.5" cy="17.5" r="3.5" />
+                                <circle cx="18.5" cy="17.5" r="3.5" />
+                                <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h4" />
+                                <path d="M13 14l-2 3.5" />
+                                <polygon points="12 2 9 7 12 7 10 11 15 6 12 6 12 2" fill="currentColor" stroke="none" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe đạp trợ lực điện</span>
-                        <span class="gb-cd-sub-toggle" id="gbCdEbikeToggle" aria-label="Thu gọn - Mở rộng" title="Thu gọn / Mở rộng menu">
-                            <svg class="gb-cd-toggle-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <span class="gb-cd-sub-toggle" id="gbCdEbikeToggle" aria-label="Thu gọn - Mở rộng"
+                            title="Thu gọn / Mở rộng menu">
+                            <svg class="gb-cd-toggle-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </span>
@@ -419,13 +434,14 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 2. Xe đạp gấp gọn -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneFolding" title="Xe đạp gấp gọn">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="5" cy="17" r="3"/>
-                                <circle cx="19" cy="17" r="3"/>
-                                <path d="M12 17v-4l-3-3h-4"/>
-                                <path d="M12 13l4-4h3"/>
-                                <path d="M12 9V5l-2-1"/>
-                                <circle cx="12" cy="13" r="1.5" fill="currentColor"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5" cy="17" r="3" />
+                                <circle cx="19" cy="17" r="3" />
+                                <path d="M12 17v-4l-3-3h-4" />
+                                <path d="M12 13l4-4h3" />
+                                <path d="M12 9V5l-2-1" />
+                                <circle cx="12" cy="13" r="1.5" fill="currentColor" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe đạp gấp gọn</span>
@@ -434,9 +450,10 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 3. Xe địa hình -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneMountain" title="Xe địa hình">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
-                                <path d="M4 18l4-4 3 3"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 3l4 8 5-5 5 15H2L8 3z" />
+                                <path d="M4 18l4-4 3 3" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe địa hình</span>
@@ -445,16 +462,17 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 4. Xe đi làm -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneCommute" title="Xe đi làm">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-                                <line x1="9" y1="22" x2="9" y2="22.01"/>
-                                <line x1="15" y1="22" x2="15" y2="22.01"/>
-                                <line x1="8" y1="6" x2="10" y2="6"/>
-                                <line x1="14" y1="6" x2="16" y2="6"/>
-                                <line x1="8" y1="10" x2="10" y2="10"/>
-                                <line x1="14" y1="10" x2="16" y2="10"/>
-                                <line x1="8" y1="14" x2="10" y2="14"/>
-                                <line x1="14" y1="14" x2="16" y2="14"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                                <line x1="9" y1="22" x2="9" y2="22.01" />
+                                <line x1="15" y1="22" x2="15" y2="22.01" />
+                                <line x1="8" y1="6" x2="10" y2="6" />
+                                <line x1="14" y1="6" x2="16" y2="6" />
+                                <line x1="8" y1="10" x2="10" y2="10" />
+                                <line x1="14" y1="10" x2="16" y2="10" />
+                                <line x1="8" y1="14" x2="10" y2="14" />
+                                <line x1="14" y1="14" x2="16" y2="14" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe đi làm</span>
@@ -463,9 +481,10 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 5. Xe cho học sinh - sinh viên -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneStudent" title="Xe cho học sinh - sinh viên">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe cho học sinh - sinh viên</span>
@@ -474,8 +493,10 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 6. Xe cho người lớn tuổi -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneElder" title="Xe cho người lớn tuổi">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Xe cho người lớn tuổi</span>
@@ -484,11 +505,12 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 7. Phụ kiện -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneAccessories">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 13c0-4.97 4.03-9 9-9s9 4.03 9 9c0 1.5-.5 3-2 3H5c-1.5 0-2-1.5-2-3z"/>
-                                <path d="M8 8c1 2 2 3 4 3s3-1 4-3"/>
-                                <line x1="12" y1="4" x2="12" y2="11"/>
-                                <path d="M7 16l2 5h6l2-5"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 13c0-4.97 4.03-9 9-9s9 4.03 9 9c0 1.5-.5 3-2 3H5c-1.5 0-2-1.5-2-3z" />
+                                <path d="M8 8c1 2 2 3 4 3s3-1 4-3" />
+                                <line x1="12" y1="4" x2="12" y2="11" />
+                                <path d="M7 16l2 5h6l2-5" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Phụ kiện</span>
@@ -497,10 +519,11 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 8. Pin & sạc -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneBattery">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="7" width="16" height="12" rx="2" ry="2"/>
-                                <line x1="22" y1="11" x2="22" y2="15"/>
-                                <polygon points="11 9 7 14 10 14 9 17 13 12 10 12 11 9" fill="currentColor" stroke="none"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="16" height="12" rx="2" ry="2" />
+                                <line x1="22" y1="11" x2="22" y2="15" />
+                                <polygon points="11 9 7 14 10 14 9 17 13 12 10 12 11 9" fill="currentColor" stroke="none" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Pin & sạc</span>
@@ -509,8 +532,10 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 9. Bảo dưỡng - sửa chữa -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneService">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Bảo dưỡng - sửa chữa</span>
@@ -519,8 +544,10 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 10. Thương hiệu -->
                     <li class="gb-cd-nav-item" data-target="gbCdPaneBrands">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Thương hiệu</span>
@@ -529,11 +556,14 @@ function gobike_mobile_bottom_nav_bar()
                     <!-- 11. Khuyến mãi -->
                     <li class="gb-cd-nav-item gb-cd-item-sale" data-target="gbCdPaneSale">
                         <span class="gb-cd-nav-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z" fill="#fee2e2" stroke="#ef4444"/>
-                                <line x1="9" y1="15" x2="15" y2="9" stroke="#ef4444"/>
-                                <circle cx="9.5" cy="9.5" r=".5" fill="#ef4444"/>
-                                <circle cx="14.5" cy="14.5" r=".5" fill="#ef4444"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z"
+                                    fill="#fee2e2" stroke="#ef4444" />
+                                <line x1="9" y1="15" x2="15" y2="9" stroke="#ef4444" />
+                                <circle cx="9.5" cy="9.5" r=".5" fill="#ef4444" />
+                                <circle cx="14.5" cy="14.5" r=".5" fill="#ef4444" />
                             </svg>
                         </span>
                         <span class="gb-cd-nav-text">Khuyến mãi</span>
@@ -547,7 +577,8 @@ function gobike_mobile_bottom_nav_bar()
                 <!-- PANE 1: XE ĐẠP TRỢ LỰC ĐIỆN (ACTIVE MẶC ĐỊNH THEO ẢNH MẪU) -->
                 <div class="gb-cd-pane active" id="gbCdPaneEbike">
                     <!-- Banner lớn đầu khối -->
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
                         <img src="<?php echo esc_url($img_banner); ?>" alt="Xe đạp trợ lực điện" class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <span class="gb-cd-banner-script">Sống xanh mỗi ngày</span>
@@ -566,7 +597,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">PHOENIX</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
 
@@ -576,7 +611,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">SHENGMILO</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
 
@@ -586,7 +625,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">BURCHDA</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
 
@@ -596,7 +639,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">RAPIDX</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
 
@@ -606,7 +653,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">SHALLWAY</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
 
@@ -616,7 +667,11 @@ function gobike_mobile_bottom_nav_bar()
                             </div>
                             <div class="gb-cd-brand-footer">
                                 <span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span>
-                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                                <span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span>
                             </div>
                         </a>
                     </div>
@@ -624,7 +679,8 @@ function gobike_mobile_bottom_nav_bar()
 
                 <!-- PANE 2: XE ĐẠP GẤP GỌN -->
                 <div class="gb-cd-pane" id="gbCdPaneFolding">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
                         <img src="<?php echo esc_url($img_truongvuong); ?>" alt="Xe đạp gấp gọn" class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <div class="gb-cd-banner-text">
@@ -635,19 +691,32 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=ado')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="ADO Air 20" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">ADO Air 20</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>"
+                                    alt="ADO Air 20" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">ADO Air 20</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix G2" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix G2</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix G2"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix G2</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
 
                 <!-- PANE 3: XE ĐỊA HÌNH -->
                 <div class="gb-cd-pane" id="gbCdPaneMountain">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
                         <img src="<?php echo esc_url($img_burchda); ?>" alt="Xe địa hình" class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <div class="gb-cd-banner-text">
@@ -658,19 +727,32 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Burchda RX70" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Burchda RX70</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Burchda RX70"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Burchda RX70</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RapidX All-Terrain" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RapidX Sport</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>"
+                                    alt="RapidX All-Terrain" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RapidX Sport</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
 
                 <!-- PANE 4: XE ĐI LÀM -->
                 <div class="gb-cd-pane" id="gbCdPaneCommute">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
                         <img src="<?php echo esc_url($img_shengmilo); ?>" alt="Xe đi làm" class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <div class="gb-cd-banner-text">
@@ -681,20 +763,34 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="Shengmilo Urban" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shengmilo Urban</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>"
+                                    alt="Shengmilo Urban" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shengmilo Urban</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway City" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway City</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>"
+                                    alt="Shallway City" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway City</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
 
                 <!-- PANE 5: XE CHO HỌC SINH - SINH VIÊN -->
                 <div class="gb-cd-pane" id="gbCdPaneStudent">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
-                        <img src="<?php echo esc_url($img_phoenix); ?>" alt="Xe học sinh sinh viên" class="gb-cd-banner-img">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_phoenix); ?>" alt="Xe học sinh sinh viên"
+                            class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <div class="gb-cd-banner-text">
                             <h3>Xe học sinh<br>Sinh viên</h3>
@@ -704,20 +800,34 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix 599" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix 599</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Phoenix 599"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Phoenix 599</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="Trường Vương Mini" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Trường Vương</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>"
+                                    alt="Trường Vương Mini" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Trường Vương</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
 
                 <!-- PANE 6: XE CHO NGƯỜI LỚN TUỔI -->
                 <div class="gb-cd-pane" id="gbCdPaneElder">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="gb-cd-banner">
-                        <img src="<?php echo esc_url($img_shallway); ?>" alt="Xe cho người lớn tuổi" class="gb-cd-banner-img">
+                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>"
+                        class="gb-cd-banner">
+                        <img src="<?php echo esc_url($img_shallway); ?>" alt="Xe cho người lớn tuổi"
+                            class="gb-cd-banner-img">
                         <div class="gb-cd-banner-overlay"></div>
                         <div class="gb-cd-banner-text">
                             <h3>Xe người<br>lớn tuổi</h3>
@@ -727,8 +837,14 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="Shallway Comfort" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway Classic</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>"
+                                    alt="Shallway Comfort" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Shallway Classic</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -746,16 +862,36 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=mu-bao-hiem')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Mũ bảo hiểm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Mũ bảo hiểm</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=khoa-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Khóa chống trộm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Khóa chống trộm</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=den-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đèn pha LED</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đèn pha LED</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=tui-xe')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Túi treo xe</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Túi treo xe</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -773,13 +909,28 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-36v')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 36V Lithium</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 36V Lithium</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=pin-48v')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 48V Cao cấp</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Pin 48V Cao cấp</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=sac')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Sạc nhanh thông minh</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Sạc nhanh thông minh</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -797,10 +948,20 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/dat-lich-lai-thu/')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đặt lịch bảo dưỡng</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Đặt lịch bảo dưỡng</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/lien-he/')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Cứu hộ tận nơi</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">Cứu hộ tận nơi</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -809,28 +970,64 @@ function gobike_mobile_bottom_nav_bar()
                 <div class="gb-cd-pane" id="gbCdPaneBrands">
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="PHOENIX" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">PHOENIX</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="PHOENIX"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">PHOENIX</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shengmilo')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="SHENGMILO" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHENGMILO</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shengmilo); ?>" alt="SHENGMILO"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHENGMILO</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="BURCHDA" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">BURCHDA</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="BURCHDA"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">BURCHDA</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=rapidx')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RAPIDX" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RAPIDX</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_rapidx); ?>" alt="RAPIDX"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">RAPIDX</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=shallway')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="SHALLWAY" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHALLWAY</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_shallway); ?>" alt="SHALLWAY"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">SHALLWAY</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=truong-vuong')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>" alt="TRƯỜNG VƯƠNG" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_truongvuong); ?>"
+                                    alt="TRƯỜNG VƯƠNG" loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name">TRƯỜNG VƯƠNG</span><span
+                                    class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -839,7 +1036,9 @@ function gobike_mobile_bottom_nav_bar()
                 <div class="gb-cd-pane" id="gbCdPaneSale">
                     <a href="<?php echo esc_url(home_url('/san-pham/')); ?>" class="gb-cd-banner">
                         <img src="<?php echo esc_url($img_banner); ?>" alt="Khuyến mãi" class="gb-cd-banner-img">
-                        <div class="gb-cd-banner-overlay" style="background: linear-gradient(90deg, #fef2f2 0%, #fee2e2 50%, rgba(254, 226, 226, 0.45) 75%, transparent 100%);"></div>
+                        <div class="gb-cd-banner-overlay"
+                            style="background: linear-gradient(90deg, #fef2f2 0%, #fee2e2 50%, rgba(254, 226, 226, 0.45) 75%, transparent 100%);">
+                        </div>
                         <div class="gb-cd-banner-text">
                             <h3 style="color:#b91c1c !important;">Khuyến Mãi<br>Hot Nhất</h3>
                             <p>Ưu đãi tới 30%<br>Tặng full phụ kiện</p>
@@ -848,12 +1047,24 @@ function gobike_mobile_bottom_nav_bar()
                     </a>
                     <div class="gb-cd-brands-grid">
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=phoenix')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Giảm giá sốc" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Flash Sale</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_phoenix); ?>" alt="Giảm giá sốc"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Flash
+                                    Sale</span><span class="gb-cd-brand-arrow"><svg width="10" height="10"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                         <a href="<?php echo esc_url(home_url('/san-pham/?s=burchda')); ?>" class="gb-cd-brand-card">
-                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Mua 1 tặng 1" loading="lazy"></div>
-                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Quà tặng kèm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+                            <div class="gb-cd-brand-img"><img src="<?php echo esc_url($img_burchda); ?>" alt="Mua 1 tặng 1"
+                                    loading="lazy"></div>
+                            <div class="gb-cd-brand-footer"><span class="gb-cd-brand-name" style="color:#dc2626;">Quà tặng
+                                    kèm</span><span class="gb-cd-brand-arrow"><svg width="10" height="10"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg></span></div>
                         </a>
                     </div>
                 </div>
@@ -867,85 +1078,85 @@ function gobike_mobile_bottom_nav_bar()
 
     <!-- SCRIPT ĐIỀU KHIỂN DRAWER & TABS -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var btnToggle = document.getElementById('gobikeBtnToggleProducts');
-        var itemProducts = document.getElementById('gobikeBottomItemProducts');
-        var drawer = document.getElementById('gobikeCategoryDrawer');
-        var backdrop = document.getElementById('gobikeCategoryBackdrop');
-        var closeBtn = document.getElementById('gbCdCloseBtn');
+        document.addEventListener('DOMContentLoaded', function () {
+            var btnToggle = document.getElementById('gobikeBtnToggleProducts');
+            var itemProducts = document.getElementById('gobikeBottomItemProducts');
+            var drawer = document.getElementById('gobikeCategoryDrawer');
+            var backdrop = document.getElementById('gobikeCategoryBackdrop');
+            var closeBtn = document.getElementById('gbCdCloseBtn');
 
-        function openDrawer() {
-            if (!drawer) return;
-            drawer.classList.add('active');
-            if (backdrop) backdrop.classList.add('active');
-            if (itemProducts) itemProducts.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeDrawer() {
-            if (!drawer) return;
-            drawer.classList.remove('active');
-            if (backdrop) backdrop.classList.remove('active');
-            if (itemProducts) itemProducts.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        if (btnToggle) {
-            btnToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (drawer && drawer.classList.contains('active')) {
-                    closeDrawer();
-                } else {
-                    openDrawer();
-                }
-            });
-        }
-
-        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-        if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-        // Thu gọn / Mở rộng văn bản trong Menu danh mục (chỉ hiển thị icon)
-        var sidebarToggle = document.getElementById('gbCdSidebarToggle');
-        var ebikeToggle = document.getElementById('gbCdEbikeToggle');
-        var toggleLabel = document.querySelector('.gb-cd-toggle-label');
-
-        function toggleMenuTextCollapse(e) {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
+            function openDrawer() {
+                if (!drawer) return;
+                drawer.classList.add('active');
+                if (backdrop) backdrop.classList.add('active');
+                if (itemProducts) itemProducts.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-            if (!drawer) return;
-            var isCollapsed = drawer.classList.toggle('sidebar-collapsed');
-            if (toggleLabel) {
-                toggleLabel.textContent = isCollapsed ? 'Mở rộng' : 'Thu gọn';
+
+            function closeDrawer() {
+                if (!drawer) return;
+                drawer.classList.remove('active');
+                if (backdrop) backdrop.classList.remove('active');
+                if (itemProducts) itemProducts.classList.remove('active');
+                document.body.style.overflow = '';
             }
-        }
 
-        if (sidebarToggle) sidebarToggle.addEventListener('click', toggleMenuTextCollapse);
-        if (ebikeToggle) ebikeToggle.addEventListener('click', toggleMenuTextCollapse);
-
-        // Chuyển tab danh mục bên trong Drawer
-        var navItems = document.querySelectorAll('.gb-cd-nav-item');
-        var panes = document.querySelectorAll('.gb-cd-pane');
-
-        navItems.forEach(function(item) {
-            item.addEventListener('click', function() {
-                var targetId = this.getAttribute('data-target');
-                if (!targetId) return;
-
-                navItems.forEach(function(n) { n.classList.remove('active'); });
-                this.classList.add('active');
-
-                panes.forEach(function(p) {
-                    if (p.id === targetId) {
-                        p.classList.add('active');
+            if (btnToggle) {
+                btnToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (drawer && drawer.classList.contains('active')) {
+                        closeDrawer();
                     } else {
-                        p.classList.remove('active');
+                        openDrawer();
                     }
+                });
+            }
+
+            if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+            if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+            // Thu gọn / Mở rộng văn bản trong Menu danh mục (chỉ hiển thị icon)
+            var sidebarToggle = document.getElementById('gbCdSidebarToggle');
+            var ebikeToggle = document.getElementById('gbCdEbikeToggle');
+            var toggleLabel = document.querySelector('.gb-cd-toggle-label');
+
+            function toggleMenuTextCollapse(e) {
+                if (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                if (!drawer) return;
+                var isCollapsed = drawer.classList.toggle('sidebar-collapsed');
+                if (toggleLabel) {
+                    toggleLabel.textContent = isCollapsed ? 'Mở rộng' : 'Thu gọn';
+                }
+            }
+
+            if (sidebarToggle) sidebarToggle.addEventListener('click', toggleMenuTextCollapse);
+            if (ebikeToggle) ebikeToggle.addEventListener('click', toggleMenuTextCollapse);
+
+            // Chuyển tab danh mục bên trong Drawer
+            var navItems = document.querySelectorAll('.gb-cd-nav-item');
+            var panes = document.querySelectorAll('.gb-cd-pane');
+
+            navItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    var targetId = this.getAttribute('data-target');
+                    if (!targetId) return;
+
+                    navItems.forEach(function (n) { n.classList.remove('active'); });
+                    this.classList.add('active');
+
+                    panes.forEach(function (p) {
+                        if (p.id === targetId) {
+                            p.classList.add('active');
+                        } else {
+                            p.classList.remove('active');
+                        }
+                    });
                 });
             });
         });
-    });
     </script>
     <?php
 }
@@ -1634,84 +1845,4 @@ add_filter('theme_mod_sale_bubble_percentage', function ($val) {
     }
     return $val;
 });
-
-/**
- * ============================================================================
- * XỬ LÝ BỎ TỰ ĐỘNG THÊM THẺ <p> VÀ <br> Ở CÁC KHỐI HTML & TEXT CỦA UX BUILDER
- * ============================================================================
- */
-
-// 1. Bảo vệ khối [ux_html] nguyên vẹn, không bị wpautop chèn <p> và <br>
-global $gobike_ux_html_placeholders;
-$gobike_ux_html_placeholders = [];
-
-add_filter('the_content', 'gobike_protect_ux_html_before_wpautop', 8);
-function gobike_protect_ux_html_before_wpautop($content)
-{
-    if (empty($content) || !is_string($content)) {
-        return $content;
-    }
-    global $gobike_ux_html_placeholders;
-    $gobike_ux_html_placeholders = [];
-
-    return preg_replace_callback('/\[ux_html(.*?)\](.*?)\[\/ux_html\]/s', function ($matches) {
-        global $gobike_ux_html_placeholders;
-        $index = count($gobike_ux_html_placeholders);
-        $gobike_ux_html_placeholders[$index] = $matches[2];
-        return '[ux_html' . $matches[1] . ']__GOBIKE_UX_HTML_' . $index . '__[/ux_html]';
-    }, $content);
-}
-
-add_filter('the_content', 'gobike_restore_ux_html_after_wpautop', 10);
-function gobike_restore_ux_html_after_wpautop($content)
-{
-    global $gobike_ux_html_placeholders;
-    if (empty($gobike_ux_html_placeholders) || !is_string($content)) {
-        return $content;
-    }
-
-    foreach ($gobike_ux_html_placeholders as $index => $raw_html) {
-        $content = str_replace('<p>__GOBIKE_UX_HTML_' . $index . '__</p>', $raw_html, $content);
-        $content = str_replace('__GOBIKE_UX_HTML_' . $index . '__', $raw_html, $content);
-    }
-    $gobike_ux_html_placeholders = [];
-    return $content;
-}
-
-// 2. Hàm làm sạch các thẻ <p> và <br> thừa/bọc sai cho khối HTML và Text
-function gobike_clean_unwanted_p_tags($content)
-{
-    if (empty($content) || !is_string($content)) {
-        return $content;
-    }
-
-    // Danh sách thẻ dạng khối không được bị bọc bởi thẻ <p>
-    $block_tags = 'iframe|div|section|table|thead|tbody|tr|td|th|ul|ol|li|h[1-6]|form|figure|video|audio|style|script';
-
-    // Xóa thẻ <p> tự động bọc trước và sau thẻ khối
-    $content = preg_replace('/<p>\s*(<(?:' . $block_tags . ')[\s>])/i', '$1', $content);
-    $content = preg_replace('/(<\/(?:' . $block_tags . ')>)\s*<\/p>/i', '$1', $content);
-
-    // Xóa <br> đặt ngay trước thẻ đóng hoặc ngay sau thẻ mở của khối
-    $content = preg_replace('/<br\s*\/?>\s*<\/(?:' . $block_tags . '|p)>/i', '</$0>', $content);
-    $content = preg_replace('/<br\s*\/?>\s*<\/(iframe|div|p|ul|ol|table|section)>/i', '</$1>', $content);
-    $content = preg_replace('/<(iframe|div|section|table|ul|ol)[^>]*>\s*<br\s*\/?>/i', '<$1>', $content);
-
-    // Xóa các thẻ <p> rỗng (chỉ chứa khoảng trắng, &nbsp; hoặc <br>)
-    $content = preg_replace('/<p>\s*(?:&nbsp;|<br\s*\/?>|\s)*<\/p>/i', '', $content);
-
-    return $content;
-}
-
-// 3. Làm sạch output cho các shortcode ux_html, ux_text, text của UX Builder
-add_filter('do_shortcode_tag', function ($output, $tag, $attr, $m) {
-    if (in_array($tag, ['ux_html', 'ux_text', 'text'], true)) {
-        return gobike_clean_unwanted_p_tags($output);
-    }
-    return $output;
-}, 10, 4);
-
-// 4. Áp dụng làm sạch cuối cùng trên the_content sau khi toàn bộ shortcodes render xong
-add_filter('the_content', 'gobike_clean_unwanted_p_tags', 20);
-
 
