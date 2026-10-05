@@ -65,11 +65,6 @@ function gobike_custom_styles_output()
             padding-top: 30px;
         }
 
-        .row .section {
-            padding-left: 30px;
-            padding-right: 0px;
-        }
-
         .col-divided+.col {
             padding: 0px !important;
         }
