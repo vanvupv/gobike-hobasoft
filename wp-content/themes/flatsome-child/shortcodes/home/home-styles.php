@@ -65,6 +65,13 @@ function gobike_custom_styles_output()
             padding-top: 30px;
         }
 
+        /* Xóa padding mặc định của Flatsome khi section nằm trong container hoặc row */
+        .container .section,
+        .row .section {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
         .col-divided+.col {
             padding: 0px !important;
         }

@@ -120,6 +120,13 @@ button {
 .pdb-0, .pdb-0 .col { padding-bottom: 0 !important; }
 .pdb-10, .pdb-10 .col { padding-bottom: 10px !important; }
 
+/* Xóa padding mặc định của Flatsome khi section nằm trong container hoặc row */
+.container .section,
+.row .section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .button.disabled, button.disabled, .button[disabled], button[disabled] { opacity: 1; }
 .button, button, input[type="submit"], input[type="reset"], input[type="button"] { font-weight: normal !important; font-size: 1em; }
 label, legend { font-weight: normal; font-size: 1em; }
