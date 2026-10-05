@@ -1635,3 +1635,83 @@ add_filter('theme_mod_sale_bubble_percentage', function ($val) {
     return $val;
 });
 
+/**
+ * ============================================================================
+ * XỬ LÝ BỎ TỰ ĐỘNG THÊM THẺ <p> VÀ <br> Ở CÁC KHỐI HTML & TEXT CỦA UX BUILDER
+ * ============================================================================
+ */
+
+// 1. Bảo vệ khối [ux_html] nguyên vẹn, không bị wpautop chèn <p> và <br>
+global $gobike_ux_html_placeholders;
+$gobike_ux_html_placeholders = [];
+
+add_filter('the_content', 'gobike_protect_ux_html_before_wpautop', 8);
+function gobike_protect_ux_html_before_wpautop($content)
+{
+    if (empty($content) || !is_string($content)) {
+        return $content;
+    }
+    global $gobike_ux_html_placeholders;
+    $gobike_ux_html_placeholders = [];
+
+    return preg_replace_callback('/\[ux_html(.*?)\](.*?)\[\/ux_html\]/s', function ($matches) {
+        global $gobike_ux_html_placeholders;
+        $index = count($gobike_ux_html_placeholders);
+        $gobike_ux_html_placeholders[$index] = $matches[2];
+        return '[ux_html' . $matches[1] . ']__GOBIKE_UX_HTML_' . $index . '__[/ux_html]';
+    }, $content);
+}
+
+add_filter('the_content', 'gobike_restore_ux_html_after_wpautop', 10);
+function gobike_restore_ux_html_after_wpautop($content)
+{
+    global $gobike_ux_html_placeholders;
+    if (empty($gobike_ux_html_placeholders) || !is_string($content)) {
+        return $content;
+    }
+
+    foreach ($gobike_ux_html_placeholders as $index => $raw_html) {
+        $content = str_replace('<p>__GOBIKE_UX_HTML_' . $index . '__</p>', $raw_html, $content);
+        $content = str_replace('__GOBIKE_UX_HTML_' . $index . '__', $raw_html, $content);
+    }
+    $gobike_ux_html_placeholders = [];
+    return $content;
+}
+
+// 2. Hàm làm sạch các thẻ <p> và <br> thừa/bọc sai cho khối HTML và Text
+function gobike_clean_unwanted_p_tags($content)
+{
+    if (empty($content) || !is_string($content)) {
+        return $content;
+    }
+
+    // Danh sách thẻ dạng khối không được bị bọc bởi thẻ <p>
+    $block_tags = 'iframe|div|section|table|thead|tbody|tr|td|th|ul|ol|li|h[1-6]|form|figure|video|audio|style|script';
+
+    // Xóa thẻ <p> tự động bọc trước và sau thẻ khối
+    $content = preg_replace('/<p>\s*(<(?:' . $block_tags . ')[\s>])/i', '$1', $content);
+    $content = preg_replace('/(<\/(?:' . $block_tags . ')>)\s*<\/p>/i', '$1', $content);
+
+    // Xóa <br> đặt ngay trước thẻ đóng hoặc ngay sau thẻ mở của khối
+    $content = preg_replace('/<br\s*\/?>\s*<\/(?:' . $block_tags . '|p)>/i', '</$0>', $content);
+    $content = preg_replace('/<br\s*\/?>\s*<\/(iframe|div|p|ul|ol|table|section)>/i', '</$1>', $content);
+    $content = preg_replace('/<(iframe|div|section|table|ul|ol)[^>]*>\s*<br\s*\/?>/i', '<$1>', $content);
+
+    // Xóa các thẻ <p> rỗng (chỉ chứa khoảng trắng, &nbsp; hoặc <br>)
+    $content = preg_replace('/<p>\s*(?:&nbsp;|<br\s*\/?>|\s)*<\/p>/i', '', $content);
+
+    return $content;
+}
+
+// 3. Làm sạch output cho các shortcode ux_html, ux_text, text của UX Builder
+add_filter('do_shortcode_tag', function ($output, $tag, $attr, $m) {
+    if (in_array($tag, ['ux_html', 'ux_text', 'text'], true)) {
+        return gobike_clean_unwanted_p_tags($output);
+    }
+    return $output;
+}, 10, 4);
+
+// 4. Áp dụng làm sạch cuối cùng trên the_content sau khi toàn bộ shortcodes render xong
+add_filter('the_content', 'gobike_clean_unwanted_p_tags', 20);
+
+
