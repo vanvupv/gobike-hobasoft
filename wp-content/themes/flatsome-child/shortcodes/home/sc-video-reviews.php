@@ -231,9 +231,13 @@ function gobike_render_home_video_reviews($atts)
     $atts = shortcode_atts(array(
         'title' => 'VIDEO REVIEW THỰC TẾ',
         'subtitle' => 'Trải nghiệm thật • Đánh giá thật • Giúp bạn chọn đúng xe',
-        'view_all' => '#',
+        'view_all' => home_url('/video-review-gobike/'),
         'limit' => 5,
     ), $atts, 'gobike_home_video_reviews');
+
+    if (empty($atts['view_all']) || $atts['view_all'] === '#') {
+        $atts['view_all'] = home_url('/video-review-gobike/');
+    }
 
     // 3.1 Lấy danh mục taxonomy
     $categories = get_terms(array(

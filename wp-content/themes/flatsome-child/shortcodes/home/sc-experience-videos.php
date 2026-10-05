@@ -103,9 +103,13 @@ function gobike_render_experience_videos_shortcode($atts)
 {
     $atts = shortcode_atts(array(
         'title'    => 'NGƯỜI THẬT - XE THẬT - TRẢI NGHIỆM THẬT',
-        'view_all' => get_post_type_archive_link('video_review') ?: home_url('/video-review/'),
+        'view_all' => home_url('/nguoi-that-trai-nghiem-that/'),
         'limit'    => 4,
     ), $atts, 'gobike_experience_videos');
+
+    if (empty($atts['view_all']) || $atts['view_all'] === '#') {
+        $atts['view_all'] = home_url('/nguoi-that-trai-nghiem-that/');
+    }
 
     // Query 4 bài viết CPT video_review mới nhất
     $query_args = array(
