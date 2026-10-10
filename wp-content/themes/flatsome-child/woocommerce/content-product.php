@@ -47,14 +47,15 @@ if ($product->is_on_sale() && $regular_price > $sale_price && $sale_price > 0) {
 
 // Subtitle / Mô tả ngắn
 $excerpt = get_the_excerpt($pid);
-if (empty($excerpt)) {
-    $excerpt = 'Nhỏ gọn, linh hoạt, phù hợp cuộc sống đô thị';
-} else {
+if (!empty($excerpt)) {
     $excerpt = wp_trim_words(wp_strip_all_tags($excerpt), 10, '...');
+} else {
+    $excerpt = '';
 }
 
 // 3 Thông số kỹ thuật (Quãng đường, Trọng lượng, Công suất)
-$specs = function_exists('gobike_extract_product_specs') ? gobike_extract_product_specs($product) : array('range' => '100 km', 'weight' => '18 kg', 'power' => '250 W');
+$specs = function_exists('gobike_extract_product_specs') ? gobike_extract_product_specs($product) : array('range' => '', 'weight' => '', 'power' => '');
+$has_specs = (!empty($specs['range']) || !empty($specs['weight']) || !empty($specs['power']));
 ?>
 
 <div <?php wc_product_class( $classes, $product ); ?>>
@@ -90,7 +91,9 @@ $specs = function_exists('gobike_extract_product_specs') ? gobike_extract_produc
 				</h4>
 
 				<!-- DÒNG MÔ TẢ NGẮN (ẢNH 2) -->
-				<p class="card-product-subtitle"><?php echo esc_html($excerpt); ?></p>
+				<?php if (!empty($excerpt)): ?>
+					<p class="card-product-subtitle"><?php echo esc_html($excerpt); ?></p>
+				<?php endif; ?>
 
 				<!-- GIÁ BÁN & GIÁ GỐC & % GIẢM (ẢNH 2) -->
 				<div class="card-price-row">
@@ -107,35 +110,43 @@ $specs = function_exists('gobike_extract_product_specs') ? gobike_extract_produc
 					<?php endif; ?>
 				</div>
 
-				<!-- 3 THÔNG SỐ KỸ THUẬT KÈM ICON CHUẨN ẢNH 2 -->
-				<div class="card-specs-row">
-					<!-- Quãng đường (Odometer / Pin) -->
-					<div class="spec-col" title="Quãng đường di chuyển">
-						<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="12" cy="12" r="9"/>
-							<polyline points="12 7 12 12 15 15"/>
-						</svg>
-						<span class="spec-value"><?php echo esc_html($specs['range']); ?></span>
-					</div>
+				<!-- 3 THÔNG SỐ KỸ THUẬT KÈM ICON CHUẨN ẢNH 2 (Chỉ hiển thị khi có thông số thật) -->
+				<?php if ($has_specs): ?>
+					<div class="card-specs-row">
+						<?php if (!empty($specs['range'])): ?>
+							<!-- Quãng đường (Odometer / Pin) -->
+							<div class="spec-col" title="Quãng đường di chuyển">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+									<circle cx="12" cy="12" r="9"/>
+									<polyline points="12 7 12 12 15 15"/>
+								</svg>
+								<span class="spec-value"><?php echo esc_html($specs['range']); ?></span>
+							</div>
+						<?php endif; ?>
 
-					<!-- Trọng lượng (Scale / Cân) -->
-					<div class="spec-col" title="Trọng lượng">
-						<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M6 3h12l2 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7l2-4z"/>
-							<circle cx="12" cy="14" r="3"/>
-							<path d="M12 11v3"/>
-						</svg>
-						<span class="spec-value"><?php echo esc_html($specs['weight']); ?></span>
-					</div>
+						<?php if (!empty($specs['weight'])): ?>
+							<!-- Trọng lượng (Scale / Cân) -->
+							<div class="spec-col" title="Trọng lượng">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M6 3h12l2 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7l2-4z"/>
+									<circle cx="12" cy="14" r="3"/>
+									<path d="M12 11v3"/>
+								</svg>
+								<span class="spec-value"><?php echo esc_html($specs['weight']); ?></span>
+							</div>
+						<?php endif; ?>
 
-					<!-- Công suất động cơ (Tia sét) -->
-					<div class="spec-col" title="Công suất động cơ">
-						<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
-							<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-						</svg>
-						<span class="spec-value"><?php echo esc_html($specs['power']); ?></span>
+						<?php if (!empty($specs['power'])): ?>
+							<!-- Công suất động cơ (Tia sét) -->
+							<div class="spec-col" title="Công suất động cơ">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+								</svg>
+								<span class="spec-value"><?php echo esc_html($specs['power']); ?></span>
+							</div>
+						<?php endif; ?>
 					</div>
-				</div>
+				<?php endif; ?>
 
 				<!-- CỤM 2 NÚT HÀNH ĐỘNG CHUẨN ẢNH 2 -->
 				<div class="card-actions-row">

@@ -1169,30 +1169,43 @@ function gobike_render_single_product_tabs($product) {
 function gobike_render_single_product_related($product) {
     $product_id = $product->get_id();
     $cat_ids = $product->get_category_ids();
+    $related_query = null;
+    $has_related = false;
 
-    // Query sản phẩm liên quan
-    $related_query = new WP_Query(array(
-        'post_type'      => 'product',
-        'posts_per_page' => 10,
-        'post__not_in'   => array($product_id),
-        'tax_query'      => array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field'    => 'term_id',
-                'terms'    => $cat_ids,
+    if (!empty($cat_ids)) {
+        // Query sản phẩm liên quan
+        $related_query = new WP_Query(array(
+            'post_type'           => 'product',
+            'post_status'         => 'publish',
+            'posts_per_page'      => 10,
+            'post__not_in'        => array($product_id),
+            'ignore_sticky_posts' => 1,
+            'tax_query'           => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $cat_ids,
+                ),
             ),
-        ),
-    ));
+        ));
+        $has_related = ($related_query && $related_query->have_posts());
+    }
+
+    $cat_url = !empty($cat_ids) ? get_term_link($cat_ids[0], 'product_cat') : wc_get_page_permalink('shop');
+    if (is_wp_error($cat_url)) {
+        $cat_url = home_url('/cua-hang/');
+    }
     ?>
     <section class="gobike-related-section">
         <div class="container">
+            <?php if ($has_related): ?>
             <!-- Header Sản Phẩm Liên Quan (Chuẩn gobike-block-header - Ảnh 2) -->
             <div class="gobike-block-header">
                 <div class="header-left">
                     <h2 class="block-title">SẢN PHẨM LIÊN QUAN</h2>
                 </div>
                 <div class="header-right">
-                    <a href="<?php echo esc_url(home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/')); ?>" class="view-all-link">
+                    <a href="<?php echo esc_url($cat_url); ?>" class="view-all-link">
                         Xem tất cả <span class="arr">➔</span>
                     </a>
                 </div>
@@ -1258,6 +1271,7 @@ function gobike_render_single_product_related($product) {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
             </div>
+            <?php endif; ?>
 
             <!-- Dải 5 Cam Kết Dịch Vụ Chân Trang Chuẩn Mẫu (Ảnh 3) -->
             <div class="gobike-footer-trust-strip">

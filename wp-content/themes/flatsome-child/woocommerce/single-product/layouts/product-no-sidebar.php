@@ -134,33 +134,35 @@ jQuery(document).ready(function($) {
         });
 
         // Khởi tạo Carousel Sản Phẩm Liên Quan (5 sản phẩm, điều hướng 2 bên - Chuẩn Ảnh 2)
-        var relatedSwiper = new Swiper('.gobike-related-carousel-swiper', {
-            slidesPerView: 5,
-            spaceBetween: 14,
-            watchOverflow: true,
-            navigation: {
-                nextEl: '.rel-btn-next-side',
-                prevEl: '.rel-btn-prev-side',
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 2,
-                    spaceBetween: 8
+        if ($('.gobike-related-carousel-swiper').length) {
+            var relatedSwiper = new Swiper('.gobike-related-carousel-swiper', {
+                slidesPerView: 5,
+                spaceBetween: 14,
+                watchOverflow: true,
+                navigation: {
+                    nextEl: '.rel-btn-next-side',
+                    prevEl: '.rel-btn-prev-side',
                 },
-                550: {
-                    slidesPerView: 3,
-                    spaceBetween: 10
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 12
-                },
-                1024: {
-                    slidesPerView: 5,
-                    spaceBetween: 14
+                breakpoints: {
+                    0: {
+                        slidesPerView: 2,
+                        spaceBetween: 8
+                    },
+                    550: {
+                        slidesPerView: 3,
+                        spaceBetween: 10
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        spaceBetween: 12
+                    },
+                    1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 14
+                    }
                 }
-            }
-        });
+            });
+        }
 
         // Swiper cho Gallery ảnh bộ phận (Tab Media)
         var mediaPhotosSwiper = new Swiper('.gobike-media-photos-swiper', {
@@ -468,29 +470,6 @@ jQuery(document).ready(function($) {
             $form.append('<input type="hidden" name="is_buy_now" value="1" />');
         }
         $submitBtn.trigger('click');
-    });
-
-    // Xử lý Tăng Giảm Số Lượng mượt mà (Đồng bộ nút [-] và [+])
-    $(document).on('click', '.gobike-qty-stock-row .quantity .button.minus, .gobike-add-to-cart-wrapper .quantity .button.minus', function(e) {
-        e.preventDefault();
-        var $qty = $(this).closest('.quantity').find('input.qty');
-        var current = parseFloat($qty.val()) || 1;
-        var min = parseFloat($qty.attr('min')) || 1;
-        var step = parseFloat($qty.attr('step')) || 1;
-        if (current > min) {
-            $qty.val(current - step).trigger('change');
-        }
-    });
-
-    $(document).on('click', '.gobike-qty-stock-row .quantity .button.plus, .gobike-add-to-cart-wrapper .quantity .button.plus', function(e) {
-        e.preventDefault();
-        var $qty = $(this).closest('.quantity').find('input.qty');
-        var current = parseFloat($qty.val()) || 1;
-        var max = parseFloat($qty.attr('max'));
-        var step = parseFloat($qty.attr('step')) || 1;
-        if (!max || current < max) {
-            $qty.val(current + step).trigger('change');
-        }
     });
 
     enhanceAddToCartForm();
