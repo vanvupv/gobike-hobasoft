@@ -22,26 +22,26 @@ function gobike_get_single_product_specs($product_id) {
 
     // Lấy thông số từ thuộc tính WooCommerce hoặc ACF
     $pin = $product->get_attribute('pa_pin');
-    if (!$pin) $pin = ($gf ? get_field('dung_luong_pin', $product_id) : '') ?: '48V 15Ah (Lithium)';
+    if (!$pin) $pin = ($gf ? get_field('dung_luong_pin', $product_id) : '') ?: '';
 
     $dong_co = $product->get_attribute('pa_dong-co');
-    if (!$dong_co) $dong_co = ($gf ? get_field('dong_co', $product_id) : '') ?: '250W – Trợ lực thông minh';
+    if (!$dong_co) $dong_co = ($gf ? get_field('dong_co', $product_id) : '') ?: '';
 
     $quang_duong = $product->get_attribute('pa_quang-duong');
-    if (!$quang_duong) $quang_duong = ($gf ? get_field('quang_duong', $product_id) : '') ?: '80 – 120 km (tùy điều kiện)';
+    if (!$quang_duong) $quang_duong = ($gf ? get_field('quang_duong', $product_id) : '') ?: '';
 
     $toc_do = $product->get_attribute('pa_toc-do');
-    if (!$toc_do) $toc_do = ($gf ? get_field('toc_do_toi_da', $product_id) : '') ?: '25 km/h (trợ lực)';
+    if (!$toc_do) $toc_do = ($gf ? get_field('toc_do_toi_da', $product_id) : '') ?: '';
 
     $lop_xe = $product->get_attribute('pa_kich-thuoc-lop');
-    if (!$lop_xe) $lop_xe = ($gf ? get_field('kich_thuoc_lop', $product_id) : '') ?: '27.5 inch – chống trượt';
+    if (!$lop_xe) $lop_xe = ($gf ? get_field('kich_thuoc_lop', $product_id) : '') ?: '';
 
-    $trong_luong = $product->get_weight() ? $product->get_weight() . ' kg' : (($gf ? get_field('trong_luong', $product_id) : '') ?: '27 kg');
-    $bao_hanh = ($gf ? get_field('thoi_gian_bao_hanh', $product_id) : '') ?: '24 tháng (Khung), 12 tháng (Động cơ, pin)';
+    $trong_luong = $product->get_weight() ? $product->get_weight() . ' kg' : (($gf ? get_field('trong_luong', $product_id) : '') ?: '');
+    $bao_hanh = ($gf ? get_field('thoi_gian_bao_hanh', $product_id) : '') ?: '';
 
     // Thương hiệu
     $brand_terms = get_the_terms($product_id, 'pa_thuong-hieu');
-    $brand = 'PHOENIX';
+    $brand = '';
     if (!empty($brand_terms) && !is_wp_error($brand_terms)) {
         $brand = $brand_terms[0]->name;
     } else {
@@ -51,8 +51,8 @@ function gobike_get_single_product_specs($product_id) {
 
     // Danh mục chính (Lọc bỏ các danh mục tiện ích không liên quan)
     $cats = get_the_terms($product_id, 'product_cat');
-    $cat_name = 'Xe đạp trợ lực địa hình';
-    $cat_link = home_url('/danh-muc-san-pham/xe-dap-tro-luc-dien/');
+    $cat_name = '';
+    $cat_link = '';
     $ignore_slugs = array('uncategorized', 'kiem-tra-don-hang', 'tra-cuu', 'don-hang', 'chua-phan-loai');
     
     if (!empty($cats) && !is_wp_error($cats)) {
@@ -79,11 +79,11 @@ function gobike_get_single_product_specs($product_id) {
         'lop_xe'         => $lop_xe,
         'trong_luong'    => $trong_luong,
         'bao_hanh'       => $bao_hanh,
-        'khung_xe'       => ($gf ? get_field('chat_lieu_khung', $product_id) : '') ?: 'Hợp kim nhôm 6061',
-        'phanh'          => ($gf ? get_field('he_thong_phanh', $product_id) : '') ?: 'Phanh dầu thủy lực',
-        'giam_xoc'       => ($gf ? get_field('giam_xoc', $product_id) : '') ?: 'Phuộc trước khóa hành trình',
-        'tai_trong'      => ($gf ? get_field('tai_trong_toi_da', $product_id) : '') ?: '120 kg',
-        'kich_thuoc'     => ($gf ? get_field('kich_thuoc_xe', $product_id) : '') ?: '1780 x 680 x 1050 mm',
+        'khung_xe'       => ($gf ? get_field('chat_lieu_khung', $product_id) : '') ?: '',
+        'phanh'          => ($gf ? get_field('he_thong_phanh', $product_id) : '') ?: '',
+        'giam_xoc'       => ($gf ? get_field('giam_xoc', $product_id) : '') ?: '',
+        'tai_trong'      => ($gf ? get_field('tai_trong_toi_da', $product_id) : '') ?: '',
+        'kich_thuoc'     => ($gf ? get_field('kich_thuoc_xe', $product_id) : '') ?: '',
         'extra_specs'    => $extra_specs,
     );
 }
@@ -130,7 +130,7 @@ function gobike_render_single_product_gallery($product) {
     $image_ids = array_values(array_unique(array_filter($image_ids)));
 
     $specs = gobike_get_single_product_specs($product_id);
-    $video_url = get_field('video_url', $product_id) ?: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    $video_url = get_field('video_url', $product_id) ?: '';
     ?>
     <div class="gobike-single-gallery-container">
         <!-- Main Slider + Vertical Thumbs Wrapper -->
@@ -190,68 +190,68 @@ function gobike_render_single_product_gallery($product) {
             </div>
         </div>
 
-        <!-- Dải 4 Thông Số Nhanh Dưới Gallery (Quick Spec Badges) -->
+        <!-- Dải Thông Số Nhanh Dưới Gallery (Chỉ hiển thị khi có thông số thật) -->
         <?php
-        // Xử lý giá trị gọn gàng, có đầy đủ đơn vị
-        $qd_raw = $specs['quang_duong'];
-        $qd_display = trim(explode('(', $qd_raw)[0]);
-        if (!str_contains($qd_display, 'km')) {
-            $qd_display .= ' km';
+        $quick_badges = array();
+
+        if (!empty($specs['quang_duong'])) {
+            $qd_raw = $specs['quang_duong'];
+            $qd_display = trim(explode('(', $qd_raw)[0]);
+            if (!str_contains(strtolower($qd_display), 'km')) {
+                $qd_display .= ' km';
+            }
+            $quick_badges[] = array(
+                'val'   => $qd_display,
+                'label' => 'Quãng đường trợ lực',
+                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+            );
         }
 
-        $dc_raw = $specs['dong_co'];
-        $dc_display = trim(explode('–', $dc_raw)[0]);
-        if (!str_contains($dc_display, 'W') && !str_contains($dc_display, 'w')) {
-            $dc_display .= ' 250W';
+        if (!empty($specs['dong_co'])) {
+            $dc_raw = $specs['dong_co'];
+            $dc_display = trim(explode('–', $dc_raw)[0]);
+            $quick_badges[] = array(
+                'val'   => $dc_display,
+                'label' => 'Động cơ mạnh mẽ',
+                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+            );
         }
 
-        $pin_raw = $specs['pin'];
-        $pin_display = trim(explode('(', $pin_raw)[0]);
+        if (!empty($specs['pin'])) {
+            $pin_raw = $specs['pin'];
+            $pin_display = trim(explode('(', $pin_raw)[0]);
+            $quick_badges[] = array(
+                'val'   => $pin_display,
+                'label' => 'Pin Lithium cao cấp',
+                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>',
+            );
+        }
 
-        $lop_raw = $specs['lop_xe'];
-        $lop_display = trim(explode('–', $lop_raw)[0]);
+        if (!empty($specs['lop_xe'])) {
+            $lop_raw = $specs['lop_xe'];
+            $lop_display = trim(explode('–', $lop_raw)[0]);
+            $quick_badges[] = array(
+                'val'   => $lop_display,
+                'label' => 'Lốp xe đa địa hình',
+                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
+            );
+        }
         ?>
-        <div class="gobike-quick-spec-badges">
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html($qd_display); ?></strong>
-                    <span class="badge-label">Quãng đường trợ lực</span>
-                </div>
+        <?php if (!empty($quick_badges)): ?>
+            <div class="gobike-quick-spec-badges">
+                <?php foreach ($quick_badges as $badge): ?>
+                    <div class="spec-badge-item">
+                        <div class="badge-icon">
+                            <?php echo $badge['icon']; ?>
+                        </div>
+                        <div class="badge-info">
+                            <strong class="badge-val"><?php echo esc_html($badge['val']); ?></strong>
+                            <span class="badge-label"><?php echo esc_html($badge['label']); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
-
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html($dc_display); ?></strong>
-                    <span class="badge-label">Động cơ mạnh mẽ</span>
-                </div>
-            </div>
-
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html($pin_display); ?></strong>
-                    <span class="badge-label">Pin Lithium cao cấp</span>
-                </div>
-            </div>
-
-            <div class="spec-badge-item">
-                <div class="badge-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-                </div>
-                <div class="badge-info">
-                    <strong class="badge-val"><?php echo esc_html($lop_display); ?></strong>
-                    <span class="badge-label">Lốp xe đa địa hình</span>
-                </div>
-            </div>
-        </div>
+        <?php endif; ?>
     </div>
     <?php
 }
@@ -278,13 +278,17 @@ function gobike_render_single_product_info($product) {
         <!-- Hàng 1: Brand Tag + Cat Badge + Wishlist + Share -->
         <div class="info-top-row">
             <div class="top-left-badges">
-                <span class="brand-tag-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#b91c1c"><polygon points="12 2 2 22 22 22 12 2"/></svg>
-                    <strong><?php echo esc_html($specs['brand']); ?></strong>
-                </span>
-                <a href="<?php echo esc_url($specs['cat_link']); ?>" class="cat-tag-badge">
-                    <?php echo esc_html($specs['cat_name']); ?>
-                </a>
+                <?php if (!empty($specs['brand'])): ?>
+                    <span class="brand-tag-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b91c1c"><polygon points="12 2 2 22 22 22 12 2"/></svg>
+                        <strong><?php echo esc_html($specs['brand']); ?></strong>
+                    </span>
+                <?php endif; ?>
+                <?php if (!empty($specs['cat_name'])): ?>
+                    <a href="<?php echo esc_url($specs['cat_link'] ?: '#'); ?>" class="cat-tag-badge">
+                        <?php echo esc_html($specs['cat_name']); ?>
+                    </a>
+                <?php endif; ?>
             </div>
             <div class="top-right-actions">
                 <button type="button" class="btn-top-action btn-wishlist" title="Yêu thích">
@@ -300,21 +304,39 @@ function gobike_render_single_product_info($product) {
 
         <!-- Hàng 2: Tên sản phẩm H1 & Slogan phụ -->
         <h1 class="gobike-product-title"><?php echo esc_html($product->get_name()); ?></h1>
-        <p class="gobike-product-subtitle"><?php echo esc_html(get_field('slogan_san_pham', $product_id) ?: 'Mạnh mẽ trên mọi cung đường'); ?></p>
+        <?php 
+        $slogan = get_field('slogan_san_pham', $product_id) ?: '';
+        if (!empty($slogan)): 
+        ?>
+            <p class="gobike-product-subtitle"><?php echo esc_html($slogan); ?></p>
+        <?php endif; ?>
 
-        <!-- Hàng 3: Đánh giá sao & Số lượng đã bán -->
-        <div class="gobike-rating-sales-row">
-            <div class="rating-stars-box">
-                <span class="star-icon">★</span>
-                <strong class="rating-num">4.9</strong>
-                <a href="#tab-reviews" class="rating-count-link">(128 đánh giá)</a>
+        <!-- Hàng 3: Đánh giá sao & Số lượng đã bán (Thật từ WooCommerce) -->
+        <?php 
+        $rating_count = (int) $product->get_rating_count();
+        $average_rating = (float) $product->get_average_rating();
+        $total_sales = (int) $product->get_total_sales();
+        ?>
+        <?php if ($rating_count > 0 || $total_sales > 0): ?>
+            <div class="gobike-rating-sales-row">
+                <?php if ($rating_count > 0): ?>
+                    <div class="rating-stars-box">
+                        <span class="star-icon">★</span>
+                        <strong class="rating-num"><?php echo number_format($average_rating, 1); ?></strong>
+                        <a href="#tab-reviews" class="rating-count-link">(<?php echo esc_html($rating_count); ?> đánh giá)</a>
+                    </div>
+                <?php endif; ?>
+                <?php if ($rating_count > 0 && $total_sales > 0): ?>
+                    <span class="divider-dot">•</span>
+                <?php endif; ?>
+                <?php if ($total_sales > 0): ?>
+                    <div class="sales-count-box">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <span>Đã bán <strong><?php echo esc_html($total_sales); ?></strong></span>
+                    </div>
+                <?php endif; ?>
             </div>
-            <span class="divider-dot">•</span>
-            <div class="sales-count-box">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>Đã bán <strong>432</strong></span>
-            </div>
-        </div>
+        <?php endif; ?>
 
         <!-- Hàng 4: Giá bán to màu xanh sạch sẽ, không đóng khung viền đứt -->
         <div class="gobike-price-block">
@@ -334,13 +356,12 @@ function gobike_render_single_product_info($product) {
         <!-- Hàng 5: Mô tả ngắn -->
         <?php 
         $excerpt = $product->get_short_description();
-        if (empty($excerpt)) {
-            $excerpt = 'Mẫu xe đạp trợ lực địa hình được ưa chuộng nhờ khả năng vận hành mạnh mẽ, thiết kế thể thao và độ bền vượt trội. Phù hợp cho cả di chuyển hàng ngày lẫn những chuyến đi khám phá, chinh phục thiên nhiên.';
-        }
+        if (!empty($excerpt)): 
         ?>
-        <div class="gobike-short-desc">
-            <p><?php echo wp_kses_post($excerpt); ?></p>
-        </div>
+            <div class="gobike-short-desc">
+                <?php echo wp_kses_post($excerpt); ?>
+            </div>
+        <?php endif; ?>
 
         <!-- Hàng 6: Form Mua Hàng & Biến Thể Màu Sắc (WooCommerce Standard Form) -->
         <div class="gobike-add-to-cart-wrapper">
@@ -469,43 +490,55 @@ function gobike_render_single_product_tabs($product) {
 
     // --- TAB 1: Dữ liệu Mô tả & Banners ---
     $desc_subtitle = $gf ? get_field('sp_desc_subtitle', $product_id) : '';
-    if (empty($desc_subtitle)) $desc_subtitle = 'Khám phá thế giới theo cách của bạn';
 
     $sp_features = $gf ? get_field('sp_features', $product_id) : array();
-    if (empty($sp_features) || !is_array($sp_features)) {
-        $sp_features = array(
-            array('icon_type' => 'terrain', 'title' => 'Chinh phục mọi địa hình', 'desc' => 'Vận hành mạnh mẽ, an tâm trên cả đường phố và đường mòn đồi dốc.'),
-            array('icon_type' => 'assist',  'title' => 'Trợ lực thông minh',     'desc' => 'Hỗ trợ đạp nhẹ nhàng hơn, tiết kiệm sức lực, đi xa hơn mỗi ngày.'),
-            array('icon_type' => 'design',  'title' => 'Thiết kế hiện đại',      'desc' => 'Khung dáng thể thao, mạnh mẽ, phù hợp phong cách sống năng động.'),
-            array('icon_type' => 'eco',     'title' => 'Thân thiện môi trường',  'desc' => 'Sử dụng năng lượng sạch, góp phần bảo vệ môi trường xanh bền vững.'),
-        );
+    if (!is_array($sp_features)) {
+        $sp_features = array();
     }
+    $sp_features = array_filter($sp_features, function($item) {
+        return !empty($item['title']) || !empty($item['desc']);
+    });
 
     $hero_img = $gf ? get_field('sp_lifestyle_hero_img', $product_id) : '';
-    if (empty($hero_img)) {
-        $hero_img = has_post_thumbnail($product_id) ? get_the_post_thumbnail_url($product_id, 'large') : 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80';
-    }
     $hero_quote = $gf ? get_field('sp_lifestyle_hero_quote', $product_id) : '';
-    if (empty($hero_quote)) $hero_quote = '"Đi xa hơn mỗi ngày"';
 
     $lifestyle_cards = $gf ? get_field('sp_lifestyle_cards', $product_id) : array();
-    if (empty($lifestyle_cards) || !is_array($lifestyle_cards)) {
-        $lifestyle_cards = array(
-            array(
-                'image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80',
-                'title' => 'Sức mạnh trên mọi cung đường',
-                'desc'  => 'Vận hành mượt mà nhờ động cơ tân tiến, hỗ trợ lực đạp tối đa khi leo dốc hay di chuyển liên tục.'
-            ),
-            array(
-                'image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80',
-                'title' => 'Thiết kế tinh tế & Trải nghiệm khác biệt',
-                'desc'  => 'Khung sườn nhôm hàng không siêu bền, màu sắc sơn bóng bẩy mang đến phong cách thời thượng.'
-            ),
-        );
+    if (!is_array($lifestyle_cards)) {
+        $lifestyle_cards = array();
     }
+    $lifestyle_cards = array_filter($lifestyle_cards, function($item) {
+        return !empty($item['image']) || !empty($item['title']);
+    });
 
-    // --- TAB 2: Dữ liệu Thông số Kỹ thuật tùy chỉnh ---
+    // --- TAB 2: Dữ liệu Thông số Kỹ thuật ---
     $specs_custom_html = $gf ? get_field('sp_specs_custom_html', $product_id) : '';
+
+    $specs_items_left = array();
+    if (!empty($specs['brand']))       $specs_items_left[] = array('Thương hiệu', $specs['brand']);
+    if (!empty($product->get_name()))  $specs_items_left[] = array('Model', $product->get_name());
+    if (!empty($specs['cat_name']))    $specs_items_left[] = array('Loại xe', $specs['cat_name']);
+    if (!empty($specs['dong_co']))     $specs_items_left[] = array('Động cơ', $specs['dong_co']);
+    if (!empty($specs['pin']))         $specs_items_left[] = array('Pin', $specs['pin']);
+    if (!empty($specs['quang_duong'])) $specs_items_left[] = array('Quãng đường', $specs['quang_duong']);
+    if (!empty($specs['toc_do']))      $specs_items_left[] = array('Tốc độ tối đa', $specs['toc_do']);
+
+    $specs_items_right = array();
+    if (!empty($specs['khung_xe']))    $specs_items_right[] = array('Khung xe', $specs['khung_xe']);
+    if (!empty($specs['phanh']))       $specs_items_right[] = array('Phanh', $specs['phanh']);
+    if (!empty($specs['giam_xoc']))    $specs_items_right[] = array('Giảm xóc', $specs['giam_xoc']);
+    if (!empty($specs['lop_xe']))      $specs_items_right[] = array('Lốp xe', $specs['lop_xe']);
+    if (!empty($specs['trong_luong'])) $specs_items_right[] = array('Trọng lượng', $specs['trong_luong']);
+    if (!empty($specs['tai_trong']))   $specs_items_right[] = array('Tải trọng tối đa', $specs['tai_trong']);
+    if (!empty($specs['kich_thuoc']))  $specs_items_right[] = array('Kích thước (DxRxC)', $specs['kich_thuoc']);
+    if (!empty($specs['bao_hanh']))    $specs_items_right[] = array('Bảo hành', $specs['bao_hanh']);
+    if (!empty($specs['extra_specs'])) {
+        foreach ($specs['extra_specs'] as $es) {
+            if (!empty($es['spec_name']) && !empty($es['spec_value'])) {
+                $specs_items_right[] = array($es['spec_name'], $es['spec_value']);
+            }
+        }
+    }
+    $has_specs = (!empty($specs_items_left) || !empty($specs_items_right));
 
     // --- TAB 3: Dữ liệu Hình ảnh & Video ---
     $media_title = $gf ? get_field('sp_media_photos_title', $product_id) : '';
@@ -513,31 +546,26 @@ function gobike_render_single_product_tabs($product) {
 
     $detail_photos = $gf ? get_field('sp_detail_photos', $product_id) : array();
     if (empty($detail_photos) || !is_array($detail_photos)) {
-        // Fallback sang gallery ảnh của WooCommerce
+        // Fallback sang gallery ảnh thật của WooCommerce nếu có
         $gallery_ids = $product->get_gallery_image_ids();
         if (!empty($gallery_ids)) {
             $detail_photos = array();
-            $captions = array('Khung sườn xe', 'Động cơ trợ lực', 'Giảm xóc trước', 'Cụm Pin Lithium', 'Hệ thống phanh', 'Bộ truyền động');
             $idx = 0;
             foreach ($gallery_ids as $gid) {
-                $detail_photos[] = array(
-                    'image'   => wp_get_attachment_image_url($gid, 'large'),
-                    'caption' => isset($captions[$idx]) ? $captions[$idx] : ('Chi tiết ' . $product->get_name()),
-                );
-                $idx++;
-                if ($idx >= 8) break;
+                $img_url = wp_get_attachment_image_url($gid, 'large');
+                if ($img_url) {
+                    $alt = get_post_meta($gid, '_wp_attachment_image_alt', true) ?: ('Ảnh ' . $product->get_name());
+                    $detail_photos[] = array(
+                        'image'   => $img_url,
+                        'caption' => $alt,
+                    );
+                    $idx++;
+                    if ($idx >= 10) break;
+                }
             }
+        } else {
+            $detail_photos = array();
         }
-    }
-    if (empty($detail_photos)) {
-        $detail_photos = array(
-            array('image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80', 'caption' => 'Khung hợp kim nhôm'),
-            array('image' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=600&q=80', 'caption' => 'Động cơ mạnh mẽ'),
-            array('image' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=600&q=80', 'caption' => 'Phuộc trước giảm xóc'),
-            array('image' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80', 'caption' => 'Pin Lithium tháo rời'),
-            array('image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=600&q=80', 'caption' => 'Phanh dầu thủy lực'),
-            array('image' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=600&q=80', 'caption' => 'Bộ truyền động Shimano'),
-        );
     }
 
     $video_title = $gf ? get_field('sp_video_title', $product_id) : '';
@@ -633,46 +661,17 @@ function gobike_render_single_product_tabs($product) {
         }
     }
 
-    // 5. Fallback mẫu mặc định đẹp mắt nếu chưa nhập video
-    if (empty($all_videos)) {
-        $all_videos = array(
-            array(
-                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'title' => 'Trải nghiệm vận hành thực tế ' . $product->get_name(),
-                'thumb' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80',
-            ),
-            array(
-                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'title' => 'Đánh giá độ bền khung sườn & quãng đường pin',
-                'thumb' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=600&q=80',
-            ),
-            array(
-                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'title' => 'Hướng dẫn sử dụng các chế độ trợ lực điện thông minh',
-                'thumb' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=600&q=80',
-            ),
-        );
-    }
-
-
     // --- TAB 5: Dữ liệu Hỏi đáp ---
     $faq_slogan = $gf ? get_field('sp_faq_slogan', $product_id) : '';
-    if (empty($faq_slogan)) $faq_slogan = 'Những câu hỏi thường gặp về ' . $product->get_name();
-
-    $faq_zalo = $gf ? get_field('sp_faq_zalo_link', $product_id) : '';
-    if (empty($faq_zalo)) $faq_zalo = 'https://zalo.me/0944988699';
+    $faq_zalo = ($gf ? get_field('sp_faq_zalo_link', $product_id) : '') ?: 'https://zalo.me/0944988699';
 
     $faqs = $gf ? get_field('sp_faqs', $product_id) : array();
-    if (empty($faqs) || !is_array($faqs)) {
-        $faqs = array(
-            array('question' => $product->get_name() . ' phù hợp với những đối tượng nào?', 'answer' => 'Xe phù hợp cho học sinh, sinh viên, người đi làm và những ai yêu thích dã ngoại, thể thao nhờ thiết kế thể thao linh hoạt và hệ thống trợ lực điện thông minh.'),
-            array('question' => 'Thời gian sạc đầy pin là bao lâu?', 'answer' => 'Thời gian sạc đầy pin Lithium dao động từ 4 – 6 giờ với củ sạc thông minh tự ngắt khi đầy, bảo vệ tuổi thọ pin tối đa.'),
-            array('question' => 'Xe có thể đi được bao nhiêu km sau mỗi lần sạc?', 'answer' => 'Ở chế độ thuần điện xe đi được khoảng 40 – 50 km; ở chế độ trợ lực điện thông minh xe đạt quãng đường lên tới 80 – 120 km tùy vào trọng lượng người lái và điều kiện mặt đường.'),
-            array('question' => 'Xe có hỗ trợ lắp ráp khi giao hàng không?', 'answer' => 'GoBike hỗ trợ lắp ráp hoàn chỉnh và căn chỉnh kỹ thuật 100% trước khi giao đến tận nhà cho quý khách trên toàn quốc.'),
-            array('question' => 'Chế độ bảo hành của ' . $product->get_name() . ' như thế nào?', 'answer' => 'Sản phẩm được bảo hành chính hãng 24 tháng đối với khung sườn xe, 12 tháng đối với động cơ điện và cụm pin, kèm chế độ bảo dưỡng tra dầu miễn phí trọn đời.'),
-            array('question' => 'Tôi có thể trả góp khi mua xe không?', 'answer' => 'Có. GoBike hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc công ty tài chính với thủ tục nhanh gọn chỉ trong 15 phút.'),
-        );
+    if (!is_array($faqs)) {
+        $faqs = array();
     }
+    $faqs = array_filter($faqs, function($item) {
+        return !empty($item['question']) || !empty($item['answer']);
+    });
     $faq_count = count($faqs);
 
     // Chia mảng FAQ thành 2 cột đều nhau
@@ -698,7 +697,7 @@ function gobike_render_single_product_tabs($product) {
                         <a href="#tab-reviews">Đánh giá <span>(<?php echo esc_html($review_count); ?>)</span></a>
                     </li>
                     <li class="tab-nav-item" data-tab="tab-faq">
-                        <a href="#tab-faq">Hỏi đáp <span>(<?php echo esc_html($faq_count); ?>)</span></a>
+                        <a href="#tab-faq">Hỏi đáp <?php if ($faq_count > 0): ?><span>(<?php echo esc_html($faq_count); ?>)</span><?php endif; ?></a>
                     </li>
                 </ul>
             </div>
@@ -711,16 +710,21 @@ function gobike_render_single_product_tabs($product) {
                     <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER -->
                     <div class="gobike-desc-content-collapsible" id="descContentCollapsible">
                         <div class="desc-content-inner">
+                            <?php 
+                            $has_lifestyle = (!empty($hero_img) || !empty($lifestyle_cards));
+                            $col_desc_class = $has_lifestyle ? 'col large-7 medium-12 small-12' : 'col large-12 medium-12 small-12';
+                            ?>
                             <div class="row align-top desc-intro-row">
                                 <!-- Cột Trái: Text mô tả + Icon tính năng nổi bật -->
-                                <div class="col large-7 medium-12 small-12">
-                                    <h2 class="desc-heading-primary"><?php echo esc_html($desc_subtitle); ?></h2>
+                                <div class="<?php echo esc_attr($col_desc_class); ?>">
+                                    <?php if (!empty($desc_subtitle)): ?>
+                                        <h2 class="desc-heading-primary"><?php echo esc_html($desc_subtitle); ?></h2>
+                                    <?php endif; ?>
                                     <div class="desc-main-text entry-content">
                                         <?php
                                         $content = get_the_content();
                                         if (empty($content)) {
-                                            echo '<p><strong>' . esc_html($product->get_name()) . '</strong> không chỉ là một chiếc xe đạp trợ lực, mà còn là người bạn đồng hành đáng tin cậy trên mọi hành trình. Được thiết kế dành cho những ai yêu thích khám phá và tận hưởng cuộc sống năng động, xe mang đến sự kết hợp hoàn hảo giữa sức mạnh, sự linh hoạt và phong cách hiện đại.</p>';
-                                            echo '<p>Dù là những cung đường dốc cao, đường mòn gập ghềnh hay phố thị hàng ngày, xe đều giúp bạn di chuyển dễ dàng hơn, xa hơn và thú vị hơn.</p>';
+                                            echo '<p>Nội dung mô tả chi tiết của sản phẩm đang được cập nhật.</p>';
                                         } else {
                                             the_content();
                                         }
@@ -745,37 +749,39 @@ function gobike_render_single_product_tabs($product) {
                                     <?php endif; ?>
                                 </div>
 
-                                <!-- Cột Phải: Hình ảnh Lifestyle & Banners -->
-                                <div class="col large-5 medium-12 small-12">
-                                    <div class="desc-media-stack">
-                                        <?php if (!empty($hero_img)): ?>
-                                            <div class="lifestyle-hero-banner">
-                                                <img src="<?php echo esc_url($hero_img); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy" />
-                                                <?php if (!empty($hero_quote)): ?>
-                                                    <div class="banner-quote-overlay">
-                                                        <span class="quote-handwriting"><?php echo esc_html($hero_quote); ?></span>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if (!empty($lifestyle_cards)): ?>
-                                            <?php foreach ($lifestyle_cards as $card): ?>
-                                                <div class="lifestyle-sub-card">
-                                                    <?php if (!empty($card['image'])): ?>
-                                                        <div class="sub-card-img">
-                                                            <img src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['title'] ?? ''); ?>" loading="lazy" />
+                                <!-- Cột Phải: Hình ảnh Lifestyle & Banners (Chỉ hiển thị khi có dữ liệu thật) -->
+                                <?php if ($has_lifestyle): ?>
+                                    <div class="col large-5 medium-12 small-12">
+                                        <div class="desc-media-stack">
+                                            <?php if (!empty($hero_img)): ?>
+                                                <div class="lifestyle-hero-banner">
+                                                    <img src="<?php echo esc_url($hero_img); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy" />
+                                                    <?php if (!empty($hero_quote)): ?>
+                                                        <div class="banner-quote-overlay">
+                                                            <span class="quote-handwriting"><?php echo esc_html($hero_quote); ?></span>
                                                         </div>
                                                     <?php endif; ?>
-                                                    <div class="sub-card-text">
-                                                        <h4><?php echo esc_html($card['title'] ?? ''); ?></h4>
-                                                        <p><?php echo esc_html($card['desc'] ?? ''); ?></p>
-                                                    </div>
                                                 </div>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($lifestyle_cards)): ?>
+                                                <?php foreach ($lifestyle_cards as $card): ?>
+                                                    <div class="lifestyle-sub-card">
+                                                        <?php if (!empty($card['image'])): ?>
+                                                            <div class="sub-card-img">
+                                                                <img src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['title'] ?? ''); ?>" loading="lazy" />
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <div class="sub-card-text">
+                                                            <h4><?php echo esc_html($card['title'] ?? ''); ?></h4>
+                                                            <p><?php echo esc_html($card['desc'] ?? ''); ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -789,40 +795,28 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     </div>
 
-                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1) -->
-                    <div class="desc-specs-block">
-                        <div class="gobike-block-header">
-                            <div class="header-left">
-                                <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
+                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1 - Chỉ hiển thị khi có thông số thật) -->
+                    <?php if ($has_specs): ?>
+                        <div class="desc-specs-block">
+                            <div class="gobike-block-header">
+                                <div class="header-left">
+                                    <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
+                                </div>
                             </div>
-                        </div>
-                        <div class="specs-table-grid">
-                            <div class="specs-col">
-                                <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Loại xe</span><span class="spec-val"><?php echo esc_html($specs['cat_name']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Động cơ</span><span class="spec-val"><?php echo esc_html($specs['dong_co']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Pin</span><span class="spec-val"><?php echo esc_html($specs['pin']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
-                            </div>
-                            <div class="specs-col">
-                                <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Giảm xóc</span><span class="spec-val"><?php echo esc_html($specs['giam_xoc']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Lốp xe</span><span class="spec-val"><?php echo esc_html($specs['lop_xe']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Trọng lượng</span><span class="spec-val"><?php echo esc_html($specs['trong_luong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
-                                <?php if (!empty($specs['extra_specs'])): ?>
-                                    <?php foreach ($specs['extra_specs'] as $es): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
+                            <div class="specs-table-grid">
+                                <div class="specs-col">
+                                    <?php foreach ($specs_items_left as $si): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
                                     <?php endforeach; ?>
-                                <?php endif; ?>
+                                </div>
+                                <div class="specs-col">
+                                    <?php foreach ($specs_items_right as $si): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
 
                     <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Tóm tắt tại Tab 1) -->
                     <div class="desc-reviews-block">
@@ -930,50 +924,54 @@ function gobike_render_single_product_tabs($product) {
                     </div>
 
 
-                    <!-- PHẦN 4: HỎI ĐÁP (Tóm tắt tại Tab 1) -->
-                    <div class="desc-faq-block">
-                        <div class="gobike-block-header">
-                            <div class="header-left">
-                                <h2 class="block-title">HỎI ĐÁP</h2>
-                                <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
+                    <!-- PHẦN 4: HỎI ĐÁP (Tóm tắt tại Tab 1 - Chỉ hiển thị khi có câu hỏi thật) -->
+                    <?php if (!empty($faqs)): ?>
+                        <div class="desc-faq-block">
+                            <div class="gobike-block-header">
+                                <div class="header-left">
+                                    <h2 class="block-title">HỎI ĐÁP</h2>
+                                    <?php if (!empty($faq_slogan)): ?>
+                                        <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="header-right">
+                                    <a href="#tab-faq" class="view-all-link">
+                                        Xem tất cả câu hỏi <span class="arr">➔</span>
+                                    </a>
+                                    <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
+                                </div>
                             </div>
-                            <div class="header-right">
-                                <a href="#tab-faq" class="view-all-link">
-                                    Xem tất cả câu hỏi <span class="arr">➔</span>
-                                </a>
-                                <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
-                            </div>
-                        </div>
 
-                        <div class="faq-accordion-grid">
-                            <div class="faq-col">
-                                <?php foreach ($faqs_left as $item): ?>
-                                    <div class="faq-item">
-                                        <div class="faq-question">
-                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
-                                            <span class="faq-icon">+</span>
+                            <div class="faq-accordion-grid">
+                                <div class="faq-col">
+                                    <?php foreach ($faqs_left as $item): ?>
+                                        <div class="faq-item">
+                                            <div class="faq-question">
+                                                <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                            </div>
                                         </div>
-                                        <div class="faq-answer">
-                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="faq-col">
+                                    <?php foreach ($faqs_right as $item): ?>
+                                        <div class="faq-item">
+                                            <div class="faq-question">
+                                                <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                                <span class="faq-icon">+</span>
+                                            </div>
+                                            <div class="faq-answer">
+                                                <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="faq-col">
-                                <?php foreach ($faqs_right as $item): ?>
-                                    <div class="faq-item">
-                                        <div class="faq-question">
-                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
-                                            <span class="faq-icon">+</span>
-                                        </div>
-                                        <div class="faq-answer">
-                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -990,33 +988,23 @@ function gobike_render_single_product_tabs($product) {
                         <div class="specs-custom-content entry-content">
                             <?php echo $specs_custom_html; ?>
                         </div>
-                    <?php else: ?>
+                    <?php elseif ($has_specs): ?>
                         <!-- Hiển thị bảng thông số chuẩn từ hệ thống -->
                         <div class="specs-table-grid">
                             <div class="specs-col">
-                                <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Loại xe</span><span class="spec-val"><?php echo esc_html($specs['cat_name']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Động cơ</span><span class="spec-val"><?php echo esc_html($specs['dong_co']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Pin</span><span class="spec-val"><?php echo esc_html($specs['pin']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
+                                <?php foreach ($specs_items_left as $si): ?>
+                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                <?php endforeach; ?>
                             </div>
                             <div class="specs-col">
-                                <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Giảm xóc</span><span class="spec-val"><?php echo esc_html($specs['giam_xoc']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Lốp xe</span><span class="spec-val"><?php echo esc_html($specs['lop_xe']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Trọng lượng</span><span class="spec-val"><?php echo esc_html($specs['trong_luong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
-                                <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
-                                <?php if (!empty($specs['extra_specs'])): ?>
-                                    <?php foreach ($specs['extra_specs'] as $es): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                                <?php foreach ($specs_items_right as $si): ?>
+                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                <?php endforeach; ?>
                             </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="specs-empty-notice" style="text-align: center; padding: 40px 20px; color: #64748b;">
+                            <p>Thông số kỹ thuật chi tiết của sản phẩm đang được cập nhật.</p>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -1026,14 +1014,13 @@ function gobike_render_single_product_tabs($product) {
             <div class="gobike-tab-panel" id="tab-media">
                 <div class="gobike-media-container">
                     <!-- 1. BỘ SƯU TẬP ẢNH BỘ PHẬN (SLIDER + LIGHTBOX PHÓNG TO) -->
-                    <div class="media-photos-section">
-                        <div class="gobike-block-header">
-                            <div class="header-left">
-                                <h2 class="block-title"><?php echo esc_html($media_title); ?></h2>
+                    <?php if (!empty($detail_photos)): ?>
+                        <div class="media-photos-section">
+                            <div class="gobike-block-header">
+                                <div class="header-left">
+                                    <h2 class="block-title"><?php echo esc_html($media_title); ?></h2>
+                                </div>
                             </div>
-                        </div>
-
-                        <?php if (!empty($detail_photos)): ?>
                             <div class="media-photos-slider-wrap">
                                 <div class="swiper-container gobike-media-photos-swiper">
                                     <div class="swiper-wrapper">
@@ -1059,8 +1046,8 @@ function gobike_render_single_product_tabs($product) {
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                                 </button>
                             </div>
-                        <?php endif; ?>
-                    </div>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- 2. DANH SÁCH VIDEO TRẢI NGHIỆM XE (SLIDER + POPUP XEM TRỰC TIẾP) -->
                     <?php if (!empty($all_videos)): ?>
@@ -1096,6 +1083,12 @@ function gobike_render_single_product_tabs($product) {
                             </div>
                         </div>
                     <?php endif; ?>
+
+                    <?php if (empty($detail_photos) && empty($all_videos)): ?>
+                        <div class="media-empty-notice" style="text-align: center; padding: 40px 20px; color: #64748b;">
+                            <p>Hình ảnh chi tiết và video trải nghiệm đang được cập nhật.</p>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -1115,45 +1108,54 @@ function gobike_render_single_product_tabs($product) {
                     <div class="gobike-block-header">
                         <div class="header-left">
                             <h2 class="block-title">HỎI ĐÁP</h2>
-                            <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
+                            <?php if (!empty($faq_slogan)): ?>
+                                <span class="block-slogan"><?php echo esc_html($faq_slogan); ?></span>
+                            <?php endif; ?>
                         </div>
                         <div class="header-right">
                             <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question">Đặt câu hỏi</a>
                         </div>
                     </div>
 
-                    <div class="faq-accordion-grid">
-                        <div class="faq-col">
-                            <?php foreach ($faqs_left as $item): ?>
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span><?php echo esc_html($item['question'] ?? ''); ?></span>
-                                        <span class="faq-icon">+</span>
+                    <?php if (!empty($faqs)): ?>
+                        <div class="faq-accordion-grid">
+                            <div class="faq-col">
+                                <?php foreach ($faqs_left as $item): ?>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                            <span class="faq-icon">+</span>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                        </div>
                                     </div>
-                                    <div class="faq-answer">
-                                        <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="faq-col">
+                                <?php foreach ($faqs_right as $item): ?>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <span><?php echo esc_html($item['question'] ?? ''); ?></span>
+                                            <span class="faq-icon">+</span>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                        <div class="faq-col">
-                            <?php foreach ($faqs_right as $item): ?>
-                                <div class="faq-item">
-                                    <div class="faq-question">
-                                        <span><?php echo esc_html($item['question'] ?? ''); ?></span>
-                                        <span class="faq-icon">+</span>
-                                    </div>
-                                    <div class="faq-answer">
-                                        <p><?php echo esc_html($item['answer'] ?? ''); ?></p>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
 
-                    <div class="faq-footer-link">
-                        <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
-                    </div>
+                        <div class="faq-footer-link">
+                            <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="link-see-all-faqs">Xem tất cả câu hỏi <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+                        </div>
+                    <?php else: ?>
+                        <div class="faq-empty-notice" style="text-align: center; padding: 40px 20px; color: #64748b;">
+                            <p>Chưa có câu hỏi thường gặp nào cho sản phẩm này.</p>
+                            <a href="<?php echo esc_url($faq_zalo); ?>" target="_blank" rel="nofollow" class="btn-ask-question" style="margin-top: 14px; display: inline-flex;">Đặt câu hỏi ngay</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

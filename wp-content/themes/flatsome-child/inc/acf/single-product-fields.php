@@ -43,7 +43,6 @@ function gobike_register_single_product_acf_fields()
                 'name' => 'sp_desc_subtitle',
                 'type' => 'text',
                 'instructions' => 'Dòng tiêu đề lớn phía trên nội dung mô tả (vd: Khám phá thế giới theo cách của bạn)',
-                'default_value' => 'Khám phá thế giới theo cách của bạn',
             ),
             array(
                 'key' => 'field_sp_features',
@@ -102,7 +101,6 @@ function gobike_register_single_product_acf_fields()
                 'name' => 'sp_lifestyle_hero_quote',
                 'type' => 'text',
                 'instructions' => 'Chữ viết tay đè lên ảnh lớn (vd: "Đi xa hơn mỗi ngày")',
-                'default_value' => '"Đi xa hơn mỗi ngày"',
             ),
             array(
                 'key' => 'field_sp_lifestyle_cards',
@@ -298,7 +296,7 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Tiêu đề lưới ảnh chi tiết',
                 'name' => 'sp_media_photos_title',
                 'type' => 'text',
-                'default_value' => 'HÌNH ẢNH CHI TIẾT BỘ PHẬN',
+                'placeholder' => 'HÌNH ẢNH CHI TIẾT BỘ PHẬN',
             ),
             array(
                 'key' => 'field_sp_detail_photos',
@@ -331,7 +329,7 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Tiêu đề khu vực Video Review',
                 'name' => 'sp_video_title',
                 'type' => 'text',
-                'default_value' => 'VIDEO TRẢI NGHIỆM THỰC TẾ',
+                'placeholder' => 'VIDEO TRẢI NGHIỆM THỰC TẾ',
             ),
             array(
                 'key' => 'field_sp_detail_videos',
@@ -399,14 +397,14 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Dòng mô tả phụ Hỏi đáp',
                 'name' => 'sp_faq_slogan',
                 'type' => 'text',
-                'default_value' => 'Những câu hỏi thường gặp về sản phẩm',
+                'placeholder' => 'Những câu hỏi thường gặp về sản phẩm',
             ),
             array(
                 'key' => 'field_sp_faq_zalo_link',
                 'label' => 'Link Đặt câu hỏi (Zalo / Hotline)',
                 'name' => 'sp_faq_zalo_link',
                 'type' => 'text',
-                'default_value' => 'https://zalo.me/0944988699',
+                'placeholder' => 'https://zalo.me/0944988699',
             ),
             array(
                 'key' => 'field_sp_faqs',
