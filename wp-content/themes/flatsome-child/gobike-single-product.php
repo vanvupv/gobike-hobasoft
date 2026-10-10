@@ -504,6 +504,9 @@ function gobike_render_single_product_tabs($product) {
         );
     }
 
+    // --- TAB 2: Dữ liệu Thông số Kỹ thuật tùy chỉnh ---
+    $specs_custom_html = $gf ? get_field('sp_specs_custom_html', $product_id) : '';
+
     // --- TAB 3: Dữ liệu Hình ảnh & Video ---
     $media_title = $gf ? get_field('sp_media_photos_title', $product_id) : '';
     if (empty($media_title)) $media_title = 'HÌNH ẢNH CHI TIẾT BỘ PHẬN';
@@ -518,42 +521,138 @@ function gobike_render_single_product_tabs($product) {
             $idx = 0;
             foreach ($gallery_ids as $gid) {
                 $detail_photos[] = array(
-                    'image'   => wp_get_attachment_image_url($gid, 'medium_large'),
+                    'image'   => wp_get_attachment_image_url($gid, 'large'),
                     'caption' => isset($captions[$idx]) ? $captions[$idx] : ('Chi tiết ' . $product->get_name()),
                 );
                 $idx++;
-                if ($idx >= 6) break;
+                if ($idx >= 8) break;
             }
         }
     }
     if (empty($detail_photos)) {
         $detail_photos = array(
-            array('image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=400&q=80', 'caption' => 'Khung hợp kim nhôm'),
-            array('image' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=400&q=80', 'caption' => 'Động cơ mạnh mẽ'),
-            array('image' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=400&q=80', 'caption' => 'Phuộc trước giảm xóc'),
-            array('image' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80', 'caption' => 'Pin Lithium tháo rời'),
-            array('image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=400&q=80', 'caption' => 'Phanh dầu thủy lực'),
-            array('image' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=400&q=80', 'caption' => 'Bộ truyền động Shimano'),
+            array('image' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80', 'caption' => 'Khung hợp kim nhôm'),
+            array('image' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=600&q=80', 'caption' => 'Động cơ mạnh mẽ'),
+            array('image' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=600&q=80', 'caption' => 'Phuộc trước giảm xóc'),
+            array('image' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80', 'caption' => 'Pin Lithium tháo rời'),
+            array('image' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&w=600&q=80', 'caption' => 'Phanh dầu thủy lực'),
+            array('image' => 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=600&q=80', 'caption' => 'Bộ truyền động Shimano'),
         );
     }
 
     $video_title = $gf ? get_field('sp_video_title', $product_id) : '';
-    if (empty($video_title)) $video_title = 'Video trải nghiệm thực tế xe';
+    if (empty($video_title)) $video_title = 'VIDEO TRẢI NGHIỆM THỰC TẾ';
 
-    $video_url = $gf ? get_field('sp_video_url', $product_id) : '';
-    if (empty($video_url)) {
-        // Tìm từ video_review CPT liên kết
+    // Thu thập danh sách Video cho Slider
+    $all_videos = array();
+
+    // 1. Từ repeater sp_detail_videos
+    $detail_videos = $gf ? get_field('sp_detail_videos', $product_id) : array();
+    if (!empty($detail_videos) && is_array($detail_videos)) {
+        foreach ($detail_videos as $dv) {
+            $v_u = trim($dv['video_url'] ?? '');
+            if (!empty($v_u)) {
+                $yt_id = '';
+                if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/', $v_u, $m)) {
+                    $yt_id = $m[1];
+                }
+                $thumb = !empty($dv['video_thumb']) ? $dv['video_thumb'] : ($yt_id ? "https://img.youtube.com/vi/{$yt_id}/hqdefault.jpg" : '');
+                $all_videos[] = array(
+                    'url'   => $v_u,
+                    'title' => !empty($dv['video_title']) ? $dv['video_title'] : ('Trải nghiệm ' . $product->get_name()),
+                    'thumb' => $thumb,
+                );
+            }
+        }
+    }
+
+    // 2. Video đơn lẻ sp_video_url hoặc product_video_url
+    $single_v_url = ($gf ? get_field('sp_video_url', $product_id) : '') ?: ($gf ? get_field('product_video_url', $product_id) : '');
+    if (!empty($single_v_url)) {
+        $already = false;
+        foreach ($all_videos as $av) {
+            if ($av['url'] === $single_v_url) { $already = true; break; }
+        }
+        if (!$already) {
+            $yt_id = '';
+            if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/', $single_v_url, $m)) {
+                $yt_id = $m[1];
+            }
+            array_unshift($all_videos, array(
+                'url'   => $single_v_url,
+                'title' => 'Video review ' . $product->get_name(),
+                'thumb' => $yt_id ? "https://img.youtube.com/vi/{$yt_id}/hqdefault.jpg" : '',
+            ));
+        }
+    }
+
+    // 3. CPT Video Review liên kết qua relationship
+    $linked_revs = $gf ? get_field('product_linked_reviews', $product_id) : array();
+    if (!empty($linked_revs) && is_array($linked_revs)) {
+        foreach ($linked_revs as $r_id) {
+            $r_url = $gf ? get_field('video_url', $r_id) : '';
+            if ($r_url) {
+                $yt_id = '';
+                if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/', $r_url, $m)) {
+                    $yt_id = $m[1];
+                }
+                $r_thumb = ($gf ? get_field('video_thumbnail', $r_id) : '') ?: ($yt_id ? "https://img.youtube.com/vi/{$yt_id}/hqdefault.jpg" : '');
+                $all_videos[] = array(
+                    'url'   => $r_url,
+                    'title' => get_the_title($r_id),
+                    'thumb' => $r_thumb,
+                );
+            }
+        }
+    }
+
+    // 4. Nếu vẫn trống -> Tìm từ CPT video_review có related_product
+    if (empty($all_videos)) {
         $cpt_v = get_posts(array(
             'post_type'      => 'video_review',
-            'posts_per_page' => 1,
+            'posts_per_page' => 4,
             'meta_key'       => 'related_product',
             'meta_value'     => $product_id,
         ));
-        if (!empty($cpt_v) && $gf) {
-            $video_url = get_field('video_url', $cpt_v[0]->ID);
+        if (!empty($cpt_v)) {
+            foreach ($cpt_v as $cv) {
+                $r_url = $gf ? get_field('video_url', $cv->ID) : '';
+                if ($r_url) {
+                    $yt_id = '';
+                    if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/', $r_url, $m)) {
+                        $yt_id = $m[1];
+                    }
+                    $r_thumb = ($gf ? get_field('video_thumbnail', $cv->ID) : '') ?: ($yt_id ? "https://img.youtube.com/vi/{$yt_id}/hqdefault.jpg" : '');
+                    $all_videos[] = array(
+                        'url'   => $r_url,
+                        'title' => get_the_title($cv->ID),
+                        'thumb' => $r_thumb,
+                    );
+                }
+            }
         }
     }
-    $video_embed_url = gobike_get_youtube_embed_url($video_url);
+
+    // 5. Fallback mẫu mặc định đẹp mắt nếu chưa nhập video
+    if (empty($all_videos)) {
+        $all_videos = array(
+            array(
+                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                'title' => 'Trải nghiệm vận hành thực tế ' . $product->get_name(),
+                'thumb' => 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=600&q=80',
+            ),
+            array(
+                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                'title' => 'Đánh giá độ bền khung sườn & quãng đường pin',
+                'thumb' => 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=600&q=80',
+            ),
+            array(
+                'url'   => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                'title' => 'Hướng dẫn sử dụng các chế độ trợ lực điện thông minh',
+                'thumb' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=600&q=80',
+            ),
+        );
+    }
 
 
     // --- TAB 5: Dữ liệu Hỏi đáp ---
@@ -886,62 +985,114 @@ function gobike_render_single_product_tabs($product) {
                             <h2 class="block-title">THÔNG SỐ KỸ THUẬT CHI TIẾT</h2>
                         </div>
                     </div>
-                    <div class="specs-table-grid">
-                        <div class="specs-col">
-                            <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Loại xe</span><span class="spec-val"><?php echo esc_html($specs['cat_name']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Động cơ</span><span class="spec-val"><?php echo esc_html($specs['dong_co']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Pin</span><span class="spec-val"><?php echo esc_html($specs['pin']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
+                    <?php if (!empty($specs_custom_html)): ?>
+                        <!-- Người dùng copy HTML / Bảng vào editor ACF -->
+                        <div class="specs-custom-content entry-content">
+                            <?php echo $specs_custom_html; ?>
                         </div>
-                        <div class="specs-col">
-                            <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Giảm xóc</span><span class="spec-val"><?php echo esc_html($specs['giam_xoc']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Lốp xe</span><span class="spec-val"><?php echo esc_html($specs['lop_xe']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Trọng lượng</span><span class="spec-val"><?php echo esc_html($specs['trong_luong']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
-                            <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
-                            <?php if (!empty($specs['extra_specs'])): ?>
-                                <?php foreach ($specs['extra_specs'] as $es): ?>
-                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
+                    <?php else: ?>
+                        <!-- Hiển thị bảng thông số chuẩn từ hệ thống -->
+                        <div class="specs-table-grid">
+                            <div class="specs-col">
+                                <div class="spec-row"><span class="spec-lbl">Thương hiệu</span><span class="spec-val"><?php echo esc_html($specs['brand']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Model</span><span class="spec-val"><?php echo esc_html($product->get_name()); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Loại xe</span><span class="spec-val"><?php echo esc_html($specs['cat_name']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Động cơ</span><span class="spec-val"><?php echo esc_html($specs['dong_co']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Pin</span><span class="spec-val"><?php echo esc_html($specs['pin']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Quãng đường</span><span class="spec-val"><?php echo esc_html($specs['quang_duong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Tốc độ tối đa</span><span class="spec-val"><?php echo esc_html($specs['toc_do']); ?></span></div>
+                            </div>
+                            <div class="specs-col">
+                                <div class="spec-row"><span class="spec-lbl">Khung xe</span><span class="spec-val"><?php echo esc_html($specs['khung_xe']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Phanh</span><span class="spec-val"><?php echo esc_html($specs['phanh']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Giảm xóc</span><span class="spec-val"><?php echo esc_html($specs['giam_xoc']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Lốp xe</span><span class="spec-val"><?php echo esc_html($specs['lop_xe']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Trọng lượng</span><span class="spec-val"><?php echo esc_html($specs['trong_luong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Tải trọng tối đa</span><span class="spec-val"><?php echo esc_html($specs['tai_trong']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Kích thước (DxRxC)</span><span class="spec-val"><?php echo esc_html($specs['kich_thuoc']); ?></span></div>
+                                <div class="spec-row"><span class="spec-lbl">Bảo hành</span><span class="spec-val"><?php echo esc_html($specs['bao_hanh']); ?></span></div>
+                                <?php if (!empty($specs['extra_specs'])): ?>
+                                    <?php foreach ($specs['extra_specs'] as $es): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($es['spec_name'] ?? ''); ?></span><span class="spec-val"><?php echo esc_html($es['spec_value'] ?? ''); ?></span></div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
             <!-- TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT (Dedicated Full Panel) -->
             <div class="gobike-tab-panel" id="tab-media">
                 <div class="gobike-media-container">
-                    <div class="gobike-block-header">
-                        <div class="header-left">
-                            <h2 class="block-title"><?php echo esc_html($media_title); ?></h2>
+                    <!-- 1. BỘ SƯU TẬP ẢNH BỘ PHẬN (SLIDER + LIGHTBOX PHÓNG TO) -->
+                    <div class="media-photos-section">
+                        <div class="gobike-block-header">
+                            <div class="header-left">
+                                <h2 class="block-title"><?php echo esc_html($media_title); ?></h2>
+                            </div>
                         </div>
+
+                        <?php if (!empty($detail_photos)): ?>
+                            <div class="media-photos-slider-wrap">
+                                <div class="swiper-container gobike-media-photos-swiper">
+                                    <div class="swiper-wrapper">
+                                        <?php foreach ($detail_photos as $dp): ?>
+                                            <div class="swiper-slide photo-card-item">
+                                                <a href="<?php echo esc_url($dp['image'] ?? ''); ?>" class="gobike-photo-zoom" data-caption="<?php echo esc_attr($dp['caption'] ?? ''); ?>" title="<?php echo esc_attr($dp['caption'] ?? ''); ?>">
+                                                    <img src="<?php echo esc_url($dp['image'] ?? ''); ?>" alt="<?php echo esc_attr($dp['caption'] ?? ''); ?>" loading="lazy" />
+                                                    <span class="photo-zoom-icon" title="Nhấp để phóng to">
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                                    </span>
+                                                </a>
+                                                <?php if (!empty($dp['caption'])): ?>
+                                                    <span class="photo-caption"><?php echo esc_html($dp['caption']); ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <button type="button" class="media-btn-slide media-btn-prev gobike-photos-prev" aria-label="Trước">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                                </button>
+                                <button type="button" class="media-btn-slide media-btn-next gobike-photos-next" aria-label="Sau">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
-                    <?php if (!empty($detail_photos)): ?>
-                        <div class="media-photo-grid">
-                            <?php foreach ($detail_photos as $dp): ?>
-                                <div class="photo-card-item">
-                                    <img src="<?php echo esc_url($dp['image'] ?? ''); ?>" alt="<?php echo esc_attr($dp['caption'] ?? ''); ?>" loading="lazy" />
-                                    <?php if (!empty($dp['caption'])): ?>
-                                        <span class="photo-caption"><?php echo esc_html($dp['caption']); ?></span>
-                                    <?php endif; ?>
+                    <!-- 2. DANH SÁCH VIDEO TRẢI NGHIỆM XE (SLIDER + POPUP XEM TRỰC TIẾP) -->
+                    <?php if (!empty($all_videos)): ?>
+                        <div class="media-videos-section">
+                            <div class="gobike-block-header">
+                                <div class="header-left">
+                                    <h2 class="block-title"><?php echo esc_html($video_title); ?></h2>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (!empty($video_embed_url)): ?>
-                        <div class="media-video-embed-box">
-                            <h4 class="video-embed-title"><?php echo esc_html($video_title); ?></h4>
-                            <div class="video-responsive-wrap">
-                                <iframe width="100%" height="480" src="<?php echo esc_url($video_embed_url); ?>" title="<?php echo esc_attr($video_title); ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="media-videos-slider-wrap">
+                                <div class="swiper-container gobike-media-videos-swiper">
+                                    <div class="swiper-wrapper">
+                                        <?php foreach ($all_videos as $v): ?>
+                                            <div class="swiper-slide video-slide-item">
+                                                <div class="video-card-thumb btn-open-video" data-video="<?php echo esc_url($v['url']); ?>">
+                                                    <img src="<?php echo esc_url($v['thumb']); ?>" alt="<?php echo esc_attr($v['title']); ?>" loading="lazy" />
+                                                    <div class="video-play-btn-circle" title="Xem video">
+                                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                                    </div>
+                                                    <div class="video-overlay-gradient"></div>
+                                                </div>
+                                                <h4 class="video-slide-title btn-open-video" data-video="<?php echo esc_url($v['url']); ?>"><?php echo esc_html($v['title']); ?></h4>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <button type="button" class="media-btn-slide media-btn-prev gobike-videos-prev" aria-label="Trước">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                                </button>
+                                <button type="button" class="media-btn-slide media-btn-next gobike-videos-next" aria-label="Sau">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                                </button>
                             </div>
                         </div>
                     <?php endif; ?>

@@ -124,63 +124,6 @@ function gobike_register_video_review_acf_fields()
             'label_placement' => 'top',
             'instruction_placement' => 'label',
         ));
-
-        // Field Group dành riêng cho chi tiết Sản phẩm (WooCommerce Product)
-        acf_add_local_field_group(array(
-            'key' => 'group_product_video_experience',
-            'title' => 'Video Trải Nghiệm & Đánh Giá Xe',
-            'fields' => array(
-                array(
-                    'key' => 'field_prod_video_url',
-                    'label' => 'Link YouTube / Shorts Trực Tiếp',
-                    'name' => 'product_video_url',
-                    'type' => 'url',
-                    'instructions' => 'Nhập link YouTube hoặc YouTube Shorts trải nghiệm chiếc xe này (ví dụ: https://www.youtube.com/shorts/... hoặc https://www.youtube.com/watch?v=...)',
-                    'required' => 0,
-                    'placeholder' => 'https://www.youtube.com/shorts/...',
-                ),
-                array(
-                    'key' => 'field_prod_video_title_overlay',
-                    'label' => 'Dòng chữ mô tả nổi trên Video Shorts',
-                    'name' => 'product_video_title_overlay',
-                    'type' => 'text',
-                    'instructions' => 'Ví dụ: Trải nghiệm đi làm hàng ngày cực êm ái',
-                    'placeholder' => 'Trải nghiệm thực tế xe...',
-                ),
-                array(
-                    'key' => 'field_prod_video_views',
-                    'label' => 'Số lượt xem hiển thị',
-                    'name' => 'product_video_views',
-                    'type' => 'text',
-                    'instructions' => 'Ví dụ: 85K lượt xem',
-                    'default_value' => '50K lượt xem',
-                ),
-                array(
-                    'key' => 'field_prod_linked_reviews',
-                    'label' => 'Hoặc chọn các bài viết từ CPT "Video Review"',
-                    'name' => 'product_linked_reviews',
-                    'type' => 'relationship',
-                    'post_type' => array('video_review'),
-                    'instructions' => 'Chọn một hoặc nhiều bài video review từ CPT Video Review để hiển thị ở tab / khối video của sản phẩm này.',
-                    'filters' => array('search'),
-                    'return_format' => 'id',
-                ),
-            ),
-            'location' => array(
-                array(
-                    array(
-                        'param' => 'post_type',
-                        'operator' => '==',
-                        'value' => 'product',
-                    ),
-                ),
-            ),
-            'menu_order' => 15,
-            'position' => 'normal',
-            'style' => 'default',
-            'label_placement' => 'top',
-            'instruction_placement' => 'label',
-        ));
     }
 }
 

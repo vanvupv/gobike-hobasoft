@@ -161,6 +161,81 @@ jQuery(document).ready(function($) {
                 }
             }
         });
+
+        // Swiper cho Gallery ảnh bộ phận (Tab Media)
+        var mediaPhotosSwiper = new Swiper('.gobike-media-photos-swiper', {
+            slidesPerView: 6,
+            spaceBetween: 12,
+            watchOverflow: true,
+            navigation: {
+                nextEl: '.gobike-photos-next',
+                prevEl: '.gobike-photos-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 8
+                },
+                500: {
+                    slidesPerView: 3.2,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 4.2,
+                    spaceBetween: 12
+                },
+                1024: {
+                    slidesPerView: 6,
+                    spaceBetween: 12
+                }
+            }
+        });
+
+        // Swiper cho Video trải nghiệm (Tab Media)
+        var mediaVideosSwiper = new Swiper('.gobike-media-videos-swiper', {
+            slidesPerView: 3,
+            spaceBetween: 16,
+            watchOverflow: true,
+            navigation: {
+                nextEl: '.gobike-videos-next',
+                prevEl: '.gobike-videos-prev',
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 10
+                },
+                600: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 12
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 16
+                }
+            }
+        });
+
+        // Lightbox phóng to ảnh chi tiết bộ phận (Dùng Magnific Popup có sẵn trong theme)
+        if ($.fn.magnificPopup) {
+            $('.gobike-media-photos-swiper').magnificPopup({
+                delegate: 'a.gobike-photo-zoom',
+                type: 'image',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1],
+                    tPrev: 'Trước',
+                    tNext: 'Sau',
+                    tCounter: '%curr% / %total%'
+                },
+                image: {
+                    titleSrc: function(item) {
+                        return item.el.attr('data-caption') || item.el.attr('title') || '';
+                    }
+                }
+            });
+        }
     }
 
     if (typeof Swiper === 'undefined') {
@@ -182,6 +257,15 @@ jQuery(document).ready(function($) {
 
             $('.gobike-tab-panel').removeClass('active');
             $(targetId).addClass('active');
+
+            // Cập nhật lại Swiper khi mở tab Media (do display none trước đó)
+            if (targetId === '#tab-media' && typeof Swiper !== 'undefined') {
+                setTimeout(function() {
+                    $('.gobike-media-photos-swiper, .gobike-media-videos-swiper').each(function() {
+                        if (this.swiper) this.swiper.update();
+                    });
+                }, 100);
+            }
 
             // Cuộn mượt mà đến đầu nội dung tab
             $('html, body').animate({

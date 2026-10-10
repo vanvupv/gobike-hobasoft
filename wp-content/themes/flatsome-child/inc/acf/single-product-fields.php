@@ -149,6 +149,24 @@ function gobike_register_single_product_acf_fields()
                 'placement' => 'top',
             ),
             array(
+                'key' => 'field_sp_specs_custom_html',
+                'label' => 'Bảng thông số kỹ thuật tùy chỉnh (HTML / Soạn thảo)',
+                'name' => 'sp_specs_custom_html',
+                'type' => 'wysiwyg',
+                'instructions' => 'Dán mã HTML bảng thông số hoặc soạn thảo trực tiếp vào đây. Nếu nhập ô này, trang web sẽ ưu tiên hiển thị bảng HTML này. Nếu để trống, hệ thống sẽ tự động hiển thị bảng thông số chuẩn từ các trường bên dưới.',
+                'tabs' => 'all',
+                'toolbar' => 'full',
+                'media_upload' => 1,
+                'delay' => 0,
+            ),
+            array(
+                'key' => 'field_sp_specs_filter_note',
+                'label' => 'Các thông số có cấu trúc (Dùng cho Bộ lọc Sidebar & Hiển thị tóm tắt)',
+                'name' => '',
+                'type' => 'message',
+                'message' => '<em>Các trường bên dưới được dùng cho tính năng lọc sản phẩm theo thông số và hiển thị nhanh ở đầu trang hoặc bảng thông số tự động.</em>',
+            ),
+            array(
                 'key' => 'field_sp_brand',
                 'label' => 'Thương hiệu',
                 'name' => 'thuong_hieu',
@@ -284,10 +302,10 @@ function gobike_register_single_product_acf_fields()
             ),
             array(
                 'key' => 'field_sp_detail_photos',
-                'label' => 'Lưới ảnh chi tiết bộ phận xe (Khuyên dùng 6 ảnh)',
+                'label' => 'Bộ sưu tập ảnh chi tiết bộ phận (Slider + Phóng to khi bấm)',
                 'name' => 'sp_detail_photos',
                 'type' => 'repeater',
-                'instructions' => 'Tải lên ảnh cận cảnh chi tiết (khung, pin, động cơ, phanh, giảm xóc, líp...) kèm chú thích',
+                'instructions' => 'Tải lên ảnh cận cảnh chi tiết (khung, pin, động cơ, phanh, giảm xóc, líp...) kèm chú thích. Giao diện hiển thị slide trượt mượt mà và hỗ trợ bấm phóng to.',
                 'layout' => 'table',
                 'button_label' => 'Thêm ảnh chi tiết',
                 'sub_fields' => array(
@@ -310,48 +328,68 @@ function gobike_register_single_product_acf_fields()
             ),
             array(
                 'key' => 'field_sp_video_title',
-                'label' => 'Tiêu đề video review thực tế',
+                'label' => 'Tiêu đề khu vực Video Review',
                 'name' => 'sp_video_title',
                 'type' => 'text',
-                'default_value' => 'Video trải nghiệm thực tế xe',
+                'default_value' => 'VIDEO TRẢI NGHIỆM THỰC TẾ',
+            ),
+            array(
+                'key' => 'field_sp_detail_videos',
+                'label' => 'Danh sách Video Review (Dạng Slide trượt)',
+                'name' => 'sp_detail_videos',
+                'type' => 'repeater',
+                'instructions' => 'Thêm các video review / shorts trải nghiệm thực tế xe để hiển thị thành Slide trượt chuyên nghiệp.',
+                'layout' => 'table',
+                'button_label' => 'Thêm Video',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_sp_v_url',
+                        'label' => 'Link YouTube / Shorts',
+                        'name' => 'video_url',
+                        'type' => 'text',
+                        'instructions' => 'https://www.youtube.com/watch?v=... hoặc https://youtu.be/...',
+                    ),
+                    array(
+                        'key' => 'field_sp_v_title',
+                        'label' => 'Tiêu đề video',
+                        'name' => 'video_title',
+                        'type' => 'text',
+                        'instructions' => 'Vd: Trải nghiệm thực tế khi đi phố và leo dốc',
+                    ),
+                    array(
+                        'key' => 'field_sp_v_thumb',
+                        'label' => 'Ảnh bìa tùy chỉnh (để trống tự lấy từ YouTube)',
+                        'name' => 'video_thumb',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                        'preview_size' => 'thumbnail',
+                    ),
+                ),
             ),
             array(
                 'key' => 'field_sp_video_url',
-                'label' => 'Đường dẫn Video YouTube',
+                'label' => 'Hoặc nhập nhanh 1 Link YouTube đơn lẻ',
                 'name' => 'sp_video_url',
                 'type' => 'text',
-                'instructions' => 'Nhập đường dẫn YouTube (vd: https://www.youtube.com/watch?v=... hoặc https://youtu.be/...)',
+                'instructions' => 'Dành cho trường hợp chỉ có 1 video duy nhất và không muốn dùng repeater ở trên.',
+            ),
+            array(
+                'key' => 'field_sp_linked_reviews',
+                'label' => 'Hoặc chọn các bài viết từ CPT "Video Review"',
+                'name' => 'product_linked_reviews',
+                'type' => 'relationship',
+                'post_type' => array('video_review'),
+                'instructions' => 'Chọn một hoặc nhiều bài video review từ CPT Video Review để tự động đưa vào slide video của sản phẩm.',
+                'filters' => array('search'),
+                'return_format' => 'id',
             ),
 
             // =================================================================
-            // TAB 4: ĐÁNH GIÁ (TỰ ĐỘNG - THÔNG TIN)
-            // =================================================================
-            array(
-                'key' => 'field_sp_tab_reviews',
-                'label' => '4. Đánh giá (Tự động)',
-                'name' => '',
-                'type' => 'tab',
-                'placement' => 'top',
-            ),
-            array(
-                'key' => 'field_sp_reviews_note',
-                'label' => 'Quản lý Đánh giá & Bình luận',
-                'name' => 'sp_reviews_note',
-                'type' => 'message',
-                'message' => '<strong>Hệ thống Đánh giá hoạt động hoàn toàn tự động 100%:</strong><br>
-- Điểm đánh giá trung bình, số lượng review và biểu đồ tỷ lệ sao được tính toán tự động từ cơ sở dữ liệu thực tế (WooCommerce & YITH Advanced Reviews).<br>
-- Khách hàng có thể trực tiếp gửi đánh giá và chấm điểm ngay tại trang sản phẩm.<br>
-- Quản trị viên duyệt, chỉnh sửa hoặc phản hồi đánh giá của khách hàng trong menu: <strong>WP Admin → Bình luận (Comments)</strong>.',
-                'new_lines' => 'wpautop',
-                'esc_html' => 0,
-            ),
-
-            // =================================================================
-            // TAB 5: HỎI ĐÁP (FAQ)
+            // TAB 4: HỎI ĐÁP (FAQ)
             // =================================================================
             array(
                 'key' => 'field_sp_tab_faq',
-                'label' => '5. Hỏi đáp (FAQ)',
+                'label' => '4. Hỏi đáp (FAQ)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -375,7 +413,7 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Danh sách câu hỏi thường gặp',
                 'name' => 'sp_faqs',
                 'type' => 'repeater',
-                'instructions' => 'Thêm các câu hỏi & câu trả lời (giao diện sẽ tự động chia đều 2 cột)',
+                'instructions' => 'Thêm các câu hỏi & câu trả lời (giao diện sẽ tự động chia đều 2 cột theo thiết kế)',
                 'layout' => 'row',
                 'button_label' => 'Thêm câu hỏi',
                 'sub_fields' => array(
