@@ -1144,8 +1144,7 @@ function gobike_custom_styles_output()
                 flex: 1 1 auto !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: space-between !important;
-                gap: 6px !important;
+                gap: 10px !important;
                 overflow: hidden !important;
                 margin-bottom: 8px !important;
             }
