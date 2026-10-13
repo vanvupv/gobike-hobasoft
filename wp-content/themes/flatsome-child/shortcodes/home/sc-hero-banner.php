@@ -435,20 +435,19 @@ function gobike_render_home_hero_banner($atts = array())
                         <!-- Swiper Thumbs (4 cam kết dưới slide - đồng bộ 1-1 với slide) -->
                         <div class="mySwiper gobike-service-thumbs hide-for-medium">
                             <div class="swiper-wrapper">
-                                <?php foreach ($tabs as $index => $tab): ?>
+                                <?php foreach ($tabs as $index => $tab): 
+                                    $tab_text = !empty($tab['line2']) ? trim($tab['line1'] . ' ' . $tab['line2']) : trim($tab['line1']);
+                                ?>
                                     <div class="swiper-slide service-thumb-item" data-slide-index="<?php echo $index; ?>">
                                         <div class="thumb-icon-wrap">
                                             <?php if (!empty($tab['icon_url'])): ?>
-                                                <img src="<?php echo esc_url($tab['icon_url']); ?>" class="gb-service-icon-img" alt="<?php echo esc_attr($tab['line1']); ?>" />
+                                                <img src="<?php echo esc_url($tab['icon_url']); ?>" class="gb-service-icon-img" alt="<?php echo esc_attr($tab_text); ?>" />
                                             <?php else: ?>
                                                 <?php echo $tab['svg']; ?>
                                             <?php endif; ?>
                                         </div>
                                         <div class="thumb-text-wrap">
-                                            <span class="thumb-title"><?php echo esc_html($tab['line1']); ?></span>
-                                            <?php if (!empty($tab['line2'])): ?>
-                                                <span class="thumb-desc"><?php echo esc_html($tab['line2']); ?></span>
-                                            <?php endif; ?>
+                                            <span class="thumb-title"><?php echo esc_html($tab_text); ?></span>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>

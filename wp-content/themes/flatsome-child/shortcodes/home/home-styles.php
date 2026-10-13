@@ -996,89 +996,88 @@ function gobike_custom_styles_output()
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap {
-                width: 32px !important;
-                height: 32px !important;
-                flex: 0 0 32px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                color: #044b25 !important;
-                transition: transform 0.25s ease, color 0.25s ease !important;
+                width: 38px;
+                height: 38px;
+                flex: 0 0 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #044b25;
+                transition: transform 0.25s ease, color 0.25s ease;
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap svg {
-                width: 28px !important;
-                height: 28px !important;
-                display: block !important;
-                fill: none !important;
-                stroke: currentColor !important;
-                stroke-width: 2 !important;
-                stroke-linecap: round !important;
-                stroke-linejoin: round !important;
-                transition: transform 0.25s ease, color 0.25s ease !important;
+                width: 34px;
+                height: 34px;
+                display: block;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: transform 0.25s ease, color 0.25s ease;
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap svg * {
-                fill: none !important;
-                stroke: currentColor !important;
+                fill: none;
+                stroke: currentColor;
             }
 
             .banner-home .service-thumb-item .thumb-icon-wrap .gb-service-icon-img {
-                width: 28px !important;
-                height: 28px !important;
-                max-width: 28px !important;
-                max-height: 28px !important;
-                object-fit: contain !important;
-                display: block !important;
-                transition: transform 0.25s ease !important;
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                display: block;
+                transition: transform 0.25s ease;
             }
 
             .banner-home .service-thumb-item .thumb-text-wrap {
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                justify-content: center !important;
-                min-width: 0 !important;
-                flex: 1 1 auto !important;
-                line-height: 1.15 !important;
-                max-height: 48px !important;
-                overflow: hidden !important;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-width: 0;
+                flex: 1 1 auto;
+                overflow: hidden;
             }
 
-            .banner-home .service-thumb-item .thumb-title,
+            .banner-home .service-thumb-item .thumb-title {
+                font-size: clamp(12px, 0.95vw, 14px);
+                font-weight: 700;
+                color: #0b1a30;
+                text-transform: uppercase;
+                line-height: 1.25;
+                letter-spacing: -0.2px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                word-break: break-word;
+                margin: 0;
+                transition: color 0.25s ease;
+            }
+
             .banner-home .service-thumb-item .thumb-desc {
-                font-size: clamp(13px, 1.02vw, 15px) !important;
-                font-weight: 700 !important;
-                color: #0b1a30 !important;
-                text-transform: uppercase !important;
-                line-height: 1.15 !important;
-                letter-spacing: -0.4px !important;
-                white-space: nowrap !important;
-                overflow: hidden !important;
-                text-overflow: ellipsis !important;
-                display: block !important;
-                margin: 0 !important;
-                transition: color 0.25s ease !important;
+                display: none;
             }
 
             /* BỎ MÀU NỀN TRÊN TAB ACTIVE & HOVER (Duy trì nền trắng sạch sẽ) */
             .banner-home .service-thumb-item.swiper-slide-thumb-active,
             .banner-home .service-thumb-item:hover {
-                background: #ffffff !important;
-                border-bottom: none !important;
+                background: #ffffff;
+                border-bottom: none;
             }
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-icon-wrap,
             .banner-home .service-thumb-item:hover .thumb-icon-wrap {
-                color: #044b25 !important;
-                transform: scale(1.06) !important;
+                color: #044b25;
+                transform: scale(1.06);
             }
 
             .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-title,
-            .banner-home .service-thumb-item.swiper-slide-thumb-active .thumb-desc,
-            .banner-home .service-thumb-item:hover .thumb-title,
-            .banner-home .service-thumb-item:hover .thumb-desc {
-                color: #044b25 !important;
+            .banner-home .service-thumb-item:hover .thumb-title {
+                color: #044b25;
             }
 
             /* CỘT 3: TIN TỨC MỚI NHẤT & SHOWROOM */
