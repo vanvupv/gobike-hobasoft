@@ -75,16 +75,6 @@ function gobike_register_hero_banner_acf_fields()
                 'placeholder' => '/san-pham/',
                 'wrapper' => array('width' => '50'),
             ),
-            array(
-                'key' => 'field_banner_left_title',
-                'label' => 'Tiêu đề / Thẻ Alt (SEO)',
-                'name' => 'banner_left_title',
-                'type' => 'text',
-                'instructions' => 'Tiêu đề tooltip và thẻ alt cho banner dọc bên trái.',
-                'required' => 0,
-                'placeholder' => 'GoBike - Chất lượng thật để bền vạn năm',
-                'wrapper' => array('width' => '100'),
-            ),
 
             // --- TAB 2: BANNER SHOWROOM CỘT PHẢI ---
             array(
@@ -115,16 +105,6 @@ function gobike_register_hero_banner_acf_fields()
                 'required' => 0,
                 'placeholder' => '/lien-he/',
                 'wrapper' => array('width' => '50'),
-            ),
-            array(
-                'key' => 'field_banner_showroom_title',
-                'label' => 'Tiêu đề / Thẻ Alt Showroom',
-                'name' => 'banner_showroom_title',
-                'type' => 'text',
-                'instructions' => 'Tiêu đề chú thích và thẻ alt cho banner Showroom.',
-                'required' => 0,
-                'placeholder' => 'Trải nghiệm thực tế tại Hệ thống Showroom GOBIKE',
-                'wrapper' => array('width' => '100'),
             ),
         ),
         'location' => $location,
@@ -274,9 +254,12 @@ function gobike_render_home_hero_banner($atts = array())
         $left_banner_link = get_field('banner_left_link');
     }
 
-    $left_banner_title = function_exists('get_field') ? get_field('banner_left_title', $front_page_id) : '';
-    if (empty($left_banner_title) && function_exists('get_field')) {
-        $left_banner_title = get_field('banner_left_title');
+    $left_banner_alt = '';
+    if (!empty($left_banner_img_val) && is_array($left_banner_img_val)) {
+        $left_banner_alt = !empty($left_banner_img_val['alt']) ? $left_banner_img_val['alt'] : (!empty($left_banner_img_val['title']) ? $left_banner_img_val['title'] : '');
+    }
+    if (empty($left_banner_alt)) {
+        $left_banner_alt = get_bloginfo('name');
     }
 
     // 2. CỘT PHẢI: BANNER SHOWROOM (Chỉ hiển thị khi đã tải ảnh lên trong ACF)
@@ -306,9 +289,12 @@ function gobike_render_home_hero_banner($atts = array())
         $showroom_link = get_field('banner_showroom_link');
     }
 
-    $showroom_title = function_exists('get_field') ? get_field('banner_showroom_title', $front_page_id) : '';
-    if (empty($showroom_title) && function_exists('get_field')) {
-        $showroom_title = get_field('banner_showroom_title');
+    $showroom_alt = '';
+    if (!empty($showroom_img_val) && is_array($showroom_img_val)) {
+        $showroom_alt = !empty($showroom_img_val['alt']) ? $showroom_img_val['alt'] : (!empty($showroom_img_val['title']) ? $showroom_img_val['title'] : '');
+    }
+    if (empty($showroom_alt)) {
+        $showroom_alt = get_bloginfo('name');
     }
 
     ob_start();
@@ -320,8 +306,8 @@ function gobike_render_home_hero_banner($atts = array())
                 <?php if (!empty($left_banner_img)): ?>
                 <div class="col hide-for-medium box_left gobike-hero-box-left">
                     <div class="gobike-vert-banner-card">
-                        <a href="<?php echo esc_url($left_banner_link ?: '#'); ?>" title="<?php echo esc_attr($left_banner_title ?: get_bloginfo('name')); ?>">
-                            <img src="<?php echo esc_url($left_banner_img); ?>" alt="<?php echo esc_attr($left_banner_title ?: get_bloginfo('name')); ?>" />
+                        <a href="<?php echo esc_url($left_banner_link ?: '#'); ?>" title="<?php echo esc_attr($left_banner_alt); ?>">
+                            <img src="<?php echo esc_url($left_banner_img); ?>" alt="<?php echo esc_attr($left_banner_alt); ?>" />
                         </a>
                     </div>
                 </div>
@@ -442,8 +428,8 @@ function gobike_render_home_hero_banner($atts = array())
                         <!-- Phần dưới: Banner Showroom GOBIKE (Ẩn nếu chưa có ảnh) -->
                         <?php if (!empty($showroom_img)): ?>
                         <div class="gobike-showroom-banner-box">
-                            <a href="<?php echo esc_url($showroom_link ?: '#'); ?>" title="<?php echo esc_attr($showroom_title ?: get_bloginfo('name')); ?>">
-                                <img src="<?php echo esc_url($showroom_img); ?>" alt="<?php echo esc_attr($showroom_title ?: get_bloginfo('name')); ?>" />
+                            <a href="<?php echo esc_url($showroom_link ?: '#'); ?>" title="<?php echo esc_attr($showroom_alt); ?>">
+                                <img src="<?php echo esc_url($showroom_img); ?>" alt="<?php echo esc_attr($showroom_alt); ?>" />
                             </a>
                         </div>
                         <?php endif; ?>
