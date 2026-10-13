@@ -1023,6 +1023,16 @@ function gobike_custom_styles_output()
                 stroke: currentColor !important;
             }
 
+            .banner-home .service-thumb-item .thumb-icon-wrap .gb-service-icon-img {
+                width: 28px !important;
+                height: 28px !important;
+                max-width: 28px !important;
+                max-height: 28px !important;
+                object-fit: contain !important;
+                display: block !important;
+                transition: transform 0.25s ease !important;
+            }
+
             .banner-home .service-thumb-item .thumb-text-wrap {
                 display: flex !important;
                 flex-direction: column !important;

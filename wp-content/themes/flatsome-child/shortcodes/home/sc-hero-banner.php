@@ -152,27 +152,27 @@ function gobike_render_home_hero_banner($atts = array())
         $rows = get_field('slider_top');
     }
 
-    // 4 cam kết/dịch vụ chuẩn theo mẫu thiết kế (Bộ icon SVG thông dụng, chuẩn UI hiện đại)
-    $service_items = array(
-        array(
+    // 4 cam kết/dịch vụ mặc định chuẩn theo mẫu thiết kế
+    $default_service_items = array(
+        0 => array(
             'line1' => 'XE ĐẠP THỂ THAO',
             'line2' => 'MỚI',
             'title' => 'XE ĐẠP THỂ THAO MỚI',
             'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4zm-3 11.5L9 9l3-3 3 4.5 3.5 1"/></svg>'
         ),
-        array(
+        1 => array(
             'line1' => 'PHỤ KIỆN XE ĐẠP',
             'line2' => 'CHÍNH HÃNG',
             'title' => 'PHỤ KIỆN XE ĐẠP CHÍNH HÃNG',
             'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
         ),
-        array(
+        2 => array(
             'line1' => 'XE ĐẠP TRẺ EM',
             'line2' => 'AN TOÀN',
             'title' => 'XE ĐẠP TRẺ EM AN TOÀN',
             'svg'   => '<svg class="gb-service-svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M12 18V7l3-3h3M8 18l3-8"/></svg>'
         ),
-        array(
+        3 => array(
             'line1' => 'DỊCH VỤ BẢO DƯỠNG',
             'line2' => 'MIỄN PHÍ',
             'title' => 'DỊCH VỤ BẢO DƯỠNG MIỄN PHÍ',
@@ -180,14 +180,10 @@ function gobike_render_home_hero_banner($atts = array())
         )
     );
 
-    // Lọc bỏ slide "Khuyến mãi" nếu tồn tại trong ACF repeater
+    // Lấy toàn bộ slides từ ACF repeater slider_top (Không lọc bỏ bất kỳ slide nào của người dùng)
     $slides = array();
     if (!empty($rows) && is_array($rows)) {
         foreach ($rows as $row) {
-            $title = isset($row['title_slide']) ? trim($row['title_slide']) : '';
-            if (mb_stripos($title, 'khuyến mãi') !== false || mb_stripos($title, 'khuyen mai') !== false) {
-                continue;
-            }
             $slides[] = $row;
         }
     }
@@ -197,6 +193,7 @@ function gobike_render_home_hero_banner($atts = array())
         content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
         content_url('/uploads/2026/08/b5654596-d2fe-4d68-920c-b88feed92d95.webp'),
         content_url('/uploads/2026/08/14968be5-0f73-4635-8a75-4c165843f7dd.webp'),
+        content_url('/uploads/2026/08/7a0ac4d6-ac79-4358-a397-9e78a2d3a304.webp'),
     );
 
     if (empty($slides)) {
@@ -204,9 +201,65 @@ function gobike_render_home_hero_banner($atts = array())
             $slides[] = array(
                 'image_slide' => array('url' => $def_url),
                 'link_url'    => home_url('/san-pham/'),
-                'title_slide' => isset($service_items[$idx]['title']) ? $service_items[$idx]['title'] : 'GoBike',
+                'title_slide' => isset($default_service_items[$idx]['line1']) ? $default_service_items[$idx]['line1'] : 'GoBike',
             );
         }
+    }
+
+    // Chuẩn bị danh sách Tabs bên dưới đồng bộ 1-1 với từng slide
+    $tabs = array();
+    foreach ($slides as $idx => $s) {
+        $def = isset($default_service_items[$idx % 4]) ? $default_service_items[$idx % 4] : $default_service_items[0];
+
+        // 1. Tiêu đề
+        $raw_title = !empty($s['title_tab']) ? trim($s['title_tab']) : (!empty($s['title_slide']) ? trim($s['title_slide']) : (!empty($s['title']) ? trim($s['title']) : ''));
+        $raw_subtitle = !empty($s['subtitle_tab']) ? trim($s['subtitle_tab']) : (!empty($s['subtitle_slide']) ? trim($s['subtitle_slide']) : (!empty($s['line2']) ? trim($s['line2']) : (!empty($s['desc_slide']) ? trim($s['desc_slide']) : '')));
+
+        if (!empty($raw_title)) {
+            if (!empty($raw_subtitle)) {
+                $line1 = $raw_title;
+                $line2 = $raw_subtitle;
+            } elseif (strpos($raw_title, "\n") !== false) {
+                $parts = explode("\n", $raw_title, 2);
+                $line1 = trim($parts[0]);
+                $line2 = trim($parts[1]);
+            } elseif (strpos($raw_title, '|') !== false) {
+                $parts = explode('|', $raw_title, 2);
+                $line1 = trim($parts[0]);
+                $line2 = trim($parts[1]);
+            } else {
+                $line1 = $raw_title;
+                $line2 = '';
+            }
+        } else {
+            $line1 = $def['line1'];
+            $line2 = $def['line2'];
+        }
+
+        // 2. Icon (Trường ảnh: icon_slide, icon_image, icon, tab_icon)
+        $icon_url = '';
+        $icon_val = !empty($s['icon_slide']) ? $s['icon_slide'] : (!empty($s['icon_image']) ? $s['icon_image'] : (!empty($s['icon']) ? $s['icon'] : (!empty($s['tab_icon']) ? $s['tab_icon'] : '')));
+
+        if (!empty($icon_val)) {
+            if (is_array($icon_val)) {
+                if (!empty($icon_val['url'])) {
+                    $icon_url = $icon_val['url'];
+                } elseif (!empty($icon_val['ID'])) {
+                    $icon_url = wp_get_attachment_image_url($icon_val['ID'], 'thumbnail');
+                }
+            } elseif (is_numeric($icon_val)) {
+                $icon_url = wp_get_attachment_image_url($icon_val, 'thumbnail');
+            } elseif (is_string($icon_val)) {
+                $icon_url = $icon_val;
+            }
+        }
+
+        $tabs[] = array(
+            'line1'    => $line1,
+            'line2'    => $line2,
+            'icon_url' => $icon_url,
+            'svg'      => $def['svg'],
+        );
     }
 
     // Query 3 tin tức mới nhất
@@ -379,18 +432,22 @@ function gobike_render_home_hero_banner($atts = array())
 
                         <div class="swiper-pagination banner-home-pagination"></div>
 
-                        <!-- Swiper Thumbs (4 cam kết dưới slide - Bỏ Khuyến Mãi - Ẩn trên tablet & mobile) -->
+                        <!-- Swiper Thumbs (4 cam kết dưới slide - đồng bộ 1-1 với slide) -->
                         <div class="mySwiper gobike-service-thumbs hide-for-medium">
                             <div class="swiper-wrapper">
-                                <?php foreach ($service_items as $index => $item): ?>
-                                    <div class="swiper-slide service-thumb-item">
+                                <?php foreach ($tabs as $index => $tab): ?>
+                                    <div class="swiper-slide service-thumb-item" data-slide-index="<?php echo $index; ?>">
                                         <div class="thumb-icon-wrap">
-                                            <?php echo $item['svg']; ?>
+                                            <?php if (!empty($tab['icon_url'])): ?>
+                                                <img src="<?php echo esc_url($tab['icon_url']); ?>" class="gb-service-icon-img" alt="<?php echo esc_attr($tab['line1']); ?>" />
+                                            <?php else: ?>
+                                                <?php echo $tab['svg']; ?>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="thumb-text-wrap">
-                                            <span class="thumb-title"><?php echo esc_html(!empty($item['line1']) ? $item['line1'] : $item['title']); ?></span>
-                                            <?php if (!empty($item['line2'])): ?>
-                                                <span class="thumb-desc"><?php echo esc_html($item['line2']); ?></span>
+                                            <span class="thumb-title"><?php echo esc_html($tab['line1']); ?></span>
+                                            <?php if (!empty($tab['line2'])): ?>
+                                                <span class="thumb-desc"><?php echo esc_html($tab['line2']); ?></span>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -458,24 +515,16 @@ function gobike_render_home_hero_banner($atts = array())
             var heroSection = document.querySelector('.gobike-hero-banner-section');
             if (!heroSection) return;
 
-            var serviceSwiper = new Swiper(heroSection.querySelector('.mySwiper'), {
-                spaceBetween: 0,
-                slidesPerView: 4,
-                freeMode: false,
-                slideToClickedSlide: true,
-                watchSlidesVisibility: true,
-                watchSlidesProgress: true,
-                observer: true,
-                observeParents: true,
-            });
+            var totalSlides = <?php echo count($slides); ?>;
+            var thumbItems = heroSection.querySelectorAll('.mySwiper .service-thumb-item');
 
             var bannerSwiper = new Swiper(heroSection.querySelector('.mySwiper2'), {
                 spaceBetween: 0,
-                loop: true,
+                loop: totalSlides > 1,
                 observer: true,
                 observeParents: true,
                 autoplay: {
-                    delay: 3500,
+                    delay: 4000,
                     disableOnInteraction: false,
                 },
                 navigation: {
@@ -486,15 +535,11 @@ function gobike_render_home_hero_banner($atts = array())
                     el: heroSection.querySelector('.banner-home-pagination'),
                     clickable: true,
                 },
-                thumbs: {
-                    swiper: serviceSwiper,
-                },
             });
 
-            var totalSlides = <?php echo count($slides); ?>;
-            var thumbItems = heroSection.querySelectorAll('.mySwiper .service-thumb-item');
             function syncActiveThumb(realIdx) {
-                var activeThumbIdx = (thumbItems.length > 0) ? (realIdx % thumbItems.length) : 0;
+                if (!thumbItems.length) return;
+                var activeThumbIdx = (realIdx >= 0) ? (realIdx % thumbItems.length) : 0;
                 thumbItems.forEach(function(el, i) {
                     if (i === activeThumbIdx) {
                         el.classList.add('swiper-slide-thumb-active');
@@ -504,22 +549,26 @@ function gobike_render_home_hero_banner($atts = array())
                 });
             }
 
+            // Kích hoạt tab đầu tiên
+            syncActiveThumb(0);
+
+            // Bắt sự kiện click vào từng tab để chuyển slide chuẩn xác
             thumbItems.forEach(function(item, idx) {
                 item.style.cursor = 'pointer';
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     if (bannerSwiper) {
-                        var targetSlide = totalSlides > 0 ? (idx % totalSlides) : 0;
                         if (typeof bannerSwiper.slideToLoop === 'function') {
-                            bannerSwiper.slideToLoop(targetSlide);
+                            bannerSwiper.slideToLoop(idx);
                         } else {
-                            bannerSwiper.slideTo(targetSlide);
+                            bannerSwiper.slideTo(idx);
                         }
                         syncActiveThumb(idx);
                     }
                 });
             });
 
+            // Khi banner chuyển slide (tự động chạy hoặc bấm mũi tên)
             bannerSwiper.on('slideChange', function() {
                 var realIdx = (typeof bannerSwiper.realIndex !== 'undefined') ? bannerSwiper.realIndex : (bannerSwiper.activeIndex % (totalSlides || 1));
                 syncActiveThumb(realIdx);
