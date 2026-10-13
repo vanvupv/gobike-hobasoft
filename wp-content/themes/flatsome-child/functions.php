@@ -1846,3 +1846,49 @@ add_filter('theme_mod_sale_bubble_percentage', function ($val) {
     return $val;
 });
 
+/**
+ * Xóa bỏ và ẩn hoàn toàn trường ACF cũ 'image_ads_right' ở Trang chủ
+ */
+add_filter('acf/load_field/name=image_ads_right', '__return_false');
+add_filter('acf/prepare_field/name=image_ads_right', '__return_false');
+
+add_action('admin_init', 'gobike_remove_legacy_image_ads_right_acf');
+function gobike_remove_legacy_image_ads_right_acf()
+{
+    global $wpdb;
+
+    // 1. Xóa các bài viết post_type 'acf-field' có tên image_ads_right
+    $field_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'acf-field' AND (post_excerpt = %s OR post_name = %s)",
+        'image_ads_right',
+        'image_ads_right'
+    ));
+
+    if (!empty($field_ids)) {
+        foreach ($field_ids as $fid) {
+            wp_delete_post((int)$fid, true);
+        }
+    }
+
+    // 2. Xóa các field group nếu có group riêng tên image_ads_right
+    $group_ids = $wpdb->get_col($wpdb->prepare(
+        "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'acf-field-group' AND (post_name = %s OR post_title LIKE %s)",
+        'image_ads_right',
+        '%image_ads_right%'
+    ));
+
+    if (!empty($group_ids)) {
+        foreach ($group_ids as $gid) {
+            wp_delete_post((int)$gid, true);
+        }
+    }
+
+    // 3. Xóa postmeta image_ads_right trên Trang chủ (nếu có lưu giá trị cũ)
+    $front_page_id = get_option('page_on_front');
+    if (!empty($front_page_id)) {
+        delete_post_meta($front_page_id, 'image_ads_right');
+        delete_post_meta($front_page_id, '_image_ads_right');
+    }
+}
+
+
