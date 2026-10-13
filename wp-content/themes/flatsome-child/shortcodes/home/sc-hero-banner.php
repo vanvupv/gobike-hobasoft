@@ -200,41 +200,18 @@ function gobike_render_home_hero_banner($atts = array())
         foreach ($default_banner_images as $idx => $def_url) {
             $slides[] = array(
                 'image_slide' => array('url' => $def_url),
-                'link_url'    => home_url('/san-pham/'),
                 'title_slide' => isset($default_service_items[$idx]['line1']) ? $default_service_items[$idx]['line1'] : 'GoBike',
             );
         }
     }
 
-    // Chuẩn bị danh sách Tabs bên dưới đồng bộ 1-1 với từng slide
+    // Chuẩn bị danh sách Tabs bên dưới đồng bộ 1-1 với từng slide (lấy theo title_slide)
     $tabs = array();
     foreach ($slides as $idx => $s) {
         $def = isset($default_service_items[$idx % 4]) ? $default_service_items[$idx % 4] : $default_service_items[0];
 
-        // 1. Tiêu đề
-        $raw_title = !empty($s['title_tab']) ? trim($s['title_tab']) : (!empty($s['title_slide']) ? trim($s['title_slide']) : (!empty($s['title']) ? trim($s['title']) : ''));
-        $raw_subtitle = !empty($s['subtitle_tab']) ? trim($s['subtitle_tab']) : (!empty($s['subtitle_slide']) ? trim($s['subtitle_slide']) : (!empty($s['line2']) ? trim($s['line2']) : (!empty($s['desc_slide']) ? trim($s['desc_slide']) : '')));
-
-        if (!empty($raw_title)) {
-            if (!empty($raw_subtitle)) {
-                $line1 = $raw_title;
-                $line2 = $raw_subtitle;
-            } elseif (strpos($raw_title, "\n") !== false) {
-                $parts = explode("\n", $raw_title, 2);
-                $line1 = trim($parts[0]);
-                $line2 = trim($parts[1]);
-            } elseif (strpos($raw_title, '|') !== false) {
-                $parts = explode('|', $raw_title, 2);
-                $line1 = trim($parts[0]);
-                $line2 = trim($parts[1]);
-            } else {
-                $line1 = $raw_title;
-                $line2 = '';
-            }
-        } else {
-            $line1 = $def['line1'];
-            $line2 = $def['line2'];
-        }
+        // 1. Tiêu đề tab (lấy theo title_slide)
+        $tab_title = !empty($s['title_slide']) ? trim($s['title_slide']) : (!empty($s['title']) ? trim($s['title']) : (!empty($s['title_tab']) ? trim($s['title_tab']) : $def['line1']));
 
         // 2. Icon (Trường ảnh: icon_slide, icon_image, icon, tab_icon)
         $icon_url = '';
@@ -255,8 +232,7 @@ function gobike_render_home_hero_banner($atts = array())
         }
 
         $tabs[] = array(
-            'line1'    => $line1,
-            'line2'    => $line2,
+            'title'    => $tab_title,
             'icon_url' => $icon_url,
             'svg'      => $def['svg'],
         );
@@ -417,12 +393,15 @@ function gobike_render_home_hero_banner($atts = array())
                                     if (empty($img_url)) {
                                         $img_url = isset($fallback_images[$slide_idx % 4]) ? $fallback_images[$slide_idx % 4] : $fallback_images[0];
                                     }
-                                    $link_url = !empty($slide['link_url']) ? $slide['link_url'] : home_url('/san-pham/');
                                 ?>
                                     <div class="swiper-slide">
-                                        <a href="<?php echo esc_url($link_url); ?>" style="display:block; width:100%; height:100%;">
-                                            <img src="<?php echo esc_url($img_url); ?>" alt="Banner GoBike" loading="eager" />
-                                        </a>
+                                        <?php if (!empty($slide['link_url'])): ?>
+                                            <a href="<?php echo esc_url($slide['link_url']); ?>" style="display:block; width:100%; height:100%;">
+                                                <img src="<?php echo esc_url($img_url); ?>" alt="Banner GoBike" loading="eager" />
+                                            </a>
+                                        <?php else: ?>
+                                            <img src="<?php echo esc_url($img_url); ?>" alt="Banner GoBike" loading="eager" style="display:block; width:100%; height:100%; object-fit:cover;" />
+                                        <?php endif; ?>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
@@ -435,19 +414,17 @@ function gobike_render_home_hero_banner($atts = array())
                         <!-- Swiper Thumbs (4 cam kết dưới slide - đồng bộ 1-1 với slide) -->
                         <div class="mySwiper gobike-service-thumbs hide-for-medium">
                             <div class="swiper-wrapper">
-                                <?php foreach ($tabs as $index => $tab): 
-                                    $tab_text = !empty($tab['line2']) ? trim($tab['line1'] . ' ' . $tab['line2']) : trim($tab['line1']);
-                                ?>
+                                <?php foreach ($tabs as $index => $tab): ?>
                                     <div class="swiper-slide service-thumb-item" data-slide-index="<?php echo $index; ?>">
                                         <div class="thumb-icon-wrap">
                                             <?php if (!empty($tab['icon_url'])): ?>
-                                                <img src="<?php echo esc_url($tab['icon_url']); ?>" class="gb-service-icon-img" alt="<?php echo esc_attr($tab_text); ?>" />
+                                                <img src="<?php echo esc_url($tab['icon_url']); ?>" class="gb-service-icon-img" alt="<?php echo esc_attr($tab['title']); ?>" />
                                             <?php else: ?>
                                                 <?php echo $tab['svg']; ?>
                                             <?php endif; ?>
                                         </div>
                                         <div class="thumb-text-wrap">
-                                            <span class="thumb-title"><?php echo esc_html($tab_text); ?></span>
+                                            <span class="thumb-title"><?php echo esc_html($tab['title']); ?></span>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
