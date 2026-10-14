@@ -53,8 +53,8 @@ function gobike_register_user_needs_acf_fields()
                 'label' => 'Tiêu đề khối trên Mobile',
                 'name' => 'needs_section_title_mobile',
                 'type' => 'text',
-                'default_value' => 'CHỌN XE THEO NHU CẦU',
-                'instructions' => 'Tiêu đề hiển thị ở đầu khối khi xem trên điện thoại (mặc định: CHỌN XE THEO NHU CẦU)',
+                'placeholder' => 'CHỌN XE THEO NHU CẦU',
+                'instructions' => 'Tiêu đề hiển thị ở đầu khối khi xem trên điện thoại (để trống sẽ dùng mặc định: CHỌN XE THEO NHU CẦU)',
                 'wrapper' => array('width' => '50'),
             ),
             array(
@@ -62,8 +62,8 @@ function gobike_register_user_needs_acf_fields()
                 'label' => 'Link "Xem tất cả" trên Mobile',
                 'name' => 'needs_section_viewall_link',
                 'type' => 'text',
-                'default_value' => '/danh-muc-san-pham/xe-dap-tro-luc-dien/',
-                'instructions' => 'Đường dẫn khi click "Xem tất cả →"',
+                'placeholder' => '/danh-muc-san-pham/xe-dap-tro-luc-dien/',
+                'instructions' => 'Đường dẫn khi click "Xem tất cả →" (để trống sẽ trỏ về danh mục sản phẩm)',
                 'wrapper' => array('width' => '50'),
             ),
             array(
@@ -185,11 +185,6 @@ function gobike_render_user_needs_shortcode($atts)
     }
 
     if (empty($rows) || !is_array($rows)) {
-        if (current_user_can('manage_options') && is_user_logged_in()) {
-            return '<div style="padding:15px; background:#fff; border:1px dashed #f59e0b; border-radius:8px; margin:15px 0; text-align:center; color:#b45309; font-size:13px;">'
-                . '<strong>[GoBike User Needs]</strong> Chưa có dữ liệu. Vui lòng vào <em>Trang quản trị > Trang > Chỉnh sửa Trang Chủ</em> và nhập dữ liệu trong mục <strong>[Trang chủ] Danh mục xe theo Nhu cầu sử dụng</strong>.'
-                . '</div>';
-        }
         return '';
     }
 

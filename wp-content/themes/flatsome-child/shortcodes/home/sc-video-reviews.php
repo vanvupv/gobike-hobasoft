@@ -166,17 +166,8 @@ if (!function_exists('gobike_extract_youtube_info')) {
 if (!function_exists('gobike_get_video_review_thumbnail')) {
     function gobike_get_video_review_thumbnail($post_id, $size = 'large', $fallback_index = 0)
     {
-        $fallback_pool = array(
-            'https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp',
-            'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
-            'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=600&auto=format&fit=crop&q=80',
-        );
-
         if (!$post_id) {
-            return $fallback_pool[$fallback_index % count($fallback_pool)];
+            return '';
         }
 
         $thumb = '';
@@ -211,11 +202,6 @@ if (!function_exists('gobike_get_video_review_thumbnail')) {
             }
         }
 
-        // 4. Nếu vẫn chưa có ảnh, chọn fallback chất lượng cao không bao giờ bị lỗi
-        if (empty($thumb)) {
-            $thumb = $fallback_pool[$fallback_index % count($fallback_pool)];
-        }
-
         return $thumb;
     }
 }
@@ -246,92 +232,52 @@ function gobike_render_home_video_reviews($atts)
     ));
 
     // 3.2 Query Video Nổi Bật (Featured)
+    $featured_post = null;
+    $exclude_id = 0;
+
     $featured_query = new WP_Query(array(
-        'post_type' => 'video_review',
+        'post_type'      => 'video_review',
         'posts_per_page' => 1,
-        'meta_query' => array(
+        'meta_query'     => array(
             array(
-                'key' => 'is_featured',
-                'value' => '1',
+                'key'     => 'is_featured',
+                'value'   => '1',
                 'compare' => '=',
             ),
         ),
     ));
 
-    $featured_post = null;
-    $exclude_id = 0;
     if ($featured_query->have_posts()) {
         $featured_query->the_post();
         $featured_post = get_post();
         $exclude_id = $featured_post->ID;
         wp_reset_postdata();
+    } else {
+        // Nếu chưa có video nào được tích is_featured, lấy video mới nhất làm video nổi bật
+        $latest_query = new WP_Query(array(
+            'post_type'      => 'video_review',
+            'posts_per_page' => 1,
+        ));
+        if ($latest_query->have_posts()) {
+            $latest_query->the_post();
+            $featured_post = get_post();
+            $exclude_id = $featured_post->ID;
+            wp_reset_postdata();
+        }
     }
 
-    // 3.3 Query các video con
+    // Nếu không có bất kỳ video nào trong CPT video_review -> Ẩn toàn bộ section
+    if (!$featured_post) {
+        return '';
+    }
+
+    // 3.3 Query các video con bên phải (tối đa 4 video)
     $side_args = array(
-        'post_type' => 'video_review',
+        'post_type'      => 'video_review',
         'posts_per_page' => 4,
-        'post__not_in' => $exclude_id ? array($exclude_id) : array(),
+        'post__not_in'   => $exclude_id ? array($exclude_id) : array(),
     );
     $side_query = new WP_Query($side_args);
-
-    // Chuẩn bị danh sách video
-    $has_real_data = ($featured_post || $side_query->have_posts());
-
-    // Nếu database chưa có bài, sử dụng dữ liệu mẫu hoàn hảo theo đúng ảnh thiết kế
-    $demo_featured = array(
-        'id' => 'c200-featured',
-        'title' => 'GoBike C200 – Đạp nhẹ hơn. Đi xa hơn.',
-        'desc' => 'Trải nghiệm thực tế GoBike C200 sau 1 tháng sử dụng: thiết kế, cảm giác lái, khả năng tăng tốc, quãng đường, pin và những điều bạn cần biết trước khi mua!',
-        'duration' => '10:24',
-        'youtube_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        'youtube_id' => 'dQw4w9WgXcQ',
-        'thumb' => 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&auto=format&fit=crop&q=80',
-        'category' => 'nguoi-dung-that',
-    );
-
-    $demo_items = array(
-        array(
-            'title' => 'Trải nghiệm đi làm 15km mỗi ngày',
-            'desc' => 'GoBike có thật sự tiện cho dân đi làm hằng ngày? Xem trải nghiệm thực tế sau 2 tuần!',
-            'duration' => '06:12',
-            'views' => '32K lượt xem • 2 tuần trước',
-            'badge' => 'Review từ người thật',
-            'thumb' => 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=500&auto=format&fit=crop&q=80',
-            'category' => 'di-lam',
-            'yt_id' => 'dQw4w9WgXcQ',
-        ),
-        array(
-            'title' => 'Test leo dốc cùng GoBike',
-            'desc' => 'Khả năng leo dốc, mô-tơ và sức mạnh thật sự của GoBike khi gặp địa hình khó!',
-            'duration' => '05:38',
-            'views' => '24K lượt xem • 3 tuần trước',
-            'badge' => 'Test thực tế',
-            'thumb' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&auto=format&fit=crop&q=80',
-            'category' => 'tour-leo-doc',
-            'yt_id' => 'dQw4w9WgXcQ',
-        ),
-        array(
-            'title' => 'Người dùng nói gì về GoBike?',
-            'desc' => 'Những chia sẻ chân thật từ khách hàng sau nhiều tháng sử dụng. Có đáng mua không?',
-            'duration' => '04:50',
-            'views' => '18K lượt xem • 1 tháng trước',
-            'badge' => 'Đánh giá từ người dùng',
-            'thumb' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
-            'category' => 'nguoi-dung-that',
-            'yt_id' => 'dQw4w9WgXcQ',
-        ),
-        array(
-            'title' => 'Hướng dẫn sử dụng và bảo quản xe',
-            'desc' => 'Hướng dẫn chi tiết từ A-Z để xe luôn bền bỉ và vận hành tốt nhất. Xem ngay!',
-            'duration' => '07:29',
-            'views' => '12K lượt xem • 3 tuần trước',
-            'badge' => 'Hướng dẫn chi tiết',
-            'thumb' => 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=500&auto=format&fit=crop&q=80',
-            'category' => 'huong-dan',
-            'yt_id' => 'dQw4w9WgXcQ',
-        ),
-    );
 
     ob_start();
     ?>
@@ -346,7 +292,7 @@ function gobike_render_home_video_reviews($atts)
                 <p class="gvr-sub-title"><?php echo esc_html($atts['subtitle']); ?></p>
             </div>
 
-            <!-- Tab Lọc Danh Mục -->
+            <!-- Tab Lọc Danh Mục Động -->
             <div class="gvr-filter-tabs">
                 <button type="button" class="gvr-tab-btn active" data-cat="all">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -358,37 +304,13 @@ function gobike_render_home_video_reviews($atts)
                     </svg>
                     <span>Tất cả</span>
                 </button>
-                <button type="button" class="gvr-tab-btn" data-cat="di-lam">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                    <span>Đi làm</span>
-                </button>
-                <button type="button" class="gvr-tab-btn" data-cat="tour-leo-doc">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
-                    </svg>
-                    <span>Tour, leo dốc</span>
-                </button>
-                <button type="button" class="gvr-tab-btn" data-cat="nguoi-dung-that">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <span>Người dùng thật</span>
-                </button>
-                <button type="button" class="gvr-tab-btn" data-cat="huong-dan">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                    <span>Hướng dẫn</span>
-                </button>
+                <?php if (!empty($categories) && !is_wp_error($categories)): ?>
+                    <?php foreach ($categories as $cat): ?>
+                        <button type="button" class="gvr-tab-btn" data-cat="<?php echo esc_attr($cat->slug); ?>">
+                            <span><?php echo esc_html($cat->name); ?></span>
+                        </button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
 
             <!-- Nút Xem Tất Cả -->
@@ -411,41 +333,35 @@ function gobike_render_home_video_reviews($atts)
             <div class="gvr-main-grid">
                 <?php
                 // A. RENDER VIDEO NỔI BẬT (BÊN TRÁI)
-                if ($featured_post) {
-                    $f_id = $featured_post->ID;
-                    $f_title = get_the_title($f_id);
-                    $f_desc = get_field('video_desc', $f_id) ?: get_the_excerpt($f_id);
-                    $f_duration = get_field('video_duration', $f_id) ?: '10:00';
-                    $f_url = get_field('video_url', $f_id);
-                    $f_yt_info = gobike_extract_youtube_info($f_url);
-                    $f_thumb = gobike_get_video_review_thumbnail($f_id, 'large', 0);
-                    $f_cat_terms = get_the_terms($f_id, 'video_category');
-                    $f_cat_slug = (!empty($f_cat_terms) && !is_wp_error($f_cat_terms)) ? $f_cat_terms[0]->slug : 'all';
-                    $f_embed = !empty($f_yt_info['embed_url']) ? $f_yt_info['embed_url'] : 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
-                } else {
-                    // Fallback Demo
-                    $f_title = $demo_featured['title'];
-                    $f_desc = $demo_featured['desc'];
-                    $f_duration = $demo_featured['duration'];
-                    $f_thumb = $demo_featured['thumb'];
-                    $f_cat_slug = $demo_featured['category'];
-                    $f_embed = 'https://www.youtube.com/embed/' . $demo_featured['youtube_id'] . '?autoplay=1&rel=0';
-                }
+                $f_id = $featured_post->ID;
+                $f_title = get_the_title($f_id);
+                $f_desc = get_field('video_desc', $f_id) ?: get_the_excerpt($f_id);
+                $f_duration = get_field('video_duration', $f_id) ?: '';
+                $f_url = get_field('video_url', $f_id);
+                $f_yt_info = gobike_extract_youtube_info($f_url);
+                $f_thumb = gobike_get_video_review_thumbnail($f_id, 'large', 0);
+                $f_cat_terms = get_the_terms($f_id, 'video_category');
+                $f_cat_slugs = (!empty($f_cat_terms) && !is_wp_error($f_cat_terms)) ? wp_list_pluck($f_cat_terms, 'slug') : array();
+                $f_cat_attr = !empty($f_cat_slugs) ? implode(' ', $f_cat_slugs) : 'all';
+                $f_embed = !empty($f_yt_info['embed_url']) ? $f_yt_info['embed_url'] : '';
 
                 $all_video_items[] = array(
                     'title' => $f_title,
-                    'desc' => $f_desc ?: 'Trải nghiệm thực tế GoBike sau thời gian dài sử dụng: cảm giác lái, pin và độ bền.',
+                    'desc' => $f_desc,
                     'duration' => $f_duration,
                     'thumb' => $f_thumb,
                     'embed' => $f_embed,
-                    'cat' => $f_cat_slug,
+                    'cat' => $f_cat_attr,
                 );
                 ?>
-                <div class="gvr-featured-card gvr-filterable-item" data-cat="<?php echo esc_attr($f_cat_slug); ?>">
+                <div class="gvr-featured-card gvr-filterable-item" data-cat="<?php echo esc_attr($f_cat_attr); ?>">
                     <div class="gvr-featured-media js-open-gvr-video" data-video-src="<?php echo esc_attr($f_embed); ?>"
                         data-video-title="<?php echo esc_attr($f_title); ?>">
-                        <img src="<?php echo esc_url($f_thumb); ?>" alt="<?php echo esc_attr($f_title); ?>"
-                            class="gvr-featured-img" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
+                        <?php if (!empty($f_thumb)): ?>
+                            <img src="<?php echo esc_url($f_thumb); ?>" alt="<?php echo esc_attr($f_title); ?>" class="gvr-featured-img">
+                        <?php else: ?>
+                            <div class="gvr-featured-img gvr-thumb-placeholder" style="background:#e2e8f0;width:100%;height:100%;min-height:280px;"></div>
+                        <?php endif; ?>
                         <span class="gvr-badge-featured">★ VIDEO NỔI BẬT NHẤT</span>
 
                         <!-- Nút Play Tròn Nổi Bật -->
@@ -457,7 +373,9 @@ function gobike_render_home_video_reviews($atts)
                             </div>
                         </div>
 
-                        <span class="gvr-duration-badge"><?php echo esc_html($f_duration); ?></span>
+                        <?php if (!empty($f_duration)): ?>
+                            <span class="gvr-duration-badge"><?php echo esc_html($f_duration); ?></span>
+                        <?php endif; ?>
                     </div>
 
                     <div class="gvr-featured-body">
@@ -465,9 +383,11 @@ function gobike_render_home_video_reviews($atts)
                             data-video-title="<?php echo esc_attr($f_title); ?>">
                                 <?php echo esc_html($f_title); ?>
                         </h3>
-                        <p class="gvr-featured-desc"><?php echo esc_html($f_desc); ?></p>
+                        <?php if (!empty($f_desc)): ?>
+                            <p class="gvr-featured-desc"><?php echo esc_html($f_desc); ?></p>
+                        <?php endif; ?>
 
-                        <!-- 3 Điểm Cam Kết Review & Nút Xem Video (Nằm 1 hàng chuẩn Ảnh 2) -->
+                        <!-- 3 Điểm Cam Kết Review & Nút Xem Video -->
                         <div class="gvr-featured-tags">
                             <div class="gvr-ft-commitments">
                                 <div class="gvr-ft-tag">
@@ -527,92 +447,72 @@ function gobike_render_home_video_reviews($atts)
 
                 <!-- B. LƯỚI 4 VIDEO CON BÊN PHẢI (2x2 GRID DẠNG THẺ NGANG) -->
                 <div class="gvr-side-list">
-                        <?php
-                        if ($has_real_data && $side_query->have_posts()) {
-                            $side_idx = 1;
-                            while ($side_query->have_posts()) {
-                                $side_query->the_post();
-                                $p_id = get_the_ID();
-                                $p_title = get_the_title();
-                                $p_desc = get_field('video_desc', $p_id) ?: get_the_excerpt();
-                                $p_dur = get_field('video_duration', $p_id) ?: '05:00';
-                                $p_views = get_field('video_views_text', $p_id) ?: '25K lượt xem • 1 tuần trước';
-                                $p_badge = get_field('video_badge_tag', $p_id) ?: 'Review từ người thật';
-                                $p_url = get_field('video_url', $p_id);
-                                $p_yt_info = gobike_extract_youtube_info($p_url);
-                                $p_thumb = gobike_get_video_review_thumbnail($p_id, 'medium_large', $side_idx);
-                                $p_cat_terms = get_the_terms($p_id, 'video_category');
-                                $p_cat_slug = (!empty($p_cat_terms) && !is_wp_error($p_cat_terms)) ? $p_cat_terms[0]->slug : 'all';
-                                $p_embed = !empty($p_yt_info['embed_url']) ? $p_yt_info['embed_url'] : 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0';
-                                $all_video_items[] = array(
-                                    'title' => $p_title,
-                                    'desc' => wp_trim_words($p_desc, 18, '...'),
-                                    'duration' => $p_dur,
-                                    'thumb' => $p_thumb,
-                                    'embed' => $p_embed,
-                                    'cat' => $p_cat_slug,
-                                );
-                                ?>
+                    <?php
+                    if ($side_query->have_posts()) {
+                        $side_idx = 1;
+                        while ($side_query->have_posts()) {
+                            $side_query->the_post();
+                            $p_id = get_the_ID();
+                            $p_title = get_the_title();
+                            $p_desc = get_field('video_desc', $p_id) ?: get_the_excerpt();
+                            $p_dur = get_field('video_duration', $p_id) ?: '';
+                            $p_views = get_field('video_views_text', $p_id) ?: '';
+                            $p_badge = get_field('video_badge_tag', $p_id) ?: '';
+                            $p_url = get_field('video_url', $p_id);
+                            $p_yt_info = gobike_extract_youtube_info($p_url);
+                            $p_thumb = gobike_get_video_review_thumbnail($p_id, 'medium_large', $side_idx);
+                            $p_cat_terms = get_the_terms($p_id, 'video_category');
+                            $p_cat_slugs = (!empty($p_cat_terms) && !is_wp_error($p_cat_terms)) ? wp_list_pluck($p_cat_terms, 'slug') : array();
+                            $p_cat_attr = !empty($p_cat_slugs) ? implode(' ', $p_cat_slugs) : 'all';
+                            $p_embed = !empty($p_yt_info['embed_url']) ? $p_yt_info['embed_url'] : '';
+                            $all_video_items[] = array(
+                                'title' => $p_title,
+                                'desc' => wp_trim_words($p_desc, 18, '...'),
+                                'duration' => $p_dur,
+                                'thumb' => $p_thumb,
+                                'embed' => $p_embed,
+                                'cat' => $p_cat_attr,
+                            );
+                            ?>
                             <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
-                                data-cat="<?php echo esc_attr($p_cat_slug); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
+                                data-cat="<?php echo esc_attr($p_cat_attr); ?>" data-video-src="<?php echo esc_attr($p_embed); ?>"
                                 data-video-title="<?php echo esc_attr($p_title); ?>">
                                 <div class="gvr-ch-thumb">
-                                    <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_title); ?>" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
+                                    <?php if (!empty($p_thumb)): ?>
+                                        <img src="<?php echo esc_url($p_thumb); ?>" alt="<?php echo esc_attr($p_title); ?>" loading="lazy">
+                                    <?php else: ?>
+                                        <div class="gvr-thumb-placeholder" style="background:#e2e8f0;width:100%;height:100%;min-height:90px;"></div>
+                                    <?php endif; ?>
                                     <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                         </svg></div>
-                                    <span class="gvr-ch-duration"><?php echo esc_html($p_dur); ?></span>
+                                    <?php if (!empty($p_dur)): ?>
+                                        <span class="gvr-ch-duration"><?php echo esc_html($p_dur); ?></span>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="gvr-ch-info">
                                     <h4 class="gvr-ch-title"><?php echo esc_html($p_title); ?></h4>
-                                    <p class="gvr-ch-desc"><?php echo wp_trim_words($p_desc, 14, '...'); ?></p>
-                                    <div class="gvr-ch-meta">
-                                        <span class="gvr-ch-views"><?php echo esc_html($p_views); ?></span>
-                                        <span class="gvr-ch-badge"><?php echo esc_html($p_badge); ?></span>
-                                    </div>
+                                    <?php if (!empty($p_desc)): ?>
+                                        <p class="gvr-ch-desc"><?php echo wp_trim_words($p_desc, 14, '...'); ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!empty($p_views) || !empty($p_badge)): ?>
+                                        <div class="gvr-ch-meta">
+                                            <?php if (!empty($p_views)): ?>
+                                                <span class="gvr-ch-views"><?php echo esc_html($p_views); ?></span>
+                                            <?php endif; ?>
+                                            <?php if (!empty($p_badge)): ?>
+                                                <span class="gvr-ch-badge"><?php echo esc_html($p_badge); ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                                <?php
-                                $side_idx++;
-                            }
-                            wp_reset_postdata();
-                        } else {
-                            // Render 4 thẻ demo
-                            foreach ($demo_items as $d_i => $item) {
-                                $p_embed = 'https://www.youtube.com/embed/' . $item['yt_id'] . '?autoplay=1&rel=0';
-                                $all_video_items[] = array(
-                                    'title' => $item['title'],
-                                    'desc' => $item['desc'],
-                                    'duration' => $item['duration'],
-                                    'thumb' => $item['thumb'],
-                                    'embed' => $p_embed,
-                                    'cat' => $item['category'],
-                                );
-                                ?>
-                            <div class="gvr-card-horizontal gvr-filterable-item js-open-gvr-video"
-                                data-cat="<?php echo esc_attr($item['category']); ?>"
-                                data-video-src="<?php echo esc_attr($p_embed); ?>"
-                                data-video-title="<?php echo esc_attr($item['title']); ?>">
-                                <div class="gvr-ch-thumb">
-                                    <img src="<?php echo esc_url($item['thumb']); ?>" alt="<?php echo esc_attr($item['title']); ?>" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
-                                    <div class="gvr-ch-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                        </svg></div>
-                                    <span class="gvr-ch-duration"><?php echo esc_html($item['duration']); ?></span>
-                                </div>
-                                <div class="gvr-ch-info">
-                                    <h4 class="gvr-ch-title"><?php echo esc_html($item['title']); ?></h4>
-                                    <p class="gvr-ch-desc"><?php echo esc_html($item['desc']); ?></p>
-                                    <div class="gvr-ch-meta">
-                                        <span class="gvr-ch-views"><?php echo esc_html($item['views']); ?></span>
-                                        <span class="gvr-ch-badge"><?php echo esc_html($item['badge']); ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                                <?php
-                            }
+                            <?php
+                            $side_idx++;
                         }
-                        ?>
+                        wp_reset_postdata();
+                    }
+                    ?>
                 </div>
             </div>
         </div> <!-- /.gvr-desktop-layout -->
@@ -627,20 +527,28 @@ function gobike_render_home_video_reviews($atts)
                             data-video-title="<?php echo esc_attr($vitem['title']); ?>">
 
                             <div class="gvr-ms-media">
-                                <img src="<?php echo esc_url($vitem['thumb']); ?>"
-                                    alt="<?php echo esc_attr($vitem['title']); ?>" loading="lazy" onerror="this.onerror=null;this.src='https://gobike.demoweb360.top/wp-content/uploads/2026/08/Xe-dap-tro-luc-dien-BOR-K20-001.webp';">
+                                <?php if (!empty($vitem['thumb'])): ?>
+                                    <img src="<?php echo esc_url($vitem['thumb']); ?>"
+                                        alt="<?php echo esc_attr($vitem['title']); ?>" loading="lazy">
+                                <?php else: ?>
+                                    <div class="gvr-thumb-placeholder" style="background:#e2e8f0;width:100%;height:100%;min-height:180px;"></div>
+                                <?php endif; ?>
                                 <div class="gvr-ms-play">
                                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
-                                <span class="gvr-ms-duration"><?php echo esc_html($vitem['duration']); ?></span>
+                                <?php if (!empty($vitem['duration'])): ?>
+                                    <span class="gvr-ms-duration"><?php echo esc_html($vitem['duration']); ?></span>
+                                <?php endif; ?>
                             </div>
 
                             <div class="gvr-ms-info">
                                 <div class="gvr-ms-text">
                                     <h3 class="gvr-ms-title"><?php echo esc_html($vitem['title']); ?></h3>
-                                    <p class="gvr-ms-desc"><?php echo esc_html($vitem['desc']); ?></p>
+                                    <?php if (!empty($vitem['desc'])): ?>
+                                        <p class="gvr-ms-desc"><?php echo esc_html($vitem['desc']); ?></p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="gvr-ms-more">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -650,7 +558,6 @@ function gobike_render_home_video_reviews($atts)
                                     </svg>
                                 </div>
                             </div>
-                        </div>
                     <?php endforeach; ?>
                 </div>
 
@@ -1921,8 +1828,9 @@ function gobike_render_video_player_modal_footer()
                     var selectedCat = btn.getAttribute('data-cat');
 
                     filterItems.forEach(function (item) {
-                        var itemCat = item.getAttribute('data-cat');
-                        if (selectedCat === 'all' || itemCat === selectedCat) {
+                        var itemCat = item.getAttribute('data-cat') || '';
+                        var itemCats = itemCat.split(' ');
+                        if (selectedCat === 'all' || itemCats.indexOf(selectedCat) !== -1) {
                             item.style.display = '';
                         } else {
                             item.style.display = 'none';
