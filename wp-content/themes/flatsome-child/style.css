@@ -47,6 +47,34 @@ body.home {
     background: #f5f8fd;
 }
 
+/* ==========================================================================
+ * FIX FLATSOME CORE: Không ép fill: currentColor lên các icon SVG đa sắc / Logo thương hiệu (Zalo, v.v.)
+ * ========================================================================== */
+.icon-box-img svg path[fill]:not([fill="none"]),
+.icon-box-img svg rect[fill]:not([fill="none"]),
+.icon-box-img svg circle[fill]:not([fill="none"]),
+.icon-box-img svg polygon[fill]:not([fill="none"]) {
+    fill: revert !important;
+}
+
+.icon-box-img svg path[stroke]:not([stroke="none"]),
+.icon-box-img svg rect[stroke]:not([stroke="none"]),
+.icon-box-img svg circle[stroke]:not([stroke="none"]),
+.icon-box-img svg polygon[stroke]:not([stroke="none"]) {
+    stroke: revert !important;
+}
+
+.icon-box-img svg path[fill="#0068FF"],
+.icon-box-img svg path[fill="#0068ff"] {
+    fill: #0068FF !important;
+}
+
+.icon-box-img svg path[fill="white"],
+.icon-box-img svg path[fill="#fff"],
+.icon-box-img svg path[fill="#ffffff"] {
+    fill: #ffffff !important;
+}
+
 /* Xóa bỏ hoàn toàn clearfix ::before và ::after của Flatsome gây lỗi layout trong .banner-home */
 .banner-home::before,
 .banner-home::after,
