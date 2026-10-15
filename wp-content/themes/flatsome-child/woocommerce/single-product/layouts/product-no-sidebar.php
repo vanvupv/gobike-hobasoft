@@ -320,7 +320,8 @@ jQuery(document).ready(function($) {
     });
 
     // 4. Thu gọn / Mở rộng nội dung mô tả sản phẩm
-    $(document).on('click', '#btnToggleDescContent', function() {
+    $(document).on('click', '#btnToggleDescContent', function(e) {
+        if (e && e.preventDefault) e.preventDefault();
         var $wrap = $('#descContentCollapsible');
         var isExpanded = $wrap.hasClass('expanded');
 
@@ -336,15 +337,16 @@ jQuery(document).ready(function($) {
         }
     });
 
-    // Tự động ẩn nút Xem thêm nếu nội dung ngắn
+    // Tự động ẩn nút Xem thêm nếu nội dung ngắn (dưới 700px)
     function checkDescContentHeight() {
         var $inner = $('#descContentCollapsible .desc-content-inner');
-        if ($inner.length && $inner[0].scrollHeight <= 500) {
+        if ($inner.length && $inner[0].scrollHeight <= 700) {
             $('#descContentCollapsible').addClass('expanded');
             $('.desc-content-gradient, .desc-content-btn-wrap').hide();
         }
     }
     checkDescContentHeight();
+    $(window).on('load', checkDescContentHeight);
 
     // 4. Modal Popup Video
     function openVideoModal(videoUrl) {

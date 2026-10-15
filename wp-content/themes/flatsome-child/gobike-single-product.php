@@ -686,10 +686,10 @@ function gobike_render_single_product_tabs($product) {
                         <!-- Gradient mờ đáy & Nút Xem thêm / Thu gọn -->
                         <div class="desc-content-gradient"></div>
                         <div class="desc-content-btn-wrap">
-                            <button type="button" class="btn-toggle-desc-content" id="btnToggleDescContent">
+                            <a href="javascript:void(0);" class="btn-toggle-desc-content" id="btnToggleDescContent" role="button">
                                 <span class="toggle-txt">Xem thêm</span>
                                 <svg class="toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
-                            </button>
+                            </a>
                         </div>
                     </div>
 

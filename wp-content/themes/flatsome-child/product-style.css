@@ -3643,7 +3643,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-desc-content-collapsible .desc-content-inner {
-    max-height: 480px;
+    max-height: 680px;
     overflow: hidden;
     position: relative;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3690,14 +3690,19 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     border-radius: 20px;
     font-size: 13.5px;
     font-weight: 600;
+    text-decoration: none !important;
     cursor: pointer;
     box-shadow: none !important;
+    outline: none !important;
+    user-select: none;
     transition: all 0.25s ease;
 }
 
-.btn-toggle-desc-content:hover {
+.btn-toggle-desc-content:hover,
+.btn-toggle-desc-content:focus {
     background: #044b25;
     color: #ffffff !important;
+    text-decoration: none !important;
 }
 
 .btn-toggle-desc-content .toggle-icon {
