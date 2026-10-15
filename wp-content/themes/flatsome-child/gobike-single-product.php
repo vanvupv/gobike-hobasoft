@@ -711,29 +711,16 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     </div>
 
-                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1) -->
+                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT -->
                     <div class="desc-specs-block">
                         <div class="gobike-block-header">
                             <div class="header-left">
                                 <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
                             </div>
                         </div>
-                        <?php if ($has_specs): ?>
-                            <div class="specs-table-grid<?php echo empty($specs_items_right) ? ' single-col' : ''; ?>">
-                                <?php if (!empty($specs_items_left)): ?>
-                                    <div class="specs-col">
-                                        <?php foreach ($specs_items_left as $si): ?>
-                                            <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (!empty($specs_items_right)): ?>
-                                    <div class="specs-col">
-                                        <?php foreach ($specs_items_right as $si): ?>
-                                            <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
+                        <?php if (!empty($specs_custom_html)): ?>
+                            <div class="specs-custom-content entry-content">
+                                <?php echo $specs_custom_html; ?>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -907,24 +894,6 @@ function gobike_render_single_product_tabs($product) {
                         <!-- Người dùng copy HTML / Bảng vào editor ACF -->
                         <div class="specs-custom-content entry-content">
                             <?php echo $specs_custom_html; ?>
-                        </div>
-                    <?php elseif ($has_specs): ?>
-                        <!-- Hiển thị bảng thông số chuẩn từ hệ thống -->
-                        <div class="specs-table-grid<?php echo empty($specs_items_right) ? ' single-col' : ''; ?>">
-                            <?php if (!empty($specs_items_left)): ?>
-                                <div class="specs-col">
-                                    <?php foreach ($specs_items_left as $si): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (!empty($specs_items_right)): ?>
-                                <div class="specs-col">
-                                    <?php foreach ($specs_items_right as $si): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
                 </div>
