@@ -339,7 +339,7 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Danh sách Cam kết quyền lợi (Trust Badges)',
                 'name' => 'sp_trust_badges',
                 'type' => 'repeater',
-                'instructions' => 'Thêm các huy hiệu cam kết hiển thị ngay bên dưới nút Mua hàng (để trống sẽ sử dụng cam kết chung từ Theme Settings hoặc 5 cam kết mặc định).',
+                'instructions' => 'Thêm các huy hiệu cam kết hiển thị ngay bên dưới nút Mua hàng (để trống sẽ sử dụng cam kết chung từ Theme Settings; nếu cả 2 nơi đều trống thì khối này sẽ tự động ẩn).',
                 'layout' => 'table',
                 'button_label' => '+ Thêm cam kết',
                 'sub_fields' => array(
