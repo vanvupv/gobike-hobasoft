@@ -28,39 +28,14 @@ function gobike_register_single_product_acf_fields()
         'fields' => array(
 
             // =================================================================
-            // TAB 1: THÔNG SỐ KỸ THUẬT
+            // TAB 1: THÔNG SỐ NỔI BẬT
             // =================================================================
             array(
-                'key' => 'field_sp_tab_specs',
-                'label' => '1. Thông số kỹ thuật',
+                'key' => 'field_sp_tab_highlight_specs',
+                'label' => '1. Thông số nổi bật',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
-            ),
-            array(
-                'key' => 'field_sp_specs_subtabs_nav',
-                'label' => '',
-                'name' => '',
-                'type' => 'message',
-                'message' => '<div class="gobike-subtabs-sidebar-menu">
-                    <button type="button" class="gobike-subtab-nav-btn active" data-target="highlight">
-                        <span class="dashicons dashicons-star-filled"></span>
-                        <span class="btn-text">
-                            <strong>Thông số nổi bật</strong>
-                            <small>Huy hiệu / Icon dưới ảnh</small>
-                        </span>
-                    </button>
-                    <button type="button" class="gobike-subtab-nav-btn" data-target="main">
-                        <span class="dashicons dashicons-admin-settings"></span>
-                        <span class="btn-text">
-                            <strong>Thông số chính</strong>
-                            <small>3 cột & Bảng thông số</small>
-                        </span>
-                    </button>
-                </div>',
-                'wrapper' => array(
-                    'class' => 'gobike-subtabs-nav-field',
-                ),
             ),
             array(
                 'key' => 'field_sp_highlight_specs',
@@ -70,10 +45,6 @@ function gobike_register_single_product_acf_fields()
                 'instructions' => 'Thêm các huy hiệu thông số nổi bật hiển thị ngay dưới ảnh lớn sản phẩm. Mỗi mục gồm Hình ảnh/Icon, Tiêu đề (vd: 90 – 120 km) và Mô tả ngắn (vd: Quãng đường trợ lực). Nếu để trống, khối này sẽ tự động ẩn hoàn toàn.',
                 'layout' => 'table',
                 'button_label' => '+ Thêm thông số nổi bật',
-                'wrapper' => array(
-                    'class' => 'gobike-subtab-highlight',
-                    'width' => '100',
-                ),
                 'sub_fields' => array(
                     array(
                         'key' => 'field_sp_highlight_spec_image',
@@ -105,16 +76,23 @@ function gobike_register_single_product_acf_fields()
                     ),
                 ),
             ),
+
+            // =================================================================
+            // TAB 2: THÔNG SỐ CHÍNH
+            // =================================================================
+            array(
+                'key' => 'field_sp_tab_main_specs',
+                'label' => '2. Thông số chính',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'top',
+            ),
             array(
                 'key' => 'field_sp_specs_filter_note',
                 'label' => 'Các thông số chính (Dùng cho Bảng thông số & Bộ lọc)',
                 'name' => '',
                 'type' => 'message',
                 'message' => '<em>Các trường bên dưới là các thông số cốt lõi, được dùng cho bảng thông số kỹ thuật và bộ lọc tìm kiếm. Đang được sắp xếp gọn gàng 3 cột/hàng để tiện nhập liệu.</em>',
-                'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
-                    'width' => '100',
-                ),
             ),
             array(
                 'key' => 'field_sp_motor',
@@ -123,7 +101,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 500W – Động cơ không chổi than',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -134,7 +111,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 48V 15Ah Pin Lithium tháo rời',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -145,7 +121,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 80 – 120 km (chế độ trợ lực)',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -156,7 +131,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 35 km/h',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -167,7 +141,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 28 kg (kể cả pin)',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -178,7 +151,6 @@ function gobike_register_single_product_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Vd: 24 tháng Khung, 12 tháng Pin & Động cơ',
                 'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
                     'width' => '33.33',
                 ),
             ),
@@ -192,10 +164,6 @@ function gobike_register_single_product_acf_fields()
                 'toolbar' => 'full',
                 'media_upload' => 1,
                 'delay' => 0,
-                'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
-                    'width' => '100',
-                ),
             ),
             array(
                 'key' => 'field_sp_specs_sample_template',
@@ -212,18 +180,14 @@ function gobike_register_single_product_acf_fields()
     &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Thời gian bảo hành&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;24 tháng Khung, 12 tháng Pin &amp; Động cơ&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</textarea></div></details>',
-                'wrapper' => array(
-                    'class' => 'gobike-subtab-main',
-                    'width' => '100',
-                ),
             ),
 
             // =================================================================
-            // TAB 2: HÌNH ẢNH & VIDEO CHI TIẾT
+            // TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT
             // =================================================================
             array(
                 'key' => 'field_sp_tab_media',
-                'label' => '2. Hình ảnh & Video',
+                'label' => '3. Hình ảnh & Video',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -320,11 +284,11 @@ function gobike_register_single_product_acf_fields()
             ),
 
             // =================================================================
-            // TAB 3: HỎI ĐÁP (FAQ)
+            // TAB 4: HỎI ĐÁP (FAQ)
             // =================================================================
             array(
                 'key' => 'field_sp_tab_faq',
-                'label' => '3. Hỏi đáp (FAQ)',
+                'label' => '4. Hỏi đáp (FAQ)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -371,11 +335,11 @@ function gobike_register_single_product_acf_fields()
             ),
 
             // =================================================================
-            // TAB 4: CAM KẾT QUYỀN LỢI (TRUST BADGES)
+            // TAB 5: CAM KẾT QUYỀN LỢI (TRUST BADGES)
             // =================================================================
             array(
                 'key' => 'field_sp_tab_trust_badges',
-                'label' => '4. Cam kết (Trust Badges)',
+                'label' => '5. Cam kết (Trust Badges)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -485,218 +449,5 @@ function gobike_register_single_product_acf_fields()
         'label_placement' => 'top',
         'instruction_placement' => 'label',
     ));
-}
-
-/**
- * Admin Styles & Scripts cho Layout Tab Con (Tab Left) và 3 Cột Thông số chính
- */
-add_action('admin_head', 'gobike_single_product_acf_admin_assets');
-function gobike_single_product_acf_admin_assets() {
-    $screen = get_current_screen();
-    if (!$screen || $screen->post_type !== 'product') {
-        return;
-    }
-    ?>
-    <style>
-    /* GoBike Single Product Subtabs and 3-Col Layout Styles */
-    @media (min-width: 851px) {
-        .acf-fields.gobike-tab-specs-active {
-            position: relative !important;
-            padding-left: 235px !important;
-            box-sizing: border-box !important;
-            min-height: 480px !important;
-        }
-        .acf-fields.gobike-tab-specs-active > .acf-field.gobike-subtabs-nav-field {
-            position: absolute !important;
-            left: 0 !important;
-            top: 48px !important;
-            width: 220px !important;
-            padding: 10px 0 !important;
-            border: none !important;
-            background: transparent !important;
-            box-sizing: border-box !important;
-            display: block !important;
-            z-index: 10;
-        }
-    }
-    @media (max-width: 850px) {
-        .acf-fields.gobike-tab-specs-active {
-            padding-left: 0 !important;
-        }
-        .acf-fields.gobike-tab-specs-active > .acf-field.gobike-subtabs-nav-field {
-            position: relative !important;
-            width: 100% !important;
-            padding: 10px 0 !important;
-        }
-        .gobike-subtabs-sidebar-menu {
-            flex-direction: row !important;
-            border-right: none !important;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-        }
-    }
-    .acf-field.gobike-subtabs-nav-field > .acf-label {
-        display: none !important;
-    }
-    .acf-field.gobike-subtabs-nav-field > .acf-input {
-        width: 100% !important;
-    }
-    .gobike-subtabs-sidebar-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding-right: 14px;
-        border-right: 1px solid #e2e8f0;
-    }
-    .gobike-subtab-nav-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-        text-align: left;
-        padding: 11px 14px;
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 13px;
-        color: #334155;
-        transition: all 0.2s ease;
-        box-sizing: border-box;
-    }
-    .gobike-subtab-nav-btn:hover {
-        background: #f1f5f9;
-        border-color: #94a3b8;
-        color: #0f172a;
-    }
-    .gobike-subtab-nav-btn.active {
-        background: #044b25 !important;
-        border-color: #044b25 !important;
-        color: #ffffff !important;
-        box-shadow: 0 4px 12px rgba(4, 75, 37, 0.22);
-    }
-    .gobike-subtab-nav-btn .dashicons {
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        line-height: 20px;
-        color: #044b25;
-        flex-shrink: 0;
-    }
-    .gobike-subtab-nav-btn.active .dashicons {
-        color: #ffffff !important;
-    }
-    .gobike-subtab-nav-btn .btn-text strong {
-        display: block;
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 1.3;
-    }
-    .gobike-subtab-nav-btn .btn-text small {
-        display: block;
-        font-size: 11px;
-        opacity: 0.85;
-        margin-top: 2px;
-        line-height: 1.2;
-    }
-    /* Subtab Visibility Switching */
-    .acf-fields.gobike-subtab-active-highlight > .acf-field.gobike-subtab-main {
-        display: none !important;
-    }
-    .acf-fields.gobike-subtab-active-main > .acf-field.gobike-subtab-highlight {
-        display: none !important;
-    }
-    /* 3 Columns per row for Core Specs */
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="dong_co"],
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="dung_luong_pin"],
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="quang_duong"],
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="toc_do_toi_da"],
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="trong_luong"],
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="thoi_gian_bao_hanh"] {
-        width: 33.333% !important;
-        float: left !important;
-        box-sizing: border-box !important;
-    }
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="dong_co"] {
-        clear: left !important;
-    }
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="toc_do_toi_da"] {
-        clear: left !important;
-    }
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-name="sp_specs_custom_html"] {
-        clear: both !important;
-        width: 100% !important;
-    }
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-key="field_sp_specs_filter_note"] {
-        width: 100% !important;
-        clear: both !important;
-    }
-    .acf-fields.gobike-tab-specs-active.gobike-subtab-active-main .acf-field[data-key="field_sp_specs_sample_template"] {
-        width: 100% !important;
-        clear: both !important;
-    }
-    </style>
-    <script>
-    jQuery(document).ready(function($) {
-        var $metabox = $('#group_gobike_single_product_details');
-        if (!$metabox.length) {
-            $metabox = $('.acf-postbox:has(.acf-tab-button[data-key="field_sp_tab_specs"])');
-        }
-        if (!$metabox.length) return;
-
-        var $fieldsContainer = $metabox.find('.acf-fields').first();
-
-        function updateTabState() {
-            var $activeTopTab = $metabox.find('.acf-tab-wrap .acf-tab-button.active, .acf-tab-wrap li.active a');
-            var isSpecsTabActive = false;
-
-            if ($activeTopTab.length) {
-                var key = $activeTopTab.data('key');
-                if (key === 'field_sp_tab_specs') {
-                    isSpecsTabActive = true;
-                }
-            } else {
-                isSpecsTabActive = true;
-            }
-
-            if (isSpecsTabActive) {
-                $fieldsContainer.addClass('gobike-tab-specs-active');
-                if (!$fieldsContainer.hasClass('gobike-subtab-active-highlight') && !$fieldsContainer.hasClass('gobike-subtab-active-main')) {
-                    $fieldsContainer.addClass('gobike-subtab-active-highlight');
-                    $metabox.find('.gobike-subtab-nav-btn[data-target="highlight"]').addClass('active');
-                    $metabox.find('.gobike-subtab-nav-btn[data-target="main"]').removeClass('active');
-                }
-            } else {
-                $fieldsContainer.removeClass('gobike-tab-specs-active');
-            }
-        }
-
-        updateTabState();
-
-        // Listen for ACF top-level tab changes
-        $metabox.on('click', '.acf-tab-button', function() {
-            setTimeout(updateTabState, 60);
-        });
-
-        // Listen for GoBike Left Sub-tab button clicks
-        $metabox.on('click', '.gobike-subtab-nav-btn', function(e) {
-            e.preventDefault();
-            var $btn = $(this);
-            var target = $btn.data('target');
-
-            $metabox.find('.gobike-subtab-nav-btn').removeClass('active');
-            $btn.addClass('active');
-
-            $fieldsContainer.removeClass('gobike-subtab-active-highlight gobike-subtab-active-main')
-                .addClass('gobike-subtab-active-' + target);
-
-            setTimeout(function() {
-                $(window).trigger('resize');
-            }, 60);
-        });
-    });
-    </script>
-    <?php
 }
 
