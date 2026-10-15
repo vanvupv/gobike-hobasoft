@@ -523,27 +523,20 @@ function gobike_render_single_product_tabs($product) {
     $media_title = $gf ? get_field('sp_media_photos_title', $product_id) : '';
     if (empty($media_title)) $media_title = 'HÌNH ẢNH CHI TIẾT BỘ PHẬN';
 
-    $detail_photos = $gf ? get_field('sp_detail_photos', $product_id) : array();
-    if (empty($detail_photos) || !is_array($detail_photos)) {
-        // Fallback sang gallery ảnh thật của WooCommerce nếu có
-        $gallery_ids = $product->get_gallery_image_ids();
-        if (!empty($gallery_ids)) {
-            $detail_photos = array();
-            $idx = 0;
-            foreach ($gallery_ids as $gid) {
-                $img_url = wp_get_attachment_image_url($gid, 'large');
-                if ($img_url) {
-                    $alt = get_post_meta($gid, '_wp_attachment_image_alt', true) ?: ('Ảnh ' . $product->get_name());
-                    $detail_photos[] = array(
-                        'image'   => $img_url,
-                        'caption' => $alt,
-                    );
-                    $idx++;
-                    if ($idx >= 10) break;
-                }
+    $raw_photos = $gf ? get_field('sp_detail_photos', $product_id) : array();
+    $detail_photos = array();
+    if (!empty($raw_photos) && is_array($raw_photos)) {
+        foreach ($raw_photos as $dp) {
+            $img = $dp['image'] ?? '';
+            if (is_array($img) && isset($img['url'])) $img = $img['url'];
+            elseif (is_numeric($img)) $img = wp_get_attachment_image_url($img, 'large');
+            $img = trim((string)$img);
+            if (!empty($img)) {
+                $detail_photos[] = array(
+                    'image'   => $img,
+                    'caption' => !empty($dp['caption']) ? trim($dp['caption']) : '',
+                );
             }
-        } else {
-            $detail_photos = array();
         }
     }
 
@@ -913,10 +906,13 @@ function gobike_render_single_product_tabs($product) {
                             <div class="media-photos-slider-wrap">
                                 <div class="swiper-container gobike-media-photos-swiper">
                                     <div class="swiper-wrapper">
-                                        <?php foreach ($detail_photos as $dp): ?>
+                                        <?php foreach ($detail_photos as $dp): 
+                                            $dp_img = trim($dp['image'] ?? '');
+                                            if (empty($dp_img)) continue;
+                                        ?>
                                             <div class="swiper-slide photo-card-item">
-                                                <a href="<?php echo esc_url($dp['image'] ?? ''); ?>" class="gobike-photo-zoom" data-caption="<?php echo esc_attr($dp['caption'] ?? ''); ?>" title="<?php echo esc_attr($dp['caption'] ?? ''); ?>">
-                                                    <img src="<?php echo esc_url($dp['image'] ?? ''); ?>" alt="<?php echo esc_attr($dp['caption'] ?? ''); ?>" loading="lazy" />
+                                                <a href="<?php echo esc_url($dp_img); ?>" class="gobike-photo-zoom" data-caption="<?php echo esc_attr($dp['caption'] ?? ''); ?>" title="<?php echo esc_attr($dp['caption'] ?? ''); ?>">
+                                                    <img src="<?php echo esc_url($dp_img); ?>" alt="<?php echo esc_attr($dp['caption'] ?? ''); ?>" loading="lazy" />
                                                     <span class="photo-zoom-icon" title="Nhấp để phóng to">
                                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                                                     </span>
