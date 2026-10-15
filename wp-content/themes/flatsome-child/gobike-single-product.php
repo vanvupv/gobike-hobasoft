@@ -517,29 +517,7 @@ function gobike_render_single_product_tabs($product) {
         'number'  => 4,
     ));
 
-    // --- TAB 1: Dữ liệu Mô tả & Banners ---
-    $desc_subtitle = $gf ? get_field('sp_desc_subtitle', $product_id) : '';
-
-    $sp_features = $gf ? get_field('sp_features', $product_id) : array();
-    if (!is_array($sp_features)) {
-        $sp_features = array();
-    }
-    $sp_features = array_filter($sp_features, function($item) {
-        return !empty($item['title']) || !empty($item['desc']);
-    });
-
-    $hero_img = $gf ? get_field('sp_lifestyle_hero_img', $product_id) : '';
-    $hero_quote = $gf ? get_field('sp_lifestyle_hero_quote', $product_id) : '';
-
-    $lifestyle_cards = $gf ? get_field('sp_lifestyle_cards', $product_id) : array();
-    if (!is_array($lifestyle_cards)) {
-        $lifestyle_cards = array();
-    }
-    $lifestyle_cards = array_filter($lifestyle_cards, function($item) {
-        return !empty($item['image']) || !empty($item['title']);
-    });
-
-    // --- TAB 2: Dữ liệu Thông số Kỹ thuật ---
+    // --- TAB: Dữ liệu Thông số Kỹ thuật ---
     $specs_custom_html = $gf ? get_field('sp_specs_custom_html', $product_id) : '';
 
     $specs_items_left = array();
@@ -739,78 +717,15 @@ function gobike_render_single_product_tabs($product) {
                     <!-- PHẦN 1: NỘI DUNG & LIFESTYLE BANNER -->
                     <div class="gobike-desc-content-collapsible" id="descContentCollapsible">
                         <div class="desc-content-inner">
-                            <?php 
-                            $has_lifestyle = (!empty($hero_img) || !empty($lifestyle_cards));
-                            $col_desc_class = $has_lifestyle ? 'col large-7 medium-12 small-12' : 'col large-12 medium-12 small-12';
-                            ?>
-                            <div class="row align-top desc-intro-row">
-                                <!-- Cột Trái: Text mô tả + Icon tính năng nổi bật -->
-                                <div class="<?php echo esc_attr($col_desc_class); ?>">
-                                    <?php if (!empty($desc_subtitle)): ?>
-                                        <h2 class="desc-heading-primary"><?php echo esc_html($desc_subtitle); ?></h2>
-                                    <?php endif; ?>
-                                    <div class="desc-main-text entry-content">
-                                        <?php
-                                        $content = get_the_content();
-                                        if (empty($content)) {
-                                            echo '<p>Nội dung mô tả chi tiết của sản phẩm đang được cập nhật.</p>';
-                                        } else {
-                                            the_content();
-                                        }
-                                        ?>
-                                    </div>
-
-                                    <!-- Lưới Tính Năng Nổi Bật (Dynamic ACF) -->
-                                    <?php if (!empty($sp_features)): ?>
-                                        <div class="desc-feature-grid">
-                                            <?php foreach ($sp_features as $feat): ?>
-                                                <div class="feature-box-item">
-                                                    <div class="feature-icon">
-                                                        <?php echo gobike_get_feature_icon_svg($feat['icon_type'] ?? 'terrain'); ?>
-                                                    </div>
-                                                    <div class="feature-text">
-                                                        <h4><?php echo esc_html($feat['title'] ?? ''); ?></h4>
-                                                        <p><?php echo esc_html($feat['desc'] ?? ''); ?></p>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <!-- Cột Phải: Hình ảnh Lifestyle & Banners (Chỉ hiển thị khi có dữ liệu thật) -->
-                                <?php if ($has_lifestyle): ?>
-                                    <div class="col large-5 medium-12 small-12">
-                                        <div class="desc-media-stack">
-                                            <?php if (!empty($hero_img)): ?>
-                                                <div class="lifestyle-hero-banner">
-                                                    <img src="<?php echo esc_url($hero_img); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy" />
-                                                    <?php if (!empty($hero_quote)): ?>
-                                                        <div class="banner-quote-overlay">
-                                                            <span class="quote-handwriting"><?php echo esc_html($hero_quote); ?></span>
-                                                        </div>
-                                                    <?php endif; ?>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (!empty($lifestyle_cards)): ?>
-                                                <?php foreach ($lifestyle_cards as $card): ?>
-                                                    <div class="lifestyle-sub-card">
-                                                        <?php if (!empty($card['image'])): ?>
-                                                            <div class="sub-card-img">
-                                                                <img src="<?php echo esc_url($card['image']); ?>" alt="<?php echo esc_attr($card['title'] ?? ''); ?>" loading="lazy" />
-                                                            </div>
-                                                        <?php endif; ?>
-                                                        <div class="sub-card-text">
-                                                            <h4><?php echo esc_html($card['title'] ?? ''); ?></h4>
-                                                            <p><?php echo esc_html($card['desc'] ?? ''); ?></p>
-                                                        </div>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
+                            <div class="desc-main-text entry-content">
+                                <?php
+                                $content = get_the_content();
+                                if (empty($content)) {
+                                    echo '<p>Nội dung mô tả chi tiết của sản phẩm đang được cập nhật.</p>';
+                                } else {
+                                    the_content();
+                                }
+                                ?>
                             </div>
                         </div>
 

@@ -28,120 +28,11 @@ function gobike_register_single_product_acf_fields()
         'fields' => array(
 
             // =================================================================
-            // TAB 1: MÔ TẢ SẢN PHẨM & ĐIỂM NỔI BẬT
-            // =================================================================
-            array(
-                'key' => 'field_sp_tab_desc',
-                'label' => '1. Mô tả & Điểm nổi bật',
-                'name' => '',
-                'type' => 'tab',
-                'placement' => 'top',
-            ),
-            array(
-                'key' => 'field_sp_desc_subtitle',
-                'label' => 'Tiêu đề phụ mô tả',
-                'name' => 'sp_desc_subtitle',
-                'type' => 'text',
-                'instructions' => 'Dòng tiêu đề lớn phía trên nội dung mô tả (vd: Khám phá thế giới theo cách của bạn)',
-            ),
-            array(
-                'key' => 'field_sp_features',
-                'label' => '4 Điểm nổi bật (Icon box)',
-                'name' => 'sp_features',
-                'type' => 'repeater',
-                'instructions' => 'Thêm các đặc điểm nổi bật bên dưới nội dung mô tả (khuyên dùng 4 mục)',
-                'layout' => 'table',
-                'button_label' => 'Thêm điểm nổi bật',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_sp_feature_icon_type',
-                        'label' => 'Biểu tượng',
-                        'name' => 'icon_type',
-                        'type' => 'select',
-                        'choices' => array(
-                            'terrain'  => 'Địa hình (Khối lập phương)',
-                            'assist'   => 'Trợ lực (Quả địa cầu / Bánh xe)',
-                            'design'   => 'Thiết kế (Ngôi sao / Vương miện)',
-                            'eco'      => 'Thân thiện môi trường (Chiếc lá)',
-                            'battery'  => 'Pin điện / Sạc nhanh',
-                            'motor'    => 'Động cơ mạnh mẽ',
-                            'brake'    => 'An toàn / Phanh đĩa',
-                        ),
-                        'default_value' => 'terrain',
-                    ),
-                    array(
-                        'key' => 'field_sp_feature_title',
-                        'label' => 'Tiêu đề',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'instructions' => 'Vd: Chinh phục mọi địa hình',
-                    ),
-                    array(
-                        'key' => 'field_sp_feature_desc',
-                        'label' => 'Mô tả ngắn',
-                        'name' => 'desc',
-                        'type' => 'textarea',
-                        'rows' => 2,
-                        'instructions' => 'Vd: Vận hành mạnh mẽ, an tâm trên cả đường phố và đồi dốc.',
-                    ),
-                ),
-            ),
-            array(
-                'key' => 'field_sp_lifestyle_hero_img',
-                'label' => 'Ảnh Lifestyle Banner lớn (Cột phải)',
-                'name' => 'sp_lifestyle_hero_img',
-                'type' => 'image',
-                'instructions' => 'Ảnh chụp xe thực tế phong cách sống (kích thước đề xuất: 800x500px)',
-                'return_format' => 'url',
-                'preview_size' => 'medium',
-            ),
-            array(
-                'key' => 'field_sp_lifestyle_hero_quote',
-                'label' => 'Câu trích dẫn chữ nghệ thuật',
-                'name' => 'sp_lifestyle_hero_quote',
-                'type' => 'text',
-                'instructions' => 'Chữ viết tay đè lên ảnh lớn (vd: "Đi xa hơn mỗi ngày")',
-            ),
-            array(
-                'key' => 'field_sp_lifestyle_cards',
-                'label' => 'Các thẻ giới thiệu phụ (Cột phải)',
-                'name' => 'sp_lifestyle_cards',
-                'type' => 'repeater',
-                'instructions' => 'Các thẻ nhỏ giới thiệu sức mạnh, khung xe... hiển thị bên dưới banner lớn (khuyên dùng 2 thẻ)',
-                'layout' => 'block',
-                'button_label' => 'Thêm thẻ giới thiệu',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_sp_card_img',
-                        'label' => 'Hình ảnh',
-                        'name' => 'image',
-                        'type' => 'image',
-                        'return_format' => 'url',
-                        'preview_size' => 'thumbnail',
-                    ),
-                    array(
-                        'key' => 'field_sp_card_title',
-                        'label' => 'Tiêu đề thẻ',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'instructions' => 'Vd: Sức mạnh trên mọi cung đường',
-                    ),
-                    array(
-                        'key' => 'field_sp_card_desc',
-                        'label' => 'Mô tả thẻ',
-                        'name' => 'desc',
-                        'type' => 'textarea',
-                        'rows' => 2,
-                    ),
-                ),
-            ),
-
-            // =================================================================
-            // TAB 2: THÔNG SỐ KỸ THUẬT
+            // TAB 1: THÔNG SỐ KỸ THUẬT
             // =================================================================
             array(
                 'key' => 'field_sp_tab_specs',
-                'label' => '2. Thông số kỹ thuật',
+                'label' => '1. Thông số kỹ thuật',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -282,11 +173,11 @@ function gobike_register_single_product_acf_fields()
             ),
 
             // =================================================================
-            // TAB 3: HÌNH ẢNH & VIDEO CHI TIẾT
+            // TAB 2: HÌNH ẢNH & VIDEO CHI TIẾT
             // =================================================================
             array(
                 'key' => 'field_sp_tab_media',
-                'label' => '3. Hình ảnh & Video',
+                'label' => '2. Hình ảnh & Video',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -383,11 +274,11 @@ function gobike_register_single_product_acf_fields()
             ),
 
             // =================================================================
-            // TAB 4: HỎI ĐÁP (FAQ)
+            // TAB 3: HỎI ĐÁP (FAQ)
             // =================================================================
             array(
                 'key' => 'field_sp_tab_faq',
-                'label' => '4. Hỏi đáp (FAQ)',
+                'label' => '3. Hỏi đáp (FAQ)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -434,11 +325,11 @@ function gobike_register_single_product_acf_fields()
             ),
 
             // =================================================================
-            // TAB 5: CAM KẾT QUYỀN LỢI (TRUST BADGES)
+            // TAB 4: CAM KẾT QUYỀN LỢI (TRUST BADGES)
             // =================================================================
             array(
                 'key' => 'field_sp_tab_trust_badges',
-                'label' => '5. Cam kết (Trust Badges)',
+                'label' => '4. Cam kết (Trust Badges)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
