@@ -469,28 +469,46 @@ function gobike_render_single_product_tabs($product) {
     // --- TAB: Dữ liệu Thông số Kỹ thuật ---
     $specs_custom_html = $gf ? get_field('sp_specs_custom_html', $product_id) : '';
 
-    $all_spec_pairs = array();
-    if (!empty($specs['brand']))       $all_spec_pairs[] = array('Thương hiệu', $specs['brand']);
-    if (!empty($product->get_name()))  $all_spec_pairs[] = array('Model', $product->get_name());
-    if (!empty($specs['cat_name']))    $all_spec_pairs[] = array('Loại xe', $specs['cat_name']);
-    if (!empty($specs['dong_co']))     $all_spec_pairs[] = array('Động cơ', $specs['dong_co']);
-    if (!empty($specs['pin']))         $all_spec_pairs[] = array('Dung lượng Pin', $specs['pin']);
-    if (!empty($specs['quang_duong'])) $all_spec_pairs[] = array('Quãng đường', $specs['quang_duong']);
-    if (!empty($specs['toc_do']))      $all_spec_pairs[] = array('Tốc độ tối đa', $specs['toc_do']);
-    if (!empty($specs['trong_luong'])) $all_spec_pairs[] = array('Trọng lượng xe', $specs['trong_luong']);
-    if (!empty($specs['bao_hanh']))    $all_spec_pairs[] = array('Thời gian bảo hành', $specs['bao_hanh']);
+    // Chỉ kích hoạt bảng thông số khi có ít nhất 1 thông số kỹ thuật thực tế được nhập
+    $has_real_specs = !empty($specs_custom_html)
+        || !empty($specs['dong_co'])
+        || !empty($specs['pin'])
+        || !empty($specs['quang_duong'])
+        || !empty($specs['toc_do'])
+        || !empty($specs['trong_luong'])
+        || !empty($specs['bao_hanh'])
+        || !empty($specs['khung_xe'])
+        || !empty($specs['phanh'])
+        || !empty($specs['giam_xoc'])
+        || !empty($specs['lop_xe'])
+        || !empty($specs['tai_trong'])
+        || !empty($specs['kich_thuoc'])
+        || !empty($specs['extra_specs']);
 
-    // Tương thích ngược các thông số trước đó (nếu đã từng nhập)
-    if (!empty($specs['khung_xe']))    $all_spec_pairs[] = array('Khung xe', $specs['khung_xe']);
-    if (!empty($specs['phanh']))       $all_spec_pairs[] = array('Phanh', $specs['phanh']);
-    if (!empty($specs['giam_xoc']))    $all_spec_pairs[] = array('Giảm xóc', $specs['giam_xoc']);
-    if (!empty($specs['lop_xe']))      $all_spec_pairs[] = array('Lốp xe', $specs['lop_xe']);
-    if (!empty($specs['tai_trong']))   $all_spec_pairs[] = array('Tải trọng tối đa', $specs['tai_trong']);
-    if (!empty($specs['kich_thuoc']))  $all_spec_pairs[] = array('Kích thước (DxRxC)', $specs['kich_thuoc']);
-    if (!empty($specs['extra_specs'])) {
-        foreach ($specs['extra_specs'] as $es) {
-            if (!empty($es['spec_name']) && !empty($es['spec_value'])) {
-                $all_spec_pairs[] = array($es['spec_name'], $es['spec_value']);
+    $all_spec_pairs = array();
+    if ($has_real_specs) {
+        if (!empty($specs['brand']))       $all_spec_pairs[] = array('Thương hiệu', $specs['brand']);
+        if (!empty($product->get_name()))  $all_spec_pairs[] = array('Model', $product->get_name());
+        if (!empty($specs['cat_name']))    $all_spec_pairs[] = array('Loại xe', $specs['cat_name']);
+        if (!empty($specs['dong_co']))     $all_spec_pairs[] = array('Động cơ', $specs['dong_co']);
+        if (!empty($specs['pin']))         $all_spec_pairs[] = array('Dung lượng Pin', $specs['pin']);
+        if (!empty($specs['quang_duong'])) $all_spec_pairs[] = array('Quãng đường', $specs['quang_duong']);
+        if (!empty($specs['toc_do']))      $all_spec_pairs[] = array('Tốc độ tối đa', $specs['toc_do']);
+        if (!empty($specs['trong_luong'])) $all_spec_pairs[] = array('Trọng lượng xe', $specs['trong_luong']);
+        if (!empty($specs['bao_hanh']))    $all_spec_pairs[] = array('Thời gian bảo hành', $specs['bao_hanh']);
+
+        // Tương thích ngược các thông số trước đó (nếu đã từng nhập)
+        if (!empty($specs['khung_xe']))    $all_spec_pairs[] = array('Khung xe', $specs['khung_xe']);
+        if (!empty($specs['phanh']))       $all_spec_pairs[] = array('Phanh', $specs['phanh']);
+        if (!empty($specs['giam_xoc']))    $all_spec_pairs[] = array('Giảm xóc', $specs['giam_xoc']);
+        if (!empty($specs['lop_xe']))      $all_spec_pairs[] = array('Lốp xe', $specs['lop_xe']);
+        if (!empty($specs['tai_trong']))   $all_spec_pairs[] = array('Tải trọng tối đa', $specs['tai_trong']);
+        if (!empty($specs['kich_thuoc']))  $all_spec_pairs[] = array('Kích thước (DxRxC)', $specs['kich_thuoc']);
+        if (!empty($specs['extra_specs'])) {
+            foreach ($specs['extra_specs'] as $es) {
+                if (!empty($es['spec_name']) && !empty($es['spec_value'])) {
+                    $all_spec_pairs[] = array($es['spec_name'], $es['spec_value']);
+                }
             }
         }
     }
@@ -693,28 +711,32 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     </div>
 
-                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1 - Chỉ hiển thị khi có thông số thật) -->
-                    <?php if ($has_specs): ?>
-                        <div class="desc-specs-block">
-                            <div class="gobike-block-header">
-                                <div class="header-left">
-                                    <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
-                                </div>
-                            </div>
-                            <div class="specs-table-grid">
-                                <div class="specs-col">
-                                    <?php foreach ($specs_items_left as $si): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="specs-col">
-                                    <?php foreach ($specs_items_right as $si): ?>
-                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                    <?php endforeach; ?>
-                                </div>
+                    <!-- PHẦN 2: THÔNG SỐ KỸ THUẬT (Tóm tắt tại Tab 1) -->
+                    <div class="desc-specs-block">
+                        <div class="gobike-block-header">
+                            <div class="header-left">
+                                <h2 class="block-title">THÔNG SỐ KỸ THUẬT</h2>
                             </div>
                         </div>
-                    <?php endif; ?>
+                        <?php if ($has_specs): ?>
+                            <div class="specs-table-grid<?php echo empty($specs_items_right) ? ' single-col' : ''; ?>">
+                                <?php if (!empty($specs_items_left)): ?>
+                                    <div class="specs-col">
+                                        <?php foreach ($specs_items_left as $si): ?>
+                                            <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($specs_items_right)): ?>
+                                    <div class="specs-col">
+                                        <?php foreach ($specs_items_right as $si): ?>
+                                            <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
 
                     <!-- PHẦN 3: ĐÁNH GIÁ KHÁCH HÀNG (Tóm tắt tại Tab 1) -->
                     <div class="desc-reviews-block">
@@ -888,21 +910,21 @@ function gobike_render_single_product_tabs($product) {
                         </div>
                     <?php elseif ($has_specs): ?>
                         <!-- Hiển thị bảng thông số chuẩn từ hệ thống -->
-                        <div class="specs-table-grid">
-                            <div class="specs-col">
-                                <?php foreach ($specs_items_left as $si): ?>
-                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="specs-col">
-                                <?php foreach ($specs_items_right as $si): ?>
-                                    <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <div class="specs-empty-notice" style="text-align: center; padding: 40px 20px; color: #64748b;">
-                            <p>Thông số kỹ thuật chi tiết của sản phẩm đang được cập nhật.</p>
+                        <div class="specs-table-grid<?php echo empty($specs_items_right) ? ' single-col' : ''; ?>">
+                            <?php if (!empty($specs_items_left)): ?>
+                                <div class="specs-col">
+                                    <?php foreach ($specs_items_left as $si): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!empty($specs_items_right)): ?>
+                                <div class="specs-col">
+                                    <?php foreach ($specs_items_right as $si): ?>
+                                        <div class="spec-row"><span class="spec-lbl"><?php echo esc_html($si[0]); ?></span><span class="spec-val"><?php echo esc_html($si[1]); ?></span></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
                 </div>

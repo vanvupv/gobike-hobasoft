@@ -4046,11 +4046,19 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     gap: 20px;
 }
 
+.specs-table-grid.single-col {
+    grid-template-columns: 1fr !important;
+}
+
 .specs-col {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     overflow: hidden;
+}
+
+.specs-col:empty {
+    display: none !important;
 }
 
 .spec-row {
