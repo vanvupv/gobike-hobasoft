@@ -42,7 +42,7 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Thông số nổi bật (Hiển thị dưới ảnh sản phẩm)',
                 'name' => 'sp_highlight_specs',
                 'type' => 'repeater',
-                'instructions' => 'Thêm các huy hiệu thông số nổi bật hiển thị ngay dưới ảnh lớn sản phẩm. Mỗi mục gồm Hình ảnh/Icon, Tiêu đề (vd: 90 – 120 km) và Mô tả ngắn (vd: Quãng đường trợ lực). Nếu để trống, hệ thống sẽ tự động lấy từ các thông số chính bên dưới.',
+                'instructions' => 'Thêm các huy hiệu thông số nổi bật hiển thị ngay dưới ảnh lớn sản phẩm. Mỗi mục gồm Hình ảnh/Icon, Tiêu đề (vd: 90 – 120 km) và Mô tả ngắn (vd: Quãng đường trợ lực). Nếu để trống, khối này sẽ tự động ẩn hoàn toàn.',
                 'layout' => 'table',
                 'button_label' => '+ Thêm thông số nổi bật',
                 'sub_fields' => array(
@@ -130,11 +130,27 @@ function gobike_register_single_product_acf_fields()
                 'label' => 'Bảng thông số kỹ thuật tùy chỉnh (HTML / Soạn thảo)',
                 'name' => 'sp_specs_custom_html',
                 'type' => 'wysiwyg',
-                'instructions' => 'Dán mã HTML bảng thông số hoặc soạn thảo trực tiếp vào đây (nếu muốn hiển thị bảng chi tiết đầy đủ riêng). Nếu để trống, hệ thống sẽ tự động hiển thị bảng thông số chuẩn từ các trường bên trên.',
+                'instructions' => 'Dán mã HTML bảng thông số hoặc soạn thảo trực tiếp vào đây. <strong>Lưu ý:</strong> Nếu xóa nhầm hoặc để trống ô này, hệ thống sẽ <em>tự động hiển thị Bảng thông số chuẩn</em> từ các trường phía trên mà không sợ mất dữ liệu.',
                 'tabs' => 'all',
                 'toolbar' => 'full',
                 'media_upload' => 1,
                 'delay' => 0,
+            ),
+            array(
+                'key' => 'field_sp_specs_sample_template',
+                'label' => 'Mẫu HTML Bảng thông số (Dùng để khôi phục nhanh)',
+                'name' => '',
+                'type' => 'message',
+                'message' => '<details style="background:#f8fafc;padding:12px 16px;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;"><summary style="font-weight:600;color:#044b25;">📋 Nhấp vào đây để xem và sao chép Mẫu HTML Bảng thông số kỹ thuật</summary><div style="margin-top:10px;"><p style="margin:0 0 6px;font-size:12px;color:#475569;">Bấm vào khung bên dưới để tự động chọn toàn bộ, nhấn <strong>Ctrl + C</strong> để sao chép rồi dán vào ô soạn thảo ở trên:</p><textarea readonly style="width:100%;height:160px;font-family:monospace;font-size:12px;background:#ffffff;border:1px solid #cbd5e1;padding:8px;border-radius:4px;" onclick="this.select();">&lt;table class=&quot;gobike-specs-custom-table&quot; style=&quot;width:100%;border-collapse:collapse;&quot;&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;width:35%;&quot;&gt;Động cơ&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;500W – Động cơ không chổi than&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Dung lượng Pin&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;48V 15Ah Pin Lithium tháo rời&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Quãng đường trợ lực&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;80 – 120 km&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Tốc độ tối đa&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;35 km/h&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Trọng lượng xe&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;28 kg (kể cả pin)&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;font-weight:600;&quot;&gt;Thời gian bảo hành&lt;/td&gt;&lt;td style=&quot;padding:10px;border-bottom:1px solid #e2e8f0;&quot;&gt;24 tháng Khung, 12 tháng Pin &amp; Động cơ&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</textarea></div></details>',
             ),
 
             // =================================================================

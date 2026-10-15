@@ -212,60 +212,6 @@ function gobike_render_single_product_gallery($product) {
                 );
             }
         }
-
-        // Nếu chưa nhập repeater -> Tự động tổng hợp từ 4 thông số chính
-        if (empty($quick_badges)) {
-            if (!empty($specs['quang_duong'])) {
-                $qd_raw = $specs['quang_duong'];
-                $qd_display = trim(explode('(', $qd_raw)[0]);
-                if (!str_contains(strtolower($qd_display), 'km')) {
-                    $qd_display .= ' km';
-                }
-                $quick_badges[] = array(
-                    'val'   => $qd_display,
-                    'label' => 'Quãng đường trợ lực',
-                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-                );
-            }
-
-            if (!empty($specs['dong_co'])) {
-                $dc_raw = $specs['dong_co'];
-                $dc_display = trim(explode('–', $dc_raw)[0]);
-                $quick_badges[] = array(
-                    'val'   => $dc_display,
-                    'label' => 'Động cơ mạnh mẽ',
-                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
-                );
-            }
-
-            if (!empty($specs['pin'])) {
-                $pin_raw = $specs['pin'];
-                $pin_display = trim(explode('(', $pin_raw)[0]);
-                $quick_badges[] = array(
-                    'val'   => $pin_display,
-                    'label' => 'Pin Lithium cao cấp',
-                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>',
-                );
-            }
-
-            if (!empty($specs['toc_do'])) {
-                $td_raw = $specs['toc_do'];
-                $td_display = trim(explode('–', $td_raw)[0]);
-                $quick_badges[] = array(
-                    'val'   => $td_display,
-                    'label' => 'Tốc độ tối đa',
-                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
-                );
-            } elseif (!empty($specs['lop_xe'])) {
-                $lop_raw = $specs['lop_xe'];
-                $lop_display = trim(explode('–', $lop_raw)[0]);
-                $quick_badges[] = array(
-                    'val'   => $lop_display,
-                    'label' => 'Lốp xe đa địa hình',
-                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
-                );
-            }
-        }
         ?>
         <?php if (!empty($quick_badges)): ?>
             <div class="gobike-quick-spec-badges">
