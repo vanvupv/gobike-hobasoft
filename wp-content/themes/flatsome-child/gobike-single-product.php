@@ -190,51 +190,81 @@ function gobike_render_single_product_gallery($product) {
             </div>
         </div>
 
-        <!-- Dải Thông Số Nhanh Dưới Gallery (Chỉ hiển thị khi có thông số thật) -->
+        <!-- Dải Thông Số Nổi Bật Dưới Gallery (Ưu tiên repeater sp_highlight_specs) -->
         <?php
+        $highlight_specs = function_exists('get_field') ? get_field('sp_highlight_specs', $product_id) : array();
         $quick_badges = array();
 
-        if (!empty($specs['quang_duong'])) {
-            $qd_raw = $specs['quang_duong'];
-            $qd_display = trim(explode('(', $qd_raw)[0]);
-            if (!str_contains(strtolower($qd_display), 'km')) {
-                $qd_display .= ' km';
+        if (!empty($highlight_specs) && is_array($highlight_specs)) {
+            foreach ($highlight_specs as $item) {
+                $h_title = !empty($item['title']) ? trim($item['title']) : '';
+                if (empty($h_title)) continue;
+                $h_desc = !empty($item['desc']) ? trim($item['desc']) : '';
+                $h_img = !empty($item['image']) ? $item['image'] : '';
+                if (is_array($h_img) && isset($h_img['url'])) $h_img = $h_img['url'];
+                elseif (is_numeric($h_img)) $h_img = wp_get_attachment_image_url($h_img, 'thumbnail');
+
+                $quick_badges[] = array(
+                    'val'   => $h_title,
+                    'label' => $h_desc,
+                    'image' => $h_img,
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+                );
             }
-            $quick_badges[] = array(
-                'val'   => $qd_display,
-                'label' => 'Quãng đường trợ lực',
-                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-            );
         }
 
-        if (!empty($specs['dong_co'])) {
-            $dc_raw = $specs['dong_co'];
-            $dc_display = trim(explode('–', $dc_raw)[0]);
-            $quick_badges[] = array(
-                'val'   => $dc_display,
-                'label' => 'Động cơ mạnh mẽ',
-                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
-            );
-        }
+        // Nếu chưa nhập repeater -> Tự động tổng hợp từ 4 thông số chính
+        if (empty($quick_badges)) {
+            if (!empty($specs['quang_duong'])) {
+                $qd_raw = $specs['quang_duong'];
+                $qd_display = trim(explode('(', $qd_raw)[0]);
+                if (!str_contains(strtolower($qd_display), 'km')) {
+                    $qd_display .= ' km';
+                }
+                $quick_badges[] = array(
+                    'val'   => $qd_display,
+                    'label' => 'Quãng đường trợ lực',
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+                );
+            }
 
-        if (!empty($specs['pin'])) {
-            $pin_raw = $specs['pin'];
-            $pin_display = trim(explode('(', $pin_raw)[0]);
-            $quick_badges[] = array(
-                'val'   => $pin_display,
-                'label' => 'Pin Lithium cao cấp',
-                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>',
-            );
-        }
+            if (!empty($specs['dong_co'])) {
+                $dc_raw = $specs['dong_co'];
+                $dc_display = trim(explode('–', $dc_raw)[0]);
+                $quick_badges[] = array(
+                    'val'   => $dc_display,
+                    'label' => 'Động cơ mạnh mẽ',
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+                );
+            }
 
-        if (!empty($specs['lop_xe'])) {
-            $lop_raw = $specs['lop_xe'];
-            $lop_display = trim(explode('–', $lop_raw)[0]);
-            $quick_badges[] = array(
-                'val'   => $lop_display,
-                'label' => 'Lốp xe đa địa hình',
-                'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
-            );
+            if (!empty($specs['pin'])) {
+                $pin_raw = $specs['pin'];
+                $pin_display = trim(explode('(', $pin_raw)[0]);
+                $quick_badges[] = array(
+                    'val'   => $pin_display,
+                    'label' => 'Pin Lithium cao cấp',
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>',
+                );
+            }
+
+            if (!empty($specs['toc_do'])) {
+                $td_raw = $specs['toc_do'];
+                $td_display = trim(explode('–', $td_raw)[0]);
+                $quick_badges[] = array(
+                    'val'   => $td_display,
+                    'label' => 'Tốc độ tối đa',
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
+                );
+            } elseif (!empty($specs['lop_xe'])) {
+                $lop_raw = $specs['lop_xe'];
+                $lop_display = trim(explode('–', $lop_raw)[0]);
+                $quick_badges[] = array(
+                    'val'   => $lop_display,
+                    'label' => 'Lốp xe đa địa hình',
+                    'icon'  => '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
+                );
+            }
         }
         ?>
         <?php if (!empty($quick_badges)): ?>
@@ -242,11 +272,17 @@ function gobike_render_single_product_gallery($product) {
                 <?php foreach ($quick_badges as $badge): ?>
                     <div class="spec-badge-item">
                         <div class="badge-icon">
-                            <?php echo $badge['icon']; ?>
+                            <?php if (!empty($badge['image'])): ?>
+                                <img src="<?php echo esc_url($badge['image']); ?>" alt="<?php echo esc_attr($badge['val']); ?>" width="28" height="28" style="width:28px;height:28px;object-fit:contain;display:block;" />
+                            <?php else: ?>
+                                <?php echo $badge['icon']; ?>
+                            <?php endif; ?>
                         </div>
                         <div class="badge-info">
                             <strong class="badge-val"><?php echo esc_html($badge['val']); ?></strong>
-                            <span class="badge-label"><?php echo esc_html($badge['label']); ?></span>
+                            <?php if (!empty($badge['label'])): ?>
+                                <span class="badge-label"><?php echo esc_html($badge['label']); ?></span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -487,32 +523,37 @@ function gobike_render_single_product_tabs($product) {
     // --- TAB: Dữ liệu Thông số Kỹ thuật ---
     $specs_custom_html = $gf ? get_field('sp_specs_custom_html', $product_id) : '';
 
-    $specs_items_left = array();
-    if (!empty($specs['brand']))       $specs_items_left[] = array('Thương hiệu', $specs['brand']);
-    if (!empty($product->get_name()))  $specs_items_left[] = array('Model', $product->get_name());
-    if (!empty($specs['cat_name']))    $specs_items_left[] = array('Loại xe', $specs['cat_name']);
-    if (!empty($specs['dong_co']))     $specs_items_left[] = array('Động cơ', $specs['dong_co']);
-    if (!empty($specs['pin']))         $specs_items_left[] = array('Pin', $specs['pin']);
-    if (!empty($specs['quang_duong'])) $specs_items_left[] = array('Quãng đường', $specs['quang_duong']);
-    if (!empty($specs['toc_do']))      $specs_items_left[] = array('Tốc độ tối đa', $specs['toc_do']);
+    $all_spec_pairs = array();
+    if (!empty($specs['brand']))       $all_spec_pairs[] = array('Thương hiệu', $specs['brand']);
+    if (!empty($product->get_name()))  $all_spec_pairs[] = array('Model', $product->get_name());
+    if (!empty($specs['cat_name']))    $all_spec_pairs[] = array('Loại xe', $specs['cat_name']);
+    if (!empty($specs['dong_co']))     $all_spec_pairs[] = array('Động cơ', $specs['dong_co']);
+    if (!empty($specs['pin']))         $all_spec_pairs[] = array('Dung lượng Pin', $specs['pin']);
+    if (!empty($specs['quang_duong'])) $all_spec_pairs[] = array('Quãng đường', $specs['quang_duong']);
+    if (!empty($specs['toc_do']))      $all_spec_pairs[] = array('Tốc độ tối đa', $specs['toc_do']);
+    if (!empty($specs['trong_luong'])) $all_spec_pairs[] = array('Trọng lượng xe', $specs['trong_luong']);
+    if (!empty($specs['bao_hanh']))    $all_spec_pairs[] = array('Thời gian bảo hành', $specs['bao_hanh']);
 
-    $specs_items_right = array();
-    if (!empty($specs['khung_xe']))    $specs_items_right[] = array('Khung xe', $specs['khung_xe']);
-    if (!empty($specs['phanh']))       $specs_items_right[] = array('Phanh', $specs['phanh']);
-    if (!empty($specs['giam_xoc']))    $specs_items_right[] = array('Giảm xóc', $specs['giam_xoc']);
-    if (!empty($specs['lop_xe']))      $specs_items_right[] = array('Lốp xe', $specs['lop_xe']);
-    if (!empty($specs['trong_luong'])) $specs_items_right[] = array('Trọng lượng', $specs['trong_luong']);
-    if (!empty($specs['tai_trong']))   $specs_items_right[] = array('Tải trọng tối đa', $specs['tai_trong']);
-    if (!empty($specs['kich_thuoc']))  $specs_items_right[] = array('Kích thước (DxRxC)', $specs['kich_thuoc']);
-    if (!empty($specs['bao_hanh']))    $specs_items_right[] = array('Bảo hành', $specs['bao_hanh']);
+    // Tương thích ngược các thông số trước đó (nếu đã từng nhập)
+    if (!empty($specs['khung_xe']))    $all_spec_pairs[] = array('Khung xe', $specs['khung_xe']);
+    if (!empty($specs['phanh']))       $all_spec_pairs[] = array('Phanh', $specs['phanh']);
+    if (!empty($specs['giam_xoc']))    $all_spec_pairs[] = array('Giảm xóc', $specs['giam_xoc']);
+    if (!empty($specs['lop_xe']))      $all_spec_pairs[] = array('Lốp xe', $specs['lop_xe']);
+    if (!empty($specs['tai_trong']))   $all_spec_pairs[] = array('Tải trọng tối đa', $specs['tai_trong']);
+    if (!empty($specs['kich_thuoc']))  $all_spec_pairs[] = array('Kích thước (DxRxC)', $specs['kich_thuoc']);
     if (!empty($specs['extra_specs'])) {
         foreach ($specs['extra_specs'] as $es) {
             if (!empty($es['spec_name']) && !empty($es['spec_value'])) {
-                $specs_items_right[] = array($es['spec_name'], $es['spec_value']);
+                $all_spec_pairs[] = array($es['spec_name'], $es['spec_value']);
             }
         }
     }
-    $has_specs = (!empty($specs_items_left) || !empty($specs_items_right));
+
+    $total_pairs = count($all_spec_pairs);
+    $half_pairs = ceil($total_pairs / 2);
+    $specs_items_left = array_slice($all_spec_pairs, 0, $half_pairs);
+    $specs_items_right = array_slice($all_spec_pairs, $half_pairs);
+    $has_specs = !empty($all_spec_pairs);
 
     // --- TAB 3: Dữ liệu Hình ảnh & Video ---
     $media_title = $gf ? get_field('sp_media_photos_title', $product_id) : '';

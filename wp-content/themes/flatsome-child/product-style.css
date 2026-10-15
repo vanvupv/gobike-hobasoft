@@ -3068,6 +3068,13 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     height: 28px !important;
 }
 
+.spec-badge-item .badge-icon img {
+    width: 28px !important;
+    height: 28px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
 .spec-badge-item .badge-info {
     display: flex !important;
     flex-direction: column !important;
