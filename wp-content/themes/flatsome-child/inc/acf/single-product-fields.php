@@ -433,6 +433,49 @@ function gobike_register_single_product_acf_fields()
                 ),
             ),
 
+            // =================================================================
+            // TAB 5: CAM KẾT QUYỀN LỢI (TRUST BADGES)
+            // =================================================================
+            array(
+                'key' => 'field_sp_tab_trust_badges',
+                'label' => '5. Cam kết (Trust Badges)',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'top',
+            ),
+            array(
+                'key' => 'field_sp_trust_badges',
+                'label' => 'Danh sách Cam kết quyền lợi (Trust Badges)',
+                'name' => 'sp_trust_badges',
+                'type' => 'repeater',
+                'instructions' => 'Thêm các huy hiệu cam kết hiển thị ngay bên dưới nút Mua hàng (để trống sẽ sử dụng cam kết chung từ Theme Settings hoặc 5 cam kết mặc định).',
+                'layout' => 'table',
+                'button_label' => '+ Thêm cam kết',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_sp_trust_badge_image',
+                        'label' => 'Hình ảnh / Biểu tượng',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'instructions' => 'Tải lên icon/ảnh biểu tượng (PNG, SVG hoặc JPG vuông)',
+                        'return_format' => 'url',
+                        'preview_size' => 'thumbnail',
+                        'library' => 'all',
+                        'wrapper' => array('width' => '35'),
+                    ),
+                    array(
+                        'key' => 'field_sp_trust_badge_title',
+                        'label' => 'Tiêu đề cam kết',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'instructions' => 'Ví dụ: Bảo hành chính hãng, Giao hàng toàn quốc...',
+                        'placeholder' => 'Bảo hành chính hãng',
+                        'required' => 1,
+                        'wrapper' => array('width' => '65'),
+                    ),
+                ),
+            ),
+
         ),
         'location' => array(
             array(
@@ -450,6 +493,59 @@ function gobike_register_single_product_acf_fields()
         'instruction_placement' => 'label',
         'hide_on_screen' => '',
         'active' => true,
-        'description' => 'Bộ trường dữ liệu quản trị chi tiết cho 5 tab sản phẩm GoBike',
+        'description' => 'Bộ trường dữ liệu quản trị chi tiết cho các tab sản phẩm GoBike',
+    ));
+
+    // Đăng ký cấu hình Cam kết chung trong Theme Settings
+    acf_add_local_field_group(array(
+        'key' => 'group_gobike_global_trust_badges',
+        'title' => 'Cài đặt Cam kết Sản phẩm chung (Trust Badges)',
+        'fields' => array(
+            array(
+                'key' => 'field_sp_global_trust_badges',
+                'label' => 'Cam kết Sản phẩm mặc định (Áp dụng cho tất cả sản phẩm)',
+                'name' => 'sp_trust_badges',
+                'type' => 'repeater',
+                'instructions' => 'Cấu hình các huy hiệu cam kết quyền lợi hiển thị chung cho tất cả các sản phẩm (nếu sản phẩm nào có cấu hình riêng ở Tab 5 thì sẽ ưu tiên theo sản phẩm đó).',
+                'layout' => 'table',
+                'button_label' => '+ Thêm cam kết chung',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_sp_global_trust_badge_image',
+                        'label' => 'Hình ảnh / Biểu tượng',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'instructions' => 'Tải lên icon/ảnh biểu tượng',
+                        'return_format' => 'url',
+                        'preview_size' => 'thumbnail',
+                        'library' => 'all',
+                        'wrapper' => array('width' => '35'),
+                    ),
+                    array(
+                        'key' => 'field_sp_global_trust_badge_title',
+                        'label' => 'Tiêu đề cam kết',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'placeholder' => 'Bảo hành chính hãng',
+                        'required' => 1,
+                        'wrapper' => array('width' => '65'),
+                    ),
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'options_page',
+                    'operator' => '==',
+                    'value' => 'theme-general-settings',
+                ),
+            ),
+        ),
+        'menu_order' => 20,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
     ));
 }

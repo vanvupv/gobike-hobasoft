@@ -3539,6 +3539,18 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-single-trust-badges .trust-icon {
     color: #044b25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+}
+
+.gobike-single-trust-badges .trust-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: block;
 }
 
 .gobike-mobile-expert-box,
