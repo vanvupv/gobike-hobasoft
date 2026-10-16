@@ -853,80 +853,154 @@ function gobike_render_shop_sidebar_filter()
 
 /**
  * 2. Render Dải 4 Cam Kết Vàng chuẩn Ảnh 4
+ * Đọc từ ACF shop_trust_badges (trang Shop hoặc Theme Settings), có fallback 4 cam kết mặc định.
  */
 function gobike_render_shop_trust_badges()
 {
+    $shop_page_id = get_option('woocommerce_shop_page_id');
+
+    // Ưu tiên đọc từ trang Shop trước, sau đó fallback sang Theme Settings
+    $badges = null;
+    if (function_exists('get_field')) {
+        if (!empty($shop_page_id)) {
+            $badges = get_field('shop_trust_badges', $shop_page_id);
+        }
+        if (empty($badges)) {
+            $badges = get_field('shop_trust_badges', 'option');
+        }
+    }
+
+    $default_badges = array(
+        array(
+            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>',
+            'title' => 'Chính hãng 100%',
+            'desc'  => 'Đầy đủ CO, CQ',
+            'link'  => '',
+        ),
+        array(
+            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>',
+            'title' => 'Bảo hành 12 - 24 tháng',
+            'desc'  => 'An tâm sử dụng',
+            'link'  => '',
+        ),
+        array(
+            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>',
+            'title' => 'Trả góp 0%',
+            'desc'  => 'Thủ tục nhanh gọn',
+            'link'  => '',
+        ),
+        array(
+            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>',
+            'title' => 'Giao hàng toàn quốc',
+            'desc'  => 'Nhanh chóng - An toàn',
+            'link'  => '',
+        ),
+    );
+
+    $items_to_render = array();
+    if (!empty($badges) && is_array($badges)) {
+        foreach ($badges as $idx => $b) {
+            $t = trim($b['title'] ?? '');
+            $d = trim($b['desc'] ?? '');
+            $img = $b['icon'] ?? '';
+            $link = trim($b['link'] ?? '');
+            if (!empty($t) || !empty($d) || !empty($img)) {
+                $icon_url = '';
+                if ($img) {
+                    $icon_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'thumbnail') : $img);
+                }
+                $fallback_svg = $default_badges[$idx]['svg'] ?? $default_badges[0]['svg'];
+                $items_to_render[] = array(
+                    'icon_url' => $icon_url,
+                    'svg'      => $fallback_svg,
+                    'title'    => $t ?: ($default_badges[$idx]['title'] ?? ''),
+                    'desc'     => $d ?: ($default_badges[$idx]['desc'] ?? ''),
+                    'link'     => $link,
+                );
+            }
+        }
+    }
+
+    if (empty($items_to_render)) {
+        foreach ($default_badges as $db) {
+            $items_to_render[] = array(
+                'icon_url' => '',
+                'svg'      => $db['svg'],
+                'title'    => $db['title'],
+                'desc'     => $db['desc'],
+                'link'     => '',
+            );
+        }
+    }
     ?>
     <div class="gobike-shop-trust-badges-bar">
-        <div class="trust-item">
-            <div class="trust-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    <path d="m9 12 2 2 4-4"></path>
-                </svg>
-            </div>
-            <div class="trust-text">
-                <strong>Chính hãng 100%</strong>
-                <span>Đầy đủ CO, CQ</span>
-            </div>
-        </div>
-
-        <div class="trust-item">
-            <div class="trust-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                </svg>
-            </div>
-            <div class="trust-text">
-                <strong>Bảo hành 12 - 24 tháng</strong>
-                <span>An tâm sử dụng</span>
-            </div>
-        </div>
-
-        <div class="trust-item">
-            <div class="trust-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="19" y1="5" x2="5" y2="19"></line>
-                    <circle cx="6.5" cy="6.5" r="2.5"></circle>
-                    <circle cx="17.5" cy="17.5" r="2.5"></circle>
-                </svg>
-            </div>
-            <div class="trust-text">
-                <strong>Trả góp 0%</strong>
-                <span>Thủ tục nhanh gọn</span>
-            </div>
-        </div>
-
-        <div class="trust-item">
-            <div class="trust-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="3" width="15" height="13"></rect>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                </svg>
-            </div>
-            <div class="trust-text">
-                <strong>Giao hàng toàn quốc</strong>
-                <span>Nhanh chóng - An toàn</span>
-            </div>
-        </div>
+        <?php foreach ($items_to_render as $item): ?>
+            <?php
+            $has_link = !empty($item['link']);
+            $tag = $has_link ? 'a' : 'div';
+            $href_attr = $has_link ? ' href="' . esc_url($item['link']) . '"' : '';
+            ?>
+            <<?php echo $tag; ?> class="trust-item"<?php echo $href_attr; ?>>
+                <div class="trust-icon">
+                    <?php if (!empty($item['icon_url'])): ?>
+                        <img src="<?php echo esc_url($item['icon_url']); ?>" alt="<?php echo esc_attr($item['title']); ?>" style="width:32px;height:32px;object-fit:contain;" loading="lazy">
+                    <?php else: ?>
+                        <?php echo $item['svg']; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="trust-text">
+                    <strong><?php echo esc_html($item['title']); ?></strong>
+                    <span><?php echo esc_html($item['desc']); ?></span>
+                </div>
+            </<?php echo $tag; ?>>
+        <?php endforeach; ?>
     </div>
     <?php
 }
 
 /**
  * 3. Render Hero Banner Thương hiệu / Danh mục
+ * Đọc từ ACF shop_hero_banner_image (trang Shop hoặc Theme Settings), có fallback và hỗ trợ danh mục.
  */
 function gobike_render_shop_brand_banner()
 {
-    $title     = 'XE ĐẠP TRỢ LỰC ĐIỆN';
-    $desc      = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
-    $intro     = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
+    $shop_page_id = get_option('woocommerce_shop_page_id');
+
+    // 1. Đọc dữ liệu từ ACF
+    $banner_img  = null;
+    $banner_link = '';
+    $banner_type = 'graphic';
+    $title       = 'XE ĐẠP TRỢ LỰC ĐIỆN';
+    $desc        = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
+    $intro       = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
+    $hotline     = '0944 988 699';
+    $btn_text    = 'Xem tất cả sản phẩm ➔';
+    $btn_link    = '#products-grid';
+
+    if (function_exists('get_field')) {
+        $source_id = !empty($shop_page_id) ? $shop_page_id : 'option';
+        $banner_img = get_field('shop_hero_banner_image', $source_id);
+        if (!$banner_img) {
+            $banner_img = get_field('shop_hero_banner_image', 'option');
+        }
+
+        $banner_link = get_field('shop_hero_banner_link', $source_id) ?: get_field('shop_hero_banner_link', 'option');
+        $banner_type = get_field('shop_hero_banner_type', $source_id) ?: get_field('shop_hero_banner_type', 'option') ?: 'graphic';
+        $title       = get_field('shop_hero_banner_title', $source_id) ?: get_field('shop_hero_banner_title', 'option') ?: $title;
+        $desc        = get_field('shop_hero_banner_slogan', $source_id) ?: get_field('shop_hero_banner_slogan', 'option') ?: $desc;
+        $hotline     = get_field('shop_hero_banner_hotline', $source_id) ?: get_field('shop_hero_banner_hotline', 'option') ?: $hotline;
+    }
+
     $default_banner = get_stylesheet_directory_uri() . '/assets/images/banner-san-pham-ado.webp';
-    $image_url = $default_banner;
+    $image_url = '';
+    if ($banner_img) {
+        $image_url = is_array($banner_img) ? ($banner_img['url'] ?? '') : (is_numeric($banner_img) ? wp_get_attachment_image_url($banner_img, 'full') : $banner_img);
+    }
+    if (empty($image_url)) {
+        $image_url = $default_banner;
+    }
+
     $has_custom_cat_img = false;
-    
     if (is_product_category()) {
         $cat = get_queried_object();
         if ($cat) {
@@ -944,9 +1018,16 @@ function gobike_render_shop_brand_banner()
             }
         }
     }
+
+    $hotline_clean = preg_replace('/[^0-9]/', '', $hotline);
+    $is_custom_text = ($banner_type === 'custom_text' || $has_custom_cat_img);
     ?>
-    <div class="gobike-shop-hero-banner <?php echo $has_custom_cat_img ? 'has-custom-img' : 'is-graphic-banner'; ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
-        <?php if ($has_custom_cat_img) : ?>
+    <div class="gobike-shop-hero-banner <?php echo $is_custom_text ? 'has-custom-img' : 'is-graphic-banner'; ?>" style="background-image: url('<?php echo esc_url($image_url); ?>'); position: relative;">
+        <?php if (!empty($banner_link) && !$is_custom_text) : ?>
+            <a href="<?php echo esc_url($banner_link); ?>" class="hero-banner-full-link" style="position:absolute;inset:0;z-index:3;" title="<?php echo esc_attr($title); ?>"></a>
+        <?php endif; ?>
+
+        <?php if ($is_custom_text) : ?>
             <div class="hero-banner-overlay"></div>
             <div class="hero-banner-inner container">
                 <div class="row align-middle">
@@ -956,13 +1037,15 @@ function gobike_render_shop_brand_banner()
                             <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
                             <p class="hero-intro"><?php echo esc_html($intro); ?></p>
                             <div class="hero-buttons">
-                                <a href="#products-grid" class="hero-btn-primary">Xem tất cả sản phẩm ➔</a>
-                                <a href="tel:0944988699" class="hero-btn-outline">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    Nhận tư vấn nhanh
-                                </a>
+                                <a href="<?php echo esc_url($btn_link); ?>" class="hero-btn-primary"><?php echo esc_html($btn_text); ?></a>
+                                <?php if (!empty($hotline)): ?>
+                                    <a href="tel:<?php echo esc_attr($hotline_clean); ?>" class="hero-btn-outline">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                        Nhận tư vấn nhanh (<?php echo esc_html($hotline); ?>)
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -970,8 +1053,10 @@ function gobike_render_shop_brand_banner()
             </div>
         <?php else : ?>
             <!-- Hotspot interactive links for pre-rendered graphic buttons -->
-            <a href="#products-grid" class="hero-hotspot-btn btn-view-products" title="Xem tất cả sản phẩm" aria-label="Xem tất cả sản phẩm"></a>
-            <a href="tel:0944988699" class="hero-hotspot-btn btn-quick-consult" title="Nhận tư vấn nhanh" aria-label="Nhận tư vấn nhanh"></a>
+            <a href="<?php echo esc_url($btn_link); ?>" class="hero-hotspot-btn btn-view-products" title="Xem tất cả sản phẩm" aria-label="Xem tất cả sản phẩm"></a>
+            <?php if (!empty($hotline)): ?>
+                <a href="tel:<?php echo esc_attr($hotline_clean); ?>" class="hero-hotspot-btn btn-quick-consult" title="Nhận tư vấn nhanh" aria-label="Nhận tư vấn nhanh"></a>
+            <?php endif; ?>
             <!-- Accessible SEO heading for search engines -->
             <div class="screen-reader-text">
                 <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
