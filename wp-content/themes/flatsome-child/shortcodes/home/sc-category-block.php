@@ -235,8 +235,8 @@ function gobike_render_category_block($atts)
                                             <?php if (!empty($specs['range']) || !empty($specs['weight']) || !empty($specs['power'])): ?>
                                                 <div class="gobike-pcard-specs">
                                                     <?php if (!empty($specs['range'])): ?>
-                                                        <span class="spec-badge spec-range" title="Quãng đường di chuyển">
-                                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <span class="spec-badge spec-range" title="<?php echo esc_attr('Quãng đường: ' . $specs['range']); ?>">
+                                                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2">
                                                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
                                                                 <circle cx="12" cy="9" r="2.5"/>
                                                             </svg>
@@ -245,8 +245,8 @@ function gobike_render_category_block($atts)
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($specs['weight'])): ?>
-                                                        <span class="spec-badge spec-weight" title="Trọng lượng">
-                                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <span class="spec-badge spec-weight" title="<?php echo esc_attr('Trọng lượng: ' . $specs['weight']); ?>">
+                                                            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2">
                                                                 <path d="M6 3h12l2 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7l2-4z"/>
                                                                 <circle cx="12" cy="14" r="3"/>
                                                                 <path d="M12 11v3"/>
@@ -256,8 +256,8 @@ function gobike_render_category_block($atts)
                                                     <?php endif; ?>
 
                                                     <?php if (!empty($specs['power'])): ?>
-                                                        <span class="spec-badge spec-power" title="Công suất động cơ">
-                                                            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                                                        <span class="spec-badge spec-power" title="<?php echo esc_attr('Công suất: ' . $specs['power']); ?>">
+                                                            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
                                                                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                                                             </svg>
                                                             <span><?php echo esc_html($specs['power']); ?></span>

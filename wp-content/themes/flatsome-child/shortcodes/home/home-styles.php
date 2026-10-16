@@ -1668,10 +1668,10 @@ function gobike_custom_styles_output()
         }
 
         .gobike-pcard-specs .spec-badge svg {
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-            color: #044b25;
+            flex-shrink: 0 !important;
+            width: 17px !important;
+            height: 17px !important;
+            color: #044b25 !important;
         }
 
         .gobike-pcard-specs .spec-badge span {
@@ -4211,31 +4211,42 @@ function gobike_custom_styles_output()
         }
 
         .gobike-product-card-v2 .card-specs-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-top: 1px dashed #e2e8f0;
-            border-bottom: 1px dashed #e2e8f0;
-            margin-bottom: 14px;
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 4px !important;
+            padding: 6px 4px !important;
+            background: #f8fafc !important;
+            border-radius: 4px !important;
+            border: 1px solid #f1f5f9 !important;
+            margin-bottom: 12px !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
         }
 
         .gobike-product-card-v2 .spec-col {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 4px !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
         }
 
         .gobike-product-card-v2 .spec-icon {
-            color: #044b25;
-            flex-shrink: 0;
+            color: #044b25 !important;
+            flex-shrink: 0 !important;
+            width: 17px !important;
+            height: 17px !important;
         }
 
         .gobike-product-card-v2 .spec-value {
-            font-size: 12px;
-            font-weight: 600;
-            color: #334155;
-            white-space: nowrap;
+            font-size: 11.5px !important;
+            font-weight: 600 !important;
+            color: #475569 !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+            min-width: 0 !important;
         }
 
         .gobike-product-card-v2 .card-actions-row {
