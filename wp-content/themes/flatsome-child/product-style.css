@@ -5829,6 +5829,114 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 /* ==========================================================================
+   GOBIKE - WHY CHOOSE SECTION (VÌ SAO CHỌN GOBIKE)
+   ========================================================================== */
+.gobike-why-choose-section {
+    background: transparent;
+    border: none;
+    padding: 10px 0 30px 0;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.gobike-why-choose-section .why-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin-bottom: 24px !important;
+    letter-spacing: -0.2px;
+}
+
+.gobike-why-choose-section .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    text-align: left;
+}
+
+.gobike-why-choose-section .why-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gobike-why-choose-section .why-item:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04) !important;
+}
+
+.gobike-why-choose-section .why-icon-wrap {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 50%;
+    background: #e8f7ee;
+    color: #044b25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.gobike-why-choose-section .why-item:hover .why-icon-wrap {
+    transform: scale(1.06);
+}
+
+.gobike-why-choose-section .why-icon-wrap svg {
+    width: 28px !important;
+    height: 28px !important;
+    stroke: currentColor;
+}
+
+.gobike-why-choose-section .why-icon-wrap img {
+    width: 28px !important;
+    height: 28px !important;
+    object-fit: contain !important;
+}
+
+.gobike-why-choose-section .why-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.gobike-why-choose-section .why-info h5 {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 0 4px 0 !important;
+    line-height: 1.35;
+}
+
+.gobike-why-choose-section .why-info p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.4;
+    margin: 0;
+}
+
+@media (max-width: 991px) {
+    .gobike-why-choose-section .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+}
+
+@media (max-width: 599px) {
+    .gobike-why-choose-section .why-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+/* ==========================================================================
    GOBIKE - SHOWROOM SECTION & CONTACT CARD (MATCHING ANH 4)
    ========================================================================== */
 .gobike-showrooms-section {

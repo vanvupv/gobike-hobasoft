@@ -1043,154 +1043,269 @@ function gobike_render_shop_brand_banner()
 }
 
 /**
- * 4. Render 3 Banner Tính Năng & Showroom Cuối Trang (Ảnh 4)
+ * 4. Render Khối "Vì sao chọn GoBike" (ACF - Không dữ liệu mẫu)
  */
-function gobike_render_shop_bottom_features()
+function gobike_render_shop_why_choose()
 {
+    $shop_page_id = get_option('woocommerce_shop_page_id');
     $current_term = get_queried_object();
     $brand_or_cat_name = '';
-    if ( $current_term && ! is_wp_error( $current_term ) && isset( $current_term->name ) ) {
+    if ($current_term && !is_wp_error($current_term) && isset($current_term->name)) {
         $brand_or_cat_name = $current_term->name;
     }
-    $why_title = ! empty( $brand_or_cat_name ) ? 'Vì sao chọn GoBike khi mua xe ' . esc_html( $brand_or_cat_name ) . '?' : 'Vì sao chọn GoBike khi mua xe đạp trợ lực điện?';
-    $brand_text = ! empty( $brand_or_cat_name ) ? esc_html( $brand_or_cat_name ) : 'chính hãng';
+
+    // 1. Đọc dữ liệu từ ACF (Ưu tiên Category -> Shop page -> Theme Settings)
+    $items = null;
+    $title = '';
+
+    if (function_exists('get_field')) {
+        if ($current_term && !empty($current_term->term_id)) {
+            $items = get_field('shop_why_choose_items', $current_term);
+            $title = get_field('shop_why_choose_title', $current_term);
+        }
+        if (empty($items) && !empty($shop_page_id)) {
+            $items = get_field('shop_why_choose_items', $shop_page_id);
+            if (empty($title)) {
+                $title = get_field('shop_why_choose_title', $shop_page_id);
+            }
+        }
+        if (empty($items)) {
+            $items = get_field('shop_why_choose_items', 'option');
+            if (empty($title)) {
+                $title = get_field('shop_why_choose_title', 'option');
+            }
+        }
+    }
+
+    // KHÔNG DỮ LIỆU MẪU: Nếu chưa nhập ACF -> Ẩn hoàn toàn khối
+    if (empty($items) || !is_array($items)) {
+        return;
+    }
+
+    // Lọc danh sách item hợp lệ
+    $valid_items = array();
+    foreach ($items as $item) {
+        $t    = trim($item['title'] ?? '');
+        $d    = trim($item['desc'] ?? '');
+        $icon = $item['icon'] ?? '';
+        $link = trim($item['link'] ?? '');
+        if (!empty($t) || !empty($d) || !empty($icon)) {
+            $icon_url = '';
+            if ($icon) {
+                $icon_url = is_array($icon) ? ($icon['url'] ?? '') : (is_numeric($icon) ? wp_get_attachment_image_url($icon, 'medium') : $icon);
+            }
+            $valid_items[] = array(
+                'title'    => $t,
+                'desc'     => $d,
+                'icon_url' => $icon_url,
+                'link'     => $link,
+            );
+        }
+    }
+
+    if (empty($valid_items)) {
+        return;
+    }
+
+    // Xử lý tiêu đề khối
+    if (empty($title)) {
+        $title = !empty($brand_or_cat_name) ? 'Vì sao chọn GoBike khi mua xe ' . esc_html($brand_or_cat_name) . '?' : 'Vì sao chọn GoBike khi mua xe đạp trợ lực điện?';
+    } else {
+        $brand_replacement = !empty($brand_or_cat_name) ? esc_html($brand_or_cat_name) : 'xe đạp trợ lực điện';
+        $title = str_replace(array('{brand}', '{name}', '{category}'), $brand_replacement, $title);
+    }
+
+    // Bộ SVG mặc định chuẩn thiết kế (Shield, Tư vấn, Lái thử, Bảo trì)
+    $fallback_svgs = array(
+        '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>',
+        '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+        '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"></circle><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="15" cy="5" r="1"></circle><path d="M12 17.5V14l-3-3 4-3 2 3h2"></path></svg>',
+        '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>',
+    );
     ?>
-    <!-- KHỐI VÌ SAO CHỌN GOBIKE (CHUẨN ẢNH 3: ICON TO TRÒN XANH NGỌC) -->
+    <!-- KHỐI VÌ SAO CHỌN GOBIKE (ACF) -->
     <div class="gobike-why-choose-section">
-        <h3 class="why-title"><?php echo esc_html($why_title); ?></h3>
+        <h3 class="why-title"><?php echo esc_html($title); ?></h3>
         <div class="why-grid">
-            <div class="why-item">
-                <div class="why-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        <path d="m9 12 2 2 4-4"></path>
-                    </svg>
-                </div>
-                <div class="why-info">
-                    <h5>Chính hãng 100%</h5>
-                    <p>Sản phẩm <?php echo esc_html($brand_text); ?> chính hãng, đầy đủ CO, CQ, xuất VAT</p>
-                </div>
-            </div>
-
-            <div class="why-item">
-                <div class="why-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                </div>
-                <div class="why-info">
-                    <h5>Tư vấn đúng nhu cầu</h5>
-                    <p>Đội ngũ am hiểu, giúp bạn chọn xe phù hợp nhất</p>
-                </div>
-            </div>
-
-            <div class="why-item">
-                <div class="why-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="18.5" cy="17.5" r="3.5"></circle>
-                        <circle cx="5.5" cy="17.5" r="3.5"></circle>
-                        <circle cx="15" cy="5" r="1"></circle>
-                        <path d="M12 17.5V14l-3-3 4-3 2 3h2"></path>
-                    </svg>
-                </div>
-                <div class="why-info">
-                    <h5>Lái thử tại showroom</h5>
-                    <p>Trải nghiệm thực tế trước khi quyết định</p>
-                </div>
-            </div>
-
-            <div class="why-item">
-                <div class="why-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                    </svg>
-                </div>
-                <div class="why-info">
-                    <h5>Bảo trì hậu mãi</h5>
-                    <p>Hỗ trợ kỹ thuật trọn đời, phụ tùng chính hãng</p>
-                </div>
-            </div>
+            <?php foreach ($valid_items as $idx => $item): ?>
+                <?php
+                $has_link = !empty($item['link']);
+                $tag = $has_link ? 'a' : 'div';
+                $href_attr = $has_link ? ' href="' . esc_url($item['link']) . '"' : '';
+                $svg_code = $fallback_svgs[$idx % count($fallback_svgs)];
+                ?>
+                <<?php echo $tag; ?> class="why-item"<?php echo $href_attr; ?>>
+                    <div class="why-icon-wrap">
+                        <?php if (!empty($item['icon_url'])): ?>
+                            <img src="<?php echo esc_url($item['icon_url']); ?>" alt="<?php echo esc_attr($item['title']); ?>" style="width:28px;height:28px;object-fit:contain;" loading="lazy" />
+                        <?php else: ?>
+                            <?php echo $svg_code; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="why-info">
+                        <?php if (!empty($item['title'])): ?>
+                            <h5><?php echo esc_html($item['title']); ?></h5>
+                        <?php endif; ?>
+                        <?php if (!empty($item['desc'])): ?>
+                            <p><?php echo esc_html($item['desc']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </<?php echo $tag; ?>>
+            <?php endforeach; ?>
         </div>
     </div>
-
-    <!-- HỆ THỐNG SHOWROOM GOBIKE (CHUẨN ẢNH 4 & ĐỊA CHỈ YÊU CẦU) -->
     <?php
-    $theme_uri = get_stylesheet_directory_uri();
-    $img_hn = $theme_uri . '/assets/images/showroom-hanoi.jpg';
-    $img_pt = $theme_uri . '/assets/images/showroom-phutho.jpg';
-    $img_bn = $theme_uri . '/assets/images/showroom-bacninh.jpg';
+}
+
+/**
+ * 5. Render Khối "Hệ thống Showroom" (ACF - Không dữ liệu mẫu)
+ */
+function gobike_render_shop_showrooms()
+{
+    $shop_page_id = get_option('woocommerce_shop_page_id');
+    $current_term = get_queried_object();
+    $brand_or_cat_name = '';
+    if ($current_term && !is_wp_error($current_term) && isset($current_term->name)) {
+        $brand_or_cat_name = $current_term->name;
+    }
+
+    // 1. Đọc dữ liệu từ ACF
+    $showrooms     = null;
+    $title         = '';
+    $subtitle      = '';
+    $hotline_label = '';
+    $hotline       = '';
+    $hotline_time  = '';
+    $btn_text      = '';
+    $btn_link      = '';
+
+    if (function_exists('get_field')) {
+        if ($current_term && !empty($current_term->term_id)) {
+            $showrooms = get_field('shop_showroom_list', $current_term);
+            $title     = get_field('shop_showroom_title', $current_term);
+            $subtitle  = get_field('shop_showroom_subtitle', $current_term);
+        }
+        if (empty($showrooms) && !empty($shop_page_id)) {
+            $showrooms     = get_field('shop_showroom_list', $shop_page_id);
+            $title         = get_field('shop_showroom_title', $shop_page_id);
+            $subtitle      = get_field('shop_showroom_subtitle', $shop_page_id);
+            $hotline_label = get_field('shop_showroom_hotline_label', $shop_page_id);
+            $hotline       = get_field('shop_showroom_hotline', $shop_page_id);
+            $hotline_time  = get_field('shop_showroom_hotline_time', $shop_page_id);
+            $btn_text      = get_field('shop_showroom_btn_text', $shop_page_id);
+            $btn_link      = get_field('shop_showroom_btn_link', $shop_page_id);
+        }
+        if (empty($showrooms)) {
+            $showrooms     = get_field('shop_showroom_list', 'option');
+            if (empty($title))         $title         = get_field('shop_showroom_title', 'option');
+            if (empty($subtitle))      $subtitle      = get_field('shop_showroom_subtitle', 'option');
+            if (empty($hotline_label)) $hotline_label = get_field('shop_showroom_hotline_label', 'option');
+            if (empty($hotline))       $hotline       = get_field('shop_showroom_hotline', 'option');
+            if (empty($hotline_time))  $hotline_time  = get_field('shop_showroom_hotline_time', 'option');
+            if (empty($btn_text))      $btn_text      = get_field('shop_showroom_btn_text', 'option');
+            if (empty($btn_link))      $btn_link      = get_field('shop_showroom_btn_link', 'option');
+        }
+    }
+
+    // KHÔNG DỮ LIỆU MẪU: Nếu chưa nhập showroom -> Ẩn hoàn toàn khối
+    if (empty($showrooms) || !is_array($showrooms)) {
+        return;
+    }
+
+    // Lọc danh sách showroom hợp lệ
+    $valid_showrooms = array();
+    foreach ($showrooms as $sr) {
+        $city = trim($sr['city'] ?? '');
+        $addr = trim($sr['address'] ?? '');
+        $img  = $sr['image'] ?? '';
+        if (!empty($city) || !empty($addr) || !empty($img)) {
+            $img_url = '';
+            if ($img) {
+                $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'large') : $img);
+            }
+            $valid_showrooms[] = array(
+                'city'    => $city,
+                'address' => $addr,
+                'hours'   => trim($sr['hours'] ?? ''),
+                'badge'   => trim($sr['badge'] ?? ''),
+                'img_url' => $img_url,
+                'link'    => trim($sr['link'] ?? ''),
+            );
+        }
+    }
+
+    if (empty($valid_showrooms)) {
+        return;
+    }
+
+    // Tiêu đề & Slogan phụ
+    if (empty($title)) {
+        $title = 'Hệ thống showroom GoBike';
+    }
+    if (empty($subtitle)) {
+        $brand_replacement = !empty($brand_or_cat_name) ? esc_html($brand_or_cat_name) : 'xe';
+        $subtitle = 'Đến trải nghiệm trực tiếp các mẫu xe ' . $brand_replacement . ' tại cửa hàng gần bạn';
+    } else {
+        $brand_replacement = !empty($brand_or_cat_name) ? esc_html($brand_or_cat_name) : 'xe';
+        $subtitle = str_replace(array('{brand}', '{name}', '{category}'), $brand_replacement, $subtitle);
+    }
+
+    // Dữ liệu mặc định cho hộp Hotline nếu để trống
+    if (empty($hotline_label)) $hotline_label = 'Hotline tư vấn';
+    if (empty($hotline))       $hotline       = '0944 988 699';
+    if (empty($hotline_time))  $hotline_time  = '8:00 - 22:00 (Tất cả các ngày)';
+    if (empty($btn_text))      $btn_text      = 'Tìm đường đến cửa hàng ➔';
+    if (empty($btn_link))      $btn_link      = home_url('/he-thong-cua-hang/');
+    $hotline_clean = preg_replace('/[^0-9]/', '', $hotline);
     ?>
+    <!-- HỆ THỐNG SHOWROOM GOBIKE (ACF) -->
     <div class="gobike-showrooms-section">
-        <h3 class="showroom-title">Hệ thống showroom GoBike</h3>
-        <p class="showroom-subtitle">Đón tiếp trải nghiệm trực tiếp các mẫu xe tại showroom gần bạn</p>
+        <h3 class="showroom-title"><?php echo esc_html($title); ?></h3>
+        <?php if (!empty($subtitle)): ?>
+            <p class="showroom-subtitle"><?php echo esc_html($subtitle); ?></p>
+        <?php endif; ?>
+        
         <div class="showroom-grid">
-            <div class="showroom-card has-thumb">
-                <div class="showroom-thumb">
-                    <img src="<?php echo esc_url($img_hn); ?>" alt="CS1 TỔNG KHO HÀ NỘI" loading="lazy" />
-                    <span class="showroom-badge">CS1</span>
-                </div>
-                <div class="showroom-info">
-                    <h5>
-                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Hà Nội
-                    </h5>
-                    <p class="showroom-address">71 Trần Đăng Ninh, Phường Hà Đông, Hà Nội</p>
-                    <span class="open-time">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>8:00 - 21:00 hàng ngày
-                    </span>
-                </div>
-            </div>
-            <div class="showroom-card has-thumb">
-                <div class="showroom-thumb">
-                    <img src="<?php echo esc_url($img_pt); ?>" alt="CS2 TỔNG KHO PHÚ THỌ" loading="lazy" />
-                    <span class="showroom-badge">CS2</span>
-                </div>
-                <div class="showroom-info">
-                    <h5>
-                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Phú Thọ
-                    </h5>
-                    <p class="showroom-address">47 Mã Lao, Phường Việt Trì, Phú Thọ</p>
-                    <span class="open-time">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>8:00 - 21:00 hàng ngày
-                    </span>
-                </div>
-            </div>
-            <div class="showroom-card has-thumb">
-                <div class="showroom-thumb">
-                    <img src="<?php echo esc_url($img_bn); ?>" alt="CS3 TỔNG KHO BẮC NINH" loading="lazy" />
-                    <span class="showroom-badge">CS3</span>
-                </div>
-                <div class="showroom-info">
-                    <h5>
-                        <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                        Bắc Ninh
-                    </h5>
-                    <p class="showroom-address">567 Nguyễn Trãi, Phường Khắc Niệm, Bắc Ninh</p>
-                    <span class="open-time">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>8:00 - 21:00 hàng ngày
-                    </span>
-                </div>
-            </div>
+            <?php foreach ($valid_showrooms as $sr): ?>
+                <?php
+                $has_link = !empty($sr['link']);
+                $card_tag = $has_link ? 'a' : 'div';
+                $card_href = $has_link ? ' href="' . esc_url($sr['link']) . '"' : '';
+                ?>
+                <<?php echo $card_tag; ?> class="showroom-card has-thumb"<?php echo $card_href; ?>>
+                    <?php if (!empty($sr['img_url'])): ?>
+                        <div class="showroom-thumb">
+                            <img src="<?php echo esc_url($sr['img_url']); ?>" alt="<?php echo esc_attr($sr['city'] ? $sr['city'] : 'Showroom GoBike'); ?>" loading="lazy" />
+                            <?php if (!empty($sr['badge'])): ?>
+                                <span class="showroom-badge"><?php echo esc_html($sr['badge']); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="showroom-info">
+                        <?php if (!empty($sr['city'])): ?>
+                            <h5>
+                                <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <?php echo esc_html($sr['city']); ?>
+                            </h5>
+                        <?php endif; ?>
+                        <?php if (!empty($sr['address'])): ?>
+                            <p class="showroom-address"><?php echo esc_html($sr['address']); ?></p>
+                        <?php endif; ?>
+                        <?php if (!empty($sr['hours'])): ?>
+                            <span class="open-time">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg><?php echo esc_html($sr['hours']); ?>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                </<?php echo $card_tag; ?>>
+            <?php endforeach; ?>
+
+            <!-- HỘP THÔNG TIN HOTLINE & TÌM ĐƯỜNG (CARD THỨ 4) -->
             <div class="showroom-card card-contact">
                 <div class="contact-card-top">
                     <div class="contact-card-icon">
@@ -1203,16 +1318,26 @@ function gobike_render_shop_bottom_features()
                         </svg>
                     </div>
                     <div class="contact-card-info">
-                        <span class="hotline-label">Hotline tư vấn</span>
-                        <a href="tel:0944988699" class="hotline-number">0944 988 699</a>
-                        <span class="hotline-time">8:00 - 22:00 (Tất cả các ngày)</span>
+                        <span class="hotline-label"><?php echo esc_html($hotline_label); ?></span>
+                        <a href="tel:<?php echo esc_attr($hotline_clean); ?>" class="hotline-number"><?php echo esc_html($hotline); ?></a>
+                        <span class="hotline-time"><?php echo esc_html($hotline_time); ?></span>
                     </div>
                 </div>
-                <a href="<?php echo home_url('/he-thong-cua-hang/'); ?>" class="map-link-btn">Tìm đường đến cửa hàng ➔</a>
+                <a href="<?php echo esc_url($btn_link); ?>" class="map-link-btn"><?php echo esc_html($btn_text); ?></a>
             </div>
         </div>
     </div>
     <?php
 }
+
+/**
+ * 6. Wrapper hiển thị cả 2 khối cuối trang (Dành cho footer hoặc shortcode nếu cần)
+ */
+function gobike_render_shop_bottom_features()
+{
+    gobike_render_shop_why_choose();
+    gobike_render_shop_showrooms();
+}
+
 
 
