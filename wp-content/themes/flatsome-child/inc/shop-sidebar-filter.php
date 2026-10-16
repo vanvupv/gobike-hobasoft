@@ -870,67 +870,41 @@ function gobike_render_shop_trust_badges()
         }
     }
 
-    $default_badges = array(
-        array(
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>',
-            'title' => 'Chính hãng 100%',
-            'desc'  => 'Đầy đủ CO, CQ',
-            'link'  => '',
-        ),
-        array(
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>',
-            'title' => 'Bảo hành 12 - 24 tháng',
-            'desc'  => 'An tâm sử dụng',
-            'link'  => '',
-        ),
-        array(
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>',
-            'title' => 'Trả góp 0%',
-            'desc'  => 'Thủ tục nhanh gọn',
-            'link'  => '',
-        ),
-        array(
-            'svg'   => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>',
-            'title' => 'Giao hàng toàn quốc',
-            'desc'  => 'Nhanh chóng - An toàn',
-            'link'  => '',
-        ),
+    if (empty($badges) || !is_array($badges)) {
+        return;
+    }
+
+    $default_svgs = array(
+        '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>',
+        '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>',
+        '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>',
+        '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>',
     );
 
     $items_to_render = array();
-    if (!empty($badges) && is_array($badges)) {
-        foreach ($badges as $idx => $b) {
-            $t = trim($b['title'] ?? '');
-            $d = trim($b['desc'] ?? '');
-            $img = $b['icon'] ?? '';
-            $link = trim($b['link'] ?? '');
-            if (!empty($t) || !empty($d) || !empty($img)) {
-                $icon_url = '';
-                if ($img) {
-                    $icon_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'thumbnail') : $img);
-                }
-                $fallback_svg = $default_badges[$idx]['svg'] ?? $default_badges[0]['svg'];
-                $items_to_render[] = array(
-                    'icon_url' => $icon_url,
-                    'svg'      => $fallback_svg,
-                    'title'    => $t ?: ($default_badges[$idx]['title'] ?? ''),
-                    'desc'     => $d ?: ($default_badges[$idx]['desc'] ?? ''),
-                    'link'     => $link,
-                );
+    foreach ($badges as $idx => $b) {
+        $t = trim($b['title'] ?? '');
+        $d = trim($b['desc'] ?? '');
+        $img = $b['icon'] ?? '';
+        $link = trim($b['link'] ?? '');
+        if (!empty($t) || !empty($d) || !empty($img)) {
+            $icon_url = '';
+            if ($img) {
+                $icon_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'thumbnail') : $img);
             }
+            $fallback_svg = $default_svgs[$idx % count($default_svgs)];
+            $items_to_render[] = array(
+                'icon_url' => $icon_url,
+                'svg'      => $fallback_svg,
+                'title'    => $t,
+                'desc'     => $d,
+                'link'     => $link,
+            );
         }
     }
 
     if (empty($items_to_render)) {
-        foreach ($default_badges as $db) {
-            $items_to_render[] = array(
-                'icon_url' => '',
-                'svg'      => $db['svg'],
-                'title'    => $db['title'],
-                'desc'     => $db['desc'],
-                'link'     => '',
-            );
-        }
+        return;
     }
     ?>
     <div class="gobike-shop-trust-badges-bar">

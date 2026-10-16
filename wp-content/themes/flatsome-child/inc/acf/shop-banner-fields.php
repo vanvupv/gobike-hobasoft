@@ -146,7 +146,7 @@ function gobike_register_shop_page_acf_fields()
                 'label' => 'Thông tin 4 khối nổi bật',
                 'name' => '',
                 'type' => 'message',
-                'message' => '<em>Dải 4 khối nổi bật nằm ngay dưới banner lớn ở trang sản phẩm (Ví dụ: Chính hãng 100%, Bảo hành 12 - 24 tháng, Trả góp 0%, Giao hàng toàn quốc). Nếu để trống, hệ thống sẽ tự động hiển thị 4 cam kết chuẩn mặc định của GoBike.</em>',
+                'message' => '<em>Dải 4 khối nổi bật nằm ngay dưới banner lớn ở trang sản phẩm (Ví dụ: Chính hãng 100%, Bảo hành 12 - 24 tháng, Trả góp 0%, Giao hàng toàn quốc). Nếu để trống không nhập, khối này sẽ được ẩn hoàn toàn trên website.</em>',
             ),
             array(
                 'key' => 'field_shop_trust_badges',
@@ -170,11 +170,10 @@ function gobike_register_shop_page_acf_fields()
                     ),
                     array(
                         'key' => 'field_shop_trust_badge_title',
-                        'label' => 'Tiêu đề *',
+                        'label' => 'Tiêu đề',
                         'name' => 'title',
                         'type' => 'text',
                         'placeholder' => 'Vd: Chính hãng 100%',
-                        'required' => 1,
                         'wrapper' => array('width' => '25'),
                     ),
                     array(
