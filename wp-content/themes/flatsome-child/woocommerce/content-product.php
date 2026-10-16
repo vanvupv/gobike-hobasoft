@@ -63,19 +63,19 @@ $has_specs = (!empty($specs['range']) || !empty($specs['weight']) || !empty($spe
 		<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 		
 		<div class="gobike-product-card-v2">
-			<!-- HUY HIỆU BADGE (TOP-LEFT CHUẨN ẢNH 2) -->
-			<div class="card-badge-wrap">
-				<span class="badge-hot">Bán chạy</span>
-			</div>
-
-			<!-- ẢNH ĐẠI DIỆN SẢN PHẨM -->
+			<!-- ẢNH ĐẠI DIỆN SẢN PHẨM (TỈ LỆ 1x1, GIỮ NGUYÊN KÍCH THƯỚC KHI KHÔNG CÓ ẢNH) -->
 			<div class="card-image-wrap">
 				<a href="<?php echo esc_url($permalink); ?>" title="<?php echo esc_attr($title); ?>">
 					<?php
 					if (has_post_thumbnail($pid)) {
 						echo get_the_post_thumbnail($pid, 'woocommerce_thumbnail', array('class' => 'bike-thumb-img', 'loading' => 'lazy'));
 					} else {
-						echo '<img src="' . esc_url(wc_placeholder_img_src()) . '" alt="' . esc_attr($title) . '" class="bike-thumb-img" />';
+						$placeholder_url = wc_placeholder_img_src('woocommerce_thumbnail');
+						if (!empty($placeholder_url)) {
+							echo '<img src="' . esc_url($placeholder_url) . '" alt="' . esc_attr($title) . '" class="bike-thumb-img placeholder-img" loading="lazy" />';
+						} else {
+							echo '<div class="no-thumb-placeholder"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
+						}
 					}
 					?>
 				</a>

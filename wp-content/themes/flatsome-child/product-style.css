@@ -1402,16 +1402,24 @@ div.review_vote {
     padding: 8px !important;
 }
 
+.gobike-product-card-v2 .card-badge-wrap,
+.gobike-product-card-v2 .badge-hot {
+    display: none !important;
+}
+
 .gobike-product-card-v2 .card-image-wrap {
     position: relative !important;
     width: 100% !important;
-    padding-bottom: 100% !important; /* Tỉ lệ 1x1 chuẩn */
-    height: 0 !important;
+    aspect-ratio: 1 / 1 !important; /* Tỉ lệ 1x1 chuẩn */
+    height: auto !important;
     overflow: hidden !important;
     border-radius: 8px !important;
-    background: #f8fafc !important;
+    background: #f1f5f9 !important;
     margin-bottom: 8px !important;
     padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .gobike-product-card-v2 .card-image-wrap a {
@@ -1420,7 +1428,9 @@ div.review_vote {
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .gobike-product-card-v2 .bike-thumb-img {
@@ -1439,6 +1449,15 @@ div.review_vote {
 
 .gobike-product-card-v2:hover .bike-thumb-img {
     transform: scale(1.05);
+}
+
+.gobike-product-card-v2 .no-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
 }
 
 .archive .products.row .gobike-product-card-v2 .card-info-wrap,
@@ -5061,25 +5080,30 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     box-shadow: 0 4px 12px rgba(4, 75, 37, 0.08) !important;
 }
 
-/* Khung ảnh sản phẩm dùng padding-bottom tỉ lệ 1x1 bo viền 8px */
+/* Khung ảnh sản phẩm tỉ lệ 1x1 bo viền 8px */
 .rel-card-image {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* Tỉ lệ 1x1 chuẩn */
-    height: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    background: #f8fafc;
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important; /* Tỉ lệ 1x1 chuẩn */
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+    background: #f1f5f9 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .rel-card-image a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    padding: 0;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
 }
 
 .rel-card-image a img {
