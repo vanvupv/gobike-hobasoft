@@ -1398,6 +1398,47 @@ div.review_vote {
     display: flex !important;
     flex-direction: column !important;
     flex: 1 1 auto !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+}
+
+.gobike-product-card-v2 .card-image-wrap {
+    position: relative !important;
+    width: 100% !important;
+    padding-bottom: 100% !important; /* Tỉ lệ 1x1 chuẩn */
+    height: 0 !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+    background: #f8fafc !important;
+    margin-bottom: 8px !important;
+    padding: 0 !important;
+}
+
+.gobike-product-card-v2 .card-image-wrap a {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.gobike-product-card-v2 .bike-thumb-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    display: block !important;
+    transition: transform 0.35s ease;
+}
+
+.gobike-product-card-v2:hover .bike-thumb-img {
+    transform: scale(1.05);
 }
 
 .archive .products.row .gobike-product-card-v2 .card-info-wrap,
@@ -1405,6 +1446,7 @@ div.review_vote {
     display: flex !important;
     flex-direction: column !important;
     flex: 1 1 auto !important;
+    padding: 4px 4px 6px !important;
 }
 
 .archive .products.row .gobike-product-card-v2 .card-product-title,
@@ -5004,7 +5046,8 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .rel-card-box {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 10px;
+    border-radius: 8px;
+    padding: 8px;
     overflow: hidden;
     box-shadow: none !important;
     transition: all 0.25s ease;
@@ -5018,13 +5061,15 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     box-shadow: 0 4px 12px rgba(4, 75, 37, 0.08) !important;
 }
 
-/* Hình ảnh sản phẩm dùng padding-bottom thay vì width/height cố định */
+/* Khung ảnh sản phẩm dùng padding-bottom tỉ lệ 1x1 bo viền 8px */
 .rel-card-image {
     position: relative;
     width: 100%;
-    padding-bottom: 78%; /* Tỉ lệ responsive tự co giãn */
+    padding-bottom: 100%; /* Tỉ lệ 1x1 chuẩn */
+    height: 0;
     overflow: hidden;
-    background: #ffffff;
+    border-radius: 8px;
+    background: #f8fafc;
 }
 
 .rel-card-image a {
@@ -5033,18 +5078,20 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
+    display: block;
+    padding: 0;
 }
 
 .rel-card-image a img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
     max-width: 100%;
     max-height: 100%;
-    width: auto !important;
-    height: auto !important;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 8px;
     transition: transform 0.3s ease;
 }
 

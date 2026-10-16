@@ -1533,7 +1533,7 @@ function gobike_custom_styles_output()
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 10px 10px 12px 10px;
+            padding: 8px;
             display: flex !important;
             flex-direction: column !important;
             position: relative;
@@ -1542,6 +1542,7 @@ function gobike_custom_styles_output()
             box-sizing: border-box;
             transition: all 0.25s ease;
             flex: 1 1 auto !important;
+            overflow: hidden;
         }
 
         .gobike-pcard:hover {
@@ -1553,9 +1554,9 @@ function gobike_custom_styles_output()
         /* Badge giảm giá góc trên trái */
         .gobike-card-discount {
             position: absolute;
-            top: 8px;
-            left: 8px;
-            z-index: 2;
+            top: 14px;
+            left: 14px;
+            z-index: 5;
             background: #e5101d;
             color: #fff;
             font-size: 11px;
@@ -1566,34 +1567,38 @@ function gobike_custom_styles_output()
             box-shadow: none !important;
         }
 
-        /* Khung ảnh xe đạp */
+        /* Khung ảnh xe đạp dùng padding-bottom tỉ lệ 1x1 bo viền 8px */
         .gobike-pcard-thumb {
+            position: relative;
             width: 100%;
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding-bottom: 100%;
+            height: 0;
             margin-bottom: 8px;
             overflow: hidden;
-            background: #ffffff;
-            /* padding: 8px; */
+            border-radius: 8px;
+            background: #f8fafc;
             box-sizing: border-box;
         }
 
         .gobike-pcard-thumb a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            display: block;
         }
 
         .gobike-pcard-thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 8px;
             display: block;
             margin: 0 auto;
             transition: transform 0.3s ease;
@@ -2132,18 +2137,42 @@ function gobike_custom_styles_output()
 
         .gobike-flashsale-item .item-thumb {
             position: relative;
-            text-align: center;
+            width: 100%;
+            padding-bottom: 100%;
+            height: 0;
             margin-bottom: 10px;
             overflow: hidden;
-            border-radius: 6px;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        .gobike-flashsale-item .item-thumb a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .gobike-flashsale-item .item-thumb img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
             max-width: 100%;
-            height: 160px;
-            object-fit: contain;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
             transition: transform 0.3s ease;
+        }
+
+        .gobike-flashsale-item .item-thumb .sale-badge-pill {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 5;
         }
 
         .gobike-flashsale-item .item-title {
@@ -3310,36 +3339,40 @@ function gobike_custom_styles_output()
         }
 
         .gobike-related-wrapper .product-small .box-image {
-            padding: 10px 4px !important;
-            height: 150px !important;
-            max-height: 150px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
             position: relative !important;
+            width: 100% !important;
+            padding-bottom: 100% !important;
+            height: 0 !important;
+            max-height: none !important;
             overflow: hidden !important;
-            background: transparent !important;
-            margin-bottom: 5px !important;
+            border-radius: 8px !important;
+            background: #f8fafc !important;
+            margin-bottom: 8px !important;
+            padding: 0 !important;
         }
 
         .gobike-related-wrapper .product-small .box-image a,
         .gobike-related-wrapper .product-small .box-image .image-none {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
             width: 100% !important;
             height: 100% !important;
+            display: block !important;
         }
 
         .gobike-related-wrapper .product-small .box-image img,
         .gobike-related-wrapper .swiper-slide img {
-            max-height: 135px !important;
-            width: auto !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
             max-width: 100% !important;
-            margin: 0 auto !important;
-            object-fit: contain !important;
+            max-height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 8px !important;
             display: block !important;
-            position: static !important;
             transition: transform 0.3s ease !important;
         }
 
@@ -4025,7 +4058,7 @@ function gobike_custom_styles_output()
         .gobike-product-card-v2 {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 8px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -4033,6 +4066,7 @@ function gobike_custom_styles_output()
             flex: 1 1 auto;
             transition: all 0.25s ease-in-out;
             overflow: hidden;
+            padding: 8px;
         }
 
         .gobike-product-card-v2:hover {
@@ -4043,8 +4077,8 @@ function gobike_custom_styles_output()
 
         .gobike-product-card-v2 .card-badge-wrap {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 14px;
+            left: 14px;
             z-index: 5;
         }
 
@@ -4060,37 +4094,48 @@ function gobike_custom_styles_output()
             box-shadow: none !important;
         }
 
+        /* Khung ảnh dùng padding-bottom tỉ lệ 1x1 bo viền 8px */
         .gobike-product-card-v2 .card-image-wrap {
-            padding: 20px 15px 10px;
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 8px;
+            padding: 0;
         }
 
         .gobike-product-card-v2 .card-image-wrap a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            display: block;
         }
 
         .gobike-product-card-v2 .bike-thumb-img {
-            max-height: 100%;
-            width: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             max-width: 100%;
-            object-fit: contain;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
             transition: transform 0.35s ease;
         }
 
         .gobike-product-card-v2:hover .bike-thumb-img {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
         .gobike-product-card-v2 .card-info-wrap {
-            padding: 10px 14px 16px;
+            padding: 4px 4px 8px;
             display: flex;
             flex-direction: column;
             flex: 1;
