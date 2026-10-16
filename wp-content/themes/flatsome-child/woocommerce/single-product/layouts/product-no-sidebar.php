@@ -269,11 +269,6 @@ jQuery(document).ready(function($) {
                 }, 100);
             }
 
-            // Cuộn mượt mà đến đầu nội dung tab
-            $('html, body').animate({
-                scrollTop: $('#gobikeProductTabsSection').offset().top - 70
-            }, 300);
-
             // Nếu bấm viết đánh giá, mở form và focus vào textarea bình luận
             if ($(this).hasClass('btn-write-review-outline') || $(this).hasClass('btn-write-review') || $(this).hasClass('btn-write-review-now')) {
                 setTimeout(function() {
