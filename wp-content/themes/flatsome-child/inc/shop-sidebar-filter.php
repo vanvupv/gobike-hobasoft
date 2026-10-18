@@ -1615,45 +1615,47 @@ function gobike_render_shop_showrooms()
         <?php endif; ?>
         
         <div class="showroom-grid">
-            <?php foreach ($valid_showrooms as $sr): ?>
-                <?php
-                $has_link = !empty($sr['link']);
-                $card_tag = $has_link ? 'a' : 'div';
-                $card_href = $has_link ? ' href="' . esc_url($sr['link']) . '"' : '';
-                ?>
-                <<?php echo $card_tag; ?> class="showroom-card has-thumb"<?php echo $card_href; ?>>
-                    <?php if (!empty($sr['img_url'])): ?>
-                        <div class="showroom-thumb">
-                            <img src="<?php echo esc_url($sr['img_url']); ?>" alt="<?php echo esc_attr($sr['city'] ? $sr['city'] : 'Showroom GoBike'); ?>" loading="lazy" />
-                            <?php if (!empty($sr['badge'])): ?>
-                                <span class="showroom-badge"><?php echo esc_html($sr['badge']); ?></span>
+            <div class="showroom-cards-col">
+                <?php foreach ($valid_showrooms as $sr): ?>
+                    <?php
+                    $has_link = !empty($sr['link']);
+                    $card_tag = $has_link ? 'a' : 'div';
+                    $card_href = $has_link ? ' href="' . esc_url($sr['link']) . '"' : '';
+                    ?>
+                    <<?php echo $card_tag; ?> class="showroom-card has-thumb"<?php echo $card_href; ?>>
+                        <?php if (!empty($sr['img_url'])): ?>
+                            <div class="showroom-thumb">
+                                <img src="<?php echo esc_url($sr['img_url']); ?>" alt="<?php echo esc_attr($sr['city'] ? $sr['city'] : 'Showroom GoBike'); ?>" loading="lazy" />
+                                <?php if (!empty($sr['badge'])): ?>
+                                    <span class="showroom-badge"><?php echo esc_html($sr['badge']); ?></span>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="showroom-info">
+                            <?php if (!empty($sr['city'])): ?>
+                                <div class="showroom-name-row">
+                                    <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <h5 class="showroom-name"><?php echo esc_html($sr['city']); ?></h5>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!empty($sr['address'])): ?>
+                                <p class="showroom-address"><?php echo esc_html($sr['address']); ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($sr['hours'])): ?>
+                                <div class="open-time">
+                                    <svg class="showroom-clock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span><?php echo esc_html($sr['hours']); ?></span>
+                                </div>
                             <?php endif; ?>
                         </div>
-                    <?php endif; ?>
-                    <div class="showroom-info">
-                        <?php if (!empty($sr['city'])): ?>
-                            <div class="showroom-name-row">
-                                <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                                <h5 class="showroom-name"><?php echo esc_html($sr['city']); ?></h5>
-                            </div>
-                        <?php endif; ?>
-                        <?php if (!empty($sr['address'])): ?>
-                            <p class="showroom-address"><?php echo esc_html($sr['address']); ?></p>
-                        <?php endif; ?>
-                        <?php if (!empty($sr['hours'])): ?>
-                            <div class="open-time">
-                                <svg class="showroom-clock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <span><?php echo esc_html($sr['hours']); ?></span>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </<?php echo $card_tag; ?>>
-            <?php endforeach; ?>
+                    </<?php echo $card_tag; ?>>
+                <?php endforeach; ?>
+            </div>
 
             <!-- HỘP THÔNG TIN HOTLINE & TÌM ĐƯỜNG (CARD THỨ 4) -->
             <div class="showroom-card card-contact">

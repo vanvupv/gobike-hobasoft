@@ -5122,10 +5122,21 @@ function gobike_custom_styles_output()
 
         .gobike-showrooms-section .showroom-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 3fr 1fr;
             gap: 16px;
             text-align: left;
+            align-items: start;
+        }
+
+        .gobike-showrooms-section .showroom-cards-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            gap: 16px;
             align-items: stretch;
+        }
+
+        .gobike-showrooms-section .showroom-cards-col .showroom-card {
+            height: 100%;
         }
 
         .gobike-showrooms-section .showroom-card {
@@ -5470,13 +5481,20 @@ function gobike_custom_styles_output()
             }
 
             .gobike-showrooms-section .showroom-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .gobike-showrooms-section .showroom-cards-col {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
             }
         }
 
         @media (max-width: 549px) {
-            .gobike-showrooms-section .showroom-grid {
+            .gobike-showrooms-section .showroom-cards-col {
                 grid-template-columns: 1fr;
+                gap: 12px;
             }
         }
 

@@ -6081,10 +6081,21 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-showrooms-section .showroom-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 3fr 1fr;
     gap: 16px;
     text-align: left;
+    align-items: start;
+}
+
+.gobike-showrooms-section .showroom-cards-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 16px;
     align-items: stretch;
+}
+
+.gobike-showrooms-section .showroom-cards-col .showroom-card {
+    height: 100%;
 }
 
 .gobike-showrooms-section .showroom-card {
@@ -6295,6 +6306,10 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 @media (max-width: 991px) {
     .gobike-showrooms-section .showroom-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .gobike-showrooms-section .showroom-cards-col {
         grid-template-columns: repeat(2, 1fr);
         gap: 14px;
     }
@@ -6302,9 +6317,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 @media (max-width: 599px) {
     .gobike-showrooms-section {
-        padding: 24px 16px;
+        padding: 24px 0 !important;
     }
-    .gobike-showrooms-section .showroom-grid {
+    .gobike-showrooms-section .showroom-cards-col {
         grid-template-columns: 1fr;
         gap: 12px;
     }
