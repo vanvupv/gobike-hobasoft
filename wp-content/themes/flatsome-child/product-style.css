@@ -2633,6 +2633,108 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 /* ==========================================================================
+   2.5. TOOLBAR SẢN PHẨM & DROPDOWN SẮP XẾP (DESKTOP)
+   ========================================================================== */
+.gobike-shop-toolbar {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 16px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.gobike-shop-toolbar .toolbar-result-count {
+    font-size: 14px;
+    color: #475569;
+    font-weight: 400;
+}
+
+.gobike-shop-toolbar .toolbar-result-count strong {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.gobike-shop-toolbar .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gobike-shop-toolbar .sort-prefix-label {
+    font-size: 14px;
+    color: #475569;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.gobike-shop-toolbar .gobike-ordering-form,
+.gobike-shop-toolbar .custom-ordering-form {
+    display: inline-flex !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+.gobike-shop-toolbar .sort-select-wrapper {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.gobike-shop-toolbar .sort-select-wrapper::after,
+.gobike-shop-toolbar .sort-select-wrapper::before {
+    display: none !important;
+    content: none !important;
+}
+
+.gobike-shop-toolbar select.orderby,
+.gobike-shop-toolbar select {
+    display: inline-block !important;
+    height: 38px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 0 34px 0 14px !important;
+    color: #1e293b !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    background: #ffffff !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    cursor: pointer !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    min-width: 140px !important;
+    line-height: 36px !important;
+    transition: border-color 0.2s ease !important;
+}
+
+.gobike-shop-toolbar select.orderby::-ms-expand {
+    display: none !important;
+}
+
+.gobike-shop-toolbar select.orderby:hover,
+.gobike-shop-toolbar select.orderby:focus {
+    border-color: #044b25 !important;
+}
+
+.gobike-shop-toolbar .sort-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* ==========================================================================
    3. GIAO DIỆN TABLET & MOBILE (<= 860px) - CHUẨN ẢNH 1 & ẢNH 2
    ========================================================================== */
 @media screen and (max-width: 860px) {

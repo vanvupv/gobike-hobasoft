@@ -132,7 +132,7 @@ do_action( 'woocommerce_archive_description' );
 								<?php
 								$current_orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
 								?>
-								<select name="orderby" class="orderby" aria-label="Sắp xếp sản phẩm" onchange="this.form.submit()">
+								<select name="orderby" class="orderby" aria-label="Sắp xếp sản phẩm" onchange="this.form.submit()" style="appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: none;">
 									<option value="date" <?php selected($current_orderby, 'date'); ?>>Hàng mới</option>
 									<option value="price" <?php selected($current_orderby, 'price'); ?>>Giá thấp đến cao</option>
 									<option value="price-desc" <?php selected($current_orderby, 'price-desc'); ?>>Giá cao xuống thấp</option>
