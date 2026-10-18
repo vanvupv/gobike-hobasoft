@@ -865,6 +865,18 @@ function gobike_render_shop_sidebar_filter()
     $total_count = isset($wp_query->found_posts) ? $wp_query->found_posts : 0;
     $reset_all_url = strtok($_SERVER["REQUEST_URI"], '?');
 
+    // Đếm số lượng tiêu chí đang được chọn (Cách 2)
+    $selected_criteria_count = 0;
+    if ($min_price > 0 || $max_price > 0) {
+        $selected_criteria_count++;
+    }
+    $selected_criteria_count += count($dong_xe_selected);
+    $selected_criteria_count += count($nhu_cau_selected);
+    $selected_criteria_count += count($quang_duong_selected);
+    $selected_criteria_count += count($trong_luong_selected);
+    $selected_criteria_count += count($cong_suat_selected);
+    $apply_btn_text = $selected_criteria_count > 0 ? 'Áp dụng bộ lọc (' . $selected_criteria_count . ')' : 'Áp dụng bộ lọc';
+
     $is_nhu_cau_open    = !empty($nhu_cau_selected);
     $is_quang_duong_open = !empty($quang_duong_selected);
     $is_trong_luong_open = !empty($trong_luong_selected);
@@ -1071,7 +1083,7 @@ function gobike_render_shop_sidebar_filter()
             <!-- THANH THAO TÁC STICKY ĐÁY (CHUẨN ẢNH 2) -->
             <div class="filter-action-sticky-footer">
                 <a href="<?php echo esc_url($reset_all_url); ?>" class="filter-footer-btn-reset">Xóa lọc</a>
-                <button type="submit" class="filter-footer-btn-apply">Áp dụng bộ lọc (<?php echo esc_html($total_count); ?>)</button>
+                <button type="submit" class="filter-footer-btn-apply"><?php echo esc_html($apply_btn_text); ?></button>
             </div>
         </form>
 
@@ -1100,6 +1112,22 @@ function gobike_render_shop_sidebar_filter()
     </aside>
 
     <script type="text/javascript">
+    function gobikeUpdateApplyBtnCount() {
+        var count = 0;
+        // Kiểm tra xem có chọn khoảng giá không
+        if (document.querySelectorAll('input[name="price_choice"]:checked').length > 0) {
+            count++;
+        }
+        // Đếm các checkbox bộ lọc khác đang được tick
+        var otherChecks = document.querySelectorAll('#gobike-filter-form input[type="checkbox"]:not([name="price_choice"]):checked');
+        count += otherChecks.length;
+
+        var btn = document.querySelector('.filter-footer-btn-apply');
+        if (btn) {
+            btn.textContent = count > 0 ? 'Áp dụng bộ lọc (' + count + ')' : 'Áp dụng bộ lọc';
+        }
+    }
+
     function gobikeApplyPriceChoice(input, min, max) {
         if (input.checked) {
             // Uncheck other price choices
@@ -1112,6 +1140,7 @@ function gobike_render_shop_sidebar_filter()
             document.getElementById('filter_min_price').value = '';
             document.getElementById('filter_max_price').value = '';
         }
+        gobikeUpdateApplyBtnCount();
     }
 
     function gobikeApplyMobileSort(val) {
@@ -1121,6 +1150,11 @@ function gobike_render_shop_sidebar_filter()
     }
 
     jQuery(document).ready(function($) {
+        // Cập nhật số đếm tiêu chí khi người dùng tick / bỏ tick bất kỳ checkbox nào
+        $('#gobike-filter-form').on('change', 'input[type="checkbox"]', function() {
+            gobikeUpdateApplyBtnCount();
+        });
+
         // Mở Drawer Bộ lọc trên Tablet / Mobile
         $('#gobikeMobileFilterBtn').on('click', function(e) {
             e.preventDefault();
