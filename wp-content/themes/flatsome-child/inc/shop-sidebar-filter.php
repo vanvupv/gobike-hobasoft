@@ -1525,9 +1525,14 @@ function gobike_render_shop_showrooms()
 
     if (function_exists('get_field')) {
         if ($current_term && !empty($current_term->term_id)) {
-            $showrooms = get_field('shop_showroom_list', $current_term);
-            $title     = get_field('shop_showroom_title', $current_term);
-            $subtitle  = get_field('shop_showroom_subtitle', $current_term);
+            $showrooms     = get_field('shop_showroom_list', $current_term);
+            $title         = get_field('shop_showroom_title', $current_term);
+            $subtitle      = get_field('shop_showroom_subtitle', $current_term);
+            $hotline_label = get_field('shop_showroom_hotline_label', $current_term);
+            $hotline       = get_field('shop_showroom_hotline', $current_term);
+            $hotline_time  = get_field('shop_showroom_hotline_time', $current_term);
+            $btn_text      = get_field('shop_showroom_btn_text', $current_term);
+            $btn_link      = get_field('shop_showroom_btn_link', $current_term);
         }
         if (empty($showrooms) && !empty($shop_page_id)) {
             $showrooms     = get_field('shop_showroom_list', $shop_page_id);
@@ -1596,7 +1601,7 @@ function gobike_render_shop_showrooms()
 
     // Dữ liệu mặc định cho hộp Hotline nếu để trống
     if (empty($hotline_label)) $hotline_label = 'Hotline tư vấn';
-    if (empty($hotline))       $hotline       = '0944 988 699';
+    if (empty($hotline) || trim($hotline) === trim($hotline_label)) $hotline = '0944 988 699';
     if (empty($hotline_time))  $hotline_time  = '8:00 - 22:00 (Tất cả các ngày)';
     if (empty($btn_text))      $btn_text      = 'Tìm đường đến cửa hàng ➔';
     if (empty($btn_link))      $btn_link      = home_url('/he-thong-cua-hang/');
@@ -1627,23 +1632,24 @@ function gobike_render_shop_showrooms()
                     <?php endif; ?>
                     <div class="showroom-info">
                         <?php if (!empty($sr['city'])): ?>
-                            <h5>
+                            <div class="showroom-name-row">
                                 <svg class="showroom-pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" style="flex-shrink:0;">
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                                 </svg>
-                                <?php echo esc_html($sr['city']); ?>
-                            </h5>
+                                <h5 class="showroom-name"><?php echo esc_html($sr['city']); ?></h5>
+                            </div>
                         <?php endif; ?>
                         <?php if (!empty($sr['address'])): ?>
                             <p class="showroom-address"><?php echo esc_html($sr['address']); ?></p>
                         <?php endif; ?>
                         <?php if (!empty($sr['hours'])): ?>
-                            <span class="open-time">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; vertical-align:-1px; margin-right:3px;">
+                            <div class="open-time">
+                                <svg class="showroom-clock-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
                                     <circle cx="12" cy="12" r="10"></circle>
                                     <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg><?php echo esc_html($sr['hours']); ?>
-                            </span>
+                                </svg>
+                                <span><?php echo esc_html($sr['hours']); ?></span>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </<?php echo $card_tag; ?>>
