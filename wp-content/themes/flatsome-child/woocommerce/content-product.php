@@ -116,7 +116,7 @@ $has_specs = (!empty($specs['range']) || !empty($specs['weight']) || !empty($spe
 						<?php if (!empty($specs['range'])): ?>
 							<!-- Quãng đường (GPS km) -->
 							<div class="spec-col" title="<?php echo esc_attr('Quãng đường: ' . $specs['range']); ?>">
-								<svg class="spec-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
 									<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
 									<circle cx="12" cy="9" r="2.5"/>
 								</svg>
@@ -127,7 +127,7 @@ $has_specs = (!empty($specs['range']) || !empty($specs['weight']) || !empty($spe
 						<?php if (!empty($specs['weight'])): ?>
 							<!-- Trọng lượng (Scale / Cân) -->
 							<div class="spec-col" title="<?php echo esc_attr('Trọng lượng: ' . $specs['weight']); ?>">
-								<svg class="spec-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
 									<path d="M6 3h12l2 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7l2-4z"/>
 									<circle cx="12" cy="14" r="3"/>
 									<path d="M12 11v3"/>
@@ -139,7 +139,7 @@ $has_specs = (!empty($specs['range']) || !empty($specs['weight']) || !empty($spe
 						<?php if (!empty($specs['power'])): ?>
 							<!-- Công suất động cơ (Tia sét) -->
 							<div class="spec-col" title="<?php echo esc_attr('Công suất: ' . $specs['power']); ?>">
-								<svg class="spec-icon" viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+								<svg class="spec-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
 									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
 								</svg>
 								<span class="spec-value"><?php echo esc_html($specs['power']); ?></span>

@@ -1643,42 +1643,57 @@ function gobike_custom_styles_output()
         }
 
         /* 3 Thông số có icon (GPS km, kg, W) - 3 cột bằng nhau, cắt chữ dài thành dấu chấm */
+        /* 3 Thông số có icon (GPS km, kg, W) - Rơi xuống như ảnh mẫu (icon trên, chữ dưới) */
         .gobike-pcard-specs {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 4px;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
             margin-bottom: 8px;
             background: #f8fafc;
-            border-radius: 4px;
-            padding: 6px 4px;
-            border: 1px solid #f1f5f9;
+            border-radius: 6px;
+            padding: 8px 4px;
+            border: 1px solid #edf2f7;
             box-sizing: border-box;
         }
 
         .gobike-pcard-specs .spec-badge {
+            flex: 1 1 0px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 4px;
             min-width: 0;
+            padding: 2px 4px;
+            text-align: center;
+            box-sizing: border-box;
             font-size: 12px;
-            font-weight: 600;
-            color: #475569;
+            font-weight: 700;
+            color: #044b25;
             overflow: hidden;
+        }
+
+        .gobike-pcard-specs .spec-badge:not(:last-child) {
+            border-right: 1px solid #e2e8f0;
         }
 
         .gobike-pcard-specs .spec-badge svg {
             flex-shrink: 0 !important;
-            width: 17px !important;
-            height: 17px !important;
+            width: 18px !important;
+            height: 18px !important;
             color: #044b25 !important;
+            display: block !important;
+            margin: 0 auto !important;
         }
 
         .gobike-pcard-specs .spec-badge span {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            min-width: 0;
+            max-width: 100%;
+            line-height: 1.2;
+            text-align: center;
+            display: block;
         }
 
         /* Cụm giá tiền: Bình thường 2 giá cùng 1 hàng, khi giá dài sẽ rơi giá cũ xuống dòng 2, giá đỏ dài quá 100% dòng thì hiển thị ... */
@@ -4211,42 +4226,56 @@ function gobike_custom_styles_output()
         }
 
         .gobike-product-card-v2 .card-specs-row {
-            display: grid !important;
-            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-            gap: 4px !important;
-            padding: 6px 4px !important;
+            display: flex !important;
+            align-items: stretch !important;
+            justify-content: space-between !important;
+            gap: 0 !important;
+            padding: 8px 4px !important;
             background: #f8fafc !important;
-            border-radius: 4px !important;
-            border: 1px solid #f1f5f9 !important;
+            border-radius: 6px !important;
+            border: 1px solid #edf2f7 !important;
             margin-bottom: 12px !important;
             box-sizing: border-box !important;
             width: 100% !important;
         }
 
         .gobike-product-card-v2 .spec-col {
+            flex: 1 1 0px !important;
             display: flex !important;
+            flex-direction: column !important;
             align-items: center !important;
             justify-content: center !important;
             gap: 4px !important;
             min-width: 0 !important;
-            overflow: hidden !important;
+            padding: 2px 4px !important;
+            text-align: center !important;
+            box-sizing: border-box !important;
+        }
+
+        .gobike-product-card-v2 .spec-col:not(:last-child) {
+            border-right: 1px solid #e2e8f0 !important;
         }
 
         .gobike-product-card-v2 .spec-icon {
             color: #044b25 !important;
             flex-shrink: 0 !important;
-            width: 17px !important;
-            height: 17px !important;
+            width: 18px !important;
+            height: 18px !important;
+            display: block !important;
+            margin: 0 auto !important;
         }
 
         .gobike-product-card-v2 .spec-value {
-            font-size: 11.5px !important;
-            font-weight: 600 !important;
-            color: #475569 !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #044b25 !important;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
             white-space: nowrap !important;
-            min-width: 0 !important;
+            max-width: 100% !important;
+            line-height: 1.2 !important;
+            text-align: center !important;
+            display: block !important;
         }
 
         .gobike-product-card-v2 .card-actions-row {
