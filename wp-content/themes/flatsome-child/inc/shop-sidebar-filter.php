@@ -1572,13 +1572,17 @@ function gobike_render_shop_showrooms()
             if ($img) {
                 $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'large') : $img);
             }
+            $sr_link = trim($sr['link'] ?? '');
+            if (!empty($sr_link)) {
+                $sr_link = str_replace('he-thong-cua-hang', 'cua-hang', $sr_link);
+            }
             $valid_showrooms[] = array(
                 'city'    => $city,
                 'address' => $addr,
                 'hours'   => trim($sr['hours'] ?? ''),
                 'badge'   => trim($sr['badge'] ?? ''),
                 'img_url' => $img_url,
-                'link'    => trim($sr['link'] ?? ''),
+                'link'    => $sr_link,
             );
         }
     }
@@ -1604,7 +1608,11 @@ function gobike_render_shop_showrooms()
     if (empty($hotline) || trim($hotline) === trim($hotline_label)) $hotline = '0944 988 699';
     if (empty($hotline_time))  $hotline_time  = '8:00 - 22:00 (Tất cả các ngày)';
     if (empty($btn_text))      $btn_text      = 'Tìm đường đến cửa hàng ➔';
-    if (empty($btn_link))      $btn_link      = home_url('/he-thong-cua-hang/');
+    if (empty($btn_link)) {
+        $btn_link = home_url('/cua-hang/');
+    } else {
+        $btn_link = str_replace('he-thong-cua-hang', 'cua-hang', $btn_link);
+    }
     $hotline_clean = preg_replace('/[^0-9]/', '', $hotline);
     ?>
     <!-- HỆ THỐNG SHOWROOM GOBIKE (ACF) -->
