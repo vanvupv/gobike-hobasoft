@@ -4515,12 +4515,12 @@ function gobike_custom_styles_output()
             align-items: center;
             gap: 16px;
             flex: 1;
-            padding-right: 20px;
-            border-right: 1px solid #edf2f7;
+            padding-right: 0;
+            border-right: none !important;
         }
 
         .gobike-shop-trust-badges-bar .trust-item:last-child {
-            border-right: none;
+            border-right: none !important;
             padding-right: 0;
         }
 
@@ -5436,7 +5436,7 @@ function gobike_custom_styles_output()
                 display: flex !important;
                 align-items: center !important;
                 gap: 10px !important;
-                border-right: 1px solid #edf2f7 !important;
+                border-right: none !important;
                 padding-right: 16px !important;
             }
 
