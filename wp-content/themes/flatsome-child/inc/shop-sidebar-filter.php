@@ -1261,7 +1261,7 @@ function gobike_render_shop_trust_badges()
             <<?php echo $tag; ?> class="trust-item"<?php echo $href_attr; ?>>
                 <div class="trust-icon">
                     <?php if (!empty($item['icon_url'])): ?>
-                        <img src="<?php echo esc_url($item['icon_url']); ?>" alt="<?php echo esc_attr($item['title']); ?>" style="width:32px;height:32px;object-fit:contain;" loading="lazy">
+                        <img src="<?php echo esc_url($item['icon_url']); ?>" alt="<?php echo esc_attr($item['title']); ?>" style="width:50px;height:50px;object-fit:contain;" loading="lazy">
                     <?php else: ?>
                         <?php echo $item['svg']; ?>
                     <?php endif; ?>
