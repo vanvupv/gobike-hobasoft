@@ -183,6 +183,11 @@ do_action( 'woocommerce_archive_description' );
 				} else {
 					do_action( 'woocommerce_no_products_found' );
 				}
+
+				// 3 Banner tiện ích dưới phân trang (Video review, So sánh nhanh, Chọn xe)
+				if ( function_exists( 'gobike_render_shop_utility_banners' ) ) {
+					gobike_render_shop_utility_banners();
+				}
 				?>
 
 			</div>

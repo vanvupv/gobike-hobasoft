@@ -1691,5 +1691,138 @@ function gobike_render_shop_bottom_features()
     gobike_render_shop_showrooms();
 }
 
+/**
+ * 7. KHỐI 3 BANNER TIỆN ÍCH DƯỚI PHÂN TRANG (ACF + FALLBACK CHUẨN THIẾT KẾ)
+ */
+function gobike_render_shop_utility_banners()
+{
+    // Kiểm tra cài đặt bật/tắt
+    $is_enabled = null;
+    if (function_exists('get_field')) {
+        $is_enabled = get_field('shop_utility_banners_enable');
+        if ($is_enabled === null || $is_enabled === '') {
+            $is_enabled = get_field('shop_utility_banners_enable', 'option');
+        }
+    }
+    if ($is_enabled === false || $is_enabled === '0' || $is_enabled === 0) {
+        return; // Đã tắt hiển thị từ ACF
+    }
+
+    // Xác định tên danh mục / thương hiệu hiện tại
+    $current_term = get_queried_object();
+    $brand_name = 'ADO';
+    if ($current_term && !empty($current_term->name)) {
+        $raw_name = $current_term->name;
+        if (preg_match('/\b(ADO|PHOENIX|SAMEBIKE|FIIDO|BAICYCLE|LIMIT|ENGWE|HIMO)\b/i', $raw_name, $m)) {
+            $brand_name = strtoupper($m[1]);
+        } else {
+            $brand_name = $raw_name;
+        }
+    }
+
+    $raw_banners = array();
+    if (function_exists('get_field')) {
+        $raw_banners = get_field('shop_utility_banners_list');
+        if (empty($raw_banners)) {
+            $raw_banners = get_field('shop_utility_banners_list', 'option');
+        }
+    }
+
+    $banners = array();
+    $theme_uri = get_stylesheet_directory_uri();
+
+    if (!empty($raw_banners) && is_array($raw_banners)) {
+        foreach ($raw_banners as $item) {
+            $img = $item['image'] ?? '';
+            $img_url = '';
+            if ($img) {
+                $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'large') : $img);
+            }
+            if (empty($img_url)) {
+                $img_url = $theme_uri . '/assets/images/utility-banner-review.jpg';
+            }
+
+            $title = !empty($item['title']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['title']) : ('Video review ' . $brand_name);
+            $subtitle = !empty($item['subtitle']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['subtitle']) : '';
+            $btn_text = !empty($item['btn_text']) ? $item['btn_text'] : 'Xem ngay ➔';
+            $link = !empty($item['link']) ? $item['link'] : '#';
+            $has_play = !empty($item['has_play_icon']);
+
+            $banners[] = array(
+                'image'         => $img_url,
+                'has_play_icon' => $has_play,
+                'title'         => $title,
+                'subtitle'      => $subtitle,
+                'btn_text'      => $btn_text,
+                'link'          => $link,
+            );
+        }
+    }
+
+    // Nếu để trống ACF -> Hiển thị 3 banner chuẩn thiết kế GoBike
+    if (empty($banners)) {
+        $banners = array(
+            array(
+                'image'         => $theme_uri . '/assets/images/utility-banner-review.jpg',
+                'has_play_icon' => true,
+                'title'         => 'Video review ' . $brand_name,
+                'subtitle'      => "Trải nghiệm thực tế\nTừ người dùng thật",
+                'btn_text'      => 'Xem ngay ➔',
+                'link'          => home_url('/video-review/'),
+            ),
+            array(
+                'image'         => $theme_uri . '/assets/images/utility-banner-compare.jpg',
+                'has_play_icon' => false,
+                'title'         => 'So sánh nhanh ' . $brand_name,
+                'subtitle'      => "Đâu là mẫu xe phù hợp\nvới bạn?",
+                'btn_text'      => 'Xem ngay ➔',
+                'link'          => home_url('/so-sanh-xe/'),
+            ),
+            array(
+                'image'         => $theme_uri . '/assets/images/utility-banner-quiz.jpg',
+                'has_play_icon' => false,
+                'title'         => '60 giây chọn đúng xe',
+                'subtitle'      => "Trả lời vài câu hỏi\nTìm xe phù hợp ngay",
+                'btn_text'      => 'Bắt đầu ngay ➔',
+                'link'          => home_url('/tu-van-chon-xe/'),
+            ),
+        );
+    }
+
+    if (empty($banners)) {
+        return;
+    }
+    ?>
+    <!-- 3 BANNER TIỆN ÍCH DƯỚI PHÂN TRANG GOBIKE (ACF) -->
+    <div class="gobike-shop-utility-banners">
+        <?php foreach ($banners as $b): ?>
+            <a href="<?php echo esc_url($b['link']); ?>" class="utility-banner-card<?php echo !empty($b['has_play_icon']) ? ' has-play-icon' : ''; ?>">
+                <div class="utility-banner-bg" style="background-image: url('<?php echo esc_url($b['image']); ?>');"></div>
+                <div class="utility-banner-overlay"></div>
+                <?php if (!empty($b['has_play_icon'])): ?>
+                    <div class="utility-banner-play" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="8 5 19 12 8 19"></polygon>
+                        </svg>
+                    </div>
+                <?php endif; ?>
+                <div class="utility-banner-content">
+                    <div class="utility-banner-text">
+                        <h4 class="utility-banner-title"><?php echo esc_html($b['title']); ?></h4>
+                        <?php if (!empty($b['subtitle'])): ?>
+                            <p class="utility-banner-desc"><?php echo nl2br(esc_html($b['subtitle'])); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <span class="utility-banner-btn">
+                        <span><?php echo esc_html($b['btn_text']); ?></span>
+                    </span>
+                </div>
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <?php
+}
+
+
 
 
