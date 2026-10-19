@@ -6134,7 +6134,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .gobike-showrooms-section .showroom-card:hover {
-    transform: translateY(-3px);
+    transform: none !important;
     border-color: #cbd5e1;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06) !important;
 }
@@ -6321,7 +6321,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 .gobike-showrooms-section .card-contact .map-link-btn:hover {
     background: #03381f;
-    transform: translateY(-1px);
+    transform: none !important;
     box-shadow: 0 4px 14px rgba(4, 75, 37, 0.3);
     color: #ffffff !important;
     text-decoration: none;
@@ -6379,7 +6379,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 }
 
 .utility-banner-card:hover {
-    transform: translateY(-2px);
+    transform: none !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
@@ -6611,6 +6611,33 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
         width: 38px;
         height: 38px;
     }
+}
+
+/* ==========================================================================
+   TẮT HIỆU ỨNG NHẤC LÊN (LIFT-UP TRANSFORM) KHI HOVER TRÊN TRANG SẢN PHẨM
+   ========================================================================== */
+.gobike-showrooms-section .showroom-card:hover,
+.gobike-shop-utility-banners .utility-banner-card:hover,
+.gobike-product-card-v2:hover,
+.archive .products .col-inner:hover,
+.archive .products .gobike-product-card-v2:hover,
+.archive .products .product-small:hover,
+.gobike-products-main-col .products .col-inner:hover,
+.gobike-products-main-col .products .gobike-product-card-v2:hover,
+.gobike-products-main-col .products .product-small:hover,
+.gobike-catalog-card-col .col-inner:hover,
+.gobike-catalog-card-col .gobike-product-card-v2:hover,
+.shop-container .products .col-inner:hover,
+.shop-container .products .gobike-product-card-v2:hover,
+.shop-container .products .product-small:hover,
+.row-box-shadow-1-hover .col-inner:hover,
+.row-box-shadow-2-hover .col-inner:hover,
+.row-box-shadow-3-hover .col-inner:hover,
+.row-box-shadow-4-hover .col-inner:hover,
+.row-box-shadow-5-hover .col-inner:hover,
+.box-bounce:hover .box-text,
+.box-bounce:hover .box-image {
+    transform: none !important;
 }
 
 

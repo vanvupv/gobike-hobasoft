@@ -4096,7 +4096,7 @@ function gobike_custom_styles_output()
         .gobike-product-card-v2:hover {
             border-color: #cbd5e1;
             box-shadow: none !important;
-            transform: translateY(-3px);
+            transform: none !important;
         }
 
         .gobike-product-card-v2 .card-badge-wrap,
@@ -5163,7 +5163,7 @@ function gobike_custom_styles_output()
         }
 
         .gobike-showrooms-section .showroom-card:hover {
-            transform: translateY(-3px);
+            transform: none !important;
             border-color: #cbd5e1;
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06) !important;
         }
@@ -5350,7 +5350,7 @@ function gobike_custom_styles_output()
 
         .gobike-showrooms-section .card-contact .map-link-btn:hover {
             background: #03381f;
-            transform: translateY(-1px);
+            transform: none !important;
             box-shadow: 0 4px 14px rgba(4, 75, 37, 0.3);
             color: #ffffff !important;
             text-decoration: none;
