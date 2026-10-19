@@ -1729,19 +1729,7 @@ function gobike_render_shop_bottom_features()
  */
 function gobike_render_shop_utility_banners()
 {
-    // Kiểm tra cài đặt bật/tắt
-    $is_enabled = null;
-    if (function_exists('get_field')) {
-        $is_enabled = get_field('shop_utility_banners_enable');
-        if ($is_enabled === null || $is_enabled === '') {
-            $is_enabled = get_field('shop_utility_banners_enable', 'option');
-        }
-    }
-    if ($is_enabled === false || $is_enabled === '0' || $is_enabled === 0) {
-        return; // Đã tắt hiển thị từ ACF
-    }
-
-    // Xác định tên danh mục / thương hiệu hiện tại
+    $shop_page_id = get_option('woocommerce_shop_page_id');
     $current_term = get_queried_object();
     $brand_name = 'ADO';
     if ($current_term && !empty($current_term->name)) {
@@ -1755,32 +1743,38 @@ function gobike_render_shop_utility_banners()
 
     $raw_banners = array();
     if (function_exists('get_field')) {
-        $raw_banners = get_field('shop_utility_banners_list');
+        if ($current_term && !empty($current_term->term_id)) {
+            $raw_banners = get_field('shop_utility_banners_list', $current_term);
+        }
+        if (empty($raw_banners) && !empty($shop_page_id)) {
+            $raw_banners = get_field('shop_utility_banners_list', $shop_page_id);
+        }
         if (empty($raw_banners)) {
             $raw_banners = get_field('shop_utility_banners_list', 'option');
         }
     }
 
+    // Không nhập liệu thì không hiển thị
+    if (empty($raw_banners) || !is_array($raw_banners)) {
+        return;
+    }
+
     $banners = array();
-    $theme_uri = get_stylesheet_directory_uri();
+    foreach ($raw_banners as $item) {
+        $img = $item['image'] ?? '';
+        $img_url = '';
+        if ($img) {
+            $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'large') : $img);
+        }
 
-    if (!empty($raw_banners) && is_array($raw_banners)) {
-        foreach ($raw_banners as $item) {
-            $img = $item['image'] ?? '';
-            $img_url = '';
-            if ($img) {
-                $img_url = is_array($img) ? ($img['url'] ?? '') : (is_numeric($img) ? wp_get_attachment_image_url($img, 'large') : $img);
-            }
-            if (empty($img_url)) {
-                $img_url = $theme_uri . '/assets/images/utility-banner-review.jpg';
-            }
+        $title    = !empty($item['title']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['title']) : '';
+        $subtitle = !empty($item['subtitle']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['subtitle']) : '';
+        $btn_text = !empty($item['btn_text']) ? $item['btn_text'] : 'Xem ngay ➔';
+        $link     = !empty($item['link']) ? $item['link'] : '#';
+        $has_play = !empty($item['has_play_icon']);
 
-            $title = !empty($item['title']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['title']) : ('Video review ' . $brand_name);
-            $subtitle = !empty($item['subtitle']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['subtitle']) : '';
-            $btn_text = !empty($item['btn_text']) ? $item['btn_text'] : 'Xem ngay ➔';
-            $link = !empty($item['link']) ? $item['link'] : home_url('/video-review-gobike/');
-            $has_play = !empty($item['has_play_icon']);
-
+        // Chỉ thêm banner nếu có hình ảnh hoặc tiêu đề
+        if (!empty($img_url) || !empty($title)) {
             $banners[] = array(
                 'image'         => $img_url,
                 'has_play_icon' => $has_play,
@@ -1792,36 +1786,7 @@ function gobike_render_shop_utility_banners()
         }
     }
 
-    // Nếu để trống ACF -> Hiển thị 3 banner chuẩn thiết kế GoBike
-    if (empty($banners)) {
-        $banners = array(
-            array(
-                'image'         => $theme_uri . '/assets/images/utility-banner-review.jpg',
-                'has_play_icon' => false,
-                'title'         => 'Video review ' . $brand_name,
-                'subtitle'      => "Trải nghiệm thực tế\nTừ người dùng thật",
-                'btn_text'      => 'Xem ngay ➔',
-                'link'          => home_url('/video-review-gobike/'),
-            ),
-            array(
-                'image'         => $theme_uri . '/assets/images/utility-banner-compare.jpg',
-                'has_play_icon' => false,
-                'title'         => 'So sánh nhanh ' . $brand_name,
-                'subtitle'      => "Đâu là mẫu xe phù hợp\nvới bạn?",
-                'btn_text'      => 'Xem ngay ➔',
-                'link'          => home_url('/video-review-gobike/'),
-            ),
-            array(
-                'image'         => $theme_uri . '/assets/images/utility-banner-quiz.jpg',
-                'has_play_icon' => false,
-                'title'         => '60 giây chọn đúng xe',
-                'subtitle'      => "Trả lời vài câu hỏi\nTìm xe phù hợp ngay",
-                'btn_text'      => 'Bắt đầu ngay ➔',
-                'link'          => home_url('/video-review-gobike/'),
-            ),
-        );
-    }
-
+    // Nếu không có banner hợp lệ nào -> Ẩn hoàn toàn
     if (empty($banners)) {
         return;
     }
@@ -1830,7 +1795,9 @@ function gobike_render_shop_utility_banners()
     <div class="gobike-shop-utility-banners">
         <?php foreach ($banners as $b): ?>
             <a href="<?php echo esc_url($b['link']); ?>" class="utility-banner-card<?php echo !empty($b['has_play_icon']) ? ' has-play-icon' : ''; ?>">
-                <div class="utility-banner-bg" style="background-image: url('<?php echo esc_url($b['image']); ?>');"></div>
+                <?php if (!empty($b['image'])): ?>
+                    <div class="utility-banner-bg" style="background-image: url('<?php echo esc_url($b['image']); ?>');"></div>
+                <?php endif; ?>
                 <div class="utility-banner-overlay"></div>
                 <?php if (!empty($b['has_play_icon'])): ?>
                     <div class="utility-banner-play" aria-hidden="true">
@@ -1841,14 +1808,18 @@ function gobike_render_shop_utility_banners()
                 <?php endif; ?>
                 <div class="utility-banner-content">
                     <div class="utility-banner-text">
-                        <h4 class="utility-banner-title"><?php echo esc_html($b['title']); ?></h4>
+                        <?php if (!empty($b['title'])): ?>
+                            <h4 class="utility-banner-title"><?php echo esc_html($b['title']); ?></h4>
+                        <?php endif; ?>
                         <?php if (!empty($b['subtitle'])): ?>
                             <p class="utility-banner-desc"><?php echo nl2br(esc_html($b['subtitle'])); ?></p>
                         <?php endif; ?>
                     </div>
-                    <span class="utility-banner-btn">
-                        <span><?php echo esc_html($b['btn_text']); ?></span>
-                    </span>
+                    <?php if (!empty($b['btn_text'])): ?>
+                        <span class="utility-banner-btn">
+                            <span><?php echo esc_html($b['btn_text']); ?></span>
+                        </span>
+                    <?php endif; ?>
                 </div>
             </a>
         <?php endforeach; ?>
