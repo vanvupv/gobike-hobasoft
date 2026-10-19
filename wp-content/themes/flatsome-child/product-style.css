@@ -6081,9 +6081,9 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 .gobike-showrooms-section {
     background: transparent !important;
     border: none !important;
-    border-top: 1px solid #edf2f7 !important;
+    border-top: none !important;
     border-radius: 0 !important;
-    padding: 38px 0 16px 0 !important;
+    padding: 0 0 16px 0 !important;
     margin-bottom: 0;
     text-align: center;
 }
@@ -6340,7 +6340,7 @@ form.variations_form .woocommerce-product-attributes.shop_attributes,
 
 @media (max-width: 599px) {
     .gobike-showrooms-section {
-        padding: 24px 0 !important;
+        padding: 0 0 24px 0 !important;
     }
     .gobike-showrooms-section .showroom-cards-col {
         grid-template-columns: 1fr;

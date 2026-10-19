@@ -5110,9 +5110,9 @@ function gobike_custom_styles_output()
         .gobike-showrooms-section {
             background: transparent !important;
             border: none !important;
-            border-top: 1px solid #edf2f7 !important;
+            border-top: none !important;
             border-radius: 0 !important;
-            padding: 38px 0 16px 0 !important;
+            padding: 0 0 16px 0 !important;
             margin-bottom: 35px;
             text-align: center;
         }
