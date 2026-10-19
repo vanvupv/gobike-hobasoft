@@ -1769,9 +1769,34 @@ function gobike_render_shop_utility_banners()
 
         $title    = !empty($item['title']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['title']) : '';
         $subtitle = !empty($item['subtitle']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['subtitle']) : '';
-        $btn_text = !empty($item['btn_text']) ? $item['btn_text'] : 'Xem ngay ➔';
-        $link     = !empty($item['link']) ? $item['link'] : '#';
-        $has_play = !empty($item['has_play_icon']);
+
+        // Xử lý field link (ACF link type: array('title' => ..., 'url' => ..., 'target' => ...))
+        // Đồng thời tương thích ngược nếu trước đó lưu link dạng text string
+        $link_data = $item['link'] ?? '';
+        $link_url  = '';
+        $btn_text  = '';
+        $target    = '';
+
+        if (is_array($link_data)) {
+            $link_url = $link_data['url'] ?? '';
+            $btn_text = $link_data['title'] ?? '';
+            $target   = $link_data['target'] ?? '';
+        } elseif (is_string($link_data)) {
+            $link_url = $link_data;
+        }
+
+        if (empty($btn_text) && !empty($item['btn_text'])) {
+            $btn_text = $item['btn_text'];
+        }
+        if (empty($btn_text)) {
+            $btn_text = 'Xem ngay ➔';
+        }
+        if (empty($link_url)) {
+            $link_url = '#';
+        }
+
+        // Tự động nhận diện video nếu tiêu đề hoặc đường dẫn liên quan đến video
+        $has_play = (stripos($title, 'video') !== false || stripos($link_url, 'video') !== false || !empty($item['has_play_icon']));
 
         // Chỉ thêm banner nếu có hình ảnh hoặc tiêu đề
         if (!empty($img_url) || !empty($title)) {
@@ -1781,7 +1806,8 @@ function gobike_render_shop_utility_banners()
                 'title'         => $title,
                 'subtitle'      => $subtitle,
                 'btn_text'      => $btn_text,
-                'link'          => $link,
+                'link'          => $link_url,
+                'target'        => $target,
             );
         }
     }
@@ -1794,7 +1820,7 @@ function gobike_render_shop_utility_banners()
     <!-- 3 BANNER TIỆN ÍCH DƯỚI PHÂN TRANG GOBIKE (ACF) -->
     <div class="gobike-shop-utility-banners">
         <?php foreach ($banners as $b): ?>
-            <a href="<?php echo esc_url($b['link']); ?>" class="utility-banner-card<?php echo !empty($b['has_play_icon']) ? ' has-play-icon' : ''; ?>">
+            <a href="<?php echo esc_url($b['link']); ?>"<?php echo !empty($b['target']) ? ' target="' . esc_attr($b['target']) . '"' : ''; ?> class="utility-banner-card<?php echo !empty($b['has_play_icon']) ? ' has-play-icon' : ''; ?>">
                 <?php if (!empty($b['image'])): ?>
                     <div class="utility-banner-bg" style="background-image: url('<?php echo esc_url($b['image']); ?>');"></div>
                 <?php endif; ?>
