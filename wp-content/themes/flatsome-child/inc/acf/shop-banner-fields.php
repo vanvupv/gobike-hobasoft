@@ -79,10 +79,10 @@ function gobike_register_shop_page_acf_fields()
                 'type' => 'select',
                 'instructions' => 'Chọn chế độ hiển thị phù hợp:',
                 'choices' => array(
-                    'graphic' => 'Banner ảnh nguyên bản (Chuẩn thiết kế GoBike, hiển thị trọn vẹn ảnh sắc nét)',
-                    'custom_text' => 'Banner có chữ & nút bấm phủ lên (Tiêu đề, Slogan, Nút xem sản phẩm & Hotline)',
+                    'custom_text' => 'Banner có khối nội dung col-6 chữ & nút bấm phủ lên (Mặc định - Chuẩn thiết kế)',
+                    'graphic_only' => 'Banner ảnh thuần (Chỉ hiển thị ảnh nền, không có khối chữ phủ)',
                 ),
-                'default_value' => 'graphic',
+                'default_value' => 'custom_text',
                 'wrapper' => array('width' => '50'),
             ),
             array(
@@ -95,21 +95,21 @@ function gobike_register_shop_page_acf_fields()
                 'wrapper' => array('width' => '50'),
             ),
             array(
-                'key' => 'field_shop_hero_banner_title',
-                'label' => 'Tiêu đề Banner (Kiểu chữ phủ)',
-                'name' => 'shop_hero_banner_title',
+                'key' => 'field_shop_hero_banner_title_prefix',
+                'label' => 'Tiêu đề dòng 1 (Tiền tố)',
+                'name' => 'shop_hero_banner_title_prefix',
                 'type' => 'text',
                 'instructions' => 'Mặc định: XE ĐẠP TRỢ LỰC ĐIỆN',
                 'default_value' => 'XE ĐẠP TRỢ LỰC ĐIỆN',
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field' => 'field_shop_hero_banner_type',
-                            'operator' => '==',
-                            'value' => 'custom_text',
-                        ),
-                    ),
-                ),
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_shop_hero_banner_brand',
+                'label' => 'Tên thương hiệu dòng 2 (Chữ to nổi bật)',
+                'name' => 'shop_hero_banner_brand',
+                'type' => 'text',
+                'instructions' => 'Mặc định: ADO',
+                'default_value' => 'ADO',
                 'wrapper' => array('width' => '50'),
             ),
             array(
@@ -119,15 +119,40 @@ function gobike_register_shop_page_acf_fields()
                 'type' => 'text',
                 'instructions' => 'Mặc định: Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình',
                 'default_value' => 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình',
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field' => 'field_shop_hero_banner_type',
-                            'operator' => '==',
-                            'value' => 'custom_text',
-                        ),
-                    ),
-                ),
+                'wrapper' => array('width' => '100'),
+            ),
+            array(
+                'key' => 'field_shop_hero_banner_desc',
+                'label' => 'Đoạn văn bản mô tả giới thiệu (col-6)',
+                'name' => 'shop_hero_banner_desc',
+                'type' => 'textarea',
+                'instructions' => 'Đoạn giới thiệu ngắn 2-3 dòng',
+                'default_value' => 'ADO là thương hiệu xe đạp trợ lực điện được yêu thích trên toàn cầu với thiết kế hiện đại, công nghệ thông minh và trải nghiệm lái mượt mà. Lựa chọn hoàn hảo cho cuộc sống năng động và xanh hơn mỗi ngày.',
+                'rows' => 3,
+                'wrapper' => array('width' => '100'),
+            ),
+            array(
+                'key' => 'field_shop_hero_banner_btn_text',
+                'label' => 'Chữ trên nút chính',
+                'name' => 'shop_hero_banner_btn_text',
+                'type' => 'text',
+                'default_value' => 'Xem tất cả sản phẩm',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_shop_hero_banner_btn_link',
+                'label' => 'Đường dẫn nút chính',
+                'name' => 'shop_hero_banner_btn_link',
+                'type' => 'text',
+                'default_value' => '#products-grid',
+                'wrapper' => array('width' => '50'),
+            ),
+            array(
+                'key' => 'field_shop_hero_banner_hotline_text',
+                'label' => 'Chữ trên nút tư vấn phụ',
+                'name' => 'shop_hero_banner_hotline_text',
+                'type' => 'text',
+                'default_value' => 'Nhận tư vấn nhanh',
                 'wrapper' => array('width' => '50'),
             ),
 

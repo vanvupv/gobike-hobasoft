@@ -1278,35 +1278,44 @@ function gobike_render_shop_trust_badges()
 
 /**
  * 3. Render Hero Banner Thương hiệu / Danh mục
- * Đọc từ ACF shop_hero_banner_image (trang Shop hoặc Theme Settings), có fallback và hỗ trợ danh mục.
+ * Hiển thị khối nội dung col-6 (Tiêu đề 2 dòng, Thương hiệu, Slogan, Mô tả & 2 nút bấm) trên ảnh nền banner.
  */
 function gobike_render_shop_brand_banner()
 {
     $shop_page_id = get_option('woocommerce_shop_page_id');
+    $source_id    = !empty($shop_page_id) ? $shop_page_id : 'option';
 
-    // 1. Đọc dữ liệu từ ACF
-    $banner_img  = null;
-    $banner_link = '';
-    $banner_type = 'graphic';
-    $title       = 'XE ĐẠP TRỢ LỰC ĐIỆN';
-    $desc        = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
-    $intro       = 'GoBike tự hào phân phối các dòng xe đạp trợ lực điện chính hãng hàng đầu Việt Nam.';
-    $hotline     = '0944 988 699';
-    $btn_text    = 'Xem tất cả sản phẩm ➔';
-    $btn_link    = '#products-grid';
+    // 1. Đọc dữ liệu mặc định chuẩn Ảnh 2
+    $banner_img   = null;
+    $banner_link  = '';
+    $banner_type  = 'custom_text';
+    $title_prefix = 'XE ĐẠP TRỢ LỰC ĐIỆN';
+    $brand_name   = 'ADO';
+    $slogan       = 'Thiết kế thông minh • Gọn nhẹ • Đồng hành mọi hành trình';
+    $desc         = 'ADO là thương hiệu xe đạp trợ lực điện được yêu thích trên toàn cầu với thiết kế hiện đại, công nghệ thông minh và trải nghiệm lái mượt mà. Lựa chọn hoàn hảo cho cuộc sống năng động và xanh hơn mỗi ngày.';
+    $btn_text     = 'Xem tất cả sản phẩm';
+    $btn_link     = '#products-grid';
+    $hotline_text = 'Nhận tư vấn nhanh';
+    $hotline      = '0944 988 699';
 
     if (function_exists('get_field')) {
-        $source_id = !empty($shop_page_id) ? $shop_page_id : 'option';
-        $banner_img = get_field('shop_hero_banner_image', $source_id);
-        if (!$banner_img) {
-            $banner_img = get_field('shop_hero_banner_image', 'option');
-        }
+        $banner_img   = get_field('shop_hero_banner_image', $source_id) ?: get_field('shop_hero_banner_image', 'option');
+        $banner_link  = get_field('shop_hero_banner_link', $source_id) ?: get_field('shop_hero_banner_link', 'option');
+        $banner_type  = get_field('shop_hero_banner_type', $source_id) ?: get_field('shop_hero_banner_type', 'option') ?: 'custom_text';
+        
+        $title_prefix = get_field('shop_hero_banner_title_prefix', $source_id) ?: get_field('shop_hero_banner_title', $source_id) ?: get_field('shop_hero_banner_title_prefix', 'option') ?: get_field('shop_hero_banner_title', 'option') ?: $title_prefix;
+        $brand_name   = get_field('shop_hero_banner_brand', $source_id) ?: get_field('shop_hero_banner_brand', 'option') ?: $brand_name;
+        $slogan       = get_field('shop_hero_banner_slogan', $source_id) ?: get_field('shop_hero_banner_slogan', 'option') ?: $slogan;
+        $desc         = get_field('shop_hero_banner_desc', $source_id) ?: get_field('shop_hero_banner_intro', $source_id) ?: get_field('shop_hero_banner_desc', 'option') ?: get_field('shop_hero_banner_intro', 'option') ?: $desc;
+        $btn_text     = get_field('shop_hero_banner_btn_text', $source_id) ?: get_field('shop_hero_banner_btn_text', 'option') ?: $btn_text;
+        $btn_link     = get_field('shop_hero_banner_btn_link', $source_id) ?: get_field('shop_hero_banner_btn_link', 'option') ?: $btn_link;
+        $hotline_text = get_field('shop_hero_banner_hotline_text', $source_id) ?: get_field('shop_hero_banner_hotline_text', 'option') ?: $hotline_text;
+        $hotline      = get_field('shop_hero_banner_hotline', $source_id) ?: get_field('shop_hero_banner_hotline', 'option') ?: $hotline;
+    }
 
-        $banner_link = get_field('shop_hero_banner_link', $source_id) ?: get_field('shop_hero_banner_link', 'option');
-        $banner_type = get_field('shop_hero_banner_type', $source_id) ?: get_field('shop_hero_banner_type', 'option') ?: 'graphic';
-        $title       = get_field('shop_hero_banner_title', $source_id) ?: get_field('shop_hero_banner_title', 'option') ?: $title;
-        $desc        = get_field('shop_hero_banner_slogan', $source_id) ?: get_field('shop_hero_banner_slogan', 'option') ?: $desc;
-        $hotline     = get_field('shop_hero_banner_hotline', $source_id) ?: get_field('shop_hero_banner_hotline', 'option') ?: $hotline;
+    // Xử lý thông minh nếu title_prefix đã chứa brand_name (để không bị lặp chữ)
+    if (!empty($brand_name) && str_ends_with(strtoupper($title_prefix), ' ' . strtoupper($brand_name))) {
+        $title_prefix = trim(substr($title_prefix, 0, -strlen($brand_name)));
     }
 
     $default_banner = get_stylesheet_directory_uri() . '/assets/images/banner-san-pham-ado.webp';
@@ -1318,50 +1327,63 @@ function gobike_render_shop_brand_banner()
         $image_url = $default_banner;
     }
 
-    $has_custom_cat_img = false;
+    // Nếu đang ở trang Danh mục sản phẩm (Category archive)
     if (is_product_category()) {
         $cat = get_queried_object();
-        if ($cat) {
-            $title = 'XE ĐẠP TRỢ LỰC ĐIỆN ' . mb_strtoupper($cat->name);
+        if ($cat && !empty($cat->name)) {
+            $brand_name = mb_strtoupper($cat->name);
             if (!empty($cat->description)) {
-                $intro = wp_strip_all_tags($cat->description);
+                $desc = wp_strip_all_tags($cat->description);
             }
             $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
             if ($thumbnail_id) {
                 $cat_img = wp_get_attachment_url($thumbnail_id);
                 if ($cat_img) {
                     $image_url = $cat_img;
-                    $has_custom_cat_img = true;
                 }
             }
         }
     }
 
     $hotline_clean = preg_replace('/[^0-9]/', '', $hotline);
-    $is_custom_text = ($banner_type === 'custom_text' || $has_custom_cat_img);
+    // Luôn hiển thị khối col-6 trừ khi quản trị viên cố tình chọn 'graphic_only'
+    $show_content_col = ($banner_type !== 'graphic_only');
     ?>
-    <div class="gobike-shop-hero-banner <?php echo $is_custom_text ? 'has-custom-img' : 'is-graphic-banner'; ?>" style="background-image: url('<?php echo esc_url($image_url); ?>'); position: relative;">
-        <?php if (!empty($banner_link) && !$is_custom_text) : ?>
-            <a href="<?php echo esc_url($banner_link); ?>" class="hero-banner-full-link" style="position:absolute;inset:0;z-index:3;" title="<?php echo esc_attr($title); ?>"></a>
+    <div class="gobike-shop-hero-banner <?php echo $show_content_col ? 'has-custom-img has-col6-content' : 'is-graphic-banner'; ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+        <?php if (!empty($banner_link) && !$show_content_col) : ?>
+            <a href="<?php echo esc_url($banner_link); ?>" class="hero-banner-full-link" style="position:absolute;inset:0;z-index:3;" title="<?php echo esc_attr($title_prefix . ' ' . $brand_name); ?>"></a>
         <?php endif; ?>
 
-        <?php if ($is_custom_text) : ?>
+        <?php if ($show_content_col) : ?>
             <div class="hero-banner-overlay"></div>
-            <div class="hero-banner-inner container">
-                <div class="row align-middle">
-                    <div class="col large-7 medium-8 small-12">
+            <div class="hero-banner-inner">
+                <div class="row align-middle hero-banner-row">
+                    <div class="col large-6 medium-7 small-12 hero-content-col-6">
                         <div class="col-inner hero-text-col">
-                            <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
-                            <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
-                            <p class="hero-intro"><?php echo esc_html($intro); ?></p>
+                            <div class="hero-title-group">
+                                <span class="hero-title-prefix"><?php echo esc_html($title_prefix); ?></span>
+                                <h1 class="hero-title-brand"><?php echo esc_html($brand_name); ?></h1>
+                            </div>
+                            <?php if (!empty($slogan)): ?>
+                                <p class="hero-slogan"><?php echo esc_html($slogan); ?></p>
+                            <?php endif; ?>
+                            <?php if (!empty($desc)): ?>
+                                <p class="hero-intro"><?php echo esc_html($desc); ?></p>
+                            <?php endif; ?>
                             <div class="hero-buttons">
-                                <a href="<?php echo esc_url($btn_link); ?>" class="hero-btn-primary"><?php echo esc_html($btn_text); ?></a>
+                                <a href="<?php echo esc_url($btn_link); ?>" class="hero-btn-primary">
+                                    <span><?php echo esc_html($btn_text); ?></span>
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </a>
                                 <?php if (!empty($hotline)): ?>
-                                    <a href="tel:<?php echo esc_attr($hotline_clean); ?>" class="hero-btn-outline">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <a href="tel:<?php echo esc_attr($hotline_clean); ?>" class="hero-btn-outline" title="Gọi hotline <?php echo esc_attr($hotline); ?>">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                            <circle cx="8.5" cy="10" r="0.8" fill="currentColor"></circle>
+                                            <circle cx="12" cy="10" r="0.8" fill="currentColor"></circle>
+                                            <circle cx="15.5" cy="10" r="0.8" fill="currentColor"></circle>
                                         </svg>
-                                        Nhận tư vấn nhanh (<?php echo esc_html($hotline); ?>)
+                                        <span><?php echo esc_html($hotline_text); ?></span>
                                     </a>
                                 <?php endif; ?>
                             </div>
@@ -1377,9 +1399,9 @@ function gobike_render_shop_brand_banner()
             <?php endif; ?>
             <!-- Accessible SEO heading for search engines -->
             <div class="screen-reader-text">
-                <h1 class="hero-title"><?php echo esc_html($title); ?></h1>
-                <p class="hero-slogan"><?php echo esc_html($desc); ?></p>
-                <p class="hero-intro"><?php echo esc_html($intro); ?></p>
+                <h1 class="hero-title"><?php echo esc_html($title_prefix . ' ' . $brand_name); ?></h1>
+                <p class="hero-slogan"><?php echo esc_html($slogan); ?></p>
+                <p class="hero-intro"><?php echo esc_html($desc); ?></p>
             </div>
         <?php endif; ?>
     </div>
