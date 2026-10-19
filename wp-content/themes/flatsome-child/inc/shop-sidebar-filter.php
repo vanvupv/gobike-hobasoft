@@ -1745,7 +1745,7 @@ function gobike_render_shop_utility_banners()
             $title = !empty($item['title']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['title']) : ('Video review ' . $brand_name);
             $subtitle = !empty($item['subtitle']) ? str_replace(array('{brand}', '{name}', '{category}'), $brand_name, $item['subtitle']) : '';
             $btn_text = !empty($item['btn_text']) ? $item['btn_text'] : 'Xem ngay ➔';
-            $link = !empty($item['link']) ? $item['link'] : '#';
+            $link = !empty($item['link']) ? $item['link'] : home_url('/video-review-gobike/');
             $has_play = !empty($item['has_play_icon']);
 
             $banners[] = array(
@@ -1768,7 +1768,7 @@ function gobike_render_shop_utility_banners()
                 'title'         => 'Video review ' . $brand_name,
                 'subtitle'      => "Trải nghiệm thực tế\nTừ người dùng thật",
                 'btn_text'      => 'Xem ngay ➔',
-                'link'          => home_url('/video-review/'),
+                'link'          => home_url('/video-review-gobike/'),
             ),
             array(
                 'image'         => $theme_uri . '/assets/images/utility-banner-compare.jpg',
@@ -1776,7 +1776,7 @@ function gobike_render_shop_utility_banners()
                 'title'         => 'So sánh nhanh ' . $brand_name,
                 'subtitle'      => "Đâu là mẫu xe phù hợp\nvới bạn?",
                 'btn_text'      => 'Xem ngay ➔',
-                'link'          => home_url('/so-sanh-xe/'),
+                'link'          => home_url('/video-review-gobike/'),
             ),
             array(
                 'image'         => $theme_uri . '/assets/images/utility-banner-quiz.jpg',
@@ -1784,7 +1784,7 @@ function gobike_render_shop_utility_banners()
                 'title'         => '60 giây chọn đúng xe',
                 'subtitle'      => "Trả lời vài câu hỏi\nTìm xe phù hợp ngay",
                 'btn_text'      => 'Bắt đầu ngay ➔',
-                'link'          => home_url('/tu-van-chon-xe/'),
+                'link'          => home_url('/video-review-gobike/'),
             ),
         );
     }

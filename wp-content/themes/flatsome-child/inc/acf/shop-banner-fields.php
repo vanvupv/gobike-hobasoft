@@ -665,7 +665,7 @@ function gobike_register_shop_page_acf_fields()
                         'label' => 'Đường dẫn (Link)',
                         'name' => 'link',
                         'type' => 'text',
-                        'placeholder' => '/video-review/',
+                        'placeholder' => '/video-review-gobike/',
                         'wrapper' => array('width' => '10'),
                     ),
                 ),
