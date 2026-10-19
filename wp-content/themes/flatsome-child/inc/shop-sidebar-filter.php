@@ -1313,9 +1313,12 @@ function gobike_render_shop_brand_banner()
         $hotline      = get_field('shop_hero_banner_hotline', $source_id) ?: get_field('shop_hero_banner_hotline', 'option') ?: $hotline;
     }
 
-    // Xử lý thông minh nếu title_prefix đã chứa brand_name (để không bị lặp chữ)
+    // Xử lý thông minh nếu title_prefix đã chứa brand_name (để không bị lặp chữ) hoặc bị dính chữ Sản phẩm mặc định
     if (!empty($brand_name) && str_ends_with(strtoupper($title_prefix), ' ' . strtoupper($brand_name))) {
         $title_prefix = trim(substr($title_prefix, 0, -strlen($brand_name)));
+    }
+    if (empty($title_prefix) || mb_strtolower(trim($title_prefix)) === 'sản phẩm') {
+        $title_prefix = 'XE ĐẠP TRỢ LỰC ĐIỆN';
     }
 
     $default_banner = get_stylesheet_directory_uri() . '/assets/images/banner-san-pham-ado.webp';
