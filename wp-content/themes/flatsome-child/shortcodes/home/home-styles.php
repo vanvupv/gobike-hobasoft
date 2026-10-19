@@ -4412,7 +4412,7 @@ function gobike_custom_styles_output()
 
         .gobike-shop-hero-banner .hero-title-prefix {
             font-size: 22px !important;
-            font-weight: 800 !important;
+            font-weight: 700 !important;
             color: #0f172a !important;
             line-height: 1.2 !important;
             letter-spacing: -0.3px;
@@ -4423,7 +4423,7 @@ function gobike_custom_styles_output()
 
         .gobike-shop-hero-banner .hero-title-brand {
             font-size: 46px !important;
-            font-weight: 900 !important;
+            font-weight: 700 !important;
             color: #044b25 !important;
             line-height: 1.05 !important;
             letter-spacing: -0.5px;
