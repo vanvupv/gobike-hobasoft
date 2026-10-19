@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF Field Groups for Shop Banners, Trust Badges, SEO Content & Support Section
+ * ACF Field Groups for Shop Banners, Trust Badges, Sidebar Support & Utility Banners
  * 
  * @package Flatsome-Child
  */
@@ -204,148 +204,115 @@ function gobike_register_shop_page_acf_fields()
             ),
 
             // =================================================================
-            // TAB 3: CẶP BANNER TIỆN ÍCH PHỤ
+            // TAB 3: TƯ VẤN CHỌN XE (SIDEBAR BỘ LỌC)
             // =================================================================
             array(
-                'key' => 'field_tab_shop_banners',
-                'label' => '3. Cặp Banner Tiện Ích Phụ',
+                'key' => 'field_tab_shop_sidebar_support',
+                'label' => '3. Tư Vấn Chọn Xe (Sidebar)',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
             ),
             array(
-                'key' => 'field_shop_banner_image_1',
-                'label' => 'Hình ảnh Banner 1 (Trái)',
-                'name' => 'shop_banner_image_1',
-                'type' => 'image',
-                'return_format' => 'url',
-                'preview_size' => 'medium',
-                'library' => 'all',
-            ),
-            array(
-                'key' => 'field_shop_banner_link_1',
-                'label' => 'Liên kết Banner 1',
-                'name' => 'shop_banner_link_1',
+                'key' => 'field_shop_sidebar_support_title',
+                'label' => 'Tiêu đề khối tư vấn',
+                'name' => 'shop_sidebar_support_title',
                 'type' => 'text',
-                'placeholder' => '#',
-                'default_value' => '',
+                'placeholder' => 'Cần tư vấn chọn xe?',
+                'default_value' => 'Cần tư vấn chọn xe?',
+                'wrapper' => array('width' => '50'),
             ),
             array(
-                'key' => 'field_shop_banner_image_2',
-                'label' => 'Hình ảnh Banner 2 (Phải)',
-                'name' => 'shop_banner_image_2',
-                'type' => 'image',
-                'return_format' => 'url',
-                'preview_size' => 'medium',
-                'library' => 'all',
-            ),
-            array(
-                'key' => 'field_shop_banner_link_2',
-                'label' => 'Liên kết Banner 2',
-                'name' => 'shop_banner_link_2',
+                'key' => 'field_shop_sidebar_support_desc',
+                'label' => 'Mô tả ngắn',
+                'name' => 'shop_sidebar_support_desc',
                 'type' => 'text',
-                'placeholder' => '#',
-                'default_value' => '',
-            ),
-
-            // =================================================================
-            // TAB 4: NỘI DUNG CUỐI TRANG (SEO)
-            // =================================================================
-            array(
-                'key' => 'field_tab_shop_bottom_content',
-                'label' => '4. Nội dung cuối trang (SEO)',
-                'name' => '',
-                'type' => 'tab',
-                'placement' => 'top',
+                'placeholder' => 'Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn',
+                'default_value' => 'Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn',
+                'wrapper' => array('width' => '50'),
             ),
             array(
-                'key' => 'field_shop_bottom_title',
-                'label' => 'Tiêu đề nội dung chân trang',
-                'name' => 'shop_bottom_title',
-                'type' => 'text',
-                'default_value' => '',
-            ),
-            array(
-                'key' => 'field_shop_bottom_content',
-                'label' => 'Nội dung chi tiết (Editor)',
-                'name' => 'shop_bottom_content',
-                'type' => 'wysiwyg',
-                'tabs' => 'all',
-                'toolbar' => 'full',
-                'media_upload' => 1,
-                'default_value' => '',
-            ),
-
-            // =================================================================
-            // TAB 5: HỖ TRỢ KHÁCH HÀNG
-            // =================================================================
-            array(
-                'key' => 'field_tab_shop_single_support',
-                'label' => '5. Hỗ trợ khách hàng',
-                'name' => '',
-                'type' => 'tab',
-                'placement' => 'top',
-            ),
-            array(
-                'key' => 'field_shop_single_support_title',
-                'label' => 'Tiêu đề khối hỗ trợ',
-                'name' => 'shop_single_support_title',
-                'type' => 'textarea',
-                'default_value' => "CHÚNG TÔI LUÔN SẴN SÀNG\nĐỂ GIÚP ĐỠ BẠN",
-                'rows' => 2,
-                'new_lines' => 'br',
-            ),
-            array(
-                'key' => 'field_shop_single_support_image',
-                'label' => 'Hình ảnh nhân viên / Đội ngũ hỗ trợ',
-                'name' => 'shop_single_support_image',
-                'type' => 'image',
-                'return_format' => 'url',
-                'preview_size' => 'medium',
-                'library' => 'all',
-            ),
-            array(
-                'key' => 'field_shop_single_support_call_text',
-                'label' => 'Dòng chữ trước số điện thoại',
-                'name' => 'shop_single_support_call_text',
-                'type' => 'text',
-                'default_value' => 'Để được hỗ trợ tốt nhất. Hãy gọi',
-            ),
-            array(
-                'key' => 'field_shop_single_support_phone',
+                'key' => 'field_shop_sidebar_support_phone',
                 'label' => 'Số điện thoại Hotline',
-                'name' => 'shop_single_support_phone',
+                'name' => 'shop_sidebar_support_phone',
                 'type' => 'text',
+                'placeholder' => '0944 988 699',
                 'default_value' => '0944 988 699',
+                'wrapper' => array('width' => '50'),
             ),
             array(
-                'key' => 'field_shop_single_support_chat_text',
-                'label' => 'Dòng chữ giới thiệu Chat',
-                'name' => 'shop_single_support_chat_text',
-                'type' => 'text',
-                'default_value' => 'Chat hỗ trợ trực tuyến',
-            ),
-            array(
-                'key' => 'field_shop_single_support_chat_btn_text',
-                'label' => 'Chữ trên nút Chat',
-                'name' => 'shop_single_support_chat_btn_text',
-                'type' => 'text',
-                'default_value' => 'CHAT VỚI CHÚNG TÔI',
-            ),
-            array(
-                'key' => 'field_shop_single_support_chat_link',
-                'label' => 'Đường dẫn nút Chat',
-                'name' => 'shop_single_support_chat_link',
-                'type' => 'text',
-                'default_value' => 'https://zalo.me/0944988699',
+                'key' => 'field_shop_sidebar_support_icon',
+                'label' => 'Icon / Ảnh đại diện (Tùy chọn)',
+                'name' => 'shop_sidebar_support_icon',
+                'type' => 'image',
+                'return_format' => 'url',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+                'wrapper' => array('width' => '50'),
             ),
 
             // =================================================================
-            // TAB 6: VÌ SAO CHỌN GOBIKE (CHUẨN ẢNH THIẾT KẾ)
+            // TAB 4: 3 BANNER TIỆN ÍCH DƯỚI PHÂN TRANG (UTILITY BANNERS)
+            // =================================================================
+            array(
+                'key' => 'field_tab_shop_utility_banners',
+                'label' => '4. 3 Banner Tiện Ích (Dưới Phân Trang)',
+                'name' => '',
+                'type' => 'tab',
+                'placement' => 'top',
+            ),
+            array(
+                'key' => 'field_shop_utility_banners_list',
+                'label' => 'Danh sách Banner tiện ích',
+                'name' => 'shop_utility_banners_list',
+                'type' => 'repeater',
+                'layout' => 'table',
+                'button_label' => '+ Thêm banner tiện ích',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_shop_ub_img',
+                        'label' => 'Ảnh nền banner',
+                        'name' => 'image',
+                        'type' => 'image',
+                        'return_format' => 'url',
+                        'preview_size' => 'medium',
+                        'library' => 'all',
+                        'wrapper' => array('width' => '25'),
+                    ),
+                    array(
+                        'key' => 'field_shop_ub_title',
+                        'label' => 'Tiêu đề banner',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'placeholder' => 'Vd: Video review xe',
+                        'wrapper' => array('width' => '25'),
+                    ),
+                    array(
+                        'key' => 'field_shop_ub_desc',
+                        'label' => 'Mô tả phụ',
+                        'name' => 'subtitle',
+                        'type' => 'textarea',
+                        'rows' => 2,
+                        'placeholder' => "Trải nghiệm thực tế\nTừ người dùng thật",
+                        'wrapper' => array('width' => '25'),
+                    ),
+                    array(
+                        'key' => 'field_shop_ub_link',
+                        'label' => 'Nút bấm / Đường dẫn',
+                        'name' => 'link',
+                        'type' => 'link',
+                        'return_format' => 'array',
+                        'wrapper' => array('width' => '25'),
+                    ),
+                ),
+            ),
+
+            // =================================================================
+            // TAB 5: VÌ SAO CHỌN GOBIKE (CHUẨN ẢNH THIẾT KẾ)
             // =================================================================
             array(
                 'key' => 'field_tab_shop_why_choose',
-                'label' => '6. Vì sao chọn GoBike',
+                'label' => '5. Vì sao chọn GoBike',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -404,11 +371,11 @@ function gobike_register_shop_page_acf_fields()
             ),
 
             // =================================================================
-            // TAB 7: HỆ THỐNG SHOWROOM
+            // TAB 6: HỆ THỐNG SHOWROOM
             // =================================================================
             array(
                 'key' => 'field_tab_shop_showrooms',
-                'label' => '7. Hệ thống Showroom',
+                'label' => '6. Hệ thống Showroom',
                 'name' => '',
                 'type' => 'tab',
                 'placement' => 'top',
@@ -535,62 +502,6 @@ function gobike_register_shop_page_acf_fields()
                 'placeholder' => '/cua-hang/',
                 'default_value' => '',
                 'wrapper' => array('width' => '50'),
-            ),
-
-            // =================================================================
-            // TAB 8: 3 BANNER TIỆN ÍCH DƯỚI PHÂN TRANG (UTILITY BANNERS)
-            // =================================================================
-            array(
-                'key' => 'field_tab_shop_utility_banners',
-                'label' => '8. 3 Banner Tiện Ích (Dưới Phân Trang)',
-                'name' => '',
-                'type' => 'tab',
-                'placement' => 'top',
-            ),
-            array(
-                'key' => 'field_shop_utility_banners_list',
-                'label' => 'Danh sách Banner tiện ích',
-                'name' => 'shop_utility_banners_list',
-                'type' => 'repeater',
-                'layout' => 'table',
-                'button_label' => '+ Thêm banner tiện ích',
-                'sub_fields' => array(
-                    array(
-                        'key' => 'field_shop_ub_img',
-                        'label' => 'Ảnh nền banner',
-                        'name' => 'image',
-                        'type' => 'image',
-                        'return_format' => 'url',
-                        'preview_size' => 'medium',
-                        'library' => 'all',
-                        'wrapper' => array('width' => '25'),
-                    ),
-                    array(
-                        'key' => 'field_shop_ub_title',
-                        'label' => 'Tiêu đề banner',
-                        'name' => 'title',
-                        'type' => 'text',
-                        'placeholder' => 'Vd: Video review xe',
-                        'wrapper' => array('width' => '25'),
-                    ),
-                    array(
-                        'key' => 'field_shop_ub_desc',
-                        'label' => 'Mô tả phụ',
-                        'name' => 'subtitle',
-                        'type' => 'textarea',
-                        'rows' => 2,
-                        'placeholder' => "Trải nghiệm thực tế\nTừ người dùng thật",
-                        'wrapper' => array('width' => '25'),
-                    ),
-                    array(
-                        'key' => 'field_shop_ub_link',
-                        'label' => 'Nút bấm / Đường dẫn',
-                        'name' => 'link',
-                        'type' => 'link',
-                        'return_format' => 'array',
-                        'wrapper' => array('width' => '25'),
-                    ),
-                ),
             ),
         ),
         'location' => $location_rules,

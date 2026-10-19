@@ -1085,28 +1085,65 @@ function gobike_render_shop_sidebar_filter()
                 <a href="<?php echo esc_url($reset_all_url); ?>" class="filter-footer-btn-reset">Xóa lọc</a>
                 <button type="submit" class="filter-footer-btn-apply"><?php echo esc_html($apply_btn_text); ?></button>
             </div>
-        </form>
+        </form>        <?php
+        // Đọc cấu hình ACF cho box tư vấn sidebar
+        $sb_title = '';
+        $sb_desc  = '';
+        $sb_phone = '';
+        $sb_icon  = '';
 
+        if (function_exists('get_field')) {
+            if ($current_term && !empty($current_term->term_id)) {
+                $sb_title = get_field('shop_sidebar_support_title', $current_term);
+                $sb_desc  = get_field('shop_sidebar_support_desc', $current_term);
+                $sb_phone = get_field('shop_sidebar_support_phone', $current_term);
+                $sb_icon  = get_field('shop_sidebar_support_icon', $current_term);
+            }
+            if (empty($sb_phone) && !empty($shop_page_id)) {
+                $sb_title = $sb_title ?: get_field('shop_sidebar_support_title', $shop_page_id);
+                $sb_desc  = $sb_desc ?: get_field('shop_sidebar_support_desc', $shop_page_id);
+                $sb_phone = get_field('shop_sidebar_support_phone', $shop_page_id);
+                $sb_icon  = $sb_icon ?: get_field('shop_sidebar_support_icon', $shop_page_id);
+            }
+            if (empty($sb_phone)) {
+                $sb_title = $sb_title ?: get_field('shop_sidebar_support_title', 'option');
+                $sb_desc  = $sb_desc ?: get_field('shop_sidebar_support_desc', 'option');
+                $sb_phone = get_field('shop_sidebar_support_phone', 'option');
+                $sb_icon  = $sb_icon ?: get_field('shop_sidebar_support_icon', 'option');
+            }
+        }
+
+        // Mặc định fallback chuẩn
+        if (empty($sb_title)) $sb_title = 'Cần tư vấn chọn xe?';
+        if (empty($sb_desc))  $sb_desc  = 'Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn';
+        if (empty($sb_phone)) $sb_phone = '0944 988 699';
+        $sb_phone_clean = preg_replace('/[^0-9+]/', '', $sb_phone);
+        $sb_icon_url = is_array($sb_icon) ? ($sb_icon['url'] ?? '') : (is_numeric($sb_icon) ? wp_get_attachment_image_url($sb_icon, 'thumbnail') : $sb_icon);
+        ?>
         <!-- BOX HỖ TRỢ TƯ VẤN HOTLINE (ẢNH 2 - CHỈ HIỆN TRÊN DESKTOP) -->
         <div class="gobike-support-hotline-box desktop-only">
             <div class="support-top-row">
                 <div class="support-icon">
-                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path>
-                        <path d="M3 17a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"></path>
-                        <path d="M21 16v2a4 4 0 0 1-4 4h-3"></path>
-                    </svg>
+                    <?php if (!empty($sb_icon_url)): ?>
+                        <img src="<?php echo esc_url($sb_icon_url); ?>" alt="<?php echo esc_attr($sb_title); ?>" width="34" height="34" />
+                    <?php else: ?>
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path>
+                            <path d="M3 17a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3v5z"></path>
+                            <path d="M21 16v2a4 4 0 0 1-4 4h-3"></path>
+                        </svg>
+                    <?php endif; ?>
                 </div>
                 <div class="support-text-col">
-                    <h4 class="support-title">Cần tư vấn chọn xe?</h4>
-                    <p class="support-desc">Đội ngũ GoBike luôn sẵn sàng hỗ trợ bạn</p>
+                    <h4 class="support-title"><?php echo esc_html($sb_title); ?></h4>
+                    <p class="support-desc"><?php echo esc_html($sb_desc); ?></p>
                 </div>
             </div>
-            <a href="tel:0944988699" class="support-phone-btn">
+            <a href="tel:<?php echo esc_attr($sb_phone_clean); ?>" class="support-phone-btn">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.12.45 2.33.69 3.48.69a1 1 0 011 1v3.5a1 1 0 01-1 1A17.91 17.91 0 012 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.15.24 2.36.69 3.48a1 1 0 01-.21 1.11l-2.2 2.2z"/>
                 </svg>
-                0944 988 699
+                <?php echo esc_html($sb_phone); ?>
             </a>
         </div>
     </aside>
