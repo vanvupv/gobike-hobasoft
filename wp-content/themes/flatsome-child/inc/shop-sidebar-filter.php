@@ -1764,7 +1764,7 @@ function gobike_render_shop_utility_banners()
         $banners = array(
             array(
                 'image'         => $theme_uri . '/assets/images/utility-banner-review.jpg',
-                'has_play_icon' => true,
+                'has_play_icon' => false,
                 'title'         => 'Video review ' . $brand_name,
                 'subtitle'      => "Trải nghiệm thực tế\nTừ người dùng thật",
                 'btn_text'      => 'Xem ngay ➔',
